@@ -13,6 +13,6 @@ Community Offer Board
 </p>
 </h1>
 
-<a href="/test_We2" style="text-decoration: none;">Root로 이동</a>
+<a href="/We2" style="text-decoration: none;">Root로 이동</a>
 </body>
 </html>
