@@ -1,0 +1,3677 @@
+{
+	"_type": "Project",
+	"_id": "AAAAAAFF+h6SjaM2Hec=",
+	"name": "Untitled",
+	"ownedElements": [
+		{
+			"_type": "UMLModel",
+			"_id": "AAAAAAFUf0PRlD8V7Wk=",
+			"_parent": {
+				"$ref": "AAAAAAFF+h6SjaM2Hec="
+			},
+			"name": "We2",
+			"ownedElements": [
+				{
+					"_type": "UMLClassDiagram",
+					"_id": "AAAAAAFUf0McxD8JE58=",
+					"_parent": {
+						"$ref": "AAAAAAFUf0PRlD8V7Wk="
+					},
+					"name": "프로젝트xml구조",
+					"ownedElements": [
+						{
+							"_type": "UMLObject",
+							"_id": "AAAAAAFUf0Wssz+ve1k=",
+							"_parent": {
+								"$ref": "AAAAAAFUf0McxD8JE58="
+							},
+							"name": "web.xml",
+							"visibility": "public",
+							"slots": [
+								{
+									"_type": "UMLSlot",
+									"_id": "AAAAAAFUf0XFPD/NlDw=",
+									"_parent": {
+										"$ref": "AAAAAAFUf0Wssz+ve1k="
+									},
+									"name": "<context-param>",
+									"documentation": "<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->\n<context-param>\n   <param-name>\n   contextConfigLocation\n   </param-name>\n   <param-value>\n   /WEB-INF/spring/root-context.xml\n   </param-value>\n</context-param>",
+									"visibility": "public",
+									"type": "",
+									"value": "DI나 AOP, DBCP 설정 해주는 xml 경로 지정"
+								},
+								{
+									"_type": "UMLSlot",
+									"_id": "AAAAAAFUf0XLEj/TbPk=",
+									"_parent": {
+										"$ref": "AAAAAAFUf0Wssz+ve1k="
+									},
+									"name": "<listener>",
+									"documentation": "<!-- Creates the Spring Container shared by all Servlets and Filters -->\n<listener>\n  <listener-class>\norg.springframework.web.context.ContextLoaderListener\n  </listener-class>\n</listener>\t\t\t\t\t\t\n<!-- context-param을 구동시켜주는 태그. -->",
+									"visibility": "public",
+									"type": "",
+									"value": "<context-param>을 구동시켜주는 태그."
+								},
+								{
+									"_type": "UMLSlot",
+									"_id": "AAAAAAFUf0kDAj/5c1c=",
+									"_parent": {
+										"$ref": "AAAAAAFUf0Wssz+ve1k="
+									},
+									"name": "<servlet>",
+									"documentation": "<!-- Processes application requests -->\t\n<servlet>\t\n<servlet-name>\nappServlet <- 서블릿이름지정, <servlet-mapping>의 <servlet-name>과 이름이 같아야함\n</servlet-name>\t\n<servlet-class>\norg.springframework.web.servlet.DispatcherServlet\n</servlet-class>\t\n<init-param>\t\n   <param-name>\n   contextConfigLocation\n   </param-name>\t\n   <param-value>\t<- MVC설정 xml\n\t/WEB-INF/spring/appServlet/servlet-context.xml\n   </param-value>\t\n</init-param>\t\n<load-on-startup>1</load-on-startup>\t\n</servlet>\t",
+									"visibility": "public",
+									"type": ""
+								},
+								{
+									"_type": "UMLSlot",
+									"_id": "AAAAAAFUgcMNaSCFb0Q=",
+									"_parent": {
+										"$ref": "AAAAAAFUf0Wssz+ve1k="
+									},
+									"name": "└ <servlet-name>",
+									"visibility": "public",
+									"type": "",
+									"value": "dispatcher, contextConfigLocation, (contextClass : @EnableWebMvc필요할때만)"
+								},
+								{
+									"_type": "UMLSlot",
+									"_id": "AAAAAAFUgbGWWCBIGms=",
+									"_parent": {
+										"$ref": "AAAAAAFUf0Wssz+ve1k="
+									},
+									"name": "└ <servlet-class>",
+									"visibility": "public",
+									"type": ""
+								},
+								{
+									"_type": "UMLSlot",
+									"_id": "AAAAAAFUgc1QvSDk/xo=",
+									"_parent": {
+										"$ref": "AAAAAAFUf0Wssz+ve1k="
+									},
+									"name": "└ <init-param>",
+									"visibility": "public",
+									"type": ""
+								},
+								{
+									"_type": "UMLSlot",
+									"_id": "AAAAAAFUgc6lIyDzyTE=",
+									"_parent": {
+										"$ref": "AAAAAAFUf0Wssz+ve1k="
+									},
+									"name": "└ <load-on-startup>",
+									"visibility": "public",
+									"type": "<param-name>, <param-value>"
+								},
+								{
+									"_type": "UMLSlot",
+									"_id": "AAAAAAFUf00qxEBg/Oo=",
+									"_parent": {
+										"$ref": "AAAAAAFUf0Wssz+ve1k="
+									},
+									"name": "<servlet-mapping>",
+									"documentation": "<servlet-mapping>\n<servlet-name>\n   appServlet <- <servlet>의 <servlet-name>과 이름이 같아야 함\n</servlet-name>\n<url-pattern>/</url-pattern>\n</servlet-mapping>\n",
+									"visibility": "public",
+									"type": "<servlet-name>, <url-pattern>"
+								},
+								{
+									"_type": "UMLSlot",
+									"_id": "AAAAAAFUf031A0CG7IM=",
+									"_parent": {
+										"$ref": "AAAAAAFUf0Wssz+ve1k="
+									},
+									"name": "<filter>",
+									"documentation": "<filter>\t\n<filter-name>encodingFilter</filter-name>\t\n<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>\t\n<init-param>\t\n<param-name>encoding</param-name>\t\n<param-value>UTF-8</param-value>\t\n</init-param>\t\n</filter>\t\n",
+									"visibility": "public",
+									"type": "",
+									"value": "한글 인코딩 해주는 태그"
+								},
+								{
+									"_type": "UMLSlot",
+									"_id": "AAAAAAFUf08FGUCRIOU=",
+									"_parent": {
+										"$ref": "AAAAAAFUf0Wssz+ve1k="
+									},
+									"name": "<filter-mapping>",
+									"documentation": "<filter-mapping>\n<filter-name>encodingFilter</filter-name>\n<url-pattern>/*</url-pattern>\n</filter-mapping>\n",
+									"visibility": "public",
+									"type": "<filter-name>, <url-pattern>"
+								}
+							],
+							"value": "Spring과 Spring MVC설정. ( 파일 위치 정의 )"
+						},
+						{
+							"_type": "UMLObject",
+							"_id": "AAAAAAFUgY413xuwBq0=",
+							"_parent": {
+								"$ref": "AAAAAAFUf0McxD8JE58="
+							},
+							"name": "we2-beans.xml",
+							"visibility": "public",
+							"slots": [
+								{
+									"_type": "UMLSlot",
+									"_id": "AAAAAAFUgY59gBvOma8=",
+									"_parent": {
+										"$ref": "AAAAAAFUgY413xuwBq0="
+									},
+									"name": "JDBC dataSource 설정",
+									"documentation": "<bean id=\"dataSource\"\t\nclass=\"org.springframework.jdbc.datasource.DriverManagerDataSource\">\t\n<property name=\"driverClassName\">\t\n\t<value>oracle.jdbc.driver.OracleDriver</value>\n</property>\t\n<property name=\"url\">\t\n\t<value>jdbc:oracle:thin:@localhost:1521:orcl</value>\n</property>\t\n<property name=\"username\">\t\n\t<value>javauser</value>\n</property>\t\n<property name=\"password\">\t\n\t<value>1234</value>\n</property>\t\n</bean>\t\n",
+									"visibility": "protected",
+									"type": ""
+								},
+								{
+									"_type": "UMLSlot",
+									"_id": "AAAAAAFUgcksjyCtFIE=",
+									"_parent": {
+										"$ref": "AAAAAAFUgY413xuwBq0="
+									},
+									"name": "   <bean id=\"dataSource\">",
+									"visibility": "private",
+									"type": "",
+									"value": "하위 <property> : driverClass, url, username, password"
+								},
+								{
+									"_type": "UMLSlot",
+									"_id": "AAAAAAFUgZ4CoR/579A=",
+									"_parent": {
+										"$ref": "AAAAAAFUgY413xuwBq0="
+									},
+									"name": "sqlSessionFactory",
+									"documentation": "<bean id=\"sqlSessionFactory\"\t\n\tclass=\"org.mybatis.spring.SqlSessionFactoryBean\">\n\t<property name=\"dataSource\" ref=\"dataSource\"/>\n</bean>\t\n",
+									"visibility": "protected",
+									"type": ""
+								},
+								{
+									"_type": "UMLSlot",
+									"_id": "AAAAAAFUgcoNZiC/llg=",
+									"_parent": {
+										"$ref": "AAAAAAFUgY413xuwBq0="
+									},
+									"name": "   <bean id=\"sqlSessionFactory\">",
+									"visibility": "private",
+									"type": "",
+									"value": "하위 <property> : name, ref=dataSource"
+								},
+								{
+									"_type": "UMLSlot",
+									"_id": "AAAAAAFUgZ/peCAHb70=",
+									"_parent": {
+										"$ref": "AAAAAAFUgY413xuwBq0="
+									},
+									"name": "commit & rollback 의 스프링이 자동적용",
+									"documentation": "<bean id=\"sqlSession\"\t\n\tclass=\"org.mybatis.spring.SqlSessionTemplate\">\n\t<constructor-arg index=\"0\" ref=\"sqlSessionFactory\"></constructor-arg>\n</bean>\t\n",
+									"visibility": "protected",
+									"type": ""
+								},
+								{
+									"_type": "UMLSlot",
+									"_id": "AAAAAAFUgcqx3iDQo8w=",
+									"_parent": {
+										"$ref": "AAAAAAFUgY413xuwBq0="
+									},
+									"name": "   <bean id=\"sqlSession\">",
+									"visibility": "private",
+									"type": "",
+									"value": "하위 : <constructor-arg>"
+								},
+								{
+									"_type": "UMLSlot",
+									"_id": "AAAAAAFUgaFJlyATSbQ=",
+									"_parent": {
+										"$ref": "AAAAAAFUgY413xuwBq0="
+									},
+									"name": "소스코드에 어노테이션 트랜잭션을 활용할 때",
+									"documentation": "<bean id=\"transactionManager\"\t\n\tclass=\"org.springframework.jdbc.datasource.DataSourceTransactionManager\">\n\t<property name=\"dataSource\" ref=\"dataSource\"></property>\n</bean>\t\n",
+									"visibility": "protected",
+									"type": ""
+								},
+								{
+									"_type": "UMLSlot",
+									"_id": "AAAAAAFUgdEj+iENBZs=",
+									"_parent": {
+										"$ref": "AAAAAAFUgY413xuwBq0="
+									},
+									"name": "   <bean id=\"transactionManager\">",
+									"visibility": "private",
+									"type": "",
+									"value": "하위 <property> : name, ref=dataSource"
+								},
+								{
+									"_type": "UMLSlot",
+									"_id": "AAAAAAFUgaPobiAhffY=",
+									"_parent": {
+										"$ref": "AAAAAAFUgY413xuwBq0="
+									},
+									"name": "@Transactional 사용을 위한 태그",
+									"documentation": "<tx:annotation-driven transaction-manager=\"transactionManager\"/>",
+									"visibility": "protected",
+									"type": ""
+								},
+								{
+									"_type": "UMLSlot",
+									"_id": "AAAAAAFUgdK4CyEoxK4=",
+									"_parent": {
+										"$ref": "AAAAAAFUgY413xuwBq0="
+									},
+									"name": "   <tx:annotation-driven>",
+									"visibility": "private",
+									"type": "",
+									"value": "transaction-manager=\"transactionManager\""
+								},
+								{
+									"_type": "UMLSlot",
+									"_id": "AAAAAAFUgaUfRiAsVxk=",
+									"_parent": {
+										"$ref": "AAAAAAFUgY413xuwBq0="
+									},
+									"name": "Mapper! 이용한 매퍼임",
+									"documentation": "<bean id=\"boardMapper\"\t\n\tclass=\"org.mybatis.spring.mapper.MapperFactoryBean\">\n\t<!-- 이 안에 SQL이 들어있음 -->\n\t<property name=\"mapperInterface\" value=\"mysite.com.app.BoardMapper\"/>\n\t<!-- SQL 실행하기위한 태그 -->\n\t<property name=\"sqlSessionFactory\" ref=\"sqlSessionFactory\"/>\n</bean>\t\n",
+									"visibility": "protected",
+									"type": ""
+								},
+								{
+									"_type": "UMLSlot",
+									"_id": "AAAAAAFUgdNdYiE1eYg=",
+									"_parent": {
+										"$ref": "AAAAAAFUgY413xuwBq0="
+									},
+									"name": "   <bean id=\"boardMapper\">",
+									"visibility": "private",
+									"type": "",
+									"value": "하위 <property> : mapperInterface, sqlSessionFactory"
+								}
+							],
+							"value": "bean등록 , DBCP bean 설정"
+						},
+						{
+							"_type": "Hyperlink",
+							"_id": "AAAAAAFUgY2o2Buk09o=",
+							"_parent": {
+								"$ref": "AAAAAAFUf0McxD8JE58="
+							},
+							"name": "Hyperlink1",
+							"reference": {
+								"$ref": "AAAAAAFUgYe5ZhUPZhk="
+							}
+						}
+					],
+					"visible": true,
+					"defaultDiagram": false,
+					"ownedViews": [
+						{
+							"_type": "UMLObjectView",
+							"_id": "AAAAAAFUf0WstT+xHoU=",
+							"_parent": {
+								"$ref": "AAAAAAFUf0McxD8JE58="
+							},
+							"model": {
+								"$ref": "AAAAAAFUf0Wssz+ve1k="
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "AAAAAAFUf0WstT+yo5A=",
+									"_parent": {
+										"$ref": "AAAAAAFUf0WstT+xHoU="
+									},
+									"model": {
+										"$ref": "AAAAAAFUf0Wssz+ve1k="
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFUf0WstT+z8hI=",
+											"_parent": {
+												"$ref": "AAAAAAFUf0WstT+yo5A="
+											},
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 80,
+											"top": -64,
+											"width": 0,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"horizontalAlignment": 2,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFUf0WstT+05Gw=",
+											"_parent": {
+												"$ref": "AAAAAAFUf0WstT+yo5A="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;1",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 173,
+											"top": 71,
+											"width": 591.7666015625,
+											"height": 13,
+											"autoResize": false,
+											"underline": true,
+											"text": "web.xml",
+											"horizontalAlignment": 2,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFUf0Wstj+1xGo=",
+											"_parent": {
+												"$ref": "AAAAAAFUf0WstT+yo5A="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 173,
+											"top": 86,
+											"width": 591.7666015625,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "Spring과 Spring MVC설정. ( 파일 위치 정의 )",
+											"horizontalAlignment": 2,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFUf0Wstj+2Edo=",
+											"_parent": {
+												"$ref": "AAAAAAFUf0WstT+yo5A="
+											},
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 80,
+											"top": -64,
+											"width": 0,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"horizontalAlignment": 1,
+											"verticalAlignment": 5
+										}
+									],
+									"visible": true,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"containerExtending": false,
+									"left": 168,
+									"top": 64,
+									"width": 601.7666015625,
+									"height": 40,
+									"autoResize": false,
+									"stereotypeLabel": {
+										"$ref": "AAAAAAFUf0WstT+z8hI="
+									},
+									"nameLabel": {
+										"$ref": "AAAAAAFUf0WstT+05Gw="
+									},
+									"namespaceLabel": {
+										"$ref": "AAAAAAFUf0Wstj+1xGo="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAFUf0Wstj+2Edo="
+									}
+								},
+								{
+									"_type": "UMLSlotCompartmentView",
+									"_id": "AAAAAAFUf0Wstj+3cF4=",
+									"_parent": {
+										"$ref": "AAAAAAFUf0WstT+xHoU="
+									},
+									"model": {
+										"$ref": "AAAAAAFUf0Wssz+ve1k="
+									},
+									"subViews": [
+										{
+											"_type": "UMLSlotView",
+											"_id": "AAAAAAFUf0XFfT/QdfI=",
+											"_parent": {
+												"$ref": "AAAAAAFUf0Wstj+3cF4="
+											},
+											"model": {
+												"$ref": "AAAAAAFUf0XFPD/NlDw="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 173,
+											"top": 109,
+											"width": 591.7666015625,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "+<context-param> = DI나 AOP, DBCP 설정 해주는 xml 경로 지정",
+											"horizontalAlignment": 0,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "UMLSlotView",
+											"_id": "AAAAAAFUf0XLRz/WBKI=",
+											"_parent": {
+												"$ref": "AAAAAAFUf0Wstj+3cF4="
+											},
+											"model": {
+												"$ref": "AAAAAAFUf0XLEj/TbPk="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 173,
+											"top": 124,
+											"width": 591.7666015625,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "+<listener> = <context-param>을 구동시켜주는 태그.",
+											"horizontalAlignment": 0,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "UMLSlotView",
+											"_id": "AAAAAAFUf0kDOz/8aGg=",
+											"_parent": {
+												"$ref": "AAAAAAFUf0Wstj+3cF4="
+											},
+											"model": {
+												"$ref": "AAAAAAFUf0kDAj/5c1c="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 173,
+											"top": 139,
+											"width": 591.7666015625,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "+<servlet>",
+											"horizontalAlignment": 0,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "UMLSlotView",
+											"_id": "AAAAAAFUgcMNvCCIGIo=",
+											"_parent": {
+												"$ref": "AAAAAAFUf0Wstj+3cF4="
+											},
+											"model": {
+												"$ref": "AAAAAAFUgcMNaSCFb0Q="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 173,
+											"top": 154,
+											"width": 591.7666015625,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "+└ <servlet-name> = dispatcher, contextConfigLocation, (contextClass : @EnableWebMvc필요할때만)",
+											"horizontalAlignment": 0,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "UMLSlotView",
+											"_id": "AAAAAAFUgbGWrSBLmfs=",
+											"_parent": {
+												"$ref": "AAAAAAFUf0Wstj+3cF4="
+											},
+											"model": {
+												"$ref": "AAAAAAFUgbGWWCBIGms="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 173,
+											"top": 169,
+											"width": 591.7666015625,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "+└ <servlet-class>",
+											"horizontalAlignment": 0,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "UMLSlotView",
+											"_id": "AAAAAAFUgc1RCyDnjSo=",
+											"_parent": {
+												"$ref": "AAAAAAFUf0Wstj+3cF4="
+											},
+											"model": {
+												"$ref": "AAAAAAFUgc1QvSDk/xo="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 173,
+											"top": 184,
+											"width": 591.7666015625,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "+└ <init-param>",
+											"horizontalAlignment": 0,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "UMLSlotView",
+											"_id": "AAAAAAFUgc6lbCD2Zmw=",
+											"_parent": {
+												"$ref": "AAAAAAFUf0Wstj+3cF4="
+											},
+											"model": {
+												"$ref": "AAAAAAFUgc6lIyDzyTE="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 173,
+											"top": 199,
+											"width": 591.7666015625,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "+└ <load-on-startup>: <param-name>, <param-value>",
+											"horizontalAlignment": 0,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "UMLSlotView",
+											"_id": "AAAAAAFUf00rAUBj2j8=",
+											"_parent": {
+												"$ref": "AAAAAAFUf0Wstj+3cF4="
+											},
+											"model": {
+												"$ref": "AAAAAAFUf00qxEBg/Oo="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 173,
+											"top": 214,
+											"width": 591.7666015625,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "+<servlet-mapping>: <servlet-name>, <url-pattern>",
+											"horizontalAlignment": 0,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "UMLSlotView",
+											"_id": "AAAAAAFUf031UUCJ/lc=",
+											"_parent": {
+												"$ref": "AAAAAAFUf0Wstj+3cF4="
+											},
+											"model": {
+												"$ref": "AAAAAAFUf031A0CG7IM="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 173,
+											"top": 229,
+											"width": 591.7666015625,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "+<filter> = 한글 인코딩 해주는 태그",
+											"horizontalAlignment": 0,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "UMLSlotView",
+											"_id": "AAAAAAFUf08FZkCUDeM=",
+											"_parent": {
+												"$ref": "AAAAAAFUf0Wstj+3cF4="
+											},
+											"model": {
+												"$ref": "AAAAAAFUf08FGUCRIOU="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 173,
+											"top": 244,
+											"width": 591.7666015625,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "+<filter-mapping>: <filter-name>, <url-pattern>",
+											"horizontalAlignment": 0,
+											"verticalAlignment": 5
+										}
+									],
+									"visible": true,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"containerExtending": false,
+									"left": 168,
+									"top": 104,
+									"width": 601.7666015625,
+									"height": 158,
+									"autoResize": false
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": true,
+							"containerExtending": false,
+							"left": 168,
+							"top": 64,
+							"width": 601.7666015625,
+							"height": 198,
+							"autoResize": false,
+							"stereotypeDisplay": "label",
+							"showVisibility": true,
+							"showNamespace": false,
+							"showProperty": true,
+							"showType": true,
+							"nameCompartment": {
+								"$ref": "AAAAAAFUf0WstT+yo5A="
+							},
+							"wordWrap": false,
+							"slotCompartment": {
+								"$ref": "AAAAAAFUf0Wstj+3cF4="
+							}
+						},
+						{
+							"_type": "HyperlinkView",
+							"_id": "AAAAAAFUgY2o2Rumrq8=",
+							"_parent": {
+								"$ref": "AAAAAAFUf0McxD8JE58="
+							},
+							"model": {
+								"$ref": "AAAAAAFUgY2o2Buk09o="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAFUgY2o2hunADs=",
+									"_parent": {
+										"$ref": "AAAAAAFUgY2o2Rumrq8="
+									},
+									"visible": true,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#adc8ff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"containerExtending": false,
+									"left": 53.39453125,
+									"top": 293,
+									"width": 171.16455078125,
+									"height": 13,
+									"autoResize": false,
+									"underline": false,
+									"text": "프로젝트 간단구조",
+									"horizontalAlignment": 2,
+									"verticalAlignment": 5
+								},
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAFUgY2o2huopBA=",
+									"_parent": {
+										"$ref": "AAAAAAFUgY2o2Rumrq8="
+									},
+									"visible": true,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#adc8ff",
+									"fontColor": "#000000",
+									"font": "Arial;13;1",
+									"showShadow": true,
+									"containerChangeable": false,
+									"containerExtending": false,
+									"left": 21,
+									"top": 293,
+									"width": 23.39453125,
+									"height": 13,
+									"autoResize": false,
+									"underline": false,
+									"text": "link",
+									"horizontalAlignment": 2,
+									"verticalAlignment": 5
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#adc8ff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": false,
+							"containerExtending": false,
+							"left": 16,
+							"top": 288,
+							"width": 214.55908203125,
+							"height": 23,
+							"autoResize": false,
+							"nameLabel": {
+								"$ref": "AAAAAAFUgY2o2hunADs="
+							},
+							"typeLabel": {
+								"$ref": "AAAAAAFUgY2o2huopBA="
+							}
+						},
+						{
+							"_type": "UMLObjectView",
+							"_id": "AAAAAAFUgY414BuyzZg=",
+							"_parent": {
+								"$ref": "AAAAAAFUf0McxD8JE58="
+							},
+							"model": {
+								"$ref": "AAAAAAFUgY413xuwBq0="
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "AAAAAAFUgY414RuzQAI=",
+									"_parent": {
+										"$ref": "AAAAAAFUgY414BuyzZg="
+									},
+									"model": {
+										"$ref": "AAAAAAFUgY413xuwBq0="
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFUgY414hu0CBU=",
+											"_parent": {
+												"$ref": "AAAAAAFUgY414RuzQAI="
+											},
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 192,
+											"top": -144,
+											"width": 0,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"horizontalAlignment": 2,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFUgY414xu19M4=",
+											"_parent": {
+												"$ref": "AAAAAAFUgY414RuzQAI="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;1",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 237,
+											"top": 327,
+											"width": 523.70068359375,
+											"height": 13,
+											"autoResize": false,
+											"underline": true,
+											"text": "we2-beans.xml",
+											"horizontalAlignment": 2,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFUgY414xu25k4=",
+											"_parent": {
+												"$ref": "AAAAAAFUgY414RuzQAI="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 237,
+											"top": 342,
+											"width": 523.70068359375,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "bean등록 , DBCP bean 설정",
+											"horizontalAlignment": 2,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFUgY414xu3Kc8=",
+											"_parent": {
+												"$ref": "AAAAAAFUgY414RuzQAI="
+											},
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 192,
+											"top": -144,
+											"width": 0,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"horizontalAlignment": 1,
+											"verticalAlignment": 5
+										}
+									],
+									"visible": true,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"containerExtending": false,
+									"left": 232,
+									"top": 320,
+									"width": 533.70068359375,
+									"height": 40,
+									"autoResize": false,
+									"stereotypeLabel": {
+										"$ref": "AAAAAAFUgY414hu0CBU="
+									},
+									"nameLabel": {
+										"$ref": "AAAAAAFUgY414xu19M4="
+									},
+									"namespaceLabel": {
+										"$ref": "AAAAAAFUgY414xu25k4="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAFUgY414xu3Kc8="
+									}
+								},
+								{
+									"_type": "UMLSlotCompartmentView",
+									"_id": "AAAAAAFUgY414xu4gKY=",
+									"_parent": {
+										"$ref": "AAAAAAFUgY414BuyzZg="
+									},
+									"model": {
+										"$ref": "AAAAAAFUgY413xuwBq0="
+									},
+									"subViews": [
+										{
+											"_type": "UMLSlotView",
+											"_id": "AAAAAAFUgY59zRvRBtA=",
+											"_parent": {
+												"$ref": "AAAAAAFUgY414xu4gKY="
+											},
+											"model": {
+												"$ref": "AAAAAAFUgY59gBvOma8="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 237,
+											"top": 365,
+											"width": 523.70068359375,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "#JDBC dataSource 설정",
+											"horizontalAlignment": 0,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "UMLSlotView",
+											"_id": "AAAAAAFUgcks9SCwfzI=",
+											"_parent": {
+												"$ref": "AAAAAAFUgY414xu4gKY="
+											},
+											"model": {
+												"$ref": "AAAAAAFUgcksjyCtFIE="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 237,
+											"top": 380,
+											"width": 523.70068359375,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "-   <bean id=\"dataSource\"> = 하위 <property> : driverClass, url, username, password",
+											"horizontalAlignment": 0,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "UMLSlotView",
+											"_id": "AAAAAAFUgZ4C4R/8vtE=",
+											"_parent": {
+												"$ref": "AAAAAAFUgY414xu4gKY="
+											},
+											"model": {
+												"$ref": "AAAAAAFUgZ4CoR/579A="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 237,
+											"top": 395,
+											"width": 523.70068359375,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "#sqlSessionFactory",
+											"horizontalAlignment": 0,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "UMLSlotView",
+											"_id": "AAAAAAFUgcoNrSDCgkw=",
+											"_parent": {
+												"$ref": "AAAAAAFUgY414xu4gKY="
+											},
+											"model": {
+												"$ref": "AAAAAAFUgcoNZiC/llg="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 237,
+											"top": 410,
+											"width": 523.70068359375,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "-   <bean id=\"sqlSessionFactory\"> = 하위 <property> : name, ref=dataSource",
+											"horizontalAlignment": 0,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "UMLSlotView",
+											"_id": "AAAAAAFUgZ/pvCAKd3I=",
+											"_parent": {
+												"$ref": "AAAAAAFUgY414xu4gKY="
+											},
+											"model": {
+												"$ref": "AAAAAAFUgZ/peCAHb70="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 237,
+											"top": 425,
+											"width": 523.70068359375,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "#commit & rollback 의 스프링이 자동적용",
+											"horizontalAlignment": 0,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "UMLSlotView",
+											"_id": "AAAAAAFUgcqyKCDTlrA=",
+											"_parent": {
+												"$ref": "AAAAAAFUgY414xu4gKY="
+											},
+											"model": {
+												"$ref": "AAAAAAFUgcqx3iDQo8w="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 237,
+											"top": 440,
+											"width": 523.70068359375,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "-   <bean id=\"sqlSession\"> = 하위 : <constructor-arg>",
+											"horizontalAlignment": 0,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "UMLSlotView",
+											"_id": "AAAAAAFUgaFJ5SAW3Yg=",
+											"_parent": {
+												"$ref": "AAAAAAFUgY414xu4gKY="
+											},
+											"model": {
+												"$ref": "AAAAAAFUgaFJlyATSbQ="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 237,
+											"top": 455,
+											"width": 523.70068359375,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "#소스코드에 어노테이션 트랜잭션을 활용할 때",
+											"horizontalAlignment": 0,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "UMLSlotView",
+											"_id": "AAAAAAFUgdEkTCEQhiw=",
+											"_parent": {
+												"$ref": "AAAAAAFUgY414xu4gKY="
+											},
+											"model": {
+												"$ref": "AAAAAAFUgdEj+iENBZs="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 237,
+											"top": 470,
+											"width": 523.70068359375,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "-   <bean id=\"transactionManager\"> = 하위 <property> : name, ref=dataSource",
+											"horizontalAlignment": 0,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "UMLSlotView",
+											"_id": "AAAAAAFUgaPopiAkqTk=",
+											"_parent": {
+												"$ref": "AAAAAAFUgY414xu4gKY="
+											},
+											"model": {
+												"$ref": "AAAAAAFUgaPobiAhffY="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 237,
+											"top": 485,
+											"width": 523.70068359375,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "#@Transactional 사용을 위한 태그",
+											"horizontalAlignment": 0,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "UMLSlotView",
+											"_id": "AAAAAAFUgdK4ZCErNWo=",
+											"_parent": {
+												"$ref": "AAAAAAFUgY414xu4gKY="
+											},
+											"model": {
+												"$ref": "AAAAAAFUgdK4CyEoxK4="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 237,
+											"top": 500,
+											"width": 523.70068359375,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "-   <tx:annotation-driven> = transaction-manager=\"transactionManager\"",
+											"horizontalAlignment": 0,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "UMLSlotView",
+											"_id": "AAAAAAFUgaUfiiAvCr0=",
+											"_parent": {
+												"$ref": "AAAAAAFUgY414xu4gKY="
+											},
+											"model": {
+												"$ref": "AAAAAAFUgaUfRiAsVxk="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 237,
+											"top": 515,
+											"width": 523.70068359375,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "#Mapper! 이용한 매퍼임",
+											"horizontalAlignment": 0,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "UMLSlotView",
+											"_id": "AAAAAAFUgdNdsiE4540=",
+											"_parent": {
+												"$ref": "AAAAAAFUgY414xu4gKY="
+											},
+											"model": {
+												"$ref": "AAAAAAFUgdNdYiE1eYg="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 237,
+											"top": 530,
+											"width": 523.70068359375,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "-   <bean id=\"boardMapper\"> = 하위 <property> : mapperInterface, sqlSessionFactory",
+											"horizontalAlignment": 0,
+											"verticalAlignment": 5
+										}
+									],
+									"visible": true,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"containerExtending": false,
+									"left": 232,
+									"top": 360,
+									"width": 533.70068359375,
+									"height": 188,
+									"autoResize": false
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": true,
+							"containerExtending": false,
+							"left": 232,
+							"top": 320,
+							"width": 533.70068359375,
+							"height": 228,
+							"autoResize": false,
+							"stereotypeDisplay": "label",
+							"showVisibility": true,
+							"showNamespace": false,
+							"showProperty": true,
+							"showType": true,
+							"nameCompartment": {
+								"$ref": "AAAAAAFUgY414RuzQAI="
+							},
+							"wordWrap": false,
+							"slotCompartment": {
+								"$ref": "AAAAAAFUgY414xu4gKY="
+							}
+						},
+						{
+							"_type": "UMLNoteLinkView",
+							"_id": "AAAAAAFUggBLqyI+UVc=",
+							"_parent": {
+								"$ref": "AAAAAAFUf0McxD8JE58="
+							},
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": false,
+							"containerExtending": false,
+							"head": {
+								"$ref": "AAAAAAFUgY2o2Rumrq8="
+							},
+							"tail": {
+								"$ref": "AAAAAAFUgY414BuyzZg="
+							},
+							"lineStyle": 1,
+							"points": "231:432;120:432;122:311"
+						},
+						{
+							"_type": "UMLNoteLinkView",
+							"_id": "AAAAAAFUggBwjCJCQNQ=",
+							"_parent": {
+								"$ref": "AAAAAAFUf0McxD8JE58="
+							},
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": false,
+							"containerExtending": false,
+							"head": {
+								"$ref": "AAAAAAFUgY2o2Rumrq8="
+							},
+							"tail": {
+								"$ref": "AAAAAAFUf0WstT+xHoU="
+							},
+							"lineStyle": 1,
+							"points": "167:160;120:160;122:287"
+						}
+					]
+				},
+				{
+					"_type": "UMLObjectDiagram",
+					"_id": "AAAAAAFUgYe5ZhUPZhk=",
+					"_parent": {
+						"$ref": "AAAAAAFUf0PRlD8V7Wk="
+					},
+					"name": "프로젝트 간단구조",
+					"ownedElements": [
+						{
+							"_type": "UMLObject",
+							"_id": "AAAAAAFUgYfqbxUWF5A=",
+							"_parent": {
+								"$ref": "AAAAAAFUgYe5ZhUPZhk="
+							},
+							"name": "web.xml",
+							"visibility": "public",
+							"slots": [
+								{
+									"_type": "UMLSlot",
+									"_id": "AAAAAAFUgZXu5R86JwE=",
+									"_parent": {
+										"$ref": "AAAAAAFUgYfqbxUWF5A="
+									},
+									"name": "경로",
+									"visibility": "public",
+									"type": "src/main/webapp/WEB-INF/"
+								},
+								{
+									"_type": "UMLSlot",
+									"_id": "AAAAAAFUgerglyGC/uA=",
+									"_parent": {
+										"$ref": "AAAAAAFUgYfqbxUWF5A="
+									},
+									"name": "기능1",
+									"visibility": "public",
+									"type": "",
+									"value": "Spring과 Spring MVC설정. ( 파일 위치 정의 )"
+								},
+								{
+									"_type": "UMLSlot",
+									"_id": "AAAAAAFUgeu8xSGVd/A=",
+									"_parent": {
+										"$ref": "AAAAAAFUgYfqbxUWF5A="
+									},
+									"name": "기능2",
+									"visibility": "public",
+									"type": "",
+									"value": "DispatcherServlet 서블릿 맵핑, 설정"
+								}
+							]
+						},
+						{
+							"_type": "UMLObject",
+							"_id": "AAAAAAFUgYgSihU0ZpM=",
+							"_parent": {
+								"$ref": "AAAAAAFUgYe5ZhUPZhk="
+							},
+							"name": "we2-springmvc.xml",
+							"visibility": "public",
+							"slots": [
+								{
+									"_type": "UMLSlot",
+									"_id": "AAAAAAFUgfqOoiH3Gu8=",
+									"_parent": {
+										"$ref": "AAAAAAFUgYgSihU0ZpM="
+									},
+									"name": "경로",
+									"visibility": "public",
+									"type": "src/main/resources/ (classpath:)"
+								},
+								{
+									"_type": "UMLSlot",
+									"_id": "AAAAAAFUgehMiCF1tdo=",
+									"_parent": {
+										"$ref": "AAAAAAFUgYgSihU0ZpM="
+									},
+									"name": "기능",
+									"visibility": "public",
+									"type": "스프링MVC의 주요 설정",
+									"value": "HandlerMapping, ViewResolver 등의 주요 설정"
+								},
+								{
+									"_type": "UMLSlot",
+									"_id": "AAAAAAFUgff8KiHdAQU=",
+									"_parent": {
+										"$ref": "AAAAAAFUgYgSihU0ZpM="
+									},
+									"name": "본래파일명",
+									"visibility": "public",
+									"type": "",
+									"value": "servlet-context.xml"
+								},
+								{
+									"_type": "UMLSlot",
+									"_id": "AAAAAAFUgZahNB9C8y4=",
+									"_parent": {
+										"$ref": "AAAAAAFUgYgSihU0ZpM="
+									},
+									"name": "본래경로",
+									"visibility": "public",
+									"type": "src/main/webapp/WEB-INF/spring/web.xml에서 정의한 서블릿명/"
+								}
+							]
+						},
+						{
+							"_type": "UMLObject",
+							"_id": "AAAAAAFUgYiUCRVSgdE=",
+							"_parent": {
+								"$ref": "AAAAAAFUgYe5ZhUPZhk="
+							},
+							"name": "pom.xml",
+							"visibility": "public",
+							"slots": [
+								{
+									"_type": "UMLSlot",
+									"_id": "AAAAAAFUgZR41R8GB10=",
+									"_parent": {
+										"$ref": "AAAAAAFUgYiUCRVSgdE="
+									},
+									"name": "경로",
+									"visibility": "public",
+									"type": "/root"
+								},
+								{
+									"_type": "UMLSlot",
+									"_id": "AAAAAAFUgetStiGNEWo=",
+									"_parent": {
+										"$ref": "AAAAAAFUgYiUCRVSgdE="
+									},
+									"name": "기능",
+									"visibility": "public",
+									"type": "",
+									"value": "Maven Repository에 프로젝트에 필요한 jar파일 의존설정"
+								}
+							]
+						},
+						{
+							"_type": "Hyperlink",
+							"_id": "AAAAAAFUgYmoqhW9xMU=",
+							"_parent": {
+								"$ref": "AAAAAAFUgYe5ZhUPZhk="
+							},
+							"name": "Detail",
+							"reference": {
+								"$ref": "AAAAAAFUf0McxD8JE58="
+							}
+						},
+						{
+							"_type": "UMLObject",
+							"_id": "AAAAAAFUgYu0KBuCSxo=",
+							"_parent": {
+								"$ref": "AAAAAAFUgYe5ZhUPZhk="
+							},
+							"name": "Views",
+							"visibility": "public",
+							"slots": [
+								{
+									"_type": "UMLSlot",
+									"_id": "AAAAAAFUgZeStB9KPMs=",
+									"_parent": {
+										"$ref": "AAAAAAFUgYu0KBuCSxo="
+									},
+									"name": "경로",
+									"visibility": "public",
+									"type": "servlet-context.xml에서 정의한 viewResolver의 suffix"
+								},
+								{
+									"_type": "UMLSlot",
+									"_id": "AAAAAAFUgfEX2yG6EtM=",
+									"_parent": {
+										"$ref": "AAAAAAFUgYu0KBuCSxo="
+									},
+									"name": "기능",
+									"visibility": "public",
+									"type": "",
+									"value": "jsp, 브라우저에 비춰질 View"
+								}
+							]
+						},
+						{
+							"_type": "UMLObject",
+							"_id": "AAAAAAFUgZf2aB9S3iQ=",
+							"_parent": {
+								"$ref": "AAAAAAFUgYe5ZhUPZhk="
+							},
+							"name": "we2-beans.xml",
+							"visibility": "public",
+							"slots": [
+								{
+									"_type": "UMLSlot",
+									"_id": "AAAAAAFUgfr0JyICIFA=",
+									"_parent": {
+										"$ref": "AAAAAAFUgZf2aB9S3iQ="
+									},
+									"name": "경로",
+									"visibility": "public",
+									"type": "src/main/resources/ (classpath:)"
+								},
+								{
+									"_type": "UMLSlot",
+									"_id": "AAAAAAFUgfCJvCGvKZw=",
+									"_parent": {
+										"$ref": "AAAAAAFUgZf2aB9S3iQ="
+									},
+									"name": "기능",
+									"visibility": "public",
+									"type": "",
+									"value": "bean등록 , DBCP bean 설정"
+								},
+								{
+									"_type": "UMLSlot",
+									"_id": "AAAAAAFUgfRICiHFdt8=",
+									"_parent": {
+										"$ref": "AAAAAAFUgZf2aB9S3iQ="
+									},
+									"name": "본래파일명",
+									"visibility": "public",
+									"type": "",
+									"value": "root-context.xml"
+								},
+								{
+									"_type": "UMLSlot",
+									"_id": "AAAAAAFUgZqAyh/P1eo=",
+									"_parent": {
+										"$ref": "AAAAAAFUgZf2aB9S3iQ="
+									},
+									"name": "본래경로",
+									"visibility": "public",
+									"type": "src/main/webapp/WEB-INF/spring/web.xml에서 정의한 서블릿명/"
+								}
+							]
+						},
+						{
+							"_type": "UMLObject",
+							"_id": "AAAAAAFUgbnPtCBVsdE=",
+							"_parent": {
+								"$ref": "AAAAAAFUgYe5ZhUPZhk="
+							},
+							"name": "we2-controller.xml",
+							"visibility": "public",
+							"slots": [
+								{
+									"_type": "UMLSlot",
+									"_id": "AAAAAAFUgbyBQyB14f8=",
+									"_parent": {
+										"$ref": "AAAAAAFUgbnPtCBVsdE="
+									},
+									"name": "경로",
+									"visibility": "public",
+									"type": "src/main/resources/ (classpath:)"
+								},
+								{
+									"_type": "UMLSlot",
+									"_id": "AAAAAAFUge9kPiGmDYw=",
+									"_parent": {
+										"$ref": "AAAAAAFUgbnPtCBVsdE="
+									},
+									"name": "기능",
+									"visibility": "public",
+									"type": "",
+									"value": "컨트롤러를 스프링 Bean으로 등록해줌"
+								}
+							]
+						}
+					],
+					"visible": true,
+					"defaultDiagram": false,
+					"ownedViews": [
+						{
+							"_type": "RectangleView",
+							"_id": "AAAAAAFUgdiVGiFUzdY=",
+							"_parent": {
+								"$ref": "AAAAAAFUgYe5ZhUPZhk="
+							},
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ddddfb",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": false,
+							"containerExtending": false,
+							"left": 240,
+							"top": 224,
+							"width": 497,
+							"height": 345,
+							"autoResize": false
+						},
+						{
+							"_type": "UMLObjectView",
+							"_id": "AAAAAAFUgYfqcBUYtMs=",
+							"_parent": {
+								"$ref": "AAAAAAFUgYe5ZhUPZhk="
+							},
+							"model": {
+								"$ref": "AAAAAAFUgYfqbxUWF5A="
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "AAAAAAFUgYfqcRUZD0s=",
+									"_parent": {
+										"$ref": "AAAAAAFUgYfqcBUYtMs="
+									},
+									"model": {
+										"$ref": "AAAAAAFUgYfqbxUWF5A="
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFUgYfqcRUaytQ=",
+											"_parent": {
+												"$ref": "AAAAAAFUgYfqcRUZD0s="
+											},
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#9393f0",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 256,
+											"top": 64,
+											"width": 0,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"horizontalAlignment": 2,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFUgYfqchUbqpc=",
+											"_parent": {
+												"$ref": "AAAAAAFUgYfqcRUZD0s="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#9393f0",
+											"fontColor": "#000000",
+											"font": "Arial;13;1",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 253,
+											"top": 127,
+											"width": 314.234375,
+											"height": 13,
+											"autoResize": false,
+											"underline": true,
+											"text": "web.xml",
+											"horizontalAlignment": 2,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFUgYfqchUcvMQ=",
+											"_parent": {
+												"$ref": "AAAAAAFUgYfqcRUZD0s="
+											},
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#9393f0",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 256,
+											"top": 64,
+											"width": 209.4345703125,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "(from 프로젝트 간단구조)",
+											"horizontalAlignment": 2,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFUgYfqcxUdEdQ=",
+											"_parent": {
+												"$ref": "AAAAAAFUgYfqcRUZD0s="
+											},
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#9393f0",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 256,
+											"top": 64,
+											"width": 0,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"horizontalAlignment": 1,
+											"verticalAlignment": 5
+										}
+									],
+									"visible": true,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#9393f0",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"containerExtending": false,
+									"left": 248,
+									"top": 120,
+									"width": 324.234375,
+									"height": 25,
+									"autoResize": false,
+									"stereotypeLabel": {
+										"$ref": "AAAAAAFUgYfqcRUaytQ="
+									},
+									"nameLabel": {
+										"$ref": "AAAAAAFUgYfqchUbqpc="
+									},
+									"namespaceLabel": {
+										"$ref": "AAAAAAFUgYfqchUcvMQ="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAFUgYfqcxUdEdQ="
+									}
+								},
+								{
+									"_type": "UMLSlotCompartmentView",
+									"_id": "AAAAAAFUgYfqcxUewfY=",
+									"_parent": {
+										"$ref": "AAAAAAFUgYfqcBUYtMs="
+									},
+									"model": {
+										"$ref": "AAAAAAFUgYfqbxUWF5A="
+									},
+									"subViews": [
+										{
+											"_type": "UMLSlotView",
+											"_id": "AAAAAAFUgZXvHB898eA=",
+											"_parent": {
+												"$ref": "AAAAAAFUgYfqcxUewfY="
+											},
+											"model": {
+												"$ref": "AAAAAAFUgZXu5R86JwE="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#9393f0",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 253,
+											"top": 150,
+											"width": 314.234375,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "+경로: src/main/webapp/WEB-INF/",
+											"horizontalAlignment": 0,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "UMLSlotView",
+											"_id": "AAAAAAFUgerg4yGFB+M=",
+											"_parent": {
+												"$ref": "AAAAAAFUgYfqcxUewfY="
+											},
+											"model": {
+												"$ref": "AAAAAAFUgerglyGC/uA="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#9393f0",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 253,
+											"top": 165,
+											"width": 314.234375,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "+기능1 = Spring과 Spring MVC설정. ( 파일 위치 정의 )",
+											"horizontalAlignment": 0,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "UMLSlotView",
+											"_id": "AAAAAAFUgeu9CiGYEBc=",
+											"_parent": {
+												"$ref": "AAAAAAFUgYfqcxUewfY="
+											},
+											"model": {
+												"$ref": "AAAAAAFUgeu8xSGVd/A="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#9393f0",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 253,
+											"top": 180,
+											"width": 314.234375,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "+기능2 = DispatcherServlet 서블릿 맵핑, 설정",
+											"horizontalAlignment": 0,
+											"verticalAlignment": 5
+										}
+									],
+									"visible": true,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#9393f0",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"containerExtending": false,
+									"left": 248,
+									"top": 145,
+									"width": 324.234375,
+									"height": 53,
+									"autoResize": false
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#9393f0",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": true,
+							"containerExtending": false,
+							"left": 248,
+							"top": 120,
+							"width": 324.234375,
+							"height": 78,
+							"autoResize": false,
+							"stereotypeDisplay": "label",
+							"showVisibility": true,
+							"showNamespace": false,
+							"showProperty": true,
+							"showType": true,
+							"nameCompartment": {
+								"$ref": "AAAAAAFUgYfqcRUZD0s="
+							},
+							"wordWrap": true,
+							"slotCompartment": {
+								"$ref": "AAAAAAFUgYfqcxUewfY="
+							}
+						},
+						{
+							"_type": "UMLObjectView",
+							"_id": "AAAAAAFUgYgSixU2Zr8=",
+							"_parent": {
+								"$ref": "AAAAAAFUgYe5ZhUPZhk="
+							},
+							"model": {
+								"$ref": "AAAAAAFUgYgSihU0ZpM="
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "AAAAAAFUgYgSixU3H6o=",
+									"_parent": {
+										"$ref": "AAAAAAFUgYgSixU2Zr8="
+									},
+									"model": {
+										"$ref": "AAAAAAFUgYgSihU0ZpM="
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFUgYgSixU4QhA=",
+											"_parent": {
+												"$ref": "AAAAAAFUgYgSixU3H6o="
+											},
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": -32,
+											"top": 320,
+											"width": 0,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"horizontalAlignment": 2,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFUgYgSixU5gOQ=",
+											"_parent": {
+												"$ref": "AAAAAAFUgYgSixU3H6o="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;1",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 253,
+											"top": 255,
+											"width": 466.6669921875,
+											"height": 13,
+											"autoResize": false,
+											"underline": true,
+											"text": "we2-springmvc.xml",
+											"horizontalAlignment": 2,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFUgYgSixU6JM8=",
+											"_parent": {
+												"$ref": "AAAAAAFUgYgSixU3H6o="
+											},
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": -32,
+											"top": 320,
+											"width": 209.4345703125,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "(from 프로젝트 간단구조)",
+											"horizontalAlignment": 2,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFUgYgSixU7f18=",
+											"_parent": {
+												"$ref": "AAAAAAFUgYgSixU3H6o="
+											},
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": -32,
+											"top": 320,
+											"width": 0,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"horizontalAlignment": 1,
+											"verticalAlignment": 5
+										}
+									],
+									"visible": true,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"containerExtending": false,
+									"left": 248,
+									"top": 248,
+									"width": 476.6669921875,
+									"height": 25,
+									"autoResize": false,
+									"stereotypeLabel": {
+										"$ref": "AAAAAAFUgYgSixU4QhA="
+									},
+									"nameLabel": {
+										"$ref": "AAAAAAFUgYgSixU5gOQ="
+									},
+									"namespaceLabel": {
+										"$ref": "AAAAAAFUgYgSixU6JM8="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAFUgYgSixU7f18="
+									}
+								},
+								{
+									"_type": "UMLSlotCompartmentView",
+									"_id": "AAAAAAFUgYgSixU8pkI=",
+									"_parent": {
+										"$ref": "AAAAAAFUgYgSixU2Zr8="
+									},
+									"model": {
+										"$ref": "AAAAAAFUgYgSihU0ZpM="
+									},
+									"subViews": [
+										{
+											"_type": "UMLSlotView",
+											"_id": "AAAAAAFUgfqO8yH6OKE=",
+											"_parent": {
+												"$ref": "AAAAAAFUgYgSixU8pkI="
+											},
+											"model": {
+												"$ref": "AAAAAAFUgfqOoiH3Gu8="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 253,
+											"top": 278,
+											"width": 466.6669921875,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "+경로: src/main/resources/ (classpath:)",
+											"horizontalAlignment": 0,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "UMLSlotView",
+											"_id": "AAAAAAFUgehM1yF4o1M=",
+											"_parent": {
+												"$ref": "AAAAAAFUgYgSixU8pkI="
+											},
+											"model": {
+												"$ref": "AAAAAAFUgehMiCF1tdo="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 253,
+											"top": 293,
+											"width": 466.6669921875,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "+기능: 스프링MVC의 주요 설정 = HandlerMapping, ViewResolver 등의 주요 설정",
+											"horizontalAlignment": 0,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "UMLSlotView",
+											"_id": "AAAAAAFUgff8giHgPuU=",
+											"_parent": {
+												"$ref": "AAAAAAFUgYgSixU8pkI="
+											},
+											"model": {
+												"$ref": "AAAAAAFUgff8KiHdAQU="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 253,
+											"top": 308,
+											"width": 466.6669921875,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "+본래파일명 = servlet-context.xml",
+											"horizontalAlignment": 0,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "UMLSlotView",
+											"_id": "AAAAAAFUgZahfB9FWw8=",
+											"_parent": {
+												"$ref": "AAAAAAFUgYgSixU8pkI="
+											},
+											"model": {
+												"$ref": "AAAAAAFUgZahNB9C8y4="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 253,
+											"top": 323,
+											"width": 466.6669921875,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "+본래경로: src/main/webapp/WEB-INF/spring/web.xml에서 정의한 서블릿명/",
+											"horizontalAlignment": 0,
+											"verticalAlignment": 5
+										}
+									],
+									"visible": true,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"containerExtending": false,
+									"left": 248,
+									"top": 273,
+									"width": 476.6669921875,
+									"height": 68,
+									"autoResize": false
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": true,
+							"containerExtending": false,
+							"left": 248,
+							"top": 248,
+							"width": 476.6669921875,
+							"height": 93,
+							"autoResize": false,
+							"stereotypeDisplay": "label",
+							"showVisibility": true,
+							"showNamespace": false,
+							"showProperty": true,
+							"showType": true,
+							"nameCompartment": {
+								"$ref": "AAAAAAFUgYgSixU3H6o="
+							},
+							"wordWrap": true,
+							"slotCompartment": {
+								"$ref": "AAAAAAFUgYgSixU8pkI="
+							}
+						},
+						{
+							"_type": "UMLObjectView",
+							"_id": "AAAAAAFUgYiUDRVUicg=",
+							"_parent": {
+								"$ref": "AAAAAAFUgYe5ZhUPZhk="
+							},
+							"model": {
+								"$ref": "AAAAAAFUgYiUCRVSgdE="
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "AAAAAAFUgYiUDRVVwck=",
+									"_parent": {
+										"$ref": "AAAAAAFUgYiUDRVUicg="
+									},
+									"model": {
+										"$ref": "AAAAAAFUgYiUCRVSgdE="
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFUgYiUDRVWUpM=",
+											"_parent": {
+												"$ref": "AAAAAAFUgYiUDRVVwck="
+											},
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#7e7eef",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 256,
+											"top": -304,
+											"width": 0,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"horizontalAlignment": 2,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFUgYiUDRVXRLs=",
+											"_parent": {
+												"$ref": "AAAAAAFUgYiUDRVVwck="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#7e7eef",
+											"fontColor": "#000000",
+											"font": "Arial;13;1",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 253,
+											"top": 39,
+											"width": 377.06982421875,
+											"height": 13,
+											"autoResize": false,
+											"underline": true,
+											"text": "pom.xml",
+											"horizontalAlignment": 2,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFUgYiUDRVY/uE=",
+											"_parent": {
+												"$ref": "AAAAAAFUgYiUDRVVwck="
+											},
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#7e7eef",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 256,
+											"top": -304,
+											"width": 209.4345703125,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "(from 프로젝트 간단구조)",
+											"horizontalAlignment": 2,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFUgYiUDRVZDWo=",
+											"_parent": {
+												"$ref": "AAAAAAFUgYiUDRVVwck="
+											},
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#7e7eef",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 256,
+											"top": -304,
+											"width": 0,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"horizontalAlignment": 1,
+											"verticalAlignment": 5
+										}
+									],
+									"visible": true,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#7e7eef",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"containerExtending": false,
+									"left": 248,
+									"top": 32,
+									"width": 387.06982421875,
+									"height": 25,
+									"autoResize": false,
+									"stereotypeLabel": {
+										"$ref": "AAAAAAFUgYiUDRVWUpM="
+									},
+									"nameLabel": {
+										"$ref": "AAAAAAFUgYiUDRVXRLs="
+									},
+									"namespaceLabel": {
+										"$ref": "AAAAAAFUgYiUDRVY/uE="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAFUgYiUDRVZDWo="
+									}
+								},
+								{
+									"_type": "UMLSlotCompartmentView",
+									"_id": "AAAAAAFUgYiUDhVawjs=",
+									"_parent": {
+										"$ref": "AAAAAAFUgYiUDRVUicg="
+									},
+									"model": {
+										"$ref": "AAAAAAFUgYiUCRVSgdE="
+									},
+									"subViews": [
+										{
+											"_type": "UMLSlotView",
+											"_id": "AAAAAAFUgZR5Ix8Jje8=",
+											"_parent": {
+												"$ref": "AAAAAAFUgYiUDhVawjs="
+											},
+											"model": {
+												"$ref": "AAAAAAFUgZR41R8GB10="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#7e7eef",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 253,
+											"top": 62,
+											"width": 377.06982421875,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "+경로: /root",
+											"horizontalAlignment": 0,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "UMLSlotView",
+											"_id": "AAAAAAFUgetTACGQRcU=",
+											"_parent": {
+												"$ref": "AAAAAAFUgYiUDhVawjs="
+											},
+											"model": {
+												"$ref": "AAAAAAFUgetStiGNEWo="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#7e7eef",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 253,
+											"top": 77,
+											"width": 377.06982421875,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "+기능 = Maven Repository에 프로젝트에 필요한 jar파일 의존설정",
+											"horizontalAlignment": 0,
+											"verticalAlignment": 5
+										}
+									],
+									"visible": true,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#7e7eef",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"containerExtending": false,
+									"left": 248,
+									"top": 57,
+									"width": 387.06982421875,
+									"height": 38,
+									"autoResize": false
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#7e7eef",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": true,
+							"containerExtending": false,
+							"left": 248,
+							"top": 32,
+							"width": 387.06982421875,
+							"height": 63,
+							"autoResize": false,
+							"stereotypeDisplay": "label",
+							"showVisibility": true,
+							"showNamespace": false,
+							"showProperty": true,
+							"showType": true,
+							"nameCompartment": {
+								"$ref": "AAAAAAFUgYiUDRVVwck="
+							},
+							"wordWrap": true,
+							"slotCompartment": {
+								"$ref": "AAAAAAFUgYiUDhVawjs="
+							}
+						},
+						{
+							"_type": "HyperlinkView",
+							"_id": "AAAAAAFUgYmoqxW/4Qg=",
+							"_parent": {
+								"$ref": "AAAAAAFUgYe5ZhUPZhk="
+							},
+							"model": {
+								"$ref": "AAAAAAFUgYmoqhW9xMU="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAFUgYmoqxXAi+8=",
+									"_parent": {
+										"$ref": "AAAAAAFUgYmoqxW/4Qg="
+									},
+									"visible": true,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#adc8ff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"containerExtending": false,
+									"left": 85.39453125,
+									"top": 333,
+									"width": 98.21728515625,
+									"height": 13,
+									"autoResize": false,
+									"underline": false,
+									"text": "프로젝트xml구조",
+									"horizontalAlignment": 2,
+									"verticalAlignment": 5
+								},
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAFUgYmorBXBjU0=",
+									"_parent": {
+										"$ref": "AAAAAAFUgYmoqxW/4Qg="
+									},
+									"visible": true,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#adc8ff",
+									"fontColor": "#000000",
+									"font": "Arial;13;1",
+									"showShadow": true,
+									"containerChangeable": false,
+									"containerExtending": false,
+									"left": 53,
+									"top": 333,
+									"width": 23.39453125,
+									"height": 13,
+									"autoResize": false,
+									"underline": false,
+									"text": "link",
+									"horizontalAlignment": 2,
+									"verticalAlignment": 5
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#adc8ff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": false,
+							"containerExtending": false,
+							"left": 48,
+							"top": 328,
+							"width": 141.61181640625,
+							"height": 23,
+							"autoResize": false,
+							"nameLabel": {
+								"$ref": "AAAAAAFUgYmoqxXAi+8="
+							},
+							"typeLabel": {
+								"$ref": "AAAAAAFUgYmorBXBjU0="
+							}
+						},
+						{
+							"_type": "UMLNoteLinkView",
+							"_id": "AAAAAAFUgYoR4hXL8PU=",
+							"_parent": {
+								"$ref": "AAAAAAFUgYe5ZhUPZhk="
+							},
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": false,
+							"containerExtending": false,
+							"head": {
+								"$ref": "AAAAAAFUgYmoqxW/4Qg="
+							},
+							"tail": {
+								"$ref": "AAAAAAFUgYiUDRVUicg="
+							},
+							"lineStyle": 1,
+							"points": "247:64;160:64;120:327"
+						},
+						{
+							"_type": "UMLNoteLinkView",
+							"_id": "AAAAAAFUgYsoKht21M8=",
+							"_parent": {
+								"$ref": "AAAAAAFUgYe5ZhUPZhk="
+							},
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": false,
+							"containerExtending": false,
+							"head": {
+								"$ref": "AAAAAAFUgYmoqxW/4Qg="
+							},
+							"tail": {
+								"$ref": "AAAAAAFUgYfqcBUYtMs="
+							},
+							"lineStyle": 1,
+							"points": "247:159;168:160;121:327"
+						},
+						{
+							"_type": "UMLObjectView",
+							"_id": "AAAAAAFUgYu0KRuEH5Y=",
+							"_parent": {
+								"$ref": "AAAAAAFUgYe5ZhUPZhk="
+							},
+							"model": {
+								"$ref": "AAAAAAFUgYu0KBuCSxo="
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "AAAAAAFUgYu0KhuFzrs=",
+									"_parent": {
+										"$ref": "AAAAAAFUgYu0KRuEH5Y="
+									},
+									"model": {
+										"$ref": "AAAAAAFUgYu0KBuCSxo="
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFUgYu0KxuGOqk=",
+											"_parent": {
+												"$ref": "AAAAAAFUgYu0KhuFzrs="
+											},
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#9999f3",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": -416,
+											"top": 640,
+											"width": 0,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"horizontalAlignment": 2,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFUgYu0KxuHUq0=",
+											"_parent": {
+												"$ref": "AAAAAAFUgYu0KhuFzrs="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#9999f3",
+											"fontColor": "#000000",
+											"font": "Arial;13;1",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 253,
+											"top": 591,
+											"width": 349.26708984375,
+											"height": 13,
+											"autoResize": false,
+											"underline": true,
+											"text": "Views",
+											"horizontalAlignment": 2,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFUgYu0LBuIXug=",
+											"_parent": {
+												"$ref": "AAAAAAFUgYu0KhuFzrs="
+											},
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#9999f3",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": -416,
+											"top": 640,
+											"width": 209.4345703125,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "(from 프로젝트 간단구조)",
+											"horizontalAlignment": 2,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFUgYu0LBuJZPU=",
+											"_parent": {
+												"$ref": "AAAAAAFUgYu0KhuFzrs="
+											},
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#9999f3",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": -416,
+											"top": 640,
+											"width": 0,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"horizontalAlignment": 1,
+											"verticalAlignment": 5
+										}
+									],
+									"visible": true,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#9999f3",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"containerExtending": false,
+									"left": 248,
+									"top": 584,
+									"width": 359.26708984375,
+									"height": 25,
+									"autoResize": false,
+									"stereotypeLabel": {
+										"$ref": "AAAAAAFUgYu0KxuGOqk="
+									},
+									"nameLabel": {
+										"$ref": "AAAAAAFUgYu0KxuHUq0="
+									},
+									"namespaceLabel": {
+										"$ref": "AAAAAAFUgYu0LBuIXug="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAFUgYu0LBuJZPU="
+									}
+								},
+								{
+									"_type": "UMLSlotCompartmentView",
+									"_id": "AAAAAAFUgYu0LBuKTks=",
+									"_parent": {
+										"$ref": "AAAAAAFUgYu0KRuEH5Y="
+									},
+									"model": {
+										"$ref": "AAAAAAFUgYu0KBuCSxo="
+									},
+									"subViews": [
+										{
+											"_type": "UMLSlotView",
+											"_id": "AAAAAAFUgZeS9h9NzeI=",
+											"_parent": {
+												"$ref": "AAAAAAFUgYu0LBuKTks="
+											},
+											"model": {
+												"$ref": "AAAAAAFUgZeStB9KPMs="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#9999f3",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 253,
+											"top": 614,
+											"width": 349.26708984375,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "+경로: servlet-context.xml에서 정의한 viewResolver의 suffix",
+											"horizontalAlignment": 0,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "UMLSlotView",
+											"_id": "AAAAAAFUgfEYJSG9C0Q=",
+											"_parent": {
+												"$ref": "AAAAAAFUgYu0LBuKTks="
+											},
+											"model": {
+												"$ref": "AAAAAAFUgfEX2yG6EtM="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#9999f3",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 253,
+											"top": 629,
+											"width": 349.26708984375,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "+기능 = jsp, 브라우저에 비춰질 View",
+											"horizontalAlignment": 0,
+											"verticalAlignment": 5
+										}
+									],
+									"visible": true,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#9999f3",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"containerExtending": false,
+									"left": 248,
+									"top": 609,
+									"width": 359.26708984375,
+									"height": 38,
+									"autoResize": false
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#9999f3",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": true,
+							"containerExtending": false,
+							"left": 248,
+							"top": 584,
+							"width": 359.26708984375,
+							"height": 63,
+							"autoResize": false,
+							"stereotypeDisplay": "label",
+							"showVisibility": true,
+							"showNamespace": false,
+							"showProperty": true,
+							"showType": true,
+							"nameCompartment": {
+								"$ref": "AAAAAAFUgYu0KhuFzrs="
+							},
+							"wordWrap": true,
+							"slotCompartment": {
+								"$ref": "AAAAAAFUgYu0LBuKTks="
+							}
+						},
+						{
+							"_type": "UMLObjectView",
+							"_id": "AAAAAAFUgZf2eR9UCCA=",
+							"_parent": {
+								"$ref": "AAAAAAFUgYe5ZhUPZhk="
+							},
+							"model": {
+								"$ref": "AAAAAAFUgZf2aB9S3iQ="
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "AAAAAAFUgZf2eh9VES0=",
+									"_parent": {
+										"$ref": "AAAAAAFUgZf2eR9UCCA="
+									},
+									"model": {
+										"$ref": "AAAAAAFUgZf2aB9S3iQ="
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFUgZf2ex9W/1E=",
+											"_parent": {
+												"$ref": "AAAAAAFUgZf2eh9VES0="
+											},
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": -176,
+											"top": -64,
+											"width": 0,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"horizontalAlignment": 2,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFUgZf2ex9XOXo=",
+											"_parent": {
+												"$ref": "AAAAAAFUgZf2eh9VES0="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;1",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 253,
+											"top": 471,
+											"width": 441.720703125,
+											"height": 13,
+											"autoResize": false,
+											"underline": true,
+											"text": "we2-beans.xml",
+											"horizontalAlignment": 2,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFUgZf2fB9Y5Go=",
+											"_parent": {
+												"$ref": "AAAAAAFUgZf2eh9VES0="
+											},
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": -176,
+											"top": -64,
+											"width": 209.4345703125,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "(from 프로젝트 간단구조)",
+											"horizontalAlignment": 2,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFUgZf2fB9ZAjA=",
+											"_parent": {
+												"$ref": "AAAAAAFUgZf2eh9VES0="
+											},
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": -176,
+											"top": -64,
+											"width": 0,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"horizontalAlignment": 1,
+											"verticalAlignment": 5
+										}
+									],
+									"visible": true,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"containerExtending": false,
+									"left": 248,
+									"top": 464,
+									"width": 451.720703125,
+									"height": 25,
+									"autoResize": false,
+									"stereotypeLabel": {
+										"$ref": "AAAAAAFUgZf2ex9W/1E="
+									},
+									"nameLabel": {
+										"$ref": "AAAAAAFUgZf2ex9XOXo="
+									},
+									"namespaceLabel": {
+										"$ref": "AAAAAAFUgZf2fB9Y5Go="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAFUgZf2fB9ZAjA="
+									}
+								},
+								{
+									"_type": "UMLSlotCompartmentView",
+									"_id": "AAAAAAFUgZf2fB9aY+A=",
+									"_parent": {
+										"$ref": "AAAAAAFUgZf2eR9UCCA="
+									},
+									"model": {
+										"$ref": "AAAAAAFUgZf2aB9S3iQ="
+									},
+									"subViews": [
+										{
+											"_type": "UMLSlotView",
+											"_id": "AAAAAAFUgfr0biIFGyo=",
+											"_parent": {
+												"$ref": "AAAAAAFUgZf2fB9aY+A="
+											},
+											"model": {
+												"$ref": "AAAAAAFUgfr0JyICIFA="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 253,
+											"top": 494,
+											"width": 441.720703125,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "+경로: src/main/resources/ (classpath:)",
+											"horizontalAlignment": 0,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "UMLSlotView",
+											"_id": "AAAAAAFUgfCKCiGyCvo=",
+											"_parent": {
+												"$ref": "AAAAAAFUgZf2fB9aY+A="
+											},
+											"model": {
+												"$ref": "AAAAAAFUgfCJvCGvKZw="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 253,
+											"top": 509,
+											"width": 441.720703125,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "+기능 = bean등록 , DBCP bean 설정",
+											"horizontalAlignment": 0,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "UMLSlotView",
+											"_id": "AAAAAAFUgfRIVyHIWiA=",
+											"_parent": {
+												"$ref": "AAAAAAFUgZf2fB9aY+A="
+											},
+											"model": {
+												"$ref": "AAAAAAFUgfRICiHFdt8="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 253,
+											"top": 524,
+											"width": 441.720703125,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "+본래파일명 = root-context.xml",
+											"horizontalAlignment": 0,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "UMLSlotView",
+											"_id": "AAAAAAFUgZqBDx/Sm00=",
+											"_parent": {
+												"$ref": "AAAAAAFUgZf2fB9aY+A="
+											},
+											"model": {
+												"$ref": "AAAAAAFUgZqAyh/P1eo="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 253,
+											"top": 539,
+											"width": 441.720703125,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "+본래경로: src/main/webapp/WEB-INF/spring/web.xml에서 정의한 서블릿명/",
+											"horizontalAlignment": 0,
+											"verticalAlignment": 5
+										}
+									],
+									"visible": true,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"containerExtending": false,
+									"left": 248,
+									"top": 489,
+									"width": 451.720703125,
+									"height": 68,
+									"autoResize": false
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": true,
+							"containerExtending": false,
+							"left": 248,
+							"top": 464,
+							"width": 451.720703125,
+							"height": 93,
+							"autoResize": false,
+							"stereotypeDisplay": "label",
+							"showVisibility": true,
+							"showNamespace": false,
+							"showProperty": true,
+							"showType": true,
+							"nameCompartment": {
+								"$ref": "AAAAAAFUgZf2eh9VES0="
+							},
+							"wordWrap": true,
+							"slotCompartment": {
+								"$ref": "AAAAAAFUgZf2fB9aY+A="
+							}
+						},
+						{
+							"_type": "UMLObjectView",
+							"_id": "AAAAAAFUgbnPtSBXmNA=",
+							"_parent": {
+								"$ref": "AAAAAAFUgYe5ZhUPZhk="
+							},
+							"model": {
+								"$ref": "AAAAAAFUgbnPtCBVsdE="
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "AAAAAAFUgbnPtiBYuZc=",
+									"_parent": {
+										"$ref": "AAAAAAFUgbnPtSBXmNA="
+									},
+									"model": {
+										"$ref": "AAAAAAFUgbnPtCBVsdE="
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFUgbnPtyBZXdI=",
+											"_parent": {
+												"$ref": "AAAAAAFUgbnPtiBYuZc="
+											},
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": -80,
+											"top": -224,
+											"width": 0,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"horizontalAlignment": 2,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFUgbnPuCBa/lE=",
+											"_parent": {
+												"$ref": "AAAAAAFUgbnPtiBYuZc="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;1",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 253,
+											"top": 383,
+											"width": 445.33251953125,
+											"height": 13,
+											"autoResize": false,
+											"underline": true,
+											"text": "we2-controller.xml",
+											"horizontalAlignment": 2,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFUgbnPuCBb7dk=",
+											"_parent": {
+												"$ref": "AAAAAAFUgbnPtiBYuZc="
+											},
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": -80,
+											"top": -224,
+											"width": 209.4345703125,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "(from 프로젝트 간단구조)",
+											"horizontalAlignment": 2,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFUgbnPuCBclSE=",
+											"_parent": {
+												"$ref": "AAAAAAFUgbnPtiBYuZc="
+											},
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": -80,
+											"top": -224,
+											"width": 0,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"horizontalAlignment": 1,
+											"verticalAlignment": 5
+										}
+									],
+									"visible": true,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"containerExtending": false,
+									"left": 248,
+									"top": 376,
+									"width": 455.33251953125,
+									"height": 25,
+									"autoResize": false,
+									"stereotypeLabel": {
+										"$ref": "AAAAAAFUgbnPtyBZXdI="
+									},
+									"nameLabel": {
+										"$ref": "AAAAAAFUgbnPuCBa/lE="
+									},
+									"namespaceLabel": {
+										"$ref": "AAAAAAFUgbnPuCBb7dk="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAFUgbnPuCBclSE="
+									}
+								},
+								{
+									"_type": "UMLSlotCompartmentView",
+									"_id": "AAAAAAFUgbnPuSBd6tI=",
+									"_parent": {
+										"$ref": "AAAAAAFUgbnPtSBXmNA="
+									},
+									"model": {
+										"$ref": "AAAAAAFUgbnPtCBVsdE="
+									},
+									"subViews": [
+										{
+											"_type": "UMLSlotView",
+											"_id": "AAAAAAFUgbyBjSB4bKI=",
+											"_parent": {
+												"$ref": "AAAAAAFUgbnPuSBd6tI="
+											},
+											"model": {
+												"$ref": "AAAAAAFUgbyBQyB14f8="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 253,
+											"top": 406,
+											"width": 445.33251953125,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "+경로: src/main/resources/ (classpath:)",
+											"horizontalAlignment": 0,
+											"verticalAlignment": 5
+										},
+										{
+											"_type": "UMLSlotView",
+											"_id": "AAAAAAFUge9kmiGp1rg=",
+											"_parent": {
+												"$ref": "AAAAAAFUgbnPuSBd6tI="
+											},
+											"model": {
+												"$ref": "AAAAAAFUge9kPiGmDYw="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 253,
+											"top": 421,
+											"width": 445.33251953125,
+											"height": 13,
+											"autoResize": false,
+											"underline": false,
+											"text": "+기능 = 컨트롤러를 스프링 Bean으로 등록해줌",
+											"horizontalAlignment": 0,
+											"verticalAlignment": 5
+										}
+									],
+									"visible": true,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"containerExtending": false,
+									"left": 248,
+									"top": 401,
+									"width": 455.33251953125,
+									"height": 38,
+									"autoResize": false
+								}
+							],
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": true,
+							"containerExtending": false,
+							"left": 248,
+							"top": 376,
+							"width": 455.33251953125,
+							"height": 63,
+							"autoResize": false,
+							"stereotypeDisplay": "label",
+							"showVisibility": true,
+							"showNamespace": false,
+							"showProperty": true,
+							"showType": true,
+							"nameCompartment": {
+								"$ref": "AAAAAAFUgbnPtiBYuZc="
+							},
+							"wordWrap": true,
+							"slotCompartment": {
+								"$ref": "AAAAAAFUgbnPuSBd6tI="
+							}
+						},
+						{
+							"_type": "UMLNoteView",
+							"_id": "AAAAAAFUgdcmAyFDv0I=",
+							"_parent": {
+								"$ref": "AAAAAAFUgYe5ZhUPZhk="
+							},
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#8282ff",
+							"fontColor": "#ffffff",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": false,
+							"containerExtending": false,
+							"left": 208,
+							"top": 216,
+							"width": 122.59716796875,
+							"height": 25,
+							"autoResize": false,
+							"text": "DispatcherServlet",
+							"wordWrap": true
+						},
+						{
+							"_type": "UMLNoteLinkView",
+							"_id": "AAAAAAFUgfw+GCIU0iw=",
+							"_parent": {
+								"$ref": "AAAAAAFUgYe5ZhUPZhk="
+							},
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": false,
+							"containerExtending": false,
+							"head": {
+								"$ref": "AAAAAAFUgYmoqxW/4Qg="
+							},
+							"tail": {
+								"$ref": "AAAAAAFUgYu0KRuEH5Y="
+							},
+							"lineStyle": 1,
+							"points": "247:616;168:616;120:351"
+						},
+						{
+							"_type": "UMLNoteLinkView",
+							"_id": "AAAAAAFUgf0KIiIh0Uc=",
+							"_parent": {
+								"$ref": "AAAAAAFUgYe5ZhUPZhk="
+							},
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": false,
+							"containerExtending": false,
+							"head": {
+								"$ref": "AAAAAAFUgYmoqxW/4Qg="
+							},
+							"tail": {
+								"$ref": "AAAAAAFUgdcmAyFDv0I="
+							},
+							"lineStyle": 1,
+							"points": "207:231;176:232;125:327"
+						}
+					]
+				},
+				{
+					"_type": "UMLObject",
+					"_id": "AAAAAAFUfM1SLdvsDlE=",
+					"_parent": {
+						"$ref": "AAAAAAFUf0PRlD8V7Wk="
+					},
+					"name": "서블릿명-servlet.xml",
+					"visibility": "public",
+					"slots": [
+						{
+							"_type": "UMLSlot",
+							"_id": "AAAAAAFUfM1/ztwJlzs=",
+							"_parent": {
+								"$ref": "AAAAAAFUfM1SLdvsDlE="
+							},
+							"name": "<!-- MVC 설정 -->",
+							"visibility": "public",
+							"type": ""
+						},
+						{
+							"_type": "UMLSlot",
+							"_id": "AAAAAAFUfM4ibtwU3dQ=",
+							"_parent": {
+								"$ref": "AAAAAAFUfM1SLdvsDlE="
+							},
+							"name": "<!-- 핸들러 매핑 -->",
+							"documentation": "<bean id=\"urlMapping\" class=\"org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping\"/>",
+							"visibility": "public",
+							"type": "bean id=\"urlMapping\" class=\"maven클래스경로\""
+						},
+						{
+							"_type": "UMLSlot",
+							"_id": "AAAAAAFUfM4px9wa/Aw=",
+							"_parent": {
+								"$ref": "AAAAAAFUfM1SLdvsDlE="
+							},
+							"name": "<!-- 컨트롤러(url) 매핑 -->",
+							"documentation": "<bean name=\"/hello.do\" class=\"test.mysite.spring.bean.Hello\"/>\n<bean name=\"/yaho.do\" class=\"test.mysite.spring.bean.Yaho\"/>",
+							"visibility": "public",
+							"type": "bean name=\"/hello.do\" class=\"직접코딩 클래스경로\""
+						},
+						{
+							"_type": "UMLSlot",
+							"_id": "AAAAAAFUfM42p9wgHEA=",
+							"_parent": {
+								"$ref": "AAAAAAFUfM1SLdvsDlE="
+							},
+							"name": "<!-- View Resolver -->",
+							"documentation": "<bean id=\"viewResolver\" class=\"org.springframework.web.servlet.view.InternalResourceViewResolver\">\n\t<property name=\"prefix\" value=\"/WEB-INF/views/\"/>\n\t<property name=\"suffix\" value=\".jsp\"/>\n</bean>",
+							"visibility": "public",
+							"type": "bean id=\"viewResolver\", property name=\"prefix , suffix\" value=\"/WEB-INF/views/ , .jsp\""
+						}
+					]
+				}
+			],
+			"visibility": "public"
+		}
+	]
+}
