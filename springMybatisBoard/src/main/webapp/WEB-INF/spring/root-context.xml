@@ -44,14 +44,14 @@
 	<!-- @Transactional 사용을 위한 태그 -->
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
-	<!-- Mapper! 이용한 매퍼임 -->
+	<!-- Mapper! 이용한 매퍼임
 	<bean id="boardMapper"
 		class="org.mybatis.spring.mapper.MapperFactoryBean">	
-		<!-- 이 안에 SQL이 들어있음 -->
+		  이 안에 SQL이 들어있음  
 		<property name="mapperInterface" value="mysite.com.app.BoardMapper"/>
-		<!-- SQL 실행하기위한 태그 -->
+		  SQL 실행하기위한 태그 
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-	</bean>
+	</bean> -->
 	
 	<!-- BoardService : (서비스)DAO와 컨트롤러의 중간-->
 	<bean id="boardService" class="mysite.com.app.BoardService"/>
