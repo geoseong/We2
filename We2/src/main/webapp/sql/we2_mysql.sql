@@ -1,6 +1,6 @@
 create database we2;
 
-/* 
+/*
 > testuser 라는 사용자가 192.168.100.101 아이피를 통해서 접근하는 것을 허용하며, 
 	ex) CREATE USER 'we2admin'@'192.168.100.101' IDENTIFIED BY '123qwe!@#';
  비밀번호는 "123qwe!@#" 이고, "mysite" 데이터베이스에 대하여 모든 권한을 부여 받음 
