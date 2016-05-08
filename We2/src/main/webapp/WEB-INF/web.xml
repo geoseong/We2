@@ -9,9 +9,9 @@
     <init-param>
       <param-name>contextConfigLocation</param-name>
       <param-value>
-				/WEB-INF/spring/we2servlet/we2-springmvc.xml
-				/WEB-INF/spring/we2servlet/we2-beans.xml
-				/WEB-INF/spring/we2servlet/we2-controller.xml
+				classpath:we2-beans.xml
+				classpath:we2-springmvc.xml
+				classpath:we2-controller.xml
 			</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
