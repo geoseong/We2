@@ -25,13 +25,13 @@
 
 <!-- 1. 상단 로고 부분-->
 <div id = "header">
-    <a href="/we2"><b>We2</b></a>
+    <a href="/We2"><b>We2</b></a>
 
  <c:choose>
-	 <c:when test="${empty loginUser}">
+	 <c:when test="${empty authInfo}">
 
 		<div id = "nav">
-            <a href="com_we2_registration_jsp/01_1_login.jsp" class="loginButton">로그인</a>
+            <a href="login" class="loginButton">로그인</a>
             <!-- #########위에 로그인 header를 넣는다! -->
         </div>
 
@@ -40,12 +40,12 @@
 	 <c:otherwise>
 	
 	 	<div id = "nav2">
-	 		<a href="com_we2_registration_jsp/We2_mypage_confirm.jsp">마이페이지</a>
+	 		<a href="mypage">마이페이지</a>
             <!-- #########위에 로그인 header를 넣는다! -->
         </div>
         
         <div id = "nav3">
-            <a href="/We2/We2_logout.do">로그아웃</a>
+            <a href="logout">로그아웃</a>
             <!-- #########위에 로그인 header를 넣는다! -->
         </div>
 	
@@ -183,7 +183,7 @@
      
  
     </body>
-<script src="js/jquery-1.12.2.min.js"></script>
+<script src="js/jquery-1.12.1.min.js"></script>
 <!-- jQuery UI CSS파일  -->
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
 <!--  jQuery 기본 js파일 -->

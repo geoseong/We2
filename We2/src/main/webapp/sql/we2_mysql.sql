@@ -19,6 +19,9 @@ USE mysql;
 SELECT User, Host from user;
 SELECT * from user;
 
+select * from member;
+select * from MEMBER where USERID = 'geoseong';
+
 
 /* 사용자에게 부여된 권한 확인 */
 SHOW GRANTS FOR we2admin@'%';
@@ -71,11 +74,15 @@ alter table pjtMake engine=InnoDB, DEFAULT CHARACTER SET utf8;
 alter table pjtManager engine=InnoDB, DEFAULT CHARACTER SET utf8;
 alter database we2 DEFAULT CHARACTER SET utf8;
 
+
+
 /* 현재 문자셋 정보 보기*/
 show variables like 'c%';
 
 /* InnoDB 방식인지 등등.. 테이블 정보 확인하기 */
 SHOW TABLE STATUS FROM we2 LIKE 'pjtMake';
+
+
 
 /* 특정 데이터베이스 안에 있는 테이블 목록 보기 */
 use we2;
@@ -86,9 +93,16 @@ show tables;
 # ALTER TABLE 테이블명 CHANGE 컬럼이름 새컬럼이름 새컬럼타입
 ALTER TABLE member CHANGE userid userId VARCHAR(12);
 
+/* 컬럼 추가하기 */
+#ALTER TABLE 테이블명 ADD COLUMN 칼럼이름 칼럼타입
+ALTER TABLE member ADD COLUMN regDate date;
 
--- 삽입
-INSERT INTO tablename or columns VALUES(25, 'NAME', 5, 25.5 );
+
+/* 삽입 */
+# 현재시각은 MySQL에서는 now().
+#INSERT INTO tablename or columns VALUES(25, 'NAME', 5, 25.5 );
+insert into member values('geoseong', '거성', '1234' ,'imf4@naver.com', 'parkopp@hanmail.net', '010-2023-6697', 'M', now());
+
 
 /* 사용자 삭제 */
 DROP USER we2admin@localhost;

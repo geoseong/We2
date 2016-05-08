@@ -8,24 +8,26 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
 	<!-- JDBC dataSource 설정. 톰캣 server.xml 설정하듯이. -->
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-		<property name="url" value="jdbc:mysql://localhost:3306/we2" />
-		<property name="username" value="we2admin" />
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="com.mysql.jdbc.Driver"/>
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/we2?characterEncoding=utf8" />
+		<property name="user" value="we2admin" />
 		<property name="password" value="1234" />
 	</bean>
 	
 	
-	<bean id="sqlSessionFactory"
-		class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource"/>	
-	</bean>
-	
-	<!-- commit & rollback 의 스프링이 자동적용 -->
-	<bean id="sqlSession"
-		class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
-	</bean>
+		<!-- 시작 : MyBatis를 위한 태그들 -->
+		<bean id="sqlSessionFactory"
+			class="org.mybatis.spring.SqlSessionFactoryBean">
+			<property name="dataSource" ref="dataSource"/>	
+		</bean>
+		
+		<!-- commit & rollback 의 스프링이 자동적용 -->
+		<bean id="sqlSession"
+			class="org.mybatis.spring.SqlSessionTemplate">
+			<constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
+		</bean>
+		<!-- 끝 : MyBatis를 위한 태그들 -->
 	
 	
 	<!-- 소스코드에 어노테이션 트랜잭션을 활용할 때 -->
@@ -37,6 +39,15 @@
 	<!-- @Transactional 사용을 위한 태그 -->
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 
+
+	<bean id="memberDao" class="com.we2.registration.MemberDao">
+		<constructor-arg ref="dataSource"/>
+	</bean>	
+	
+	<bean id="authService" class="com.we2.registration.AuthService">
+		<property name="memberDao" ref="memberDao" />
+	</bean>
+	
 	
 	<!-- Mapper! 이용한 매퍼임
 	<bean id="boardMapper"
