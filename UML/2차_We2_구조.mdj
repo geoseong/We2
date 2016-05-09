@@ -14139,7 +14139,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFUkK7jW9/7SyI="
 							},
-							"name": "Flowchart1",
+							"name": "인터셉터 알고리즘",
 							"ownedElements": [
 								{
 									"_type": "FCFlowchartDiagram",
