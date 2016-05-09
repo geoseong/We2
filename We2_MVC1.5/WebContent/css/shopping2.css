@@ -1,0 +1,98 @@
+@CHARSET "UTF-8";
+
+#container{
+	width:970px;
+	margin:0 auto;
+/* 	background:#ccc; */
+}
+
+.search_controll{
+	border-bottom:1px solid #000; /* 서울시 관악구 모임인원 밑에 밑줄 색변경 */
+}
+
+.study_room_title{
+	text-align:center;
+		color: black;
+}
+
+.study_room_title>a{
+	text-align:center;
+	color: black;
+}
+
+
+.study_room_menu{
+	padding:20px;
+	background:#ddd;
+	height:50px;
+}
+
+.study_room_menu:after{
+	content:"";
+	display:block;
+	clear:both;
+}
+
+.study_room_menu>li{
+	float:left;
+	width:308px;
+	height:50px;
+	background:#fff;
+	text-align:center;
+	line-height:50px;
+}
+.study_room_menu>li>a{
+	color:black;
+}
+
+
+.study_loc{
+	margin:10px 0;
+}
+
+.content_list{
+	padding:0 0 0 10px;
+}
+
+.content_list:after{
+	content:"";
+	display:block;
+	clear:both;
+}
+
+.content_list>li{
+	float:left;
+	width:310px;
+	height:340px
+
+	margin:0 10px 20px 0;
+}
+
+
+.content_list_img{
+	width:280px;
+	height:250px;
+	
+}
+
+
+.content_list_img img{
+	width:280px;
+	height:250px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

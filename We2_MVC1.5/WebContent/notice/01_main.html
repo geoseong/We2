@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <title>WE2</title>
+    <meta charset="UTF-8"> 
+    <link rel="stylesheet" href="../css/01_main_intro.css" type="text/css">
+    
+    <link rel="stylesheet" href="../css/w2_reset.css" type="text/css">
+    <link rel="stylesheet" href="../css/w3_slide.css" type="text/css">
+    <!--<link rel="stylesheet" href="css/trystyle.css">-->
+
+    <!-- 슬라이드 이미지를 위한 준비-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <script type="text/javascript" src="../script/jquery-1.12.1.min.js"></script> 
+    <script type="text/javascript" src="../script/jquery.slides.min.js"></script>
+    
+    <script type="text/javascript">
+     // 슬라이드에 해당하는 자바스크립트
+     var slideIndex = 1;
+     showDivs(slideIndex);
+
+     function plusDivs(n) {
+     showDivs(slideIndex += n);
+        }
+
+        function showDivs(n) {
+          var i;
+          var x = document.getElementsByClassName("mySlides");
+          if (n > x.length) {slideIndex = 1}    
+          if (n < 1) {slideIndex = x.length} ;
+          for (i = 0; i < x.length; i++) {
+             x[i].style.display = "none";  
+      }
+      x[slideIndex-1].style.display = "block";  
+    }
+
+    </script>
+</head>
+        
+<body>
+    <div id="wrap">  <!-- wrap : div를 한번더 감싸고 액션의 기준이 될 수 있음-->
+
+<!-- 1. 상단 로고 부분-->
+    <div id = "header">
+        <h1><b><sub><a href="01_main.html">We2
+            </a></sub></b></h1>
+        <div id = "nav">
+            <a href="We2_login.jsp">로그인</a>
+        </div>
+    </div>
+         
+<!-- 2. 중간 이미지 부분-->        
+    <div id = "section" style="width:100%;">
+        <!--슬라이드-->
+     <img class="mySlides" src="../img/main_01.jpg" style="width:100%; height:auto;" alt="이미지1">
+     <img class="mySlides" src="../img/main_02.jpg" style="width:100%; height:auto;" alt="이미지2">
+     <img class="mySlides" src="../img/main_03.jpg" style="width:100%; height:auto;" alt="이미지3">  
+     <img class="mySlides" src="../img/main_04.jpg" style="width:100%; height:auto;" alt="이미지4">
+        <!--슬라이드 버튼 부분-->
+    <a class="w3-btn-floating" style="position:absolute; top:30%; left:14%;" onclick="plusDivs(-1)">&#10094;</a>
+        
+    <a class="w3-btn-floating" style="position:absolute; top:30%; right:14%" onclick="plusDivs(1)">&#10095;</a>
+        </div>
+       <!--슬라이드-->
+        
+          <div class ="img-txt"><b>Catch The Free Rider, We2</b></div>
+          <div class ="img-txt-small"><b>
+              <p> 대학생활의 최대 고민, 팀 프로젝트 </p> 
+              <p>We2와 함께 팀프로젝트에 대한 부담을 덜고 협동과 커뮤니케이션 능력을</p>
+              <p>향상시킬 수 있는 팀 프로젝트의 교육적 효과를 극대화 하고자 합니다.</p>
+              </b>
+           </div>
+     
+     </div>
+        
+<!-- 3. 중간 메뉴 부분--> 
+        <div id="menutitle">
+          
+            <br>
+        <h2><b>Menu</b></h2> 
+            <br>
+           
+        </div>
+  <!-- 4. 중간 메뉴의 box--> 
+        <div > 
+            <!--id: 한문서에 한번 /class:한문서에 여러번--> 
+                <br>
+                <br>
+            <div id = "box-wrap">
+                <div class = "box" style="background-color:#CE6628;">
+                    <a href="http://www.naver.com">
+                        프로젝트
+                    </a>
+                </div>
+                <div class = "box" style="background-color:#E99323;">
+                    <a href="03_community.html">
+                        커뮤니티  
+                    </a>
+                </div>
+                <div class = "box" style="background-color:#1591BE;">
+                    <a href="http://www.daum.net">
+                        프로젝트 공유
+                    </a>
+                </div>
+                <div class = "box" style="background-color:#166BA3; ">
+                    <a href="http://www.facebook.com">
+                        스터디룸 공유
+                    </a>
+                </div>
+            </div>
+            <br>
+            <br>
+           <!--
+            <svg width="1024" height="450">
+            <rect class= "orange" x="50" y="20" width="200" height="200"/>
+
+            <rect class = "yellow" x="200" y="20" width="200" height="200"/>
+
+            <rect class="lightblue" x="450" y="20" width="200" height="200"/>
+
+            <rect class = "blue" x="800" y="20" width="200" height="200"/>
+            </svg>-->
+        </div>
+    </div>
+
+    <div id = "footer">
+    Copyright © geoseong.com
+    </div> 
+    </div> <!--wrap끝 -->
+    </body>

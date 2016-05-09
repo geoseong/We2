@@ -1,0 +1,233 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
+
+
+body { 
+	font-family: 'Lato', Calibri, Arial, sans-serif; 
+ 	color: #424444; 
+ 	background: #f9f9f9;
+    padding: 0;
+    margin: 0;
+ } 
+
+a { 
+ 	color: #f9f9f9; 
+ 	text-decoration: none; 
+ } 
+
+
+#header {
+    text-align: left;
+    margin : 0px auto;
+    width:1200px;
+    height:140px;
+    position:relative;
+/*    border: 1px solid black;*/
+}
+
+#header a{
+    position: absolute;
+    bottom: 0px;
+    margin-top: 0;
+    top:70px;
+    font-size: 60px;
+    font-weight: 400;
+    color: #4CC4EE;
+/*    border: 1px solid black;*/
+}
+
+#header a:hover {
+   color:#166BA3;
+   opacity : 0.5;
+}
+
+#nav a{
+    position: absolute;
+    float:left;
+    margin-top:60px;
+    margin-left:20px;
+    top:50px;
+    right:0px;
+    font-size : 20px;
+    color :#89867e; 
+}
+
+#nav2 a{
+    position: absolute;
+    float:left;
+    margin-top:60px;
+    top:50px;
+    right:0px;
+    font-size : 20px;
+    color :#89867e; 
+}
+
+#nav3 a{
+    position: absolute;
+    float:left;
+    margin-top:60px;
+    top:50px;
+    right:130px;
+    font-size : 20px;
+    color :#89867e; 
+}
+
+
+
+#nav :hover {
+   color: balck;
+   opacity : 0.8;
+}
+
+#section_1 {
+    overflow:hidden;
+    position:relative;
+    left:0%;
+    width: 100%;
+    height:30%;
+}
+
+.main_slider{
+    position:relative;
+    width:400%;
+    margin-left:-200%;
+}
+
+.main_slider:after{
+    content:"";
+    display: block;
+    clear: both;
+}
+
+.main_slider>img{
+    float:left;
+    width:25%;
+}
+
+.slider_control>span{
+    display: block;
+    width:3%;
+    top:140px;
+    opacity: 0.7;
+    
+}
+
+.slider_control>span:first-child{
+    position: absolute;
+    left:180px;
+/*    border: 0.5px solid #fff;*/
+}
+
+.slider_control>span:last-child{
+    position: absolute;
+    right:180px;
+/*    border: 0.5px solid #fff;*/
+}
+
+/* 占쎈뮩占쎌뵬占쎌뵠占쎈굡 占쎌맄占쎌벥 疫뀐옙占쎈뎁*/
+
+.img-txt {
+    position: absolute;
+    top : 25%;
+    width: 55%;
+    left: 22%;
+    text-align: left;
+    font-size: 25px;
+    font-weight: 200; 
+    color: #f9f9f9;
+}
+
+.img-txt-small {
+    position: absolute;
+    top : 40%;
+    width: 55%;
+    left: 22%;
+    text-align: left;
+    font-size: 13px; 
+    color: #f9f9f9;
+}
+
+/* ===== �겫占썽겫占� 2 (占쎈툡占쎌삋占쎌벥 4揶쏉옙 獄쏅벡�뮞) ======*/
+
+#section_2 {
+     /* width:1200px; */
+     width: 100%;
+     height:600px;     
+     /* left:50%; */
+     /* margin-left:-450px; */
+     z-index: 1;
+     border: 1px solid black; 
+}
+
+#section_wrap{
+	width:100%;
+	height:100%;
+}
+
+#menutitle span{
+	 position:relative; 
+	width:60%;
+    margin-top:200px;
+    left :22%;
+    font-size :27px;
+    font-weight: 300;
+    /* border: 1px solid black; */
+}
+
+/* 筌롫뗀�뤀 占쎌읈筌ｏ옙 獄쏅벡�뮞 占쎌읅占쎌뒠*/
+#box-wrap {
+	position:relative;
+    width:60%;
+    left:25%;
+    margin-top:2.5%;
+    border: 1px solid black;
+}
+
+/* #box-wrap:after{
+    content:"";
+    clear:both;
+    display: block;
+} */
+
+/* #box-wrap>div:last-child{
+    margin-right:0;
+} */
+
+
+/* 筌롫뗀�뤀 獄쏅벡�뮞 占쎄쉭�겫占� 占쎌읅占쎌뒠*/
+.box {
+    float:left;
+    text-align: center;
+    width : 18%;
+    height: 18%;
+    margin-right:5%;
+    font-size: 25px;
+    font-weight: 300;  
+}
+
+/* 筌롫뗀�뤀 占쎈툧占쎌벥 占쎄땀占쎌뒠*/
+.box a {
+    color:#f9f9f9;
+    font-size:22px;
+    line-height:200px;
+    position: relative;
+    display: block;
+}
+
+
+/* 揶쏉옙 筌롫뗀�뤀占쎈퓠 筌띾뜆�뒭占쎈뮞�몴占� 占쎌궞�뵳�됥늺*/
+.box a:hover {
+   background-color: black;
+   opacity : 0.5;
+}
+
+
+/*揶쏉옙占쎌삢 占쎈릭占쎈뼊占쎌벥 椰꾧퀣苑�燁삳똾逾억옙�뵬占쎌뵠占쎈뱜!*/
+#footer {
+    width:100%;
+    left: 50%;
+    text-align: center;
+    margin-top:5%;
+    margin-bottom : 1%;
+    font-size:13px;
+/*    border:1px solid red;*/
+}
