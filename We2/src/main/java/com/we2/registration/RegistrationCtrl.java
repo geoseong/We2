@@ -107,6 +107,7 @@ public class RegistrationCtrl {
 		} //end try-catch
 	} //end loginpost()
 	
+	
 	@RequestMapping(value = "/logout")
 	public String logout(HttpSession session){
 		session.invalidate();

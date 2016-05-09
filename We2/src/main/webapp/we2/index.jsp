@@ -30,7 +30,7 @@
  <c:choose>
 	 <c:when test="${empty authInfo}">
 
-		<div id = "nav">
+		<div id ="nav">
             <a href="login" class="loginButton">로그인</a>
             <!-- #########위에 로그인 header를 넣는다! -->
         </div>
@@ -237,6 +237,8 @@ $(".pjtMakeInner").hide();
 			window.open(url, "_blank_1", "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=450, height=200");
 	  }
 	</script>
+
+
 </head>
 
 </html>
