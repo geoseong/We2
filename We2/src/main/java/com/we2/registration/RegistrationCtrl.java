@@ -115,4 +115,9 @@ public class RegistrationCtrl {
 		return "index";
 	} //end logout()
 	
+	
+	@RequestMapping(value="/aop")
+	public void aopTest(){
+		System.out.println("AOP_test ¿‘¥œ¥Ÿ.\n---------------");
+	}
 }
