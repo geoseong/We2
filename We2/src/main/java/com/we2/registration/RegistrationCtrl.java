@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class RegistrationCtrl {
 	
 	private AuthService authService;
+	
 	public void setAuthService(AuthService authService) {
 		this.authService = authService;
 	}
