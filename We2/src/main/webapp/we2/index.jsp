@@ -26,7 +26,7 @@
 <!-- 1. 상단 로고 부분-->
 <div id = "header">
     <a href="/We2"><b>We2</b></a>
-		
+
  <c:choose>
 	 <c:when test="${empty authInfo}">
 
@@ -83,8 +83,6 @@
         
         <div id="menutitle">
         <span>Menu</span> 
-        
-           <a href="aop">AOP test</a>
            
         </div>
   <!-- 3.-1 중간 메뉴의 box--> 
