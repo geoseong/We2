@@ -26,11 +26,11 @@
 <!-- 1. 상단 로고 부분-->
 <div id = "header">
     <a href="/We2"><b>We2</b></a>
-
+		
  <c:choose>
 	 <c:when test="${empty authInfo}">
 
-		<div id = "nav">
+		<div id ="nav">
             <a href="login" class="loginButton">로그인</a>
             <!-- #########위에 로그인 header를 넣는다! -->
         </div>
@@ -83,6 +83,8 @@
         
         <div id="menutitle">
         <span>Menu</span> 
+        
+           <a href="aop">AOP test</a>
            
         </div>
   <!-- 3.-1 중간 메뉴의 box--> 
@@ -237,6 +239,8 @@ $(".pjtMakeInner").hide();
 			window.open(url, "_blank_1", "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=450, height=200");
 	  }
 	</script>
+
+
 </head>
 
 </html>

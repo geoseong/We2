@@ -1,20 +1,20 @@
 create database we2;
 
 /*
-> testuser ¶ó´Â »ç¿ëÀÚ°¡ 192.168.100.101 ¾ÆÀÌÇÇ¸¦ ÅëÇØ¼­ Á¢±ÙÇÏ´Â °ÍÀ» Çã¿ëÇÏ¸ç, 
+> testuser ë¼ëŠ” ì‚¬ìš©ìê°€ 192.168.100.101 ì•„ì´í”¼ë¥¼ í†µí•´ì„œ ì ‘ê·¼í•˜ëŠ” ê²ƒì„ í—ˆìš©í•˜ë©°, 
 	ex) CREATE USER 'we2admin'@'192.168.100.101' IDENTIFIED BY '123qwe!@#';
- ºñ¹Ğ¹øÈ£´Â "123qwe!@#" ÀÌ°í, "mysite" µ¥ÀÌÅÍº£ÀÌ½º¿¡ ´ëÇÏ¿© ¸ğµç ±ÇÇÑÀ» ºÎ¿© ¹ŞÀ½ 
+ ë¹„ë°€ë²ˆí˜¸ëŠ” "123qwe!@#" ì´ê³ , "mysite" ë°ì´í„°ë² ì´ìŠ¤ì— ëŒ€í•˜ì—¬ ëª¨ë“  ê¶Œí•œì„ ë¶€ì—¬ ë°›ìŒ 
  
- > ¸ğµç IP·ÎÀÇ Á¢±ÙÀ» Çã¿ëÇÏ±â À§ÇØ¼­´Â È£½ºÆ®ÁÖ¼Ò ºÎºĞÀ» "%"·Î Ã³¸®ÇÑ´Ù
+ > ëª¨ë“  IPë¡œì˜ ì ‘ê·¼ì„ í—ˆìš©í•˜ê¸° ìœ„í•´ì„œëŠ” í˜¸ìŠ¤íŠ¸ì£¼ì†Œ ë¶€ë¶„ì„ "%"ë¡œ ì²˜ë¦¬í•œë‹¤
 	ex) CREATE USER 'we2admin'@'%' IDENTIFIED BY '123qwe!@#';
 */
 CREATE USER 'we2admin'@'%' IDENTIFIED BY '1234';
 grant all privileges on we2.* to we2admin@'%';
 flush privileges;
-/* create user ³¡ */
+/* create user ë */
 
 
-/* MySQL ÀüÃ¼ »ç¿ëÀÚ ¸ñ·Ï º¸±â*/
+/* MySQL ì „ì²´ ì‚¬ìš©ì ëª©ë¡ ë³´ê¸°*/
 USE mysql;
 SELECT User, Host from user;
 SELECT * from user;
@@ -23,18 +23,18 @@ select * from member;
 select * from MEMBER where USERID = 'geoseong';
 
 
-/* »ç¿ëÀÚ¿¡°Ô ºÎ¿©µÈ ±ÇÇÑ È®ÀÎ */
+/* ì‚¬ìš©ìì—ê²Œ ë¶€ì—¬ëœ ê¶Œí•œ í™•ì¸ */
 SHOW GRANTS FOR we2admin@'%';
 
 
-/* °èÁ¤ ºñ¹Ğ¹øÈ£ º¯°æ */
-# Set Password ÀÌ¿ë
+/* ê³„ì • ë¹„ë°€ë²ˆí˜¸ ë³€ê²½ */
+# Set Password ì´ìš©
 SET PASSWORD FOR we2admin='1234';
-# update¹® ÀÌ¿ë
-UPDATE user SET password='»õºñ¹Ğ¹øÈ£' WHERE user='we2admin';
+# updateë¬¸ ì´ìš©
+UPDATE user SET password='ìƒˆë¹„ë°€ë²ˆí˜¸' WHERE user='we2admin';
 FLUSH PRIVILEGES;
 
--- Å×ÀÌºí »ı¼º
+-- í…Œì´ë¸” ìƒì„±
 CREATE TABLE member(
 	userid VARCHAR(12),
 	name VARCHAR(10),
@@ -57,7 +57,7 @@ CREATE TABLE pjtMake(
 ) engine=InnoDB character set=utf8; 
 desc pjtMake;
 
-/* Å×ÀÌºí »ı¼º ½Ã ¿Ü·¡Å° ÇÑ¹ø¿¡ ¼³Á¤ (¾÷µ¥ÀÌÆ®ÇÒ‹š³ª Áö¿öÁú¶§³ª ´Ã ÇÔ²²ÇÏ´Â ¿Ü·¡Å°¼³Á¤) */
+/* í…Œì´ë¸” ìƒì„± ì‹œ ì™¸ë˜í‚¤ í•œë²ˆì— ì„¤ì • (ì—…ë°ì´íŠ¸í• ï¿½ï¿½ë‚˜ ì§€ì›Œì§ˆë•Œë‚˜ ëŠ˜ í•¨ê»˜í•˜ëŠ” ì™¸ë˜í‚¤ì„¤ì •) */
 create table pjtManager(
 	pjtCode varchar(4),
     userId varchar(12),
@@ -66,9 +66,9 @@ create table pjtManager(
 	FOREIGN KEY(userId) REFERENCES member(userId) ON UPDATE CASCADE ON DELETE CASCADE 
 );
 
-/* InnoDBÅ×ÀÌºí ¹æ½ÄÀ¸·Î ¾È¸¸µé¾úÀ»¶§ º¯°æÇÏ´Â ¸í·É¾î
- * ÀÚ¼¼¼³¸í : http://powerhan.tistory.com/175 */
-alter table Å×ÀÌºí_ÀÌ¸§ engine=InnoDB;
+/* InnoDBí…Œì´ë¸” ë°©ì‹ìœ¼ë¡œ ì•ˆë§Œë“¤ì—ˆì„ë•Œ ë³€ê²½í•˜ëŠ” ëª…ë ¹ì–´
+ * ìì„¸ì„¤ëª… : http://powerhan.tistory.com/175 */
+alter table í…Œì´ë¸”_ì´ë¦„ engine=InnoDB;
 alter table member engine=InnoDB, DEFAULT CHARACTER SET utf8;
 alter table pjtMake engine=InnoDB, DEFAULT CHARACTER SET utf8;
 alter table pjtManager engine=InnoDB, DEFAULT CHARACTER SET utf8;
@@ -76,35 +76,35 @@ alter database we2 DEFAULT CHARACTER SET utf8;
 
 
 
-/* ÇöÀç ¹®ÀÚ¼Â Á¤º¸ º¸±â*/
+/* í˜„ì¬ ë¬¸ìì…‹ ì •ë³´ ë³´ê¸°*/
 show variables like 'c%';
 
-/* InnoDB ¹æ½ÄÀÎÁö µîµî.. Å×ÀÌºí Á¤º¸ È®ÀÎÇÏ±â */
+/* InnoDB ë°©ì‹ì¸ì§€ ë“±ë“±.. í…Œì´ë¸” ì •ë³´ í™•ì¸í•˜ê¸° */
 SHOW TABLE STATUS FROM we2 LIKE 'pjtMake';
 
 
 
-/* Æ¯Á¤ µ¥ÀÌÅÍº£ÀÌ½º ¾È¿¡ ÀÖ´Â Å×ÀÌºí ¸ñ·Ï º¸±â */
+/* íŠ¹ì • ë°ì´í„°ë² ì´ìŠ¤ ì•ˆì— ìˆëŠ” í…Œì´ë¸” ëª©ë¡ ë³´ê¸° */
 use we2;
 show tables;
 
 
-/* ÄÃ·³ ÀÌ¸§ ¹Ù²Ù±â */
-# ALTER TABLE Å×ÀÌºí¸í CHANGE ÄÃ·³ÀÌ¸§ »õÄÃ·³ÀÌ¸§ »õÄÃ·³Å¸ÀÔ
+/* ì»¬ëŸ¼ ì´ë¦„ ë°”ê¾¸ê¸° */
+# ALTER TABLE í…Œì´ë¸”ëª… CHANGE ì»¬ëŸ¼ì´ë¦„ ìƒˆì»¬ëŸ¼ì´ë¦„ ìƒˆì»¬ëŸ¼íƒ€ì…
 ALTER TABLE member CHANGE userid userId VARCHAR(12);
 
-/* ÄÃ·³ Ãß°¡ÇÏ±â */
-#ALTER TABLE Å×ÀÌºí¸í ADD COLUMN Ä®·³ÀÌ¸§ Ä®·³Å¸ÀÔ
+/* ì»¬ëŸ¼ ì¶”ê°€í•˜ê¸° */
+#ALTER TABLE í…Œì´ë¸”ëª… ADD COLUMN ì¹¼ëŸ¼ì´ë¦„ ì¹¼ëŸ¼íƒ€ì…
 ALTER TABLE member ADD COLUMN regDate date;
 
 
-/* »ğÀÔ */
-# ÇöÀç½Ã°¢Àº MySQL¿¡¼­´Â now().
+/* ì‚½ì… */
+# í˜„ì¬ì‹œê°ì€ MySQLì—ì„œëŠ” now().
 #INSERT INTO tablename or columns VALUES(25, 'NAME', 5, 25.5 );
-insert into member values('geoseong', '°Å¼º', '1234' ,'imf4@naver.com', 'parkopp@hanmail.net', '010-2023-6697', 'M', now());
+insert into member values('geoseong', 'ê±°ì„±', '1234' ,'imf4@naver.com', 'parkopp@hanmail.net', '010-2023-6697', 'M', now());
 
 
-/* »ç¿ëÀÚ »èÁ¦ */
+/* ì‚¬ìš©ì ì‚­ì œ */
 DROP USER we2admin@localhost;
 DROP USER we2admin@'%';
 DROP USER we2admin@'192.168.0.100';
