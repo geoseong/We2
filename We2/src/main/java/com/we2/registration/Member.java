@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Member {
 
-	private String userid;
+	private String userId;
 	private String name;
 	private String pwd;
 	private String email;
@@ -22,12 +22,12 @@ public class Member {
 		this.regDate = regDate;
 	}
 
-	public void setUserid(String userid) {
-		this.userid = userid;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
-	public String getUserid() {
-		return userid;
+	public String getUserId() {
+		return userId;
 	}
 
 	public String getName() {

@@ -8,8 +8,8 @@ public class AuthService {
 		this.memberDao = memberDao;
 	}
 
-	public AuthInfo authenticate(String userid, String password) {
-		Member member = memberDao.selectByUserid(userid);
+	public AuthInfo authenticate(String userId, String password) {
+		Member member = memberDao.selectByUserId(userId);
 		if (member == null) {
 				System.out.println("member==null");
 			throw new IdPasswordNotMatchingException();
@@ -18,6 +18,6 @@ public class AuthService {
 				System.out.println("member pwd!=null");
 			throw new IdPasswordNotMatchingException();
 		}
-		return new AuthInfo(member.getUserid(), member.getName(), member.getEmail(), member.getPhone(), member.getGender());
+		return new AuthInfo(member.getUserId(), member.getName(), member.getEmail(), member.getPhone(), member.getGender());
 	}
 }

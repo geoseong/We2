@@ -35,6 +35,7 @@ public class RegistrationCtrl {
 		return "index";
 	}
 
+	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginget(LoginCommand loginCommand,
 			@CookieValue(value = "REMEMBER", required = false) Cookie rememberCookie){
@@ -44,6 +45,8 @@ public class RegistrationCtrl {
 		}
 		return "registration/login";
 	} //end login.GET
+	
+	
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String loginpost(

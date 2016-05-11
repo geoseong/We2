@@ -26,7 +26,7 @@ public class MemberDao {
 					rs.getString("GENDER"),
 					rs.getDate("REGDATE"));
 			
-			member.setUserid(rs.getString("USERID"));
+			member.setUserId(rs.getString("USERID"));
 			return member;
 		}
 	};
@@ -35,11 +35,11 @@ public class MemberDao {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
-	public Member selectByUserid(String userid) {
+	public Member selectByUserId(String userId) {
 		List<Member> results = jdbcTemplate.query(
 				"select * from MEMBER where USERID = ?",
 				memRowMapper,
-				userid);
+				userId);
 		
 		return results.isEmpty() ? null : results.get(0);
 	}
