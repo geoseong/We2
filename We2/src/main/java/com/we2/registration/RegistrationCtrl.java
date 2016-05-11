@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class RegistrationCtrl {
 	
 	private AuthService authService;
+	
 	public void setAuthService(AuthService authService) {
 		this.authService = authService;
 	}
@@ -67,10 +68,10 @@ public class RegistrationCtrl {
 			LoginCommand loginCommand, Errors errors, HttpSession session,
 			HttpServletResponse response) {
 		
-		// Æû °ªÀÌ ¿Ã¹Ù¸¥Áö °Ë»ç.
+		// í¼ ê°’ì´ ì˜¬ë°”ë¥¸ì§€ ê²€ì‚¬.
 		new LoginCommandValidator().validate(loginCommand, errors);
 		
-		// µğ¹ö±ë.
+		// ë””ë²„ê¹….
 		logger.info("ID : " + loginCommand.getUserid() + " , PWD : " + loginCommand.getPwd());
 		System.out.println("ID : " + loginCommand.getUserid() + " , PWD : " + loginCommand.getPwd());
 		
@@ -79,26 +80,26 @@ public class RegistrationCtrl {
 		}
 		
 		try {
-			// ·Î±×ÀÎ Ä¿¸Çµå·ÎºÎÅÍ id, pwd¸¦ ¹Ş¾Æ¼­ ÀÎÁõÀÛ¾÷ °ÅÃÄ¼­ ¼¼¼Ç¿¡ ³Ñ¾î°¥ º¯¼öµé ¹ÙÀÎµù°´Ã¼¸¦ ¸®ÅÏ¹ŞÀ½
+			// ë¡œê·¸ì¸ ì»¤ë§¨ë“œë¡œë¶€í„° id, pwdë¥¼ ë°›ì•„ì„œ ì¸ì¦ì‘ì—… ê±°ì³ì„œ ì„¸ì…˜ì— ë„˜ì–´ê°ˆ ë³€ìˆ˜ë“¤ ë°”ì¸ë”©ê°ì²´ë¥¼ ë¦¬í„´ë°›ìŒ
 			AuthInfo authInfo
 				= authService.authenticate(loginCommand.getUserid(), loginCommand.getPwd());
 					
-			// ¼¼¼Ç¿µ¿ª¿¡ È¸¿øÁ¤º¸ Ãß°¡.
+			// ì„¸ì…˜ì˜ì—­ì— íšŒì›ì •ë³´ ì¶”ê°€.
 			session.setAttribute("authInfo", authInfo);
 			
-			// Æû¿¡ ÀÚµ¿¿Ï¼ºÀ» ¿øÇÏ¸é ÄíÅ°¿¡ 30ÀÏµ¿¾È userid¸¦ º¸ÀÌ°Ô ÇÔ.
+			// í¼ì— ìë™ì™„ì„±ì„ ì›í•˜ë©´ ì¿ í‚¤ì— 30ì¼ë™ì•ˆ useridë¥¼ ë³´ì´ê²Œ í•¨.
 			Cookie rememberCookie = 
 					new Cookie("REMEMBER", loginCommand.getUserid());
-			rememberCookie.setPath("/");	// ÇØ´ç ÄíÅ°ÀÇ Àû¿ë¹üÀ§
+			rememberCookie.setPath("/");	// í•´ë‹¹ ì¿ í‚¤ì˜ ì ìš©ë²”ìœ„
 			
 			if (loginCommand.isRememberUserid()) {
-				rememberCookie.setMaxAge(60 * 60 * 24 * 30);	// 30ÀÏµ¿¾È.
+				rememberCookie.setMaxAge(60 * 60 * 24 * 30);	// 30ì¼ë™ì•ˆ.
 			} else {
 				rememberCookie.setMaxAge(0);
 			}
 			response.addCookie(rememberCookie);
 			
-			logger.info("È¸¿ø " + authInfo.getUserid() + "·Î±×ÀÎÇÔ.");
+			logger.info("íšŒì› " + authInfo.getUserid() + "ë¡œê·¸ì¸í•¨.");
 			
 			return "index";
 		} catch (IdPasswordNotMatchingException e) {
@@ -117,6 +118,6 @@ public class RegistrationCtrl {
 	
 	@RequestMapping(value="/aop")
 	public void aopTest(){
-		System.out.println("AOP_test ÀÔ´Ï´Ù.\n---------------");
+		System.out.println("AOP_test ì…ë‹ˆë‹¤.\n---------------");
 	}
 }
