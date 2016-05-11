@@ -12,6 +12,10 @@
 	 <bean class="com.we2.registration.RegistrationCtrl">
  		<property name="authService" ref="authService" />
 	 </bean>
+	 
+	 <!-- 컨트롤러 bean 생성 -->
+	<bean class="com.we2.pjtMake.pjtMakeCtrl">
+	 </bean>
 
 	<mvc:interceptors>
 		<mvc:interceptor>

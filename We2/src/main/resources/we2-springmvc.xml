@@ -13,9 +13,8 @@
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
-	<mvc:annotation-driven />
+	<mvc:annotation-driven /> <!-- Controller 애노테이션을 이용한 컨트롤러를 사용하기 위한 설정 -->
 	
-
 	<!-- css, js 등의 관리를 DispatcherServlet에서 관리하면 경로를 못찾으므로 Default Servlet에서 관리하게 설정. -->
 	<mvc:default-servlet-handler/>
 
