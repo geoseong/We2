@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-							http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
 							http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
@@ -60,15 +58,7 @@
 	<!-- BoardService : (서비스)DAO와 컨트롤러의 중간
 	<bean id="boardService" class="com.we2.board.community.BoardService"/>-->
 	
-	<!-- AOP bean 설정 -->
-	<bean id="aopaspect" class="interceptor.AOP_Aspect"/>
-	<aop:config>
-		<aop:aspect ref="aopaspect">
-			<aop:pointcut id="aoptest" expression="execution(public * aop*(..))"/>
-				<!-- <aop:before pointcut-ref="aoptest" method="loginCheck"/> -->
-			<aop:around pointcut-ref="aoptest" method="loginCheck" />
-		</aop:aspect>
-	</aop:config>
+	<!-- <bean id="loginCommand" class="com.we2.registration.LoginCommand"/> -->
 	
 	
 </beans>

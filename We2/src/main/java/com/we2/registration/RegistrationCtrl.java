@@ -35,24 +35,6 @@ public class RegistrationCtrl {
 		return "index";
 	}
 
-	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
-	
-			/*public String HomeController(Locale locale, Model model) {
-				logger.info("Welcome home! The client locale is {}.", locale);
-				
-				Date date = new Date();
-				DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-				
-				String formattedDate = dateFormat.format(date);
-				
-				model.addAttribute("serverTime", formattedDate );
-				
-				return "home";
-			}*/
-			
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginget(LoginCommand loginCommand,
 			@CookieValue(value = "REMEMBER", required = false) Cookie rememberCookie){
@@ -61,7 +43,7 @@ public class RegistrationCtrl {
 			loginCommand.setRememberUserid(true);
 		}
 		return "registration/login";
-	}
+	} //end login.GET
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String loginpost(
@@ -106,19 +88,19 @@ public class RegistrationCtrl {
 			errors.reject("idPasswordNotMatching");
 			return "registration/login";
 		} //end try-catch
-	} //end loginpost()
+	} //end login.POST
 	
 	
 	@RequestMapping(value = "/logout")
 	public String logout(HttpSession session){
 		session.invalidate();
 		return "index";
-	} //end logout()
+	} //end logout.GET
 	
 	
 	@RequestMapping(value="/aop")
-	public void aopTest(){
-		System.out.println("AOP_test 입니다.\n---------------");
-//		System.out.println("loginCheckAOP 적용결과 : " + aopaspect.loginCheck(request, response));
-	}
+	public String aopTest(){
+		System.out.println("---------------\nAOP_test 입니다.\n---------------");
+		return "aop";
+	} //end aopTest.GET
 }
