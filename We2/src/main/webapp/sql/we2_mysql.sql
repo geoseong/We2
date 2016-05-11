@@ -57,7 +57,7 @@ CREATE TABLE pjtMake(
 ) engine=InnoDB character set=utf8; 
 desc pjtMake;
 
-/* 테이블 생성 시 외래키 한번에 설정 (업데이트할��나 지워질때나 늘 함께하는 외래키설정) */
+/* 테이블 생성 시 외래키 한번에 설정 (업데이트할때나 지워질때나 늘 함께하는 외래키설정) */
 create table pjtManager(
 	pjtCode varchar(4),
     userId varchar(12),
