@@ -10,7 +10,8 @@ public class AOP_Aspect {
 		System.out.println("AOP:Before설정 메시지");
 	}
 	
-	public boolean logincheck(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	
+	public boolean loginCheck(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession(false);
 		if(session != null){
 			Object authInfo = session.getAttribute("authInfo");

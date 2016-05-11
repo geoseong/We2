@@ -119,5 +119,6 @@ public class RegistrationCtrl {
 	@RequestMapping(value="/aop")
 	public void aopTest(){
 		System.out.println("AOP_test 입니다.\n---------------");
+//		System.out.println("loginCheckAOP 적용결과 : " + aopaspect.loginCheck(request, response));
 	}
 }

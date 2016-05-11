@@ -49,14 +49,14 @@
 	</bean>
 	
 	
-	<!-- Mapper! 이용한 매퍼임
+	<!-- Mapper! 이용한 매퍼임 -->
 	<bean id="boardMapper"
 		class="org.mybatis.spring.mapper.MapperFactoryBean">	
-		이 안에 SQL이 들어있음
+		<!-- 이 안에 SQL이 들어있음 -->
 		<property name="mapperInterface" value="com.we2.board.community"/>
-		SQL 실행하기위한 태그
+		<!-- SQL 실행하기위한 태그 -->
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-	</bean> -->
+	</bean> 
 	
 	
 	<!-- BoardService : (서비스)DAO와 컨트롤러의 중간
@@ -68,7 +68,7 @@
 	<aop:config>
 		<aop:aspect ref="aopaspect">
 			<aop:pointcut id="aoptest" expression="execution(public * aop*(..))"/>
-				<aop:before pointcut-ref="aoptest" method="letsgoaop()"/>
+				<aop:before pointcut-ref="aoptest" method="loginCheck()"/>
 		</aop:aspect>
 	</aop:config>
 </beans>
