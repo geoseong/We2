@@ -18,6 +18,6 @@ public class AuthService {
 				System.out.println("member pwd!=null");
 			throw new IdPasswordNotMatchingException();
 		}
-		return new AuthInfo(member.getUserid(), member.getName(), member.getEmail(), member.getSubEmail(), member.getPhone(), member.getGender());
+		return new AuthInfo(member.getUserid(), member.getName(), member.getEmail(), member.getPhone(), member.getGender());
 	}
 }

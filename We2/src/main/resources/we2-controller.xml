@@ -12,11 +12,5 @@
 	 <bean class="com.we2.registration.RegistrationCtrl">
  		<property name="authService" ref="authService" />
 	 </bean>
-
-	<mvc:interceptors>
-		<mvc:interceptor>
-			<mvc:mapping path="/auth/**" />
-			<bean class="interceptor.AuthCheckInterceptor" />
-		</mvc:interceptor>
-	</mvc:interceptors>
+	
 </beans>

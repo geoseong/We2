@@ -12,7 +12,7 @@
 	<!-- JDBC dataSource 설정. 톰캣 server.xml 설정하듯이. -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver"/>
-		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/we2?characterEncoding=utf8" />
+		<property name="jdbcUrl" value="jdbc:mysql://192.168.0.100:3306/we2?characterEncoding=utf8" />
 		<property name="user" value="we2admin" />
 		<property name="password" value="1234" />
 	</bean>
@@ -49,26 +49,26 @@
 	</bean>
 	
 	
-	<!-- Mapper! 이용한 매퍼임 -->
+	<!-- Mapper! 이용한 매퍼임
 	<bean id="boardMapper"
 		class="org.mybatis.spring.mapper.MapperFactoryBean">	
-		<!-- 이 안에 SQL이 들어있음 -->
+		이 안에 SQL이 들어있음 
 		<property name="mapperInterface" value="com.we2.board.community"/>
-		<!-- SQL 실행하기위한 태그 -->
+		SQL 실행하기위한 태그
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-	</bean> 
-	
-	
+	</bean>  -->
 	<!-- BoardService : (서비스)DAO와 컨트롤러의 중간
 	<bean id="boardService" class="com.we2.board.community.BoardService"/>-->
-	
 	
 	<!-- AOP bean 설정 -->
 	<bean id="aopaspect" class="interceptor.AOP_Aspect"/>
 	<aop:config>
 		<aop:aspect ref="aopaspect">
 			<aop:pointcut id="aoptest" expression="execution(public * aop*(..))"/>
-				<aop:before pointcut-ref="aoptest" method="loginCheck()"/>
+				<!-- <aop:before pointcut-ref="aoptest" method="loginCheck"/> -->
+			<aop:around pointcut-ref="aoptest" method="loginCheck" />
 		</aop:aspect>
 	</aop:config>
+	
+	
 </beans>

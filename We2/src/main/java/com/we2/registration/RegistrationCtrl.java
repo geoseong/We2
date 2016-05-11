@@ -87,21 +87,21 @@ public class RegistrationCtrl {
 			// 세션영역에 회원정보 추가.
 			session.setAttribute("authInfo", authInfo);
 			
-			// 폼에 자동완성을 원하면 쿠키에 30일동안 userid를 보이게 함.
+			// Cookie : 폼에 자동완성을 원하면 쿠키에 30일동안 userid를 보이게 함.
 			Cookie rememberCookie = 
 					new Cookie("REMEMBER", loginCommand.getUserid());
 			rememberCookie.setPath("/");	// 해당 쿠키의 적용범위
 			
-			if (loginCommand.isRememberUserid()) {
-				rememberCookie.setMaxAge(60 * 60 * 24 * 30);	// 30일동안.
-			} else {
-				rememberCookie.setMaxAge(0);
-			}
-			response.addCookie(rememberCookie);
-			
-			logger.info("회원 " + authInfo.getUserid() + "로그인함.");
-			
-			return "index";
+				if (loginCommand.isRememberUserid()) {
+					rememberCookie.setMaxAge(60 * 60 * 24 * 30);	// 30일동안.
+				} else {
+					rememberCookie.setMaxAge(0);
+				}
+				response.addCookie(rememberCookie);
+				
+				logger.info("회원 " + authInfo.getUserid() + "로그인함.");
+				
+				return "index";
 		} catch (IdPasswordNotMatchingException e) {
 			errors.reject("idPasswordNotMatching");
 			return "registration/login";
