@@ -1,27 +1,32 @@
 package com.we2.pjtMake;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class PjtMakeVO {
 	
-	String userId = null;
+	private int pjtCode;
+	private String pjtName;
+	private String pjtClassify;
+	private String startDate;
+	private String endDate;
 	
-	public String getUserId() {
-		return userId;
+	public PjtMakeVO(){
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	//»ý¼ºÀÚ
+	public PjtMakeVO(String pjtName, String pjtClassify, String startDate, String endDate) {
+		this.pjtName = pjtName;
+		this.pjtClassify = pjtClassify;
+		this.startDate = startDate;
+		this.endDate = endDate;
 	}
-	int pjtCode = 0;
+	
 	public int getPjtCode() {
 		return pjtCode;
 	}
 	public void setPjtCode(int pjtCode) {
 		this.pjtCode = pjtCode;
 	}
-	String pjtName = null;
-	String pjtClassify = null;
-	String startDate = null;
-	String endDate = null;
-
 	public String getPjtName() {
 		return pjtName;
 	}
@@ -34,7 +39,6 @@ public class PjtMakeVO {
 	public void setPjtClassify(String pjtClassify) {
 		this.pjtClassify = pjtClassify;
 	}
-	
 	public String getStartDate() {
 		return startDate;
 	}
@@ -47,5 +51,5 @@ public class PjtMakeVO {
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
-	
+
 }

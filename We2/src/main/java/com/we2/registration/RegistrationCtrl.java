@@ -3,12 +3,14 @@ package com.we2.registration;
 import java.util.Locale;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +35,6 @@ public class RegistrationCtrl {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		return "index";
 	}
-
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -112,5 +113,8 @@ public class RegistrationCtrl {
 		session.invalidate();
 		return "index";
 	} //end logout()
+	
+	
+	
 	
 }

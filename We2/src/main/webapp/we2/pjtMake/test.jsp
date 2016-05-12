@@ -9,9 +9,9 @@
 <body>
 ¼º°ø! <br>
 
-pjtName : ${pjtName } <br>
-classify : ${classify } <br>
-term1 : ${term1} <br>
-term2 : ${term2} <br>
+pjtName : ${pjtMakeVO.pjtName} <br>
+classify : ${pjtMakeVO.pjtClassify} <br>
+term1 : ${pjtMakeVO.startDate} <br>
+term2 : ${pjtMakeVO.endDate} <br>
 </body>
 </html>

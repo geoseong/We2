@@ -23,14 +23,12 @@ $("#nav>a").click(function(){
 	$(".modal_bg").show();
 	$(".second_body").show();
 });
-
 </script>
 </head>    
+
 <body>
     <!--1.백그라운드에 깔리는 화면페이지-->
 <div class="modal_bg"></div>
-
-
 
 <div class="first_main">
  	<jsp:include page="01_main.jsp" flush="false"/>

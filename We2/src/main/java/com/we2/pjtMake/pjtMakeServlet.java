@@ -1,4 +1,4 @@
-package com.we2.pjtMake;
+/*package com.we2.pjtMake;
 
 
 import java.io.IOException;
@@ -71,4 +71,4 @@ public class pjtMakeServlet extends HttpServlet {
 			response.sendRedirect("/We2/index.jsp");
 		}
 	}
-}
+}*/

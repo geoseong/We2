@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -15,13 +15,12 @@
 
     <!-- 슬라이드 이미지를 위한 준비-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
 </head>
         
 <body>
 
 <!-- '프로젝트 만들기' 메뉴의 모달창 영역 -->
-<div class="modal_bg"></div>
+ <div class="modal_bg"></div> 
 
 <!-- 1. 상단 로고 부분-->
 <div id = "header">
@@ -89,7 +88,7 @@
             <!--id: 한문서에 한번 /class:한문서에 여러번--> 
 			<!-- 게시판 영역부분 -->
             <div id = "box-wrap">
-                <div class = "box" style="background-color:#CE6628;">
+                <div class = "box" id="box" style="background-color:#CE6628;">
                     <a class="makeButton">
                         프로젝트 만들기
                     </a>
@@ -120,13 +119,13 @@
     </div> 
     <script type="text/javascript" src="js/jquery-1.12.1.min.js"></script> 
     <script type="text/javascript" src="js/main_slider2.js"></script>
-    
-    
    
+   
+   <!-- 프로젝트 만들기 -->
    <div class="pjtMake">   
-   	  <form method="post" action="pjtmake.do">	
- 
-   	     <div class="pjtMakeInner">
+   	  <form method="post" action="pjtmake">	
+   	  <%-- <form:form commandName="pjtMakeVO" method="post" action="pjtmake">  --%>
+	     <div class="pjtMakeInner">
                 <h1>프로젝트 만들기</h1>
                 
                 <img src="img/x.png" id="exit2">
@@ -135,11 +134,12 @@
 	   				<div class="nameArea">
 	   					<label for="pjtName">프로젝트 이름</label>
 	   					<input type="text" size="26" name="pjtName" id="pjtName" style="height:25px;"> 
+	   					<%-- <form:input path="pjtName" /> --%>
 	   				</div>
 	   				
 	   				<div class="classifyArea">
 	   					<label for="pjtClassify">프로젝트 분류</label>
-	   					<select name="classify" style="height:25px;" >
+	   					<select name=pjtClassify style="height:25px;" >
 	   						<option>조별과제</option>
 	   						<option>스터디</option>
 	   						<option>회사협업</option>
@@ -150,19 +150,19 @@
 	   					<label for="pjtTerm">프로젝트 기간</label>
                         
 	   					<img src="img/calendar.png" class="img1" style="width:50px;">
-                        
 	   					<img src="img/calendar.png" class="img2" style="width:50px;">		
-	   					<input type="text" size="7" name="term1" id="term1" style="height:25px;">
-                        
+	   					<input type="text" size="7" name="startDate" id="term1" style="height:25px;">
+                        <%-- <form:input path="startDate" size="7" style="height:25px;"/> --%>
                         <span> ~ </span>
                         
-	   					<input type="text" size="7" name="term2" id="term2" style="height:25px;"> 			                
+	   					<input type="text" size="7" name="endDate" id="term2" style="height:25px;"> 			                
+	   					<%-- <form:input path="endDate" size="7" style="height:25px;"/> --%>
 	   				</div>
 	   				
 	   				<div class="inviteArea">
 	   					<label for="pjtInvite">프로젝트 초대</label>
 	   					준비 중입니다.
-	   					<!--  <input type="text" size="26" name="invite" style="height:25px;">-->
+	   					 <input type="text" size="26" name="invite" style="height:25px;">
                         <div class="btn1">
 	   				 	<input type="button" value="초대" size="50" onclick="invitemember()">
 	   				    </div>
@@ -171,24 +171,19 @@
 	   				<div class="btn2">
 	   				 	<input type="submit" value="만들기" class="make" size="100">
 	   				</div>
-                
                 </div>
-         </div> <!--pjtMakeinner END-->
-   		
+         </div> pjtMakeinner END
         </form>
-       
-   </div>
-
-
-     
+       <%-- </form:form> --%>
+   </div> 	 
  
     </body>
-<script src="js/jquery-1.12.1.min.js"></script>
-<!-- jQuery UI CSS파일  -->
+ <script src="js/jquery-1.12.1.min.js"></script>
+<!--  jQuery UI CSS파일 --> 
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
-<!--  jQuery 기본 js파일 -->
+ <!--  jQuery 기본 js파일 -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<!--  jQuery UI 라이브러리 js파일 -->
+ <!--jQuery UI 라이브러리 js파일 -->
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 
 <script type="text/javascript"> 
@@ -216,18 +211,14 @@ $(".pjtMakeInner").hide();
 	$("#exit2").click(function(){
 		$(".modal_bg").hide();
 		$(".pjtMakeInner").hide();
-	
 	});
-    
-</script>
+</script> 
 
     <script type="text/javascript" src="js/jquery-1.12.1.min.js"></script> 
     <script type="text/javascript" src="js/main_slider2.js"></script>
-    
     <script type="text/javascript">
 	    
 	  function invitemember(){
-		  
 			if (document.frm.userid.value == "") {
 				alert('아이디를 입력하여 주십시오.');
 				frm.userid.focus();
