@@ -11,12 +11,14 @@
 		 http://www.springframework.org/schema/aop 
 		 http://www.springframework.org/schema/aop/spring-aop.xsd">
 		 
-	 <!-- 컨트롤러 bean 생성 -->
+	 <!-- start : 컨트롤러 bean 생성 -->
 	 <bean class="com.we2.registration.RegistrationCtrl">
  		<property name="authService" ref="authService" />
 	 </bean>
 	 
-	 	<!-- AOP bean 설정 -->
+	 <!-- end : 컨트롤러 bean 생성 -->
+	 
+	 <!-- AOP bean 설정 -->
 	<bean id="aopaspect" class="interceptor.AOP_Aspect"/>
 	
 	<aop:config>
