@@ -49,17 +49,17 @@
 	</bean>
 	
 	
-	<!-- Mapper! 이용한 매퍼임
+	<!-- Mapper! 이용한 매퍼임-->
 	<bean id="boardMapper"
 		class="org.mybatis.spring.mapper.MapperFactoryBean">	
-		이 안에 SQL이 들어있음
-		<property name="mapperInterface" value="com.we2.board.community"/>
-		SQL 실행하기위한 태그
+		<!-- 이 안에 SQL이 들어있음 -->
+		<property name="mapperInterface" value="com.we2.board.community.BoardMapper"/>
+		<!-- SQL 실행하기위한 태그 -->
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-	</bean> -->
+	</bean> 
 	
 	
-	<!-- BoardService : (서비스)DAO와 컨트롤러의 중간
-	<bean id="boardService" class="com.we2.board.community.BoardService"/>-->
+	<!-- BoardService : (서비스)DAO와 컨트롤러의 중간-->
+	<bean id="boardService" class="com.we2.board.community.BoardService"/>
 	
 </beans>

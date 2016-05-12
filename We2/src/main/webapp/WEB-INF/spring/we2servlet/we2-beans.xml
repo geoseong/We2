@@ -8,12 +8,17 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
 	<!-- JDBC dataSource 설정. 톰캣 server.xml 설정하듯이. -->
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-		<property name="url" value="jdbc:mysql://localhost:3306/we2" />
-		<property name="username" value="we2admin" />
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="com.mysql.jdbc.Driver"/>
+		<property name="jdbcUrl" value="jdbc:mysql://192.168.0.100:3306/we2?useSSL=false&amp;requireSSL=false&amp;characterEncoding=utf8"/>
+		<property name="user" value="we2admin" />
 		<property name="password" value="1234" />
 	</bean>
+	
+	
+	
+	
+	
 	
 	
 	<bean id="sqlSessionFactory"
