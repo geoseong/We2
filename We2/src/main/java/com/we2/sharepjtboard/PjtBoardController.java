@@ -22,4 +22,10 @@ public class PjtBoardController {
 		
 		return "pjtBoard/view";
 	}
+	
+	@RequestMapping(value="/modal", method=RequestMethod.GET)
+	public String testmodal(){
+		return "test_modal/jqueryModal";
+	}
+	
 }
