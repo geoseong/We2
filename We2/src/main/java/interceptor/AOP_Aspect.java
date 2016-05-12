@@ -21,9 +21,9 @@ public class AOP_Aspect {
         
 	      try{
 	    	  authinfo = (AuthInfo) session.getAttribute("authInfo");
-	    	  	System.out.println("member.userid : " + authinfo.getUserid());
+	    	  	System.out.println("member.userid : " + authinfo.getUserId());
 	
-	    	  	if("".equals(authinfo.getUserid()) || authinfo == null){
+	    	  	if("".equals(authinfo.getUserId()) || authinfo == null){
 	    	  		// 글쓴이 id와 현재 세션의 id를 비교
 	    	  	} //end if
 	    	 

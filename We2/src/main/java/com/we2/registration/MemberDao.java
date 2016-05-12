@@ -40,7 +40,7 @@ public class MemberDao {
 				"select * from MEMBER where USERID = ?",
 				memRowMapper,
 				userId);
-		
+			System.out.println("MemberDAO : " + results.get(0).getName());
 		return results.isEmpty() ? null : results.get(0);
 	}
 

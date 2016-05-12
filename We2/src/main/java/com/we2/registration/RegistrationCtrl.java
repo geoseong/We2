@@ -40,7 +40,7 @@ public class RegistrationCtrl {
 	public String loginget(LoginCommand loginCommand,
 			@CookieValue(value = "REMEMBER", required = false) Cookie rememberCookie){
 		if (rememberCookie != null) {
-			loginCommand.setUserid(rememberCookie.getValue());
+			loginCommand.setUserId(rememberCookie.getValue());
 			loginCommand.setRememberUserid(true);
 		}
 		return "registration/login";
@@ -57,24 +57,25 @@ public class RegistrationCtrl {
 		new LoginCommandValidator().validate(loginCommand, errors);
 		
 		// 디버깅.
-		logger.info("ID : " + loginCommand.getUserid() + " , PWD : " + loginCommand.getPwd());
-		System.out.println("ID : " + loginCommand.getUserid() + " , PWD : " + loginCommand.getPwd());
+		logger.info("ID : " + loginCommand.getUserId() + " , PWD : " + loginCommand.getPwd());
+		System.out.println("ID : " + loginCommand.getUserId() + " , PWD : " + loginCommand.getPwd());
 		
 		if (errors.hasErrors()) {
 			return "registration/login";
-		}
-		
+		} //end if
+			System.out.println("try 들어가기 전.");
 		try {
 			// 로그인 커맨드로부터 id, pwd를 받아서 인증작업 거쳐서 세션에 넘어갈 변수들 바인딩객체를 리턴받음
+				System.out.println("authinfo 정의하기 전");
 			AuthInfo authInfo
-				= authService.authenticate(loginCommand.getUserid(), loginCommand.getPwd());
-					
+				= authService.authenticate(loginCommand.getUserId(), loginCommand.getPwd());
+				System.out.println("authinfo 정의 한 후");
 			// 세션영역에 회원정보 추가.
 			session.setAttribute("authInfo", authInfo);
 			
 			// Cookie : 폼에 자동완성을 원하면 쿠키에 30일동안 userid를 보이게 함.
 			Cookie rememberCookie = 
-					new Cookie("REMEMBER", loginCommand.getUserid());
+					new Cookie("REMEMBER", loginCommand.getUserId());
 			rememberCookie.setPath("/");	// 해당 쿠키의 적용범위
 			
 				if (loginCommand.isRememberUserid()) {
@@ -84,7 +85,7 @@ public class RegistrationCtrl {
 				}
 				response.addCookie(rememberCookie);
 				
-				logger.info("회원 " + authInfo.getUserid() + "로그인함.");
+				logger.info("회원 " + authInfo.getUserId() + "로그인함.");
 				
 				return "index";
 		} catch (IdPasswordNotMatchingException e) {
