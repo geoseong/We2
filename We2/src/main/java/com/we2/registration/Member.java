@@ -8,17 +8,23 @@ public class Member {
 	private String name;
 	private String pwd;
 	private String email;
-	private String subEmail;
 	private String phone;
 	private String gender;
 	private Date regDate;
 	
-	public Member(String name, String pwd, String email, String subEmail, String phone, String gender, Date regDate) {
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public Member(String name, String pwd, String email, String phone, String gender, Date regDate) {
 		super();
 		this.name = name;
 		this.pwd = pwd;
 		this.email = email;
-		this.subEmail = subEmail;
 		this.phone = phone;
 		this.gender = gender;
 		this.regDate = regDate;
@@ -42,14 +48,6 @@ public class Member {
 
 	public String getEmail() {
 		return email;
-	}
-
-	public String getSubEmail() {
-		return subEmail;
-	}
-
-	public String getPhone() {
-		return phone;
 	}
 
 	public String getGender() {

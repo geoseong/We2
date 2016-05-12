@@ -28,7 +28,6 @@ public class MemberDao {
 					rs.getString("NAME"),
 					rs.getString("PWD"),
 					rs.getString("EMAIL"),
-					rs.getString("SUBEMAIL"),
 					rs.getString("PHONE"),
 					rs.getString("GENDER"),
 					rs.getDate("REGDATE"));
