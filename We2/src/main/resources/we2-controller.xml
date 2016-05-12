@@ -13,7 +13,7 @@
 		 http://www.springframework.org/schema/aop/spring-aop.xsd
 		 http://www.springframework.org/schema/context
 		 http://www.springframework.org/schema/context/spring-context.xsd">
-		 
+		
 	 <!-- start : 컨트롤러 bean 생성 -->
 	 <!-- <bean class="com.we2.registration.RegistrationCtrl">
  		<property name="authService" ref="authService" />
