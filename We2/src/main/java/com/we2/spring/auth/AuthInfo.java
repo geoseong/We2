@@ -5,7 +5,6 @@ public class AuthInfo {
 	private String userid;
 	private String name;
 	private String email;
-	private String subEmail;
 	private String phone;
 	private String gender;
 	
@@ -14,7 +13,6 @@ public class AuthInfo {
 		this.userid = userid;
 		this.name = name;
 		this.email = email;
-		this.subEmail = subEmail;
 		this.phone = phone;
 		this.gender = gender;
 	}
@@ -29,10 +27,6 @@ public class AuthInfo {
 
 	public String getEmail() {
 		return email;
-	}
-
-	public String getSubEmail() {
-		return subEmail;
 	}
 
 	public String getPhone() {

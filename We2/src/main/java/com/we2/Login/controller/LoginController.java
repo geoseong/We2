@@ -26,6 +26,7 @@ import com.we2.spring.auth.IdPasswordNotMatchingException;
 public class LoginController {
 	
 	private AuthService authService;
+	
 	public void setAuthService(AuthService authService) {
 		this.authService = authService;
 	}
@@ -71,10 +72,10 @@ public class LoginController {
 			LoginCommand loginCommand, Errors errors, HttpSession session,
 			HttpServletResponse response) {
 		
-		// �� ���� �ùٸ��� �˻�.
+		//폼 값이 올바른지 검사.
 		new LoginCommandValidator().validate(loginCommand, errors);
 		
-		// �����.
+		//디버깅.
 		logger.info("ID : " + loginCommand.getUserid() + " , PWD : " + loginCommand.getPwd());
 		System.out.println("ID : " + loginCommand.getUserid() + " , PWD : " + loginCommand.getPwd());
 		
@@ -83,26 +84,26 @@ public class LoginController {
 		}
 		
 		try {
-			// �α��� Ŀ�ǵ�κ��� id, pwd�� �޾Ƽ� �����۾� ���ļ� ���ǿ� �Ѿ ������ ���ε���ü�� ���Ϲ���
+			//로그인 커맨드로부터 id, pwd를 받아서 인증작업 거쳐서 세션에 넘어갈 변수들 바인딩객체를 리턴받음
 			AuthInfo authInfo
 				= authService.authenticate(loginCommand.getUserid(), loginCommand.getPwd());
 					
-			// ���ǿ����� ȸ������ �߰�.
+			//세션영역에 회원정보 추가.
 			session.setAttribute("authInfo", authInfo);
 			
-			// ���� �ڵ��ϼ��� ���ϸ� ��Ű�� 30�ϵ��� userid�� ���̰� ��.
+			// 폼에 자동완성을 원하면 쿠키에 30일동안 userid를 보이게 함.
 			Cookie rememberCookie = 
 					new Cookie("REMEMBER", loginCommand.getUserid());
-			rememberCookie.setPath("/");	// �ش� ��Ű�� �������
+			rememberCookie.setPath("/");	// 해당 쿠키의 적용범위
 			
 			if (loginCommand.isRememberUserid()) {
-				rememberCookie.setMaxAge(60 * 60 * 24 * 30);	// 30�ϵ���.
+				rememberCookie.setMaxAge(60 * 60 * 24 * 30);	// 30일동안.
 			} else {
 				rememberCookie.setMaxAge(0);
 			}
 			response.addCookie(rememberCookie);
 			
-			logger.info("ȸ�� " + authInfo.getUserid() + "�α�����.");
+			logger.info("회원 " + authInfo.getUserid() + "로그인함.");
 			
 			return "index";
 		} catch (IdPasswordNotMatchingException e) {

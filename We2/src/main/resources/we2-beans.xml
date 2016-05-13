@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-					http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+							http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+							http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
 	<!-- JDBC dataSource 설정. 톰캣 server.xml 설정하듯이. -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver"/>
-		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/we2?characterEncoding=utf8" />
+		<property name="jdbcUrl" value="jdbc:mysql://192.168.0.100:3306/we2?characterEncoding=utf8" />
 		<property name="user" value="we2admin" />
 		<property name="password" value="1234" />
 	</bean>
-	
 	
 		<!-- 시작 : MyBatis를 위한 태그들 -->
 		<bean id="sqlSessionFactory"
@@ -28,7 +29,6 @@
 			<constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
 		</bean>
 		<!-- 끝 : MyBatis를 위한 태그들 -->
-	
 	
 	<!-- 소스코드에 어노테이션 트랜잭션을 활용할 때 -->
 	<bean id="transactionManager"
@@ -62,4 +62,13 @@
 	<!-- BoardService : (서비스)DAO와 컨트롤러의 중간
 	<bean id="boardService" class="com.we2.board.community.BoardService"/>-->
 	
+	
+	<!-- AOP bean 설정 -->
+	<bean id="aopaspect" class="interceptor.AOP_Aspect"/>
+	<aop:config>
+		<aop:aspect ref="aopaspect">
+			<aop:pointcut id="aoptest" expression="execution(public * aop*(..))"/>
+				<aop:before pointcut-ref="aoptest" method="letsgoaop()"/>
+		</aop:aspect>
+	</aop:config>
 </beans>
