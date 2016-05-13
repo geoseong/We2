@@ -1,0 +1,16 @@
+@CHARSET "UTF-8";
+
+.calendar{
+	border: 1px solid blue;
+}
+a {
+ text-decoration: none;
+		}
+		
+#name >a{
+
+ font-size: 12px;
+
+
+		}
+	

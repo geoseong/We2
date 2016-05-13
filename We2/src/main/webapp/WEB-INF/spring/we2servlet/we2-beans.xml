@@ -2,16 +2,18 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-					http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/tx 
+						http://www.springframework.org/schema/tx/spring-tx.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
 	<!-- JDBC dataSource 설정. 톰캣 server.xml 설정하듯이. -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-		<property name="url" value="jdbc:mysql://localhost:3306/we2" />
-		<property name="username" value="we2admin" />
+		<property name="url" value="jdbc:mysql://localhost:3306/javadb" />
+		<property name="username" value="javauser" />
 		<property name="password" value="1234" />
 	</bean>
 	

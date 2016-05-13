@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xmlns="http://java.sun.com/xml/ns/javaee"
+	 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	 			http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 
 
 <!-- START : 각 기능별 서블릿명 지정&설정  -->
@@ -17,10 +20,10 @@
     <load-on-startup>1</load-on-startup>
   </servlet>
   <!-- DispatcherServlet의 관리영역 지정 -->
-  <servlet-mapping>
-    <servlet-name>we2servlet</servlet-name>
-    <url-pattern>/</url-pattern>
-  </servlet-mapping>
+ 	 <servlet-mapping>
+   		 <servlet-name>we2servlet</servlet-name>
+    	 <url-pattern>/</url-pattern>
+  	 </servlet-mapping>
 <!-- END : 각 기능별 서블릿명 지정&설정  -->
   
   
