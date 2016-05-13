@@ -26,10 +26,12 @@
 					<tr class="record">	
 						<td>${content.itemNum }</td>
 						<td>
-								<a href="ShareContent?itemNum=${BoardList.itemNum }&page=${page}">${BoardList.itemTitle }</a>
+								<a href="ShareContent?itemNum=${BoardList.itemNum }&page=${page}">${content.itemContent }</a>
 						</td>
 						<td>${content.userId }</td>
-						<td>${content.itemDate }</td>
+						<%-- <c:forEach var="formatDate" items="${formatDate }">
+							<td>${content.itemDate }</td>
+						</c:forEach> --%>
 						<td>${content.itemClick }</td>
 					</tr>		
 				</c:forEach>

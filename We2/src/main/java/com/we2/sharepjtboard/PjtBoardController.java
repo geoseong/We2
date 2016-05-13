@@ -39,10 +39,6 @@ public class PjtBoardController {
 			System.out.println("row_end : " + row_end);
 		System.out.println("-------------------------------변수설정 끝");
 		
-		 //ArrayList<PjtBoardBean> content =boardService.getList(row_start, row_end); 
-		//temp : 
-		boardService.getList(row_start, row_end);
-		
 		/*//디버깅 : 
 			int size=content.size();
 			for(int i=0; i < size ; i++){
@@ -52,9 +48,12 @@ public class PjtBoardController {
 */	
 		/* SECTION : REQUEST 영역에 보내기 */
 		// SELECT 결과물
-		 //tempblock : model.addAttribute("Content", content);
+		  model.addAttribute("Content", boardService.getList(row_start, row_end));
+		// SELECT 결과물 - Date 포멧을 'yyyy-MM-dd' 로 바꿔서 따로보냄
+		  model.addAttribute("formatDate", boardService.getformatDate(row_start, row_end));
 		// JSP:INCLUDE PAGE
-		model.addAttribute("Boardpage", "list.jsp");
+		  model.addAttribute("Boardpage", "list.jsp");
+		
 		
 		System.out.println("--------------------------listSpecificPage");
 		

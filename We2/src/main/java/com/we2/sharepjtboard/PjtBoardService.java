@@ -15,19 +15,34 @@ public class PjtBoardService {
 	@Autowired
 	private PjtBoardMapper boardMapper;
 	
-	public/* ArrayList<PjtBoardBean>*/void getList(int row_start, int row_end) throws ParseException{
+	public ArrayList<String> getformatDate(int row_start, int row_end) throws ParseException{
 		ArrayList<PjtBoardBean> arraymapper=boardMapper.getList(row_start, row_end);
-		
-		Date mapperdate = arraymapper.get(3).getItemDate();
-			System.out.println("mapperdate : " + mapperdate);
+
+		System.out.println("---------------Date형을 원하는 포멧(String형)으로 바꾸는작업 시작");
+		Date mapperdate = null;
+		SimpleDateFormat fmt=null;
+		String mappercom =null;
+		ArrayList<String> formatDate = new ArrayList<String>();
+		for(int i=0; i < arraymapper.size(); i++){
 			
-		SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
-		String mappercom = fmt.format(mapperdate);
-		System.out.println("내가 원하는 Date형 : " + mappercom);
+			mapperdate = arraymapper.get(i).getItemDate();
+			System.out.println("1. SQL에서 바로공수(Date형-" + i +") : " + mapperdate);
+			
+			fmt = new SimpleDateFormat("yyyy-MM-dd");
+			mappercom = fmt.format(mapperdate);
+			System.out.println("2. 내가 원하는 Date포멧(String형-" + i +") : " + mappercom);
 		
-		
-		
+			formatDate.add(mappercom);
+			System.out.println("3. ArrayList dateToStr(ArrayList<String>형-" + i +") : " + formatDate.get(i));
+			
+			System.out.println("----------------------------end Routine = " + i);
+		} //end for
+		System.out.println("---------------Date형을 원하는 포멧(String형)으로 바꾸는작업 끝");
 	
-		//return this.boardMapper.getList(row_start, row_end);
+		return formatDate;
 	}
+	
+	public ArrayList<PjtBoardBean> getList(int row_start, int row_end) throws ParseException{
+		return boardMapper.getList(row_start, row_end);
+	};
 }
