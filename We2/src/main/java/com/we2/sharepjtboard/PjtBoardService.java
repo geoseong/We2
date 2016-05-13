@@ -17,14 +17,14 @@ public class PjtBoardService {
 	public /*ArrayList<PjtBoardBean>*/void getList(int row_start, int row_end){
 		ArrayList<PjtBoardBean> arraymapper=boardMapper.getList(row_start, row_end);
 		
-		Date mapperdate = arraymapper.get(0).getItemDate();
+		Date mapperdate = arraymapper.get(3).getItemDate();
 			System.out.println("mapperdate : " + mapperdate);
 			
 		DateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
 		System.out.println("내가 원하는 Date형 : " + fmt.format(mapperdate));
 		
 		String mappercom = fmt.format(mapperdate);
-		//arraymapper.add(0, mappercom);
+		//arraymapper.set(3, );
 		
 //		return this.boardMapper.getList(row_start, row_end);
 	}

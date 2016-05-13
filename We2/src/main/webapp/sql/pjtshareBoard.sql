@@ -40,3 +40,5 @@ select
 date_format(itemDate,'%Y-%m-%d')  as idate,
 itemClick, itemPath, itemContent
 from pGroup ;
+
+select  * from pgroup;
