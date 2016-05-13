@@ -1,5 +1,6 @@
 package com.we2.sharepjtboard;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class PjtBoardController {
 	int rows_per_page=10;
 	
 	@RequestMapping(value="/list", method=RequestMethod.GET)
-	public String listSpecificPageWork(@RequestParam("page") int page, Model model){
+	public String listSpecificPageWork(@RequestParam("page") int page, Model model) throws ParseException{
 		System.out.println("-------------------------------받아온 파라미터");
 			System.out.println("rows_per_page : " + rows_per_page);
 			System.out.println("page : " + page);
@@ -38,7 +39,8 @@ public class PjtBoardController {
 			System.out.println("row_end : " + row_end);
 		System.out.println("-------------------------------변수설정 끝");
 		
-		//임시 : ArrayList<PjtBoardBean> content =boardService.getList(row_start, row_end); 
+		 //ArrayList<PjtBoardBean> content =boardService.getList(row_start, row_end); 
+		//temp : 
 		boardService.getList(row_start, row_end);
 		
 		/*//디버깅 : 
@@ -50,7 +52,7 @@ public class PjtBoardController {
 */	
 		/* SECTION : REQUEST 영역에 보내기 */
 		// SELECT 결과물
-		//임시 : model.addAttribute("Content", content);
+		 //tempblock : model.addAttribute("Content", content);
 		// JSP:INCLUDE PAGE
 		model.addAttribute("Boardpage", "list.jsp");
 		

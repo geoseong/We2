@@ -13,6 +13,7 @@ public interface PjtBoardMapper {
 	
 	// 페이징 select문.
 	final String select_by_id = 
+			//"select itemNum, itemTitle, userId, itemDate, itemClick, itemPath, itemContent" 
 			"select itemNum, itemTitle, userId, date_format(itemDate,'%Y-%m-%d') as idate, itemClick, itemPath, itemContent" 
 			+ " from pGroup limit #{row_start}, #{row_end}";
 	

@@ -22,13 +22,18 @@ create table pGroup (
 
 
 -- 가끔은 이놈을 초기화 시켜야 할때가 있습니다. 초기화 시키기 위한 꼬라지는 아래와 같습니다.
--- >> ALTER TABLE [테이블명] AUTO_INCREMENT=[시작할려는 순서]
+-- 테이블을 지워야지면 관련 auto_increment가 지워지는 듯? 그냥은 초기화가 안됨.
+# ALTER TABLE [테이블명] AUTO_INCREMENT=[시작할려는 순서]
+
+
 
 -- itemNum내림차순으로 select
 select * from pGroup order by itemNum desc;
 
 -- limit을 이용한 출력
 select * from pGroup order by itemNum desc limit 0, 10;
+
+SHOW TABLE STATUS FROM we2 LIKE 'pGroup';
 
 select 
 itemNum, itemTitle, userId, 
