@@ -61,4 +61,14 @@ public class Member {
 	public boolean matchPassword(String pwd) {
 		return this.pwd.equals(pwd);
 	}
+
+	public void memberupdate(String oldPwd, String newPwd) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void changePassword(String oldPwd, String newPwd) {
+		// TODO Auto-generated method stub
+		
+	}
 }

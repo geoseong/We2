@@ -105,6 +105,14 @@ public class MemberDao {
 
 		return results.isEmpty() ? null : results.get(0);
 	}
+	public static Member selectByEmail(String email) {
+		return null;
+	}
+
+	public void update(Member member) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 }
