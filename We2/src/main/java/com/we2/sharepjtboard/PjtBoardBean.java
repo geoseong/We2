@@ -8,15 +8,16 @@ public class PjtBoardBean {
 	private String itemTitle;
 	private String userId;
 	private Date itemDate;
-	private int itemHit;
+	private int itemClick;
 	private String itemPath;
 	private String itemContent;
 	
-	public int getItemHit() {
-		return itemHit;
+
+	public int getItemClick() {
+		return itemClick;
 	}
-	public void setItemHit(int itemHit) {
-		this.itemHit = itemHit;
+	public void setItemClick(int itemClick) {
+		this.itemClick = itemClick;
 	}
 	public int getItemNum() {
 		return itemNum;

@@ -10,7 +10,7 @@
 	<!-- JDBC dataSource 설정. 톰캣 server.xml 설정하듯이. -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver"/>
-		<property name="jdbcUrl" value="jdbc:mysql://192.168.0.100:3306/we2?characterEncoding=utf8" />
+		<property name="jdbcUrl" value="jdbc:mysql://192.168.0.100:3306/we2?characterEncoding=utf8&amp;useSSL=false" />
 		<property name="user" value="we2admin" />
 		<property name="password" value="1234" />
 	</bean>
@@ -47,8 +47,6 @@
 	
 	<!-- BoardService : (서비스)DAO와 컨트롤러의 중간역할. -->
 	<bean id="boardService" class="com.we2.sharepjtboard.PjtBoardService"/>
-	
-	
 	
 	<!-- start : 의존주입 -->
 	<bean id="memberDao" class="com.we2.registration.MemberDao">
