@@ -1,4 +1,4 @@
-package com.we2.registration;
+package com.we2.spring.auth;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -28,7 +28,6 @@ public class MemberDao {
 					rs.getString("NAME"),
 					rs.getString("PWD"),
 					rs.getString("EMAIL"),
-					rs.getString("SUBEMAIL"),
 					rs.getString("PHONE"),
 					rs.getString("GENDER"),
 					rs.getDate("REGDATE"));
@@ -106,6 +105,15 @@ public class MemberDao {
 
 		return results.isEmpty() ? null : results.get(0);
 	}
+	public static Member selectByEmail(String email) {
+		return null;
+	}
+
+	public void update(Member member) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 }
+

@@ -77,7 +77,7 @@ $("#nav>a").click(function(){
                   <input type="submit" value="로그인" class="add_btn" />
               </div>
               <div class="join"> 
-                  <input type="button" value="회원가입" class="add_btn"onclick="location.href='We2_loginForm.jsp'";/>
+                  <input type="button" value="회원가입" class="add_btn"onclick="location.href='join'";/>
               </div>
             </form:form> 
 	   </div>

@@ -1,4 +1,4 @@
-package com.we2.registration;
+package com.we2.spring.auth;
 
 public class IdPasswordNotMatchingException extends RuntimeException {
 

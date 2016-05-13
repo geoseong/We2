@@ -1,4 +1,4 @@
-package com.we2.registration;
+package com.we2.Login.controller;
 
 import java.util.Locale;
 
@@ -14,21 +14,25 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.we2.spring.auth.AuthInfo;
+import com.we2.spring.auth.AuthService;
+import com.we2.spring.auth.IdPasswordNotMatchingException;
+
 /**
  * Handles requests for the application home page.
  */
 @Controller
 @RequestMapping(value = "/")
-public class RegistrationCtrl {
+public class LoginController {
 	
 	private AuthService authService;
 	public void setAuthService(AuthService authService) {
 		this.authService = authService;
 	}
 	
-	private static final Logger logger = LoggerFactory.getLogger(RegistrationCtrl.class);
+	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
-	@RequestMapping
+	@RequestMapping(method = RequestMethod.GET)
 	public String index(Locale locale) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		return "index";
@@ -67,10 +71,10 @@ public class RegistrationCtrl {
 			LoginCommand loginCommand, Errors errors, HttpSession session,
 			HttpServletResponse response) {
 		
-		// Æû °ªÀÌ ¿Ã¹Ù¸¥Áö °Ë»ç.
+		// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¹Ù¸ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½.
 		new LoginCommandValidator().validate(loginCommand, errors);
 		
-		// µð¹ö±ë.
+		// ï¿½ï¿½ï¿½ï¿½ï¿½.
 		logger.info("ID : " + loginCommand.getUserid() + " , PWD : " + loginCommand.getPwd());
 		System.out.println("ID : " + loginCommand.getUserid() + " , PWD : " + loginCommand.getPwd());
 		
@@ -79,26 +83,26 @@ public class RegistrationCtrl {
 		}
 		
 		try {
-			// ·Î±×ÀÎ Ä¿¸Çµå·ÎºÎÅÍ id, pwd¸¦ ¹Þ¾Æ¼­ ÀÎÁõÀÛ¾÷ °ÅÃÄ¼­ ¼¼¼Ç¿¡ ³Ñ¾î°¥ º¯¼öµé ¹ÙÀÎµù°´Ã¼¸¦ ¸®ÅÏ¹ÞÀ½
+			// ï¿½Î±ï¿½ï¿½ï¿½ Ä¿ï¿½Çµï¿½Îºï¿½ï¿½ï¿½ id, pwdï¿½ï¿½ ï¿½Þ¾Æ¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Û¾ï¿½ ï¿½ï¿½ï¿½Ä¼ï¿½ ï¿½ï¿½ï¿½Ç¿ï¿½ ï¿½Ñ¾î°¥ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¹ï¿½ï¿½ï¿½
 			AuthInfo authInfo
 				= authService.authenticate(loginCommand.getUserid(), loginCommand.getPwd());
 					
-			// ¼¼¼Ç¿µ¿ª¿¡ È¸¿øÁ¤º¸ Ãß°¡.
+			// ï¿½ï¿½ï¿½Ç¿ï¿½ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½.
 			session.setAttribute("authInfo", authInfo);
 			
-			// Æû¿¡ ÀÚµ¿¿Ï¼ºÀ» ¿øÇÏ¸é ÄíÅ°¿¡ 30ÀÏµ¿¾È userid¸¦ º¸ÀÌ°Ô ÇÔ.
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½Ï¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½Å°ï¿½ï¿½ 30ï¿½Ïµï¿½ï¿½ï¿½ useridï¿½ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½ ï¿½ï¿½.
 			Cookie rememberCookie = 
 					new Cookie("REMEMBER", loginCommand.getUserid());
-			rememberCookie.setPath("/");	// ÇØ´ç ÄíÅ°ÀÇ Àû¿ë¹üÀ§
+			rememberCookie.setPath("/");	// ï¿½Ø´ï¿½ ï¿½ï¿½Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			
 			if (loginCommand.isRememberUserid()) {
-				rememberCookie.setMaxAge(60 * 60 * 24 * 30);	// 30ÀÏµ¿¾È.
+				rememberCookie.setMaxAge(60 * 60 * 24 * 30);	// 30ï¿½Ïµï¿½ï¿½ï¿½.
 			} else {
 				rememberCookie.setMaxAge(0);
 			}
 			response.addCookie(rememberCookie);
 			
-			logger.info("È¸¿ø " + authInfo.getUserid() + "·Î±×ÀÎÇÔ.");
+			logger.info("È¸ï¿½ï¿½ " + authInfo.getUserid() + "ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½.");
 			
 			return "index";
 		} catch (IdPasswordNotMatchingException e) {
@@ -107,10 +111,13 @@ public class RegistrationCtrl {
 		} //end try-catch
 	} //end loginpost()
 	
-	@RequestMapping(value = "/logout")
-	public String logout(HttpSession session){
-		session.invalidate();
-		return "index";
-	} //end logout()
-	
+	@RequestMapping(value = "/join", method = RequestMethod.GET)
+	public String joinForm(){
+		return "registration/loginForm";
+	}
+
+	@RequestMapping(value = "/We2_join", method = RequestMethod.GET)
+	public String joinForm2(){
+		return "registration/We2_join";
+	}
 }
