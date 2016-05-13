@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- 스프링 기본환경파일 확인 및 스프링과 mybatis 연동 확인 -->
+		
+	<!-- 데이터 베이스 연동 -->	
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>oracle.jdbc.driver.OracleDriver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:oracle:thin:@localhost:1522:orcl1</value>  <!--  내꺼 오라클 주소 넣기! -->
+		</property>
+		<property name="username">
+			<value>javauser</value>
+		</property>
+		<property name="password">
+			<value>1234</value>
+		</property>
+	</bean>	
+		
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- 아래는 xml 파일에 매퍼를 정의할때
+		<property name="configLocation" value="/WEB-INF/spring/mybatis/mybatis-config/xml"/>
+		<property name="mapperLocation" value="classpath:com/mysite/app/Mapper*.xml"/>
+		 -->
+	</bean>
+	
+	<!-- commit과 rollback의 스프링이 자동적용 -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
+	</bean>
+	
+		
+	<!-- 소스코드에 어노테이션 트랜잭션을 활용할때 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+	<!-- Mapper! 이용한 매퍼임 -->
+	<bean id="boardMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="we2.com.studyroom.BoardMapper" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	<!-- BoardService -->
+	<bean id="boardService" class="we2.com.studyroom.BoardService" />
+</beans>
+		
+		
