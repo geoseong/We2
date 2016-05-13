@@ -1,4 +1,4 @@
-package com.we2.registration;
+package com.we2.spring.auth;
 
 import java.util.Date;
 
@@ -8,17 +8,23 @@ public class Member {
 	private String name;
 	private String pwd;
 	private String email;
-	private String subEmail;
 	private String phone;
 	private String gender;
 	private Date regDate;
-	
-	public Member(String name, String pwd, String email, String subEmail, String phone, String gender, Date regDate) {
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public Member(String name, String pwd, String email, String phone, String gender, Date regDate) {
 		super();
 		this.name = name;
 		this.pwd = pwd;
 		this.email = email;
-		this.subEmail = subEmail;
 		this.phone = phone;
 		this.gender = gender;
 		this.regDate = regDate;
@@ -44,31 +50,15 @@ public class Member {
 		return email;
 	}
 
-	public String getSubEmail() {
-		return subEmail;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
 	public String getGender() {
 		return gender;
 	}
-	
 
 	public Date getRegDate() {
 		return regDate;
 	}
 
-	public void changePassword(String oldPassword, String newPassword) {
-		if (!pwd.equals(oldPassword))
-			throw new IdPasswordNotMatchingException();
-		this.pwd = newPassword;
-	}
-
 	public boolean matchPassword(String pwd) {
 		return this.pwd.equals(pwd);
 	}
-
 }

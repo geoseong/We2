@@ -1,4 +1,4 @@
-package com.we2.registration;
+package com.we2.spring.auth;
 
 public class AuthInfo {
 
@@ -9,7 +9,7 @@ public class AuthInfo {
 	private String phone;
 	private String gender;
 	
-	public AuthInfo(String userid, String name, String email, String subEmail, String phone, String gender) {
+	public AuthInfo(String userid, String name, String email, String subEmail, String phone) {
 		super();
 		this.userid = userid;
 		this.name = name;
@@ -42,6 +42,4 @@ public class AuthInfo {
 	public String getGender() {
 		return gender;
 	}
-	
-	
 }

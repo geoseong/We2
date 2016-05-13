@@ -36,12 +36,12 @@
 	 <c:otherwise>
 	
 	 	<div id = "nav2">
-	 		<a href="registration/We2_mypage_confirm.jsp">마이페이지</a>
+	 		<a href="registration/We2_Mypage_confirm.jsp">마이페이지</a>
             <!-- #########위에 로그인 header를 넣는다! -->
         </div>
         
         <div id = "nav3">
-            <a href="/We2/We2_logout.do">로그아웃</a>
+            <a href="We2_Logout.do">로그아웃</a>
             <!-- #########위에 로그인 header를 넣는다! -->
         </div>
 	
