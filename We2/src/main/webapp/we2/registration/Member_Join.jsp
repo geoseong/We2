@@ -28,7 +28,7 @@
 			<div id="headerinner">
 				<!-- div처음 숫자 3 개 -->
 				<h2>
-					<b> <sub> <a href="01_main.html">We2</a>
+					<b> <sub> <a href="index.jsp">We2</a>
 						<!-- 원래 페이지로 돌아감 -->
 					</sub>
 					</b>
@@ -37,7 +37,7 @@
 				<!-- 2. 상단 메뉴 부분-->
 				<div id="nav">
 					<!-- div처음 숫자 4 개 -->
-					<a href="02_project.html">프로젝트 </a> <a href="#">커뮤니티 </a> <a
+					<a href="#">프로젝트 </a> <a href="#">커뮤니티 </a> <a
 						href="#">프로젝트공유 </a> <a href="#">스터디룸공유 &nbsp;</a> <a href="#">로그아웃</a>
 				</div>
 				<!-- div처음 숫자 4 개 끝 -->
@@ -60,7 +60,7 @@
 			<!-- menu END -->
 			<!-- div처음 숫자  6개 -->
 
-			<form:form action="Member_Join" path="frm" method="post" commandName="registerRequest">
+			<form:form action="Member_Join" name="frm" method="post" commandName="member">
 			<div class="my_registration">
 			<p>
 			<label><spring:message code="member.info"/>
@@ -70,7 +70,7 @@
 			</p>
 			
 			<p>
-			<label><spring:message code="userid"/>
+			<label><spring:message code="userId"/>
 			:<form:input path="userid"/><br>		
 			<form:errors path="userid"/>
 			<input type="button" value="중복 체크" onclick="idCheck()">	

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.mysql.fabric.xmlrpc.base.Member;
 import com.we2.spring.AuthInfo;
 import com.we2.spring.AuthService;
 import com.we2.spring.IdPasswordNotMatchingException;
@@ -112,12 +113,17 @@ public class LoginController {
 	} //end loginpost()
 	
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
-	public String joinForm(){
+	public String member_Aggrement(){
 		return "registration/Member_Aggrement";
 	}
 
-	@RequestMapping(value = "/We2_join", method = RequestMethod.GET)
-	public String joinForm2(){
-		return "registration/Member_Join";
+	@RequestMapping(value = "/Member_Aggrement", method = RequestMethod.POST)
+	public String member_Form(Member member){
+	return "registration/Member_Join";
+	}
+	
+	@RequestMapping(value = "/Member_Join", method = RequestMethod.POST)
+	public String member_join(){
+		return "registration/Main.jsp";
 	}
 }

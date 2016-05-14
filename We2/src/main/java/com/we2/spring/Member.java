@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Member {
 
-	private String userid;
+	private String userId;
 	private String name;
 	private String pwd;
 	private String email;
@@ -12,13 +12,6 @@ public class Member {
 	private String gender;
 	private Date regDate;
 
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
 
 	public Member(String name, String pwd, String email, String phone, String gender, Date regDate) {
 		super();
@@ -30,12 +23,20 @@ public class Member {
 		this.regDate = regDate;
 	}
 
-	public void setUserid(String userid) {
-		this.userid = userid;
+	public String getPhone() {
+		return phone;
+	}
+	
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	
+	public void setUserid(String userId) {
+		this.userId = userId;
 	}
 
-	public String getUserid() {
-		return userid;
+	public String getUserId() {
+		return userId;
 	}
 
 	public String getName() {
