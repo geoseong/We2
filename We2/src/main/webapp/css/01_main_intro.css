@@ -14,11 +14,14 @@ a {
  	text-decoration: none; 
  } 
 
+#bigwrap {
+    width: 1200px;
+ 
+    margin : 0px auto;
+}
 
 #header {
     text-align: left;
-    margin : 0px auto;
-    width:1200px;
     height:140px;
     position:relative;
 /*    border: 1px solid black;*/
@@ -27,8 +30,9 @@ a {
 #header a{
     position: absolute;
     bottom: 0px;
+    margin-left:50px;
     margin-top: 0;
-    top:70px;
+    top:67px;
     font-size: 60px;
     font-weight: 400;
     color: #4CC4EE;
@@ -37,53 +41,37 @@ a {
 
 #header a:hover {
    color:#166BA3;
-   opacity : 0.5;
+   opacity : 0.8;
 }
 
-#nav a{
-    position: absolute;
-    float:left;
-    margin-top:60px;
-    margin-left:20px;
-    top:50px;
-    right:0px;
-    font-size : 20px;
-    color :#89867e; 
-}
-
-#nav2 a{
+#nav a {
     position: absolute;
     float:left;
     margin-top:60px;
     top:50px;
-    right:0px;
+    right:30px;
     font-size : 20px;
     color :#89867e; 
 }
-
-#nav3 a{
-    position: absolute;
-    float:left;
-    margin-top:60px;
-    top:50px;
-    right:130px;
-    font-size : 20px;
-    color :#89867e; 
-}
-
-
 
 #nav :hover {
    color: balck;
    opacity : 0.8;
+   font-weight: 600;
 }
 
-#section_1 {
+
+#section {
+    width : 1200px;
+    margin : 0px auto;
+}
+
+/* ½½¶óÀÌµå ºÎºĞ */
+#slider{
     overflow:hidden;
     position:relative;
-    left:0%;
-    width: 100%;
-    height:30%;
+    margin : 0px auto;
+    width: 1200px;
 }
 
 .main_slider{
@@ -106,30 +94,30 @@ a {
 .slider_control>span{
     display: block;
     width:3%;
-    top:140px;
-    opacity: 0.7;
+    top:155px;
+    opacity: 0.3;
     
 }
 
 .slider_control>span:first-child{
     position: absolute;
-    left:180px;
+    left:2%;
 /*    border: 0.5px solid #fff;*/
 }
 
 .slider_control>span:last-child{
     position: absolute;
-    right:180px;
+    right:2%;
 /*    border: 0.5px solid #fff;*/
 }
 
-/* å ìˆë®©å ìŒëµ¬å ìŒëµ å ìˆêµ¡ å ìŒë§„å ìŒë²¥ ç–«ë€ì˜™å ìˆë*/
 
+/* ½½¶óÀÌµå À§ÀÇ ±Û¾¾*/
 .img-txt {
     position: absolute;
-    top : 25%;
+    top : 30%;
     width: 55%;
-    left: 22%;
+    left: 10%;
     text-align: left;
     font-size: 25px;
     font-weight: 200; 
@@ -138,46 +126,29 @@ a {
 
 .img-txt-small {
     position: absolute;
-    top : 40%;
+    top : 45%;
     width: 55%;
-    left: 22%;
+    left: 10%;
     text-align: left;
-    font-size: 13px; 
+    font-size: 12px; 
     color: #f9f9f9;
 }
 
-/* ===== ï¿½ê²«å ì½ê²«å ï¿½ 2 (å ìˆíˆ¡å ìŒì‚‹å ìŒë²¥ 4æ¶ì‰ì˜™ ç„ì…ë²¡ï¿½ë®) ======*/\
 
-#section_2 {
-     width:1200px;
-     height:600px;
-     left:50%;
-     margin-left:-450px;
-     z-index: 1;
+/* ===== ºÎºĞ 2 (¾Æ·¡ÀÇ 4°³ ¹Ú½º) ======*/\
+
+#menu {
+    position: relative;
+    height: 200px;
 }
 
-#section_wrap{
-	width:100%;
-	height:100%;
-}
-
-#menutitle span{
-	position:relative;
-	width:60%;
-    margin-top:200px;
-    left :22%;
-    font-size :27px;
-    font-weight: 300;
-    /* border: 1px solid black; */
-}
-
-/* ç­Œë¡«ë—€ï¿½ë¤€ å ìŒìˆç­Œï½ì˜™ ç„ì…ë²¡ï¿½ë® å ìŒì…å ìŒë’ */
+/* ¸Ş´º ÀüÃ¼ ¹Ú½º Àû¿ë*/
 #box-wrap {
-	position:relative;
-    width:60%;
-    left:25%;
-    margin-top:2.5%;
-    /* border: 1px solid black; */
+    width:100%;
+    text-align: center;
+    margin-top:100px; 
+    margin-left: 6%;
+/*    border: 1px solid black;*/
 }
 
 #box-wrap:after{
@@ -191,41 +162,43 @@ a {
 }
 
 
-/* ç­Œë¡«ë—€ï¿½ë¤€ ç„ì…ë²¡ï¿½ë® å ì„ì‰­ï¿½ê²«å ï¿½ å ìŒì…å ìŒë’ */
+/* ¸Ş´º ¹Ú½º ¼¼ºÎ Àû¿ë*/
 .box {
     float:left;
     text-align: center;
-    width : 18%;
-    height: 18%;
-    margin-right:5%;
-    font-size: 25px;
-    font-weight: 300;  
+    width : 200px;
+    height: 200px;
+    margin-right:7%;
+    font-size: 19px;
+    font-weight: 400;  
 }
 
-/* ç­Œë¡«ë—€ï¿½ë¤€ å ìˆíˆ§å ìŒë²¥ å ì„ë•€å ìŒë’ */
+/* ¸Ş´º ¾ÈÀÇ ³»¿ë*/
 .box a {
     color:#f9f9f9;
-    font-size:22px;
-    line-height:200px;
+   
+    vertical-align: center;
     position: relative;
     display: block;
 }
 
 
-/* æ¶ì‰ì˜™ ç­Œë¡«ë—€ï¿½ë¤€å ìˆí“  ç­Œë¾ëœ†ï¿½ë’­å ìˆë®ï¿½ëª´å ï¿½ å ìŒê¶ï¿½ëµ³ï¿½ë¥ëŠº*/
+/* °¢ ¸Ş´º¿¡ ¸¶¿ì½º¸¦ ¿Ã¸®¸é*/
 .box a:hover {
    background-color: black;
    opacity : 0.5;
 }
 
 
-/*æ¶ì‰ì˜™å ìŒì‚¢ å ìˆë¦­å ìˆë¼Šå ìŒë²¥ æ¤°ê¾§í€£è‹‘ï¿½ç‡ì‚³ë˜¾é€¾ì–µì˜™ï¿½ëµ¬å ìŒëµ å ìˆë±œ!*/
+/*°¡Àå ÇÏ´ÜÀÇ °Å¼ºÄ«ÇÇ¶óÀÌÆ®!*/
 #footer {
+    clear:both;
+    margin-top:100px;
     width:100%;
+    height:20px;
     left: 50%;
     text-align: center;
-    margin-top:5%;
-    margin-bottom : 1%;
+    margin-bottom : 0px;
     font-size:13px;
 /*    border:1px solid red;*/
 }

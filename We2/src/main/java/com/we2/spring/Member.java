@@ -1,4 +1,4 @@
-package com.we2.registration;
+package com.we2.spring;
 
 import java.util.Date;
 
@@ -11,7 +11,7 @@ public class Member {
 	private String phone;
 	private String gender;
 	private Date regDate;
-	
+
 	public String getPhone() {
 		return phone;
 	}
@@ -53,20 +53,22 @@ public class Member {
 	public String getGender() {
 		return gender;
 	}
-	
 
 	public Date getRegDate() {
 		return regDate;
-	}
-
-	public void changePassword(String oldPassword, String newPassword) {
-		if (!pwd.equals(oldPassword))
-			throw new IdPasswordNotMatchingException();
-		this.pwd = newPassword;
 	}
 
 	public boolean matchPassword(String pwd) {
 		return this.pwd.equals(pwd);
 	}
 
+	public void memberupdate(String oldPwd, String newPwd) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void changePassword(String oldPwd, String newPwd) {
+		// TODO Auto-generated method stub
+		
+	}
 }
