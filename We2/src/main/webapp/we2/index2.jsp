@@ -23,14 +23,6 @@
       .pjtMakeInner{
          display:none;
       }
-      
-      element.style{
-      width : 270px;
-      }
-      #ui-datepicker-div{
-		width:300px;
-      }
-    
    </style>
 </head>
         

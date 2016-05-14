@@ -15,7 +15,6 @@
 </div>
 <div class="first_main">
 
-
 <!-- User1 -->	
 <c:if test="${not empty username0 }">
 	<div class="people" id="member1">
