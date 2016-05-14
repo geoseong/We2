@@ -8,7 +8,7 @@ public class AuthInfo {
 	private String phone;
 	private String gender;
 	
-	public AuthInfo(String userid, String name, String email, String subEmail, String phone) {
+	public AuthInfo(String userid, String name, String email, String phone, String gender) {
 		super();
 		this.userid = userid;
 		this.name = name;
