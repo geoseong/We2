@@ -15,21 +15,24 @@
        http://www.springframework.org/schema/context/spring-context.xsd">
       
 <!-- start : 컨트롤러 bean 생성 -->
-	 <bean class="com.we2.login.controller.LoginController">
- 		<property name="authService" ref="authService" />
-	 </bean> 
 	 
 	 <!-- @Controller를 이용한 컨트롤러를 자동으로 로딩 (스프링 2.5 부터) -->
- 		 <!-- 프로젝트 게시판 컨트롤러를 자동로딩하게 함-->
- 		 <!-- 게시판패키지 :  <context:component-scan base-package="com.we2.sharepjtboard"/>  -->
+ 		<!-- context:exclude-filter : 자동스캔 대상에 포함시킬 클래스와 포함시키지 않을 클래스를 구체적으로 명시  -->
+ 		 <context:component-scan base-package="com.we2.**">
+ 		 	 <context:exclude-filter type="assignable" expression="com.we2.login.controller.LoginController"/>
+ 		 </context:component-scan>
+ 		 
+ 		 <bean class="com.we2.login.controller.LoginController">
+ 		 	<property name="authService" ref="authService"/>
+ 		 </bean>
 	 <!-- end : 컨트롤러 bean 생성 -->
 	 
 	  <context:annotation-config />
 	 
 	<!-- 시작 : AOP bean 설정 -->
-	<!-- <bean id="aopaspect" class="interceptor.AOP_Aspect"/>
+	<bean id="aopaspect" class="interceptor.AOP_Aspect"/>
 	
-	<aop:config>
+	<!-- <aop:config>
 		<aop:aspect ref="aopaspect">
 			<aop:pointcut id="aoptest" expression="execution(public * aop*(..))"/>
 				<aop:before pointcut-ref="aoptest" method="loginCheck"/>

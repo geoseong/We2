@@ -85,7 +85,7 @@ public class LoginController {
 		try {
 			// 로그인 커맨드로부터 id, pwd를 받아서 인증작업 거쳐서 세션에 넘어갈 변수들 바인딩객체를 리턴받음
 			AuthInfo authInfo
-				= authService.authenticate(loginCommand.getUserid(), loginCommand.getPwd());
+				= authService. authenticate(loginCommand.getUserid(), loginCommand.getPwd());
 			
 			// 세션영역에 회원정보 추가
 			session.setAttribute("authInfo", authInfo);
