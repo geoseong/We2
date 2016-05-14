@@ -1,4 +1,4 @@
-package com.we2.spring.auth;
+package com.we2.spring;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
