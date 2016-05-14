@@ -7,7 +7,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.we2.registration.AuthInfo;
+import com.we2.spring.AuthInfo;
 
 public class AOP_Aspect {
 	

@@ -33,7 +33,7 @@ $("#nav>a").click(function(){
 
 
 <div class="first_main">
- 	<jsp:include page="01_main.jsp" flush="false"/>
+ 	<jsp:include page="Main.jsp" flush="false"/>
 </div>
 
 
@@ -77,7 +77,7 @@ $("#nav>a").click(function(){
                   <input type="submit" value="로그인" class="add_btn" />
               </div>
               <div class="join"> 
-                  <input type="button" value="회원가입" class="add_btn"onclick="location.href='We2_loginForm.jsp'";/>
+                  <input type="button" value="회원가입" class="add_btn"onclick="location.href='join'";/>
               </div>
             </form:form> 
 	   </div>

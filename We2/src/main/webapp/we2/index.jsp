@@ -21,16 +21,19 @@
 <body>
 
 <!-- '프로젝트 만들기' 메뉴의 모달창 영역 -->
-<div class="modal_bg"></div>
+<div class="modal_bg">
+</div>
+
+<div id = "bigwrap">  <!-- 화면 디자인 틀을 잡아주는 id -->
 
 <!-- 1. 상단 로고 부분-->
 <div id = "header">
     <a href="/We2"><b>We2</b></a>
-		
+
  <c:choose>
 	 <c:when test="${empty authInfo}">
 
-		<div id ="nav">
+		<div id = "nav">
             <a href="login" class="loginButton">로그인</a>
             <!-- #########위에 로그인 header를 넣는다! -->
         </div>
@@ -55,12 +58,15 @@
 </div>
          
 <!-- 2. 중간 이미지 : 부분 1(슬라이드)-->        
-    <div id = "section_1">
+     <div id = "section">  <!--  중간 전체를 감싸는 틀 -->
+      
+      <div id = "slider">
+    
         <div class="main_slider">
-            <img src="img/index/main_01.jpg">
-            <img src="img/index/main_02.jpg">
-            <img src="img/index/main_03.jpg">
-            <img src="img/index/main_04.jpg">
+            <img src="img/index/main_1.jpg">
+            <img src="img/index/main_2.jpg">
+            <img src="img/index/main_3.jpg">
+            <img src="img/index/main_4.jpg">
         </div>
         
         <div class="slider_control">
@@ -69,57 +75,54 @@
         </div>
         
           <div class ="img-txt"><b><span>Catch The Free Rider, We2</span></b></div>
-          <div class ="img-txt-small"><b>
-              <span> 대학생활의 최대 고민, 팀 프로젝트 
-              <p>We2는 팀프로젝트에 대한 부담을 덜고 협동과 커뮤니케이션 능력을</p>
-              <p>향상시킬 수 있는 팀 프로젝트의 교육적 효과를 극대화 하고자 합니다.</p>
-              </b>
-              </span> 
-           </div>
+          <div class ="img-txt-small" style="font: bold; font-size: 14px">          		
+            대학생활의 최대 고민, 팀 프로젝트<br>
+            We2는 팀프로젝트에 대한 부담을 덜고 협동과 커뮤니케이션 능력을<br>
+			향상시킬 수 있는 팀 프로젝트의 교육적 효과를 극대화 하고자 합니다.<br>        
+          </div>
     </div>
         
 <!-- 3. 중간 메뉴 : 부분 2 (아래의 4개 박스)--> 
-    <div id = "section_2">
+    <div id = "menu">
         
-        <div id="menutitle">
-        <span>Menu</span> 
-        
-           <a href="aop">AOP test</a>
-           
-        </div>
+    
   <!-- 3.-1 중간 메뉴의 box--> 
             <!--id: 한문서에 한번 /class:한문서에 여러번--> 
 			<!-- 게시판 영역부분 -->
             <div id = "box-wrap">
                 <div class = "box" style="background-color:#CE6628;">
                     <a class="makeButton">
-                        프로젝트 만들기
+                         <img src = "img/index/icon_01.png" style="width:200px"> 
                     </a>
                 </div>
                 <div class = "box" style="background-color:#E99323;">
                     <a href="ItemList">
-                        커뮤니티  
+                       <img src = "img/index/icon_02.png" style="width:200px">   
                     </a>
                 </div>
                 <div class = "box" style="background-color:#1591BE;">
                     <a href="ShareList">
-                        프로젝트 공유
+                      <img src = "img/index/icon_03.png" style="width:200px"> 
                     </a>
                 </div>
                 <div class = "box" style="background-color:#166BA3; ">
                     <a href="List.do">
-                        스터디룸 공유
+                      <img src = "img/index/icon_04.png" style="width:200px"> 
                     </a>
                 </div>
-            </div>
+            </div>  <!--box-wrap END-->
             
+         </div>  <!--menu_END-->
         
-    </div> <!--section_2 END-->
+    </div> <!--section END-->
 
 
     <div id = "footer">
         Copyright © geoseong.com
     </div> 
+    
+  </div><!--big wrap END-->  
+  
     <script type="text/javascript" src="js/jquery-1.12.1.min.js"></script> 
     <script type="text/javascript" src="js/main_slider2.js"></script>
     
@@ -239,8 +242,6 @@ $(".pjtMakeInner").hide();
 			window.open(url, "_blank_1", "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=450, height=200");
 	  }
 	</script>
-
-
 </head>
 
 </html>
