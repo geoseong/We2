@@ -1,4 +1,4 @@
-package com.we2.Login.controller;
+package com.we2.login.controller;
 
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;

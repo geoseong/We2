@@ -40,7 +40,7 @@
 		<tx:annotation-driven transaction-manager="transactionManager"/>
 
 	<!-- Mapper! 이용한 매퍼임-->
-		<!-- <bean id="boardMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">	 -->
+		<!-- 게시판 : <bean id="boardMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">	 -->
 			<!-- 이 안에 SQL이 들어있음  -->
 			<!-- <property name="mapperInterface" value="com.we2.sharepjtboard.PjtBoardMapper"/> -->
 			<!-- SQL 실행하기위한 태그 -->
@@ -48,24 +48,15 @@
 		</bean>   -->
 	
 	<!-- BoardService : (서비스)DAO와 컨트롤러의 중간역할. 
-		<bean id="boardService" class="com.we2.sharepjtboard.PjtBoardService"/>-->
-	
+		게시판 : <bean id="boardService" class="com.we2.sharepjtboard.PjtBoardService"/>-->
+
 	<!-- start : 의존주입 -->
 		<bean id="memberDao" class="com.we2.spring.MemberDao">
 			<constructor-arg ref="dataSource"/>
-		</bean>	
+		</bean>
 	
 		<bean id="authService" class="com.we2.spring.AuthService">
 			<property name="memberDao" ref="memberDao" />
 		</bean>
 	<!-- end : 의존주입 -->
-	
-	<!-- AOP bean 설정 -->
-	<bean id="aopaspect" class="interceptor.AOP_Aspect"/>
-	<aop:config>
-		<aop:aspect ref="aopaspect">
-			<aop:pointcut id="aoptest" expression="execution(public * aop*(..))"/>
-				<aop:before pointcut-ref="aoptest" method="letsgoaop()"/>
-		</aop:aspect>
-	</aop:config>
 </beans>
