@@ -1,4 +1,4 @@
-package com.we2.spring.auth;
+package com.we2.spring;
 
 public class MemberNotFoundException extends RuntimeException {
 

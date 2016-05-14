@@ -1,4 +1,4 @@
-package com.we2.spring.auth;
+package com.we2.spring;
 
 
 import org.springframework.transaction.annotation.Transactional;

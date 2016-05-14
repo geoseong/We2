@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.we2.spring.auth.AuthInfo;
-import com.we2.spring.auth.AuthService;
-import com.we2.spring.auth.IdPasswordNotMatchingException;
+import com.we2.spring.AuthInfo;
+import com.we2.spring.AuthService;
+import com.we2.spring.IdPasswordNotMatchingException;
 
 /**
  * Handles requests for the application home page.
@@ -26,7 +26,6 @@ import com.we2.spring.auth.IdPasswordNotMatchingException;
 public class LoginController {
 	
 	private AuthService authService;
-	
 	public void setAuthService(AuthService authService) {
 		this.authService = authService;
 	}
@@ -64,7 +63,7 @@ public class LoginController {
 			loginCommand.setUserid(rememberCookie.getValue());
 			loginCommand.setRememberUserid(true);
 		}
-		return "registration/login";
+		return "registration/Member_Login";
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -72,23 +71,23 @@ public class LoginController {
 			LoginCommand loginCommand, Errors errors, HttpSession session,
 			HttpServletResponse response) {
 		
-		//폼 값이 올바른지 검사.
+		// 폼 값이 올바른지 검사.
 		new LoginCommandValidator().validate(loginCommand, errors);
 		
-		//디버깅.
+		// 디버깅.
 		logger.info("ID : " + loginCommand.getUserid() + " , PWD : " + loginCommand.getPwd());
 		System.out.println("ID : " + loginCommand.getUserid() + " , PWD : " + loginCommand.getPwd());
 		
 		if (errors.hasErrors()) {
-			return "registration/login";
+			return "registration/Member_Login";
 		}
 		
 		try {
-			//로그인 커맨드로부터 id, pwd를 받아서 인증작업 거쳐서 세션에 넘어갈 변수들 바인딩객체를 리턴받음
+			// 로그인 커맨드로부터 id, pwd를 받아서 인증작업 거쳐서 세션에 넘어갈 변수들 바인딩객체를 리턴받음
 			AuthInfo authInfo
 				= authService.authenticate(loginCommand.getUserid(), loginCommand.getPwd());
-					
-			//세션영역에 회원정보 추가.
+			
+			// 세션영역에 회원정보 추가
 			session.setAttribute("authInfo", authInfo);
 			
 			// 폼에 자동완성을 원하면 쿠키에 30일동안 userid를 보이게 함.
@@ -108,17 +107,17 @@ public class LoginController {
 			return "index";
 		} catch (IdPasswordNotMatchingException e) {
 			errors.reject("idPasswordNotMatching");
-			return "registration/login";
+			return "registration/Member_Login";
 		} //end try-catch
 	} //end loginpost()
 	
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
 	public String joinForm(){
-		return "registration/loginForm";
+		return "registration/Member_Aggrement";
 	}
 
 	@RequestMapping(value = "/We2_join", method = RequestMethod.GET)
 	public String joinForm2(){
-		return "registration/We2_join";
+		return "registration/Member_Join";
 	}
 }
