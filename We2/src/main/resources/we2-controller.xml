@@ -14,27 +14,27 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd">
       
-<!-- start : 컨트롤러 bean 생성
+<!-- start : 컨트롤러 bean 생성 -->
 	 <bean class="com.we2.login.controller.LoginController">
  		<property name="authService" ref="authService" />
-	 </bean> -->
-	 
+	 </bean> 
 	 
 	 <!-- @Controller를 이용한 컨트롤러를 자동으로 로딩 (스프링 2.5 부터) -->
  		 <!-- 프로젝트 게시판 컨트롤러를 자동로딩하게 함-->
  		 <!-- 게시판패키지 :  <context:component-scan base-package="com.we2.sharepjtboard"/>  -->
 	 <!-- end : 컨트롤러 bean 생성 -->
 	 
+	  <context:annotation-config />
 	 
-	 <!-- AOP bean 설정 -->
-	<bean id="aopaspect" class="interceptor.AOP_Aspect"/>
+	<!-- 시작 : AOP bean 설정 -->
+	<!-- <bean id="aopaspect" class="interceptor.AOP_Aspect"/>
 	
 	<aop:config>
 		<aop:aspect ref="aopaspect">
 			<aop:pointcut id="aoptest" expression="execution(public * aop*(..))"/>
-				<!-- <aop:before pointcut-ref="aoptest" method="loginCheck"/> -->
+				<aop:before pointcut-ref="aoptest" method="loginCheck"/>
 			<aop:around pointcut-ref="aoptest" method="loginCheck" />
 		</aop:aspect>
-	</aop:config>
-    
+	</aop:config> -->
+    <!-- 끝 : AOP bean 설정 -->
 </beans>
