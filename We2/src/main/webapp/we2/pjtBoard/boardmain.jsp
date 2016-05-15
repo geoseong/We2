@@ -27,7 +27,7 @@
         <h2>
             <b>
                 <sub>
-                    <a href="index.jsp">We2</a>
+                    <a href="/We2">We2</a>
                 </sub>  
             </b>
         </h2>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,12 +10,11 @@
 </head>
 <body>
 <!--  게시판 영역 - css에서 #contents 블록의 테두리선(border)를 없애주시면 됩니다. -->
-<form action="ShareList" name="search" method="get">
-<input type="hidden" name="page" value="${page }">
+<form:form action="find" method="post" commandName="pjtBoardBean">
 		<table class="list">
 				<tr>
 					<td colspan="5" style="border: white; text-align: right;">
-						<a href="ShareWrite?page=${page}">글쓰기</a>
+						<a href="write">글쓰기</a>
 					</td>
 				</tr>
 				
@@ -29,22 +29,33 @@
 								<a href="ShareContent?itemNum=${BoardList.itemNum }&page=${page}">${content.itemContent }</a>
 						</td>
 						<td>${content.userId }</td>
-						<%-- <c:forEach var="formatDate" items="${formatDate }">
-							<td>${content.itemDate }</td>
-						</c:forEach> --%>
+						<td>${content.itemDate }</td>
 						<td>${content.itemClick }</td>
 					</tr>		
 				</c:forEach>
 				
+			<!-- ★★ 페이징 카운트 넣는 곳 ★★ -->
 				<tr>
-				<!-- ★★ 페이징 카운트 넣는 곳 ★★ -->
 				<td colspan="6">
-					${pagecounting }
+				<a href="list?block=${block-1 }">[이전]</a>&nbsp;
+				<c:forEach var="i" begin="${block_first }" end="${block_last}" >
+					<c:choose>
+						<c:when test="${i == c_page }">
+							<b> [ ${i} ] </b>
+						</c:when>
+						<c:otherwise>
+							<a href="list?page=${i }">
+								[ ${i} ]
+							</a>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				&nbsp;<a href="list?block=${block}">[다음]</a>
 				</td>
 				</tr>
 				
+			<!-- 검색. -->
 				<tr>
-					
 					<td>
 					<select id="find" name="find" size="1">
 					   <option value="itemTitle">제목</option>
@@ -56,11 +67,10 @@
 					 	<input type="text" name="findword">
 					 	<input type="submit" value="검색">
 					 </td>
-					
 				</tr>
 				
 		</table>
- </form>
+ </form:form>
 <!--  게시판 영역 끝 -->
 </body>
 </html>

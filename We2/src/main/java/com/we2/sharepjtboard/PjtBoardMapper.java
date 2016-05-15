@@ -11,10 +11,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PjtBoardMapper {
 	
+	// SQL START //
+	
 	// 페이징 select문.
 	final String select_by_id = 
 			//"select itemNum, itemTitle, userId, itemDate, itemClick, itemPath, itemContent" 
-			"select itemNum, itemTitle, userId, date_format(itemDate,'%Y-%m-%d') as idate, itemClick, itemPath, itemContent" 
+			"select itemNum, itemTitle, userId, itemDate, itemClick, itemPath, itemContent" 
 			+ " from pGroup limit #{row_start}, #{row_end}";
 	
 	final String insert =
@@ -27,7 +29,10 @@ public interface PjtBoardMapper {
 			+ "itemPath, "
 			+ "itemContent)";
 			
+	final String select_all = "select count(1) from pGroup";
+	/* END OF SQL */
 	
+	// 메소드 정의부분
 	@Select(select_by_id)
 	@Results(value = {
 			@Result(property="itemNum", column="itemNum"),
@@ -40,5 +45,7 @@ public interface PjtBoardMapper {
 	})
 	ArrayList<PjtBoardBean> getList(@Param("row_start") int row_start, @Param("row_end") int row_end);
 	
+	@Select(select_all)
+	int getTotalCnt();
 	
 }
