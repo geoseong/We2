@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,8 +10,9 @@
 </head>
 <body>
 <!--  게시판 영역 - css에서 #contents 블록의 테두리선(border)를 없애주시면 됩니다. -->
-		<form method="post" enctype="multipart/form-data" name="frm">
-		<input type="hidden" name="page" value="${page }">
+		<form:form method="post" enctype="multipart/form-data" name="frm">
+		<%-- <form method="post" enctype="multipart/form-data" name="frm"> --%>
+		
 				<table>
 					<tr>
 						<th> 작성자 </th>
@@ -27,7 +29,7 @@
 						</td>
 					</tr>
 					<tr>
-						<th> 글내용 </th>
+						<th> 글내용 </th>	
 						<td><textarea rows="10" cols="80" name="context"></textarea>
 						</td>
 					</tr>
@@ -35,7 +37,8 @@
 				<br>
 				<input type="submit" value="등록" >
 				<input type="button" value="목록" onclick="location.href='ShareList?page=${page}'">
-		</form>
+		<%-- </form> --%>
+		</form:form>
 <!--  게시판 영역 끝 -->
 </body>
 </html>

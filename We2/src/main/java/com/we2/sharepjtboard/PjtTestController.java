@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping(value="/pjtBoard")
-public class PjtBoardController {
+@RequestMapping(value="/pjtBoard/test")
+public class PjtTestController {
 	
 	@Autowired
 	PjtBoardService boardService;
@@ -31,7 +31,7 @@ public class PjtBoardController {
 			System.out.println("rows_per_page : " + rows_per_page);
 			System.out.println("page : " + page);
 		System.out.println("-------------------------------변수설정 시작");
-			
+		
 			// 시작 rownum 받아오기
 			int row_start= paging.getFirstRowInPage(page, rows_per_page);
 			System.out.println("row_start : " + row_start);
@@ -50,7 +50,7 @@ public class PjtBoardController {
 			int block_first=paging.getFirstPageInBlock(block, page_for_block);
 			int block_last=paging.getLastPageBlock(block, page_for_block);
 			if(block_last>t_pages){
-				System.out.println("block_last가 t_pages보다 크므로 내용이 존재하는 페이지만큼만 block_last를 조절.");
+				System.out.println("--block_last가 t_pages보다 크므로 내용이 존재하는 페이지만큼만 block_last를 조절.");
 				block_last=t_pages;
 			}
 			System.out.println("t_pages : " + t_pages +" , t_rows : "+t_rows+" , block_total : "+block_total+" , block : "+ block + " , block_first : " + block_first + " , block_last : " + block_last);

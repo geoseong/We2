@@ -2,6 +2,7 @@ package com.we2.sharepjtboard;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
@@ -16,8 +17,7 @@ public interface PjtBoardMapper {
 	// 페이징 select문.
 	final String select_by_id = 
 			//"select itemNum, itemTitle, userId, itemDate, itemClick, itemPath, itemContent" 
-			"select itemNum, itemTitle, userId, itemDate, itemClick, itemPath, itemContent" 
-			+ " from pGroup limit #{row_start}, #{row_end}";
+			"select * from pGroup limit #{row_start}, #{row_end}";
 	
 	final String insert =
 			"insert into pGroup(itemTitle,userId,itemDate,itemClick,itemPath,itemContent)"
@@ -26,8 +26,8 @@ public interface PjtBoardMapper {
 			+ "#{userId}, "
 			+ "curdate(), "
 			+ "0"
-			+ "itemPath, "
-			+ "itemContent)";
+			+ "#{itemPath}, "
+			+ "#{itemContent})";
 			
 	final String select_all = "select count(1) from pGroup";
 	/* END OF SQL */
@@ -48,4 +48,6 @@ public interface PjtBoardMapper {
 	@Select(select_all)
 	int getTotalCnt();
 	
+	@Insert(insert)
+	void insertBoard(PjtBoardBean pjtboardbean);
 }

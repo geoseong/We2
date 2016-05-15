@@ -14,7 +14,7 @@
 		<table class="list">
 				<tr>
 					<td colspan="5" style="border: white; text-align: right;">
-						<a href="write">글쓰기</a>
+						<a href="write?category=${category }">글쓰기</a>
 					</td>
 				</tr>
 				
