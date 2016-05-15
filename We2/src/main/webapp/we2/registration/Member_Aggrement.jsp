@@ -46,7 +46,7 @@
 		<!-- wrap : div를 한번더 감싸고 액션의 기준이 될 수 있음-->
 
 		<!-- chk()과 같이 체크를 하지 않고 넘어가는 것을 방지하기 위해 script로  방지함 -->
-		<form action="We2_join" method="get" name="form">
+		<form action="Member_Aggrement" method="POST" name="form">
 
 			<!-- 주의점 js로 넘어갈때 form안에 있는 name이름을 항상주의!!! -->
 
@@ -57,7 +57,7 @@
 
 				<div id="headerinner">
 					<h2>
-						<b> <sub> <a href="01_main.jsp">We2</a>
+						<b> <sub> <a href="Main.jsp">We2</a>
 						</sub>
 						</b>
 					</h2>

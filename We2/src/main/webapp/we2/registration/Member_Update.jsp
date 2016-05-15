@@ -8,7 +8,8 @@
 </head>
 <body>
 	<h2><spring:message code="member.info" /></h2>
-	<form:form action="We2_MemberUpdate" commandName="member">
+	
+	<form:form action="We2_MemberUpdate" commandName="member" method="POST">
 	<p>
 	<label></label>
 	<p>
@@ -44,8 +45,7 @@
 	</p>
 	<p>
 		<label><spring:message code="gender" />:<br>
-		<form:password path="gender" />
-		<form:errors path="gender"/>
+		<form:select path="genderType" items="${genderTypes}"/>
 		</label>
 	</p>
 	<p>

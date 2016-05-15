@@ -58,6 +58,8 @@
 		<bean id="authService" class="com.we2.spring.AuthService">
 			<property name="memberDao" ref="memberDao" />
 		</bean>
+		
+		
 	<!-- end : 의존주입 -->
 	
 	<!-- <aop:config>
