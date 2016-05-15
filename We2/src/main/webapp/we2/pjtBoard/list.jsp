@@ -37,7 +37,13 @@
 			<!-- ★★ 페이징 카운트 넣는 곳 ★★ -->
 				<tr>
 				<td colspan="6">
-				<a href="list?block=${block-1 }">[이전]</a>&nbsp;
+				<c:choose>
+					<c:when test="${block-1==0 }">
+					</c:when>
+					<c:otherwise>
+						<a href="list?page=${block_first - page_for_block }">[이전]</a>&nbsp;
+					</c:otherwise>
+				</c:choose>
 				<c:forEach var="i" begin="${block_first }" end="${block_last}" >
 					<c:choose>
 						<c:when test="${i == c_page }">
@@ -50,7 +56,14 @@
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
-				&nbsp;<a href="list?block=${block}">[다음]</a>
+				<c:choose>
+					<c:when test="${block==block_total }">
+						&nbsp;[다음]
+					</c:when>
+					<c:otherwise>
+						&nbsp;<a href="list?page=${block_first + page_for_block}">[다음]</a>
+					</c:otherwise>
+				</c:choose>
 				</td>
 				</tr>
 				

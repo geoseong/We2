@@ -51,4 +51,5 @@ public class PagingManager {
 		public int getLastPageBlock(int block, int page_for_block){
 			return (block*page_for_block);
 		}
+		
 }
