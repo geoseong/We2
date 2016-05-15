@@ -73,7 +73,7 @@ public class StudyRoomController {
 			
 			model.addAttribute("StudyRoomBeanObjToWrite", new StudyRoomBean());
 			
-			return "studyroom/StudyRoomWrite";
+			return "studyRoom/StudyRoomWrite";
 		}
 		
 		// BoardWrite - 2) 
