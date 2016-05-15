@@ -56,7 +56,7 @@
 		<bean id="boardService" class="com.we2.sharepjtboard.PjtBoardService"/>
 
 	<!-- Mapper interface 스캔 -->
-		<mybatis:scan base-package="mysite.com.app" />
+		<mybatis:scan base-package="com.we2" />
 <!-- 끝 : MyBatis를 위한 태그들 -->
 
 	<!-- start : 의존주입 -->

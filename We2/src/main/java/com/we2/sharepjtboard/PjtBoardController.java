@@ -1,7 +1,6 @@
 package com.we2.sharepjtboard;
 
 import java.text.ParseException;
-import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -48,9 +47,10 @@ public class PjtBoardController {
 */	
 		/* SECTION : REQUEST 영역에 보내기 */
 		// SELECT 결과물
-		  model.addAttribute("Content", boardService.getList(row_start, row_end));
+		  //model.addAttribute("Content", boardService.getList(row_start, row_end));
+		model.addAttribute("Content", boardService.getList(row_start, row_end));
 		// SELECT 결과물 - Date 포멧을 'yyyy-MM-dd' 로 바꿔서 따로보냄
-		  model.addAttribute("formatDate", boardService.getformatDate(row_start, row_end));
+		  //model.addAttribute("formatDate", boardService.getformatDate(row_start, row_end));
 		// JSP:INCLUDE PAGE
 		  model.addAttribute("Boardpage", "list.jsp");
 		
