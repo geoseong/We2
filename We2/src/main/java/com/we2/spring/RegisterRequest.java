@@ -6,6 +6,13 @@ public class RegisterRequest {
 
 	private String name;
 	private String userId;
+	private String pwd;
+	private String pwd_confirm;
+	private String phone;
+	private String email;
+	private String gender;
+	private Date regDate;
+	
 	public String getName() {
 		return name;
 	}
@@ -54,10 +61,4 @@ public class RegisterRequest {
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
-	private String pwd;
-	private String pwd_confirm;
-	private String phone;
-	private String email;
-	private String gender;
-	private Date regDate;
 }
