@@ -60,68 +60,65 @@
 			<!-- menu END -->
 			<!-- div처음 숫자  6개 -->
 
-			<form:form action="Member_Join" name="frm" method="post" commandName="member">
+			
 			<div class="my_registration">
+			
+			<h2><spring:message code="member.info"/></h2>
+			<form:form action="Member_Join" name="frm" method="post" commandName="registerRequest">
+			
 			<p>
-			<label><spring:message code="member.info"/>
-			:<form:input path="name"/><br>		
+			<label><spring:message code="name"/>:<br>
+			:<form:input path="name"/>		
 			<form:errors path="name"/>	
 			</label> 
 			</p>
 			
 			<p>
-			<label><spring:message code="userId"/>
-			:<form:input path="userid"/><br>		
-			<form:errors path="userid"/>
+			<label><spring:message code="userId"/>:<br>
+			:<form:input path="userId"/>		
+			<form:errors path="userId"/>
 			<input type="button" value="중복 체크" onclick="idCheck()">	
 			</label> 
 			</p>
 			
 			<p>
-			<label><spring:message code="pwd"/>
-			:<form:password path="pwd"/><br>		
-			<form:errors path="pwd"/>
-			<input type="password" id="byteInfo" name="pwd" size="20" onkeyup="checkLength(this, 12)">	
+			<label><spring:message code="pwd"/>:<br>
+			:<form:input path="pwd" id="byteInfo" name="pwd" size="20" onkeyup="checkLength(this, 12)"/>		
+			<form:errors path="pwd"/>	
 			</label> 
 			</p>
 			
 			<p>
-			<label><spring:message code="pwd.confirm"/>
-			:<form:password path="pwd.confirm"/><br>		
-			<form:errors path="pwd.confirm"/>	
+			<label><spring:message code="pwd.confirm"/>:<br>
+			:<form:input path="pwd_confirm"/>		
+			<form:errors path="pwd_confirm"/>	
 			</label> 
 			</p>
 			
 			<p>
-			<label><spring:message code="phone"/>
-			:<form:password path="phone"/><br>		
+			<label><spring:message code="phone"/>:<br>
+			:<form:input path="phone"/>		
 			<form:errors path="phone"/>	
 			</label> 
 			</p>
 			
 			<p>
-			<label><spring:message code="email"/>
-			:<form:password path="email"/><br>		
+			<label><spring:message code="email"/>:<br>
+			:<form:input path="email"/>		
 			<form:errors path="email"/>	
 			</label> 
 			</p>
 			
 			<p>
-			<label><spring:message code="gender"/>
-			:<form:password path="gender"/><br>		
-			<form:errors path="gender"/>
+			<label><spring:message code="gender"/>:<br>
 			<input type="radio" name="gender" value="0" checked="checked">남성 
 			<input type="radio" name="gender" value="1">여성	
 			</label> 
 			</p>
 			
-			
-			
 			<input type="submit" value="<spring:message code="register.btn"/>">
 			
-		
-			 </div>
-			 
+			 </div> 
 			</form:form>
 		</div>
 		</div>

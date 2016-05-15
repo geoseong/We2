@@ -31,7 +31,7 @@ public class Member {
 		this.phone = phone;
 	}
 	
-	public void setUserid(String userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 

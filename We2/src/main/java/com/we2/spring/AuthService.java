@@ -20,4 +20,9 @@ public class AuthService {
 		}
 		return new AuthInfo(member.getUserId(), member.getName(), member.getEmail(),  member.getPhone(), member.getGender());
 		}
+	
+	public int idCheck(String userId){
+		return memberDao.confirmID(userId);
+	}
+	
 }

@@ -26,7 +26,7 @@ public class MemberDao {
 					rs.getString("GENDER"),
 					rs.getDate("REGDATE"));
 			
-			member.setUserid(rs.getString("USERID"));
+			member.setUserId(rs.getString("USERID"));
 			return member;
 		}
 	};
@@ -104,10 +104,21 @@ public class MemberDao {
 	}
 
 	public void update(Member member) {
-		// TODO Auto-generated method stub
 		
 	}
 
+	public static MemberDao getInstance() {
+		
+		return null;
+	}
+
+	public int confirmID(String userid){
+		List<Member> results = jdbcTemplate.query(
+			"select * from MEMBER where USERID=?", 
+			memRowMapper,
+			userid);
+		return results.isEmpty() ? -1 : 1;
+	}
 
 }
 

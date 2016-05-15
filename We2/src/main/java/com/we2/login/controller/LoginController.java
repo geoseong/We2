@@ -1,23 +1,31 @@
 package com.we2.login.controller;
 
+import java.io.IOException;
 import java.util.Locale;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mysql.fabric.xmlrpc.base.Member;
 import com.we2.spring.AuthInfo;
 import com.we2.spring.AuthService;
 import com.we2.spring.IdPasswordNotMatchingException;
+import com.we2.spring.RegisterRequest;
 
 /**
  * Handles requests for the application home page.
@@ -61,7 +69,7 @@ public class LoginController {
 	public String loginget(LoginCommand loginCommand,
 			@CookieValue(value = "REMEMBER", required = false) Cookie rememberCookie){
 		if (rememberCookie != null) {
-			loginCommand.setUserid(rememberCookie.getValue());
+			loginCommand.setUserId(rememberCookie.getValue());
 			loginCommand.setRememberUserid(true);
 		}
 		return "registration/Member_Login";
@@ -76,8 +84,8 @@ public class LoginController {
 		new LoginCommandValidator().validate(loginCommand, errors);
 		
 		// 디버깅.
-		logger.info("ID : " + loginCommand.getUserid() + " , PWD : " + loginCommand.getPwd());
-		System.out.println("ID : " + loginCommand.getUserid() + " , PWD : " + loginCommand.getPwd());
+		logger.info("ID : " + loginCommand.getUserId() + " , PWD : " + loginCommand.getPwd());
+		System.out.println("ID : " + loginCommand.getUserId() + " , PWD : " + loginCommand.getPwd());
 		
 		if (errors.hasErrors()) {
 			return "registration/Member_Login";
@@ -86,14 +94,14 @@ public class LoginController {
 		try {
 			// 로그인 커맨드로부터 id, pwd를 받아서 인증작업 거쳐서 세션에 넘어갈 변수들 바인딩객체를 리턴받음
 			AuthInfo authInfo
-				= authService. authenticate(loginCommand.getUserid(), loginCommand.getPwd());
+				= authService. authenticate(loginCommand.getUserId(), loginCommand.getPwd());
 			
 			// 세션영역에 회원정보 추가
 			session.setAttribute("authInfo", authInfo);
 			
 			// 폼에 자동완성을 원하면 쿠키에 30일동안 userid를 보이게 함.
 			Cookie rememberCookie = 
-					new Cookie("REMEMBER", loginCommand.getUserid());
+					new Cookie("REMEMBER", loginCommand.getUserId());
 			rememberCookie.setPath("/");	// 해당 쿠키의 적용범위
 			
 			if (loginCommand.isRememberUserid()) {
@@ -118,12 +126,27 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/Member_Aggrement", method = RequestMethod.POST)
-	public String member_Form(Member member){
-	return "registration/Member_Join";
+	public String member_Form(RegisterRequest registerRequest){
+		
+		return "registration/Member_Join";
+	}
+	
+	@RequestMapping(value= "/We2_idCheck")
+		public String doGet(@RequestParam("userId") String userId, Model model){
+
+			
+			//int result = mDao.confirmID(userId);
+			int result=authService.idCheck(userId);
+
+			model.addAttribute("userId", userId);
+			model.addAttribute("result", result);
+
+			return "registration/We2_idCheck";
 	}
 	
 	@RequestMapping(value = "/Member_Join", method = RequestMethod.POST)
 	public String member_join(){
-		return "registration/Main.jsp";
+		
+		return "index";
 	}
 }
