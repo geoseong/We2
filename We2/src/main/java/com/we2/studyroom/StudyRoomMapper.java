@@ -23,7 +23,7 @@ public interface StudyRoomMapper {
 			"select * from  limit #{row_start}, #{row_end}";
 	
 	final String select_by_rcode=
-			"select rcode, rname, rlocation, rlocationdetail, rmember, rcontent, rpictureurl from roomshare where rcode=${rcode} order by rcode desc limit #{row_start}, #{row_end}";
+			"select rcode, rname, rlocation, rlocationdetail, rmember, rcontent, rpictureurl from roomshare where rcode=${rcode}";
 	
 	final String select_all = "select count(1) from roomshare";
 	
