@@ -3,11 +3,13 @@
 <%@page import="java.util.*, com.we2.sharepjtboard.*" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>We2_ 프로젝트 게시판 _ 글쓰기</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 </head>
 <script type="text/javascript" src="../js/board.js"></script>
 <body onload="boardidCheck()">
@@ -63,7 +65,10 @@
 								</td>
 							</tr>
 						</table>
-					<td style="border:0.5px solid #d3d3d3;">
+						
+					<td class = "modal" style="border:0.5px solid #d3d3d3;">
+						<div class="modal_img"><img src="/We2/we2/pjtBoard/data/${BoardContent.getItemPath() }"></div> 
+					 
 					<c:choose>
 							<c:when test="${empty BoardContent.getItemPath() }">
 									<!-- 기본설정경로 : 서블릿경로
@@ -71,19 +76,29 @@
 								<img src="/We2/we2/pjtBoard/data/noimg.png" style="width: 50px;">
 							</c:when>
 							<c:when test="${BoardContent.getItemDataType().contains('image') }">
-								<img src="/We2/we2/pjtBoard/data/${BoardContent.getItemPath() }" style="width: 300px;">
+								<img src="/We2/we2/pjtBoard/data/${BoardContent.getItemPath() }" class="board_img" style="width: 300px;">
 							</c:when>
+							
+							<%-- <div class="modal">
+							<c:if test="${BoardContent.getItemDataType().contains('image') }"> <!-- 콘텐츠 타입에 이미지라는 단어를 포함하고 있으면  -->
+								<img src="/We2/we2/pjtBoard/data/${BoardContent.getItemPath() }" > <!-- 이미지를 띄운다 -->
+							</c:if>
+							</div> --%>
+						
+							
 							<c:otherwise>
 									<!-- 기본설정경로 : 서블릿경로
 										E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps -->
 								<img src="/We2/we2/pjtBoard/data/datafile.png" style="width: 50px;">
 							</c:otherwise>
 						</c:choose>
+						</div> <!-- modal end -->
 					</td>
 					</table>
 				</td>
 				</tr>
 			</table>
+			
 			
 				<br>
 				
@@ -97,4 +112,13 @@
 		<%-- </form:form> --%>
 <!--  게시판 영역 끝 -->
 </body>
+
+	<script type="text/javascript">
+		$(".board_img").click(function(){
+			$(".modal_img").toggle();
+		});
+		$(".modal_img").click(function(){
+			$(this).hide();
+		});
+	</script>
 </html>
