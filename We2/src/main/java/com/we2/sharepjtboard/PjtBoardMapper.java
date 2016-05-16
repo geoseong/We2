@@ -28,9 +28,10 @@ public interface PjtBoardMapper {
 			"update ${category} set itemClick=itemClick+1 where itemNum=#{itemNum}";
 	
 	final String insert =
-			"insert into ${category} (itemTitle,itemDate,itemClick,itemPath,itemContent, itemDataType)"
+			"insert into ${category} (itemTitle,userId,itemDate,itemClick,itemPath,itemContent, itemDataType)"
 			+ " values("
 			+ "#{itemTitle}, "
+			+ "#{userId}, "
 			+ "curdate(), "
 			+ "0, "
 			+ "#{itemPath}, "
@@ -55,7 +56,8 @@ public interface PjtBoardMapper {
 			@Result(property="itemDate", column="idate"),
 			@Result(property="itemClick", column="itemClick"),
 			@Result(property="itemPath", column="itemPath"),
-			@Result(property="itemContent", column="itemContent")
+			@Result(property="itemContent", column="itemContent"),
+			@Result(property="itemDataType", column="itemDataType")
 	})
 	ArrayList<PjtBoardBean> getList(@Param("category") String category, @Param("row_start") int row_start, @Param("row_end") int row_end);
 	
@@ -69,6 +71,7 @@ public interface PjtBoardMapper {
 	void insertBoard(
 			@Param("category") String category, 
 			@Param("itemTitle")String itemTitle, 
+			@Param("userId")String userId, 
 			@Param("itemPath")String itemPath,
 			@Param("itemContent")String itemContent, 
 			@Param("itemDataType")String itemDataType);
@@ -81,18 +84,18 @@ public interface PjtBoardMapper {
 			@Result(property="itemDate", column="idate"),
 			@Result(property="itemClick", column="itemClick"),
 			@Result(property="itemPath", column="itemPath"),
-			@Result(property="itemContent", column="itemContent")
+			@Result(property="itemContent", column="itemContent"),
+			@Result(property="itemDataType", column="itemDataType")
 	})
 	PjtBoardBean select_by_num(@Param("category") String category, @Param("itemNum")int itemNum);
 
 	@Update(modify)
 	void updateBoard(
 			@Param("category") String category, 
-
-			@Param("itemDataType")String itemDataType
-			/*@Param("itemNum") int itemNum, 
+			@Param("itemTitle") String itemTitle, 
 			@Param("itemPath") String itemPath, 
-			@Param("itemContent") String itemContent*/);
+			@Param("itemContent") String itemContent, 
+			@Param("itemDataType")String itemDataType);
 
 	@Delete(delete)
 	void deleteBoard(@Param("category") String category, @Param("itemNum") int itemNum);

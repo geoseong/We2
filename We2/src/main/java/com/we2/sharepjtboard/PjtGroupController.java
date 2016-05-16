@@ -152,7 +152,7 @@ public class PjtGroupController {
 		//8. 데이터 타입
 				pVo.setItemDataType(multi.getContentType("file"));
 		// 게시글 내용들을 Insert하기
-			boardService.insertBoard(category, pVo.getItemTitle(), pVo.getItemPath(), pVo.getItemContent(), pVo.getItemDataType());
+			boardService.insertBoard(category, pVo.getItemTitle(), pVo.getUserId(), pVo.getItemPath(), pVo.getItemContent(), pVo.getItemDataType());
 		
 		// JSP:INCLUDE PAGE
 		  model.addAttribute("Boardpage", "list");
@@ -164,14 +164,6 @@ public class PjtGroupController {
 	
 	@RequestMapping(value="/content", method=RequestMethod.GET)
 	public String contentget(Model model, String category, int itemNum) throws IOException {
-		
-		/*multi=new MultipartRequest(
-				request, 
-				path,
-				sizeLimit, 
-				encType, 
-				new DefaultFileRenamePolicy());*/
-		
 		System.out.println("Content] itemNum : "+itemNum);
 		// SQL 결과
 			model.addAttribute("BoardContent", boardService.select_by_num(category, itemNum));
@@ -203,12 +195,7 @@ public class PjtGroupController {
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
 	public String modifypost(/*HttpServletRequest request, */Model model, String category, int itemNum) throws IOException {
 		System.out.println("itemNum : " + itemNum);
-		// 해당 경로의 폴더가 안만들어져있다면 직접 만들어놔야할 것.
-		String path=servletContext.getRealPath("we2/pjtBoard/data");
-		System.out.println("path : "+path);
 		
-		String encType="UTF-8";
-		int sizeLimit = 20*1024*1024;
 		MultipartRequest multi = 
 				new MultipartRequest(
 						request, 	servletContext.getRealPath(path), sizeLimit, encType, new DefaultFileRenamePolicy());
@@ -221,35 +208,55 @@ public class PjtGroupController {
 		
 		//2. 제목
 			String ItemTitle=multi.getParameter("itemTitle");
-		//3. 유저ID는 doGet에서 유효성 검사했으므로 update에서는 skip.
-		//4. 게시물 작성일은 현재 날짜를 표시하는 sysdate를 DAO에서  내부적으로 처리.
+		//3. 유저ID는
+		//4. 게시물 작성일
 		//5. 조회수는 update에서 skip
 		//6. 파일경로
 			String ItemPath=null;
+			String ItemDataType=null;
 			// 파일수정 아무것도 안하면 null값을 받아오는데, 파일이 날라갈 것을 방지하기위한 if문.
-			if(multi.getFilesystemName("itemPath")!=null){
-				ItemPath = multi.getFilesystemName("itemPath");
-				System.out.println("자료 업뎃함.");
-			}else{
-				pVo = boardService.select_by_num(category, ItemNum);
-				ItemPath = pVo.getItemPath();
-				System.out.println("자료수정된 것 없음");
-			}
+				if(multi.getFilesystemName("itemPath")!=null){
+					ItemPath = multi.getFilesystemName("itemPath");
+					ItemDataType=multi.getContentType("file");
+					System.out.println("자료 업뎃함.");
+				}else{
+					// BoardMapper에서 select 결과를 받아옴.
+					pVo = boardService.select_by_num(category, ItemNum);
+					ItemPath = pVo.getItemPath();
+					ItemDataType=pVo.getItemDataType();
+					System.out.println("자료수정된 것 없음");
+				} //end if
 		//7. 게시물 내용
 			String ItemContent=multi.getParameter("itemContent");
-					
+			
+			// 디버깅.
 			System.out.println("doPost itemNum --"+ItemNum);
 			System.out.println("doPost itemTitle --"+ItemTitle);
 			System.out.println("doPost itemPath --"+ItemPath);
 			System.out.println("doPost itemContent --"+ItemContent);
+			System.out.println("doPost itemContent --"+ItemDataType);
+			
 			// 글번호, 제목, 게시물 작성일, 파일경로, 게시물 내용을 Update Set.
-			boardService.insertBoard(category, pVo.getItemTitle(), pVo.getUserId(), pVo.getItemPath(), pVo.getItemContent());
-				
-				// JSP:INCLUDE PAGE
+			boardService.updateBoard(category, ItemTitle, ItemPath, ItemContent, ItemDataType);
+
+			// JSP:INCLUDE PAGE
 				  model.addAttribute("Boardpage", "list");
 				  model.addAttribute("page", 1);
-				// category 보냄
+			// category 보냄
 				  model.addAttribute("category", category);
 				return "redirect:list";
 	}
+	
+	@RequestMapping(value="/delete", method=RequestMethod.GET)
+	public String deletepost(Model model, String category, int itemNum) {
+		
+		// JSP:INCLUDE PAGE
+		  model.addAttribute("Boardpage", "list");
+		  model.addAttribute("page", 1);
+		// category 보냄
+		  model.addAttribute("category", category);
+		  
+		return "redirect:list";
+	}
+
 }

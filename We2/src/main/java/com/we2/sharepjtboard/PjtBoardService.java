@@ -54,8 +54,8 @@ public class PjtBoardService {
 	}
 	
 	// 게시물 등록
-	public void insertBoard (String category, String itemTitle, String itemPath, String itemContent, String itemDataType){
-		boardMapper.insertBoard(category, itemTitle,  itemPath, itemContent, itemDataType);
+	public void insertBoard (String category, String itemTitle, String userId, String itemPath, String itemContent, String itemDataType){
+		boardMapper.insertBoard(category, itemTitle, userId, itemPath, itemContent, itemDataType);
 	}
 	
 	// 조회수 증가
@@ -69,7 +69,7 @@ public class PjtBoardService {
 	}
 	
 	// 게시물 업데이트
-	public void updateBoard(String category, PjtBoardBean pVo){
-		boardMapper.updateBoard(category, pVo);
+	public void updateBoard(String category, String itemTitle, String itemPath, String itemContent, String itemDataType){
+		boardMapper.updateBoard(category, itemTitle, itemPath, itemContent, itemDataType);
 	}
 }
