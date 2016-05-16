@@ -1,4 +1,4 @@
-package com.we2.willwork;
+/*package com.we2.willwork;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,7 +25,7 @@ public class WillWorkDAO {
 			conn = DBManager.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, pVo.getDoWork());
-			pstmt.executeQuery();//½ÇÇà
+			pstmt.executeQuery();//ï¿½ï¿½ï¿½ï¿½
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
@@ -34,7 +34,7 @@ public class WillWorkDAO {
 	}
 	
 	public List<WillWorkVO> selectAll(){
-		//ÃÖ±Ù µî·ÏÇÑ »óÇ° ¸ÕÀú Ãâ·ÂÇÏ±â
+		//ï¿½Ö±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 		String sql = "select * from willwork";
 		List<WillWorkVO> list = new ArrayList<WillWorkVO>();
 		Connection conn = null;
@@ -55,7 +55,7 @@ public class WillWorkDAO {
 				pVo.setName(rs.getString("name"));
 				System.out.println(sql);
 				list.add(pVo);
-			}// while¹® ³¡
+			}// whileï¿½ï¿½ ï¿½ï¿½
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
@@ -65,7 +65,7 @@ public class WillWorkDAO {
 	}
 	
 	public List<WillWorkVO> selectpjtusers(int pjtcode){
-		//ÃÖ±Ù µî·ÏÇÑ »óÇ° ¸ÕÀú Ãâ·ÂÇÏ±â
+		//ï¿½Ö±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 		String sql = "select * from willwork where pjtcode=?";
 		List<WillWorkVO> list = new ArrayList<WillWorkVO>();
 		
@@ -88,7 +88,7 @@ public class WillWorkDAO {
 				pVo.setName(rs.getString("name"));
 				//System.out.println(sql);
 				list.add(pVo);
-			}// while¹® ³¡
+			}// whileï¿½ï¿½ ï¿½ï¿½
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
@@ -97,7 +97,7 @@ public class WillWorkDAO {
 		return list;
 	}
 	
-	// »ç¿ëÀÚ ¸Ó¸´¼ö°è»ê
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ó¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public int Pjtcount(int pjtcode){
 		String sql="select count(userid) from willwork where pjtcode=?";
 		Connection conn=null;
@@ -114,7 +114,7 @@ public class WillWorkDAO {
 			while(rs.next()){
 				counts=rs.getInt("count(userid)");
 			} //end while
-			System.out.println("¸Ó¸´¼ö : " + counts);
+			System.out.println("ï¿½Ó¸ï¿½ï¿½ï¿½ : " + counts);
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
@@ -123,7 +123,7 @@ public class WillWorkDAO {
 		return counts;
 	}
 			
-	// »ç¿ëÀÚ ¸®½ºÆ®¸¦ ¹è¿­·Î ¹Þ±â
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ ï¿½Þ±ï¿½
 	public String[] Pjtlists(int pjtcode){
 		String[] users=new String[5];
 		String sql="select userid from willwork where pjtcode=?";
@@ -151,7 +151,7 @@ public class WillWorkDAO {
 		return users;
 	}
 	
-	// ÇØ¾ß ÇÒ ÀÏ ¸®½ºÆ®·Î »Ì±â
+	// ï¿½Ø¾ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ì±ï¿½
 	public List<WillWorkVO> doworklist(String userid){
 		String sql="select dowork, donework, name from willwork where userid=?";
 		Connection conn=null;
@@ -172,7 +172,7 @@ public class WillWorkDAO {
 				pVo.setName(rs.getString("name"));
 				//System.out.println(sql);
 				list.add(pVo);
-			}// while¹® ³¡
+			}// whileï¿½ï¿½ ï¿½ï¿½
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
@@ -181,7 +181,7 @@ public class WillWorkDAO {
 		return list;
 	}
 	
-	//À¯Àú³×ÀÓ ¸®½ºÆ®·Î »Ì±â
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ì±ï¿½
 	public String userName(String userid){
 		String sql="select name from willwork where userid=?";
 		Connection conn=null;
@@ -197,7 +197,7 @@ public class WillWorkDAO {
 			
 			while(rs.next()){
 				list=rs.getString("name");
-			}// while¹® ³¡
+			}// whileï¿½ï¿½ ï¿½ï¿½
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
@@ -218,7 +218,7 @@ public class WillWorkDAO {
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, doWork);
 		pstmt.setString(2, userName);
-		pstmt.executeUpdate();//½ÇÇà
+		pstmt.executeUpdate();//ï¿½ï¿½ï¿½ï¿½
 		System.out.println(sql);
 		
 		}catch(Exception e){
@@ -232,7 +232,7 @@ public class WillWorkDAO {
 	
 	
 	
-	// ÇÒ ÀÏ Ãß°¡
+	// ï¿½ï¿½ ï¿½ï¿½ ï¿½ß°ï¿½
 	public void inputdoWork(String doWork, String name){
 		
 		String sql = "update willwork set dowork = ? where name=?";
@@ -244,7 +244,7 @@ public class WillWorkDAO {
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, doWork);
 		pstmt.setString(2, name);
-		pstmt.executeUpdate();//½ÇÇà
+		pstmt.executeUpdate();//ï¿½ï¿½ï¿½ï¿½
 		System.out.println(sql);
 		
 		}catch(Exception e){
@@ -254,7 +254,7 @@ public class WillWorkDAO {
 		}		
 	}
 	
-	// ¿Ï·áÇÑ ÀÏ Ãß°¡
+	// ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ß°ï¿½
 	public void inputdoneWork(String doWork, String name){
 		
 		String sql = "update willwork set donework = donework ||','|| ? where name=?";
@@ -266,7 +266,7 @@ public class WillWorkDAO {
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, doWork);
 		pstmt.setString(2, name);
-		pstmt.executeUpdate();//½ÇÇà
+		pstmt.executeUpdate();//ï¿½ï¿½ï¿½ï¿½
 		System.out.println(sql);
 		
 		}catch(Exception e){
@@ -276,3 +276,4 @@ public class WillWorkDAO {
 		}		
 	}
 }
+*/
