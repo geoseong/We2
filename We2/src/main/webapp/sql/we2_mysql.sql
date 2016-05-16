@@ -13,6 +13,7 @@ grant all privileges on we2.* to we2admin@'%';
 flush privileges;
 /* create user 끝 */
 
+desc member;
 
 /* MySQL 전체 사용자 목록 보기*/
 USE mysql;
@@ -40,6 +41,7 @@ CREATE TABLE member(
 	userid VARCHAR(12),
 	name VARCHAR(10),
 	pwd VARCHAR(12),
+	pwd_confirm varchar(12),
 	email VARCHAR(30),
     subEmail VARCHAR(30),
 	phone VARCHAR(13),

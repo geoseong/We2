@@ -24,6 +24,7 @@
  		 
  		 <bean class="com.we2.login.controller.LoginController">
  		 	<property name="authService" ref="authService"/>
+ 		 	<property name="memberDao" ref="memberDao"></property>
  		 </bean>
 	 <!-- end : 컨트롤러 bean 생성 -->
 	 

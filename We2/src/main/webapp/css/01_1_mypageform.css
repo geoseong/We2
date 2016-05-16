@@ -170,7 +170,7 @@ a {
 
 /* 회원가입 타이틀 글씨*/
 .my_registration span{
-	font-size:25px;
+	font-size:28px;
 	font-weight:600;
 	color: #4CC4EE;
 }
@@ -178,8 +178,8 @@ a {
 /* 회원가입 테이블 */
 table {
 	padding:30px;
-	padding-left:150px;
-	padding-right:150px;
+	padding-left:170px;
+	padding-right:170px;
 	width: 100%;
 	border-collapse : callapse;
 	line-height: 24px;
@@ -187,14 +187,14 @@ table {
 
 table td,th{
 	border: #d3d3d3 solid 1px;
-	height:30px;
+	height:35px;
 	padding:5px;
 	padding-left:20px;
 	text-align:left;
 }
 
 th{
-	width:30%;
+	width:25%;
 	margin-left:20px;
 	font-size:15px;
 	font-weight:600;
@@ -206,7 +206,7 @@ th{
 table input{
 	text-align:left;
 	width:300px;
-	height:30px;
+	height:35px;
 }
 
 .radio{
@@ -388,13 +388,12 @@ my_info_view>.my_picture{
 
 /* 중복체크 버튼 */
 .check_btn {
-	width:80px;
+	width:70px;
 	padding:5px;
 	border:none;
 	background:#d3d3d3;
 	color:#424444;
     font-size:13px;
-	border-radius:5px;
     text-align: center;
 }
 
@@ -406,7 +405,7 @@ my_info_view>.my_picture{
 
 /* 가입완료 버튼 */
 .finish_btn {
-	width:100px;
+	width:200px;
 	padding:5px;
 	border:none;
 	background:#4CC4EE;

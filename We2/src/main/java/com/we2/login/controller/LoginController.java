@@ -21,10 +21,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.mysql.fabric.xmlrpc.base.Member;
 import com.we2.spring.AuthInfo;
 import com.we2.spring.AuthService;
 import com.we2.spring.IdPasswordNotMatchingException;
+import com.we2.spring.Member;
+import com.we2.spring.MemberDao;
 import com.we2.spring.RegisterRequest;
 
 /**
@@ -35,9 +36,16 @@ import com.we2.spring.RegisterRequest;
 public class LoginController {
 	
 	private AuthService authService;
+	
 	public void setAuthService(AuthService authService) {
 		this.authService = authService;
 	}
+	
+	private MemberDao memberDao;
+	public void setMemberDao(MemberDao memberDao) {
+		this.memberDao = memberDao;
+	}
+	
 	
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
@@ -126,8 +134,7 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/Member_Aggrement", method = RequestMethod.POST)
-	public String member_Form(RegisterRequest registerRequest){
-		
+	public String member_Form(Member member){
 		return "registration/Member_Join";
 	}
 	
@@ -141,11 +148,12 @@ public class LoginController {
 			model.addAttribute("result", result);
 
 			return "registration/We2_idCheck";
-	}
 }
 	
-/*	@RequestMapping(value = "/Member_Join", method = RequestMethod.POST)
-	public String member_join(RegisterRequest regReq, Errors errors){
-		new RegisterRequest
+	@RequestMapping(value = "/Member_Join", method = RequestMethod.POST)
+	public String member_join(Member member, Errors errors){
+		memberDao.insert(member);
+		
+		return "/index";
 	}
-}*/
+}

@@ -10,15 +10,14 @@ public class MemberUpdateService {
 	public MemberUpdateService(MemberDao memberDao) {
 		this.memberDao = memberDao;
 	}
-
-	@Transactional
+}
+	/*@Transactional
 	public void changePassword(String email, String oldPwd, String newPwd) {
-		Member member = MemberDao.selectByEmail(email);
-		if (member == null)
+		Member member = MemberDao.selectById(email);
 			throw new MemberNotFoundException();
 		
 		member.changePassword(oldPwd, newPwd);
 		
 		memberDao.update(member);
 	}
-}
+}*/

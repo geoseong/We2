@@ -9,7 +9,7 @@
 <body>
 	<h2><spring:message code="member.info" /></h2>
 	
-	<form:form action="We2_MemberUpdate" commandName="member" method="POST">
+	<form:form action="Member_Update" commandName="member" method="POST">
 	<p>
 	<label></label>
 	<p>
@@ -31,6 +31,7 @@
 		<form:errors path="pwd"/>
 		</label>
 	</p>
+	
 	<p>
 		<label><spring:message code="email" />:<br>
 		<form:password path="email" />

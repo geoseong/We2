@@ -66,11 +66,11 @@
 			
 			<!-- 회원정보 -->
 			<span><spring:message code="member.info"/></span> 
-			<form:form action="Member_Join" name="frm" method="post" commandName="registerRequest">
-			
+			<form:form action="Member_Join" name="frm" method="post" commandName="member">
 			
 			<!-- 회원정보 상세 내용을 감싸는 div -->
 			<table> 
+
 			<tr>
 			  <th><spring:message code="name"/></th>
 			  <td><form:input path="name"/></td>	
@@ -90,11 +90,11 @@
 			    <form:errors path="pwd"/>	
 			</tr>
 			
-			<tr>
+		    <tr>
 			<th><spring:message code="pwd.confirm"/></th>
 			<td><form:input path="pwd_confirm"/></td>	
 			<form:errors path="pwd_confirm"/>	
-			</tr>
+			</tr>  
 			
 			<tr>
 			<th><spring:message code="phone"/></th>
@@ -118,12 +118,12 @@
 			<!--  가입 완료 버튼 -->
 			<input type="submit" class="finish_btn" value="<spring:message code="register.btn"/>">
 			
-			
-			 </div>  <!-- my_registration end -->
 			</form:form>
 			
+			 </div>  <!-- my_registration end -->
 			</div>  <!-- contents end -->
 		</div> <!-- section end -->
 		</div> <!-- wrap EDN -->
+	
 </body>
 </html>

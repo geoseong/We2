@@ -33,11 +33,10 @@
  <c:choose>
 	 <c:when test="${empty authInfo}">
 
-		<div id = "nav">
+		   <div id = "nav">
             <a href="login" class="loginButton">로그인</a>
             <!-- #########위에 로그인 header를 넣는다! -->
-        </div>
-
+          </div>
 	 </c:when>
 	 
 	 <c:otherwise>
@@ -45,14 +44,13 @@
 	 	<div id = "nav2">
 	 		<a href="mypage">마이페이지</a>
             <!-- #########위에 로그인 header를 넣는다! -->
-        </div>
-        
+         </div>
         <div id = "nav3">
             <a href="logout">로그아웃</a>
             <!-- #########위에 로그인 header를 넣는다! -->
         </div>
-	
-	 </c:otherwise>
+	   </c:otherwise>
+	   
  </c:choose>
 
 </div>
