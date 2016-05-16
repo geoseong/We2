@@ -19,7 +19,7 @@ function idCheck() {
 		frm.userId.focus();
 		return;
 	}
-	var url = "We2_idCheck.do?userId=" + document.frm.userId.value;
+	var url = "We2_idCheck?userId=" + document.frm.userId.value;
 	window.open(url, "_blank_1", "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=450, height=200");
 }
 /*function pwCheck() {

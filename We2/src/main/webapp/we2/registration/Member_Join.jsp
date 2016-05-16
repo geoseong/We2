@@ -7,8 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="css/w2_reset.css" type="text/css">
-<link rel="stylesheet" href="css/01_1_mypage.css" type="text/css">
-<link rel="stylesheet" href="css/01_1_mypage.css" type="text/css">
+<link rel="stylesheet" href="css/01_1_mypageform.css" type="text/css">
 
 <script src="js/jquery-1.12.1.min.js"></script>
 <script type="text/javascript" src="js/We2_member.js"></script>
