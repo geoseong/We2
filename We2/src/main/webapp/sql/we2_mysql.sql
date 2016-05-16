@@ -19,6 +19,7 @@ USE mysql;
 SELECT User, Host from user;
 SELECT * from user;
 
+show tables;
 select * from member;
 select * from MEMBER where USERID = 'geoseong';
 

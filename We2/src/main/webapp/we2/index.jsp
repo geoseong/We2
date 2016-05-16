@@ -134,7 +134,7 @@
    	     <div class="pjtMakeInner">
                 <h1>프로젝트 만들기</h1>
                 
-                <img src="img/x.png" id="exit2">
+                <img src="img/index/x.png" id="exit2">
                  
                 <div class="frame">
 	   				<div class="nameArea">
@@ -154,9 +154,9 @@
 	   				<div class="imageArea">		
 	   					<label for="pjtTerm">프로젝트 기간</label>
                         
-	   					<img src="img/calendar.png" class="img1" style="width:50px;">
+	   					<img src="img/index/calendar.png" class="img1" style="width:50px;">
                         
-	   					<img src="img/calendar.png" class="img2" style="width:50px;">		
+	   					<img src="img/index/calendar.png" class="img2" style="width:50px;">		
 	   					<input type="text" size="7" name="term1" id="term1" style="height:25px;">
                         
                         <span> ~ </span>

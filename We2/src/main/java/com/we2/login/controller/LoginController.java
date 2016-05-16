@@ -134,7 +134,6 @@ public class LoginController {
 	@RequestMapping(value= "/We2_idCheck")
 		public String doGet(@RequestParam("userId") String userId, Model model){
 
-			
 			//int result = mDao.confirmID(userId);
 			int result=authService.idCheck(userId);
 
@@ -143,10 +142,10 @@ public class LoginController {
 
 			return "registration/We2_idCheck";
 	}
-	
-	@RequestMapping(value = "/Member_Join", method = RequestMethod.POST)
-	public String member_join(){
-		
-		return "index";
-	}
 }
+	
+/*	@RequestMapping(value = "/Member_Join", method = RequestMethod.POST)
+	public String member_join(RegisterRequest regReq, Errors errors){
+		new RegisterRequest
+	}
+}*/
