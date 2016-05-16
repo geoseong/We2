@@ -38,4 +38,23 @@
 		</aop:aspect>
 	</aop:config> -->
     <!-- 끝 : AOP bean 설정 -->
+		 
+	 <!-- 컨트롤러 bean 생성 -->
+	 <bean class="com.we2.login.controller.LoginController">
+ 		<property name="authService" ref="authService" />
+	 </bean>
+	 
+	 <bean id="authService" class="com.we2.spring.AuthService">
+		<property name="memberDao" ref="memberDao" />
+	 </bean>
+	
+	<bean id="memberDao" class="com.we2.spring.MemberDao">
+		<constructor-arg ref="dataSource"/>
+	</bean>	
+	
+	 <!-- 컨트롤러 bean 생성 -->
+	<bean class="com.we2.pjtMake.pjtMakeCtrl">
+		<property name="pjtMakeDAO" ref="pjtMakeDAO"/>
+	</bean>
+
 </beans>

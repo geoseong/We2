@@ -1,7 +1,28 @@
 create database we2;
 
-/*  create user 시작
-> testuser 라는 사용자가 192.168.100.101 아이피를 통해서 접근하는 것을 허용하며, 
+drop table pjtmake cascade constraint;
+drop table pjtmanager cascade constraint;
+
+SET foreign_key_checks = 0;
+select * from pjtmake;
+desc pjtmake;
+SET foreign_key_checks = 1;
+drop table pjtmake;
+
+ALTER TABLE pjtmake DROP pjtCode;
+ALTER TABLE pjtmake DROP FOREIGN KEY pjtmanager_ibfk_1;
+drop table pjtmake ON DELETE CASCADE ON UPDATE CASCADE;
+show create table pjtmake;
+drop table pjtmake on delete cascade;
+drop table pjtmake cascade constraints;
+
+desc pjtmake;
+select * from pjtmake;
+
+alter table pjtmake modify pjtCode int auto_increment;
+
+/*
+> testuser ��� ����ڰ� 192.168.100.101 �����Ǹ� ���ؼ� �����ϴ� ���� ����ϸ�, 
 	ex) CREATE USER 'we2admin'@'192.168.100.101' IDENTIFIED BY '123qwe!@#';
  비밀번호는 "123qwe!@#" 이고, "we2" 데이터베이스에 대하여 모든 권한을 부여 받음 
  
@@ -23,8 +44,7 @@ show tables;
 select * from member;
 select * from MEMBER where USERID = 'geoseong';
 
-
-/* 사용자에게 부여된 권한 확인 */
+/* ����ڿ��� �ο��� ���� Ȯ�� */
 SHOW GRANTS FOR we2admin@'%';
 
 
@@ -49,13 +69,14 @@ CREATE TABLE member(
 desc member;
 
 CREATE TABLE pjtMake(
-	pjtCode VARCHAR(4),
+	pjtCode int auto_increment,
 	pjtName VARCHAR(20),
 	pjtClassify VARCHAR(12),
 	startDate date,
     endDate date,
 	PRIMARY KEY(pjtCode)
 ) engine=InnoDB character set=utf8; 
+
 desc pjtMake;
 
 /* 테이블 생성 시 외래키 한번에 설정 (업데이트할때나 지워질때나 늘 함께하는 외래키설정) */
@@ -66,6 +87,7 @@ create table pjtManager(
     FOREIGN KEY(pjtCode) REFERENCES pjtmake(pjtCode) ON UPDATE CASCADE ON DELETE CASCADE,
 	FOREIGN KEY(userId) REFERENCES member(userId) ON UPDATE CASCADE ON DELETE CASCADE 
 );
+desc pjtManager;
 
 /* InnoDB테이블 방식으로 안만들었을때 변경하는 명령어
  * 자세설명 : http://powerhan.tistory.com/175 */
@@ -88,8 +110,7 @@ SHOW TABLE STATUS FROM we2 LIKE 'pjtMake';
 /* 특정 데이터베이스 안에 있는 테이블 목록 보기 */
 use we2;
 show tables;
-
-desc pgroup;
+desc pjtmake;
 
 /* 컬럼 이름 바꾸기 */
 # ALTER TABLE 테이블명 CHANGE 컬럼이름 새컬럼이름 새컬럼타입
@@ -99,15 +120,29 @@ ALTER TABLE member CHANGE userid userId VARCHAR(12);
 #ALTER TABLE 테이블명 ADD COLUMN 칼럼이름 칼럼타입
 ALTER TABLE pGroup ADD COLUMN itemDataType varchar(50);
 
-/* 컬럼 삭제하기 */
-#ALTER TABLE 테이블명 DROP COLUMN 칼럼이름
-alter table member drop column subEmail;
+desc pjtMake;
 
 /* 삽입 */
 # 현재시각은 MySQL에서는 now().
 #INSERT INTO tablename or columns VALUES(25, 'NAME', 5, 25.5 );
 insert into member values('geoseong', '거성', '1234' ,'imf4@naver.com', '010-2023-6697', 'M', now());
 
+insert into pjtMake values('10',
+'ttt',
+'��������',
+'Thu May 12 00:00:00 KST 2016',
+'Fri May 13 00:00:00 KST 2016');
+
+insert into pjtMake values(
+'10',
+'ttt', 
+'��������',
+STR_TO_DATE('05/12/2016','%m/%d/%Y'),
+STR_TO_DATE('05/14/2016','%m/%d/%Y'));
+
+desc pjtMake;
+
+select * from pjtMake;
 
 /* 사용자 삭제 */
 DROP USER we2admin@localhost;
