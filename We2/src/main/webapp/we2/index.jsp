@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/01_main_intro.css" type="text/css">
     <link rel="stylesheet" href="css/w2_reset.css" type="text/css">
     <link rel="stylesheet" href="css/w3_slide.css" type="text/css">
-	<link rel="stylesheet" type="text/css" href="css/02_1_pjtMake.css">
+	<link rel="stylesheet" type="text/css" href="/css/02_1_pjtMake.css">
 
     <!-- 슬라이드 이미지를 위한 준비-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -134,7 +134,7 @@
    	     <div class="pjtMakeInner">
                 <h1>프로젝트 만들기</h1>
                 
-                <img src="img/x.png" id="exit2">
+                <img src="img/index/x.png" id="exit2">
                  
                 <div class="frame">
 	   				<div class="nameArea">
@@ -154,9 +154,9 @@
 	   				<div class="imageArea">		
 	   					<label for="pjtTerm">프로젝트 기간</label>
                         
-	   					<img src="img/calendar.png" class="img1" style="width:50px;">
+	   					<img src="img/index/calendar.png" class="img1" style="width:50px;">
                         
-	   					<img src="img/calendar.png" class="img2" style="width:50px;">		
+	   					<img src="img/index/calendar.png" class="img2" style="width:50px;">		
 	   					<input type="text" size="7" name="term1" id="term1" style="height:25px;">
                         
                         <span> ~ </span>
@@ -188,7 +188,7 @@
      
  
     </body>
-<script src="js/jquery-1.12.1.min.js"></script>
+<script src="/js/jquery-1.12.1.min.js"></script>
 <!-- jQuery UI CSS파일  -->
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
 <!--  jQuery 기본 js파일 -->
@@ -226,8 +226,8 @@ $(".pjtMakeInner").hide();
     
 </script>
 
-    <script type="text/javascript" src="js/jquery-1.12.1.min.js"></script> 
-    <script type="text/javascript" src="js/main_slider2.js"></script>
+    <script type="text/javascript" src="/js/jquery-1.12.1.min.js"></script> 
+    <script type="text/javascript" src="/js/main_slider2.js"></script>
     
     <script type="text/javascript">
 	    

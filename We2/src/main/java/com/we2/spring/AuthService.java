@@ -25,4 +25,6 @@ public class AuthService {
 		return memberDao.confirmID(userId);
 	}
 	
+	
+	
 }

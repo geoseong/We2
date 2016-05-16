@@ -5,7 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link href="/style/We2_MemberStyle.css" rel="stylesheet" type="text/css" />
+<link href="style/We2_MemberStyle.css" rel="stylesheet" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="css/w2_reset.css" type="text/css">
 <link rel="stylesheet" href="css/01_1_mypageform.css" type="text/css">
@@ -152,10 +152,8 @@
 						value="동의하지 않습니다" onclick="return nochk()" style="width: 150px;" />
 					</td>
 				</div>
-			</div>
-			<!-- section end -->
+			</div> <!-- section end -->
 		</form>
-	</div>
-	<!-- wrap end -->
+	</div> <!-- wrap end -->
 </body>
 </html>
