@@ -58,7 +58,7 @@
 <div id = "section">
    <div id="menu">
        <b>Project공유</b>
-        <div id = "second_line">
+        <div id = "second_line" style="background-color:#1591BE;">
           <!-- 커뮤니티 밑 노란줄-->
        </div>
        <br>
@@ -69,7 +69,7 @@
   
 	 <!-- 게시판 include 영역 -->
 	  <div id="contents">
-	  	<h1>조별과제 게시판</h1>
+	  	<h2>조별과제 게시판</h2>
 	  	
 			<jsp:include page="${Boardpage }.jsp"/>
 			
