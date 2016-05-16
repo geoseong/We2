@@ -14,12 +14,12 @@ function loginCheck() {
 }
 
 function idCheck() {
-	if (document.frm.userId.value == "") {
+	if (document.frm.userid.value == "") {
 		alert('아이디를 입력하여 주십시오.');
-		frm.userId.focus();
+		frm.userid.focus();
 		return;
 	}
-	var url = "We2_idCheck?userId=" + document.frm.userId.value;
+	var url = "We2_idCheck.do?userid=" + document.frm.userid.value;
 	window.open(url, "_blank_1", "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=450, height=200");
 }
 /*function pwCheck() {
@@ -99,9 +99,9 @@ function checkLength(objname, maxlength){
 			objname.focus();
 }
 
-function idOk(userId){
-	opener.frm.userId.value = userId;
-	//opener.frm.reid.value = userId;
+function idOk(userid){
+	opener.frm.userid.value = userid;
+	opener.frm.reid.value = userid;
 	self.close();
 }
 
