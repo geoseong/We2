@@ -16,7 +16,9 @@ import com.sun.jmx.snmp.Timestamp;
 import com.we2.spring.Member;
 
 public class MemberDao {
+	
 	private JdbcTemplate jdbcTemplate;
+	//제네릭을 통해 Member만을 사용한다고 하고 정의!!
 	private RowMapper<Member> memRowMapper = new RowMapper<Member>() {
 		@Override
 		public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -30,7 +32,7 @@ public class MemberDao {
 	
 	public MemberDao(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
-	}
+	} //MemberDao에 DataSource를 주입함!!
 	
 	public Member selectByUserid(String userId) {
 		List<Member> results = jdbcTemplate.query("select * from MEMBER where USERID = ?", memRowMapper, userId);
@@ -59,12 +61,11 @@ public class MemberDao {
 		});
 	}
 	// 사용자 정보를 수정하는 메소드
-	/*
-	 * public void update(Member member) { jdbcTemplate.update(
-	 * "update MEMBER set NAME = ?, PASSWORD = ? where EMAIL = ?",
-	 * member.getName(), member.getPassword(), member.getEmail()); }
-	 */
-
+	public void update(Member member) { 
+		  jdbcTemplate.update("update member set pwd=?, pwd_confirm=?, phone=?, email=?,  gender=? where userid=?",
+		member.getPwd(), member.getPwd_confirm(), member.getPhone(), member.getEmail(), member.getGender());
+	}  
+	  		  
 	public List<Member> selectAll() {
 		List<Member> results = jdbcTemplate.query("select * from MEMBER",
 				memRowMapper);

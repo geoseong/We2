@@ -26,7 +26,4 @@ public class AuthService {
 	public int idCheck(String userId){
 		return memberDao.confirmID(userId);
 	}
-	
-	
-	
 }
