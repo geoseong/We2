@@ -65,7 +65,7 @@ public class MemberDao {
 		Number keyValue = keyHolder.getKey();
 		member.setId(keyValue.longValue());
 	}
-
+	//회원 정보 수정!!
 	public void update(Member member) {
 		jdbcTemplate.update("update MEMBER set NAME = ?, PASSWORD = ? where EMAIL = ?",
 				member.getName(), member.getPassword(), member.getEmail());
@@ -76,7 +76,7 @@ public class MemberDao {
 				memRowMapper);
 		return results;
 	}
-
+	
 	public int count() {
 		Integer count = jdbcTemplate.queryForObject("select count(*) from MEMBER", Integer.class);
 		return count;
