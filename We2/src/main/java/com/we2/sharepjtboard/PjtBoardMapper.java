@@ -64,4 +64,16 @@ public interface PjtBoardMapper {
 	
 	@Insert(insert)
 	void insertBoard(@Param("category") String category, PjtBoardBean pjtboardbean);
+	
+	@Select(select_by_num)
+	@Results(value = {
+			@Result(property="itemNum", column="itemNum"),
+			@Result(property="itemTitle", column="itemTitle"),
+			@Result(property="userId", column="userId"),
+			@Result(property="itemDate", column="idate"),
+			@Result(property="itemClick", column="itemClick"),
+			@Result(property="itemPath", column="itemPath"),
+			@Result(property="itemContent", column="itemContent")
+	})
+	ArrayList<PjtBoardBean> select_by_num(@Param("category") String category, @Param("itemNum")int itemNum);
 }

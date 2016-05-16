@@ -19,7 +19,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.we2.spring.AuthInfo;
 
 @Controller
-@RequestMapping(value="/pjtBoard/group")
+@RequestMapping(value="/pjtBoard")
 public class PjtGroupController {
 	
 	@Autowired
@@ -104,6 +104,7 @@ public class PjtGroupController {
 			System.out.println("로그인 되어있음.");
 		}
 		System.out.println("로그인 안됨");
+		System.out.println("write] category="+category);
 		// JSP:INCLUDE PAGE
 		  model.addAttribute("Boardpage", "write");
 		// category 보냄
@@ -155,6 +156,19 @@ public class PjtGroupController {
 		// category 보냄
 		  model.addAttribute("category", category);
 		return "redirect:list";
+	}
+	
+	@RequestMapping(value="/content", method=RequestMethod.GET)
+	public String contentget(Model model, String category, int itemNum) throws IOException {
+		
+		System.out.println("Content] itemNum : "+itemNum);
+		// SQL 결과
+			model.addAttribute("BoardContent", boardService.select_by_num(category, itemNum));
+		// JSP:INCLUDE PAGE
+			model.addAttribute("Boardpage", "content");
+		// category 보냄
+		  model.addAttribute("category", category);
+		return "pjtBoard/boardmain";
 	}
 	
 }

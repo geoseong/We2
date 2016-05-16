@@ -61,4 +61,8 @@ public class PjtBoardService {
 	public void count_plus(String category, int itemNum){
 		boardMapper.count_plus(category, itemNum);
 	}
+	
+	public ArrayList<PjtBoardBean> select_by_num(String category, int itemNum){
+		return boardMapper.select_by_num(category, itemNum);
+	}
 }

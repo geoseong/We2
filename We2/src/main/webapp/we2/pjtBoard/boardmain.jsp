@@ -8,11 +8,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>프로젝트 공유 게시판</title>
 
-	<link rel="stylesheet" href="../../css/w2_reset.css" type="text/css">
-	<link rel="stylesheet" href="../../css/board_fin.css" type="text/css">
-	<link rel="stylesheet" href="../../css/board_contents.css" type="text/css" >
+	<link rel="stylesheet" href="../css/w2_reset.css" type="text/css">
+	<link rel="stylesheet" href="../css/board_fin.css" type="text/css">
+	<link rel="stylesheet" href="../css/board_contents.css" type="text/css" >
 	
-	<script type="text/javascript" src="../../js/jquery-1.12.1.min.js"></script> 
+	<script type="text/javascript" src="../js/jquery-1.12.1.min.js"></script> 
    
 </head>
 

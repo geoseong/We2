@@ -10,6 +10,10 @@
 </head>
 <body>
 <!--  게시판 영역 - css에서 #contents 블록의 테두리선(border)를 없애주시면 됩니다. -->
+
+<%
+	request.getAttribute("category");
+%>
 <form:form action="find" method="post" commandName="pjtBoardBean">
 		<table class="list">
 				<tr>
@@ -26,7 +30,7 @@
 					<tr class="record">	
 						<td>${content.itemNum }</td>
 						<td>
-								<a href="content?itemNum=${content.itemNum }&page=${page}&category=${category}">${content.itemContent }</a>
+								<a href="content?itemNum=${content.itemNum }&category=${category}">${content.itemContent }</a>
 						</td>
 						<td>${content.userId }</td>
 						<td>${content.itemDate }</td>
@@ -41,7 +45,7 @@
 					<c:when test="${block-1==0 }">
 					</c:when>
 					<c:otherwise>
-						<a href="list?page=${block_first - page_for_block }">[이전]</a>&nbsp;
+						<a href="list?page=${block_first - page_for_block }&category=${category}">[이전]</a>&nbsp;
 					</c:otherwise>
 				</c:choose>
 				<c:forEach var="i" begin="${block_first }" end="${block_last}" >
@@ -50,7 +54,7 @@
 							<b> [ ${i} ] </b>
 						</c:when>
 						<c:otherwise>
-							<a href="list?page=${i }">
+							<a href="list?page=${i }&category=${category}">
 								[ ${i} ]
 							</a>
 						</c:otherwise>
@@ -61,7 +65,7 @@
 						&nbsp;[다음]
 					</c:when>
 					<c:otherwise>
-						&nbsp;<a href="list?page=${block_first + page_for_block}">[다음]</a>
+						&nbsp;<a href="list?page=${block_first + page_for_block}&category=${category}">[다음]</a>
 					</c:otherwise>
 				</c:choose>
 				</td>
