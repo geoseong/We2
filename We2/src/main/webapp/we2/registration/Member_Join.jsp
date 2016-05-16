@@ -46,80 +46,84 @@
 		<!-- header END -->
 		<!-- div처음 숫자 2개 끝 -->
 		<!-- 3. 가운데 회원가입 부분 -->
+		
 		<div id="section">
-			<!-- div처음 숫자 5 개 -->
+			
 			<div id="menu">
-				<!-- div처음 숫자 6 개 -->
-				<!-- 회원가입 인사말 -->
+				
+			    <b>MyPage</b>	
 				<div id="second_line">
-					<!-- div처음 숫자 7 개 -->
+				
 				</div>
-				<!-- div처음 숫자 7 개 끝 -->
-			</div>
-			<!-- menu END -->
-			<!-- div처음 숫자  6개 -->
+				
+			 </div> <!-- menu END -->
+			
 
+			<div id = "contents">
 			
 			<div class="my_registration">
 			
-			<h2><spring:message code="member.info"/></h2>
+			
+			<!-- 회원정보 -->
+			<span><spring:message code="member.info"/></span> 
 			<form:form action="Member_Join" name="frm" method="post" commandName="registerRequest">
 			
-			<p>
-			<label><spring:message code="name"/>:<br>
-			:<form:input path="name"/>		
-			<form:errors path="name"/>	
-			</label> 
-			</p>
 			
-			<p>
-			<label><spring:message code="userId"/>:<br>
-			:<form:input path="userId"/>		
-			<form:errors path="userId"/>
-			<input type="button" value="중복 체크" onclick="idCheck()">	
-			</label> 
-			</p>
+			<!-- 회원정보 상세 내용을 감싸는 div -->
+			<table> 
+			<tr>
+			  <th><spring:message code="name"/></th>
+			  <td><form:input path="name"/></td>	
+			      <form:errors path="name"/>	
+			</tr>
 			
-			<p>
-			<label><spring:message code="pwd"/>:<br>
-			:<form:input path="pwd" id="byteInfo" name="pwd" size="20" onkeyup="checkLength(this, 12)"/>		
-			<form:errors path="pwd"/>	
-			</label> 
-			</p>
+			<tr>
+			<th><spring:message code="userId"/></th>
+			<td><form:input path="userId"/> 
+			    <input type="button" class="check_btn"  value="중복 체크" onclick="idCheck()" ></td>		
+			    <form:errors path="userId"/>
+			</tr>
 			
-			<p>
-			<label><spring:message code="pwd.confirm"/>:<br>
-			:<form:input path="pwd_confirm"/>		
+			<tr>
+			<th><spring:message code="pwd"/></th>
+			<td><form:input path="pwd" id="byteInfo" name="pwd" size="20" onkeyup="checkLength(this, 12)"/></td>	
+			    <form:errors path="pwd"/>	
+			</tr>
+			
+			<tr>
+			<th><spring:message code="pwd.confirm"/></th>
+			<td><form:input path="pwd_confirm"/></td>	
 			<form:errors path="pwd_confirm"/>	
-			</label> 
-			</p>
+			</tr>
 			
-			<p>
-			<label><spring:message code="phone"/>:<br>
-			:<form:input path="phone"/>		
+			<tr>
+			<th><spring:message code="phone"/></th>
+			<td><form:input path="phone"/></td>		
 			<form:errors path="phone"/>	
-			</label> 
-			</p>
+			</tr>
 			
-			<p>
-			<label><spring:message code="email"/>:<br>
-			:<form:input path="email"/>		
+			<tr>
+			<th><spring:message code="email"/></th>
+			<td><form:input path="email"/></td>
 			<form:errors path="email"/>	
-			</label> 
-			</p>
+			</tr>
 			
-			<p>
-			<label><spring:message code="gender"/>:<br>
-			<input type="radio" name="gender" value="0" checked="checked">남성 
-			<input type="radio" name="gender" value="1">여성	
-			</label> 
-			</p>
+			<tr>
+			<th><spring:message code="gender"/></th>
+			<td><input type="radio" class="radio" name="gender" value="0" checked="checked">남성 
+			    <input type="radio" class="radio" name="gender" value="1">여성	
+			</td> 
+			</tr>
+			</table> <!-- table end -->
+			<!--  가입 완료 버튼 -->
+			<input type="submit" class="finish_btn" value="<spring:message code="register.btn"/>">
 			
-			<input type="submit" value="<spring:message code="register.btn"/>">
 			
-			 </div> 
+			 </div>  <!-- my_registration end -->
 			</form:form>
-		</div>
-		</div>
+			
+			</div>  <!-- contents end -->
+		</div> <!-- section end -->
+		</div> <!-- wrap EDN -->
 </body>
 </html>

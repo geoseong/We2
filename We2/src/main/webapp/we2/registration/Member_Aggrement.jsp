@@ -152,10 +152,8 @@
 						value="동의하지 않습니다" onclick="return nochk()" style="width: 150px;" />
 					</td>
 				</div>
-			</div>
-			<!-- section end -->
+			</div> <!-- section end -->
 		</form>
-	</div>
-	<!-- wrap end -->
+	</div> <!-- wrap end -->
 </body>
 </html>

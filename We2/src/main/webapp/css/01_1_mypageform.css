@@ -13,6 +13,12 @@ a {
  	color: #f9f9f9; 
  	text-decoration: none; 
  } 
+ 
+#wrap {
+	width: 1200px;
+    margin : 0px auto;
+}
+
 #header{
     width:100%;
     border-bottom:8px solid #4CC4EE;
@@ -67,25 +73,34 @@ a {
 #section{
     width:1200px;
     height:820px;
-    margin-left:15%;
     text-align:center;
   /*   background-color : lightgray;
     border: 1px solid red; */
   }
 
-/*약관 동의 글씨 디자인*/
+/*�빟愿� �룞�쓽 湲��뵪 �뵒�옄�씤*/
 #section h1{
 	margin-top:30px;
-	color: #166BA3;
+}
+
+#section h1 span {
+	font-size:22px;
+    color: #4CC4EE;
 	font-weight:600;
 }
+
+#section textarea{
+	font-size:13px;
+}
+
+
 
 #section h2{
 	font-size:15px;
 	text-align:center;
 }
 
-/*약관 동의 버튼 디자인*/
+/*�빟愿� �룞�쓽 踰꾪듉 �뵒�옄�씤*/
 .select{
 	width:50%;
     margin-left:35%;
@@ -148,6 +163,59 @@ a {
 /*    border: 1px solid lightgray;*/
 }
 
+
+#section>#contents>.my_registration {
+	padding:30px;
+}
+
+/* 회원가입 타이틀 글씨*/
+.my_registration span{
+	font-size:25px;
+	font-weight:600;
+	color: #4CC4EE;
+}
+
+/* 회원가입 테이블 */
+table {
+	padding:30px;
+	padding-left:150px;
+	padding-right:150px;
+	width: 100%;
+	border-collapse : callapse;
+	line-height: 24px;
+}
+
+table td,th{
+	border: #d3d3d3 solid 1px;
+	height:30px;
+	padding:5px;
+	padding-left:20px;
+	text-align:left;
+}
+
+th{
+	width:30%;
+	margin-left:20px;
+	font-size:15px;
+	font-weight:600;
+	color:#424444;
+	background-color:#d3d3d3;
+}
+
+
+table input{
+	text-align:left;
+	width:300px;
+	height:30px;
+}
+
+.radio{
+	text-align:left;
+	width:80px;
+	height:30px;
+}
+
+
 .my_info{
     width:100%;
     font-size:15px;
@@ -155,7 +223,7 @@ a {
 /*    border: 1px solid black;*/
 }
 
-/*�굹�쓽 �젙蹂� 蹂닿린 ���씠�� 湲��뵪*/
+/*占쎄돌占쎌벥 占쎌젟癰귨옙 癰귣떯由� 占쏙옙占쎌뵠占쏙옙 疫뀐옙占쎈뎁*/
 #contents>.my_info span{
     position:absolute;
     width:300px;
@@ -243,7 +311,7 @@ my_info_view>.my_picture{
    border-top: 1px solid #4CC4EE;   
 }
 
-/*�궡 �봽濡쒖젥�듃 蹂닿린 ���씠�� 湲��뵪*/
+/*占쎄땀 占쎈늄嚥≪뮇�젰占쎈뱜 癰귣떯由� 占쏙옙占쎌뵠占쏙옙 疫뀐옙占쎈뎁*/
 .my_proj span{
     margin:40px;
     font-size:20px;
@@ -318,6 +386,40 @@ my_info_view>.my_picture{
     opacity:0.3;
 }
 
+/* 중복체크 버튼 */
+.check_btn {
+	width:80px;
+	padding:5px;
+	border:none;
+	background:#d3d3d3;
+	color:#424444;
+    font-size:13px;
+	border-radius:5px;
+    text-align: center;
+}
+
+.check_btn:hover{
+	color:#fff;
+    background-color: black;
+    opacity:0.7;
+}
+
+/* 가입완료 버튼 */
+.finish_btn {
+	width:100px;
+	padding:5px;
+	border:none;
+	background:#4CC4EE;
+	color:#fff;
+    font-weight: 600;
+    font-size:18px;
+	border-radius:5px;
+    text-align: center;
+}
+.finish_btn:hover{
+    background-color: black;
+    opacity:0.3;
+}
 
 #footer {
     color:#89867e;

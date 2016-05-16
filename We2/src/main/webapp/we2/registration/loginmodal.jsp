@@ -23,8 +23,8 @@
             <form:form action="login" commandName="loginCommand" name="frm">
               <div class = "id">
                 <span>User ID</span><br>
-                <form:input path="userid" style="width:240px; height:30px;"/>
-                <span id="error" style="color: gray; font-size: 7px;"><form:errors path="userid"/></span>
+                <form:input path="userId" style="width:240px; height:30px;"/>
+                <span class="error"><form:errors path="userId"/></span>
                   <br>
              </div>
                
@@ -35,11 +35,11 @@
                   <br>
               </div>
              
-             <p align="right">
-             	<label>
+            <p align="right">
+             	<div class = "remember">
              		<spring:message code="rememberUserid"/>
              		<form:checkbox path="rememberUserid"/>
-             	</label>
+             	</div>
              </p>
               
              <div class = "lost">

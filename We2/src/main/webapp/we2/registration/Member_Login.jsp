@@ -28,12 +28,12 @@ $("#nav>a").click(function(){
 </head>    
 <body>
     <!--1.백그라운드에 깔리는 화면페이지-->
-<div class="modal_bg"></div>
+<div id="modal_bg"></div>
 
 
 
 <div class="first_main">
- 	<jsp:include page="Main.jsp" flush="false"/>
+ 	<jsp:include page="../index.jsp" flush="false"/>
 </div>
 
 
@@ -51,7 +51,7 @@ $("#nav>a").click(function(){
               <div class = "id">
                 <span>User ID</span><br>
                 <form:input path="userId" style="width:240px; height:30px;"/>
-                <span id="error" style="color: gray; font-size: 7px;"><form:errors path="userId"/></span>
+                <span class ="error" ><form:errors path="userId"/></span>
                   <br>
              </div>
                
@@ -63,14 +63,14 @@ $("#nav>a").click(function(){
               </div>
              
              <p align="right">
-             	<label>
+             	<div class = "remember">
              		<spring:message code="rememberUserid"/>
              		<form:checkbox path="rememberUserid"/>
-             	</label>
+             	</div>
              </p>
               
              <div class = "lost">
-              <a href="#">아이디 또는 비밀번호 분실</a>
+              <a href="#">아이디/비밀번호 찾기</a>
              </div>
             
               <div class="login"> 
