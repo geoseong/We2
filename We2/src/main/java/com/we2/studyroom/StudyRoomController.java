@@ -54,12 +54,12 @@ public class StudyRoomController {
 		  model.addAttribute("Content", studyroomService.getList(row_start, row_end));
 		
 		// JSP:INCLUDE PAGE
-		  model.addAttribute("Boardpage", "StudyRoomList.jsp");
+		  model.addAttribute("studyroompage", "StudyRoomList");
 		
 		
 		System.out.println("--------------------------listSpecificPage");
 		
-		return "studyRoom/StudyRoomList";
+		return "studyRoom/shareArea";
 	}
 
 
@@ -85,7 +85,7 @@ public class StudyRoomController {
 		/*	model.addAttribute("totalCnt", new Integer(studyroomService.getTotalCnt()));*/
 			model.addAttribute("current_page", "1"); // ���� �ۼ��Ŀ��� ó�� �������� ���ư���
 			model.addAttribute("StudyRoomList", studyroomService.getList(1, 2));
-			return "studyRoom/StudyRoomList";
+			return "studyRoom/shareArea";
 		}
 		
 		
