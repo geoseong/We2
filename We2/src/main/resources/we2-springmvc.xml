@@ -18,10 +18,12 @@
 	<!-- css, js 등의 관리를 DispatcherServlet에서 관리하면 경로를 못찾으므로 Default Servlet에서 관리하게 설정. -->
 	<mvc:default-servlet-handler/>
 
+	<!-- View Resolver 설정 -->
 	<mvc:view-resolvers>
 		<mvc:jsp prefix="/we2/"/>
 	</mvc:view-resolvers>
 	
+	<!-- label.properties 설정 -->
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basenames">

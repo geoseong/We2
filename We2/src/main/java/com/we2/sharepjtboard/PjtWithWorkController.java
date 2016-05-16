@@ -1,4 +1,4 @@
-package com.we2.sharepjtboard;
+/*package com.we2.sharepjtboard;
 
 import java.text.ParseException;
 
@@ -24,7 +24,7 @@ public class PjtWithWorkController {
 	// 한 화면에 표시할 페이지 수 정의
 	int page_for_block=10;
 	
-	/* 리스트 */
+	 리스트 
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String listget(@RequestParam("page") int page, Model model) throws ParseException {
 		System.out.println("-------------------------------받아온 파라미터");
@@ -56,7 +56,7 @@ public class PjtWithWorkController {
 			System.out.println("t_pages : " + t_pages +" , t_rows : "+t_rows+" , block_total : "+block_total+" , block : "+ block + " , block_first : " + block_first + " , block_last : " + block_last);
 		System.out.println("-------------------------------변수설정 끝");
 		
-		/** SECTION : REQUEST 영역에 보내기 */
+		*//** SECTION : REQUEST 영역에 보내기 *//*
 		// SELECT 결과물
 			model.addAttribute("Content", boardService.getformatDate(row_start, row_end));
 		// JSP:INCLUDE PAGE
@@ -76,7 +76,7 @@ public class PjtWithWorkController {
 		return "pjtBoard/boardmain";
 	}
 	
-	/** 글쓰기 폼 띄우기 */
+	*//** 글쓰기 폼 띄우기 *//*
 	@RequestMapping(value="/write", method=RequestMethod.GET)
 	public String writeget(Model model, PjtBoardBean pjtboardbean){
 		// JSP:INCLUDE PAGE
@@ -84,7 +84,7 @@ public class PjtWithWorkController {
 		return "pjtBoard/boardmain";
 	}
 	
-	/** 글 등록하기 */
+	*//** 글 등록하기 *//*
 	@RequestMapping(value="/write", method=RequestMethod.POST)
 	public String writepost(Model model, PjtBoardBean pjtboardbean){
 		
@@ -94,3 +94,4 @@ public class PjtWithWorkController {
 	}
 	
 }
+*/

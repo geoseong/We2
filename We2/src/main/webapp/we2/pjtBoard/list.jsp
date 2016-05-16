@@ -14,7 +14,7 @@
 		<table class="list">
 				<tr>
 					<td colspan="5" style="border: white; text-align: right;">
-						<a href="write?category=${category }">글쓰기</a>
+						<a href="write">글쓰기</a>
 					</td>
 				</tr>
 				
@@ -26,7 +26,7 @@
 					<tr class="record">	
 						<td>${content.itemNum }</td>
 						<td>
-								<a href="ShareContent?itemNum=${BoardList.itemNum }&page=${page}">${content.itemContent }</a>
+								<a href="content?itemNum=${content.itemNum }&page=${page}&category=${category}">${content.itemContent }</a>
 						</td>
 						<td>${content.userId }</td>
 						<td>${content.itemDate }</td>

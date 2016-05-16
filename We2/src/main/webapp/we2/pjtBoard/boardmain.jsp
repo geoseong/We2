@@ -8,11 +8,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>프로젝트 공유 게시판</title>
 
-	<link rel="stylesheet" href="../css/w2_reset.css" type="text/css">
-	<link rel="stylesheet" href="../css/board_fin.css" type="text/css">
-	<link rel="stylesheet" href="../css/board_contents.css" type="text/css" >
+	<link rel="stylesheet" href="../../css/w2_reset.css" type="text/css">
+	<link rel="stylesheet" href="../../css/board_fin.css" type="text/css">
+	<link rel="stylesheet" href="../../css/board_contents.css" type="text/css" >
 	
-	<script type="text/javascript" src="../js/jquery-1.12.1.min.js"></script> 
+	<script type="text/javascript" src="../../js/jquery-1.12.1.min.js"></script> 
    
 </head>
 
@@ -37,16 +37,16 @@
 
             <a href="Project">프로젝트 </a>
             <a href="ItemList">커뮤니티 </a>
-            <a href="ShareList">프로젝트공유 </a>
+            <a href="/We2/pjtBoard/group/list?page=1">프로젝트공유 </a>
             <a href="List.do">스터디룸공유 &nbsp;</a>
             
             <!-- 로그인 되어있으면 로그인만 표시, 안되어있으면 로그아웃만 표시. -->
             <c:choose>
-			 	<c:when test="${empty loginUser}">
-			            <a href="com_we2_registration_jsp/01_1_login.jsp">로그인</a>
+			 	<c:when test="${empty authInfo}">
+			            <a href="/We2/login">로그인</a>
 				 </c:when>
 				 <c:otherwise>
-			            <a href="We2_logout.do">로그아웃</a>
+			            <a href="/We2/logout">로그아웃</a>
 				 </c:otherwise>
 			 </c:choose>
 			 
@@ -62,16 +62,16 @@
           <!-- 커뮤니티 밑 노란줄-->
        </div>
        <br>
-          <a href="ShareList?page=group">조별과제</a><br>
-          <a href="ShareList?page=exam">시험공부</a><br>
-          <a href="ShareList?page=collabo">회사협업</a>
+          <a href="/We2/pjtBoard/group/list?page=1">조별과제</a><br>
+          <a href="/We2/pjtBoard/exam/list?page=1">시험공부</a><br>
+          <a href="/We2/pjtBoard/collabo/list?page=1">회사협업</a>
      </div> 
   
 	 <!-- 게시판 include 영역 -->
 	  <div id="contents">
 	  	<h1>조별과제 게시판</h1>
 	  	
-			<jsp:include page="${Boardpage }"/>
+			<jsp:include page="${Boardpage }.jsp"/>
 			
 	  </div>
      

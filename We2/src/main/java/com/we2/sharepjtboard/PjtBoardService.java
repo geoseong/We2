@@ -14,8 +14,8 @@ public class PjtBoardService {
 	@Autowired
 	private PjtBoardMapper boardMapper;
 	
-	public ArrayList<FormattedDate> getformatDate(int row_start, int row_end) throws ParseException{
-		ArrayList<PjtBoardBean> arraymapper=boardMapper.getList( row_start, row_end);
+	public ArrayList<FormattedDate> getformatDate(String category, int row_start, int row_end) throws ParseException{
+		ArrayList<PjtBoardBean> arraymapper=boardMapper.getList(category, row_start, row_end);
 		
 		System.out.println("---------------Date형을 원하는 포멧(String형)으로 바꾸는작업 시작");
 		Date mapperdate = null;
@@ -48,12 +48,17 @@ public class PjtBoardService {
 	}
 	
 	// 총 폐이지 갯수 구하기
-	public int getTotalCnt(){
-		return boardMapper.getTotalCnt();
+	public int getTotalCnt(String category){
+		return boardMapper.getTotalCnt(category);
 	}
 	
 	// 게시물 등록
-	public void insertBoard (PjtBoardBean pjtboardbean){
-		boardMapper.insertBoard(pjtboardbean);
+	public void insertBoard (String category, PjtBoardBean pjtboardbean){
+		System.out.println("게시물 insert 완료.");
+		boardMapper.insertBoard(category, pjtboardbean);
+	}
+	
+	public void count_plus(String category, int itemNum){
+		boardMapper.count_plus(category, itemNum);
 	}
 }

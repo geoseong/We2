@@ -12,13 +12,6 @@ public class PjtBoardBean {
 	private String itemPath;
 	private String itemContent;
 	
-
-	public int getItemClick() {
-		return itemClick;
-	}
-	public void setItemClick(int itemClick) {
-		this.itemClick = itemClick;
-	}
 	public int getItemNum() {
 		return itemNum;
 	}
@@ -43,7 +36,12 @@ public class PjtBoardBean {
 	public void setItemDate(Date itemDate) {
 		this.itemDate = itemDate;
 	}
-
+	public int getItemClick() {
+		return itemClick;
+	}
+	public void setItemClick(int itemClick) {
+		this.itemClick = itemClick;
+	}
 	public String getItemPath() {
 		return itemPath;
 	}
@@ -56,5 +54,6 @@ public class PjtBoardBean {
 	public void setItemContent(String itemContent) {
 		this.itemContent = itemContent;
 	}
+	
 	
 }
