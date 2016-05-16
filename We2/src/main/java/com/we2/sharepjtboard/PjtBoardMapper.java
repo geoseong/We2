@@ -28,19 +28,19 @@ public interface PjtBoardMapper {
 			"update ${category} set itemClick=itemClick+1 where itemNum=#{itemNum}";
 	
 	final String insert =
-			"insert into ${category} (itemTitle,userId,itemDate,itemClick,itemPath,itemContent)"
+			"insert into ${category} (itemTitle,itemDate,itemClick,itemPath,itemContent, itemDataType)"
 			+ " values("
 			+ "#{itemTitle}, "
-			+ "#{userId}, "
 			+ "curdate(), "
 			+ "0, "
 			+ "#{itemPath}, "
-			+ "#{itemContent})";
+			+ "#{itemContent}, "
+			+"#{itemDataType})";
 			
 	final String select_all = "select count(1) from ${category}";
 	
 	final String modify = 
-			"update ${category} set itemTitle=#{itemTitle}, itemPath=#{itemPath}, itemContent=#{itemContent}";
+			"update ${category} set itemTitle=#{itemTitle}, itemPath=#{itemPath}, itemContent=#{itemContent}, itemDataType=#{itemDataType}";
 	
 	final String delete="delete from ${category} where itemNum=#{itemNum}";
 	/* END OF SQL */
@@ -66,7 +66,12 @@ public interface PjtBoardMapper {
 	void count_plus(@Param("category") String category, @Param("itemNum") int itemNum);
 	
 	@Insert(insert)
-	void insertBoard(@Param("category") String category, @Param("itemTitle")String itemTitle, @Param("userId")String userId,@Param("itemPath")String itemPath,@Param("itemContent")String itemContent);
+	void insertBoard(
+			@Param("category") String category, 
+			@Param("itemTitle")String itemTitle, 
+			@Param("itemPath")String itemPath,
+			@Param("itemContent")String itemContent, 
+			@Param("itemDataType")String itemDataType);
 	
 	@Select(select_by_num)
 	@Results(value = {
@@ -82,7 +87,9 @@ public interface PjtBoardMapper {
 
 	@Update(modify)
 	void updateBoard(
-			@Param("category") String category, PjtBoardBean pjtboardbean
+			@Param("category") String category, 
+
+			@Param("itemDataType")String itemDataType
 			/*@Param("itemNum") int itemNum, 
 			@Param("itemPath") String itemPath, 
 			@Param("itemContent") String itemContent*/);

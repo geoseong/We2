@@ -11,7 +11,7 @@ public class PjtBoardBean {
 	private int itemClick;
 	private String itemPath;
 	private String itemContent;
-
+	private String itemDataType;
 
 	
 	public int getItemNum() {
@@ -98,13 +98,18 @@ public class PjtBoardBean {
 
 
 
-	@Override
-	public String toString() {
-		return "PjtBoardBean [itemNum=" + itemNum + ", itemTitle=" + itemTitle + ", userId=" + userId + ", itemDate="
-				+ itemDate + ", itemClick=" + itemClick + ", itemPath=" + itemPath + ", itemContent=" + itemContent
-				+ "]";
+	public String getItemDataType() {
+		return itemDataType;
 	}
-	
+
+
+
+	public void setItemDataType(String itemDataType) {
+		this.itemDataType = itemDataType;
+	}
+
+
+
 	
 	
 }

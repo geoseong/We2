@@ -73,7 +73,7 @@
 							<c:otherwise>
 									<!-- 기본설정경로 : 서블릿경로
 										E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps -->
-								<img src="/We2/we2/pjtBoard/data/${BoardContent.getItemPath() }" style="width: 300px;">
+								<img src="/We2/we2/pjtBoard/data/datafile.jpg" style="width: 300px;">
 							</c:otherwise>
 						</c:choose>
 					</td>
