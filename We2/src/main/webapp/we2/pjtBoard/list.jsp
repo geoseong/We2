@@ -26,7 +26,7 @@
 					<tr class="record">	
 						<td>${content.itemNum }</td>
 						<td>
-								<a href="content?itemNum=${content.itemNum }&page=${page}&category=${category}">${content.itemContent }</a>
+					<a href="content?itemNum=${content.itemNum }&page=${page}&category=${category}">${content.itemContent }</a>
 						</td>
 						<td>${content.userId }</td>
 						<td>${content.itemDate }</td>
