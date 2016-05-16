@@ -37,8 +37,8 @@
 
             <a href="Project">프로젝트 </a>
             <a href="ItemList">커뮤니티 </a>
-            <a href="/We2/pjtBoard/group/list?page=1">프로젝트공유 </a>
-            <a href="List.do">스터디룸공유 &nbsp;</a>
+            <a href="list?page=1&category=group">프로젝트공유 </a>
+            <a href="../studyroom/list?page=1">스터디룸공유 &nbsp;</a>
             
             <!-- 로그인 되어있으면 로그인만 표시, 안되어있으면 로그아웃만 표시. -->
             <c:choose>
@@ -62,9 +62,9 @@
           <!-- 커뮤니티 밑 노란줄-->
        </div>
        <br>
-          <a href="/We2/pjtBoard/group/list?page=1">조별과제</a><br>
-          <a href="/We2/pjtBoard/exam/list?page=1">시험공부</a><br>
-          <a href="/We2/pjtBoard/collabo/list?page=1">회사협업</a>
+          <a href="list?page=1&category=group">조별과제</a><br>
+          <a href="list?page=1&category=exam">시험공부</a><br>
+          <a href="list?page=1&category=collabo">회사협업</a>
      </div> 
   
 	 <!-- 게시판 include 영역 -->

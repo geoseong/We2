@@ -16,8 +16,8 @@ public class PjtBoardService {
 	private PjtBoardMapper boardMapper;
 	
 	// 일반 게시판 리스트 뽑을 때.
-	public ArrayList<FormattedDate> getformatDate(String category, int row_start, int row_end) throws ParseException{
-		ArrayList<PjtBoardBean> arraymapper=boardMapper.getList(category, row_start, row_end);
+	public ArrayList<FormattedDate> getformatDate(String category, int row_start, int rows_per_page) throws ParseException{
+		ArrayList<PjtBoardBean> arraymapper=boardMapper.getList(category, row_start, rows_per_page);
 		
 		System.out.println("---------------Date형을 원하는 포멧(String형)으로 바꾸는작업 시작");
 		Date mapperdate = null;
@@ -82,13 +82,6 @@ public class PjtBoardService {
 	// 게시물 검색 후 리스트.
 	public ArrayList<FormattedDate> findBoard(String cartegory, String find, String findword, int row_start, int row_end){
 		ArrayList<PjtBoardBean> arraymapper=boardMapper.findBoard(cartegory, find, findword, row_start, row_end);
-		/*
-		 * @Param("category") String category, 
-			@Param("find") String find, 
-			@Param("findword") String findword, 
-			@Param("row_start") int row_start, 
-			@Param("row_end") int row_end);
-		 */
 		
 		System.out.println("---------------Date형을 원하는 포멧(String형)으로 바꾸는작업 시작");
 		Date mapperdate = null;

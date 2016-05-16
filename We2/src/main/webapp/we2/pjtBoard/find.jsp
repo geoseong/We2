@@ -42,7 +42,7 @@
 					<c:when test="${block-1==0 }">
 					</c:when>
 					<c:otherwise>
-						<a href="list?page=${block_first - page_for_block }&category=${category}">[이전]</a>&nbsp;
+						<a href="find?page=${block_first - page_for_block }&category=${category}&find=${find}&findword=${findword}">[이전]</a>&nbsp;
 					</c:otherwise>
 				</c:choose>
 				<c:forEach var="i" begin="${block_first }" end="${block_last}" >
@@ -51,7 +51,7 @@
 							<b> [ ${i} ] </b>
 						</c:when>
 						<c:otherwise>
-							<a href="list?page=${i }&category=${category}">
+							<a href="find?page=${i }&category=${category}&find=${find}&findword=${findword}">
 								[ ${i} ]
 							</a>
 						</c:otherwise>
@@ -61,7 +61,7 @@
 					<c:when test="${block==block_total }">
 					</c:when>
 					<c:otherwise>
-						&nbsp;<a href="list?page=${block_first + page_for_block}&category=${category}">[다음]</a>
+						&nbsp;<a href="find?page=${block_first + page_for_block}&category=${category}&find=${find}&findword=${findword}">[다음]</a>
 					</c:otherwise>
 				</c:choose>
 				</div>  

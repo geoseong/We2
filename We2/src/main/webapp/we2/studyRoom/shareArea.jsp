@@ -22,7 +22,7 @@
         <h2>
             <b>
                 <sub>
-                    <a href="index.jsp">We2</a>
+                    <a href="../">We2</a>
                 </sub>  
             </b>
         </h2>
@@ -32,7 +32,7 @@
 
             <a href="02_project.html">프로젝트 </a>
             <a href="ItemList">커뮤니티 </a>
-            <a href="ShareList">프로젝트공유 </a>
+            <a href="list?page=1&category=group">프로젝트공유 </a>
             <a href="List.do">스터디룸공유 &nbsp;</a>
             
             <c:choose>
