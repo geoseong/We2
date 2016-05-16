@@ -1,0 +1,294 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
+
+
+body { 
+	font-family: 'Lato', Calibri, Arial, sans-serif; 
+ 	color: #424444; 
+ 	background: #f9f9f9;
+    padding: 0;
+    margin: 0;
+ } 
+
+a { 
+ 	color: #f9f9f9; 
+ 	text-decoration: none; 
+ } 
+
+#header{
+    width:100%;
+    border-bottom:50px solid #4CC4EE;
+}
+
+#headerinner {
+	position:relative;  
+	color: #424444;
+    margin : 0px auto;
+    padding: 10px 0;
+    width:100%;
+    height:25px;  
+}
+
+#headerinner h2{
+    position: absolute;
+    top:45px;
+    left:30px;
+}
+
+/*we2 湲��뵪*/
+#headerinner a{
+    height:20px;
+    color: #f9f9f9;
+    font-size : 35px;
+    font-weight: 800;
+}
+
+
+/*�봽濡쒖젥�듃 �씠由� 遺�遺�*/
+#headerinner h3{
+	position:absolute;
+	left:45%;
+    text-align:center;
+    top:13px;
+    color:#4CC4EE;
+    font-size:23px;
+    font-weight:bold;
+    /*    border:1px solid black; */
+    
+}
+
+#nav  {
+    position: absolute;
+    top:28px;
+    right:5%;
+    font-size :13px;
+}
+
+#nav a {
+    font-size : 13px;
+    color :#89867e; 
+    word-spacing: 1.0em;
+}
+
+/*�떆怨꾩븘�씠肄� �룷�븿 deadline�쓣 媛먯떬諛뺤뒪*/
+#deadline{
+    position: absolute;
+    float:left;
+    width:69%;
+    height:47px;
+    top:47px;
+    margin-left:10%;
+    z-index: 1;
+   /*  border:1px solid black;  */
+}
+
+/*諛곌꼍 �씛�깋 �씪�씤*/
+.state_line_0{
+    position: absolute;
+    float:left;
+    left:85px;
+    top:10px;
+    width:90%;
+    height:22px;
+    background-color: #f9f9f9;
+    color: #89867e;
+    text-align: right;
+   /*  border:1px solid blue; */
+}
+
+/*d-day �씪�씤*/
+.state_line_1 {
+    position: absolute;
+    float:left;
+    left:85px;
+    top:10px;
+    width:120px;
+    height:22px;
+    color:#f9f9f9;
+    background-color:#166BA3;
+    
+}
+
+.state_line_1>span {
+    position: absolute;
+    float:left;
+    left:50%;
+    font-size:14px;
+}
+
+#viewfriends {
+    position: absolute;
+    float:right;
+    right:80px;
+    top:52px;
+}
+
+/*移쒓뎄 蹂닿린 �븘�씠肄섏뿉 留덉슦�뒪瑜� �삱由щ㈃*/
+#viewfriends a:hover { 
+    float:right;
+    right:80px;
+    top:52px;
+    background-color: black;
+    opacity:0.3;
+}
+
+#plusfriends {
+    position: absolute;
+    float:right;
+    right:40px;
+    top:54px;
+}
+/*移쒓뎄 異붽� �븘�씠肄섏뿉 留덉슦�뒪瑜� �삱由щ㈃*/
+#plusfriends a:hover { 
+    float:right;
+    right:40px;
+    top:52px;
+    background-color: black;
+    opacity:0.3;
+}
+
+#section{
+    width:100%;
+    height:820px;
+    padding-right: 0;
+/*    padding-top : 10px;*/
+   /*  border: 0.5px solid green; */
+  }
+
+
+/*1.�쇊履� - 硫붾돱*/
+#section .menu_item {
+	position:relative;
+    float:left;
+    width:11%;
+    height:820px;
+/*    border: 1px solid green;*/
+}
+
+
+.menu_item ul{
+    width:100%;
+    float:left;
+    line-height:25px;  /*湲��옄�넂�씠*/
+/*    border: 1px solid green;*/
+}
+
+.menu_item li a{
+    height:20px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 15px;
+    color : #424444;
+    display: block;
+}
+
+/*留덉슦�뒪瑜� �삱由щ㈃*/
+.menu_item li a:hover {
+   background-color: #E2EEF2;
+}
+    
+#item_1{
+    border-top:5px solid #CE6628;
+    padding:10px 0;
+}
+
+#item_2{
+    border-top:5px solid #E99323;
+    padding:10px 0;
+}
+
+#item_3{
+    border-top:5px solid #1591BE;
+    padding:10px 0;
+}
+#item_4{
+    border-top:5px solid #166BA3;
+    padding:10px 0;
+}
+#item_5{
+    border-top:5px solid #1B3647;
+    border-bottom: 1px solid #dcdcdc;
+    padding:10px 0;
+}
+
+/*2.媛��슫�뜲 - �궡�슜 : �뿬湲곕떎媛� �궡�슜�쓣 �떞�븘二쇱떆硫� �릺�슂!*/
+#section .contents {
+	position:relative;
+    float:left;
+    width:66.9%;
+    height:819px;
+    color :#424444;
+    text-align: center;
+    border-left: 1px solid #dcdcdc;
+}
+
+/*3.�삤瑜몄そ - 梨꾪똿李�*/
+#section .chat{
+	position:relative;
+    float:left;
+    width:22%;
+}
+
+/*嫄곗꽦�넚 ���씠��*/
+.chat .chat_title img{
+	 float:left;
+	 width:55%;
+	 margin-left:20%;
+	 padding:10px;
+    /*  border:1px solid red; */
+ 
+}
+
+.chat_content{
+    width:100%;
+    top:95px;
+    height:820px;
+    font-size: 13px;
+    background-color:#C3E6F2;
+   /*  border:1px solid red; */
+}
+
+/* 嫄곗꽦�넚 硫붿떆吏� 蹂댁뿬二쇨린*/
+.chat_content #messageWindow{
+	
+    width:95%;
+    height:700px;
+    margin-left: 8px;
+    font-size: 13px;
+    background-color:#EBFBFF; 
+   /*  border: 0.5px solid red;  */  
+}
+
+
+/*嫄곗꽦�넚 硫붿떆吏� �엯�젰*/
+.chat_content #inputMessage{
+	 float:left;
+     width:79%;
+     height:40px;
+     margin-top:5px;
+     margin-left:2.5%;
+     bottom:15px;
+     background-color:#EBFBFF; 
+/*  border: 0.5px solid black; */
+}
+
+.chat_content input{
+     float:left;
+     width:16%;
+     height:30px;
+     bottom:16px;
+     margin-top:3px;
+     background-color: #fff;
+     opacity:0.7;
+}
+
+#footer {
+    color:#89867e;
+    clear:both;
+    text-align:center;
+    padding: 5px;	 
+    font-size:13px; 
+}
+
+
+
+

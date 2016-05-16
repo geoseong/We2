@@ -106,7 +106,6 @@ public class PjtGroupController {
 	@RequestMapping(value="/write", method=RequestMethod.GET)
 	public String writeget(HttpSession session, /*HttpServletRequest request,*/ Model model,String category){
 		if(session.getAttribute("authInfo")==null){
-			model.addAttribute("message", "로그인하세요");
 			return "redirect:/";
 		}
 		System.out.println("write.get] category="+category);
@@ -250,6 +249,7 @@ public class PjtGroupController {
 	@RequestMapping(value="/delete", method=RequestMethod.GET)
 	public String deletepost(Model model, String category, int itemNum) {
 		
+		
 		// JSP:INCLUDE PAGE
 		  model.addAttribute("Boardpage", "list");
 		  model.addAttribute("page", 1);
@@ -259,4 +259,9 @@ public class PjtGroupController {
 		return "redirect:list";
 	}
 
+	@RequestMapping(value="/pjt", method=RequestMethod.GET)
+	public String pjt(Model model, String category) {
+		model.addAttribute("page","broadcast");
+		return "/myproject/myproject";
+	}
 }
