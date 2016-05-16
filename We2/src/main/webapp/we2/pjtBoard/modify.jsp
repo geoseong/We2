@@ -12,10 +12,11 @@
 			<form action="modify" method="post" enctype="multipart/form-data" name="frm">
 				<input type="hidden" name="itemNum" value="${BoardUpdate.getItemNum() }">
 				<input type="hidden" name="category" value="${category }">
-				<table>
+				<table class="modify">
 				<tr>
-					<td>
-						<table>
+					<td style="border:none; padding:0px;">
+					
+						<table >
 							<tr>
 								<th>글번호</th>
 								<td colspan="3">${BoardUpdate.getItemNum() }</td>
@@ -28,7 +29,7 @@
 							</tr>
 							<tr>
 								<th>제   목 </th>
-								<td colspan="3"><input type="text" value="${BoardUpdate.getItemTitle() }" name="itemTitle"></td>
+								<td colspan="3"><input type="text" style="width:590px;"value="${BoardUpdate.getItemTitle() }" name="itemTitle"></td>
 							</tr>
 							<tr>
 								<th>첨부파일</th>
@@ -44,7 +45,7 @@
 							</tr>
 						</table>
 					</td>
-					<td>
+					<td style="width:200px; border:0.5px solid #d3d3d3;">
 						<c:choose>
 							<c:when test="${empty BoardUpdate.getItemPath() }">
 									<!-- 기본설정경로 : 서블릿경로
@@ -60,9 +61,11 @@
 					</td>
 				</tr>
 				</table>
-				<br>
+				
+				<div class="write_btn" style="text-align:center;">
 				<input type="submit" value="수정" >
 				<input type="button" value="목록" style="padding: 5px;" onclick="location.href='/We2/pjtBoard/list?page=1&category=${category}'">
+			    </div>
 			</form>
 <!--  게시판 영역 끝 -->
 </body>

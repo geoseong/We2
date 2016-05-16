@@ -19,9 +19,10 @@
 				
 				<input type="hidden" name="itemNum" value="${BoardContent.getItemNum() }">
 				<input type="hidden" name="category" value="${category }">
+				
 				<table>
 				<tr>
-					<td>
+				<td style="border:none; padding:0px;">
 						<table>
 							<tr>
 								<th>글번호</th>
@@ -62,9 +63,8 @@
 								</td>
 							</tr>
 						</table>
-					</td>
-					<td>
-						<c:choose>
+					<td style="border:0.5px solid #d3d3d3;">
+					<c:choose>
 							<c:when test="${empty BoardContent.getItemPath() }">
 									<!-- 기본설정경로 : 서블릿경로
 										E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps -->
@@ -77,12 +77,19 @@
 							</c:otherwise>
 						</c:choose>
 					</td>
+					</table>
+				</td>
 				</tr>
-				</table>
+			</table>
+			
 				<br>
-				<input type="submit" value="수정하기" style="padding: 5px;">
-				<input type="button" value="목록" style="padding: 5px;" onclick="location.href='/We2/pjtBoard/list?page=1&category=${category}'">
-				<input type="button" value="제거하기" style="padding: 5px;" onclick="location.href='delete?itemNum=${BoardContent.getItemNum() }&category=${category}'">
+				
+				<div class="write_btn" style="text-align:center;">
+				<input type="submit" value="수정하기" >
+				<input type="button" value="목록"  onclick="location.href='/We2/pjtBoard/list?page=1&category=${category}'">
+				<input type="button" value="제거하기"  onclick="location.href='delete?itemNum=${BoardContent.getItemNum() }&category=${category}'">
+		        </div> 
+		
 		</form>
 		<%-- </form:form> --%>
 <!--  게시판 영역 끝 -->

@@ -57,7 +57,7 @@
 <!--3.가운데 메뉴 + 내용-->     
 <div id = "section">
    <div id="menu">
-       <b>Project공유</b>
+       <b>프로젝트공유</b>
         <div id = "second_line" style="background-color:#1591BE;">
           <!-- 커뮤니티 밑 노란줄-->
        </div>
