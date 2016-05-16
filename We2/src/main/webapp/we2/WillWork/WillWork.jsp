@@ -218,17 +218,17 @@
 		</div>
 	</div>
 	<div class="input_work"> <!-- div안에 form을 넣으면 데이터 이동이 가능! -->
-	    <form action="willwork2.jsp" method="get" class="input_form">
+	    <form action="willwork2" method="post" class="input_form">
 		<label>할 일 입력</label>
-		<input type="text" size="25" name="inputWork"/>
-		<input type="hidden" name="userName" value="${username0}">
+		<input type="text" size="25" name="inputWork"/> <!-- 입력한 일 -->
+		<input type="hidden" name="userName" value="${username0}"> <!-- 해당 유저네임 -->
 	    <input type="submit" value="추가하기" class="add_btn"/>
 		</form>
 	</div>
 	<div class="complet_work">
 		<div>할 일 완료</div>
 		<div class="checkwork">
-			<form action="willwork3.jsp">
+			<form action="willwork2">
 			<div>			
 			<c:forEach var="user0" items="${results}" varStatus="status">
 					<c:if test="${status.index==0}">

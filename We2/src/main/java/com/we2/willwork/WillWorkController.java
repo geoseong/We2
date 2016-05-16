@@ -3,6 +3,9 @@ package com.we2.willwork;
 import java.text.ParseException;
 import java.util.List;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,12 +25,19 @@ public class WillWorkController {
 	
 	@RequestMapping(value="/willwork", method=RequestMethod.GET)
 	public String test2(Model model) throws ParseException{
-	
 	List<WillWorkVO> results = willWorkDAO.selectAll();
 	model.addAttribute("results", results);
-	
 	return "/WillWork/WillWork";
 	}
 	
+	@RequestMapping(value="/willwork2", method=RequestMethod.POST)
+	public String test2(HttpServletRequest request,Model model) throws ParseException{
+		String doWork = request.getParameter("inputWork"); //입력한 일
+		String name = request.getParameter("userName"); //해당 유저 네임
+		// 이름과 할일 추가하기
+		willWorkDAO.insertWillWork(name, doWork);
+		
+	return "/WillWork/WillWork";
+	}
 	
 }
