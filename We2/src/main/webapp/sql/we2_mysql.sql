@@ -55,7 +55,38 @@ SET PASSWORD FOR we2admin='1234';
 UPDATE user SET password='새비밀번호' WHERE user='we2admin';
 FLUSH PRIVILEGES;
 
--- 테이블 생성
+desc member;
+desc pjtmake;
+-- ���̺� ����
+CREATE TABLE willwork(
+	userId VARCHAR(12),
+	pjtcode int,
+	dowork VARCHAR(200),
+	donework VARCHAR(200),
+    statework VARCHAR(30),
+	name VARCHAR(10),
+    FOREIGN KEY(pjtCode) REFERENCES pjtmake(pjtCode) ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY(userId) REFERENCES member(userId) ON UPDATE CASCADE ON DELETE CASCADE 
+) engine=InnoDB character set=utf8; 
+desc willwork;
+
+insert into willwork values('pts119', '20', '�ڵ�ϼ�' ,'����ó��', 'Y', '�¼�');
+insert into willwork values('park', '20', '�ڵ�ϼ�' ,'����ó��', 'Y', '����');
+insert into willwork values('jeon', '20', '�ڵ�ϼ�' ,'����ó��', 'Y', '�ֿ�');
+insert into willwork values('bae', '20', '�ڵ�ϼ�' ,'����ó��', 'Y', '����');
+insert into willwork values('jo', '20', '�ڵ�ϼ�' ,'����ó��', 'Y', '����');
+
+desc member;
+insert into member values('geoseong', '�ż�', '1234' ,'imf4@naver.com', '010-2023-6697', 'M', now());
+insert into member values('park', '����', '1234' ,'hyuk9658@naver.com', '010-1234-6327', 'M', now());
+insert into member values('jeon', '�ֿ�', '1234' ,'jeon@naver.com', '010-2233-6645', 'W', now());
+insert into member values('bae', '����', '1234' ,'bae@naver.com', '010-2583-9197', 'W', now());
+insert into member values('jo', '����', '1234' ,'jo@naver.com', '010-2333-2312', 'M', now());
+
+
+select * from pjtMake;
+select * from member;
+
 CREATE TABLE member(
 	userid VARCHAR(12),
 	name VARCHAR(10),
@@ -78,10 +109,12 @@ CREATE TABLE pjtMake(
 ) engine=InnoDB character set=utf8; 
 
 desc pjtMake;
+select * from pjtMake;
+commit;
 
 /* 테이블 생성 시 외래키 한번에 설정 (업데이트할때나 지워질때나 늘 함께하는 외래키설정) */
 create table pjtManager(
-	pjtCode varchar(4),
+	pjtCode int,
     userId varchar(12),
     isLeader varchar(2),
     FOREIGN KEY(pjtCode) REFERENCES pjtmake(pjtCode) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -102,10 +135,8 @@ alter database we2 DEFAULT CHARACTER SET utf8;
 /* 현재 문자셋 정보 보기*/
 show variables like 'c%';
 
-/* InnoDB 방식인지 등등.. 테이블 정보 확인하기 */
-SHOW TABLE STATUS FROM we2 LIKE 'pjtMake';
-
-
+/* InnoDB ������� ���.. ���̺� ���� Ȯ���ϱ� */
+SHOW TABLE STATUS FROM we2 LIKE 'pjtManager';
 
 /* 특정 데이터베이스 안에 있는 테이블 목록 보기 */
 use we2;
@@ -121,6 +152,8 @@ ALTER TABLE member CHANGE userid userId VARCHAR(12);
 ALTER TABLE pGroup ADD COLUMN itemDataType varchar(50);
 
 desc pjtMake;
+drop table pjtMake;
+
 
 /* 삽입 */
 # 현재시각은 MySQL에서는 now().
@@ -133,18 +166,25 @@ insert into pjtMake values('10',
 'Thu May 12 00:00:00 KST 2016',
 'Fri May 13 00:00:00 KST 2016');
 
-insert into pjtMake values(
-'10',
+insert into pjtMake(pjtName,pjtClassify,startDate,endDate) values(
 'ttt', 
 '��������',
 STR_TO_DATE('05/12/2016','%m/%d/%Y'),
 STR_TO_DATE('05/14/2016','%m/%d/%Y'));
 
 desc pjtMake;
+select pjtCode, pjtName, pjtClassify from pjtMake;
+select count(1) from pjtMake;
 
-select * from pjtMake;
+pjtCode int auto_increment,
+	pjtName VARCHAR(20),
+	pjtClassify VARCHAR(12),
+	startDate date,
+    endDate date,
+show create table pjtMake;
 
-/* 사용자 삭제 */
+     
+/* ����� ���� */
 DROP USER we2admin@localhost;
 DROP USER we2admin@'%';
 DROP USER we2admin@'192.168.0.100';

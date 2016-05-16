@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    import="com.we2.project.dao.*"%>
+    import="com.we2.willwork.*"%>
     
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -15,8 +15,7 @@
 	// 파라미터 받아오기
 	String doWork = request.getParameter("inputWork");
 	String user = request.getParameter("userName");
-	WillWorkDAO pDao = WillWorkDAO.getInstance();
-
+	WillWorkDAO2 pDao = new WillWorkDAO2();
 	// 이름과 할일 추가하기
 	pDao.inputWork(doWork, user);
 %>

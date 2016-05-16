@@ -56,5 +56,9 @@
 	<bean class="com.we2.pjtMake.pjtMakeCtrl">
 		<property name="pjtMakeDAO" ref="pjtMakeDAO"/>
 	</bean>
+	
+	<bean class="com.we2.willwork.WillWorkController">
+		<property name="willWorkDAO" ref="willWorkDAO2"/>
+	</bean>
 
 </beans>

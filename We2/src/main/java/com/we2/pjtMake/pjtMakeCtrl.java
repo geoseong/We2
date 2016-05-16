@@ -15,9 +15,7 @@ import com.we2.pjtMake.MailSend.SMTPAuthenticator;
 @Controller
 public class pjtMakeCtrl{
 	
-	
 	private PjtMakeDAO pjtMakeDAO;
-	
 	public void setPjtMakeDAO(PjtMakeDAO pjtMakeDAO) {
 		this.pjtMakeDAO = pjtMakeDAO;
 	}
@@ -29,10 +27,10 @@ public class pjtMakeCtrl{
 
 	@RequestMapping(value="/pjtmake", method=RequestMethod.POST)
 	public String test2(@ModelAttribute PjtMakeVO pjtMakeVO) throws ParseException{
-		System.out.println(pjtMakeVO.getPjtName());
+		/*System.out.println(pjtMakeVO.getPjtName());
 		System.out.println(pjtMakeVO.getPjtClassify());
 		System.out.println(pjtMakeVO.getStartDate());
-		System.out.println(pjtMakeVO.getEndDate());
+		System.out.println(pjtMakeVO.getEndDate());*/
 	pjtMakeDAO.insertPjtMake(pjtMakeVO);
 	return "/pjtMake/test";
 	}

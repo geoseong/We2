@@ -20,31 +20,31 @@ public class WillWork extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		WillWorkDAO pDao = WillWorkDAO.getInstance();
 		
-		// ¸Ó¸´¼ö¸¦ ±¸ÇÑ´Ù.
+		// ï¿½Ó¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½.
 		int pjtcode = 0;
 		int counts = pDao.Pjtcount(pjtcode);
 		
-		// ¸Ó¸´¼ö¸¸Å­ userid¸¦ ¹è¿­·Î ¹Þ´Â´Ù.
+		// ï¿½Ó¸ï¿½ï¿½ï¿½ï¿½ï¿½Å­ useridï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ ï¿½Þ´Â´ï¿½.
 		String[] users = new String[counts];
 		
-		// »ç¿ëÀÚ ¸®½ºÆ®¸¦ ¹è¿­·Î ¹Þ±â
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ ï¿½Þ±ï¿½
 		users=pDao.Pjtlists(pjtcode);	
 
-		//ÇØ´ç ÇÁ·ÎÁ§Æ®¿¡ ´ëÇÑ ¸ðµç Á¤º¸¸¦ ÃßÃâ.
+		//ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 	
 		List<WillWorkVO> willWork = pDao.selectpjtusers(pjtcode);		
 		request.setAttribute("WillWork", willWork);		
 			
-		//»ç¿ëÀÚ ½ÇÁ¦ ÀÌ¸§(name)À» »ç¿ëÀÚ userid ¹è¿­À» ÀÌ¿ëÇÏ¿© ¹Þ¾Æ³»¼­ request¿¡ º¸³»±â
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½(name)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ userid ï¿½è¿­ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ï¿ï¿½ ï¿½Þ¾Æ³ï¿½ï¿½ï¿½ requestï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		for(int i=0; i<users.length; i++){
 			String userName = pDao.userName(users[i]);
 			request.setAttribute("username"+i, userName);
 		}
 				
-	// À¯ÀúÁ¤º¸¸¦ °®°íÀÖ´Â ¹è¿­¸¦ »ç¿ëÇÏ¿© ÇØ¾ß ÇÒ ÀÏ ¸®½ºÆ® »Ì¾Æ¼­ setAttribute½ÃÅ´
-		// °¢ À¯Àú¸¶´Ù List, String[], String º¯¼ö¸¦ ÇÏ³ª¾¿ º¸À¯ÇÏ°í ÀÖÀ½.
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½Ø¾ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ì¾Æ¼ï¿½ setAttributeï¿½ï¿½Å´
+		// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ List, String[], String ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½.
 		
-		// 1. ',' ´ÜÀ§·Î ³ª´²Áø °¢ Ç×¸ñÀ» ¹è¿­º¯¼ö¿¡ ÀúÀåÇÏ±â À§ÇØ Á¤ÀÇ.
+		// 1. ',' ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 		String[] doworklist0=null;
 		String[] doworklist1=null;
 		String[] doworklist2=null;
@@ -57,7 +57,7 @@ public class WillWork extends HttpServlet {
 		String[] doneworklist3=null;
 		String[] doneworklist4=null;
 		
-		// 2. SQL¹®ÀÇ °á°ú°ªÀ» ÀúÀåÇÏ´Â String º¯¼ö Á¤ÀÇ
+		// 2. SQLï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ String ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		String dowork0=null;
 		String dowork1=null;
 		String dowork2=null;
@@ -70,25 +70,25 @@ public class WillWork extends HttpServlet {
 		String donework3=null;
 		String donework4=null;
 		
-		// 3. SQL¹®ÀÇ °á°ú°ªÀ» ¹Þ´Â List¹è¿­ Á¤ÀÇ - »ç¿ëÀÚ ¹è¿­À» ÇÏ³ª¾¿ ³Ö¾î¼­ ÇÒÀÏ°ú ÇÑ ÀÏÀ» List¹è¿­·Î ¹Þ´Â´Ù.
+		// 3. SQLï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ´ï¿½ Listï¿½è¿­ ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½Ö¾î¼­ ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Listï¿½è¿­ï¿½ï¿½ ï¿½Þ´Â´ï¿½.
 		List<WillWorkVO> doWork0=pDao.doworklist(users[0]);
 		List<WillWorkVO> doWork1=pDao.doworklist(users[1]);
 		List<WillWorkVO> doWork2=pDao.doworklist(users[2]);
 		List<WillWorkVO> doWork3=pDao.doworklist(users[3]);
 		List<WillWorkVO> doWork4=pDao.doworklist(users[4]);
 		
-		// 4. request¿µ¿ª¿¡ DB¾ÈÀÇ doWork, doneWork °ªÀ» º¸³½´Ù.
+		// 4. requestï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ DBï¿½ï¿½ï¿½ï¿½ doWork, doneWork ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 		request.setAttribute("user0", doWork0);
 		request.setAttribute("user1", doWork1);
 		request.setAttribute("user2", doWork2);
 		request.setAttribute("user3", doWork3);
 		request.setAttribute("user4", doWork4);
 
-		/*${user0}.doWork¶ó°í Ãâ·ÂÇÏ¸é doWorkÀÇ ¸ðµç ÇÒÀÏÀÌ Ãâ·ÂµÊ*/
-		/*${user0}.doneWork¶ó°í Ãâ·ÂÇÏ¸é doneWorkÀÇ ¸ðµç ¿Ï·áÇÑ ÀÏÀÌ Ãâ·ÂµÊ*/
+		/*${user0}.doWorkï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ doWorkï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Âµï¿½*/
+		/*${user0}.doneWorkï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ doneWorkï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Âµï¿½*/
 		
-		// 4-1. ¹è¿­¿¡ ÇÒ ÀÏÀ» ÀúÀåÇÏ±â À§ÇÑ °úÁ¤ 
-		//List<WillWorkVO> º¯¼ö°ªÀÇ 0¹øÂ° °ª (°á°ú°¡ 1Çà »ÓÀÌ±â ‹š¹®¿¡ )À» Stringº¯¼ö¿¡ ÀúÀå
+		// 4-1. ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
+		//List<WillWorkVO> ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 0ï¿½ï¿½Â° ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½Ì±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ )ï¿½ï¿½ Stringï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		dowork0=doWork0.get(0).getDoWork();
 		dowork1=doWork1.get(0).getDoWork();
 		dowork2=doWork2.get(0).getDoWork();
@@ -101,7 +101,7 @@ public class WillWork extends HttpServlet {
 		donework3=doWork0.get(0).getDoneWork();
 		donework4=doWork0.get(0).getDoneWork();
 
-		// 4-2. ',' ´ÜÀ§·Î ³ª´²Áø °¢ Ç×¸ñÀ» ¹è¿­º¯¼ö¿¡ ÀúÀå
+		// 4-2. ',' ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		doworklist0=dowork0.split(",");
 		doworklist1=dowork1.split(",");
 		doworklist2=dowork2.split(",");
@@ -117,48 +117,46 @@ public class WillWork extends HttpServlet {
 	
 			
 		
-		/**select¸¦ ÇØ¼­ ..
-		String donework0 : ¸ðµç ÇÒÀÏÀÌ ÀúÀåµÇ¾î ÀÖ´Â..
+		/**selectï¿½ï¿½ ï¿½Ø¼ï¿½ ..
+		String donework0 : ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½Ö´ï¿½..
 
-		a : ÇÒ ÀÏÀ» ¹è¿­·Î ,·Î ³ª´®
-		b : ¿Ï·á ¾ÆÀÌÅÛÀ» ¹è¿­·Î ¹Þ¾Æ¼­ °¢ ÀÎµ¦½º¿¡ ÀúÀå
+		a : ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ ,ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		b : ï¿½Ï·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ ï¿½Þ¾Æ¼ï¿½ ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		
 		a==b 
-		ÇÒÀÏ°ú ¿Ï·áÇÑ ÀÏÀÌ Áßº¹µÇ¸é
+		ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ßºï¿½ï¿½Ç¸ï¿½
 
-		 true : ¿Ï·áÇÑ ÀÏ¿¡ Ãß°¡. / false : ÇÒ ÀÏÀ» Áö¿ì±â.
+		 true : ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½Ï¿ï¿½ ï¿½ß°ï¿½. / false : ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.
 			
-		trueÀÌ¸é Æ÷ÇÔ ¾È½ÃÅ´			----> ¿Ï·áÇÒ ÀÏ String ¿µ¿ª¿¡ Ãß°¡.
-		false¸é Æ÷ÇÔ 
+		trueï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½È½ï¿½Å´			----> ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½ï¿½ String ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½.
+		falseï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 
-		String += ¾ÆÀÌÅÛ´Ù ÇÑÁÙ·Î ÇÕÄ§
-		±×¸®°í doWork ÄÃ·³À» Update.
+		String += ï¿½ï¿½ï¿½ï¿½ï¿½Û´ï¿½ ï¿½ï¿½ï¿½Ù·ï¿½ ï¿½ï¿½Ä§
+		ï¿½×¸ï¿½ï¿½ï¿½ doWork ï¿½Ã·ï¿½ï¿½ï¿½ Update.
 
-		doneWork ÄÃ·³À» Select·Î °¡Á®¿È.
-		+¿Ï·áÇÒ ÀÏ stringÀ» ÇÕÃÄ¼­ doneWork ÄÃ·³¿¡ Update.*/
+		doneWork ï¿½Ã·ï¿½ï¿½ï¿½ Selectï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
+		+ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½ï¿½ stringï¿½ï¿½ ï¿½ï¿½ï¿½Ä¼ï¿½ doneWork ï¿½Ã·ï¿½ï¿½ï¿½ Update.*/
 		
-		//a --- 5¸í ÀÎ¿øÁß ¸î¹øÂ°ÀÎÁö Àß »ìÆìº¼ °Í.
+		//a --- 5ï¿½ï¿½ ï¿½Î¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â°ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ìº¼ ï¿½ï¿½.
 		// : doworklist0=dowork0.split(",");
 		
 		//b
 		String[] worklist=null;
 		
-		//a==b true / false String º¯¼ö
+		//a==b true / false String ï¿½ï¿½ï¿½ï¿½
 		String istrue = "";
 		String isfalse = "";
 		
 		
-		
-		
-		/** ¿©±âºÎÅÍ user º¯¼ö if¹®À¸·Î ÆÇº°ÇØ¼­ ³Ö±â*/
+		/** ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ user ï¿½ï¿½ï¿½ï¿½ ifï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Çºï¿½ï¿½Ø¼ï¿½ ï¿½Ö±ï¿½*/
 
-		// Ã¼Å©ÇÑ °É ¹Þ´Â ¹è¿­.
+		// Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ ï¿½Þ´ï¿½ ï¿½è¿­.
 		if(request.getAttribute("workarray")!=null){
 			
 			String username = (String)request.getAttribute("username");
 				System.out.println("willwork3 - username : " + username);
 
-			// jsp¿¡¼­ ¹Þ¾Æ¿Â username°ú DAO¿¡¼­ ¹ÞÀº nameÀ» ºñ±³ÇØ¼­ ¾Æ·¡ ÄÚµù¿¡ ÆÇº°ÇØ ³Ö±â
+			// jspï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¿ï¿½ usernameï¿½ï¿½ DAOï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ nameï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½Æ·ï¿½ ï¿½Úµï¿½ï¿½ï¿½ ï¿½Çºï¿½ï¿½ï¿½ ï¿½Ö±ï¿½
 			String[] compareuser = null;
 			if( username.equals(doWork0.get(0).getName()) ){
 				compareuser = doworklist0;			
@@ -171,9 +169,9 @@ public class WillWork extends HttpServlet {
 			}else if( username.equals(doWork4.get(0).getName()) ){
 				compareuser = doworklist4;
 			}
-			System.out.println("Áö¸ñµÈ »ç¶÷ÀÇ ÇÒÀÏ:"+compareuser[0]);
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½:"+compareuser[0]);
 			
-			//ArrayList¿¡ ÇÒÀÏ¿¡ ´ëÇÑ ÀüÃ¼ µ¥ÀÌÅÍ ÀúÀå
+			//ArrayListï¿½ï¿½ ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			ArrayList<String> list = new ArrayList<String>();
 			for(int i=0; i<compareuser.length; i++){
 				list.add(compareuser[i]);
@@ -188,32 +186,32 @@ public class WillWork extends HttpServlet {
 						/*istrue+=", "+doworklist1[i];
 						isequal[j]=doworklist1[i];
 						System.out.println("isequal - "+isequal[j]);
-						System.out.println(doworklist1[i] +"--"+worklist[j]+ " : ÀÏÄ¡");*/	
+						System.out.println(doworklist1[i] +"--"+worklist[j]+ " : ï¿½ï¿½Ä¡");*/	
 						list.remove(compareuser[i]);			
 					}else{
 						//isfalse+=worklist[j];
-				//System.out.println(doworklist1[i] +"--"+worklist[j]+ " : ºÒÀÏÄ¡");						
+				//System.out.println(doworklist1[i] +"--"+worklist[j]+ " : ï¿½ï¿½ï¿½ï¿½Ä¡");						
 					} //end if
 				}
 			} //end for
 			
-			//remove ÈÄ list¸¦ Ãâ·ÂÇØº¸¸é
+			//remove ï¿½ï¿½ listï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Øºï¿½ï¿½ï¿½
 			for(int i=0; i<list.size();i++){
 				istrue += list.get(i)+", ";
-				System.out.println("ÇØ¾ß ÇÒ ÀÏ¿¡ ³²¾Æ¾ß ÇÏ´Â °ª : " + list.get(i));
+				System.out.println("ï¿½Ø¾ï¿½ ï¿½ï¿½ ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½Æ¾ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ : " + list.get(i));
 				
 			}
 			
 			for(int i=0; i<worklist.length;i++){
 				isfalse += worklist[i]+", ";
-				System.out.println("ÇØ¾ß ÇÒ ÀÏ¿¡¼­ Á¦¿Ü½ÃÄÑ¾ß ÇÏ´Â °ª : " + worklist[i]);
+				System.out.println("ï¿½Ø¾ï¿½ ï¿½ï¿½ ï¿½Ï¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ü½ï¿½ï¿½Ñ¾ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ : " + worklist[i]);
 			}
 			
 			isfalse = isfalse.substring(0, isfalse.length()-2);
-				System.out.println("½°Ç¥¸¦ »« isfalse : " + isfalse);
+				System.out.println("ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ isfalse : " + isfalse);
 			
 			istrue = istrue.substring(0, istrue.length()-2);
-				System.out.println("½°Ç¥¸¦ »« istrue : " + istrue);
+				System.out.println("ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ istrue : " + istrue);
 			
 			
 		pDao.inputdoWork(istrue, username);
@@ -221,21 +219,21 @@ public class WillWork extends HttpServlet {
 		
 		} //end if
 
-		// setAttribute - ÇØ¾ß ÇÒ ÀÏ
+		// setAttribute - ï¿½Ø¾ï¿½ ï¿½ï¿½ ï¿½ï¿½
 		request.setAttribute("dowork0", doworklist0);
 		request.setAttribute("dowork1", doworklist1);
 		request.setAttribute("dowork2", doworklist2);
 		request.setAttribute("dowork3", doworklist3);
 		request.setAttribute("dowork4", doworklist4);
 		
-		// setAttribute - ¿Ï·á ÇÑ ÀÏ
+		// setAttribute - ï¿½Ï·ï¿½ ï¿½ï¿½ ï¿½ï¿½
 		request.setAttribute("donework0", doneworklist0);
 		request.setAttribute("donework1", doneworklist1);
 		request.setAttribute("donework2", doneworklist2);
 		request.setAttribute("donework3", doneworklist3);
 		request.setAttribute("donework4", doneworklist4);
 		
-		System.out.println("--------¿©±â±îÁö ½ÇÇàµÊ");
+		System.out.println("--------ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½");
 		if(request.getAttribute("redirect")!=null){
 			response.sendRedirect("willwork.do");
 		}else{
