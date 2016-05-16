@@ -1,3 +1,4 @@
+
 package com.we2.spring;
 
 public class AuthService {
@@ -8,8 +9,8 @@ public class AuthService {
 		this.memberDao = memberDao;
 	}
 
-	public AuthInfo authenticate(String userid, String password) {
-		Member member = memberDao.selectByUserid(userid);
+	public AuthInfo authenticate(String userId, String password) {
+		Member member = memberDao.selectByUserid(userId);
 		if (member == null) {
 				System.out.println("member==null");
 			throw new IdPasswordNotMatchingException();
@@ -20,11 +21,4 @@ public class AuthService {
 		}
 		return new AuthInfo(member.getUserId(), member.getName(), member.getEmail(),  member.getPhone(), member.getGender());
 		}
-	
-	public int idCheck(String userId){
-		return memberDao.confirmID(userId);
-	}
-	
-	
-	
 }

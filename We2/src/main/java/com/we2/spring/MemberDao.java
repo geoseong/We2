@@ -21,10 +21,17 @@ public class MemberDao {
 
 	private RowMapper<Member> memRowMapper = new RowMapper<Member>() {
 		@Override
-		public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
-			Member member = new Member(rs.getString("NAME"), rs.getString("PWD"), rs.getString("EMAIL"),
-					rs.getString("PHONE"), rs.getString("GENDER"), rs.getDate("REGDATE"));
 
+		public Member mapRow(ResultSet rs, int rowNum)
+				throws SQLException {
+			Member member = new Member(
+					rs.getString("NAME"),
+					rs.getString("PWD"),
+					rs.getString("EMAIL"),
+					rs.getString("PHONE"),
+					rs.getString("GENDER"),
+					rs.getDate("REGDATE"));
+			
 			member.setUserId(rs.getString("USERID"));
 			return member;
 		}

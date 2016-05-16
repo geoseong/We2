@@ -26,10 +26,7 @@ public class Member {
 	public String getPhone() {
 		return phone;
 	}
-	
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+
 	
 	public void setUserId(String userId) {
 		this.userId = userId;

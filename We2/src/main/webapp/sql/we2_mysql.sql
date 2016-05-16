@@ -1,9 +1,9 @@
 create database we2;
 
-/*
+/*  create user 시작
 > testuser 라는 사용자가 192.168.100.101 아이피를 통해서 접근하는 것을 허용하며, 
 	ex) CREATE USER 'we2admin'@'192.168.100.101' IDENTIFIED BY '123qwe!@#';
- 비밀번호는 "123qwe!@#" 이고, "mysite" 데이터베이스에 대하여 모든 권한을 부여 받음 
+ 비밀번호는 "123qwe!@#" 이고, "we2" 데이터베이스에 대하여 모든 권한을 부여 받음 
  
  > 모든 IP로의 접근을 허용하기 위해서는 호스트주소 부분을 "%"로 처리한다
 	ex) CREATE USER 'we2admin'@'%' IDENTIFIED BY '123qwe!@#';
@@ -41,9 +41,9 @@ CREATE TABLE member(
 	name VARCHAR(10),
 	pwd VARCHAR(12),
 	email VARCHAR(30),
-    subEmail VARCHAR(30),
 	phone VARCHAR(13),
     gender VARCHAR(2),
+    regDate date,
 	PRIMARY KEY(userid)
 ) engine=InnoDB character set=utf8; 
 desc member;
@@ -58,7 +58,7 @@ CREATE TABLE pjtMake(
 ) engine=InnoDB character set=utf8; 
 desc pjtMake;
 
-/* 테이블 생성 시 외래키 한번에 설정 (업데이트할��나 지워질때나 늘 함께하는 외래키설정) */
+/* 테이블 생성 시 외래키 한번에 설정 (업데이트할때나 지워질때나 늘 함께하는 외래키설정) */
 create table pjtManager(
 	pjtCode varchar(4),
     userId varchar(12),
@@ -89,6 +89,7 @@ SHOW TABLE STATUS FROM we2 LIKE 'pjtMake';
 use we2;
 show tables;
 
+desc pgroup;
 
 /* 컬럼 이름 바꾸기 */
 # ALTER TABLE 테이블명 CHANGE 컬럼이름 새컬럼이름 새컬럼타입
@@ -96,13 +97,16 @@ ALTER TABLE member CHANGE userid userId VARCHAR(12);
 
 /* 컬럼 추가하기 */
 #ALTER TABLE 테이블명 ADD COLUMN 칼럼이름 칼럼타입
-ALTER TABLE member ADD COLUMN regDate date;
+ALTER TABLE pGroup ADD COLUMN itemDataType varchar(50);
 
+/* 컬럼 삭제하기 */
+#ALTER TABLE 테이블명 DROP COLUMN 칼럼이름
+alter table member drop column subEmail;
 
 /* 삽입 */
 # 현재시각은 MySQL에서는 now().
 #INSERT INTO tablename or columns VALUES(25, 'NAME', 5, 25.5 );
-insert into member values('geoseong', '거성', '1234' ,'imf4@naver.com', 'parkopp@hanmail.net', '010-2023-6697', 'M', now());
+insert into member values('geoseong', '거성', '1234' ,'imf4@naver.com', '010-2023-6697', 'M', now());
 
 
 /* 사용자 삭제 */

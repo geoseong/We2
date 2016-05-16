@@ -101,12 +101,12 @@
                     </a>
                 </div>
                 <div class = "box" style="background-color:#1591BE;">
-                    <a href="ShareList">
+                    <a href="pjtBoard/list?page=1&category=group">
                       <img src = "img/index/icon_03.png" style="width:200px"> 
                     </a>
                 </div>
                 <div class = "box" style="background-color:#166BA3; ">
-                    <a href="List.do">
+                    <a href="studyroom/list?page=1">
                       <img src = "img/index/icon_04.png" style="width:200px"> 
                     </a>
                 </div>

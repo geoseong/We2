@@ -9,7 +9,6 @@ form, fieldset, input, textarea, select, menutitle,
 table, th, td {
 	margin:0;
 	padding:0;
-	font-size: 18px;
 }
 
 /* 제목요소 */
