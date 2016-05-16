@@ -10,13 +10,15 @@
 </head>
 <body>
 <!--  게시판 영역 - css에서 #contents 블록의 테두리선(border)를 없애주시면 됩니다. -->
+
 <form:form action="find" method="post" commandName="pjtBoardBean">
-		<table class="list">
-				<tr>
-					<td colspan="5" style="border: white; text-align: right;">
-						<a href="write">글쓰기</a>
-					</td>
-				</tr>
+		
+				<div class="write">
+				<a href="write?category=${category }">글쓰기</a>
+				</div>
+				
+			
+				<table class="list">
 				
 				<tr><th>글번호</th> <th>제목</th> <th>작성자</th> <th>작성일</th> <th>조회수</th></tr>
 				
@@ -26,22 +28,22 @@
 					<tr class="record">	
 						<td>${content.itemNum }</td>
 						<td>
-					<a href="content?itemNum=${content.itemNum }&page=${page}&category=${category}">${content.itemContent }</a>
+								<a href="content?itemNum=${content.itemNum }&category=${category}">${content.itemTitle }</a>
 						</td>
 						<td>${content.userId }</td>
 						<td>${content.itemDate }</td>
 						<td>${content.itemClick }</td>
 					</tr>		
 				</c:forEach>
-				
+				</table>
 			<!-- ★★ 페이징 카운트 넣는 곳 ★★ -->
-				<tr>
-				<td colspan="6">
+				
+				<div class ="counting">
 				<c:choose>
 					<c:when test="${block-1==0 }">
 					</c:when>
 					<c:otherwise>
-						<a href="list?page=${block_first - page_for_block }">[이전]</a>&nbsp;
+						<a href="list?page=${block_first - page_for_block }&category=${category}">[이전]</a>&nbsp;
 					</c:otherwise>
 				</c:choose>
 				<c:forEach var="i" begin="${block_first }" end="${block_last}" >
@@ -50,7 +52,7 @@
 							<b> [ ${i} ] </b>
 						</c:when>
 						<c:otherwise>
-							<a href="list?page=${i }">
+							<a href="list?page=${i }&category=${category}">
 								[ ${i} ]
 							</a>
 						</c:otherwise>
@@ -58,31 +60,27 @@
 				</c:forEach>
 				<c:choose>
 					<c:when test="${block==block_total }">
-						&nbsp;[다음]
 					</c:when>
 					<c:otherwise>
-						&nbsp;<a href="list?page=${block_first + page_for_block}">[다음]</a>
+						&nbsp;<a href="list?page=${block_first + page_for_block}&category=${category}">[다음]</a>
 					</c:otherwise>
 				</c:choose>
-				</td>
-				</tr>
-				
+				</div>  <!-- counting end -->
+			
 			<!-- 검색. -->
-				<tr>
-					<td>
+				
+				 <div class="search">
 					<select id="find" name="find" size="1">
 					   <option value="itemTitle">제목</option>
 					   <option value="userId">아이디</option>
 					   <option value="itemContent ">내용</option>					   
 					 </select>
-					 </td>
-					 <td>
+					
 					 	<input type="text" name="findword">
-					 	<input type="submit" value="검색">
-					 </td>
-				</tr>
+					 	<input class="add_btn" type="submit" value="검색">
+				</div> <!-- search end -->
 				
-		</table>
+		
  </form:form>
 <!--  게시판 영역 끝 -->
 </body>

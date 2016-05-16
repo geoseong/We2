@@ -88,6 +88,7 @@ SHOW TABLE STATUS FROM we2 LIKE 'pjtMake';
 use we2;
 show tables;
 
+desc pgroup;
 
 /* 컬럼 이름 바꾸기 */
 # ALTER TABLE 테이블명 CHANGE 컬럼이름 새컬럼이름 새컬럼타입
@@ -95,7 +96,7 @@ ALTER TABLE member CHANGE userid userId VARCHAR(12);
 
 /* 컬럼 추가하기 */
 #ALTER TABLE 테이블명 ADD COLUMN 칼럼이름 칼럼타입
-ALTER TABLE member ADD COLUMN regDate date;
+ALTER TABLE pGroup ADD COLUMN itemDataType varchar(50);
 
 /* 컬럼 삭제하기 */
 #ALTER TABLE 테이블명 DROP COLUMN 칼럼이름

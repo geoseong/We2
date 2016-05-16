@@ -101,7 +101,7 @@
                     </a>
                 </div>
                 <div class = "box" style="background-color:#1591BE;">
-                    <a href="pjtBoard/group/list?page=1&category=group">
+                    <a href="pjtBoard/list?page=1&category=group">
                       <img src = "img/index/icon_03.png" style="width:200px"> 
                     </a>
                 </div>

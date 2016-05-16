@@ -1,0 +1,112 @@
+@CHARSET "UTF-8";
+#wrap_content{
+	position: relative;
+	padding:50px 80px 30px 80px;	
+	/* border:1px solid red;	  */ 
+}
+
+
+/*게시판 타이틀 글씨*/
+#wrap_content h1{
+	left: 50%;
+	margin-top:20px;
+	margin-bottom:20px;
+	color: #1591BE;	
+	font-size:23px;
+	font-weight:600;
+	font-weight:800;
+	text-align:center;
+}
+
+/*버튼*/
+.add_btn{
+	width:80px;
+	height:30px;
+	float:right;
+	margin-bottom:5px;
+	margin-left:10px;
+	font-size:13px;
+	color:#fff;
+	background-color: #1591BE;	
+	opacity:0.7;
+}
+
+/*버튼에 마우스 올리면*/
+.add_btn:hover{
+	color:black;
+	font-weight:800;
+}
+
+/*총 게시물 글씨*/
+.count{
+	float:left;
+	color:gray;
+	font-size:15px;
+	/* border: 1px solid pink;  */
+}
+
+/*표 부분*/
+
+#wrap_content table{
+	width:100%;
+	border-collapse: collapse;		
+	font-size: 14px;			/* 글꼴 크기 */
+	line-height: 50px;		/* 줄 간격 */	
+	text-align: center;
+	padding:30px 50px 30px 50px;  
+/* 	border: 1px solid red;  */
+	
+}
+table tr{
+	border: 0.5px solid #d3d3d3; 	/* 경계선 색상 스타일 굵기 */
+	padding: 10px;
+	border-left:0;
+	border-right:0;	
+}
+
+table input{
+	height:30px;
+	text-align:left;
+	margin-left:20px;
+}
+
+table textarea{
+	text-align:left;
+	margin-left:20px;
+}
+
+table th {
+	padding:0px;
+	margin-top:100px;
+	margin-left:20px;
+	border-top: 2px solid #1591BE;
+	border-bottom: 2px solid #1591BE;
+	text-align:center;	
+}
+
+table td{
+	text-align:left;
+    left:20px;
+	
+}
+
+.c_btn{
+	margin-top:20px;
+	margin-right:37%;
+}
+
+
+a{
+	text-decoration: none;		/* 링크 밑줄 없애기 */
+	color: #1591BE;		/* 글 색상 */
+}
+
+a:hover {
+	text-decoration: none;		/* 링크 밑줄 없애기 */
+	color: #1591BE;			/* 글 색상 */
+	font-weight:600;
+}
+
+
+
+
