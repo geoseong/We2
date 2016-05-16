@@ -135,10 +135,12 @@
 		<ul class="content_list">
 			<c:forEach var="roomshare" items="${Content}">
 				<li>
-			<a  href="javascript:winOpen('${roomshare.rcode}')">   
+			<a href="javascript:winOpen('${roomshare.rcode}')">   
 			 	<%-- <a href="Content.do?rcode=${roomshare.rcode}"> --%> 
-					
-					 <p class="content_list_img"><img src="/We2/we2/studyRoom/data/${roomshare.rpictureurl}" ></p></a>
+				 <p class="content_list_img">
+					 <img src="/We2/we2/studyRoom/data/${roomshare.rpictureurl}" >
+				 </p>
+			 </a>
 					 <p>이름 : ${roomshare.rname}</p>				   
 					 <p>지역 : ${roomshare.rlocation }&nbsp;&nbsp; &nbsp; 
 					    종류 : ${roomshare.rlocationdetail }</p>

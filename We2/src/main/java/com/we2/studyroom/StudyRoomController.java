@@ -80,7 +80,7 @@ public class StudyRoomController {
 */	
 		/* SECTION : REQUEST 영역에 보내기 */
 		// ★★ SELECT 결과물 ★★
-					model.addAttribute("Content", studyroomService.getlist(row_start, row_end));
+					model.addAttribute("Content", studyroomService.getlist(row_start-1, row_end-1));
 				// JSP:INCLUDE PAGE
 				  model.addAttribute("studyroompage", "StudyRoomList");
 				// total page int 변수를 보냄

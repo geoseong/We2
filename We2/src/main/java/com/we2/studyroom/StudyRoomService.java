@@ -21,7 +21,7 @@ public class StudyRoomService {
 		ArrayList<StudyRoomBean> arraymapper=studyRoomMapper.getList(row_start, row_end);
 		
 		for(int i=0; i<arraymapper.size(); i++){
-			System.out.println("roomshare 테이블 데이터 : " + arraymapper.get(i).getRcontent());
+			System.out.println("roomshare 테이블 데이터 : " + arraymapper.get(i).getRpictureurl());
 		}
 		return arraymapper;
 	}
