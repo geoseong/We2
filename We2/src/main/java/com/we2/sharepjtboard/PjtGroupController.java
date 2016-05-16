@@ -276,7 +276,7 @@ public class PjtGroupController {
 	}
 	
 	@RequestMapping(value="/find", method=RequestMethod.GET)
-	public String findget(Model model, String category, String find, String findword){
+	public String findget(Model model, String category, String find, String findword, int page){
 		System.out.println("find.GET] category : " + category);
 		
 		if(find.equals("itemTitle")){				
@@ -285,12 +285,54 @@ public class PjtGroupController {
 			find="userId";			
 		}else{				
 			find="itemContent";			
-		}				
-		
+		}
 		System.out.println("find값 : " + find);				
 		System.out.println("findword값 : " + findword);	
 		
-		//boardService.find
+		
+		// 시작 rownum 받아오기
+			int row_start= paging.getFirstRowInPage(page, rows_per_page);
+			System.out.println("row_start : " + row_start);
+			
+			// 끝 rownum 받아오기
+			int row_end=paging.getLastRowInPage(page, rows_per_page);
+			System.out.println("row_end : " + row_end);
+			
+			// SQL : 토탈 row, page 구하기
+			int t_rows = boardService.getFindCnt(category, find, findword);
+			int t_pages = paging.getTotalPage(t_rows, rows_per_page);
+			
+			// 블락설정 : 한 화면에 표시될 페이지를 토대로 page세션1(1~10), page세션2(11~20)을 정의
+			int block=paging.getPageBlock(page, page_for_block);
+			int block_total=paging.getPageBlock(t_pages, page_for_block);
+			int block_first=paging.getFirstPageInBlock(block, page_for_block);
+			int block_last=paging.getLastPageBlock(block, page_for_block);
+			
+			if(block_last>t_pages){
+				System.out.println("--block_last가 t_pages보다 크므로 내용이 존재하는 페이지만큼만 block_last를 조절.");
+				block_last=t_pages;
+			}
+			System.out.println("t_pages : " + t_pages +" , t_rows : "+t_rows+" , block_total : "+block_total+" , block : "+ block + " , block_first : " + block_first + " , block_last : " + block_last);
+		System.out.println("-------------------------------변수설정 끝");
+		
+		/** SECTION : REQUEST 영역에 보내기 */
+		// ★★ SELECT 결과물 ★★
+			model.addAttribute("Content", boardService.findBoard(category, find, findword, row_start-1, row_end-1));
+		// JSP:INCLUDE PAGE
+		  model.addAttribute("Boardpage", "list");
+		// total page int 변수를 보냄
+		  model.addAttribute("t_pages", t_pages);
+		// 현재 페이지 번호를 보냄
+		  model.addAttribute("c_page", page);
+		// 페이지 블락 보냄
+		  model.addAttribute("block", block);
+		  model.addAttribute("block_first",block_first);
+		  model.addAttribute("block_last",block_last);
+		  model.addAttribute("block_total",block_total);
+		  model.addAttribute("page_for_block", page_for_block);
+		// category 보냄
+		  model.addAttribute("category", category);
+		System.out.println("--------------------------listSpecificPage");
 		return "pjtBoard/boardmain";
 	}
 }
