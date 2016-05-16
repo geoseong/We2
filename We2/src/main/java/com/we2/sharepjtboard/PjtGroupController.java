@@ -249,6 +249,8 @@ public class PjtGroupController {
 	@RequestMapping(value="/delete", method=RequestMethod.GET)
 	public String deletepost(Model model, String category, int itemNum) {
 		
+		// boardMapper 제거 SQL.
+		boardService.deleteBoard(category, itemNum);
 		
 		// JSP:INCLUDE PAGE
 		  model.addAttribute("Boardpage", "list");
