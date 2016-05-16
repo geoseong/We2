@@ -19,7 +19,7 @@
 <title>스터디룸 공유</title>
 <link rel="stylesheet" type="text/css" href="../css/w2_reset.css">
 <link rel="stylesheet" type="text/css" href="../css/shopping2.css">
-<script type="text/javascript" src="./js/jquery-1.12.2.min.js"></script>
+<script type="text/javascript" src="../js/jquery-1.12.2.min.js"></script>
 
 <script type="text/javascript">
 
