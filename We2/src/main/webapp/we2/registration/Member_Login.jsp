@@ -47,7 +47,7 @@ $("#nav>a").click(function(){
           </div>
 
           <div class="input">
-            <form:form action="login" commandName="loginCommand" name="frm">
+            <form:form action="login" commandName="loginCommand" name="frm" method="POST">
               <div class = "id">
                 <span>User ID</span><br>
                 <form:input path="userId" style="width:240px; height:30px;"/>
@@ -68,7 +68,7 @@ $("#nav>a").click(function(){
              		<form:checkbox path="rememberUserid"/>
              	</div>
              </p>
-              
+             
              <div class = "lost">
               <a href="#">아이디/비밀번호 찾기</a>
              </div>

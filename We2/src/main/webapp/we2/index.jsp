@@ -34,7 +34,7 @@
 	 <c:when test="${empty authInfo}">
 
 		   <div id = "nav">
-            <a href="login" class="loginButton">로그인</a>
+            <a href="login" class="loginButton">로그인</a><!-- A태그를 사용하면 get으로 넘어간다.!! -->
             <!-- #########위에 로그인 header를 넣는다! -->
           </div>
 	 </c:when>

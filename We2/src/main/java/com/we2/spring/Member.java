@@ -78,6 +78,6 @@ public class Member {
 		this.regDate = regDate;
 	}
 	public boolean matchPassword(String password) {
-		return false;
+		return this.pwd.equals(password);//password하고 matchpassword하고 값이 맞는지 비교를 하고 다시 넘김!!
 	}
 }

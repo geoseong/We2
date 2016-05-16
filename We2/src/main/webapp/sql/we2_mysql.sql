@@ -38,7 +38,7 @@ FLUSH PRIVILEGES;
 
 -- 테이블 생성
 CREATE TABLE member(
-	userid VARCHAR(12),
+	userId VARCHAR(12),
 	name VARCHAR(10),
 	pwd VARCHAR(12),
 	pwd_confirm varchar(12),

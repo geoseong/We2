@@ -20,7 +20,7 @@ public class MemberDao {
 	private RowMapper<Member> memRowMapper = new RowMapper<Member>() {
 		@Override
 		public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
-			Member member = new Member(rs.getString("usrId"), rs.getString("NAME"), 
+			Member member = new Member(rs.getString("userId"), rs.getString("NAME"), 
 					rs.getString("PWD"), rs.getString("pwd_confirm"), rs.getString("EMAIL"),
 					rs.getString("PHONE"), rs.getString("GENDER"), rs.getDate("REGDATE"));
 			member.setUserId(rs.getString("USERID"));
@@ -32,11 +32,12 @@ public class MemberDao {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
-	public Member selectByUserid(String userid) {
-		List<Member> results = jdbcTemplate.query("select * from MEMBER where USERID = ?", memRowMapper, userid);
-		System.out.println();
+	public Member selectByUserid(String userId) {
+		List<Member> results = jdbcTemplate.query("select * from MEMBER where USERID = ?", memRowMapper, userId);
+		System.out.println("userId" + "1234556");
 		return results.isEmpty() ? null : results.get(0);
 	}
+	
 // 사용자를 mysqlDB에 집어넣는 메소드
 	public void insert(final Member member){
 		jdbcTemplate.update(new PreparedStatementCreator(){
