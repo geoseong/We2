@@ -18,7 +18,7 @@
 						<td>${authInfo.userId }</td>
 					</tr>
 					<tr>
-						<th> 제    목 </th>
+						<th class="write_th"> 제    목 </th>
 						<td>
 							<input type="text" name="itemTitle" size="80">
 						</td>
@@ -37,7 +37,7 @@
 					</tr>
 				</table>
 				<br>
-			<div id="write_btn" align="right" >
+			<div class="write_btn" align="right" >
 				<input type="submit" value="등록" style="padding: 5px;">
 				<input type="button" value="목록" style="padding: 5px;" onclick="location.href='/We2/pjtBoard/list?page=1&category=${category}'">
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
