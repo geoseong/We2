@@ -50,11 +50,41 @@ a {
     margin-top:60px;
     top:50px;
     right:30px;
-    font-size : 20px;
+    font-size :18px;
     color :#89867e; 
 }
 
 #nav :hover {
+   color: balck;
+   opacity : 0.8;
+   font-weight: 600;
+}
+
+#nav2 a {
+    float:left;
+    margin-top:60px;
+    top:50px;
+    right:130px;
+    font-size :18px;
+    color :#89867e; 
+}
+
+#nav2 :hover {
+   color: balck;
+   opacity : 0.8;
+   font-weight: 600;
+}
+
+#nav3 a {
+    float:left;
+    margin-top:60px;
+    top:50px;
+    right:30px;
+    font-size : 18px;
+    color :#89867e; 
+}
+
+#nav3 :hover {
    color: balck;
    opacity : 0.8;
    font-weight: 600;
@@ -66,7 +96,7 @@ a {
     margin : 0px auto;
 }
 
-/* ½½¶óÀÌµå ºÎºÐ */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Îºï¿½ */
 #slider{
     overflow:hidden;
     position:relative;
@@ -112,7 +142,7 @@ a {
 }
 
 
-/* ½½¶óÀÌµå À§ÀÇ ±Û¾¾*/
+/* ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½*/
 .img-txt {
     position: absolute;
     top : 30%;
@@ -135,14 +165,14 @@ a {
 }
 
 
-/* ===== ºÎºÐ 2 (¾Æ·¡ÀÇ 4°³ ¹Ú½º) ======*/\
+/* ===== ï¿½Îºï¿½ 2 (ï¿½Æ·ï¿½ï¿½ï¿½ 4ï¿½ï¿½ ï¿½Ú½ï¿½) ======*/\
 
 #menu {
     position: relative;
     height: 200px;
 }
 
-/* ¸Þ´º ÀüÃ¼ ¹Ú½º Àû¿ë*/
+/* ï¿½Þ´ï¿½ ï¿½ï¿½Ã¼ ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½*/
 #box-wrap {
     width:100%;
     text-align: center;
@@ -162,7 +192,7 @@ a {
 }
 
 
-/* ¸Þ´º ¹Ú½º ¼¼ºÎ Àû¿ë*/
+/* ï¿½Þ´ï¿½ ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½*/
 .box {
     float:left;
     text-align: center;
@@ -173,7 +203,7 @@ a {
     font-weight: 400;  
 }
 
-/* ¸Þ´º ¾ÈÀÇ ³»¿ë*/
+/* ï¿½Þ´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½*/
 .box a {
     color:#f9f9f9;
    
@@ -183,14 +213,14 @@ a {
 }
 
 
-/* °¢ ¸Þ´º¿¡ ¸¶¿ì½º¸¦ ¿Ã¸®¸é*/
+/* ï¿½ï¿½ ï¿½Þ´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½ºï¿½ï¿½ ï¿½Ã¸ï¿½ï¿½ï¿½*/
 .box a:hover {
    background-color: black;
    opacity : 0.5;
 }
 
 
-/*°¡Àå ÇÏ´ÜÀÇ °Å¼ºÄ«ÇÇ¶óÀÌÆ®!*/
+/*ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ï¿½ï¿½ ï¿½Å¼ï¿½Ä«ï¿½Ç¶ï¿½ï¿½ï¿½Æ®!*/
 #footer {
     clear:both;
     margin-top:100px;

@@ -21,10 +21,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.mysql.fabric.xmlrpc.base.Member;
 import com.we2.spring.AuthInfo;
 import com.we2.spring.AuthService;
 import com.we2.spring.IdPasswordNotMatchingException;
+import com.we2.spring.Member;
+import com.we2.spring.MemberDao;
 import com.we2.spring.RegisterRequest;
 
 /**
@@ -33,21 +34,22 @@ import com.we2.spring.RegisterRequest;
 @Controller
 @RequestMapping(value = "/")
 public class LoginController {
-	
 	private AuthService authService;
+	
 	public void setAuthService(AuthService authService) {
 		this.authService = authService;
 	}
-	
+	private MemberDao memberDao;
+	public void setMemberDao(MemberDao memberDao) {
+		this.memberDao = memberDao;
+	}
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
-
 	@RequestMapping(method = RequestMethod.GET)
+	
 	public String index(Locale locale) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		return "index";
 	}
-
-	
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -74,11 +76,12 @@ public class LoginController {
 		}
 		return "registration/Member_Login";
 	}
-	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String loginpost(
 			LoginCommand loginCommand, Errors errors, HttpSession session,
 			HttpServletResponse response) {
+		//디버깅 여기까지 데이터가 옴!!
+		System.out.println("login" + "post방식으로 Logincontroller까지 옴!!");
 		
 		// 폼 값이 올바른지 검사.
 		new LoginCommandValidator().validate(loginCommand, errors);
@@ -94,11 +97,11 @@ public class LoginController {
 		try {
 			// 로그인 커맨드로부터 id, pwd를 받아서 인증작업 거쳐서 세션에 넘어갈 변수들 바인딩객체를 리턴받음
 			AuthInfo authInfo
-				= authService. authenticate(loginCommand.getUserId(), loginCommand.getPwd());
+				= authService.authenticate(loginCommand.getUserId(), loginCommand.getPwd());
 			
 			// 세션영역에 회원정보 추가
 			session.setAttribute("authInfo", authInfo);
-			
+			System.out.println("authInfo" + (AuthInfo)session.getAttribute("authInfo"));
 			// 폼에 자동완성을 원하면 쿠키에 30일동안 userid를 보이게 함.
 			Cookie rememberCookie = 
 					new Cookie("REMEMBER", loginCommand.getUserId());
@@ -112,11 +115,11 @@ public class LoginController {
 			response.addCookie(rememberCookie);
 			
 			logger.info("회원 " + authInfo.getUserid() + "로그인함.");
-			
+			System.out.println("authInfo" + "authInfo값이 제대로 나오는지 디버깅!! 로그인 컨트롤러");
 			return "index";
 		} catch (IdPasswordNotMatchingException e) {
 			errors.reject("idPasswordNotMatching");
-			return "registration/Member_Login";
+			return "/index";
 		} //end try-catch
 	} //end loginpost()
 	
@@ -126,15 +129,13 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/Member_Aggrement", method = RequestMethod.POST)
-	public String member_Form(RegisterRequest registerRequest){
-		
+	public String member_Form(Member member){
 		return "registration/Member_Join";
 	}
 	
 	@RequestMapping(value= "/We2_idCheck")
 		public String doGet(@RequestParam("userId") String userId, Model model){
 
-			
 			//int result = mDao.confirmID(userId);
 			int result=authService.idCheck(userId);
 
@@ -142,11 +143,12 @@ public class LoginController {
 			model.addAttribute("result", result);
 
 			return "registration/We2_idCheck";
-	}
+}
 	
 	@RequestMapping(value = "/Member_Join", method = RequestMethod.POST)
-	public String member_join(){
+	public String member_join(Member member, Errors errors){
+		memberDao.insert(member);
 		
-		return "index";
+		return "/index";
 	}
 }
