@@ -24,7 +24,7 @@ public class LogoutController {
 		return "index";
 	} // end logout()
 
-	@RequestMapping(value = "/We2_MemberUpdate", method = RequestMethod.POST)
+	@RequestMapping(value = "/Member_Update", method = RequestMethod.POST)
 	public String form(Model model, Member member) {
 		List<String> genderTypes = new ArrayList<String>();
 		genderTypes.add("남성");

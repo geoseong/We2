@@ -146,7 +146,8 @@
 
 
 				<div class="select">
-					<td align="center" valign="top"><input class="add_btn"
+					<td align="center" valign="top">
+					<input class="add_btn"
 						type="button" value="동의합니다" onclick="return chk()"
 						style="width: 150px;" /> <input class="add_btn" type="button"
 						value="동의하지 않습니다" onclick="return nochk()" style="width: 150px;" />

@@ -42,26 +42,24 @@
  <c:choose>
     <c:when test="${empty loginUser}">
 
-      <div id = "nav">
-            <a href="com_we2_registration_jsp/01_1_login.jsp" class="loginButton">로그인</a>
+		   <div id = "nav">
+            <a href="login" class="loginButton">로그인</a><!-- A태그를 사용하면 get으로 넘어간다.!! -->
             <!-- #########위에 로그인 header를 넣는다! -->
-        </div>
-
-    </c:when>
-    
-    <c:otherwise>
-   
-       <div id = "nav2">
-          <a href="com_we2_registration_jsp/We2_mypage_confirm.jsp">마이페이지</a>
+          </div>
+	 </c:when>
+	 
+	 <c:otherwise>
+	
+	 	<div id = "nav2">
+	 		<a href="mypage">마이페이지</a>
             <!-- #########위에 로그인 header를 넣는다! -->
-        </div>
-        
+         </div>
         <div id = "nav3">
             <a href="/We2/We2_logout.do">로그아웃</a>
             <!-- #########위에 로그인 header를 넣는다! -->
         </div>
-   
-    </c:otherwise>
+	   </c:otherwise>
+	   
  </c:choose>
 
 </div>
