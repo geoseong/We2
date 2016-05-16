@@ -16,7 +16,6 @@
 	String doWork = request.getParameter("inputWork");
 	String user = request.getParameter("userName");
 	WillWorkDAO pDao = WillWorkDAO.getInstance();
-
 	// 이름과 할일 추가하기
 	pDao.inputWork(doWork, user);
 %>

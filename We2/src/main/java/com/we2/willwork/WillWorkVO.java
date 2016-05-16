@@ -2,12 +2,23 @@ package com.we2.willwork;
 
 
 public class WillWorkVO {
-	String userId = null;
-	int pjtCode = 0;
-	String doWork = null;
-	String doneWork = null;
-	String stateWork = null;
-	String name = null;
+	String userId;
+	int pjtCode;
+	String doWork;
+	String doneWork;
+	String stateWork;
+	String name;
+	
+	
+	public WillWorkVO(String userId, int pjtCode, String doWork, String doneWork, String stateWork, String name) {
+		super();
+		this.userId = userId;
+		this.pjtCode = pjtCode;
+		this.doWork = doWork;
+		this.doneWork = doneWork;
+		this.stateWork = stateWork;
+		this.name = name;
+	}
 	
 	public String getUserId() {
 		return userId;
@@ -45,6 +56,5 @@ public class WillWorkVO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
 	
 }

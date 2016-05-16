@@ -148,8 +148,6 @@ public class WillWork extends HttpServlet {
 		String isfalse = "";
 		
 		
-		
-		
 		/** 여기부터 user 변수 if문으로 판별해서 넣기*/
 
 		// 체크한 걸 받는 배열.

@@ -152,7 +152,7 @@
                   
                   <div class="classifyArea">
                      <label for="pjtClassify">프로젝트 분류</label>
-                     <select name="classify" >
+                     <select name="pjtClassify" >
                         <option>조별과제</option>
                         <option>스터디</option>
                         <option>회사협업</option>
@@ -165,11 +165,11 @@
                      <img src="img/calendar.png" class="img1" style="width:50px;">
                         
                      <img src="img/calendar.png" class="img2" style="width:50px;">      
-                     <input type="text" size="7" name="term1" id="term1" style="height:25px;">
+                     <input type="text" size="7" name="startDate" id="term1" style="height:25px;">
                         
                         <span> ~ </span>
                         
-                     <input type="text" size="7" name="term2" id="term2" style="height:25px;">                          
+                     <input type="text" size="7" name="endDate" id="term2" style="height:25px;">                          
                   </div>
                   
                   
