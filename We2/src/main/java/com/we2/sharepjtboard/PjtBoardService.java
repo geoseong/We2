@@ -81,5 +81,5 @@ public class PjtBoardService {
 	// 게시물 검색
 	//public ArrayList<PjtBoardBean> findBoard(){
 		//return "";
-	}
+	//}
 }
