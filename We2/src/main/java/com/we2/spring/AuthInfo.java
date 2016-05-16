@@ -1,5 +1,7 @@
 package com.we2.spring;
 
+import java.util.Date;
+
 public class AuthInfo {
 
 	private String userId;
@@ -36,4 +38,7 @@ public class AuthInfo {
 	public String getGender() {
 		return gender;
 	}
+
+	
+	
 }

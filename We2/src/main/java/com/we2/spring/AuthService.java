@@ -9,9 +9,7 @@ public class AuthService {
 	}
 
 	public AuthInfo authenticate(String userId, String password) {
-			System.out.println("authService SQL문실행 이전.");
 		Member member = memberDao.selectByUserid(userId);
-			System.out.println("authService SQL문실행 이후.");
 		if (member == null) {
 				System.out.println("member==null");
 			throw new IdPasswordNotMatchingException();

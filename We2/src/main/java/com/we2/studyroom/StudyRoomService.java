@@ -18,7 +18,7 @@ public class StudyRoomService {
 	}
 	
 	public void insertStudyRoom(StudyRoomBean studyRoomBean){
-		StudyRoomMapper.insertStudyRoom(studyRoomBean);
+		//StudyRoomMapper.insertStudyRoom(studyRoomBean);
 	}
 /*	public StudyRoomBean getSpecificRow(String id){
 		return this.studyRoomMapper.getSpecificRow(id);
