@@ -10,7 +10,8 @@
 </head>
 <body>
 <!--  게시판 영역 - css에서 #contents 블록의 테두리선(border)를 없애주시면 됩니다. -->
-		<form method="post" enctype="multipart/form-data" name="frm">
+		<form action="write?category=${category }" method="post" enctype="multipart/form-data" name="frm">
+<%-- 		<input type="text" name="category" value="${category }">--%>				
 				<table>
 					<tr>
 						<th> 작성자 </th>
@@ -18,8 +19,9 @@
 					</tr>
 					<tr>
 						<th> 제    목 </th>
-						<td><%-- <form:input path="itemTitle" size="80"/> --%>
-						<input type="text" name="title" size="80"></td>
+						<td>
+							<input type="text" name="itemTitle" size="80">
+						</td>
 					</tr>
 					<tr>
 						<th> 자    료 </th>
@@ -29,8 +31,8 @@
 					</tr>
 					<tr>
 						<th> 글내용 </th>	
-						<td><%-- <form:textarea path="itemContent" rows="10" cols="80"/> --%>
-						<textarea rows="10" cols="80" name="context">${category }aa</textarea>
+						<td>
+							<textarea rows="10" cols="80" name="itemContent"></textarea>
 						</td>
 					</tr>
 				</table>

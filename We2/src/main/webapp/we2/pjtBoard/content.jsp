@@ -17,7 +17,7 @@
 			<%-- <form:input path="itemNum" value="${BoardContent.get(0).getItemNum()}"/>
 			<form:hidden path="category" value="${category }"/> --%>
 				
-				<input type="hidden" name="itemNum" value="${BoardContent.get(0).getItemNum() }">
+				<input type="hidden" name="itemNum" value="${BoardContent.getItemNum() }">
 				<input type="hidden" name="category" value="${category }">
 				<table>
 				<tr>
@@ -25,36 +25,47 @@
 						<table>
 							<tr>
 								<th>글번호</th>
-								<td colspan="3">${BoardContent.get(0).getItemNum() }</td>
+								<td colspan="3">${BoardContent.getItemNum() }</td>
 							</tr>
 							<tr>
 								<th style="width: 80px">작성자</th>
-								<td>${BoardContent.get(0).getUserId()}</td>
+								<td>${BoardContent.getUserId()}</td>
 								<th style="width: 80px">조회수</th>
-								<td>${BoardContent.get(0).getItemClick() }	</td>
+								<td>${BoardContent.getItemClick() }	</td>
 							</tr>
 							<tr>
 								<th>제   목 </th>
-								<td colspan="3">${BoardContent.get(0).getItemTitle() }</td>
+								<td colspan="3">${BoardContent.getItemTitle() }</td>
 							</tr>
 							<tr>
-								<th>사   진 </th>
+								<th>첨부파일</th>
 								<td colspan="3">
-								<a href="/We2/BoardP/pic/${BoardContent.get(0).getItemPath() }">${BoardContent.get(0).getItemPath() }</a>
 								
+								<c:choose>
+									<c:when test="${empty BoardContent.getItemPath() }">
+											<!-- 기본설정경로 : 서블릿경로
+												E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps -->
+										- 첨부파일 없음 -
+									</c:when>
+									<c:otherwise>
+											<!-- 기본설정경로 : 서블릿경로
+												E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps -->
+										<a href="we2/pjtBoard/data/${BoardContent.getItemPath() }" >${BoardContent.getItemPath() }</a>
+									</c:otherwise>
+								</c:choose>
 								</td>
 							</tr>
 							<tr>
 								<th>글내용 </th>
 								<td colspan="3">
-								  ${BoardContent.get(0).getItemContent()}
+								  ${BoardContent.getItemContent()}
 								</td>
 							</tr>
 						</table>
 					</td>
 					<td>
 						<c:choose>
-							<c:when test="${empty BoardContent.get(0).getItemPath() }">
+							<c:when test="${empty BoardContent.getItemPath() }">
 									<!-- 기본설정경로 : 서블릿경로
 										E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps -->
 								<img src="/We2/we2/pjtBoard/data/noimg.JPG" style="width: 300px;">
@@ -62,7 +73,7 @@
 							<c:otherwise>
 									<!-- 기본설정경로 : 서블릿경로
 										E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps -->
-								<img src="/We2/we2/pjtBoard/data/${BoardContent.get(0).getItemPath() }" style="width: 300px;">
+								<img src="/We2/we2/pjtBoard/data/${BoardContent.getItemPath() }" style="width: 300px;">
 							</c:otherwise>
 						</c:choose>
 					</td>
@@ -71,7 +82,7 @@
 				<br>
 				<input type="submit" value="수정하기" style="padding: 5px;">
 				<input type="button" value="목록" style="padding: 5px;" onclick="location.href='/We2/pjtBoard/list?page=1&category=${category}'">
-				<input type="button" value="제거하기" style="padding: 5px;" onclick="location.href='delete?itemNum=${BoardContent.get(0).getItemNum() }&category=${category}'">
+				<input type="button" value="제거하기" style="padding: 5px;" onclick="location.href='delete?itemNum=${BoardContent.getItemNum() }&category=${category}'">
 		</form>
 		<%-- </form:form> --%>
 <!--  게시판 영역 끝 -->

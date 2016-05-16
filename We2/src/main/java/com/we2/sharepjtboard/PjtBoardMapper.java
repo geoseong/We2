@@ -2,11 +2,13 @@ package com.we2.sharepjtboard;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -17,7 +19,7 @@ public interface PjtBoardMapper {
 	// 페이징 select문.
 	final String select = 
 			//"select itemNum, itemTitle, userId, itemDate, itemClick, itemPath, itemContent" 
-			"select * from ${category} limit #{row_start}, #{row_end}";
+			"select * from ${category} order by itemNum desc limit #{row_start}, #{row_end} ";
 	
 	final String select_by_num =
 			"select * from ${category} where itemNum=#{itemNum}";
@@ -26,7 +28,7 @@ public interface PjtBoardMapper {
 			"update ${category} set itemClick=itemClick+1 where itemNum=#{itemNum}";
 	
 	final String insert =
-			"insert into ${category}(itemTitle,userId,itemDate,itemClick,itemPath,itemContent)"
+			"insert into ${category} (itemTitle,userId,itemDate,itemClick,itemPath,itemContent)"
 			+ " values("
 			+ "#{itemTitle}, "
 			+ "#{userId}, "
@@ -43,7 +45,8 @@ public interface PjtBoardMapper {
 	final String delete="delete from ${category} where itemNum=#{itemNum}";
 	/* END OF SQL */
 	
-	// 메소드 정의부분
+	
+	/** 메소드 정의부분 */
 	@Select(select)
 	@Results(value = {
 			@Result(property="itemNum", column="itemNum"),
@@ -63,7 +66,7 @@ public interface PjtBoardMapper {
 	void count_plus(@Param("category") String category, @Param("itemNum") int itemNum);
 	
 	@Insert(insert)
-	void insertBoard(@Param("category") String category, PjtBoardBean pjtboardbean);
+	void insertBoard(@Param("category") String category, @Param("itemTitle")String itemTitle, @Param("userId")String userId,@Param("itemPath")String itemPath,@Param("itemContent")String itemContent);
 	
 	@Select(select_by_num)
 	@Results(value = {
@@ -75,5 +78,16 @@ public interface PjtBoardMapper {
 			@Result(property="itemPath", column="itemPath"),
 			@Result(property="itemContent", column="itemContent")
 	})
-	ArrayList<PjtBoardBean> select_by_num(@Param("category") String category, @Param("itemNum")int itemNum);
+	PjtBoardBean select_by_num(@Param("category") String category, @Param("itemNum")int itemNum);
+
+	@Update(modify)
+	void updateBoard(
+			@Param("category") String category, PjtBoardBean pjtboardbean
+			/*@Param("itemNum") int itemNum, 
+			@Param("itemPath") String itemPath, 
+			@Param("itemContent") String itemContent*/);
+
+	@Delete(delete)
+	void deleteBoard(@Param("category") String category, @Param("itemNum") int itemNum);
+	
 }

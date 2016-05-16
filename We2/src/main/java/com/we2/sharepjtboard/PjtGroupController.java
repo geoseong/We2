@@ -98,13 +98,13 @@ public class PjtGroupController {
 	
 	/** 글쓰기 폼 띄우기 */
 	@RequestMapping(value="/write", method=RequestMethod.GET)
-	public String writeget(HttpSession session, HttpServletRequest request, Model model, PjtBoardBean pjtboardbean, String category){
+	public String writeget(HttpSession session, HttpServletRequest request, Model model,String category){
 		System.out.println("---글쓰기 페이지 진입");
 		if(session.getAttribute("authInfo")!=null){
 			System.out.println("로그인 되어있음.");
 		}
 		System.out.println("로그인 안됨");
-		System.out.println("write] category="+category);
+		System.out.println("write.get] category="+category);
 		// JSP:INCLUDE PAGE
 		  model.addAttribute("Boardpage", "write");
 		// category 보냄
@@ -116,20 +116,22 @@ public class PjtGroupController {
 	 * @throws IOException */
 	@RequestMapping(value="/write", method=RequestMethod.POST)
 	public String writepost(HttpSession session, HttpServletRequest request, Model model, String category) throws IOException {
-	    // 해당 경로의 폴더가 안만들어져있다면 직접 만들어놔야할 것.
+		System.out.println("write.post] category : "+category);
+		
+		// 해당 경로의 폴더가 안만들어져있다면 직접 만들어놔야할 것.
+		// getRealPath : E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps\testweb\
 		String path=servletContext.getRealPath("we2/pjtBoard/data");
 		System.out.println("path : "+path);
-		// getRealPath : E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps\testweb\
 		String encType="UTF-8";
 		int sizeLimit = 20*1024*1024;
-		
 		MultipartRequest multi = new MultipartRequest(request, path, sizeLimit, encType, new DefaultFileRenamePolicy());
 		
 		//PjtBoardBean객체인 pVo에 변수들을 집어넣는다.
 		PjtBoardBean pVo = new PjtBoardBean();
+		
 		//1. 글번호는 DAO의 SQL sequence로 내부적으로 처리.
 		//2. 제목
-			String title=multi.getParameter("title");
+			String title=multi.getParameter("itemTitle");
 			pVo.setItemTitle(title);
 				System.out.println("WriteServlet - title : " + pVo.getItemTitle());
 		//3. 유저ID는 세션에 떠돌아다니는 (로그인중인) 변수를 getAttribute하면 됨
@@ -139,16 +141,16 @@ public class PjtGroupController {
 		//4. 게시물 작성일은 현재 날짜를 표시하는 sysdate를 DAO에서  내부적으로 처리.
 		//5. 조회수는 방문할때 doGet방식 - count하라는 파라미터를 넘길때만 +1 하면 될듯
 		//6. 파일경로
-			String boardpath = multi.getFilesystemName("path");
+			String boardpath = multi.getFilesystemName("file");
 			pVo.setItemPath(boardpath);
 				System.out.println("WriteServlet - boardpath : " + pVo.getItemPath());
 		//7. 게시물 내용
-			String content=multi.getParameter("context");
+			String content=multi.getParameter("itemContent");
 			pVo.setItemContent(content);
 				System.out.println("WriteServlet - content : " + pVo.getItemContent());
 					
 		// 게시글 내용들을 Insert하기
-			boardService.insertBoard(category, pVo);
+			boardService.insertBoard(category, pVo.getItemTitle(), pVo.getUserId(), pVo.getItemPath(), pVo.getItemContent());
 		
 		// JSP:INCLUDE PAGE
 		  model.addAttribute("Boardpage", "list");
@@ -171,4 +173,70 @@ public class PjtGroupController {
 		return "pjtBoard/boardmain";
 	}
 	
+	@RequestMapping(value="/modify", method=RequestMethod.GET)
+	public String modifyget(Model model, String category, int itemNum) throws IOException {
+		System.out.println("itemNum : " + itemNum);
+		
+		/*
+		 * BoardVO bVo = bDao.seeAllItemsforcontent(BoardDB, ItemNum);
+		request.setAttribute("BoardUpdate", bVo);
+		 */
+		
+		model.addAttribute("BoardUpdate", boardService.select_by_num(category, itemNum));
+		
+		// JSP:INCLUDE PAGE
+		model.addAttribute("Boardpage", "modify");
+		return "pjtBoard/boardmain";
+	}
+	
+	@RequestMapping(value="/modify", method=RequestMethod.POST)
+	public String modifypost(HttpServletRequest request, Model model, String category, int itemNum) throws IOException {
+		System.out.println("itemNum : " + itemNum);
+		// 해당 경로의 폴더가 안만들어져있다면 직접 만들어놔야할 것.
+		String path=servletContext.getRealPath("we2/pjtBoard/data");
+		System.out.println("path : "+path);
+		
+		String encType="UTF-8";
+		int sizeLimit = 20*1024*1024;
+		MultipartRequest multi = new MultipartRequest(request, path, sizeLimit, encType, new DefaultFileRenamePolicy());
+		
+		//PjtBoardBean객체인 pVo 정의
+		PjtBoardBean pVo = new PjtBoardBean();
+		
+		//1. 글번호를 파라미터로 받아온다.
+		int ItemNum = Integer.parseInt(multi.getParameter("itemNum"));
+		
+		//2. 제목
+			String ItemTitle=multi.getParameter("itemTitle");
+		//3. 유저ID는 doGet에서 유효성 검사했으므로 update에서는 skip.
+		//4. 게시물 작성일은 현재 날짜를 표시하는 sysdate를 DAO에서  내부적으로 처리.
+		//5. 조회수는 update에서 skip
+		//6. 파일경로
+			String ItemPath=null;
+			// 파일수정 아무것도 안하면 null값을 받아오는데, 파일이 날라갈 것을 방지하기위한 if문.
+			if(multi.getFilesystemName("itemPath")!=null){
+				ItemPath = multi.getFilesystemName("itemPath");
+				System.out.println("자료 업뎃함.");
+			}else{
+				pVo = boardService.select_by_num(category, ItemNum);
+				ItemPath = pVo.getItemPath();
+				System.out.println("자료수정된 것 없음");
+			}
+		//7. 게시물 내용
+			String ItemContent=multi.getParameter("itemContent");
+					
+			System.out.println("doPost itemNum --"+ItemNum);
+			System.out.println("doPost itemTitle --"+ItemTitle);
+			System.out.println("doPost itemPath --"+ItemPath);
+			System.out.println("doPost itemContent --"+ItemContent);
+			// 글번호, 제목, 게시물 작성일, 파일경로, 게시물 내용을 Update Set.
+			boardService.insertBoard(category, pVo.getItemTitle(), pVo.getUserId(), pVo.getItemPath(), pVo.getItemContent());
+				
+				// JSP:INCLUDE PAGE
+				  model.addAttribute("Boardpage", "list");
+				  model.addAttribute("page", 1);
+				// category 보냄
+				  model.addAttribute("category", category);
+				return "redirect:list";
+	}
 }

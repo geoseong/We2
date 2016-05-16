@@ -14,6 +14,7 @@ public class PjtBoardService {
 	@Autowired
 	private PjtBoardMapper boardMapper;
 	
+	
 	public ArrayList<FormattedDate> getformatDate(String category, int row_start, int row_end) throws ParseException{
 		ArrayList<PjtBoardBean> arraymapper=boardMapper.getList(category, row_start, row_end);
 		
@@ -53,16 +54,22 @@ public class PjtBoardService {
 	}
 	
 	// 게시물 등록
-	public void insertBoard (String category, PjtBoardBean pjtboardbean){
-		System.out.println("게시물 insert 완료.");
-		boardMapper.insertBoard(category, pjtboardbean);
+	public void insertBoard (String category, String itemTitle, String userId, String itemPath, String itemContent){
+		boardMapper.insertBoard(category, itemTitle, userId, itemPath, itemContent);
 	}
 	
+	// 조회수 증가
 	public void count_plus(String category, int itemNum){
 		boardMapper.count_plus(category, itemNum);
 	}
 	
-	public ArrayList<PjtBoardBean> select_by_num(String category, int itemNum){
+	// itemNum으로 게시물 조회
+	public PjtBoardBean select_by_num(String category, int itemNum){
 		return boardMapper.select_by_num(category, itemNum);
+	}
+	
+	// 게시물 업데이트
+	public void updateBoard(String category, PjtBoardBean pVo){
+		boardMapper.updateBoard(category, pVo);
 	}
 }

@@ -11,14 +11,11 @@
 <body>
 <!--  게시판 영역 - css에서 #contents 블록의 테두리선(border)를 없애주시면 됩니다. -->
 
-<%
-	request.getAttribute("category");
-%>
 <form:form action="find" method="post" commandName="pjtBoardBean">
 		<table class="list">
 				<tr>
 					<td colspan="5" style="border: white; text-align: right;">
-						<a href="write">글쓰기</a>
+						<a href="write?category=${category }">글쓰기</a>
 					</td>
 				</tr>
 				
@@ -62,7 +59,6 @@
 				</c:forEach>
 				<c:choose>
 					<c:when test="${block==block_total }">
-						&nbsp;[다음]
 					</c:when>
 					<c:otherwise>
 						&nbsp;<a href="list?page=${block_first + page_for_block}&category=${category}">[다음]</a>
