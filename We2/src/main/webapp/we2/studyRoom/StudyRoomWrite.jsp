@@ -11,7 +11,7 @@
 <body>
     <H2>위치 등록</H2>
   <HR>
- <form name="frm" method="get" action="studyroomwrite.do"  enctype="multipart/form-data" >
+ <form name="frm" method="post" action="studyroomwrite.do" enctype="multipart/form-data" >
   
  <table>
     <tr>
@@ -26,7 +26,7 @@
     <tr>
       	<td>지역 :</td>
       	<td>
-   		<select name='location'  id="location"  >                
+   		<select name='rlocation'  id="rlocation"  >                
                  <option selected="selected" value="서울">서울</option>
                  <option value="경기/인천">경기/인천</option>
                  <option value="경남/부산/울산">경남/부산/울산</option>
@@ -38,7 +38,7 @@
 
    	       <td>종류 :</td>
    	          <td > 
-              <select name='type'  id="type"  onchange="subMenu()" >                 
+              <select name='rlocationdetail'  id="rlocationdetail"  onchange="subMenu()" >                 
                    <option selected="selected"  value="커피전문점">커피전문점</option>
                    <option value="스터디카페/스터디룸">스터디카페/스터디룸</option>
                    <option value="회의실">회의실</option>               

@@ -12,12 +12,19 @@
 
 .study_room_title{
 	text-align:center;
+		color: black;
+}
+
+.study_room_title>a{
+	text-align:center;
+	color: black;
 }
 
 
 .study_room_menu{
 	padding:20px;
 	background:#ddd;
+	height:50px;
 }
 
 .study_room_menu:after{
@@ -34,6 +41,10 @@
 	text-align:center;
 	line-height:50px;
 }
+.study_room_menu>li>a{
+	color:black;
+}
+
 
 .study_loc{
 	margin:10px 0;
@@ -52,6 +63,7 @@
 .content_list>li{
 	float:left;
 	width:310px;
+	height:340px
 
 	margin:0 10px 20px 0;
 }
@@ -59,14 +71,14 @@
 
 .content_list_img{
 	width:280px;
-	height:270px;
+	height:250px;
 	
 }
 
 
 .content_list_img img{
 	width:280px;
-	height:270px;
+	height:250px;
 }
 
 
