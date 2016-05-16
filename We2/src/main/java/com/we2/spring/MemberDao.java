@@ -40,7 +40,7 @@ public class MemberDao {
 		return results.isEmpty() ? null : results.get(0);
 	}
 
-	public void insert(final Member member) {
+	/*public void insert(final Member member) {
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			@Override
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
@@ -53,12 +53,12 @@ public class MemberDao {
 				pstmt.setString(4, 	member.getEmail()),
 				pstmt.setString(5, 	member.getPhone()),
 				pstmt.setString(6, 	member.getGender())
-				/*pstmt.setTimestamp(4,  
-						new Timestamp(member.getRegisterDate().getTime()));*/);
+				pstmt.setTimestamp(4,  
+						new Timestamp(member.getRegisterDate().getTime())););
 				return pstmt;
 			}
 			}
-			}
+			}*/
 
 	/*
 	 * public void update(Member member) { jdbcTemplate.update(

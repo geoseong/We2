@@ -7,11 +7,11 @@
 <head>
 <link href="/style/We2_MemberStyle.css" rel="stylesheet" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="css/w2_reset.css" type="text/css">
-<link rel="stylesheet" href="css/01_1_mypageform.css" type="text/css">
+<link rel="stylesheet" href="/css/w2_reset.css" type="text/css">
+<link rel="stylesheet" href="/css/01_1_mypageform.css" type="text/css">
 
 <!-- 회원가입폼을 위해 css적용 -->
-<script type="text/javascript" src="js/jquery-1.12.1.min.js"></script>
+<script type="text/javascript" src="/js/jquery-1.12.1.min.js"></script>
 
 <!-- 약관동의를 위해 사용되는 script -->
 <script type="text/javascript">
