@@ -46,7 +46,7 @@ public class PjtGroupController {
 	public String listget(@RequestParam("page") int page, String category, Model model) throws ParseException {
 		System.out.println("-------------------------------받아온 파라미터");
 			System.out.println("rows_per_page : " + rows_per_page);
-			System.out.println("page : " + page);
+			System.out.println("current page : " + page);
 		System.out.println("-------------------------------변수설정 시작");
 
 		if(category.equals("group")){
@@ -56,6 +56,8 @@ public class PjtGroupController {
 		}else if(category.equals("collabo")){
 			category="pWithWork";
 		}
+		System.out.println("List.GET] category : " + category);
+		
 			// 시작 rownum 받아오기
 			int row_start= paging.getFirstRowInPage(page, rows_per_page);
 			System.out.println("row_start : " + row_start);
@@ -73,6 +75,7 @@ public class PjtGroupController {
 			int block_total=paging.getPageBlock(t_pages, page_for_block);
 			int block_first=paging.getFirstPageInBlock(block, page_for_block);
 			int block_last=paging.getLastPageBlock(block, page_for_block);
+			
 			if(block_last>t_pages){
 				System.out.println("--block_last가 t_pages보다 크므로 내용이 존재하는 페이지만큼만 block_last를 조절.");
 				block_last=t_pages;
@@ -105,6 +108,9 @@ public class PjtGroupController {
 	/** 글쓰기 폼 띄우기 */
 	@RequestMapping(value="/write", method=RequestMethod.GET)
 	public String writeget(HttpSession session, /*HttpServletRequest request,*/ Model model,String category){
+		
+		System.out.println("Write.get] category : " + category);
+		
 		if(session.getAttribute("authInfo")==null){
 			return "redirect:/";
 		}
@@ -163,7 +169,8 @@ public class PjtGroupController {
 	
 	@RequestMapping(value="/content", method=RequestMethod.GET)
 	public String contentget(Model model, String category, int itemNum) throws IOException {
-		System.out.println("Content] itemNum : "+itemNum);
+		System.out.println("Content.GET] itemNum : "+itemNum);
+		System.out.println("Content.GET] category : " + category);
 		// SQL 결과
 			model.addAttribute("BoardContent", boardService.select_by_num(category, itemNum));
 		// JSP:INCLUDE PAGE
@@ -175,12 +182,8 @@ public class PjtGroupController {
 	
 	@RequestMapping(value="/modify", method=RequestMethod.GET)
 	public String modifyget(Model model, String category, int itemNum) throws IOException {
-		System.out.println("itemNum : " + itemNum);
-		
-		/*
-		 * BoardVO bVo = bDao.seeAllItemsforcontent(BoardDB, ItemNum);
-		request.setAttribute("BoardUpdate", bVo);
-		 */
+		System.out.println("Modify] category : " + category);
+		System.out.println("Modify] itemNum : " + itemNum);
 		
 		model.addAttribute("BoardUpdate", boardService.select_by_num(category, itemNum));
 		
@@ -193,18 +196,22 @@ public class PjtGroupController {
 	
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
 	public String modifypost(/*HttpServletRequest request, */Model model, String category, int itemNum) throws IOException {
-		System.out.println("itemNum : " + itemNum);
+		System.out.println("Modify.POST] itemNum : " + itemNum);
+		System.out.println("Modify.POST] ategory : " + category);
 		
 		MultipartRequest multi = 
 				new MultipartRequest(
 						request, 	servletContext.getRealPath(path), sizeLimit, encType, new DefaultFileRenamePolicy());
 		System.out.println("contenttype : " + multi.getContentType("file"));
+		
+			System.out.println("pVo 정의 전");
 		//PjtBoardBean객체인 pVo 정의
 		PjtBoardBean pVo = new PjtBoardBean();
 		
 		//1. 글번호를 파라미터로 받아온다.
+			System.out.println("ItemNum 정의 전");
 		int ItemNum = Integer.parseInt(multi.getParameter("itemNum"));
-		
+			System.out.println("ItemNum 정의 후");
 		//2. 제목
 			String ItemTitle=multi.getParameter("itemTitle");
 		//3. 유저ID는
@@ -248,7 +255,8 @@ public class PjtGroupController {
 	
 	@RequestMapping(value="/delete", method=RequestMethod.GET)
 	public String deletepost(Model model, String category, int itemNum) {
-		
+		System.out.println("DELETE.POST] category : " + category);
+		System.out.println("DELETE.POST] itemNum : " + itemNum);
 		// boardMapper 제거 SQL.
 		boardService.deleteBoard(category, itemNum);
 		
@@ -263,7 +271,26 @@ public class PjtGroupController {
 
 	@RequestMapping(value="/pjt", method=RequestMethod.GET)
 	public String pjt(Model model, String category) {
-		model.addAttribute("page","broadcast");
-		return "/myproject/myproject";
+		model.addAttribute("page","boardmain");
+		return "myproject/myproject";
+	}
+	
+	@RequestMapping(value="/find", method=RequestMethod.GET)
+	public String findget(Model model, String category, String find, String findword){
+		System.out.println("find.GET] category : " + category);
+		
+		if(find.equals("itemTitle")){				
+			find="itemTitle";			
+		}else if(find.equals("userId")){				
+			find="userId";			
+		}else{				
+			find="itemContent";			
+		}				
+		
+		System.out.println("find값 : " + find);				
+		System.out.println("findword값 : " + findword);	
+		
+		//boardService.find
+		return "pjtBoard/boardmain";
 	}
 }

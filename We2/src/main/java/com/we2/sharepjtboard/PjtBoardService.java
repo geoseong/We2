@@ -77,4 +77,9 @@ public class PjtBoardService {
 	public void deleteBoard(String category, int itemNum){
 		boardMapper.deleteBoard(category, itemNum);
 	}
+	
+	// 게시물 검색
+	//public ArrayList<PjtBoardBean> findBoard(){
+		//return "";
+	}
 }
