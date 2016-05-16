@@ -20,3 +20,6 @@ delete * from roomshare where rcode=2
 select * from roomshare
 
 drop table roomshare;
+
+select rcode, rname, rlocation, rlocationdetail, rmember, rcontent, rpictureurl from roomshare where rcode=3 order by rcode desc  ;
+	

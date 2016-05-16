@@ -2,15 +2,12 @@ package com.we2.studyroom;
 
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
-import java.util.Date;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import com.we2.sharepjtboard.PjtBoardBean;
-
 
 
 @Component
@@ -29,7 +26,9 @@ public class StudyRoomService {
 		return arraymapper;
 	}
 	
-
+	public StudyRoomBean getSearchbyrcode(int rcode){
+		return this.studyRoomMapper.getSearchbyrcode(rcode);
+	}
 	
 	// 총 폐이지 갯수 구하기
 	public int getTotalCnt(){

@@ -23,7 +23,7 @@ public interface StudyRoomMapper {
 			"select * from  limit #{row_start}, #{row_end}";
 	
 	final String select_by_rcode=
-			"select * from  where rcode=#{rcode}";
+			"select rcode, rname, rlocation, rlocationdetail, rmember, rcontent, rpictureurl from roomshare where rcode=${rcode} order by rcode desc limit #{row_start}, #{row_end}";
 	
 	final String select_all = "select count(1) from roomshare";
 	
@@ -65,6 +65,18 @@ public interface StudyRoomMapper {
 				@Result(property="rpictureurl", column="rpictureurl")
 		})
 		ArrayList<StudyRoomBean> getList(@Param("row_start") int row_start, @Param("row_end") int row_end);
+		
+		@Select(select_by_rcode)				
+		@Results(value = {   
+				@Result(property="rcode", column="rcode"),
+				@Result(property="rname", column="rname"),
+				@Result(property="rlocation", column="rlocation"),
+				@Result(property="rlocationdetail", column="rlocationdetail"),
+				@Result(property="rmemeber", column="rmemeber"),
+				@Result(property="rcontent", column="rcontent"),
+				@Result(property="rpictureurl", column="rpictureurl")
+		})
+		StudyRoomBean getSearchbyrcode(@Param("rcode") int rcode);
 	
 		
 		@Insert(insertStudyRoom)  		

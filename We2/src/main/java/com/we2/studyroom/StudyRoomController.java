@@ -176,22 +176,15 @@ public class StudyRoomController {
 	
 
 		@RequestMapping(value="/StudyRoomdelete.do", method=RequestMethod.GET)
-		public String StudyRoomdelete(@RequestParam("rcode") int rcode, @RequestParam("page")  int page, Model model) throws ParseException {
+		public String StudyRoomdelete(@RequestParam("rcode") int rcode, Model model) throws ParseException {
 		
 			logger.info("DeleteSpecificRow called!!");
 			logger.info("rcode=["+rcode+"] ");
 			
 			// 시작 rownum 받아오기
-			int row_start=0;
-			row_start = paging.getFirstRowInPage(page, rows_per_page);
-			System.out.println("row_start : " + row_start);
-			
-			// 끝 rownum 받아오기
-			int row_end=0;
-			row_end = paging.getLastRowInPage(page, rows_per_page);		
-			
+					
 			// BoardDelete -
-			  model.addAttribute("studyroomList", studyroomService.getlist(row_start, row_end));	
+			  model.addAttribute("studyroomList", studyroomService.getSearchbyrcode(rcode));	
 			  // JSP:INCLUDE PAGE
 			  model.addAttribute("studyroompage", "StudyRoomDelete");
 			  model.addAttribute("page", 1);
