@@ -31,7 +31,7 @@
 	  <context:annotation-config />
 	 
 	<!-- 시작 : AOP bean 설정 -->
-	<bean id="aopaspect" class="interceptor.AOP_Aspect"/>
+	<!-- <bean id="aopaspect" class="interceptor.AOP_Aspect"/> -->
 	
 	<!-- <aop:config>
 		<aop:aspect ref="aopaspect">

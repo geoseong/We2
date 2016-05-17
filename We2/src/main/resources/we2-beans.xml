@@ -55,10 +55,9 @@
 			<constructor-arg ref="dataSource"/>
 		</bean>
 	
-		<bean id="authService" class="com.we2.spring.AuthService">
-			<property name="memberDao" ref="memberDao" />
-		</bean>
-		
+	<bean id="authService" class="com.we2.spring.AuthService">
+		<property name="memberDao" ref="memberDao"></property>
+	</bean>		
 		
 	<!-- end : 의존주입 -->
 	

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/01_main_intro.css" type="text/css">
     <link rel="stylesheet" href="css/w2_reset.css" type="text/css">
     <link rel="stylesheet" href="css/w3_slide.css" type="text/css">
-	<link rel="stylesheet" type="text/css" href="/css/02_1_pjtMake.css">
+	<link rel="stylesheet" type="text/css" href="css/02_1_pjtMake.css">
 
     <!-- 슬라이드 이미지를 위한 준비-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -121,7 +121,7 @@
     
   </div><!--big wrap END-->  
   
-    <script type="text/javascript" src="js/jquery-1.12.1.min.js"></script> 
+    <!-- <script type="text/javascript" src="js/jquery-1.12.1.min.js"></script>  -->
     <script type="text/javascript" src="js/main_slider2.js"></script>
     
     
@@ -186,7 +186,7 @@
      
  
     </body>
-<script src="/js/jquery-1.12.1.min.js"></script>
+<script src="js/jquery-1.12.1.min.js"></script>
 <!-- jQuery UI CSS파일  -->
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
 <!--  jQuery 기본 js파일 -->
@@ -224,8 +224,7 @@ $(".pjtMakeInner").hide();
     
 </script>
 
-    <script type="text/javascript" src="/js/jquery-1.12.1.min.js"></script> 
-    <script type="text/javascript" src="/js/main_slider2.js"></script>
+    <script type="text/javascript" src="js/main_slider2.js"></script>
     
     <script type="text/javascript">
 	    
