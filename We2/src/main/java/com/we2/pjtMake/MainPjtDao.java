@@ -8,7 +8,7 @@ public class MainPjtDao {
 	private static PjtMakeDAO pjtMakeDao;
 	
 	public static void main(String[] args){
-		insertPjtMake();
+		//insertPjtMake();
 	}
 	PjtMakeVO pVo = null;
 	

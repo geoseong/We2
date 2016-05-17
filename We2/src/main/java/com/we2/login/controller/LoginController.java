@@ -117,7 +117,7 @@ public class LoginController {
 			}
 			response.addCookie(rememberCookie);
 			
-			logger.info("회원 " + authInfo.getUserid() + "로그인함.");
+			logger.info("회원 " + authInfo.getUserId() + "로그인함.");
 			System.out.println("authInfo" + "authInfo값이 제대로 나오는지 디버깅!! 로그인 컨트롤러");
 			return "index";
 		} catch (IdPasswordNotMatchingException e) {
