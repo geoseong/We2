@@ -50,7 +50,7 @@
     <c:when test="${empty loginUser}">
 
       <div id = "nav">
-            <a href="com_we2_registration_jsp/01_1_login.jsp" class="loginButton">로그인</a>
+            <a href="login" class="loginButton">로그인</a>
             <!-- #########위에 로그인 header를 넣는다! -->
         </div>
 
@@ -64,7 +64,7 @@
         </div>
         
         <div id = "nav3">
-            <a href="/We2/We2_logout.do">로그아웃</a>
+            <a href="logout">로그아웃</a>
             <!-- #########위에 로그인 header를 넣는다! -->
         </div>
    
@@ -86,8 +86,8 @@
         </div>
         
         <div class="slider_control">
-            <span class="btn_prev"><a href="#"><img src="img/btn-left.png" style="width:40px;"></a></span>
-            <span class="btn_next"><a href="#"><img src="img/btn-right.png" style="width:40px"></a></span>
+            <span class="btn_prev"><a href="#"><img src="img/index/btn-left.png" style="width:40px;"></a></span>
+            <span class="btn_next"><a href="#"><img src="img/index/btn-right.png" style="width:40px"></a></span>
         </div>
         
           <div class ="img-txt"><b><span>Catch The Free Rider, We2</span></b></div>

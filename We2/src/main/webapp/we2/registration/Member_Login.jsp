@@ -33,7 +33,7 @@ $("#nav>a").click(function(){
 
 
 <div class="first_main">
- 	<jsp:include page="..index.jsp" flush="false"/>
+ 	<jsp:include page="../index.jsp" flush="false"/>
 </div>
 
 
