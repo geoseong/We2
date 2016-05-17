@@ -5,11 +5,16 @@ public class AuthService {
 	private MemberDao memberDao;
 	
 	public void setMemberDao(MemberDao memberDao) {
+		System.out.println(memberDao.toString()+"memberDao:::주입됨 ");
 		this.memberDao = memberDao;
 	}
 
 	public AuthInfo authenticate(String userId, String password) {
+		
 		Member member = memberDao.selectByUserid(userId);
+		
+		AuthInfo ai = new AuthInfo();
+		
 		if (member == null) {
 				System.out.println("member==null");
 			throw new IdPasswordNotMatchingException();
@@ -20,6 +25,7 @@ public class AuthService {
 		}
 		System.out.println("userId" + "123456789");
 		System.out.println(member.getUserId()+"authservice에서 디버깅중....");
+		ai.setName(member.getName());
 		return new AuthInfo(member.getUserId(), member.getName(), member.getEmail(),  member.getPhone(), member.getGender());
 		}
 	

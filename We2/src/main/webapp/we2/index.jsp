@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
+    pageEncoding="UTF-8"%>    
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -42,9 +43,13 @@
 	 <c:otherwise>
 	
 	 	<div id = "nav2">
-	 		<a href="mypage">마이페이지</a>
-            <!-- #########위에 로그인 header를 넣는다! -->
-         </div>
+	 	<%-- <form:form action="Mypage_confirm" commandName="member" method="POST">
+	 	</form:form> --%>
+        <a href="Member_Mypage">마이페이지</a>
+     	<!-- #########위에 로그인 header를 넣는다! -->
+        
+        </div>
+        
         <div id = "nav3">
             <a href="logout">로그아웃</a>
             <!-- #########위에 로그인 header를 넣는다! -->
