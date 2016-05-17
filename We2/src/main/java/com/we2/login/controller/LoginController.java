@@ -27,7 +27,7 @@ import com.we2.spring.AuthService;
 import com.we2.spring.IdPasswordNotMatchingException;
 import com.we2.spring.Member;
 import com.we2.spring.MemberDao;
-import com.we2.spring.RegisterRequest;
+
 
 /**
  * Handles requests for the application home page.
