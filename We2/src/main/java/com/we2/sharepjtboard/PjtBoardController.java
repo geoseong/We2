@@ -354,7 +354,6 @@ public class PjtBoardController {
 		return "myproject/myproject";
 	}
 	
-	
 	@RequestMapping(value="/jqueryModal", method=RequestMethod.GET)
 	public String modal(Model model, String category) {
 		model.addAttribute("page","boardmain");

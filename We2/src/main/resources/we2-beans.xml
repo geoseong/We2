@@ -82,4 +82,11 @@
 		</bean>
 	<!-- end : 의존주입 -->
 	
+	<bean id="willWorkDAO2" class="com.we2.willwork.WillWorkDAO2">
+		<constructor-arg ref="dataSource" />
+	</bean>
+	
+	<bean id="pjtMakeDAO" class="com.we2.pjtMake.PjtMakeDAO">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
 </beans>

@@ -33,7 +33,7 @@ $("#nav>a").click(function(){
 
 
 <div class="first_main">
- 	<jsp:include page="Main.jsp" flush="false"/>
+ 	<jsp:include page="..index.jsp" flush="false"/>
 </div>
 
 
@@ -77,11 +77,10 @@ $("#nav>a").click(function(){
                   <input type="submit" value="로그인" class="add_btn" />
               </div>
               <div class="join"> 
-                  <input type="button" value="회원가입" class="add_btn"onclick="location.href='join'";/>
+                  <input type="button" value="회원가입" class="add_btn"onclick="location.href='join'"/>
               </div>
             </form:form> 
 	   </div>
-	
 	
   </div>
 </div>  <!--second_body_END-->
