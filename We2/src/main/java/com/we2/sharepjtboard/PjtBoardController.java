@@ -1,12 +1,8 @@
 package com.we2.sharepjtboard;
 
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -21,8 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import com.we2.sharepjtboard.MailSend.SMTPAuthenticator;
 import com.we2.spring.AuthInfo;
+import com.we2.utils.MailSend;
+import com.we2.utils.MailSend.SMTPAuthenticator;
 
 @Controller
 @RequestMapping(value="/pjtBoard")
@@ -380,7 +377,7 @@ public class PjtBoardController {
 			System.out.println(mailcontext.get(j));
 		}*/
 		MailSend mailsend = new MailSend();
-		mailsend.main(path);
+		mailsend.main(path, "imf4@naver.com");
 		SMTPAuthenticator smtpauth = new SMTPAuthenticator();
 		smtpauth.getPasswordAuthentication();
 	}
