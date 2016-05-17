@@ -113,7 +113,7 @@ public class LoginController {
 			}
 			response.addCookie(rememberCookie);
 			
-			logger.info("회원 " + authInfo.getUserid() + "로그인함.");
+			logger.info("회원 " + authInfo.getUserId() + "로그인함.");
 			System.out.println("authInfo" + "authInfo값이 제대로 나오는지 디버깅!! 로그인 컨트롤러");
 			return "index";
 		} catch (IdPasswordNotMatchingException e) {
@@ -147,7 +147,6 @@ public class LoginController {
 	@RequestMapping(value = "/Member_Join", method = RequestMethod.POST)
 	public String member_join(Member member, Errors errors){
 		memberDao.insert(member);
-		
 		return "/index";
 	}
 	
@@ -155,11 +154,10 @@ public class LoginController {
 	public String mypage_confirm(HttpServletRequest request, AuthInfo authInfo, Model model, Errors errors){
 		
 		authInfo = (AuthInfo) request.getSession().getAttribute("authInfo");
-	//	String userId = authInfo.getUserid() ;
-	//	System.out.println("userID:::::::::::::"+userId);
-	//String pwd = request.getParameter("pwd");
-	
-	try {
+		
+		
+	model.addAttribute("authInfo2", authInfo);
+		try {
 		if (authInfo==null) {
 			// 로그인 페이지로 이동
 			}
@@ -170,6 +168,6 @@ public class LoginController {
 
 	/*HttpSession session = request.getSession();
 	AuthInfo mVo = (AuthInfo)session.getAttribute("userId");*/
-	return "registration/Member_MypageView";
+	return "registration/Member_MypageView2";
 	}
 	}

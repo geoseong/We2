@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,7 +60,7 @@
 
 				<!-- 아이디를 받는 안내 인사말-->
 				<div id="second_line">
-					<br> 안녕하세요<br><b><h1><span>${AuthInfo.name}</b> </h1>님</span>
+					<br> 안녕하세요<br><span><b>${authInfo2.name}</b>님</span>
 				</div>
 			</div>
 			<!-- menu END -->
@@ -75,15 +76,15 @@
 					<!--나의 정보 보기 테이블-->
 						<table>
 						<tr>
-						<td><form:input path="name"/></td>	
-			      		<form:errors path="name" 
-			      		value="${authInfo.name}" readonly/>
+						<td><form:input path="name" value="${authInfo2.name}"/></td>
+			      		<%-- <form:errors path="name" 
+			      		readonly/> --%>
 						</tr>
 						
 						<tr>
 						<th><spring:message code="userId"/></th>
 						<td><form:input path="userId"/> 
-			    		<input type="button" class="check_btn"  value="$qq}" readonly ></td>		
+			    		<input type="text" class=""  value="${authInfo2.userId}" readonly ></td>		
 			    		<form:errors path="userId"/>
 						</tr>
 						
@@ -102,39 +103,44 @@
 						<tr>
 						<th><spring:message code="phone"/></th>
 						<td>전화번호</td>
-						<td><input type="text" name="phone" size="20" value="${authInfo.phone}"></td>
+						<td><input type="text" name="phone" size="20" value="${authInfo2.phone}"></td>
 						</tr>
 						
 						<tr>
 						<th><spring:message code="email"/></th>
 						<td>이메일</td>
-						<td><input type="text" name="email" size="30" value="${authInfo.email}"></td>
+						<td><input type="text" name="email" size="30" value="${authInfo2.email}"></td>
 						</tr>
 						
-						<tr>
+						<%-- <tr>
 						<th><spring:message code="gender"/></th>
-						<td>
+						 <td>
 						<c:choose>
-						<c:when test="${authInfo.gender==0}">
+						<c:when test="${authInfo2.gender==0}">
 						<input type="radio" name="gender" value="0" checked="checked"> 남성
 						<input type="radio" name="gender" value="1"> 여성
 						</c:when>
-						</c:choose></td>
-						</tr>
+						</c:choose></td> 
+						</tr> --%>
+						
 						</table>
 
 						<div class="change_leave">
 						<input type="button" value="수정하기" class="add_btn" onclick=""/> 
-						<input type="button"	value="회원탈퇴" class="add_btn" onclick="location.href='registration/Member_Delete.jsp'" ;/>
+						<input type="button"	value="회원탈퇴" class="add_btn" onclick="location.href='registration/Member_Delete.jsp'" />
 						</div>
 					</form:form>
 					
 					</div>
 					<!--myinfo_view END-->
 
-				</div>
+					</div>
+			</div> <!-- 여기부터 지우세요 -->
+		</div>
+	</div>
+				
 				<!--myinfo END-->
-				<div class="my_proj">
+				<%-- <div class="my_proj">
 					<span>내 프로젝트 보기</span> <br>
 
 					<div class="my_proj_view">
@@ -150,13 +156,13 @@
 									</c:when>
 									<c:otherwise>
 
-										<c:forEach var="pjtlist" items="${pjtlist }">
-											<tr>
-												<td>${pjtlist.pjtName }</td>
-												<td style="text-align: right;"><a class="a_add_btn" href="Project?pjtcode=${pjtlist.pjtCode }" target="_blank">프로젝트 바로가기</a>													
-												</td>												
-											</tr>
-										</c:forEach>
+									<c:forEach var="pjtlist" items="${pjtlist }">
+										<tr>
+											<td>${pjtlist.pjtName }</td>
+											<td style="text-align: right;"><a class="a_add_btn" href="Project?pjtcode=${pjtlist.pjtCode }" target="_blank">프로젝트 바로가기</a>													
+											</td>												
+										</tr>
+									</c:forEach>
 
 									</c:otherwise>
 								</c:choose>
@@ -173,7 +179,7 @@
 			<!-- section END -->
 
 			
-		</div>
+		</div> --%>
 
 </body>
 </html>
