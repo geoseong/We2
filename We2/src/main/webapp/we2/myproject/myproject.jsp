@@ -22,11 +22,8 @@ function myTimer(){
    $(".state_line_1").animate({width:"+=80"});
 }
 </script> 
-
 </head>
     
-
-
 <body>
  <div id="wrap">  <!-- wrap : div를 한번더 감싸고 액션의 기준이 될 수 있음-->
 
@@ -83,7 +80,6 @@ function myTimer(){
                <li><a href="/We2/Notice.do?list=/notice/list.jsp&pjtcode=${project.pjtCode }" id="item_1">공지사항</a></li>
                <li><a href="/We2/fList.do?File=/File/FileList.jsp&pjtcode=${project.pjtCode }" id="item_2">파일공유</a></li>
                <li><a href="/We2/DateSchedule?&pjtcode=${project.pjtCode }" id="item_3">스케줄</a></li>
-               
            </ul>
        </div>
     
@@ -91,25 +87,17 @@ function myTimer(){
    
    <!-- 2) 가운데 내용 ---------------------------------->
    <div class ="contents">
-<%  System.out.println("파라미터로받은 page = " + (String)request.getAttribute("page"));
-	//String page1=(String)request.getAttribute("page");
-	
-%>
-    	 <jsp:include page="boardmain.jsp"/>
+
+    	<jsp:include page="${page }.jsp"></jsp:include>
 			<!--  contents 영역 끝 ----------------------------------->
-			<!-- 태성씨 코딩안해요???? -->
-			<!-- 언제까지 주무실겁니까??????? -->
-			<!-- 제꺼 대신 코딩좀 해주시죠 -->
-
    </div>
-
   <!-- 3) 오른쪽 채팅창-->
   <div class = "chat">
       <div class="chat_title">
       	<img src="img/G_talk_2.png"/>
       </div>
      
-      <%--   <jsp:include page="${page }.jsp"></jsp:include> --%>
+        <%-- <jsp:include page="${page }.jsp"></jsp:include> --%>
 
       
   </div>

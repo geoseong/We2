@@ -41,7 +41,9 @@ public interface StudyRoomMapper {
 			+ "#{rcontent}, "
 			+ "#{rpictureurl})";
 	
-	final String delete_by_id = "delete from roomshare where rcode = #{rcode}";
+	final String delete_by_rcode = "delete from roomshare where rcode = #{rcode}";
+	
+	final String update_by_rcode = "update roomshare set rname = #{rname}, rlocation = #{rlocation}, rlocationdetail = #{rlocationdetail}, rmember = #{rmember}, rcontent = #{rcontent}, rpictureurl = #{rpictureurl} where rcode = ${rcode}";
 			
 	/*final String select_cnt_by_subject = "select * from (select id, subject, name, created_date, mail, memo, hits, ceil (rownum / #{rowsPerPage}) as page from spring_board where subject like '%' || '${likeThis}' || '%' order by id desc) where page = #{page}";
 		
@@ -86,8 +88,18 @@ public interface StudyRoomMapper {
 		@Select(select_all)
 		int getTotalCnt();
 		
-		@Delete(delete_by_id)   // �� �����ϱ� 
-		void StudyRoomdelete(@Param("rcode") int id);
+		@Delete(delete_by_rcode)  
+		void StudyRoomdelete(@Param("rcode") int rcode);
+		
+		@Update(update_by_rcode) 
+		void StudyRoomupdate(
+				@Param("rcode") int rcode,
+				@Param("rname") String rname, 
+				@Param("rlocation") String rlocation, 
+				@Param("rlocationdetail") String rlocationdetail, 
+				@Param("rcontent") String rcontent, 
+				@Param("rmember") int rmember, 
+				@Param("rpictureurl")String rpictureurl);
 		
 }
 		
@@ -118,8 +130,7 @@ public interface StudyRoomMapper {
 			public ArrayList<StudyRoomBean> getSearchedList(@Param("page") int page, @Param("rowsPerPage") int rowsPerPage, @Param("likeThis") String strSearchThis);
 			
 	
-			@Update(update_by_id)  // �� �����ϱ�
-			void updateBoard(@Param("id") int id, @Param("subject") String subject, @Param("mail") String mail, @Param("memo") String memo);
+			
 			
 		
 		}*/

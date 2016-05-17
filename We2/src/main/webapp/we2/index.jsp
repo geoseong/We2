@@ -11,11 +11,27 @@
     <link rel="stylesheet" href="css/01_main_intro.css" type="text/css">
     <link rel="stylesheet" href="css/w2_reset.css" type="text/css">
     <link rel="stylesheet" href="css/w3_slide.css" type="text/css">
-	<link rel="stylesheet" type="text/css" href="css/02_1_pjtMake.css">
+    <link rel="stylesheet" type="text/css" href="css/w2_reset.css">
+<link rel="stylesheet" type="text/css" href="css/02_1_pjtMake.css">
 
     <!-- 슬라이드 이미지를 위한 준비-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+   <style>
+      .modal_bg{
+         display:none;
+      }
+      .pjtMakeInner{
+         display:none;
+      }
+      
+      element.style{
+      width : 270px;
+      }
+      #ui-datepicker-div{
+		width:300px;
+      }
+    
+   </style>
 </head>
         
 <body>
@@ -28,16 +44,15 @@
 
 <!-- 1. 상단 로고 부분-->
 <div id = "header">
-    <a href="/We2"><b>We2</b></a>
+    <a href="index.jsp"><b>We2</b></a>
 
  <c:choose>
-	 <c:when test="${empty authInfo}">
+    <c:when test="${empty loginUser}">
 
-		<div id = "nav">
-            <a href="login" class="loginButton">로그인</a>
+		   <div id = "nav">
+            <a href="login" class="loginButton">로그인</a><!-- A태그를 사용하면 get으로 넘어간다.!! -->
             <!-- #########위에 로그인 header를 넣는다! -->
-        </div>
-
+          </div>
 	 </c:when>
 	 
 	 <c:otherwise>
@@ -45,14 +60,13 @@
 	 	<div id = "nav2">
 	 		<a href="mypage">마이페이지</a>
             <!-- #########위에 로그인 header를 넣는다! -->
-        </div>
-        
+         </div>
         <div id = "nav3">
             <a href="logout">로그아웃</a>
             <!-- #########위에 로그인 header를 넣는다! -->
         </div>
-	
-	 </c:otherwise>
+	   </c:otherwise>
+	   
  </c:choose>
 
 </div>
@@ -88,7 +102,7 @@
     
   <!-- 3.-1 중간 메뉴의 box--> 
             <!--id: 한문서에 한번 /class:한문서에 여러번--> 
-			<!-- 게시판 영역부분 -->
+         <!-- 게시판 영역부분 -->
             <div id = "box-wrap">
                 <div class = "box" style="background-color:#CE6628;">  <!-- 프로젝트 만들기 -->
                     <a class="makeButton">
@@ -123,63 +137,65 @@
     
   </div><!--big wrap END-->  
   
-    <script type="text/javascript" src="js/jquery-1.12.1.min.js"></script> 
+    <!-- <script type="text/javascript" src="js/jquery-1.12.1.min.js"></script>  -->
     <script type="text/javascript" src="js/main_slider2.js"></script>
     
     
    
    <div class="pjtMake">   
-   	  <form method="post" action="pjtmake.do">	
+        <form method="post" action="pjtmake.do">   
  
-   	     <div class="pjtMakeInner">
+           <div class="pjtMakeInner">
                 <h1>프로젝트 만들기</h1>
                 
-                <img src="img/x.png" id="exit2">
+                <img src="img/index/x.png" id="exit2">
                  
                 <div class="frame">
-	   				<div class="nameArea">
-	   					<label for="pjtName">프로젝트 이름</label>
-	   					<input type="text" size="26" name="pjtName" id="pjtName" style="height:25px;"> 
-	   				</div>
-	   				
-	   				<div class="classifyArea">
-	   					<label for="pjtClassify">프로젝트 분류</label>
-	   					<select name="classify" style="height:25px;" >
-	   						<option>조별과제</option>
-	   						<option>스터디</option>
-	   						<option>회사협업</option>
-	   					</select> 
-	   				</div>
-	   				
-	   				<div class="imageArea">		
-	   					<label for="pjtTerm">프로젝트 기간</label>
+                  <div class="nameArea">
+                     <label for="pjtName">프로젝트 이름</label>
+                     <input type="text" size="25" name="pjtName" id="pjtName" style="height:25px;"> 
+                  </div>
+                  
+                  <div class="classifyArea">
+                     <label for="pjtClassify">프로젝트 분류</label>
+                     <select name="pjtClassify" >
+                        <option>조별과제</option>
+                        <option>스터디</option>
+                        <option>회사협업</option>
+                     </select> 
+                  </div>
+                  
+                  <div class="imageArea">      
+                     <label for="pjtTerm">프로젝트 기간</label>
                         
-	   					<img src="img/calendar.png" class="img1" style="width:50px;">
+	   					<img src="img/index/calendar.png" class="img1" style="width:50px;">
                         
-	   					<img src="img/calendar.png" class="img2" style="width:50px;">		
+	   					<img src="img/index/calendar.png" class="img2" style="width:50px;">		
 	   					<input type="text" size="7" name="term1" id="term1" style="height:25px;">
                         
                         <span> ~ </span>
                         
-	   					<input type="text" size="7" name="term2" id="term2" style="height:25px;"> 			                
-	   				</div>
-	   				
-	   				<div class="inviteArea">
-	   					<label for="pjtInvite">프로젝트 초대</label>
-	   					준비 중입니다.
-	   					<!--  <input type="text" size="26" name="invite" style="height:25px;">-->
+                     <input type="text" size="7" name="endDate" id="term2" style="height:25px;">                          
+                  </div>
+                  
+                  
+               
+                  <!-- <div class="inviteArea">
+                     <label for="pjtInvite">프로젝트 초대</label>
+                     준비 중입니다.
+                      <input type="text" size="26" name="invite" style="height:25px;">
                         <div class="btn1">
-	   				 	<input type="button" value="초대" size="50" onclick="invitemember()">
-	   				    </div>
-	   				</div>
-	   				
-	   				<div class="btn2">
-	   				 	<input type="submit" value="만들기" class="make" size="100">
-	   				</div>
+                      <input type="button" value="초대하기" size="50" onclick="invitemember()">
+                      </div>
+                  </div> 
+                   -->
+                  <div class="btn2">
+                      <input type="submit" value="만들기"  size="100">
+                  </div>
                 
                 </div>
          </div> <!--pjtMakeinner END-->
-   		
+         
         </form>
        
    </div>
@@ -188,7 +204,7 @@
      
  
     </body>
-<script src="js/jquery-1.12.1.min.js"></script>
+<script src="js/jquery-1.12.2.min.js"></script>
 <!-- jQuery UI CSS파일  -->
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
 <!--  jQuery 기본 js파일 -->
@@ -198,13 +214,13 @@
 
 <script type="text/javascript"> 
 $("#term1").datepicker({  
-	changeMonth: true, 
+   changeMonth: true, 
     changeYear: true,
     nextText: '다음 달',
     prevText: '이전 달' 
     });
 $("#term2").datepicker({  
-	changeMonth: true, 
+   changeMonth: true, 
     changeYear: true,
     nextText: '다음 달',
 //     prevText: '이전 달' 
@@ -213,35 +229,40 @@ $("#term2").datepicker({
 $(".modal_bg").hide();
 $(".pjtMakeInner").hide();
 
-	$(".makeButton").click(function(){
-		$(".pjtMakeInner").show();
-		$(".modal_bg").show();	
-	});
-	
-	$("#exit2").click(function(){
-		$(".modal_bg").hide();
-		$(".pjtMakeInner").hide();
-	
-	});
+   $(".makeButton").click(function(){
+      
+      $(".pjtMakeInner").attr("display","block");
+      $(".modal_bg").attr("display","block");   
+      $(".pjtMakeInner").show();
+      $(".modal_bg").show();   
+   });
+   
+   $("#exit2").click(function(){
+      
+      $(".pjtMakeInner").attr("display","none");
+      $(".modal_bg").attr("display","none");   
+      $(".modal_bg").hide();
+      $(".pjtMakeInner").hide();
+   
+   });
     
 </script>
 
-    <script type="text/javascript" src="js/jquery-1.12.1.min.js"></script> 
     <script type="text/javascript" src="js/main_slider2.js"></script>
     
     <script type="text/javascript">
-	    
-	  function invitemember(){
-		  
-			if (document.frm.userid.value == "") {
-				alert('아이디를 입력하여 주십시오.');
-				frm.userid.focus();
-				return;
-			}
-			var url = "We2_idCheck.do?userid=" + document.frm.userid.value;
-			window.open(url, "_blank_1", "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=450, height=200");
-	  }
-	</script>
+       
+     function invitemember(){
+        
+         if (document.frm.userid.value == "") {
+            alert('아이디를 입력하여 주십시오.');
+            frm.userid.focus();
+            return;
+         }
+         var url = "We2_idCheck.do?userid=" + document.frm.userid.value;
+         window.open(url, "_blank_1", "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=450, height=200");
+     }
+   </script>
 </head>
 
 </html>

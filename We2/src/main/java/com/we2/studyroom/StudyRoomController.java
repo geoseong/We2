@@ -31,6 +31,9 @@ public class StudyRoomController {
     private ServletContext servletContext;
 	@Autowired
 	StudyRoomService studyroomService;
+	@Autowired
+	HttpServletRequest request;
+	
 	// 페이징처리 싱글톤 인스턴스객체 얻음
 	RPagingManager paging = RPagingManager.getInstance();
 	
@@ -42,7 +45,7 @@ public class StudyRoomController {
 	
 	/* 리스트 */
 	@RequestMapping(value="/list", method=RequestMethod.GET)
-	public String listSpecificPageWork(@RequestParam("page")  int page, Model model) throws ParseException{
+	public String listSpecificPageWork(@RequestParam("page") int page, Model model) throws ParseException{
 		System.out.println("-------------------------------받아온 파라미터");
 			System.out.println("rows_per_page : " + rows_per_page);
 			System.out.println("page : " + page);
@@ -80,7 +83,7 @@ public class StudyRoomController {
 */	
 		/* SECTION : REQUEST 영역에 보내기 */
 		// ★★ SELECT 결과물 ★★
-					model.addAttribute("Content", studyroomService.getlist(row_start-1, row_end-1));
+				  model.addAttribute("Content", studyroomService.getlist(row_start, row_end));
 				// JSP:INCLUDE PAGE
 				  model.addAttribute("studyroompage", "StudyRoomList");
 				// total page int 변수를 보냄
@@ -114,6 +117,8 @@ public class StudyRoomController {
 	 
 		return "studyRoom/StudyRoomWrite";
 	}
+	
+	
 	/** 글 등록하기 
 	 * @throws ParseException 
 	 * @throws IOException */
@@ -170,15 +175,15 @@ public class StudyRoomController {
 		
 		return "studyRoom/shareArea";
 	}
-		
-		/* 삭제하기 */
-
 	
+	
+		
+	/* 삭제하기 */
 
 		@RequestMapping(value="/StudyRoomdelete.do", method=RequestMethod.GET)
 		public String StudyRoomdelete(@RequestParam("rcode") int rcode, Model model) throws ParseException {
 		
-			logger.info("DeleteSpecificRow called!!");
+			logger.info("StudyRoomdelete called!!");
 			logger.info("rcode=["+rcode+"] ");
 			
 			// 시작 rownum 받아오기
@@ -206,4 +211,80 @@ public class StudyRoomController {
 			  model.addAttribute("page", 1);
 			return "studyRoom/shareArea";   
 		}
+		
+		
+		
+	/* 수정하기 */
+		
+		@RequestMapping(value="/StudyRoomupdate.do", method=RequestMethod.GET)
+		public String StudyRoomupdate(@RequestParam("rcode") int rcode, Model model) throws ParseException {
+		
+			logger.info("StudyRoomupdate called!!");
+			logger.info("rcode=["+rcode+"] ");			
+					
+			// Update
+			  model.addAttribute("studyroomList", studyroomService.getSearchbyrcode(rcode));	
+			  // JSP:INCLUDE PAGE
+			  model.addAttribute("studyroompage", "StudyRoomUpdate");
+			  model.addAttribute("page", 1);
+			return "studyRoom/StudyRoomUpdate";   
+		}
+			
+		@RequestMapping(value="/StudyRoomupdate.do", method=RequestMethod.POST)
+		public String StudyRoomupdatepos(StudyRoomBean studyRoomBean, Model model , HttpSession session) throws IOException {
+			
+			String path=servletContext.getRealPath("we2/studyRoom/data");
+			System.out.println("path : "+path);
+			// getRealPath : E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps\testweb\
+			String encType="UTF-8";
+			int sizeLimit = 20*1024*1024;
+			MultipartRequest multi = new MultipartRequest(request, path, sizeLimit, encType, new DefaultFileRenamePolicy());
+			//2. 제목
+			String rname=multi.getParameter("rname");
+			studyRoomBean.setRname(rname);
+				System.out.println("WriteServlet - rname : " + studyRoomBean.getRname());
+/*		//3. 유저ID는 세션에 떠돌아다니는 (로그인중인) 변수를 getAttribute하면 됨
+			AuthInfo mVo = (AuthInfo)session.getAttribute("authInfo");
+			sVo.setUserId(mVo.getUserId());
+				System.out.println("WriteServlet - userid : " + sVo.getUserId());*/
+		//4. 위치
+			String rlocation=multi.getParameter("rlocation");
+			studyRoomBean.setRlocation(rlocation);
+			System.out.println("WriteServlet - rlocation : " + studyRoomBean.getRlocation());	
+		//5. 상세 위치
+			String rlocationdetail = multi.getParameter("rlocationdetail");
+			studyRoomBean.setRlocationdetail(rlocationdetail);
+			System.out.println("WriteServlet - rlocationdetail : " + studyRoomBean.getRlocationdetail());
+		//6. 파일경로
+			String rpictureurl = multi.getFilesystemName("rpictureurl");
+			studyRoomBean.setRpictureurl(rpictureurl);
+				System.out.println("WriteServlet - rpictureurl : " + studyRoomBean.getRpictureurl());
+		//7. 게시물 내용
+			String rcontent=multi.getParameter("rcontent");
+			studyRoomBean.setRcontent(rcontent);;
+				System.out.println("WriteServlet - rcontent : " + studyRoomBean.getRcontent());
+		
+		//8. 인원수
+			int rmember=Integer.parseInt(multi.getParameter("rmember"));
+			studyRoomBean.setRmember(rmember);
+			System.out.println("WriteServlet - rmember : " + studyRoomBean.getRmember());
+		//9. 코드번호	
+			int rcode=Integer.parseInt(multi.getParameter("rcode"));
+			studyRoomBean.setRcode(rcode);
+			System.out.println("WriteServlet - rcode : " + studyRoomBean.getRcode());
+		// 게시글 내용들을 update 하기
+		
+			
+			logger.info("updateRow called!!");			
+			
+			studyroomService.updateRow(rcode, rname, rlocation, rlocationdetail, rcontent, rmember, rpictureurl);
+			
+			  model.addAttribute("shareArea", new Integer(studyroomService.getTotalCnt()));
+			// JSP:INCLUDE PAGE
+			  model.addAttribute("studyroompage", "StudyRoomList");
+			  model.addAttribute("page", 1);
+			  
+			return "studyRoom/shareArea";   
+		}
+		
 }

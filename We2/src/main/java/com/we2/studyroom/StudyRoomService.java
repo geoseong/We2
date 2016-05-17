@@ -5,7 +5,7 @@ import java.text.ParseException;
 
 import java.util.ArrayList;
 
-
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -45,31 +45,18 @@ public class StudyRoomService {
 		
 	}
 	
-/*	public StudyRoomBean getSpecificRow(String id){
-		return this.studyRoomMapper.getSpecificRow(id);
-	}*/
-	
-	/*public int getTotalCnt(){
-		int nCnt = 0;
-		nCnt = this.studyRoomMapper.getTotalCnt();
-		return nCnt;
+	public void updateRow(
+			 int rcode,
+			String rname, 
+			 String rlocation, 
+			 String rlocationdetail, 
+			 String rcontent, 
+			 int rmember, 
+			String rpictureurl){
+		System.out.println("studyroomservice updaterow");
+		this.studyRoomMapper.StudyRoomupdate(rcode, rname, rlocation, rlocationdetail, rcontent, rmember, rpictureurl);
 	}
-	
-	public int getTotalCntBySubject(String search){
-		int nCnt=0;
-		nCnt = this.studyRoomMapper.getTotalCntBySubject(search);
-		return nCnt;
-	}
-	
-	
-	public void updateBoard(StudyRoomBean StudyRoomBean) {
-		studyRoomMapper.updateBoard(StudyRoomBean.getId(), StudyRoomBean.getSubject(), StudyRoomBean.getMail(), StudyRoomBean.getMemo());
-	}
-	
-	*/
-	
-	/*public ArrayList<StudyRoomBean> getSearchedList(int nStartPage, int list_num, String strSearchThis){
-		//return this.studyRoomMapper.getSearchedList(nStartPage, list_num, strSearchThis);
-	}*/
-
 }
+
+
+

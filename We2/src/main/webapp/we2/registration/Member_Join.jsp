@@ -7,8 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="css/w2_reset.css" type="text/css">
-<link rel="stylesheet" href="css/01_1_mypage.css" type="text/css">
-<link rel="stylesheet" href="css/01_1_mypage.css" type="text/css">
+<link rel="stylesheet" href="css/01_1_mypageform.css" type="text/css">
 
 <script src="js/jquery-1.12.1.min.js"></script>
 <script type="text/javascript" src="js/We2_member.js"></script>
@@ -28,7 +27,7 @@
 			<div id="headerinner">
 				<!-- div처음 숫자 3 개 -->
 				<h2>
-					<b> <sub> <a href="01_main.html">We2</a>
+					<b> <sub> <a href="index.jsp">We2</a>
 						<!-- 원래 페이지로 돌아감 -->
 					</sub>
 					</b>
@@ -37,7 +36,7 @@
 				<!-- 2. 상단 메뉴 부분-->
 				<div id="nav">
 					<!-- div처음 숫자 4 개 -->
-					<a href="02_project.html">프로젝트 </a> <a href="#">커뮤니티 </a> <a
+					<a href="#">프로젝트 </a> <a href="#">커뮤니티 </a> <a
 						href="#">프로젝트공유 </a> <a href="#">스터디룸공유 &nbsp;</a> <a href="#">로그아웃</a>
 				</div>
 				<!-- div처음 숫자 4 개 끝 -->
@@ -47,83 +46,84 @@
 		<!-- header END -->
 		<!-- div처음 숫자 2개 끝 -->
 		<!-- 3. 가운데 회원가입 부분 -->
-		<div id="section">
-			<!-- div처음 숫자 5 개 -->
-			<div id="menu">
-				<!-- div처음 숫자 6 개 -->
-				<!-- 회원가입 인사말 -->
-				<div id="second_line">
-					<!-- div처음 숫자 7 개 -->
-				</div>
-				<!-- div처음 숫자 7 개 끝 -->
-			</div>
-			<!-- menu END -->
-			<!-- div처음 숫자  6개 -->
-
-			<form:form action="Member_Join" path="frm" method="post" commandName="registerRequest">
-			<div class="my_registration">
-			<p>
-			<label><spring:message code="member.info"/>
-			:<form:input path="name"/><br>		
-			<form:errors path="name"/>	
-			</label> 
-			</p>
-			
-			<p>
-			<label><spring:message code="userid"/>
-			:<form:input path="userid"/><br>		
-			<form:errors path="userid"/>
-			<input type="button" value="중복 체크" onclick="idCheck()">	
-			</label> 
-			</p>
-			
-			<p>
-			<label><spring:message code="pwd"/>
-			:<form:password path="pwd"/><br>		
-			<form:errors path="pwd"/>
-			<input type="password" id="byteInfo" name="pwd" size="20" onkeyup="checkLength(this, 12)">	
-			</label> 
-			</p>
-			
-			<p>
-			<label><spring:message code="pwd.confirm"/>
-			:<form:password path="pwd.confirm"/><br>		
-			<form:errors path="pwd.confirm"/>	
-			</label> 
-			</p>
-			
-			<p>
-			<label><spring:message code="phone"/>
-			:<form:password path="phone"/><br>		
-			<form:errors path="phone"/>	
-			</label> 
-			</p>
-			
-			<p>
-			<label><spring:message code="email"/>
-			:<form:password path="email"/><br>		
-			<form:errors path="email"/>	
-			</label> 
-			</p>
-			
-			<p>
-			<label><spring:message code="gender"/>
-			:<form:password path="gender"/><br>		
-			<form:errors path="gender"/>
-			<input type="radio" name="gender" value="0" checked="checked">남성 
-			<input type="radio" name="gender" value="1">여성	
-			</label> 
-			</p>
-			
-			
-			
-			<input type="submit" value="<spring:message code="register.btn"/>">
-			
 		
-			 </div>
-			 
+		<div id="section">
+			
+			<div id="menu">
+				
+			    <b>MyPage</b>	
+				<div id="second_line">
+				
+				</div>
+				
+			 </div> <!-- menu END -->
+			
+
+			<div id = "contents">
+			
+			<div class="my_registration">
+			
+			
+			<!-- 회원정보 -->
+			<span><spring:message code="member.info"/></span> 
+			<form:form action="Member_Join" name="frm" method="post" commandName="member">
+			
+			<!-- 회원정보 상세 내용을 감싸는 div -->
+			<table> 
+
+			<tr>
+			  <th><spring:message code="name"/></th>
+			  <td><form:input path="name"/></td>	
+			      <form:errors path="name"/>	
+			</tr>
+			
+			<tr>
+			<th><spring:message code="userId"/></th>
+			<td><form:input path="userId"/> 
+			    <input type="button" class="check_btn"  value="중복 체크" onclick="idCheck()" ></td>		
+			    <form:errors path="userId"/>
+			</tr>
+			
+			<tr>
+			<th><spring:message code="pwd"/></th>
+			<td><form:input path="pwd" id="byteInfo" name="pwd" size="20" onkeyup="checkLength(this, 12)"/></td>	
+			    <form:errors path="pwd"/>	
+			</tr>
+			
+		    <tr>
+			<th><spring:message code="pwd.confirm"/></th>
+			<td><form:input path="pwd_confirm"/></td>	
+			<form:errors path="pwd_confirm"/>	
+			</tr>  
+			
+			<tr>
+			<th><spring:message code="phone"/></th>
+			<td><form:input path="phone"/></td>		
+			<form:errors path="phone"/>	
+			</tr>
+			
+			<tr>
+			<th><spring:message code="email"/></th>
+			<td><form:input path="email"/></td>
+			<form:errors path="email"/>	
+			</tr>
+			
+			<tr>
+			<th><spring:message code="gender"/></th>
+			<td><input type="radio" class="radio" name="gender" value="0" checked="checked">남성 
+			    <input type="radio" class="radio" name="gender" value="1">여성	
+			</td> 
+			</tr>
+			</table> <!-- table end -->
+			<!--  가입 완료 버튼 -->
+			<input type="submit" class="finish_btn" value="<spring:message code="register.btn"/>">
+			
 			</form:form>
-		</div>
-		</div>
+			
+			 </div>  <!-- my_registration end -->
+			</div>  <!-- contents end -->
+		</div> <!-- section end -->
+		</div> <!-- wrap EDN -->
+	
 </body>
 </html>

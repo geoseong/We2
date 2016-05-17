@@ -1,7 +1,12 @@
 package com.we2.sharepjtboard;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.we2.sharepjtboard.MailSend.SMTPAuthenticator;
 import com.we2.spring.AuthInfo;
 
 @Controller
@@ -276,12 +282,6 @@ public class PjtBoardController {
 		return "redirect:list";
 	}
 
-	@RequestMapping(value="/pjt", method=RequestMethod.GET)
-	public String pjt(Model model, String category) {
-		model.addAttribute("page","boardmain");
-		return "myproject/myproject";
-	}
-	
 	@RequestMapping(value="/find", method=RequestMethod.GET)
 	public String findget(Model model, String category, String find, String findword, int page){
 		System.out.println("find.GET] category : " + category);
@@ -344,5 +344,44 @@ public class PjtBoardController {
 		  model.addAttribute("category", category);
 		System.out.println("--------------------------listSpecificPage");
 		return "pjtBoard/boardmain";
+	}
+	
+	
+	/** 테스트 영역 */
+	@RequestMapping(value="/mailtest", method=RequestMethod.GET)
+	public String pjt(Model model, String category) {
+		model.addAttribute("page","boardmain");
+		return "myproject/myproject";
+	}
+	
+	@RequestMapping(value="/jqueryModal", method=RequestMethod.GET)
+	public String modal(Model model, String category) {
+		model.addAttribute("page","boardmain");
+		return "test_modal/jqueryModal";
+	}
+	
+	@RequestMapping("/mailsend")
+	public void readfile() throws FileNotFoundException, IOException{
+		
+		/*ServletContext svpath= getServletContext();*/
+		String path=servletContext.getRealPath("we2/mailsend");
+		/*
+		FileReader fr = new FileReader(path);
+		BufferedReader br = new BufferedReader(fr);
+		
+		String context=null;
+		List<String> mailcontext = new ArrayList<String>();
+		
+		while( (context=br.readLine()) != null ){
+			mailcontext.add(context);
+		}
+		
+		for(int j=0; j<mailcontext.size(); j++){
+			System.out.println(mailcontext.get(j));
+		}*/
+		MailSend mailsend = new MailSend();
+		mailsend.main(path);
+		SMTPAuthenticator smtpauth = new SMTPAuthenticator();
+		smtpauth.getPasswordAuthentication();
 	}
 }
