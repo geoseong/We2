@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -34,15 +35,17 @@ import com.we2.spring.MemberDao;
 @Controller
 @RequestMapping(value = "/")
 public class LoginController {
+	@Autowired
 	private AuthService authService;
 	
-	public void setAuthService(AuthService authService) {
+	/*public void setAuthService(AuthService authService) {
 		this.authService = authService;
-	}
+	}*/
+	@Autowired
 	private MemberDao memberDao;
-	public void setMemberDao(MemberDao memberDao) {
+	/*public void setMemberDao(MemberDao memberDao) {
 		this.memberDao = memberDao;
-	}
+	}*/
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	@RequestMapping(method = RequestMethod.GET)
 	
