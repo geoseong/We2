@@ -16,14 +16,13 @@
  <div id="wrap">  <!-- wrap : div를 한번더 감싸고 액션의 기준이 될 수 있음-->
 
 <!-- 1. 상단 로고 부분-->
+  <!-- 1. 상단 로고 부분-->
     <div id = "header">
        
     <div id = "headerinner">
-        <h2>
+        <h2 style="top:26px;">
             <b>
-                <sub>
-                    <a href="../">We2</a>
-                </sub>  
+                <a href="/We2">We2</a> 
             </b>
         </h2>
         
@@ -31,8 +30,8 @@
         <div id = "nav">
 
             <a href="02_project.html">프로젝트 </a>
-            <a href="ItemList">커뮤니티 </a>
-            <a href="list?page=1&category=group">프로젝트공유 </a>
+            <a href="../cBoard/list?page=1&category=cFindwork">커뮤니티 </a>
+            <a href="../pjtBoard/list?page=1&category=group">프로젝트공유 </a>
             <a href="List.do">스터디룸공유 &nbsp;</a>
             
             <c:choose>
@@ -57,8 +56,9 @@
 <div id = "section">
    <div id="menu">
        <b>스터디룸 공유</b>
-        <div id = "second_line">
-          <!-- 커뮤니티 밑 노란줄-->
+        <!-- 게시판 타이틀 밑의 선-->
+        <div id = "second_line" style="background-color:#166BA3;" >
+       
        </div>
 
      </div> 
@@ -70,9 +70,9 @@
 </div><!-- section END -->
      
      
-<div id="footer">
+<!-- <div id="footer">
 Copyright © geoseong.com
-</div>
-  </div>  
+</div> -->
+ </div>  
 </body>
 </html>

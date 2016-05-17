@@ -9,8 +9,8 @@
 </head>
 <body>
 
-  <H2>위치 수정</H2>
-  <HR>
+  <H2 style="text-align:center; color:#69C5E7;">스터디룸 수정</H2>
+
   
   
  <form name="frm" enctype="multipart/form-data" method="post"  action="Update.do" >
@@ -20,19 +20,19 @@
   
  <table>
    <tr>
-   	 <th> 위치명 :</th>
+   	 <th> 위치명 </th>
    	  <td>
    	  	<input type="text" name="rname" size=10 value="${studyroomList.rname}">
    	  </td>  
    	  
-   	 <th>인원제한 : </th>
+   	 <th>인원제한  </th>
    	  <td>
    	  	<input type="text" name="rmember" size=10 value="${studyroomList.rmember}">
    	  </td>  	 
      </tr>
    
    <tr>
-   	<th>종류 :</th>
+   	<th>종류 </th>
    		   <td> 
                <select name='type'  id="type"  >                
                  <option selected="selected" value="커피전문점">커피전문점</option>
@@ -40,7 +40,7 @@
                  <option value="회의실">회의실</option>               
                </select>
              </td>
-   	<th>지역 :</th>
+   	<th>지역 </th>
    	   	<td>
    		<select name='location'  id="location"   >                                  
                 	<option selected="selected" value="서울">서울</option>
@@ -52,33 +52,27 @@
              </select>
     	</td>
     </tr>
-    </table>
-    <table>
     
-        <tr>
+       <tr>
    		<td>
    			<input type="file" name="rpictureurl" value="${studyroomList.rpictureurl}"> (파일 용량 제한은 20MB 입니다.)
    		</td>
-   </tr>
+       </tr>
    
-   
-   <tr>
-    
+ 
     <td colspan=5>
 		<TEXTAREA name="rcontent" class="textarea" ROWS="8" COLS="52">${studyroomList.rcontent}</TEXTAREA>
 	
     </td>
-   </tr>
+   </table>
   
   
-  <tr>
-   <td align="center" colspan=5>
-    <input name="add" type=submit value="위치 수정" onclick="return ScheduleCheck()">
-    
-    <input name="cancel" type="reset" value="다시 작성">
-   </td>
-  </tr>
-  </table>
+ 
+   <div class = "button">
+    <input name="add" class="add_btn" type=submit value="위치 수정" onclick="return ScheduleCheck()"> 
+    <input name="cancel" class="add_btn" type="reset" value="다시 작성">
+   </div>
+ 
   </form>
 </body>
 </html>

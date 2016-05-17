@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>프로젝트 공유 게시판</title>
+<title>커뮤니티 게시판_main</title>
 
 	<link rel="stylesheet" href="../css/w2_reset.css" type="text/css">
 	<link rel="stylesheet" href="../css/board_fin.css" type="text/css">
@@ -57,19 +57,18 @@
 <!--3.가운데 메뉴 + 내용-->     
 <div id = "section">
    <div id="menu">
-       <b>프로젝트공유</b>
-        <div id = "second_line" style="background-color:#1591BE;">
+       <b>커뮤니티</b>
+        <div id = "second_line" style="background-color:#E99323;">
           <!-- 커뮤니티 밑 노란줄-->
        </div>
        <br>
-          <a href="list?page=1&category=group">조별과제</a><br>
-          <a href="list?page=1&category=exam">시험공부</a><br>
-          <a href="list?page=1&category=collabo">회사협업</a>
+          <a href="list?page=1&category=cFindwork">팀원구하기</a><br>
+          <a href="list?page=1&category=cFreework">자유게시판</a><br>
      </div> 
   
 	 <!-- 게시판 include 영역 -->
 	  <div id="contents">
-	  	<h2>조별과제 게시판</h2>
+	  	<h2>팀원구하기 게시판</h2>
 	  	
 			<jsp:include page="${Boardpage }.jsp"/>
 			
@@ -77,10 +76,10 @@
      
 </div><!-- section END -->
      
-	 <!--     
+	<!--  
 		<div id="footer">
 		Copyright © geoseong.com
-		</div> -->
-  </div>   
+		</div>  -->
+  </div> <!-- wrap end -->
 </body>
 </html>

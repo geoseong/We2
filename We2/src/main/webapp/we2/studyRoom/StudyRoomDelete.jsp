@@ -6,12 +6,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="css/w2_reset.css">
+<link rel="stylesheet" type="text/css" href="../css/studyroom_window.css">
+
 </head>
 <body>
 
-  <H2>위치 삭제</H2>
-  <HR>
-  
+  <H2 style="text-align:center; color:#69C5E7;">스터디룸 삭제</H2>
+
   
  <form name="frm" method="post" action="StudyRoomdelete.do" >
  <input type="hidden" name="rcode" value="${studyroomList.rcode}" >
@@ -19,43 +20,38 @@
   
  <table>
    <tr>
-   	 <th> 위치명 :</th>
+   	 <th> 위치명 </th>
    	  <td>
    	  	<input type="text" name="rname" size=10 value="${studyroomList.rname}">
    	  </td>  
    	  
-   	 <th>인원수 : </th>
+   	 <th>인원수  </th>
    	  <td>
    	  	<input type="text" name="rmember" size=10 value="${studyroomList.rmember}">
    	  </td>  	 
      </tr>
      
   <tr>
-   	<th>위 치 :</th>
+   	<th>위 치 </th>
        <td><input type=text name="rlocation" size=10 value="${studyroomList.rlocation}">
        </td>
 
-      <th>장 소 :</th>
+      <th>장 소 </th>
    	  <td><input type=text name="rlocationdetail" size=10 value="${studyroomList.rlocationdetail}">
      </td>
    </tr>
    
-   
-   <tr>
-    
+
     <td colspan=5>
 		<TEXTAREA name="rcontent" class="textarea" ROWS="8" COLS="52">${studyroomList.rcontent}</TEXTAREA>
     </td>
-   </tr>
+   </table>
   
-  
-  <tr>
-   <td align="center" colspan=5>
-       <input name="delete" type=submit  value="삭제하기" >
-       <input name="back" type="button"   value="뒤로가기"  onclick="location.href='List.do'">
-   </td>
-  </tr>
-  </table>
+   <div class = "button">
+       <input name="delete" class="add_btn" type=submit  value="삭제하기" >
+       <input name="back" class="add_btn" type="button"   value="뒤로가기"  onclick="location.href='List.do'">
+  </div>
+ 
   </form>
 </body>
 </html>

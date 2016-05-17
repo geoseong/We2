@@ -1,30 +1,36 @@
 @CHARSET "UTF-8";
 
+
 #container{
 	width:970px;
 	margin:0 auto;
 /* 	background:#ccc; */
 }
 
-.search_controll{
-	border-bottom:1px solid #000; /* 서울시 관악구 모임인원 밑에 밑줄 색변경 */
-}
-
-.study_room_title{
-	text-align:center;
-		color: black;
+/*스터디룸 공유 게시판 타이틀 글씨*/
+#contents h2{
+	text-align: center;
+     /* border: 1px solid red; */  
 }
 
 .study_room_title>a{
-	text-align:center;
-	color: black;
+	color: #1591BE;	
+	font-size:25px;
+	font-weight:800;
+	text-align: center;
+     /* border: 1px solid red; */ 	
 }
 
 
+.search_controll{
+	border-bottom:0.5px solid #1591BE; /* 서울시 관악구 모임인원 밑에 밑줄 색변경 */
+}
+
 .study_room_menu{
+	margin-top:20px;
 	padding:20px;
-	background:#ddd;
-	height:50px;
+	background:#AFDBF7;
+	height:40px;
 }
 
 .study_room_menu:after{
@@ -35,23 +41,58 @@
 
 .study_room_menu>li{
 	float:left;
-	width:308px;
-	height:50px;
-	background:#fff;
+	height:40px;
+    font-weight: 400;
+    font-size:15px;
 	text-align:center;
-	line-height:50px;
 }
 .study_room_menu>li>a{
-	color:black;
+	color: #424444;
+	font-weight: 400;
+    font-size:15px;
 }
 
+#location {
+	font-size:16px;
+	color:#424444;
+	font-weight:400;
+}
 
+#type {
+	font-size:16px;
+	color:#424444;
+	font-weight:400;
+}
+
+/* 검색 결과 글씨 부분 */
 .study_loc{
 	margin:10px 0;
 }
 
+span{
+	padding:10px;
+	margin-left:10px;
+	font-size:18px;
+	color:#1591BE;
+	font-weight:600;
+}
+
+.add_btn{
+	border:none;
+	background:#166BA3;
+	color:#fff;
+    font-weight: 400;
+    font-size:17px;
+}
+
+.add_btn:hover{
+    background-color: black;
+    opacity:0.7;
+}
+
+
 .content_list{
-	padding:0 0 0 10px;
+	padding : 0 0 0 10px;
 }
 
 .content_list:after{
@@ -62,23 +103,94 @@
 
 .content_list>li{
 	float:left;
-	width:310px;
-	height:340px
-
-	margin:0 10px 20px 0;
+	width:300px;
+	height:330px;
+	margin:10px;
 }
 
 
 .content_list_img{
 	width:280px;
-	height:250px;
-	
+	height:250px;	
 }
-
 
 .content_list_img img{
 	width:280px;
 	height:250px;
+}
+
+/* 사진 및 상세 내용에 대한 글씨 */
+p {
+	font-size:12px;
+}
+
+/* 글쓰기 부분 */
+.write a{
+	padding:5px;
+	padding-left:5px;
+	padding-right:5px;
+	background-color:#d3d3d3;
+	float:right;
+	font-size:15px;
+	color: #166BA3;
+	border-radius:5px;
+/*  border:1px solid black;  */
+}
+
+.write a:hover {
+	background-color:#1591BE;
+	color: #fff;
+	opacity:0.7
+}
+
+/* 사진 리스트 전체를 감싸는 div 부분*/
+.content_wrap{
+	width:970px;
+	margin-top:28px;
+	/* border:1px solid black; */
+}
+
+/*사진에 대한 상세 내용 설명하는 글씨*/
+.detail_txt {
+	padding-left:5px;
+	width:275px;
+	background-color:#dddddd;
+}
+
+
+
+/* 수정하기 부분 글씨*/
+.update {
+	font-size:12px;
+	color: #7a7a7a;
+	font-weight:600;
+	padding-left:165px;
+	margin-right:10px;
+	/* border:1px solid black; */
+}
+
+/* 삭제하기 부분 글씨*/
+.delete {
+	font-size:12px;
+	color: #7a7a7a;
+	font-weight:600;
+	/* border:1px solid black; */
+}
+
+
+a:hover {
+	text-decoration: none;		/* 링크 밑줄 없애기 */
+	color: #1591BE;			/* 글 색상 */
+	font-weight:600;
+}
+
+.counting {
+	margin-bottom:50px;
+	padding:10px;
+	font-size:15px;
+	font-weight:600;
+	text-align:center;
+	border-top:0.5px solid #1591BE;
 }
 
 

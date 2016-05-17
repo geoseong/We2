@@ -22,6 +22,7 @@
 <title>스터디룸 공유</title>
 <link rel="stylesheet" type="text/css" href="../css/w2_reset.css">
 <link rel="stylesheet" type="text/css" href="../css/shopping2.css">
+<link rel="stylesheet" type="text/css" href="../css/board_fin.css" >  <!-- 게시판 틀 -->
 <script type="text/javascript" src="../js/jquery-1.12.1.min.js"></script>
 
 <script type="text/javascript">
@@ -46,25 +47,25 @@
       document.frm.submit();
       
   }
-  function winOpen(rcode){
+  function winOpen(rcode){ 
 		var url = "Content.do?rcode=" + rcode;
 		  javascript:window.open(url , '상세내용보기', 'width=500 height=700 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
 	  }
 	  
 	  function winOpen2(rcode){
 		var url = "StudyRoomupdate.do?rcode=" + rcode;
-	   	  javascript:window.open(url , '상세내용보기', 'width=500 height=320 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
+	   	  javascript:window.open(url , '상세내용보기', 'width=530 height=530 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
 	  }		
 
   function winOpen3(rcode){
 		var url = "StudyRoomdelete.do?rcode=" + rcode;
-		    javascript:window.open(url , '상세내용보기', 'width=500 height=320 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
+		    javascript:window.open(url , '상세내용보기', 'width=530 height=530 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
 		}
 
 
-	function winOpen4(){
+	function winOpen4(){   // 글쓰기
 		var url = "studyroomwrite.do";
-	     javascript:window.open(url , '상세내용보기', 'width=500 height=320 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
+	     javascript:window.open(url , '상세내용보기', 'width=530 height=530 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
 	}
 	  
 
@@ -93,7 +94,7 @@
 		<form action="List?page=1"  method="post" name="frm">
 		<ul class="study_room_menu">
 			<li>
-				<select name='location' id="location" onchange="subMenu()">
+				<select name='location' id="location" onchange="subMenu()" style="width:350px; height:40px;">
 				 <option value="지역구분" >지역구분</option>
 				 <option value="서울" <c:if test="${'서울'==location}">selected</c:if>>서울</option>
                  <option value="경기/인천" <c:if test="${'경기/인천'==location}">selected</c:if>>경기/인천</option>
@@ -106,7 +107,7 @@
 			</li>
 			
 			<li>
-				<select name='type'  id="type"  onchange="subMenu()">
+				<select name='type'  id="type"  onchange="subMenu()" style="width:350px;height:40px;">
                 	<option value="장소구분" >장소 구분</option>
                 	<option value="커피전문점" <c:if test="${'커피전문점'==type}">selected</c:if>>커피전문점</option>
                 	<option value="스터디카페/스터디룸" <c:if test="${'스터디카페/스터디룸'==type}">selected</c:if>>스터디카페/스터디룸</option>
@@ -115,7 +116,7 @@
 			</li>
 			
 			<li>
-				<input type="submit" value="검색"  onclick="return check() ">
+				<input type="submit" value="검색" class="add_btn" onclick="return check() " style="width:220px;height:40px;">
 				
 			</li>
 		</ul>
@@ -123,15 +124,16 @@
 		
 		<p class="study_loc" id="result"> 
 		
-	  <!-- 메뉴2 시작 -->   
+	  <!-- 메뉴2(검색 결과값 글씨) 시작 -->   
         
         <span id="eeeee"></span>       
         
       <!-- 메뉴2 끝 --></p>
 	</div>
+	    
 	
-	<div class="content_wrap">
-		<h2>맞춤 스터디룸<a  href="javascript:winOpen4()">글쓰기</a> </h2>
+	  <div class="content_wrap">
+		
 		<ul class="content_list">
 			<c:forEach var="roomshare" items="${Content}">
 				<li>
@@ -140,27 +142,34 @@
 				 <p class="content_list_img">
 					 <img src="/We2/we2/studyRoom/data/${roomshare.rpictureurl}" >
 				 </p>
-			 </a>
-					 <p>이름 : ${roomshare.rname}</p>				   
-					 <p>지역 : ${roomshare.rlocation }&nbsp;&nbsp; &nbsp; 
-					    종류 : ${roomshare.rlocationdetail }</p>
-					 <p>인원제한수 : ${roomshare.rmember}</p>
+			  </a>
+			      <div class="detail_txt">
+					 <p><b>이름 :</b> ${roomshare.rname}</p>				   
+					 <p><b>지역 :</b> ${roomshare.rlocation }&nbsp;&nbsp; &nbsp; 
+					    <b>종류 :</b> ${roomshare.rlocationdetail }</p>
+					 <p><b>인원제한수 :</b> ${roomshare.rmember}</p>
 					<%-- <p>내용 : ${roomshare.rcontent } &nbsp;&nbsp; &nbsp;</p>--%>
 					<p>
-					<a  href="javascript:winOpen2('${roomshare.rcode}')">수정하기</a> 
-					<a  href="javascript:winOpen3('${roomshare.rcode}')">삭제하기</a>
+					<a href="javascript:winOpen2('${roomshare.rcode}')" class="update">수정하기</a> 
+					<a href="javascript:winOpen3('${roomshare.rcode}')" class="delete">삭제하기</a>
 					<%-- <a  href="StudyRoomdelete.do?rcode=${roomshare.rcode}">삭제하기</a> --%> 
 					<%-- <input type="submit" name="삭제하기" meaction="StudyRoomdelete.do?rcode=${roomshare.rcode }"> --%>
 					</p>				
-				
+				  </div>
 				</li>
 			
 			</c:forEach>			
 		</ul>
 		
-	</div>
+	</div> <!-- content_wrap end -->
+	
+	
 		<!-- ★★ 페이징 카운트 넣는 곳 ★★ -->
+		     <div class="counting">
 				<tr>
+				   <div class = "write">
+	                 <a href="javascript:winOpen4()" >글쓰기</a>
+	                </div>
 				<td colspan="6">
 				<c:choose>
 					<c:when test="${block-1==0 }">
@@ -192,7 +201,11 @@
 				</c:choose>
 				</td>
 				</tr>
-</div>
+				
+				
+				
+			</div>  <!-- paging end -->
+     </div> <!-- container end -->
 
 
 </body>

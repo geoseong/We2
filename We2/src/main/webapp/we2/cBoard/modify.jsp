@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>We2_프로젝트 게시판 _ 업데이트 하기</title>
+<title>커뮤니티게시판 _modify</title>
 </head>
 <body>
 <!--  게시판 영역 - css에서 #contents 블록의 테두리선(border)를 없애주시면 됩니다. -->			
@@ -50,12 +50,12 @@
 							<c:when test="${empty BoardUpdate.getItemPath() }">
 									<!-- 기본설정경로 : 서블릿경로
 										E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps -->
-								<img src="/We2/we2/pjtBoard/data/noimg.png" style="width: 50px;">
+								<img src="/We2/we2/cBoard/data/noimg.png"style="width: 50px;">
 							</c:when>
 							<c:otherwise>
 									<!-- 기본설정경로 : 서블릿경로
 										E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps -->
-								<img src="/We2/we2/pjtBoard/data/${BoardUpdate.getItemPath() }" style="width: 200px;">
+								<img src="/We2/we2/cBoard/data/${BoardUpdate.getItemPath() }" style="width: 200px;">
 							</c:otherwise>
 						</c:choose>
 					</td>
@@ -64,7 +64,7 @@
 				
 				<div class="write_btn" style="text-align:center;">
 				<input type="submit" value="수정" >
-				<input type="button" value="목록" style="padding: 5px;" onclick="location.href='/We2/pjtBoard/list?page=1&category=${category}'">
+				<input type="button" value="목록" style="padding: 5px;" onclick="location.href='/We2/cBoard/list?page=1&category=${category}'">
 			    </div>
 			</form>
 <!--  게시판 영역 끝 -->

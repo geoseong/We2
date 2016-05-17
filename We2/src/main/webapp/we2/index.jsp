@@ -90,22 +90,22 @@
             <!--id: 한문서에 한번 /class:한문서에 여러번--> 
 			<!-- 게시판 영역부분 -->
             <div id = "box-wrap">
-                <div class = "box" style="background-color:#CE6628;">
+                <div class = "box" style="background-color:#CE6628;">  <!-- 프로젝트 만들기 -->
                     <a class="makeButton">
                          <img src = "img/index/icon_01.png" style="width:200px"> 
                     </a>
                 </div>
-                <div class = "box" style="background-color:#E99323;">
-                    <a href="ItemList">
+                <div class = "box" style="background-color:#E99323;"> <!-- 커뮤니티 -->
+                    <a href="cBoard/list?page=1&category=cFindwork">
                        <img src = "img/index/icon_02.png" style="width:200px">   
                     </a>
                 </div>
-                <div class = "box" style="background-color:#1591BE;">
+                <div class = "box" style="background-color:#1591BE;"> <!-- 프로젝트 공유 -->
                     <a href="pjtBoard/list?page=1&category=group">
                       <img src = "img/index/icon_03.png" style="width:200px"> 
                     </a>
                 </div>
-                <div class = "box" style="background-color:#166BA3; ">
+                <div class = "box" style="background-color:#166BA3; "> <!-- 스터디룸 공유 -->
                     <a href="studyroom/list?page=1">
                       <img src = "img/index/icon_04.png" style="width:200px"> 
                     </a>
