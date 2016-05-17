@@ -1,4 +1,4 @@
-package com.we2.studyroom;
+package com.we2.file;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -23,14 +23,14 @@ import com.we2.spring.AuthInfo;
 
 
 @Controller
-@RequestMapping(value="/studyroom")
-public class StudyRoomController {
+@RequestMapping(value="/file")
+public class FileController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(StudyRoomController.class);
+	private static final Logger logger = LoggerFactory.getLogger(FileController.class);
 	@Autowired
     private ServletContext servletContext;
 	@Autowired
-	StudyRoomService studyroomService;
+	FileService fileService;
 	@Autowired
 	HttpServletRequest request;
 	
@@ -45,7 +45,7 @@ public class StudyRoomController {
 	
 	/* 리스트 */
 	@RequestMapping(value="/list", method=RequestMethod.GET)
-	public String listSpecificPageWork(@RequestParam("page") int page, Model model) throws ParseException{
+	public String listSpecificPageWork(@RequestParam("page")  int page, Model model) throws ParseException{
 		System.out.println("-------------------------------받아온 파라미터");
 			System.out.println("rows_per_page : " + rows_per_page);
 			System.out.println("page : " + page);
@@ -60,7 +60,7 @@ public class StudyRoomController {
 			row_end = paging.getLastRowInPage(page, rows_per_page);
 			
 			System.out.println("row_end : " + row_end);
-			int t_rows = studyroomService.getTotalCnt();
+			int t_rows = fileService.getTotalCnt();
 			int t_pages = paging.getTotalPage(t_rows, rows_per_page);
 			
 			// 블락설정 : 한 화면에 표시될 페이지를 토대로 page세션1(1~10), page세션2(11~20)을 정의
@@ -83,9 +83,9 @@ public class StudyRoomController {
 */	
 		/* SECTION : REQUEST 영역에 보내기 */
 		// ★★ SELECT 결과물 ★★
-					model.addAttribute("Content", studyroomService.getlist(row_start, row_end));
+					model.addAttribute("Content", fileService.getlist(row_start-1, row_end-1));
 				// JSP:INCLUDE PAGE
-				  model.addAttribute("studyroompage", "StudyRoomList");
+				  model.addAttribute("filepage", "fileList");
 				// total page int 변수를 보냄
 				  model.addAttribute("t_pages", t_pages);
 				// 현재 페이지 번호를 보냄
@@ -99,34 +99,32 @@ public class StudyRoomController {
 			
 		System.out.println("--------------------------listSpecificPage");
 		
-		return "studyRoom/shareArea";
+		return "file/FileList";
 	}
 
-
+/*
 	
-	/** 글쓰기 폼 띄우기 */
-	@RequestMapping(value="/studyroomwrite.do", method=RequestMethod.GET)
-	public String writeget(HttpSession session, HttpServletRequest request, Model model, StudyRoomBean studyRoomBean){
+	*//** 글쓰기 폼 띄우기 *//*
+	@RequestMapping(value="/filewrite.do", method=RequestMethod.GET)
+	public String writeget(HttpSession session, HttpServletRequest request, Model model, FileBean fileBean){
 		System.out.println("---글쓰기 페이지 진입");
 		if(session.getAttribute("authInfo")!=null){
 			System.out.println("로그인 되어있음.");
 		}
 		System.out.println("로그인 안됨");
 		// JSP:INCLUDE PAGE
-		  model.addAttribute("studyroompage", "StudyRoomWrite");
+		  model.addAttribute("filepage", "fileWrite");
 	 
-		return "studyRoom/StudyRoomWrite";
+		return "file/fileWrite";
 	}
-	
-	
-	/** 글 등록하기 
+	*//** 글 등록하기 
 	 * @throws ParseException 
-	 * @throws IOException */
+	 * @throws IOException *//*
 	
-	@RequestMapping(value="/studyroomwrite.do", method=RequestMethod.POST)
+	@RequestMapping(value="/filewrite.do", method=RequestMethod.POST)
 	public String writepost(HttpSession session, HttpServletRequest request, Model model, String category) throws IOException {
 	    // 해당 경로의 폴더가 안만들어져있다면 직접 만들어놔야할 것.
-		String path=servletContext.getRealPath("we2/studyRoom/data");
+		String path=servletContext.getRealPath("we2/file/data");
 		System.out.println("path : "+path);
 		// getRealPath : E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps\testweb\
 		String encType="UTF-8";
@@ -135,16 +133,16 @@ public class StudyRoomController {
 		MultipartRequest multi = new MultipartRequest(request, path, sizeLimit, encType, new DefaultFileRenamePolicy());
 		
 		//PjtBoardBean객체인 sVo에 변수들을 집어넣는다.
-		StudyRoomBean sVo = new StudyRoomBean();
+		FileBean sVo = new FileBean();
 		//1. 글번호는 DAO의 SQL sequence로 내부적으로 처리.
 		//2. 제목
 			String rname=multi.getParameter("rname");
 			sVo.setRname(rname);
 				System.out.println("WriteServlet - title : " + sVo.getRname());
-/*		//3. 유저ID는 세션에 떠돌아다니는 (로그인중인) 변수를 getAttribute하면 됨
+		//3. 유저ID는 세션에 떠돌아다니는 (로그인중인) 변수를 getAttribute하면 됨
 			AuthInfo mVo = (AuthInfo)session.getAttribute("authInfo");
 			sVo.setUserId(mVo.getUserId());
-				System.out.println("WriteServlet - userid : " + sVo.getUserId());*/
+				System.out.println("WriteServlet - userid : " + sVo.getUserId());
 		//4. 위치
 			String rlocation=multi.getParameter("rlocation");
 			sVo.setRlocation(rlocation);
@@ -167,73 +165,73 @@ public class StudyRoomController {
 			sVo.setRmember(rmember);
 			System.out.println("WriteServlet - title : " + sVo.getRmember());
 		// 게시글 내용들을 Insert하기
-			studyroomService.insertStudyRoom(sVo);
+			fileService.insertfile(sVo);
 		
 		// JSP:INCLUDE PAGE
-		  model.addAttribute("studyroompage", "StudyRoomList");
+		  model.addAttribute("filepage", "fileList");
 		  model.addAttribute("page", 1);
 		
-		return "studyRoom/shareArea";
-	}
+		return "file/shareArea";
+	}*/
 	
 	
-		
-	/* 삭제하기 */
+/*		
+	 삭제하기 
 
-		@RequestMapping(value="/StudyRoomdelete.do", method=RequestMethod.GET)
-		public String StudyRoomdelete(@RequestParam("rcode") int rcode, Model model) throws ParseException {
+		@RequestMapping(value="/filedelete.do", method=RequestMethod.GET)
+		public String filedelete(@RequestParam("rcode") int rcode, Model model) throws ParseException {
 		
-			logger.info("StudyRoomdelete called!!");
+			logger.info("filedelete called!!");
 			logger.info("rcode=["+rcode+"] ");
 			
 			// 시작 rownum 받아오기
 					
 			// BoardDelete -
-			  model.addAttribute("studyroomList", studyroomService.getSearchbyrcode(rcode));	
+			  model.addAttribute("fileList", fileService.getSearchbyrcode(rcode));	
 			  // JSP:INCLUDE PAGE
-			  model.addAttribute("studyroompage", "StudyRoomDelete");
+			  model.addAttribute("filepage", "fileDelete");
 			  model.addAttribute("page", 1);
-			return "studyRoom/StudyRoomDelete";   
+			return "file/fileDelete";   
 		}
 			
-		@RequestMapping(value="/StudyRoomdelete.do", method=RequestMethod.POST)
-		public String StudyRoomdeletepos(@RequestParam("rcode") int rcode, Model model) {
+		@RequestMapping(value="/filedelete.do", method=RequestMethod.POST)
+		public String filedeletepos(@RequestParam("rcode") int rcode, Model model) {
 			
 			
 			logger.info("DeleteSpecificRow called!!");
 			logger.info("rcode=["+rcode+"] ");
-			studyroomService.deleteRow(rcode);
+			fileService.deleteRow(rcode);
 			//�ٽ� �������� ��ȸ�Ѵ�.
 			// BoardDelete - 2) �� ���� �� �ٽ� ����Ʈ�� ���ư���
-			model.addAttribute("shareArea", new Integer(studyroomService.getTotalCnt()));
+			model.addAttribute("shareArea", new Integer(fileService.getTotalCnt()));
 			// JSP:INCLUDE PAGE
-			  model.addAttribute("studyroompage", "StudyRoomList");
+			  model.addAttribute("filepage", "fileList");
 			  model.addAttribute("page", 1);
-			return "studyRoom/shareArea";   
+			return "file/shareArea";   
 		}
 		
 		
 		
-	/* 수정하기 */
+	 수정하기 
 		
-		@RequestMapping(value="/StudyRoomupdate.do", method=RequestMethod.GET)
-		public String StudyRoomupdate(@RequestParam("rcode") int rcode, Model model) throws ParseException {
+		@RequestMapping(value="/fileupdate.do", method=RequestMethod.GET)
+		public String fileupdate(@RequestParam("rcode") int rcode, Model model) throws ParseException {
 		
-			logger.info("StudyRoomupdate called!!");
+			logger.info("fileupdate called!!");
 			logger.info("rcode=["+rcode+"] ");			
 					
 			// Update
-			  model.addAttribute("studyroomList", studyroomService.getSearchbyrcode(rcode));	
+			  model.addAttribute("fileList", fileService.getSearchbyrcode(rcode));	
 			  // JSP:INCLUDE PAGE
-			  model.addAttribute("studyroompage", "StudyRoomUpdate");
+			  model.addAttribute("filepage", "fileUpdate");
 			  model.addAttribute("page", 1);
-			return "studyRoom/StudyRoomUpdate";   
+			return "file/fileUpdate";   
 		}
 			
-		@RequestMapping(value="/StudyRoomupdate.do", method=RequestMethod.POST)
-		public String StudyRoomupdatepos(StudyRoomBean studyRoomBean, Model model , HttpSession session) throws IOException {
-			
-			String path=servletContext.getRealPath("we2/studyRoom/data");
+		@RequestMapping(value="/fileupdate.do", method=RequestMethod.POST)
+		public String fileupdatepos(FileBean fileBean, Model model , HttpSession session, HttpServletRequest request, int rcode ) throws IOException {
+			System.out.println("method.POST] rcode : " + rcode);
+			String path=servletContext.getRealPath("we2/file/data");
 			System.out.println("path : "+path);
 			// getRealPath : E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps\testweb\
 			String encType="UTF-8";
@@ -241,50 +239,46 @@ public class StudyRoomController {
 			MultipartRequest multi = new MultipartRequest(request, path, sizeLimit, encType, new DefaultFileRenamePolicy());
 			//2. 제목
 			String rname=multi.getParameter("rname");
-			studyRoomBean.setRname(rname);
-				System.out.println("WriteServlet - rname : " + studyRoomBean.getRname());
-/*		//3. 유저ID는 세션에 떠돌아다니는 (로그인중인) 변수를 getAttribute하면 됨
+			fileBean.setRname(rname);
+				System.out.println("WriteServlet - rname : " + fileBean.getRname());
+		//3. 유저ID는 세션에 떠돌아다니는 (로그인중인) 변수를 getAttribute하면 됨
 			AuthInfo mVo = (AuthInfo)session.getAttribute("authInfo");
 			sVo.setUserId(mVo.getUserId());
-				System.out.println("WriteServlet - userid : " + sVo.getUserId());*/
+				System.out.println("WriteServlet - userid : " + sVo.getUserId());
 		//4. 위치
 			String rlocation=multi.getParameter("rlocation");
-			studyRoomBean.setRlocation(rlocation);
-			System.out.println("WriteServlet - rlocation : " + studyRoomBean.getRlocation());	
+			fileBean.setRlocation(rlocation);
+			System.out.println("WriteServlet - rlocation : " + fileBean.getRlocation());	
 		//5. 상세 위치
 			String rlocationdetail = multi.getParameter("rlocationdetail");
-			studyRoomBean.setRlocationdetail(rlocationdetail);
-			System.out.println("WriteServlet - rlocationdetail : " + studyRoomBean.getRlocationdetail());
+			fileBean.setRlocationdetail(rlocationdetail);
+			System.out.println("WriteServlet - rlocationdetail : " + fileBean.getRlocationdetail());
 		//6. 파일경로
 			String rpictureurl = multi.getFilesystemName("rpictureurl");
-			studyRoomBean.setRpictureurl(rpictureurl);
-				System.out.println("WriteServlet - rpictureurl : " + studyRoomBean.getRpictureurl());
+			fileBean.setRpictureurl(rpictureurl);
+				System.out.println("WriteServlet - rpictureurl : " + fileBean.getRpictureurl());
 		//7. 게시물 내용
 			String rcontent=multi.getParameter("rcontent");
-			studyRoomBean.setRcontent(rcontent);;
-				System.out.println("WriteServlet - rcontent : " + studyRoomBean.getRcontent());
+			fileBean.setRcontent(rcontent);;
+				System.out.println("WriteServlet - rcontent : " + fileBean.getRcontent());
 		
 		//8. 인원수
 			int rmember=Integer.parseInt(multi.getParameter("rmember"));
-			studyRoomBean.setRmember(rmember);
-			System.out.println("WriteServlet - rmember : " + studyRoomBean.getRmember());
-		//9. 코드번호	
-			int rcode=Integer.parseInt(multi.getParameter("rcode"));
-			studyRoomBean.setRcode(rcode);
-			System.out.println("WriteServlet - rcode : " + studyRoomBean.getRcode());
+			fileBean.setRmember(rmember);
+			System.out.println("WriteServlet - title : " + fileBean.getRmember());
 		// 게시글 내용들을 update 하기
 		
 			
 			logger.info("updateRow called!!");			
 			
-			studyroomService.updateRow(rcode, rname, rlocation, rlocationdetail, rcontent, rmember, rpictureurl);
+			fileService.updateRow(rcode, rname, rlocation, rlocationdetail, rcontent, rmember, rpictureurl);
 			
-			  model.addAttribute("shareArea", new Integer(studyroomService.getTotalCnt()));
+			  model.addAttribute("shareArea", new Integer(fileService.getTotalCnt()));
 			// JSP:INCLUDE PAGE
-			  model.addAttribute("studyroompage", "StudyRoomList");
+			  model.addAttribute("filepage", "fileList");
 			  model.addAttribute("page", 1);
 			  
-			return "studyRoom/shareArea";   
-		}
+			return "file/shareArea";   
+		}*/
 		
 }

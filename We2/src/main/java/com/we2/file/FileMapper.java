@@ -1,4 +1,4 @@
-package com.we2.studyroom;
+package com.we2.file;
 
 import java.util.ArrayList;
 
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface StudyRoomMapper {
+public interface FileMapper {
 	
 	// 페이징 select문.
 	final String select = 
@@ -23,7 +23,7 @@ public interface StudyRoomMapper {
 			"select * from  limit #{row_start}, #{row_end}";
 	
 	final String select_by_rcode=
-			"select rcode, rname, rlocation, rlocationdetail, rmember, rcontent, rpictureurl from roomshare where rcode=${rcode}";
+			"select fname, rlocation, rlocationdetail, rmember, rcontent, rpictureurl from roomshare where rcode=${rcode}";
 	
 	final String select_all = "select count(1) from roomshare";
 	
@@ -43,7 +43,7 @@ public interface StudyRoomMapper {
 	
 	final String delete_by_rcode = "delete from roomshare where rcode = #{rcode}";
 	
-	final String update_by_rcode = "update roomshare set rname = #{rname}, rlocation = #{rlocation}, rlocationdetail = #{rlocationdetail}, rmember = #{rmember}, rcontent = #{rcontent}, rpictureurl = #{rpictureurl} where rcode = ${rcode}";
+	final String update_by_rcode = "update roomshare set rname = #{rname}, rlocation = #{rlocation}, rlocationdetail = #{rlocationdetail}, rmember = #{rmember}, rcontent = #{rcontent}, rpictureurl = #{rpictureurl} where rcode = #{rcode}";
 			
 	/*final String select_cnt_by_subject = "select * from (select id, subject, name, created_date, mail, memo, hits, ceil (rownum / #{rowsPerPage}) as page from spring_board where subject like '%' || '${likeThis}' || '%' order by id desc) where page = #{page}";
 		
@@ -66,7 +66,7 @@ public interface StudyRoomMapper {
 				@Result(property="rcontent", column="rcontent"),
 				@Result(property="rpictureurl", column="rpictureurl")
 		})
-		ArrayList<StudyRoomBean> getList(@Param("row_start") int row_start, @Param("row_end") int row_end);
+		ArrayList<FileBean> getList(@Param("row_start") int row_start, @Param("row_end") int row_end);
 		
 		@Select(select_by_rcode)				
 		@Results(value = {   
@@ -78,12 +78,12 @@ public interface StudyRoomMapper {
 				@Result(property="rcontent", column="rcontent"),
 				@Result(property="rpictureurl", column="rpictureurl")
 		})
-		StudyRoomBean getSearchbyrcode(@Param("rcode") int rcode);
+		FileBean getSearchbyrcode(@Param("rcode") int rcode);
 	
 		
 		@Insert(insertStudyRoom)  		
 		//@Options(useGeneratedKeys = true, keyProperty = "id")
-		void insertStudyRoom(StudyRoomBean studyRoomBean) ;
+		void insertStudyRoom(FileBean studyRoomBean) ;
 		
 		@Select(select_all)
 		int getTotalCnt();

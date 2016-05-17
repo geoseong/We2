@@ -53,18 +53,18 @@
 	  
 	  function winOpen2(rcode){
 		var url = "StudyRoomupdate.do?rcode=" + rcode;
-	   	  javascript:window.open(url , '상세내용보기', 'width=500 height=320 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
+	   	  javascript:window.open(url , '상세내용보기', 'width=500 height=420 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
 	  }		
 
   function winOpen3(rcode){
 		var url = "StudyRoomdelete.do?rcode=" + rcode;
-		    javascript:window.open(url , '상세내용보기', 'width=500 height=320 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
+		    javascript:window.open(url , '상세내용보기', 'width=500 height=420 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
 		}
 
 
 	function winOpen4(){
 		var url = "studyroomwrite.do";
-	     javascript:window.open(url , '상세내용보기', 'width=500 height=320 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
+	     javascript:window.open(url , '상세내용보기', 'width=500 height=420 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
 	}
 	  
 

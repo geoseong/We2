@@ -55,11 +55,18 @@
 		<bean id="studyRoomMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">	
 			<property name="mapperInterface" value="com.we2.studyroom.StudyRoomMapper"/><!-- 이 안에 SQL이 들어있음  -->
 			<property name="sqlSessionFactory" ref="sqlSessionFactory"/><!-- SQL 실행하기위한 태그 -->
+			</bean>  
+		
+		<bean id="FileMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">	
+			<property name="mapperInterface" value="com.we2.file.FileMapper"/><!-- 이 안에 SQL이 들어있음  -->
+			<property name="sqlSessionFactory" ref="sqlSessionFactory"/><!-- SQL 실행하기위한 태그 -->
 		</bean>  
+	
 	
 	<!-- BoardService : (서비스)DAO와 컨트롤러의 중간역할. -->
 		<bean id="boardService" class="com.we2.sharepjtboard.PjtBoardService"/>
 		<bean id="studyRoomService" class="com.we2.studyroom.StudyRoomService"/>
+		<bean id="FileService" class="com.we2.file.FileService"/>
 		
 	<!-- Mapper interface 스캔 -->
 		<mybatis:scan base-package="com.we2" />
