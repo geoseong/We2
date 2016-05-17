@@ -10,13 +10,15 @@
     <H2>파일 삭제</H2>
   <HR>
   
- <form name="frm" method="post" action="fDelete.do"  >
+ <form name="frm" method="post" action="filedelete.do"  >
      <input type="hidden" name="fcode" value="${fileList.fcode}" >
   
       <table> 
  	   	<tr>  
    		   <td>파일명 : </td>
    		   <td><input type="text" name="fname" size=15 value="${fileList.fcode}"></td> 
+   		    <td>첨부파일 : </td>
+   		   <td> <img src=""value="${fileList.fcode}"> </td> 
    		 </tr>    
       </table>
        

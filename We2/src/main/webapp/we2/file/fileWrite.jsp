@@ -12,7 +12,7 @@
 
     <H2>파일 등록</H2>
   <HR>
- <form name="frm" method="post" action="fAdd.do"  enctype="multipart/form-data" >
+ <form name="frm" method="post" action="filewrite.do"  enctype="multipart/form-data" >
   
   
       <table> 

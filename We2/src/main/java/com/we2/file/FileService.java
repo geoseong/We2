@@ -2,10 +2,9 @@ package com.we2.file;
 
 
 import java.text.ParseException;
-
 import java.util.ArrayList;
+import java.util.Date;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -26,21 +25,22 @@ public class FileService {
 		return arraymapper;
 	}
 	
-/*	public FileBean getSearchbyfcode(int fcode){
+	public FileBean getSearchbyfcode(int fcode){
 		return this.fileMapper.getSearchbyfcode(fcode);
 	}
-	*/
+	
 	// 총 폐이지 갯수 구하기
 	public int getTotalCnt(){
 		int nCnt=0;
 		nCnt =this.fileMapper.getTotalCnt();
 		return nCnt;
 	}
-/*	
-	public void insertfile (FileBean fileBean){
+
+	public void insertFile (FileBean fileBean){
 		System.out.println("게시물 insert 완료.");
-		fileMapper.insertfile(fileBean);
+		fileMapper.insertFile(fileBean);
 	}
+	
 	public void deleteRow(int fcode){
 		this.fileMapper.filedelete(fcode);
 		
@@ -48,16 +48,14 @@ public class FileService {
 	
 	public void updateRow(
 			 int fcode,
-			String rname, 
-			 String rlocation, 
-			 String rlocationdetail, 
-			 String rcontent, 
-			 int rmember, 
-			String rpictureurl){
+		   	 String fname, 
+			 String fileurl
+			 
+			 ){
 		System.out.println("fileservice updaterow");
-		//this.fileMapper.fileupdate(/*fcode, rname, rlocation, rlocationdetail, rcontent, rmember, rpictureurl);
+		this.fileMapper.fileupdate(fcode, fname, fileurl);
 	}
-  */
+ 
 }
 
 

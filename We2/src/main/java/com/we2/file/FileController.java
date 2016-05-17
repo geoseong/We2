@@ -2,6 +2,7 @@ package com.we2.file;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.Date;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -18,8 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import com.we2.sharepjtboard.PjtBoardBean;
-import com.we2.spring.AuthInfo;
 
 
 @Controller
@@ -83,7 +82,7 @@ public class FileController {
 */	
 		/* SECTION : REQUEST 영역에 보내기 */
 		// ★★ SELECT 결과물 ★★
-					model.addAttribute("Content", fileService.getlist(row_start-1, row_end-1));
+					model.addAttribute("fileList", fileService.getlist(row_start-1, row_end-1));
 				// JSP:INCLUDE PAGE
 				  model.addAttribute("filepage", "fileList");
 				// total page int 변수를 보냄
@@ -102,9 +101,7 @@ public class FileController {
 		return "file/FileList";
 	}
 
-/*
-	
-	*//** 글쓰기 폼 띄우기 *//*
+
 	@RequestMapping(value="/filewrite.do", method=RequestMethod.GET)
 	public String writeget(HttpSession session, HttpServletRequest request, Model model, FileBean fileBean){
 		System.out.println("---글쓰기 페이지 진입");
@@ -117,9 +114,10 @@ public class FileController {
 	 
 		return "file/fileWrite";
 	}
-	*//** 글 등록하기 
+	
+	/* 글 등록하기 
 	 * @throws ParseException 
-	 * @throws IOException *//*
+	 * @throws IOException */	
 	
 	@RequestMapping(value="/filewrite.do", method=RequestMethod.POST)
 	public String writepost(HttpSession session, HttpServletRequest request, Model model, String category) throws IOException {
@@ -132,153 +130,130 @@ public class FileController {
 		
 		MultipartRequest multi = new MultipartRequest(request, path, sizeLimit, encType, new DefaultFileRenamePolicy());
 		
-		//PjtBoardBean객체인 sVo에 변수들을 집어넣는다.
-		FileBean sVo = new FileBean();
+		//PjtBoardBean객체인 fVo에 변수들을 집어넣는다.
+		FileBean fVo = new FileBean();
 		//1. 글번호는 DAO의 SQL sequence로 내부적으로 처리.
 		//2. 제목
-			String rname=multi.getParameter("rname");
-			sVo.setRname(rname);
-				System.out.println("WriteServlet - title : " + sVo.getRname());
-		//3. 유저ID는 세션에 떠돌아다니는 (로그인중인) 변수를 getAttribute하면 됨
+			String fname=multi.getParameter("fname");
+			fVo.setFname(fname);
+				System.out.println("WriteServlet - title : " + fVo.getFname());
+		/*//3. 유저ID는 세션에 떠돌아다니는 (로그인중인) 변수를 getAttribute하면 됨
 			AuthInfo mVo = (AuthInfo)session.getAttribute("authInfo");
-			sVo.setUserId(mVo.getUserId());
-				System.out.println("WriteServlet - userid : " + sVo.getUserId());
-		//4. 위치
-			String rlocation=multi.getParameter("rlocation");
-			sVo.setRlocation(rlocation);
-			System.out.println("WriteServlet - title : " + sVo.getRlocation());	
-		//5. 상세 위치
-			String rlocationdetail = multi.getParameter("rlocationdetail");
-			sVo.setRlocationdetail(rlocationdetail);
-			System.out.println("WriteServlet - title : " + sVo.getRlocationdetail());
-		//6. 파일경로
-			String rpictureurl = multi.getFilesystemName("rpictureurl");
-			sVo.setRpictureurl(rpictureurl);
-				System.out.println("WriteServlet - boardpath : " + sVo.getRpictureurl());
-		//7. 게시물 내용
-			String rcontent=multi.getParameter("rcontent");
-			sVo.setRcontent(rcontent);;
-				System.out.println("WriteServlet - content : " + sVo.getRcontent());
+			fVo.setUserId(mVo.getUserId());
+				System.out.println("WriteServlet - userid : " + fVo.getUserId());*/
 		
-		//8. 인원수
-			int rmember=Integer.parseInt(multi.getParameter("rmember"));
-			sVo.setRmember(rmember);
-			System.out.println("WriteServlet - title : " + sVo.getRmember());
+		//4. 파일경로
+			String fileurl = multi.getFilesystemName("fileurl");
+			fVo.setFileurl(fileurl);
+				System.out.println("WriteServlet - fileurl : " + fVo.getFileurl());
+		
+		
 		// 게시글 내용들을 Insert하기
-			fileService.insertfile(sVo);
+			fileService.insertFile(fVo);
 		
 		// JSP:INCLUDE PAGE
 		  model.addAttribute("filepage", "fileList");
 		  model.addAttribute("page", 1);
 		
-		return "file/shareArea";
-	}*/
+		return "file/FileList";
+	}
 	
 	
-/*		
-	 삭제하기 
+	
+	/* 삭제하기 */
 
 		@RequestMapping(value="/filedelete.do", method=RequestMethod.GET)
-		public String filedelete(@RequestParam("rcode") int rcode, Model model) throws ParseException {
+		public String filedelete(@RequestParam("fcode") int fcode, Model model) throws ParseException {
 		
 			logger.info("filedelete called!!");
-			logger.info("rcode=["+rcode+"] ");
+			logger.info("fcode=["+fcode+"] ");
 			
 			// 시작 rownum 받아오기
 					
 			// BoardDelete -
-			  model.addAttribute("fileList", fileService.getSearchbyrcode(rcode));	
+			  model.addAttribute("fileList", fileService.getSearchbyfcode(fcode));	
 			  // JSP:INCLUDE PAGE
 			  model.addAttribute("filepage", "fileDelete");
 			  model.addAttribute("page", 1);
-			return "file/fileDelete";   
+			return "file/FileDelete";   
 		}
 			
 		@RequestMapping(value="/filedelete.do", method=RequestMethod.POST)
-		public String filedeletepos(@RequestParam("rcode") int rcode, Model model) {
+		public String filedeletepos(@RequestParam("fcode") int fcode, Model model) {
 			
 			
 			logger.info("DeleteSpecificRow called!!");
-			logger.info("rcode=["+rcode+"] ");
-			fileService.deleteRow(rcode);
+			logger.info("fcode=["+fcode+"] ");
+			fileService.deleteRow(fcode);
 			//�ٽ� �������� ��ȸ�Ѵ�.
 			// BoardDelete - 2) �� ���� �� �ٽ� ����Ʈ�� ���ư���
 			model.addAttribute("shareArea", new Integer(fileService.getTotalCnt()));
 			// JSP:INCLUDE PAGE
 			  model.addAttribute("filepage", "fileList");
 			  model.addAttribute("page", 1);
-			return "file/shareArea";   
+			return "file/FileList";   
 		}
 		
 		
 		
-	 수정하기 
+	/* 수정하기*/ 
 		
 		@RequestMapping(value="/fileupdate.do", method=RequestMethod.GET)
-		public String fileupdate(@RequestParam("rcode") int rcode, Model model) throws ParseException {
+		public String fileupdate(@RequestParam("fcode") int fcode, Model model) throws ParseException {
 		
 			logger.info("fileupdate called!!");
-			logger.info("rcode=["+rcode+"] ");			
+			logger.info("fcode=["+fcode+"] ");			
 					
 			// Update
-			  model.addAttribute("fileList", fileService.getSearchbyrcode(rcode));	
+			  model.addAttribute("fileList", fileService.getSearchbyfcode(fcode));	
 			  // JSP:INCLUDE PAGE
 			  model.addAttribute("filepage", "fileUpdate");
 			  model.addAttribute("page", 1);
-			return "file/fileUpdate";   
+			return "file/FileUpdate";   
 		}
 			
 		@RequestMapping(value="/fileupdate.do", method=RequestMethod.POST)
-		public String fileupdatepos(FileBean fileBean, Model model , HttpSession session, HttpServletRequest request, int rcode ) throws IOException {
-			System.out.println("method.POST] rcode : " + rcode);
+		public String fileupdatepos(FileBean fileBean, Model model , HttpSession session, HttpServletRequest request) throws IOException {
+			
 			String path=servletContext.getRealPath("we2/file/data");
 			System.out.println("path : "+path);
 			// getRealPath : E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps\testweb\
 			String encType="UTF-8";
 			int sizeLimit = 20*1024*1024;
 			MultipartRequest multi = new MultipartRequest(request, path, sizeLimit, encType, new DefaultFileRenamePolicy());
+		
+			FileBean fVo = new FileBean();
 			//2. 제목
-			String rname=multi.getParameter("rname");
-			fileBean.setRname(rname);
-				System.out.println("WriteServlet - rname : " + fileBean.getRname());
-		//3. 유저ID는 세션에 떠돌아다니는 (로그인중인) 변수를 getAttribute하면 됨
+			String fname=multi.getParameter("fname");
+			fVo.setFname(fname);
+				System.out.println("WriteServlet - title : " + fVo.getFname());
+		/*//3. 유저ID는 세션에 떠돌아다니는 (로그인중인) 변수를 getAttribute하면 됨
 			AuthInfo mVo = (AuthInfo)session.getAttribute("authInfo");
-			sVo.setUserId(mVo.getUserId());
-				System.out.println("WriteServlet - userid : " + sVo.getUserId());
-		//4. 위치
-			String rlocation=multi.getParameter("rlocation");
-			fileBean.setRlocation(rlocation);
-			System.out.println("WriteServlet - rlocation : " + fileBean.getRlocation());	
-		//5. 상세 위치
-			String rlocationdetail = multi.getParameter("rlocationdetail");
-			fileBean.setRlocationdetail(rlocationdetail);
-			System.out.println("WriteServlet - rlocationdetail : " + fileBean.getRlocationdetail());
-		//6. 파일경로
-			String rpictureurl = multi.getFilesystemName("rpictureurl");
-			fileBean.setRpictureurl(rpictureurl);
-				System.out.println("WriteServlet - rpictureurl : " + fileBean.getRpictureurl());
-		//7. 게시물 내용
-			String rcontent=multi.getParameter("rcontent");
-			fileBean.setRcontent(rcontent);;
-				System.out.println("WriteServlet - rcontent : " + fileBean.getRcontent());
+			fVo.setUserId(mVo.getUserId());
+				System.out.println("WriteServlet - userid : " + fVo.getUserId());*/
 		
-		//8. 인원수
-			int rmember=Integer.parseInt(multi.getParameter("rmember"));
-			fileBean.setRmember(rmember);
-			System.out.println("WriteServlet - title : " + fileBean.getRmember());
+		//4. 파일경로
+			String fileurl = multi.getFilesystemName("fileurl");
+			fVo.setFileurl(fileurl);
+				System.out.println("WriteServlet - fileurl : " + fVo.getFileurl());
+		
+		//5. 코드번호	
+			int fcode=Integer.parseInt(multi.getParameter("fcode"));
+			fVo.setFcode(fcode);
+				System.out.println("WriteServlet - title : " + fVo.getFcode());		
 		// 게시글 내용들을 update 하기
-		
+				
 			
 			logger.info("updateRow called!!");			
 			
-			fileService.updateRow(rcode, rname, rlocation, rlocationdetail, rcontent, rmember, rpictureurl);
+			fileService.updateRow(fcode, fname,fileurl);
 			
 			  model.addAttribute("shareArea", new Integer(fileService.getTotalCnt()));
 			// JSP:INCLUDE PAGE
 			  model.addAttribute("filepage", "fileList");
 			  model.addAttribute("page", 1);
 			  
-			return "file/shareArea";   
-		}*/
+			return "file/FileList";   
+		}
 		
 }

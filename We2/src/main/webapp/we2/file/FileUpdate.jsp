@@ -11,8 +11,8 @@
     <H2>파일 수정</H2>
   <HR>
   
- <form name="frm" method="post" action="fUpdate.do"  enctype="multipart/form-data" >
-   <input type="hidden" name="fcode" value="${fileList.fcode}" >
+ <form name="frm" method="post" action="fileupdate.do"  enctype="multipart/form-data" >
+   <input type="text" name="fcode" value="${fileList.fcode}" >
    <input type="hidden" name="fileurl" value="${fileList.fileurl}" >
       <table> 
  	   	<tr>  
@@ -23,7 +23,7 @@
        
       <table>
    		  <tr>
-             <td>파일첨부 : <input type="file" name="fileurl" value="upload/${fileList.fileurl}"></td>		
+             <td>파일첨부 : <input type="file" name="fileurl" value="data/${fileList.fileurl}"></td>		
           </tr>
           <tr>
              <td>(파일 용량 제한은 20MB 입니다.)</td>

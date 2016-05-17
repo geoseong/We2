@@ -14,7 +14,7 @@
   
   
  <form name="frm" enctype="multipart/form-data" method="post"  action="StudyRoomupdate.do" >
- <input type="text" name="rcode" value="${studyroomList.rcode}" >
+ <input type="hidden" name="rcode" value="${studyroomList.rcode}" >
 
   
  <table>
