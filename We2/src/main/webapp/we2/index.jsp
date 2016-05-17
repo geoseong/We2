@@ -197,7 +197,6 @@
      
  
     </body>
-<script src="js/jquery-1.12.2.min.js"></script>
 <!-- jQuery UI CSS파일  -->
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
 <!--  jQuery 기본 js파일 -->
@@ -241,8 +240,8 @@ $(".pjtMakeInner").hide();
     
 </script>
 
-    <script type="text/javascript" src="/js/jquery-1.12.1.min.js"></script> 
-    <script type="text/javascript" src="/js/main_slider2.js"></script>
+    <script type="text/javascript" src="js/jquery-1.12.1.min.js"></script> 
+    <script type="text/javascript" src="js/main_slider2.js"></script>
     
     <script type="text/javascript">
        
