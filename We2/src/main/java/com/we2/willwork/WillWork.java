@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/willwork.do")
 public class WillWork extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		WillWorkDAO pDao = WillWorkDAO.getInstance();
@@ -159,15 +158,15 @@ public class WillWork extends HttpServlet {
 			// jsp에서 받아온 username과 DAO에서 받은 name을 비교해서 아래 코딩에 판별해 넣기
 			String[] compareuser = null;
 			if( username.equals(doWork0.get(0).getName()) ){
-				compareuser = doworklist0;			
+				compareuser = doworklist0; //컴마를 나누어 놓은 첫 번째 사람 할 일			
 			}else if( username.equals(doWork1.get(0).getName()) ){
-				compareuser = doworklist1;
+				compareuser = doworklist1; //두 번째 사람 할 일
 			}else if( username.equals(doWork2.get(0).getName()) ){
-				compareuser = doworklist2;
+				compareuser = doworklist2; //세 번째 사람 할 일
 			}else if( username.equals(doWork3.get(0).getName()) ){
-				compareuser = doworklist3;
+				compareuser = doworklist3; // 네 번째 사람 할 일
 			}else if( username.equals(doWork4.get(0).getName()) ){
-				compareuser = doworklist4;
+				compareuser = doworklist4; //다섯 번째 사람 할 일
 			}
 			System.out.println("지목된 사람의 할일:"+compareuser[0]);
 			
@@ -199,7 +198,6 @@ public class WillWork extends HttpServlet {
 			for(int i=0; i<list.size();i++){
 				istrue += list.get(i)+", ";
 				System.out.println("해야 할 일에 남아야 하는 값 : " + list.get(i));
-				
 			}
 			
 			for(int i=0; i<worklist.length;i++){

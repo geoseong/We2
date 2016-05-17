@@ -178,6 +178,15 @@ height:100px;
 	border-radius:10px;
 }
 
+.add_btn2{
+	border:none;
+	background:#46c5f1;
+	color:#fff;
+	width:100px;
+	height:30px;
+	border-radius:10px;
+}
+
 .complet_work{
 	padding:20px 0 20px 30px;
 	vertical-align:middle;

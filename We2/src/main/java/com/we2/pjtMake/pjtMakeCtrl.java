@@ -42,7 +42,7 @@ public class pjtMakeCtrl{
 	
 	@RequestMapping(value="/invite", method=RequestMethod.POST)
 	public String test2(HttpServletRequest request, Model model) throws ParseException{
-		MailSend.main(null);
+		MailSend.main();
 		SMTPAuthenticator sMTPAuthenticator = new SMTPAuthenticator();
 		sMTPAuthenticator.getPasswordAuthentication();
 		return "/pjtMake/success";

@@ -21,6 +21,7 @@ select * from pjtmake;
 
 alter table pjtmake modify pjtCode int auto_increment;
 
+
 /*
 > testuser 라는 사용자가 192.168.100.101 아이피를 통해서 접근하는 것을 허용하며, 
 	ex) CREATE USER 'we2admin'@'192.168.100.101' IDENTIFIED BY '123qwe!@#';
@@ -81,6 +82,11 @@ insert into member values('park', '상혁', '1234' ,'hyuk9658@naver.com', '010-123
 insert into member values('jeon', '주영', '1234' ,'jeon@naver.com', '010-2233-6645', 'W', now());
 insert into member values('bae', '건희', '1234' ,'bae@naver.com', '010-2583-9197', 'W', now());
 insert into member values('jo', '성혁', '1234' ,'jo@naver.com', '010-2333-2312', 'M', now());
+
+update willwork set dowork = dowork || ', ' || '물주기' where name='성혁';
+update willwork set dowork = CONCAT(dowork, ', ', '바보') where name='성혁';
+
+select * from willwork where name='성혁';
 
 
 select * from pjtMake;

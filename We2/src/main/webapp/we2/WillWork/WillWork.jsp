@@ -203,40 +203,54 @@
 	<div class="showwork">
 		<h3 class="perform_title">할 일 설정</h3>
 		<div class="imgtest"><img src="img/people_m1.png" alt=""></div>
-		<div class="now_work">
+		<div class="now_work"> <!-- 지금까지 한 일 -->
 			<%-- <p><c:forEach var="username0" items="${results}">
 						<p>${username0.name}<!-- 이름 --></p>
 			</c:forEach></p> --%>
 			<span class="margin_item">＊지금까지 한일</span>
+			
+			<form action="" method="">
 			<ul class="done_work">
 				<c:forEach var="user0" items="${results}" varStatus="status">
 					<c:if test="${status.index ==0}">
 					<p> 완료한 일: ${user0.doneWork}
 					</c:if>
-				</c:forEach> 
+				</c:forEach>
 			</ul>
-		</div>
+			</form>
+		</div> <!-- 지금까지 한 일 -->
 	</div>
+	
 	<div class="input_work"> <!-- div안에 form을 넣으면 데이터 이동이 가능! -->
 	    <form action="willwork2" method="post" class="input_form">
-		<label>할 일 입력</label>
-		<input type="text" size="25" name="inputWork"/> <!-- 입력한 일 -->
-		<input type="hidden" name="userName" value="${username0}"> <!-- 해당 유저네임 -->
-	    <input type="submit" value="추가하기" class="add_btn"/>
+		<c:forEach var="user0" items="${results}" varStatus="status">
+			<c:if test="${status.index ==0}">
+			<label>할 일 입력</label>
+			<input type="text" size="25" name="inputWork"/> <!-- 입력한 일 -->
+			<input type="hidden" name="userName" value="${user0.name}"> <!-- 해당 유저네임 -->
+		    <input type="submit" value="추가하기" class="add_btn"/>
+		    </c:if>	
+	    </c:forEach> 
 		</form>
 	</div>
 	<div class="complet_work">
 		<div>할 일 완료</div>
 		<div class="checkwork">
-			<form action="willwork2">
+			<form action="willwork3" method="post">
 			<div>			
-			<c:forEach var="user0" items="${results}" varStatus="status">
-					<c:if test="${status.index==0}">
-					<input type="hidden" name="userName" value="${user0.name}">
-					<input type="checkbox" value="${user0.doneWork}" name="complete">
-				    <label>${user0.doneWork}</label>	 					
-					</c:if>
-			</c:forEach>   
+			 <c:forEach var="divWorkList1" items="${divWorkList1}" varStatus="status">
+				 	 <c:forEach var="user0" items="${results}" varStatus="status">
+						<c:if test="${status.index ==0}">
+						  <input type="hidden" name="userName" value="${user0.name}">
+							
+							<c:if test="${divWorkList1 ne ''}">
+								<input type="checkbox" name="complete" value="${divWorkList1}">
+							</c:if>
+							
+						</c:if>
+					</c:forEach> 
+					<label>${divWorkList1}</label>	 					
+			</c:forEach>    
 			</div>
 			<input type="submit" value="완료하기" class="complete_btn"/>
 		 	</form>
@@ -268,25 +282,31 @@
 		</div>
 	</div>
 	<div class="input_work"> <!-- div안에 form을 넣으면 데이터 이동이 가능! -->
-	    <form action="willwork2.jsp" method="get" class="input_form">
+	    <form action="willwork2" method="post" class="input_form">
+		<c:forEach var="user1" items="${results}" varStatus="status">
+		<c:if test="${status.index ==1}">
 		<label>할 일 입력</label>
-		<input type="text" size="25" name="inputWork"/>
-		<input type="hidden" name="userName" value="${username1}">
+		<input type="text" size="25" name="inputWork"/> <!-- 입력한 일 -->
+		<input type="hidden" name="userName" value="${user1.name}"> <!-- 해당 유저네임 -->
 	    <input type="submit" value="추가하기" class="add_btn"/>
+	    </c:if>	
+	    </c:forEach>
 		</form>
 	</div>
 	<div class="complet_work">
 		<div>할 일 완료</div>
 		<div class="checkwork">
-			<form action="willwork3.jsp">
+			<form action="willwork3" method="post">
 			<div>			
-			<c:forEach var="user1" items="${results}" varStatus="status">
-						<c:if test="${status.index==1}">
+			 <c:forEach var="divWorkList2" items="${divWorkList2}" varStatus="status">
+				 	 <c:forEach var="user1" items="${results}" varStatus="status">
+						<c:if test="${status.index ==1}">
 						<input type="hidden" name="userName" value="${user1.name}">
-						<input type="checkbox" value="${user1.doneWork}" name="complete">
-					    <label>${user1.doneWork}</label>	 					
+						<input type="checkbox" name="complete" value="${divWorkList2}">
 						</c:if>
-			</c:forEach> 
+					</c:forEach> 
+					<label>${divWorkList2}</label>	 					
+			</c:forEach>    
 			</div>
 			<input type="submit" value="완료하기" class="complete_btn"/>
 		 	</form>
@@ -320,25 +340,31 @@
 		</div>
 	</div>
 	<div class="input_work"> <!-- div안에 form을 넣으면 데이터 이동이 가능! -->
-	    <form action="willwork2.jsp" method="get" class="input_form">
-		<label>할 일 입력</label>
-		<input type="text" size="25" name="inputWork"/>
-		<input type="hidden" name="userName" value="${username2}">
-	    <input type="submit" value="추가하기" class="add_btn"/>
+	    <form action="willwork2" method="post" class="input_form">
+		<c:forEach var="user2" items="${results}" varStatus="status">
+			<c:if test="${status.index ==2}">
+			<label>할 일 입력</label>
+			<input type="text" size="25" name="inputWork"/> <!-- 입력한 일 -->
+			<input type="hidden" name="userName" value="${user2.name}"> <!-- 해당 유저네임 -->
+		    <input type="submit" value="추가하기" class="add_btn"/>
+		    </c:if>	
+	    </c:forEach> 
 		</form>
 	</div>
 	<div class="complet_work">
 		<div>할 일 완료</div>
 		<div class="checkwork">
-			<form action="willwork3.jsp">
+			<form action="willwork3" method="post">
 			<div>			
-			<c:forEach var="user2" items="${results}" varStatus="status">
-						<c:if test="${status.index==2}">
+			 <c:forEach var="divWorkList3" items="${divWorkList3}" varStatus="status">
+				 	 <c:forEach var="user2" items="${results}" varStatus="status">
+						<c:if test="${status.index ==2}">
 						<input type="hidden" name="userName" value="${user2.name}">
-						<input type="checkbox" value="${user2.doneWork}" name="complete">
-					    <label>${user2.doneWork}</label>	 					
+						<input type="checkbox" name="complete" value="${divWorkList3}">
 						</c:if>
-			</c:forEach> 
+					</c:forEach> 
+					<label>${divWorkList3}</label>	 					
+			</c:forEach>     
 			</div>
 			<input type="submit" value="완료하기" class="complete_btn"/>
 		 	</form>
@@ -370,25 +396,31 @@
 		</div>
 	</div>
 	<div class="input_work"> <!-- div안에 form을 넣으면 데이터 이동이 가능! -->
-	    <form action="willwork2.jsp" method="get" class="input_form">
-		<label>할 일 입력</label>
-		<input type="text" size="25" name="inputWork"/>
-		<input type="hidden" name="userName" value="${username3}">
-	    <input type="submit" value="추가하기" class="add_btn"/>
+	    <form action="willwork2" method="post" class="input_form">
+		<c:forEach var="user3" items="${results}" varStatus="status">
+			<c:if test="${status.index ==3}">
+			<label>할 일 입력</label>
+			<input type="text" size="25" name="inputWork"/> <!-- 입력한 일 -->
+			<input type="hidden" name="userName" value="${user3.name}"> <!-- 해당 유저네임 -->
+		    <input type="submit" value="추가하기" class="add_btn"/>
+		    </c:if>	
+	    </c:forEach> 
 		</form>
 	</div>
 	<div class="complet_work">
 		<div>할 일 완료</div>
 		<div class="checkwork">
-			<form action="willwork3.jsp">
+			<form action="willwork3" method="post">
 			<div>			
-			<c:forEach var="user3" items="${results}" varStatus="status">
-						<c:if test="${status.index==3}">
+			<c:forEach var="divWorkList4" items="${divWorkList4}" varStatus="status">
+				 	 <c:forEach var="user3" items="${results}" varStatus="status">
+						<c:if test="${status.index ==3}">
 						<input type="hidden" name="userName" value="${user3.name}">
-						<input type="checkbox" value="${user3.doneWork}" name="complete">
-					    <label>${user3.doneWork}</label>	 					
+						<input type="checkbox" name="complete" value="${divWorkList4}">
 						</c:if>
-			</c:forEach>    
+					</c:forEach> 
+					<label>${divWorkList4}</label>	 					
+			</c:forEach>   
 			</div>
 			<input type="submit" value="완료하기" class="complete_btn"/>
 		 	</form>
@@ -419,26 +451,31 @@
 		</div>
 	</div>
 	<div class="input_work"> <!-- div안에 form을 넣으면 데이터 이동이 가능! -->
-	    <form action="willwork2.jsp" method="get" class="input_form">
-		<label>할 일 입력</label>
-		
-		<input type="text" size="25" name="inputWork"/>
-		<input type="hidden" name="userName" value="${username4}">
-	    <input type="submit" value="추가하기" class="add_btn"/>
+	    <form action="willwork2" method="post" class="input_form">
+		<c:forEach var="user4" items="${results}" varStatus="status">
+			<c:if test="${status.index ==4}">
+			<label>할 일 입력</label>
+			<input type="text" size="25" name="inputWork"/> <!-- 입력한 일 -->
+			<input type="hidden" name="userName" value="${user4.name}"> <!-- 해당 유저네임 -->
+		    <input type="submit" value="추가하기" class="add_btn"/>
+		    </c:if>	
+	    </c:forEach> 
 		</form>
 	</div>
 	<div class="complet_work">
 		<div>할 일 완료</div>
 		<div class="checkwork">
-						<form action="willwork3.jsp">
+			<form action="willwork3" method="post">
 			<div>			
-			<c:forEach var="user4" items="${results}" varStatus="status">
-					<c:if test="${status.index==4}">
-					<input type="hidden" name="userName" value="${user4.name}">
-					<input type="checkbox" value="${user4.doneWork}" name="complete">
-				    <label>${user4.doneWork}</label>	 					
-					</c:if>
-			</c:forEach> 
+			<c:forEach var="divWorkList5" items="${divWorkList5}" varStatus="status">
+				 	 <c:forEach var="user4" items="${results}" varStatus="status">
+						<c:if test="${status.index ==4}">
+						<input type="hidden" name="userName" value="${user4.name}">
+						<input type="checkbox" name="complete" value="${divWorkList5}">
+						</c:if>
+					</c:forEach> 
+					<label>${divWorkList5}</label>	 					
+			</c:forEach>   
 			</div>
 			<input type="submit" value="완료하기" class="complete_btn"/>
 		 	</form>
