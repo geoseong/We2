@@ -19,7 +19,7 @@ public interface PjtBoardMapper {
 	// 페이징 select문.
 	final String select = 
 			//"select itemNum, itemTitle, userId, itemDate, itemClick, itemPath, itemContent" 
-			"select * from ${category} order by itemNum desc limit #{row_start}, #{row_end} ";
+			"select * from ${category} order by itemNum desc limit #{row_start}, #{rows_per_page}";
 	
 	final String select_by_num =
 			"select * from ${category} where itemNum=#{itemNum}";
@@ -44,6 +44,11 @@ public interface PjtBoardMapper {
 			"update ${category} set itemTitle=#{itemTitle}, itemPath=#{itemPath}, itemContent=#{itemContent}, itemDataType=#{itemDataType}";
 	
 	final String delete="delete from ${category} where itemNum=#{itemNum}";
+	
+	// find
+	final String find_list="select * from ${category} where ${find} like '%${findword}%' order by itemNum desc limit #{row_start}, #{row_end}";
+	
+	final String find_count="select count(1) from ${category} where ${find} like '%${findword}%'";
 	/* END OF SQL */
 	
 	
@@ -59,7 +64,7 @@ public interface PjtBoardMapper {
 			@Result(property="itemContent", column="itemContent"),
 			@Result(property="itemDataType", column="itemDataType")
 	})
-	ArrayList<PjtBoardBean> getList(@Param("category") String category, @Param("row_start") int row_start, @Param("row_end") int row_end);
+	ArrayList<PjtBoardBean> getList(@Param("category") String category, @Param("row_start") int row_start, @Param("rows_per_page") int rows_per_page);
 	
 	@Select(select_all)
 	int getTotalCnt(@Param("category") String category);
@@ -100,4 +105,24 @@ public interface PjtBoardMapper {
 	@Delete(delete)
 	void deleteBoard(@Param("category") String category, @Param("itemNum") int itemNum);
 	
+	@Select(find_list)
+	@Results(value = {
+			@Result(property="itemNum", column="itemNum"),
+			@Result(property="itemTitle", column="itemTitle"),
+			@Result(property="userId", column="userId"),
+			@Result(property="itemDate", column="idate"),
+			@Result(property="itemClick", column="itemClick"),
+			@Result(property="itemPath", column="itemPath"),
+			@Result(property="itemContent", column="itemContent"),
+			@Result(property="itemDataType", column="itemDataType")
+	})
+	ArrayList<PjtBoardBean> findBoard(
+			@Param("category") String category, 
+			@Param("find") String find, 
+			@Param("findword") String findword, 
+			@Param("row_start") int row_start, 
+			@Param("row_end") int row_end);
+	
+	@Select(find_count)
+	int getFindCnt(@Param("category") String category, @Param("find") String find, @Param("findword") String findword);
 }

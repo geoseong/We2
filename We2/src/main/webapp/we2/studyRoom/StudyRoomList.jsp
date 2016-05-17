@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import = "java.sql.ResultSet" %>
-<%@ page import = "java.sql.Statement" %>
-<%@ page import = "java.sql.Connection" %>
-<%@ page import = "java.sql.DriverManager" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ page session="false" %>
+<%@ page import="com.we2.studyroom.StudyRoomBean" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Properties" %>
+<%@ page import="java.io.IOException" %>
+<%@ page import="java.io.FileInputStream" %>
+<%@ page import="com.we2.studyroom.RPagingManager" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -19,14 +22,14 @@
 <title>스터디룸 공유</title>
 <link rel="stylesheet" type="text/css" href="../css/w2_reset.css">
 <link rel="stylesheet" type="text/css" href="../css/shopping2.css">
-<script type="text/javascript" src="../js/jquery-1.12.2.min.js"></script>
+<script type="text/javascript" src="../js/jquery-1.12.1.min.js"></script>
 
 <script type="text/javascript">
 
   function winOpen(rcode){
 	var url = "Content.do?rcode=" + rcode;
 	javascript:window.open(url , '상세내용보기', 'width=500 height=700 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
-}
+	}
   
   function check() {
       if (document.frm.location.value == "지역구분") {
@@ -43,7 +46,30 @@
       document.frm.submit();
       
   }
+  function winOpen(rcode){
+		var url = "Content.do?rcode=" + rcode;
+		  javascript:window.open(url , '상세내용보기', 'width=500 height=700 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
+	  }
+	  
+	  function winOpen2(rcode){
+		var url = "StudyRoomupdate.do?rcode=" + rcode;
+	   	  javascript:window.open(url , '상세내용보기', 'width=500 height=420 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
+	  }		
+
+  function winOpen3(rcode){
+		var url = "StudyRoomdelete.do?rcode=" + rcode;
+		    javascript:window.open(url , '상세내용보기', 'width=500 height=420 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
+		}
+
+
+	function winOpen4(){
+		var url = "studyroomwrite.do";
+	     javascript:window.open(url , '상세내용보기', 'width=500 height=420 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
+	}
+	  
+
 </script>
+
 
 
 <script type="text/javascript">
@@ -59,14 +85,15 @@
 
 </head>
 <body>
+
 <div id="container">
 	<div class="search_controll">
-		<h2 class="study_room_title"><a href="List.do">스터디룸 공유</a></h2>
+		<h2 class="study_room_title"><a href="list?page=1">스터디룸 공유</a></h2>
 		
-		<form action="List.do"  method="post" name="frm">
+		<form action="List?page=1"  method="post" name="frm">
 		<ul class="study_room_menu">
 			<li>
-				<select name='location'' id="location" onchange="subMenu()">
+				<select name='location' id="location" onchange="subMenu()">
 				 <option value="지역구분" >지역구분</option>
 				 <option value="서울" <c:if test="${'서울'==location}">selected</c:if>>서울</option>
                  <option value="경기/인천" <c:if test="${'경기/인천'==location}">selected</c:if>>경기/인천</option>
@@ -104,26 +131,67 @@
 	</div>
 	
 	<div class="content_wrap">
-		<h2>맞춤 스터디룸<a  href="studyroomwrite.do">글쓰기</a> </h2>
+		<h2>맞춤 스터디룸<a  href="javascript:winOpen4()">글쓰기</a> </h2>
 		<ul class="content_list">
-			<c:forEach var="roomshare"  items="${studyroomList}">
+			<c:forEach var="roomshare" items="${Content}">
 				<li>
-			<a  href="javascript:winOpen('${roomshare.rcode}')">   
+			<a href="javascript:winOpen('${roomshare.rcode}')">   
 			 	<%-- <a href="Content.do?rcode=${roomshare.rcode}"> --%> 
-					<p class="content_list_img"><img src="upload/${roomshare.rpictureurl}" ></p></a>
-					<p>이름 : ${roomshare.rname}</p>
-				
-				   
-					<p>지역 : ${roomshare.rlocation }&nbsp;&nbsp; &nbsp; 종류 : ${roomshare.rlocationdetail }</p>
+				 <p class="content_list_img">
+					 <img src="/We2/we2/studyRoom/data/${roomshare.rpictureurl}" >
+				 </p>
+			 </a>
+					 <p>이름 : ${roomshare.rname}</p>				   
+					 <p>지역 : ${roomshare.rlocation }&nbsp;&nbsp; &nbsp; 
+					    종류 : ${roomshare.rlocationdetail }</p>
 					 <p>인원제한수 : ${roomshare.rmember}</p>
 					<%-- <p>내용 : ${roomshare.rcontent } &nbsp;&nbsp; &nbsp;</p>--%>
 					<p>
-					<a  href="Update.do?rcode=${roomshare.rcode}">수정하기</a> <a href="Delete.do?rcode=${roomshare.rcode }">삭제하기</a></p>				
+					<a  href="javascript:winOpen2('${roomshare.rcode}')">수정하기</a> 
+					<a  href="javascript:winOpen3('${roomshare.rcode}')">삭제하기</a>
+					<%-- <a  href="StudyRoomdelete.do?rcode=${roomshare.rcode}">삭제하기</a> --%> 
+					<%-- <input type="submit" name="삭제하기" meaction="StudyRoomdelete.do?rcode=${roomshare.rcode }"> --%>
+					</p>				
+				
 				</li>
 			
-			</c:forEach>
+			</c:forEach>			
 		</ul>
+		
 	</div>
+		<!-- ★★ 페이징 카운트 넣는 곳 ★★ -->
+				<tr>
+				<td colspan="6">
+				<c:choose>
+					<c:when test="${block-1==0 }">
+					</c:when>
+					<c:otherwise>
+						<a href="list?page=${block_first - page_for_block }">[이전]</a>&nbsp;
+					</c:otherwise>
+				</c:choose>
+				
+				<c:forEach var="i" begin="${block_first }" end="${block_last}" >
+					<c:choose>
+						<c:when test="${i == c_page }">
+							<b> [ ${i} ] </b>
+						</c:when>
+						<c:otherwise>
+							<a href="list?page=${i }">
+								[ ${i} ]
+							</a>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				<c:choose>
+					<c:when test="${block==block_total }">
+						&nbsp;[다음]
+					</c:when>
+					<c:otherwise>
+						&nbsp;<a href="list?page=${block_first + page_for_block}">[다음]</a>
+					</c:otherwise>
+				</c:choose>
+				</td>
+				</tr>
 </div>
 
 

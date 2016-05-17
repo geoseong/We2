@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,9 +15,9 @@ public class PjtBoardService {
 	@Autowired
 	private PjtBoardMapper boardMapper;
 	
-	
-	public ArrayList<FormattedDate> getformatDate(String category, int row_start, int row_end) throws ParseException{
-		ArrayList<PjtBoardBean> arraymapper=boardMapper.getList(category, row_start, row_end);
+	// 일반 게시판 리스트 뽑을 때.
+	public ArrayList<FormattedDate> getformatDate(String category, int row_start, int rows_per_page) throws ParseException{
+		ArrayList<PjtBoardBean> arraymapper=boardMapper.getList(category, row_start, rows_per_page);
 		
 		System.out.println("---------------Date형을 원하는 포멧(String형)으로 바꾸는작업 시작");
 		Date mapperdate = null;
@@ -77,4 +78,42 @@ public class PjtBoardService {
 	public void deleteBoard(String category, int itemNum){
 		boardMapper.deleteBoard(category, itemNum);
 	}
+	
+	// 게시물 검색 후 리스트.
+	public ArrayList<FormattedDate> findBoard(String cartegory, String find, String findword, int row_start, int row_end){
+		ArrayList<PjtBoardBean> arraymapper=boardMapper.findBoard(cartegory, find, findword, row_start, row_end);
+		
+		System.out.println("---------------Date형을 원하는 포멧(String형)으로 바꾸는작업 시작");
+		Date mapperdate = null;
+		SimpleDateFormat fmt=null;
+		String mappercom =null;
+		
+		FormattedDate formatDate;
+		ArrayList<FormattedDate> formattedDate = new ArrayList<FormattedDate>();
+		for(int i=0; i < arraymapper.size(); i++){
+			mapperdate = arraymapper.get(i).getItemDate();
+			
+			fmt = new SimpleDateFormat("yyyy-MM-dd");
+			mappercom = fmt.format(mapperdate);
+		
+			formatDate= new FormattedDate(
+						arraymapper.get(i).getItemNum(), 
+						arraymapper.get(i).getItemTitle(),
+						arraymapper.get(i).getUserId(),
+						mappercom,
+						arraymapper.get(i).getItemClick(),
+						arraymapper.get(i).getItemPath(),
+						arraymapper.get(i).getItemContent()
+						);
+			formattedDate.add(i, formatDate);
+		} //end for
+		System.out.println("☆☆☆☆☆☆Date형을 원하는 포멧(String형)으로 바꾸는작업 끝☆☆☆☆☆☆");
+		
+		return formattedDate;
+	}
+	
+	// 게시물 검색할때 총레코드갯수 확인
+	public int getFindCnt(String category, String find, String findword){
+		return boardMapper.getFindCnt(category, find, findword);
+	} 
 }

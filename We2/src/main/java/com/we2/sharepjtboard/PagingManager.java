@@ -15,12 +15,12 @@ public class PagingManager {
 	
 	// 현재페이지 시작레코드
 	public int getFirstRowInPage(int page, int rows_per_page){
-		return ((page-1)*rows_per_page+1);
+		return ((page-1)*rows_per_page+1)-1;
 	}
 	
 	// 현재페이지 종료레코드
 	public int getLastRowInPage(int page, int rows_per_page){
-		return (page*rows_per_page);
+		return (page*rows_per_page)-1;
 	}
 	
 	public int getTotalPage(int t_rows, int rows_per_page){

@@ -91,10 +91,15 @@ function myTimer(){
    
    <!-- 2) 가운데 내용 ---------------------------------->
    <div class ="contents">
-
-    	<%-- <jsp:include page="${page }"></jsp:include> --%>
+<%  System.out.println("파라미터로받은 page = " + (String)request.getAttribute("page"));
+	//String page1=(String)request.getAttribute("page");
+	
+%>
+    	 <jsp:include page="boardmain.jsp"/>
 			<!--  contents 영역 끝 ----------------------------------->
-
+			<!-- 태성씨 코딩안해요???? -->
+			<!-- 언제까지 주무실겁니까??????? -->
+			<!-- 제꺼 대신 코딩좀 해주시죠 -->
 
    </div>
 
@@ -104,7 +109,7 @@ function myTimer(){
       	<img src="img/G_talk_2.png"/>
       </div>
      
-        <jsp:include page="${page }.jsp"></jsp:include>
+      <%--   <jsp:include page="${page }.jsp"></jsp:include> --%>
 
       
   </div>

@@ -13,9 +13,8 @@
   <HR>
   
   
- <form name="frm" enctype="multipart/form-data" method="post"  action="Update.do" >
- <input type="hidden" name="rcode" value="${studyroomList.rcode}" >
-  
+ <form name="frm" enctype="multipart/form-data" method="post"  action="StudyRoomupdate.do" >
+ <input type="text" name="rcode" value="${studyroomList.rcode}" >
 
   
  <table>
@@ -34,7 +33,7 @@
    <tr>
    	<th>종류 :</th>
    		   <td> 
-               <select name='type'  id="type"  >                
+               <select name='rlocationdetail'  id="rlocationdetail"  >                
                  <option selected="selected" value="커피전문점">커피전문점</option>
                  <option value="스터디카페/스터디룸">스터디카페/스터디룸</option>
                  <option value="회의실">회의실</option>               
@@ -42,7 +41,7 @@
              </td>
    	<th>지역 :</th>
    	   	<td>
-   		<select name='location'  id="location"   >                                  
+   		<select name='rlocation'  id="rlocation" >                                  
                 	<option selected="selected" value="서울">서울</option>
                 	<option value="경기/인천">경기/인천</option>
                 	<option value="경남/부산/울산">경남/부산/울산</option>
@@ -56,7 +55,11 @@
     <table>
     
         <tr>
-   		<td>
+         <td>
+   		<p class="content_list_img">
+					 <img src="/We2/we2/studyRoom/data/${roomshare.rpictureurl}" >
+				 </p>
+   		
    			<input type="file" name="rpictureurl" value="${studyroomList.rpictureurl}"> (파일 용량 제한은 20MB 입니다.)
    		</td>
    </tr>
@@ -73,7 +76,7 @@
   
   <tr>
    <td align="center" colspan=5>
-    <input name="add" type=submit value="위치 수정" onclick="return ScheduleCheck()">
+    <input name="add" type=submit value="위치 수정">
     
     <input name="cancel" type="reset" value="다시 작성">
    </td>

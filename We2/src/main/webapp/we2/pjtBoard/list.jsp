@@ -11,18 +11,17 @@
 <body>
 <!--  게시판 영역 - css에서 #contents 블록의 테두리선(border)를 없애주시면 됩니다. -->
 
-<form:form action="find" method="post" commandName="pjtBoardBean">
-		
+	<form action="find" method="get" >
+		<input type="hidden" name="category" value="${category}">
+		<input type="hidden" name="page" value="1">
 				<div class="write">
 				<a href="write?category=${category }">글쓰기</a>
 				</div>
-				
 			
 				<table class="list">
 				
 				<tr><th>글번호</th> <th>제목</th> <th>작성자</th> <th>작성일</th> <th>조회수</th></tr>
 				
-
 				<!-- 반복문 : c:forEach의 items에는 배열이나 List변수가 오는 자리이다. -->
 				<c:forEach var="content"  items="${Content}" >	
 					<tr class="record">	
@@ -36,8 +35,8 @@
 					</tr>		
 				</c:forEach>
 				</table>
-			<!-- ★★ 페이징 카운트 넣는 곳 ★★ -->
 				
+			<!-- ★★ 페이징 카운트 넣는 곳 ★★ -->
 				<div class ="counting">
 				<c:choose>
 					<c:when test="${block-1==0 }">
@@ -65,7 +64,8 @@
 						&nbsp;<a href="list?page=${block_first + page_for_block}&category=${category}">[다음]</a>
 					</c:otherwise>
 				</c:choose>
-				</div>  <!-- counting end -->
+				</div>  
+				<!-- ★★ counting end ★★ -->
 			
 			<!-- 검색. -->
 				
@@ -79,9 +79,7 @@
 					 	<input type="text" name="findword">
 					 	<input class="add_btn" type="submit" value="검색">
 				</div> <!-- search end -->
-				
-		
- </form:form>
+		</form>
 <!--  게시판 영역 끝 -->
 </body>
 </html>

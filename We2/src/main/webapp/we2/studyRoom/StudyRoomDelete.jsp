@@ -13,7 +13,7 @@
   <HR>
   
   
- <form name="frm" method="post"  action="Delete.do" >
+ <form name="frm" method="post" action="StudyRoomdelete.do" >
  <input type="hidden" name="rcode" value="${studyroomList.rcode}" >
   
   
