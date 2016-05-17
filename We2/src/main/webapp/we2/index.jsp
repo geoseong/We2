@@ -40,7 +40,7 @@
     <a href="index.jsp"><b>We2</b></a>
 
  <c:choose>
-    <c:when test="${empty loginUser}">
+    <c:when test="${empty authInfo}">
 
 		   <div id = "nav">
             <a href="login" class="loginButton">로그인</a><!-- A태그를 사용하면 get으로 넘어간다.!! -->
