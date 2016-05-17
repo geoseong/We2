@@ -1,28 +1,7 @@
 create database we2;
 
-drop table pjtmake cascade constraint;
-drop table pjtmanager cascade constraint;
-
-SET foreign_key_checks = 0;
-select * from pjtmake;
-desc pjtmake;
-SET foreign_key_checks = 1;
-drop table pjtmake;
-
-ALTER TABLE pjtmake DROP pjtCode;
-ALTER TABLE pjtmake DROP FOREIGN KEY pjtmanager_ibfk_1;
-drop table pjtmake ON DELETE CASCADE ON UPDATE CASCADE;
-show create table pjtmake;
-drop table pjtmake on delete cascade;
-drop table pjtmake cascade constraints;
-
-desc pjtmake;
-select * from pjtmake;
-
-alter table pjtmake modify pjtCode int auto_increment;
-
-/*
-> testuser ��� ����ڰ� 192.168.100.101 �����Ǹ� ���ؼ� �����ϴ� ���� ����ϸ�, 
+/*  create user 시작
+> testuser 라는 사용자가 192.168.100.101 아이피를 통해서 접근하는 것을 허용하며, 
 	ex) CREATE USER 'we2admin'@'192.168.100.101' IDENTIFIED BY '123qwe!@#';
  비밀번호는 "123qwe!@#" 이고, "we2" 데이터베이스에 대하여 모든 권한을 부여 받음 
  
@@ -143,7 +122,8 @@ SHOW TABLE STATUS FROM we2 LIKE 'pjtManager';
 /* 특정 데이터베이스 안에 있는 테이블 목록 보기 */
 use we2;
 show tables;
-desc pjtmake;
+
+desc pgroup;
 
 /* 컬럼 이름 바꾸기 */
 # ALTER TABLE 테이블명 CHANGE 컬럼이름 새컬럼이름 새컬럼타입
@@ -153,9 +133,9 @@ ALTER TABLE member CHANGE userid userId VARCHAR(12);
 #ALTER TABLE 테이블명 ADD COLUMN 칼럼이름 칼럼타입
 ALTER TABLE pGroup ADD COLUMN itemDataType varchar(50);
 
-desc pjtMake;
-drop table pjtMake;
-
+/* 컬럼 삭제하기 */
+#ALTER TABLE 테이블명 DROP COLUMN 칼럼이름
+alter table member drop column subEmail;
 
 /* 삽입 */
 # 현재시각은 MySQL에서는 now().

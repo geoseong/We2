@@ -2,6 +2,7 @@ package com.we2.spring;
 
 import java.util.Date;
 
+
 public class Member {
 
 	private String name;
