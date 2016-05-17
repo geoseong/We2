@@ -5,6 +5,7 @@ public class LoginCommand {
 	private String userId;
 	private String pwd;
 	private boolean rememberUserid;
+
 	public String getUserId() {
 		return userId;
 	}

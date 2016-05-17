@@ -1,5 +1,4 @@
 #exit2{
-   
    position : relative;
    top:-33px;
    left:470px;
@@ -33,7 +32,7 @@
  }
 
 
-/* ÇÁ·ÎÁ§Æ® ¸¸µé±â Å¸ÀÌÆ² */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½Æ² */
 .pjtMakeInner h1{
    padding-top:20px;
    text-align : center;
@@ -120,7 +119,7 @@
 
 
  
- /* ÃÊ´ëÇÏ±â ¹öÆ° ÆíÁý */
+ /* ï¿½Ê´ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½ */
  .btn1>input{
   border:none;
   float:left;
@@ -134,7 +133,7 @@
 
  }
  
-/* ¸¸µé±â ¹öÆ° ÆíÁý */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½ */
  .btn2>input{
   /* border:none;  */
   width:380px;
@@ -157,4 +156,3 @@
    background-color: black;
    opacity:0.5;
 }
-

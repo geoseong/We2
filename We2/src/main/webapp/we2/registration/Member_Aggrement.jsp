@@ -5,7 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link href="/style/We2_MemberStyle.css" rel="stylesheet" type="text/css" />
+<link href="style/We2_MemberStyle.css" rel="stylesheet" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="css/w2_reset.css" type="text/css">
 <link rel="stylesheet" href="css/01_1_mypageform.css" type="text/css">
@@ -46,7 +46,7 @@
 		<!-- wrap : div를 한번더 감싸고 액션의 기준이 될 수 있음-->
 
 		<!-- chk()과 같이 체크를 하지 않고 넘어가는 것을 방지하기 위해 script로  방지함 -->
-		<form action="We2_join" method="get" name="form">
+		<form action="Member_Aggrement" method="POST" name="form">
 
 			<!-- 주의점 js로 넘어갈때 form안에 있는 name이름을 항상주의!!! -->
 
@@ -57,7 +57,7 @@
 
 				<div id="headerinner">
 					<h2>
-						<b> <sub> <a href="01_main.jsp">We2</a>
+						<b> <sub> <a href="Main.jsp">We2</a>
 						</sub>
 						</b>
 					</h2>
@@ -146,16 +146,15 @@
 
 
 				<div class="select">
-					<td align="center" valign="top"><input class="add_btn"
+					<td align="center" valign="top">
+					<input class="add_btn"
 						type="button" value="동의합니다" onclick="return chk()"
 						style="width: 150px;" /> <input class="add_btn" type="button"
 						value="동의하지 않습니다" onclick="return nochk()" style="width: 150px;" />
 					</td>
 				</div>
-			</div>
-			<!-- section end -->
+			</div> <!-- section end -->
 		</form>
-	</div>
-	<!-- wrap end -->
+	</div> <!-- wrap end -->
 </body>
 </html>

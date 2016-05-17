@@ -1,6 +1,6 @@
 create database we2;
 
- create user 시작
+/*  create user 시작
 > testuser 라는 사용자가 192.168.100.101 아이피를 통해서 접근하는 것을 허용하며, 
 drop table pjtmake cascade constraint;
 drop table pjtmanager cascade constraint;
@@ -37,12 +37,14 @@ grant all privileges on we2.* to we2admin@'%';
 flush privileges;
 /* create user 끝 */
 
+desc member;
 
 /* MySQL 전체 사용자 목록 보기*/
 USE mysql;
 SELECT User, Host from user;
 SELECT * from user;
 
+show tables;
 select * from member;
 select * from MEMBER where USERID = 'geoseong';
 
@@ -97,9 +99,10 @@ select * from pjtMake;
 select * from member;
 
 CREATE TABLE member(
-	userid VARCHAR(12),
+	userId VARCHAR(12),
 	name VARCHAR(10),
 	pwd VARCHAR(12),
+	pwd_confirm varchar(12),
 	email VARCHAR(30),
 	phone VARCHAR(13),
     gender VARCHAR(2),

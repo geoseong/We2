@@ -49,11 +49,41 @@ a {
     margin-top:60px;
     top:50px;
     right:30px;
-    font-size : 20px;
+    font-size :18px;
     color :#89867e; 
 }
 
 #nav :hover {
+   color: balck;
+   opacity : 0.8;
+   font-weight: 600;
+}
+
+#nav2 a {
+    float:left;
+    margin-top:60px;
+    top:50px;
+    right:130px;
+    font-size :18px;
+    color :#89867e; 
+}
+
+#nav2 :hover {
+   color: balck;
+   opacity : 0.8;
+   font-weight: 600;
+}
+
+#nav3 a {
+    float:left;
+    margin-top:60px;
+    top:50px;
+    right:30px;
+    font-size : 18px;
+    color :#89867e; 
+}
+
+#nav3 :hover {
    color: balck;
    opacity : 0.8;
    font-weight: 600;
@@ -134,10 +164,6 @@ a {
     color: #f9f9f9;
 }
 
-<<<<<<< HEAD
-=======
-/* ===== 占쎄껀�뜝�띂寃ュ뜝占� 2 (�뜝�럥�닡�뜝�럩�굥�뜝�럩踰� 4�뤆�룊�삕 �뛾�룆踰∽옙裕�) ======*/\
->>>>>>> origin/member_hyuk
 
 /* ===== �κ� 2 (�Ʒ��� 4�� �ڽ�) ======*/\
 
@@ -146,11 +172,7 @@ a {
     height: 200px;
 }
 
-<<<<<<< HEAD
-/* �޴� ��ü �ڽ� ����*/
-=======
 /* 嶺뚮∥��占쎈� �뜝�럩�쓧嶺뚳퐦�삕 �뛾�룆踰∽옙裕� �뜝�럩�쓤�뜝�럩�뮔*/
->>>>>>> origin/member_hyuk
 #box-wrap {
     width:100%;
     text-align: center;
@@ -170,11 +192,7 @@ a {
 }
 
 
-<<<<<<< HEAD
-/* �޴� �ڽ� ���� ����*/
-=======
 /* 嶺뚮∥��占쎈� �뛾�룆踰∽옙裕� �뜝�럡�돪占쎄껀�뜝占� �뜝�럩�쓤�뜝�럩�뮔*/
->>>>>>> origin/member_hyuk
 .box {
     float:left;
     text-align: center;
@@ -185,11 +203,7 @@ a {
     font-weight: 400;  
 }
 
-<<<<<<< HEAD
-/* �޴� ���� ����*/
-=======
 /* 嶺뚮∥��占쎈� �뜝�럥�닱�뜝�럩踰� �뜝�럡���뜝�럩�뮔*/
->>>>>>> origin/member_hyuk
 .box a {
     color:#f9f9f9;
    
@@ -199,9 +213,6 @@ a {
 }
 
 
-<<<<<<< HEAD
-/* �� �޴��� ���콺�� �ø���*/
-=======
 /* �뤆�룊�삕 嶺뚮∥��占쎈��뜝�럥�뱺 嶺뚮씭�쐠占쎈뮡�뜝�럥裕욑옙紐닷뜝占� �뜝�럩沅욑옙逾놂옙�맓�듆*/
 >>>>>>> origin/member_hyuk
 .box a:hover {
@@ -210,11 +221,7 @@ a {
 }
 
 
-<<<<<<< HEAD
-/*���� �ϴ��� �ż�ī�Ƕ���Ʈ!*/
-=======
 /*�뤆�룊�삕�뜝�럩�궋 �뜝�럥由��뜝�럥堉듿뜝�럩踰� 濾곌쑨�ｈ땻占썹뇖�궠�샑�얠뼲�삕占쎈뎄�뜝�럩逾졾뜝�럥諭�!*/
->>>>>>> origin/member_hyuk
 #footer {
     clear:both;
     margin-top:100px;
