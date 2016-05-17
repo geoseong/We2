@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
@@ -23,14 +23,12 @@ $("#nav>a").click(function(){
 	$(".modal_bg").show();
 	$(".second_body").show();
 });
-
 </script>
 </head>    
+
 <body>
     <!--1.백그라운드에 깔리는 화면페이지-->
 <div id="modal_bg"></div>
-
-
 
 <div class="first_main">
  	<jsp:include page="../index.jsp" flush="false"/>
@@ -51,7 +49,6 @@ $("#nav>a").click(function(){
               <div class = "id">
                 <span>User ID</span><br>
                 <form:input path="userId" style="width:240px; height:30px;"/>
-                <span class ="error" ><form:errors path="userId"/></span>
                   <br>
              </div>
                

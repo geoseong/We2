@@ -1,13 +1,8 @@
 package com.we2.login.controller;
 
-import java.io.IOException;
 import java.util.Locale;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -117,7 +112,7 @@ public class LoginController {
 			}
 			response.addCookie(rememberCookie);
 			
-			logger.info("회원 " + authInfo.getUserid() + "로그인함.");
+			logger.info("회원 " + authInfo.getUserId() + "로그인함.");
 			System.out.println("authInfo" + "authInfo값이 제대로 나오는지 디버깅!! 로그인 컨트롤러");
 			return "index";
 		} catch (IdPasswordNotMatchingException e) {

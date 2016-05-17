@@ -1,4 +1,4 @@
-package com.we2.logout.controller;
+﻿package com.we2.logout.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,5 +31,6 @@ public class LogoutController {
 		genderTypes.add("여성");
 		model.addAttribute("genderTypes", genderTypes);
 		return "registration/Member_Update";
+
 	}
 }

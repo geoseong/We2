@@ -1,5 +1,4 @@
 package com.we2.spring;
-
 public class AuthService {
 
 	private MemberDao memberDao;
