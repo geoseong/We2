@@ -174,7 +174,7 @@ alter table member drop column subEmail;
 /* 삽입 */
 # 현재시각은 MySQL에서는 now().
 #INSERT INTO tablename or columns VALUES(25, 'NAME', 5, 25.5 );
-insert into member values('geoseong', '거성', '1234' ,'imf4@naver.com', '010-2023-6697', 'M', now());
+insert into member values('geoseong', '거성', '1234' , '1234', 'imf4@naver.com', '010-2023-6697', 'M', now());
 
 insert into pjtMake values('10',
 'ttt',

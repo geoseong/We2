@@ -35,8 +35,9 @@ public class MemberDao {
 	} //MemberDao에 DataSource를 주입함!!
 	
 	public Member selectByUserid(String userId) {
+		System.out.println("userId:::::::::::::::::::::::"+userId);
 		List<Member> results = jdbcTemplate.query("select * from MEMBER where USERID = ?", memRowMapper, userId);
-		System.out.println("userId" + "1234556");
+		System.out.println("userId" + "1234556::::::"+results.isEmpty());
 		return results.isEmpty() ? null : results.get(0);
 	}
 
@@ -62,7 +63,7 @@ public class MemberDao {
 	}
 	// 사용자 정보를 수정하는 메소드
 	public void update(Member member) { 
-		  jdbcTemplate.update("update member set pwd=?, pwd_confirm=?, phone=?, email=?,  gender=? where userid=?",
+		  jdbcTemplate.update("update member set pwd=?, pwd_confirm=?, phone=?, email=?,  gender=? where userId=?",
 		member.getPwd(), member.getPwd_confirm(), member.getPhone(), member.getEmail(), member.getGender());
 	}  
 	  		  
@@ -95,8 +96,8 @@ public class MemberDao {
 		return results.isEmpty() ? null : results.get(0);
 	}
 	// 사용자 ID값을 확인하는 메소드
-	public int confirmID(String userid) {
-		List<Member> results = jdbcTemplate.query("select * from MEMBER where USERID=?", memRowMapper, userid);
+	public int confirmID(String userId) {
+		List<Member> results = jdbcTemplate.query("select * from MEMBER where USERID=?", memRowMapper, userId);
 		return results.isEmpty() ? -1 : 1;
+		}
 	}
-}

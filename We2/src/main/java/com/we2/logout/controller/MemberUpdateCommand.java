@@ -1,10 +1,10 @@
-package com.we2.login.controller;
+package com.we2.logout.controller;
 
 import java.util.Date;
 
 public class MemberUpdateCommand {
 	
-	private String userid;
+	private String userId;
 	private String name;
 	private String pwd;
 	private String email;
@@ -15,11 +15,11 @@ public class MemberUpdateCommand {
 	private String newPassword;
 	
 	public String getUserid() {
-		return userid;
+		return userId;
 	}
 
-	public void setUserid(String userid) {
-		this.userid = userid;
+	public void setUserid(String userId) {
+		this.userId = userId;
 	}
 
 	public String getName() {
