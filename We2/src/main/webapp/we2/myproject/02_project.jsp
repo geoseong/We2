@@ -104,7 +104,7 @@ function myTimer(){
       	<img src="../img/G_talk_3.png" style="width:200px;">
       </div>
      
-        <jsp:include page="../chat/broadcast.jsp"></jsp:include>
+        <jsp:include page="broadcast.jsp"></jsp:include>
 
       
   </div>
