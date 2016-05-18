@@ -1,4 +1,4 @@
-package com.we2.sharepjtboard;
+package com.we2.utils;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -13,7 +13,7 @@ import javax.activation.*;
 
 public class MailSend {
 
-	public void main(String path) {
+	public void main(String path, String receiver) {
 		Properties p = new Properties();
 		p.put("mail.smtp.user", "parkopp@gmail.com"); // Google계정 아이디@gmail.com으로 설정
 		p.put("mail.smtp.host", "smtp.gmail.com");
@@ -39,7 +39,7 @@ public class MailSend {
 			msg.setSubject("거셩 님이 당신을 초대합니다. We2");
 			Address fromAddr = new InternetAddress("parkopp@gmail.com"); // 보내는 사람의 메일주소
 			msg.setFrom(fromAddr);
-			Address toAddr = new InternetAddress("imf4@naver.com"); // 받는 사람의 메일주소
+			Address toAddr = new InternetAddress(receiver); // 받는 사람의 메일주소
 			msg.addRecipient(Message.RecipientType.TO, toAddr);
 			/*
 			 * msg.setContent(message, "text/plain;charset=KSC5601");
@@ -78,6 +78,7 @@ public class MailSend {
 			}
 			msg.setContent(htmlText, "text/html;charset=UTF-8");
 			//msg.setContent(mailcontext, "mail");
+			
 			
 			// Send the message
 			Transport.send(msg);

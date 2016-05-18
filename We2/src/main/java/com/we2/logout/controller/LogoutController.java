@@ -24,12 +24,11 @@ public class LogoutController {
 		return "index";
 	} // end logout()
 
-	@RequestMapping(value = "/Member_Update", method = RequestMethod.POST)
+	/*@RequestMapping(value = "/Mypage_Modify", method = {RequestMethod.GET, RequestMethod.POST})
 	public String form(Model model, Member member) {
-		List<String> genderTypes = new ArrayList<String>();
-		genderTypes.add("남성");
-		genderTypes.add("여성");
-		model.addAttribute("genderTypes", genderTypes);
-		return "registration/Member_Update";
 	}
-}
+	
+	@RequestMapping(value="/Member_Delete", method = {RequestMethod.GET, RequestMethod.POST})
+	public String 
+	}*/
+	}

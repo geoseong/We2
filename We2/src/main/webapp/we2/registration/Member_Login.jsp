@@ -47,6 +47,7 @@ $("#nav>a").click(function(){
           </div>
 
           <div class="input">
+          
             <form:form action="login" commandName="loginCommand" name="frm" method="POST">
               <div class = "id">
                 <span>User ID</span><br>
@@ -77,10 +78,11 @@ $("#nav>a").click(function(){
                   <input type="submit" value="로그인" class="add_btn" />
               </div>
               <div class="join"> 
-                  <input type="button" value="회원가입" class="add_btn"onclick="location.href='join'"/>
+                  <input type="button" value="회원가입" class="add_btn"onclick="location.href='join'";/>
               </div>
             </form:form> 
 	   </div>
+	
 	
   </div>
 </div>  <!--second_body_END-->

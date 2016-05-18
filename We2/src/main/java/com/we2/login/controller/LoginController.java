@@ -1,12 +1,8 @@
 package com.we2.login.controller;
 
-import java.io.IOException;
 import java.util.Locale;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -151,7 +147,28 @@ public class LoginController {
 	@RequestMapping(value = "/Member_Join", method = RequestMethod.POST)
 	public String member_join(Member member, Errors errors){
 		memberDao.insert(member);
-		
 		return "/index";
 	}
-}
+	
+	@RequestMapping(value="/Member_Mypage", method = {RequestMethod.GET, RequestMethod.POST})
+	public String mypage_confirm(HttpServletRequest request, AuthInfo authInfo, Model model){
+		
+		authInfo = (AuthInfo) request.getSession().getAttribute("authInfo");
+		
+		model.addAttribute("mVo", authInfo);
+		//authInfo.authInfo인자를 mVo에 담는다 
+		try {
+		
+		if (authInfo==null) {
+			// 로그인 페이지로 이동
+			}
+		}catch (Exception e) {
+			
+		}
+		// 로그인 커맨드로부터 id, pwd를 받아서 인증작업 거쳐서 세션에 넘어갈 변수들 바인딩객체를 리턴받음
+
+	/*HttpSession session = request.getSession();
+	AuthInfo mVo = (AuthInfo)session.getAttribute("userId");*/
+	return "registration/Member_MypageView";
+	}
+	}
