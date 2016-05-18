@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-Excel Export!!!
-
+<div style="color: blue;">
+	<h1>404 error</h1>
+</div>
 </body>
 </html>

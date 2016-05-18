@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.we2.pjtMake.PjtMakeVO;
+
 @Controller
 public class MyProjectController {
 
@@ -28,12 +30,16 @@ public class MyProjectController {
 	
 	//엑셀파일 변환 및 다운로드
 	@RequestMapping(value="/excel_transform", method=RequestMethod.GET)
-	public String excelTransform(@RequestParam String target, Map<String,Object> ModelMap) throws Exception{
-		List<Object> excelList= null;
-	    excelList = service.getAllObjects(target);
-	    
+	public String excelTransform(@RequestParam("target") String target, Map<String,Object> ModelMap) throws Exception{
+		System.out.println("엑셀변환 시작");
+		// List<Object> excelList= null;
+		List<PjtMakeVO> excelList = service.getAllObjects(target);
+	    System.out.println("getAllObjects메소드 실행.");
 	    ModelMap.put("excelList", excelList);
 	    ModelMap.put("target", target);
+	    
+	    System.out.println("ModelMap : " + ModelMap.get(excelList));
+	    System.out.println("ModelMap : " + ModelMap.get(target));
 	    excelView.buildExcelDocument(ModelMap, workbook, request, response);
 	    return "myproject/excelView";
 	}

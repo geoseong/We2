@@ -114,7 +114,7 @@ public class PjtBoardController {
 	
 	/** 글쓰기 폼 띄우기 */
 	@RequestMapping(value="/write", method=RequestMethod.GET)
-	public String writeget(HttpSession session, /*HttpServletRequest request,*/ Model model,String category){
+	public String sessionwriteget(HttpSession session, /*HttpServletRequest request,*/ Model model,String category){
 		
 		System.out.println("Write.get] category : " + category);
 		
@@ -191,7 +191,7 @@ public class PjtBoardController {
 	}
 	
 	@RequestMapping(value="/modify", method=RequestMethod.GET)
-	public String modifyget(Model model, String category, int itemNum) throws IOException {
+	public String sessionmodifyget(Model model, String category, int itemNum) throws IOException {
 		System.out.println("Modify] category : " + category);
 		System.out.println("Modify] itemNum : " + itemNum);
 		
@@ -205,7 +205,7 @@ public class PjtBoardController {
 	}
 	
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
-	public String modifypost(/*HttpServletRequest request, */Model model, String category, int itemNum) throws IOException {
+	public String sessionmodifypost(/*HttpServletRequest request, */Model model, String category, int itemNum) throws IOException {
 		System.out.println("Modify.POST] itemNum : " + itemNum);
 		System.out.println("Modify.POST] ategory : " + category);
 		
@@ -264,7 +264,7 @@ public class PjtBoardController {
 	}
 	
 	@RequestMapping(value="/delete", method=RequestMethod.GET)
-	public String deletepost(Model model, String category, int itemNum) {
+	public String sessiondeletepost(Model model, String category, int itemNum) {
 		System.out.println("DELETE.POST] category : " + category);
 		System.out.println("DELETE.POST] itemNum : " + itemNum);
 		// boardMapper 제거 SQL.
@@ -345,9 +345,17 @@ public class PjtBoardController {
 	
 	
 	/** 테스트 영역 */
-	@RequestMapping(value="/mailtest", method=RequestMethod.GET)
-	public String pjt(Model model, String category) {
-		model.addAttribute("page","boardmain");
+	@RequestMapping(value="/aoptest", method=RequestMethod.GET)
+	public String sessionpjt(Model model, String category) {
+		System.out.println("/aoptest executed!!");
+		model.addAttribute("page","excelView");
+		return "myproject/myproject";
+	}
+	
+	@RequestMapping(value="/aoptestauth", method=RequestMethod.GET)
+	public String authpjt(Model model, String category) {
+		System.out.println("/aoptestauth executed!!");
+		model.addAttribute("page","excelView");
 		return "myproject/myproject";
 	}
 	

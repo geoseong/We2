@@ -20,12 +20,12 @@ public class PjtMakeDAO {
 	
 	private JdbcTemplate jdbcTemplate;
 	 
-   /* // ¹æ¹ý 1. »ý¼ºÀÚ¸¦ ÅëÇÑ DataSource¸¦ > JdbcTemplate¿¡ Àü´ÞÇÏ¿© JdbcTemplate °´Ã¼ »ý¼º.
+   /* // ï¿½ï¿½ï¿½ 1. ï¿½ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½ï¿½ DataSourceï¿½ï¿½ > JdbcTemplateï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ JdbcTemplate ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½.
     public PjtMakeDAO(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }*/
     
- // ¹æ¹ý 2. setter¸¦ ÅëÇÑ DataSource¸¦ > JdbcTemplate¿¡ Àü´ÞÇÏ¿© JdbcTemplate °´Ã¼ »ý¼º.
+ // ï¿½ï¿½ï¿½ 2. setterï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ DataSourceï¿½ï¿½ > JdbcTemplateï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ JdbcTemplate ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½.
     public void setDataSource(DataSource dataSource){
         this.jdbcTemplate = new JdbcTemplate(dataSource);    
     }
@@ -37,18 +37,18 @@ public class PjtMakeDAO {
 	            @Override
 	            public PreparedStatement createPreparedStatement(Connection con) 
 	                    throws SQLException {
-	                // ÆÄ¶ó¹ÌÅÍ·Î Àü´Þ¹ÞÀº ConnectionÀ» ÀÌ¿ëÇØ¼­ PreparedStatement »ý¼º
+	                // ï¿½Ä¶ï¿½ï¿½ï¿½Í·ï¿½ ï¿½ï¿½ï¿½Þ¹ï¿½ï¿½ï¿½ Connectionï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ø¼ï¿½ PreparedStatement ï¿½ï¿½ï¿½ï¿½
 	                PreparedStatement pstmt = con.prepareStatement(
                         "insert into pjtMake(pjtName,pjtClassify,startDate,endDate) "
 	                		+"values(?, ?, STR_TO_DATE(?,'%m/%d/%Y'), STR_TO_DATE(?,'%m/%d/%Y'))"
                        , new String[] {"pjtCode"});
-	                // ÀÎµ¦½º ÆÄ¶ó¹ÌÅÍ °ª ¼³Á¤
+	                // ï¿½Îµï¿½ï¿½ï¿½ ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	                pstmt.setString(1, pVo.getPjtName());
 	                pstmt.setString(2,  pVo.getPjtClassify());
 	                pstmt.setString(3, pVo.getStartDate());
 	                pstmt.setString(4, pVo.getEndDate());
 	                
-	                // »ý¼ºÇÑ PreparedStatement °´Ã¼ ¸®ÅÏ
+	                // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ PreparedStatement ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 	                return pstmt;
 	            } //end createPreparedStatement()
 	        }, keyHolder);
@@ -56,7 +56,7 @@ public class PjtMakeDAO {
 	        pVo.setPjtCode(keyValue.intValue());
 	}
 	
-	//ÃÖ±Ù µî·ÏÇÑ ÇÁ·ÎÁ§Æ® ¸ÕÀú Ãâ·ÂÇÏ±â
+	//ï¿½Ö±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	public List<PjtMakeVO> selectAll(){
 		List<PjtMakeVO> results = 
 				jdbcTemplate.query("select * from pjtMake",
@@ -72,11 +72,11 @@ public class PjtMakeDAO {
 			return pjtMakeVO;
 		}
 		});
-		return (List<PjtMakeVO>) (results.isEmpty()?null:results.get(0));
+		return (List<PjtMakeVO>) (results.isEmpty()?null:results);
 	}
 	
 	/*
-	// È¸¿øÀÌ ¼ÓÇØÀÖ´Â ÇÁ·ÎÁ§Æ®ÀÌ¸§ »Ñ¸®±â
+	// È¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½Ì¸ï¿½ ï¿½Ñ¸ï¿½ï¿½ï¿½
 	public List<PjtMakeVO> selectUserpjts(String userid){
 		String sql="select * from pjtmake where userid=?";
 		List<PjtMakeVO> list = new ArrayList<PjtMakeVO>();
@@ -99,7 +99,7 @@ public class PjtMakeDAO {
 				pVo.setStartDate(rs.getString("startDate"));
 				pVo.setUserId(rs.getString("userId"));
 				list.add(pVo);
-			}// while¹® ³¡
+			}// whileï¿½ï¿½ ï¿½ï¿½
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
@@ -109,7 +109,7 @@ public class PjtMakeDAO {
 	}
 	
 	public PjtMakeVO selectuserpjt(String pjtcode){
-		//ÃÖ±Ù µî·ÏÇÑ »óÇ° ¸ÕÀú Ãâ·ÂÇÏ±â
+		//ï¿½Ö±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 		String sql = "select * from pjtMake where pjtcode=?";
 		PjtMakeVO pVo = new PjtMakeVO();
 		Connection conn = null;
@@ -128,7 +128,7 @@ public class PjtMakeDAO {
 				pVo.setStartDate(rs.getString("startDate"));
 				pVo.setEndDate(rs.getString("endDate"));
 				pVo.setUserId(rs.getString("userId"));
-			}// while¹® ³¡
+			}// whileï¿½ï¿½ ï¿½ï¿½
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
