@@ -2,7 +2,6 @@ package com.we2.spring;
 
 import java.util.Date;
 
-
 public class Member {
 
 	private String name;
@@ -69,8 +68,8 @@ public class Member {
 	public String getGender() {
 		return gender;
 	}
-	public void setGender(String gender) {
-		this.gender = gender;
+	public void setGender(String string) {
+		this.gender = string;
 	}
 	public Date getRegDate() {
 		return regDate;

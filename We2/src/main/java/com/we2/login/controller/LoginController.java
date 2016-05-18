@@ -1,12 +1,11 @@
 package com.we2.login.controller;
 
-import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.we2.pjtMake.PjtMakeDAO;
+import com.we2.pjtMake.PjtMakeVO;
 import com.we2.spring.AuthInfo;
 import com.we2.spring.AuthService;
 import com.we2.spring.IdPasswordNotMatchingException;
@@ -47,6 +48,8 @@ public class LoginController {
 		this.memberDao = memberDao;
 	}*/
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+
+	private static final int String = 0;
 	@RequestMapping(method = RequestMethod.GET)
 	
 	public String index(Locale locale) {
@@ -137,21 +140,83 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value= "/We2_idCheck")
-		public String doGet(@RequestParam("userId") String userId, Model model){
+	public String doGet(@RequestParam("userId") String userId, Model model){
 
-			//int result = mDao.confirmID(userId);
-			int result=authService.idCheck(userId);
+		//int result = mDao.confirmID(userId);
+		int result=authService.idCheck(userId);
 
-			model.addAttribute("userId", userId);
-			model.addAttribute("result", result);
+		model.addAttribute("userId", userId);
+		model.addAttribute("result", result);
 
-			return "registration/We2_idCheck";
-}
+		return "registration/We2_idCheck";
+	}
 	
 	@RequestMapping(value = "/Member_Join", method = RequestMethod.POST)
 	public String member_join(Member member, Errors errors){
 		memberDao.insert(member);
-		
 		return "/index";
 	}
-}
+	
+	@RequestMapping(value="/Member_Mypage", method = RequestMethod.GET)
+	public String Member_MypageView(HttpServletRequest request, AuthInfo authInfo, Model model){
+		
+		HttpSession session = request.getSession(); // 세션영역을 가져옴
+
+		AuthInfo mVo = (AuthInfo)session.getAttribute("authInfo");
+						//세션에서  authInfo값을 가져옴
+						//mVo에 모든 값이 들어가져 있고 성만 값을 가져옴!
+		model.addAttribute("mVo", mVo); 
+		return "registration/Member_MypageView";
+	}
+	
+	@RequestMapping(value="/Member_Mypage", method = RequestMethod.POST)
+	public String Member_MypageViewpost(HttpServletRequest request, Member member, Model model){
+		
+		System.out.println("파라미터 pwd : "+request.getParameter("pwd"));
+		//System.out.println("파라미터 pwd : "+request.getParameter("pwd"));
+		System.out.println("파라미터 pwd_conrifm : "+request.getParameter("pwd_confirm"));
+		
+		if(request.getParameter("pwd")!=null){
+			System.out.println("pwd 는 not null이다.");
+		}
+		if(request.getParameter("pwd_confirm")!=null){
+			System.out.println("pwd_confirm 는 not null이다.");
+		}
+		if(request.getParameter("pwd")!=null && request.getParameter("pwd_conrifm")!=null){
+			
+			member.setName(request.getParameter("name"));
+			member.setUserId(request.getParameter("userId"));
+			member.setPwd(request.getParameter("pwd"));
+			member.setPwd_confirm(request.getParameter("pwd_conrifm"));
+			member.setPhone(request.getParameter("phone"));
+			member.setEmail(request.getParameter("email"));
+			member.setGender(request.getParameter("gender"));
+			
+			System.out.println("if) Member_Mypage POST : ");
+			System.out.println("if) Member_Mypage name - " + member.getName());
+			System.out.println("if) Member_Mypage userId - " + member.getUserId());
+			System.out.println("if) Member_Mypage pwd - " + member.getPwd());
+			System.out.println("if) Member_Mypage pwd_conrifm - " + member.getPwd_confirm());
+			System.out.println("if) Member_Mypage phone - " + member.getPhone());
+			System.out.println("if) Member_Mypage email - " + member.getEmail());
+			System.out.println("if) Member_Mypage gender - " + member.getGender());
+			
+			memberDao.update(member);
+			
+			System.out.println("member::::");
+		}
+		
+		if(!request.getParameter("pwd").equals(request.getParameter("pwd_conrifm"))){	
+		}
+		System.out.println("Member_Mypage POST : ");
+		System.out.println("Member_Mypage name - " + member.getName());
+		System.out.println("Member_Mypage userId - " + member.getUserId());
+		System.out.println("Member_Mypage pwd - " + member.getPwd());
+		System.out.println("Member_Mypage pwd_conrifm - " + member.getPwd_confirm());
+		System.out.println("Member_Mypage phone - " + member.getPhone());
+		System.out.println("Member_Mypage email - " + member.getEmail());
+		//System.out.println("Member_Mypage gender - " + member.getGender());
+		
+		return "index";
+	}
+	}

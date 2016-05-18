@@ -44,7 +44,7 @@
 
 <!-- 1. 상단 로고 부분-->
 <div id = "header">
-    <a href="index.jsp"><b>We2</b></a>
+    <a href="/We2"><b>We2</b></a>
 
  <c:choose>
     <c:when test="${empty authInfo}">
@@ -58,7 +58,7 @@
 	 <c:otherwise>
 	
 	 	<div id = "nav2">
-	 		<a href="mypage">마이페이지</a>
+	 		<a href="Member_Mypage">마이페이지</a>
             <!-- #########위에 로그인 header를 넣는다! -->
          </div>
         <div id = "nav3">
