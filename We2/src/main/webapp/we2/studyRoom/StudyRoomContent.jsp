@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
-<link rel="stylesheet" type="text/css" href="css/studyroom_content.css">
+<link rel="stylesheet" type="text/css" href="../css/studyroom_content.css">
 
 
 
@@ -17,11 +17,11 @@
   <HR>
   </center>
   <div id = "studyroom_content">
- <form name="frm" enctype="multipart/form-data" method="post"  action="Content.do" >
+ <form name="frm" enctype="multipart/form-data" method="get"  action="StudyRoomContent.do" >
  <input type="hidden" name="rcode" value="${studyroomList.rcode}" >
        <table width="200" height= "200">
 	     <tr><td>
-	  		<img src="/WE2_StudyRoom/upload/${studyroomList.rpictureurl}">	  
+	  		<img src="/studyRoom/data/${studyroomList.rpictureurl}">	  
 	     </td></tr>
 	   </table>
  

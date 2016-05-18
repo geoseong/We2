@@ -34,8 +34,7 @@ public class FileController {
 	HttpServletRequest request;
 	
 	// 페이징처리 싱글톤 인스턴스객체 얻음
-	RPagingManager paging = RPagingManager.getInstance();
-	
+	RPagingManager paging = RPagingManager.getInstance();	
 	// 한 페이지에 표시할 레코드 수 정의
 	int rows_per_page=9;
 	// 한 화면에 표시할 페이지 수 정의

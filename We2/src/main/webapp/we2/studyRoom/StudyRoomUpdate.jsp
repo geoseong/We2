@@ -5,7 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="css/w2_reset.css">
+<link rel="stylesheet" type="text/css" href="../css/w2_reset.css">
+<link rel="stylesheet" type="text/css" href="../css/studyroom_window.css">
 </head>
 <body>
 
@@ -52,17 +53,12 @@
     	</td>
     </tr>
     
-<<<<<<< HEAD
        <tr>
    		<td>
-=======
-        <tr>
-         <td>
    		<p class="content_list_img">
-					 <img src="/We2/we2/studyRoom/data/${roomshare.rpictureurl}" >
+					 <img src="/We2/we2/studyRoom/data/${studyroomList.rpictureurl}" >
 				 </p>
    		
->>>>>>> branch 'Geoseong' of https://github.com/geoseong/We2.git
    			<input type="file" name="rpictureurl" value="${studyroomList.rpictureurl}"> (파일 용량 제한은 20MB 입니다.)
    		</td>
        </tr>
@@ -75,14 +71,12 @@
    </table>
   
   
-<<<<<<< HEAD
  
    <div class = "button">
     <input name="add" class="add_btn" type=submit value="위치 수정" onclick="return ScheduleCheck()"> 
     <input name="cancel" class="add_btn" type="reset" value="다시 작성">
    </div>
  
-=======
   <tr>
    <td align="center" colspan=5>
     <input name="add" type=submit value="위치 수정">
@@ -91,7 +85,6 @@
    </td>
   </tr>
   </table>
->>>>>>> branch 'Geoseong' of https://github.com/geoseong/We2.git
   </form>
 </body>
 </html>
