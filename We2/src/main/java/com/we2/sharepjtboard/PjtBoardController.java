@@ -118,10 +118,9 @@ public class PjtBoardController {
 		
 		System.out.println("Write.get] category : " + category);
 		
-		if(session.getAttribute("authInfo")==null){
+		/*if(session.getAttribute("authInfo")==null){
 			return "redirect:/";
-		}
-		System.out.println("write.get] category="+category);
+		}*/
 		
 		// JSP:INCLUDE PAGE
 		  model.addAttribute("Boardpage", "write");

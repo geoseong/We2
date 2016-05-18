@@ -24,34 +24,34 @@ public class AOP_Auth {
 	HttpServletResponse response;
 	@Autowired
 	HttpServletRequest request;
+	@Autowired
+	HttpSession session;
 	
-	@Pointcut("execution(public * auth*(..))")
+	@Pointcut("execution(public * test*(..))")
 	public void authCheck(){}
-	
 	
 	/** authCheck에 대한 AOP..*/
 	@Before("authCheck()")
 	public void beforeauthCheck(JoinPoint thisJoinPoint) throws Throwable  {
-		System.out.println("#### sessionAuth Aspect 시작 ####");     
+		System.out.println("#### Auth Aspect 시작 ####");     
 
-		HttpSession session = request.getSession();
+		//HttpSession session = request.getSession();
 		
-        AuthInfo authinfo=null;
-    	authinfo = (AuthInfo) session.getAttribute("authInfo");
+        AuthInfo authinfo=(AuthInfo) session.getAttribute("authInfo");
     	  	System.out.println("member.userid : " + authinfo.getUserId());
 		
-    	  	System.out.println("#### sessionCheck Aspect 끝 ####");
+    	  	System.out.println("#### Auth Aspect 끝 ####");
      } //end @before
 	
 	@AfterReturning(pointcut = "authCheck()", returning = "retVal")
     public void afterReturningauthCheck(JoinPoint thisJoinPoint,
             Object retVal) {
-        System.out.println("AOP_Aspect.afterReturningTargetMethod executed." + 
+        System.out.println("AOP_Aspect.AfterReturning 실행됨." + 
                            " return value is [" + retVal + "]");
     } //end @AfterReturning
 	
-	@AfterThrowing(pointcut = "authCheck()"/*, throwing = "exception"*/)
-    public void afterThrowingauthCheck(JoinPoint thisJoinPoint) throws IOException,  ServletException{
+	@AfterThrowing(pointcut = "authCheck()", throwing = "ex")
+    public void afterThrowingauthCheck(JoinPoint thisJoinPoint, Throwable ex) throws IOException,  ServletException{
         System.out.println("AOP_Aspect.afterThrowingTargetMethod executed.");
        // HttpServletRequest request= ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
         request.setAttribute("error", "authentication");

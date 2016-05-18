@@ -35,9 +35,9 @@ public class MemberDao {
 	} //MemberDao에 DataSource를 주입함!!
 	
 	public Member selectByUserid(String userId) {
-		System.out.println("userId:::::::::::::::::::::::"+userId);
+		System.out.println("MemberDAO userId 인자받은 :::::::::::::::::::::::"+userId);
 		List<Member> results = jdbcTemplate.query("select * from MEMBER where USERID = ?", memRowMapper, userId);
-		System.out.println("userId" + "1234556::::::"+results.isEmpty());
+		System.out.println("MemberDAO] results.isempty? - "+results.isEmpty());
 		System.out.println("MemberDAO] userid - " + results.get(0).getUserId());
 		System.out.println("MemberDAO] pwd - " + results.get(0).getPwd());
 		return results.isEmpty() ? null : results.get(0);

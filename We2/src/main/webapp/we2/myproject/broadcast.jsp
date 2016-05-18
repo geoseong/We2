@@ -17,7 +17,7 @@
         <textarea id="messageWindow" rows="10" cols="50" readonly="true" /></textarea>
         <br/>
         <input id="inputMessage" type="text"/>
-        <input id="inputId" type="hidden" value="${loginUser.userid }"/>
+        <input id="inputId" type="hidden" value="${authInfo.userId }"/>
         
      
         <div class = "submit">
