@@ -345,9 +345,10 @@ public class PjtBoardController {
 	
 	
 	/** 테스트 영역 */
-	@RequestMapping(value="/mailtest", method=RequestMethod.GET)
-	public String pjt(Model model, String category) {
-		model.addAttribute("page","boardmain");
+	@RequestMapping(value="/aoptest", method=RequestMethod.GET)
+	public String sessionpjt(Model model, String category) {
+		System.out.println("/aoptest executed!!");
+		model.addAttribute("page","excelView");
 		return "myproject/myproject";
 	}
 	

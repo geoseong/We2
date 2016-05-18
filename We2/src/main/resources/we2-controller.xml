@@ -31,7 +31,8 @@
 	 <!-- end : 컨트롤러 bean 생성 -->
 	 
 	<!-- 시작 : AOP bean 설정 -->
-	<!-- <bean id="aopaspect" class="interceptor.AOP_Aspect"/> -->
+	<aop:aspectj-autoproxy/>
+	<bean id="aopaspect" class="interceptor.AOP_Aspect"/>
 	
 	<!-- <aop:config>
 		<aop:aspect ref="aopaspect">
