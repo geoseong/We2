@@ -29,7 +29,7 @@ public class AOP_Session {
 	HttpSession session;
 	//request=((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
 	
-	@Pointcut("execution(public * com.we2.sharepjtboard.PjtBoardController.sessionwriteget(..))")
+	@Pointcut("execution(public * com.we2.sharepjtboard.PjtBoardController.aop*(..))")
 	public void sessionCheck(){}
 	
 	/** sessionCheck에 대한 AOP..*/
@@ -49,14 +49,15 @@ public class AOP_Session {
             Object retVal) {
         System.out.println("AOP_Aspect.afterReturningTargetMethod 실행됨." + 
                            " return value is [" + retVal + "]");
-        AuthInfo authinfo = (AuthInfo)request.getAttribute("authInfo");
-        System.out.println("afterthrowing.authinfo = " + authinfo.getPhone());
+       /* AuthInfo authinfo = (AuthInfo)request.getAttribute("authInfo");
+        System.out.println("afterthrowing.authinfo = " + authinfo.getPhone());*/
     } //end @AfterReturning
 	
-	@AfterThrowing(pointcut = "aop.AOP_Session.sessionCheck()"/*, throwing = "exception"*/)
-    public void afterThrowingTargetMethod(JoinPoint thisJoinPoint) throws IOException,  ServletException{
+	@AfterThrowing(pointcut = "aop.AOP_Session.sessionCheck()", throwing = "ex")
+    public void afterThrowingTargetMethod(JoinPoint thisJoinPoint , Throwable ex) throws IOException,  ServletException{
         System.out.println("AOP_Aspect.afterThrowingTargetMethod executed.");
        // HttpServletRequest request= ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+        System.out.println("Throwable ex - " + ex);
         request.setAttribute("error", "sessionAfterthrowing");
        
     }

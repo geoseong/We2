@@ -54,6 +54,7 @@ public class AOP_Auth {
     public void afterThrowingauthCheck(JoinPoint thisJoinPoint, Throwable ex) throws IOException,  ServletException{
         System.out.println("AOP_Aspect.afterThrowingTargetMethod executed.");
        // HttpServletRequest request= ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+        System.out.println("Throwable ex - " + ex);
         request.setAttribute("error", "authentication");
     }
 	

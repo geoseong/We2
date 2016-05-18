@@ -114,7 +114,7 @@ public class PjtBoardController {
 	
 	/** 글쓰기 폼 띄우기 */
 	@RequestMapping(value="/write", method=RequestMethod.GET)
-	public String sessionwriteget(HttpSession session, /*HttpServletRequest request,*/ Model model,String category){
+	public String aopwriteget(HttpSession session, /*HttpServletRequest request,*/ Model model,String category){
 		
 		System.out.println("Write.get] category : " + category);
 		
@@ -132,14 +132,14 @@ public class PjtBoardController {
 	/** 글 등록하기 
 	 * @throws IOException */
 	@RequestMapping(value="/write", method=RequestMethod.POST)
-	public String writepost(HttpSession session, /*HttpServletRequest request, */Model model, String category) throws IOException {
+	public String aopwritepost(HttpSession session, /*HttpServletRequest request, */Model model, String category) throws IOException {
 		System.out.println("write.post] category : "+category);
 		
 		// 해당 경로의 폴더가 안만들어져있다면 직접 만들어놔야할 것.
 		// getRealPath : E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps\testweb\
 		MultipartRequest multi = new MultipartRequest(
 					request, 	servletContext.getRealPath(path), sizeLimit, encType, new DefaultFileRenamePolicy());
-		System.out.println("파일 contentType : " + multi.getContentType("file"));
+		
 		
 		//PjtBoardBean객체인 pVo에 변수들을 집어넣는다.
 		PjtBoardBean pVo = new PjtBoardBean();
@@ -161,7 +161,8 @@ public class PjtBoardController {
 			pVo.setItemContent(multi.getParameter("itemContent"));
 				System.out.println("WriteServlet - content : " + pVo.getItemContent());
 		//8. 데이터 타입
-				pVo.setItemDataType(multi.getContentType("file"));
+			pVo.setItemDataType(multi.getContentType("file"));
+				System.out.println("파일 contentType : " + pVo.getItemDataType());
 		// 게시글 내용들을 Insert하기
 			boardService.insertBoard(category, pVo.getItemTitle(), pVo.getUserId(), pVo.getItemPath(), pVo.getItemContent(), pVo.getItemDataType());
 		
@@ -190,9 +191,9 @@ public class PjtBoardController {
 	}
 	
 	@RequestMapping(value="/modify", method=RequestMethod.GET)
-	public String sessionmodifyget(Model model, String category, int itemNum) throws IOException {
-		System.out.println("Modify] category : " + category);
-		System.out.println("Modify] itemNum : " + itemNum);
+	public String aopmodifyget(Model model, String category, int itemNum) throws IOException {
+		System.out.println("Modify.GET] category : " + category);
+		System.out.println("Modify.GET] itemNum : " + itemNum);
 		
 		model.addAttribute("BoardUpdate", boardService.select_by_num(category, itemNum));
 		
@@ -204,9 +205,9 @@ public class PjtBoardController {
 	}
 	
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
-	public String sessionmodifypost(/*HttpServletRequest request, */Model model, String category, int itemNum) throws IOException {
+	public String aopmodifypost(Model model, String category, int itemNum) throws IOException {
 		System.out.println("Modify.POST] itemNum : " + itemNum);
-		System.out.println("Modify.POST] ategory : " + category);
+		System.out.println("Modify.POST] category : " + category);
 		
 		MultipartRequest multi = 
 				new MultipartRequest(
@@ -263,7 +264,7 @@ public class PjtBoardController {
 	}
 	
 	@RequestMapping(value="/delete", method=RequestMethod.GET)
-	public String sessiondeletepost(Model model, String category, int itemNum) {
+	public String aopdeletepost(Model model, String category, int itemNum) {
 		System.out.println("DELETE.POST] category : " + category);
 		System.out.println("DELETE.POST] itemNum : " + itemNum);
 		// boardMapper 제거 SQL.

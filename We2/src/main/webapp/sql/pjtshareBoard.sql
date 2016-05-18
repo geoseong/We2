@@ -47,3 +47,33 @@ itemClick, itemPath, itemContent
 from pGroup ;
 
 select  * from pgroup;
+
+insert into pGroup(itemTitle,userId,itemDate,itemClick,itemPath,itemContent, itemDataType)
+values('AOP 성공.', 'geoseong', curdate(), 
+0, 'GitHub참고사이트4.xlsx', 
+'게시판 업로드도 잘 되어야..', 
+'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+
+/** 참고로 MySQL에서는 UTF-8일 경우 한글은 3bytes, 영어는 1bytes 처리하네요 ^^*/
+select length('application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+select length('안녕');
+select length(
+"
+MySQL은 UTF-8에선 한글 1글자가 3바이트로 인식된대요..
+-
+js/board.js에 현재 글자수가 몇글자인지 인식될수있도록 alert를 띄우게 해놨어요(시연할때에는 없앨거임)
+
+자바스크립트에서는 한글자에 그냥 1byte인것마냥 인식하는듯하니..
+
+MySQL의 itemContent 컬럼의 글자길이를 1000 => 3000 으로 바꿉시다.
+
+아래 SQL문처럼!
+
+# 컬럼 이름 & 데이터타입 바꾸기
+ALTER TABLE pgroup CHANGE itemContent itemContent VARCHAR(3000);
+");
+desc pgroup;
+delete from pgroup where itemnum=68;
+
+# 컬럼 이름 & 데이터타입 바꾸기
+ALTER TABLE pgroup CHANGE itemContent itemContent VARCHAR(3000);
