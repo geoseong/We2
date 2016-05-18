@@ -348,4 +348,16 @@ public class CBoardController {
 	}
 	
 	
+	
+	
+	
+	@RequestMapping(value="/test", method=RequestMethod.GET)
+	public String test(Model model) throws IOException {
+		model.addAttribute("page", "../myproject/setting");
+		return "myproject/myproject";
+	}
+	
+	
+	
+	
 }

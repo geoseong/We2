@@ -47,7 +47,7 @@
     <a href="index.jsp"><b>We2</b></a>
 
  <c:choose>
-    <c:when test="${empty loginUser}">
+    <c:when test="${empty authInfo}">
 
 		   <div id = "nav">
             <a href="login" class="loginButton">로그인</a><!-- A태그를 사용하면 get으로 넘어간다.!! -->
@@ -146,9 +146,9 @@
         <form method="post" action="pjtmake.do">   
  
            <div class="pjtMakeInner">
-                <h1>프로젝트 만들기</h1>
+                <h1 style="margin-top:20px;">프로젝트 만들기</h1>
                 
-                <img src="img/index/x.png" id="exit2">
+                <img src="img/index/x.png" id="exit2" style="width:10px;" >
                  
                 <div class="frame">
                   <div class="nameArea">
@@ -189,7 +189,7 @@
                       </div>
                   </div> 
                    -->
-                  <div class="btn2">
+                  <div class="btn2" style="padding-top:30px;">
                       <input type="submit" value="만들기"  size="100">
                   </div>
                 

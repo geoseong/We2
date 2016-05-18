@@ -167,6 +167,7 @@ a:hover {
 
 .modal_img {
 	position:absolute;
+	margin:20px;
 	box-shadow: 10px 10px 5px grey;
 	/* width:771px;
 	height:485px;*/

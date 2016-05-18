@@ -14,9 +14,16 @@ a {
  	text-decoration: none; 
  } 
 
+#wrap{
+	width: 100%;
+    margin : 0px auto;
+}
+
+
 #header{
     width:100%;
     border-bottom:50px solid #4CC4EE;
+    
 }
 
 #headerinner {
@@ -28,9 +35,9 @@ a {
     height:25px;  
 }
 
-#headerinner h2{
+#headerinner h1{
     position: absolute;
-    top:45px;
+  	top:45px;
     left:30px;
 }
 
@@ -232,8 +239,8 @@ a {
 .chat .chat_title img{
 	 float:left;
 	 width:55%;
-	 margin-left:20%;
-	 padding:10px;
+	 margin-top:5px;
+	 margin-left:5%;
     /*  border:1px solid red; */
  
 }
@@ -243,18 +250,18 @@ a {
     top:95px;
     height:820px;
     font-size: 13px;
-    background-color:#C3E6F2;
-   /*  border:1px solid red; */
+    background-color:#4CC4EE;
+    border-top:1px solid #fff;
+   /*  border:1px solid #fff;  */
 }
 
 /* 嫄곗꽦�넚 硫붿떆吏� 蹂댁뿬二쇨린*/
 .chat_content #messageWindow{
-	
     width:95%;
     height:700px;
     margin-left: 8px;
     font-size: 13px;
-    background-color:#EBFBFF; 
+    background-color:#fff;
    /*  border: 0.5px solid red;  */  
 }
 
@@ -264,22 +271,36 @@ a {
 	 float:left;
      width:79%;
      height:40px;
-     margin-top:5px;
+     font-size:15px;
      margin-left:2.5%;
      bottom:15px;
-     background-color:#EBFBFF; 
+     /* background-color:#EBFBFF;  */
 /*  border: 0.5px solid black; */
 }
 
 .chat_content input{
      float:left;
      width:16%;
-     height:30px;
      bottom:16px;
-     margin-top:3px;
-     background-color: #fff;
-     opacity:0.7;
+    /*  margin-top:3px; */
+    /*  opacity:0.7; */
 }
+
+.add_btn_input{
+	border:none;
+	/* margin-top:8px; */
+	background:#1591BE;
+	color:#fff;
+    font-weight:600;
+    font-size:13px;
+	
+}
+
+.add_btn_input:hover{
+    background-color: black;
+    opacity:0.3;
+}
+
 
 #footer {
     color:#89867e;
@@ -288,7 +309,6 @@ a {
     padding: 5px;	 
     font-size:13px; 
 }
-
 
 
 
