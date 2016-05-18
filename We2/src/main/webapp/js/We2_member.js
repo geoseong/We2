@@ -1,5 +1,5 @@
 function loginCheck() {
-	if (document.frm.userid.value == "") {
+	if (document.frm.userId.value == "") {
 		alert("아이디를 써주세요");
 		frm.userid.focus();
 		return false;
@@ -105,41 +105,40 @@ function idOk(userId){
 }
 
 function joinCheck() {
-
 	if(document.frm.name.value.length ==0) {
 		alert("이름을 써주세요");
 		frm.name.focus();
 		return false;
 	}
 
-	if (document.frm.userid.value.length == 0){
+	if (document.frm.userId.value.length == 0){
 		alert("아이디를 써주세요");
-		frm.userid.focus();
+		frm.userId.focus();
 		return false;
 	}
 
-	if(document.frm.userid.value.length < 4){
+	if(document.frm.userId.value.length < 4){
 		alert("아이디를 4글자이상이어야 합니다.");
-		frm.userid.focus();
+		frm.userId.focus();
 		return false;
 	}
 
-	if(document.frm.pwd.value == ""){
+	if(document.frm.pwd.value.length == ""){
 		alert("암호는 반드시 입력해야 합니다.");
 		frm.pwd.focus();
 		return false;
 	}
 
-	if(document.frm.pwd.value != document.frm.pwd_check.value){
+	if(document.frm.pwd.value != document.frm.pwd_confirm.value){
 		alert("암호가 일치하지 않습니다.");
 		frm.pwd.focus();
 	return false;
 	}
 
-	if(document.frm.reid.value.length ==0){
+	if(document.frm.pwd_confirm.value.length ==0){
 		alert("중복 체크를 하지 않았습니다.");
-		frm.userid.focus();
+		frm.pwd_confirm.focus();
 		return false;
 	}
-	return true;
+	document.frm.submit();
 }

@@ -7,11 +7,15 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 import javax.sql.DataSource;
+
+import org.junit.runner.Request;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import com.sun.jmx.snmp.Timestamp;
 import com.we2.spring.Member;
 
@@ -47,7 +51,9 @@ public class MemberDao {
 		jdbcTemplate.update(new PreparedStatementCreator(){
 			@Override
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException{
+				
 				PreparedStatement pstmt = con.prepareStatement
+				
 				("insert into MEMBER(NAME ,USERID, PWD, PWD_confirm, PHONE, EMAIL, GENDER, REGDATE) values (?,?,?,?,?,?,?,curdate())");
 				pstmt.setString(1, member.getName());
 				pstmt.setString(2, member.getUserId());
@@ -61,10 +67,21 @@ public class MemberDao {
 
 		});
 	}
+	
 	// 사용자 정보를 수정하는 메소드
 	public void update(Member member) { 
-		  jdbcTemplate.update("update member set pwd=?, pwd_confirm=?, phone=?, email=?,  gender=? where userId=?",
-		member.getPwd(), member.getPwd_confirm(), member.getPhone(), member.getEmail(), member.getGender());
+		  jdbcTemplate.update(
+				  "UPDATE member SET name='?',pwd='?',pwd_confirm='?', email='?' ,phone='?', gender='?', regDate='?' WHERE userId='?';"
+				  ,
+		member.getName(),		  
+		member.getPwd(), 
+		member.getPwd_confirm(), 
+		member.getEmail(), 
+		member.getPhone(), 
+		member.getGender(),
+		member.getRegDate(),
+		member.getUserId()
+		);
 	}  
 	  		  
 	public List<Member> selectAll() {
@@ -100,4 +117,9 @@ public class MemberDao {
 		List<Member> results = jdbcTemplate.query("select * from MEMBER where USERID=?", memRowMapper, userId);
 		return results.isEmpty() ? -1 : 1;
 		}
+
+	public static MemberDao getInstance() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	}
