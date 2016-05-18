@@ -25,6 +25,9 @@ ${page }
 	<c:when test="${error eq 'sessionAfterthrowing' }">
 		<c:redirect url="/login"></c:redirect>
 	</c:when>
+	<c:when test="${error eq 'authentication' }">
+		<c:redirect url="/pjtBoard/list?page=1&category=group"></c:redirect>
+	</c:when>
 </c:choose>
 </body>
 </html>

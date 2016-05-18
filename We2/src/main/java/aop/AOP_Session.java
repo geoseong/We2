@@ -1,4 +1,4 @@
-package interceptor;
+package aop;
  
 import java.io.IOException;
 
@@ -8,34 +8,28 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.we2.spring.AuthInfo;
 
 @Aspect
-public class AOP_Aspect {
+public class AOP_Session {
 
-	ServletRequestAttributes servletContainer;
-//	= (ServletWebRequest)RequestContextHolder.getRequestAttributes();
 	@Autowired
 	HttpServletResponse response;
 	@Autowired
 	HttpServletRequest request;
-	//=((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+	//request=((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
 	
 	@Pointcut("execution(public * session*(..))")
 	public void sessionCheck(){}
 	
-	@Pointcut("execution(public * authchk*(..))")
-	public void authCheck(){}
-	
+	/** sessionCheck에 대한 AOP..*/
 	@Before("sessionCheck()")
 	public void beforesessionCheck(JoinPoint thisJoinPoint) throws Throwable  {
 		System.out.println("#### sessionCheck Aspect 시작 ####");     
@@ -82,10 +76,9 @@ public class AOP_Aspect {
         request.setAttribute("error", "sessionAfterthrowing");
     }
 
-	 @After("sessionCheck()")
+	 /*@After("sessionCheck()")
 	    public void afterTargetMethod(JoinPoint thisJoinPoint) {
 	        System.out.println("AOP_Aspect.@After executed.");
-	    }
-
-	 
+	    }*/
+	
 } //end Class

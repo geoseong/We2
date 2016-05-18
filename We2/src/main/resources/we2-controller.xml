@@ -32,7 +32,8 @@
 	 
 	<!-- 시작 : AOP bean 설정 -->
 	<aop:aspectj-autoproxy/>
-	<bean id="aopaspect" class="interceptor.AOP_Aspect"/>
+	<bean id="aopsession" class="aop.AOP_Session"/>
+	<bean id="aopauth" class="aop.AOP_Auth"/>
 	
 	<!-- <aop:config>
 		<aop:aspect ref="aopaspect">
