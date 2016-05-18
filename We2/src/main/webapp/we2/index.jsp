@@ -47,7 +47,7 @@
     <a href="index.jsp"><b>We2</b></a>
 
  <c:choose>
-    <c:when test="${empty loginUser}">
+    <c:when test="${empty authInfo}">
 
 		   <div id = "nav">
             <a href="login" class="loginButton">로그인</a><!-- A태그를 사용하면 get으로 넘어간다.!! -->
@@ -58,7 +58,7 @@
 	 <c:otherwise>
 	
 	 	<div id = "nav2">
-	 		<a href="mypage">마이페이지</a>
+	 		<a href="Member_Mypage">마이페이지</a>
             <!-- #########위에 로그인 header를 넣는다! -->
          </div>
         <div id = "nav3">
