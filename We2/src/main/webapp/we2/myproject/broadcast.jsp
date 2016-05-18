@@ -14,14 +14,14 @@
 <div class="chat_content">
      
     
-        <textarea id="messageWindow" rows="10" cols="50" readonly="true" /></textarea>
+        <textarea id="messageWindow" rows="10" cols="50" readonly="true" style= "background-color:#fff;" /></textarea>
         <br/>
         <input id="inputMessage" type="text"/>
         <input id="inputId" type="hidden" value="${authInfo.userId }"/>
         
      
         <div class = "submit">
-        <input type="submit" value="입력" onclick="send()" style="width:60px; height:44px; background-color:#1591BE;"  />
+        <input type="submit" class="add_btn_input" value="입력" onclick="send()" style= "width:53px; height:44px; background-color:#1591BE;"  />
         
         </div>
         </div>

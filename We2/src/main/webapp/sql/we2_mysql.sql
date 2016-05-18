@@ -76,6 +76,10 @@ CREATE TABLE willwork(
 ) engine=InnoDB character set=utf8; 
 desc willwork;
 
+//테이블안에 update문을 사용하는 문법
+UPDATE member SET name='우아',pwd='5555',pwd_confirm='5555', email='aa@naver.com',
+phone='010-1111-2222', gender='1', regDate='2000-06-11' WHERE userId='jo';
+
 insert into willwork values('pts119', '20', '�ڵ�ϼ�' ,'����ó��', 'Y', '�¼�');
 insert into willwork values('park', '20', '�ڵ�ϼ�' ,'����ó��', 'Y', '����');
 insert into willwork values('jeon', '20', '�ڵ�ϼ�' ,'����ó��', 'Y', '�ֿ�');

@@ -29,7 +29,7 @@ public class PjtMakeDAO {
     public void setDataSource(DataSource dataSource){
         this.jdbcTemplate = new JdbcTemplate(dataSource);    
     }
-	
+    
 	public void insertPjtMake(final PjtMakeVO pVo) throws ParseException{
 		 KeyHolder keyHolder = new GeneratedKeyHolder();
 		 	

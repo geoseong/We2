@@ -58,7 +58,7 @@
 	 <c:otherwise>
 	
 	 	<div id = "nav2">
-	 		<a href="mypage">마이페이지</a>
+	 		<a href="Member_Mypage">마이페이지</a>
             <!-- #########위에 로그인 header를 넣는다! -->
          </div>
         <div id = "nav3">
@@ -146,9 +146,9 @@
         <form method="post" action="pjtmake.do">   
  
            <div class="pjtMakeInner">
-                <h1>프로젝트 만들기</h1>
+                <h1 style="margin-top:20px;">프로젝트 만들기</h1>
                 
-                <img src="img/index/x.png" id="exit2">
+                <img src="img/index/x.png" id="exit2" style="width:10px;" >
                  
                 <div class="frame">
                   <div class="nameArea">
@@ -189,7 +189,7 @@
                       </div>
                   </div> 
                    -->
-                  <div class="btn2">
+                  <div class="btn2" style="padding-top:30px;">
                       <input type="submit" value="만들기"  size="100">
                   </div>
                 

@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="css/w2_reset.css">
+<link rel="stylesheet" type="text/css" href="../css/studyroom_window.css">
 </head>
 <body>
 
@@ -33,7 +34,7 @@
    <tr>
    	<th>종류 </th>
    		   <td> 
-               <select name='rlocationdetail'  id="rlocationdetail"  >                
+               <select name='rlocationdetail'  id="rlocationdetail" style="float:left; height:30px;" >                
                  <option selected="selected" value="커피전문점">커피전문점</option>
                  <option value="스터디카페/스터디룸">스터디카페/스터디룸</option>
                  <option value="회의실">회의실</option>               
@@ -41,7 +42,7 @@
              </td>
    	<th>지역 </th>
    	   	<td>
-   		<select name='rlocation'  id="rlocation" >                                  
+   		<select name='rlocation'  id="rlocation"  style="float:left; height:30px;">                                  
                 	<option selected="selected" value="서울">서울</option>
                 	<option value="경기/인천">경기/인천</option>
                 	<option value="경남/부산/울산">경남/부산/울산</option>
@@ -52,19 +53,14 @@
     	</td>
     </tr>
     
-<<<<<<< HEAD
-       <tr>
-   		<td>
-=======
         <tr>
-         <td>
-   		<p class="content_list_img">
-					 <img src="/We2/we2/studyRoom/data/${roomshare.rpictureurl}" >
-				 </p>
-   		
->>>>>>> branch 'Geoseong' of https://github.com/geoseong/We2.git
-   			<input type="file" name="rpictureurl" value="${studyroomList.rpictureurl}"> (파일 용량 제한은 20MB 입니다.)
-   		</td>
+         <td colspan=5 >
+   		    <p class="content_list_img">
+			    <img src="/We2/we2/studyRoom/data/${roomshare.rpictureurl}" style="width:275px;" >
+			</p>
+   			<input type="file" name="rpictureurl" value="${studyroomList.rpictureurl}" style="text-align:center;">
+  			<span style="font-size:12px; color:red;">*파일 용량제한은 20MB 입니다.</span>
+   		   </td>
        </tr>
    
  
@@ -75,23 +71,13 @@
    </table>
   
   
-<<<<<<< HEAD
  
    <div class = "button">
     <input name="add" class="add_btn" type=submit value="위치 수정" onclick="return ScheduleCheck()"> 
     <input name="cancel" class="add_btn" type="reset" value="다시 작성">
    </div>
  
-=======
-  <tr>
-   <td align="center" colspan=5>
-    <input name="add" type=submit value="위치 수정">
-    
-    <input name="cancel" type="reset" value="다시 작성">
-   </td>
-  </tr>
-  </table>
->>>>>>> branch 'Geoseong' of https://github.com/geoseong/We2.git
+ 
   </form>
 </body>
 </html>

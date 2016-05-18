@@ -27,7 +27,7 @@
 			<div id="headerinner">
 				<!-- div처음 숫자 3 개 -->
 				<h2>
-					<b> <sub> <a href="index.jsp">We2</a>
+					<b> <sub> <a href="/We2">We2</a>
 						<!-- 원래 페이지로 돌아감 -->
 					</sub>
 					</b>
