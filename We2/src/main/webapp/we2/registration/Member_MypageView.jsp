@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/w2_reset.css" type="text/css">
 <link rel="stylesheet" href="css/01_1_mypage.css" type="text/css">
-<link rel="stylesheet" href="css/board_fin.css" type="text/css">
+
 
 
 <script type="text/javascript" src="js/jquery-1.12.1.min.js"></script>
@@ -69,11 +69,11 @@
 			<div id="contents">
 
 				<div class="my_info">
-					<span>나의 정보 보기</span><br>
+					<h3>나의 정보 보기</h3>
 
 					<div class="my_info_view">
 
-			<form action="Member_Mypage" name="frm" method="post">
+			  <form action="Member_Mypage" name="frm" method="post">
 
 				<!--나의 정보 보기 테이블-->
 				<table>
@@ -111,7 +111,7 @@
 							value="${mVo.email}"></td>
 					</tr>
 
-					<tr>
+					<%-- <tr>
 						<th>성별</th>
 						<td><c:choose>
 								<c:when test="${mVo.getGender()==0}">
@@ -125,7 +125,7 @@
 				<input type="radio" name="gender" value="0" checked="checked"> 여성
 			</c:otherwise>
 							</c:choose></td>
-					</tr>
+					</tr> --%>
 
 					<tr>
 						<th>가입일</th>
@@ -144,7 +144,10 @@
 					</div>
 					<!--myinfo_view END-->
 
-					<!--myinfo END-->
+					</div> <!--myinfo END-->
+					
+					
+					
 					<div class="my_proj">
 						<span>내 프로젝트 보기</span> <br>
 
@@ -175,16 +178,15 @@
 								</table>
 							</div>
 							<!-- ongoing END -->
-						</div>
-					</div> 
-					<!--myproj END-->
+						</div> <!--my_proj_view END--> 
+					</div> <!--myproj END-->
 
-				</div>
-				<!-- contents END-->
-			</div>
-			</div>
-			<!-- section END -->
-		</div>
-	</div>
+				</div><!-- contents END-->
+				
+			</div><!-- section END-->
+			
+	</div> <!-- wrap end -->
+			
+	
 </body>
 </html>
