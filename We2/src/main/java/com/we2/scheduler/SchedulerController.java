@@ -63,9 +63,9 @@ public class SchedulerController {
 		System.out.println("로그인 안됨");
 		// JSP:INCLUDE PAGE
 		  model.addAttribute("schedulerpage", "memoAdd");
-		  model.addAttribute(Integer.toString(year));
-		  model.addAttribute(Integer.toString(month));
-		  model.addAttribute(Integer.toString(day));
+		  model.addAttribute("year", year);
+		  model.addAttribute("month", month);
+		  model.addAttribute("day", day);
 
 		return "Scheduler/memoAdd";
 	}
