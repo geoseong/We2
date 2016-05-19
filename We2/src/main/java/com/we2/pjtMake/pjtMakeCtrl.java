@@ -26,11 +26,12 @@ public class pjtMakeCtrl{
 		return "pjtMake/pjtMake";
 	}*/
 
-	@RequestMapping(value="/pjtmake", method=RequestMethod.POST)
+	@RequestMapping(value="/pjtMake", method=RequestMethod.POST)
 	public String test2(@ModelAttribute PjtMakeVO pjtMakeVO,HttpServletRequest request, HttpSession session, Model model) throws ParseException{
 		
 		//프로젝트 만들기를 클릭했을 때, 이 정보를 DB에 저장하는 DAO
 		pjtMakeDAO.insertPjtMake(pjtMakeVO);
+		
 		
 		//pjtManager에 디비를 추가 할 때 필요한 컬럼은(userId, pjtCode, isLeader)이다.
 		//또한 프로젝트를 만드는 사람은 로그인한 사람이니 그 사람의 아이디를 불러와서 userId를 넘겨주고 또 리더로 지정해주면 된다.
@@ -44,10 +45,13 @@ public class pjtMakeCtrl{
 		//필요한 컬럼을 다 받았으니 pjtManager를 추가한다.
 		pjtMakeDAO.inserPjtManager(userId, pjtCode);
 		
+		System.out.println("프로젝트만들기 어디까지왔니? 여기는 매니저추가임!");
+		
+		
 		//날짜 구하는 Dao 
 		int dateSearch = pjtMakeDAO.searchDate(userId);
 		System.out.println(dateSearch);
-			session.setAttribute("day", dateSearch);
+		session.setAttribute("day", dateSearch);
 		
 		//프로젝트 생성이 성공했습니다 메시지를 뿌려주기 위한 설정
 		request.setAttribute("test", "success");

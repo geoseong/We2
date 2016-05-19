@@ -172,7 +172,7 @@
 												<tr>
 												    <td>${pjtlist.pjtName }</td><!--  프로젝트 이름 -->
 													<td style="text-align: right;">
-													  <a class="add_btn_pjt" href="project?pjtCode=${pjtlist.pjtCode }" target="_blank">
+													  <a href="project?pjtCode=${pjtlist.pjtCode}" class="add_btn_pjt">
 													            프로젝트 바로가기</a>
 													</td>
 												</tr>

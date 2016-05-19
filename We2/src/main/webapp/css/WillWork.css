@@ -1,6 +1,13 @@
 
+/* 전체를 감싸는 틀  */
 .first_main{
-	padding : 60px 0 0 70px;
+	width:100%;
+	padding : 10px;
+	text-align:center;
+}
+
+/* 타이틀 글씨 */ 
+.first_main h2{	
 }
 
 .people:after{

@@ -13,8 +13,14 @@
 
 <div class="modal_bg">
 </div>
+
+
 <div class="first_main">
 
+<div class = "title" >
+<h2> 할일 </h2>
+
+</div>
 <!-- User1 -->	
 <c:if test="${not empty results}">
 	<div class="people" id="member1">
@@ -190,7 +196,7 @@
 		</div>	
 	</div>
 </c:if>
-</div>
+</div>  <!-- first main end -->
 
 
 

@@ -194,7 +194,7 @@
                   </div> 
                    -->
                   <div class="btn2" style="padding-top:30px;">
-                      <input type="submit" value="만들기"  size="100">
+                      <input type="submit" value="만들기" size="100">
                   </div>
                 </div>
          </div> <!--pjtMakeinner END-->

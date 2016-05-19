@@ -216,4 +216,23 @@ public class LoginController {
 		// System.out.println("Member_Mypage gender - " + member.getGender());
 		return "index";
 	}
+	
+	@RequestMapping(value = "/project", method = RequestMethod.GET)
+	public String member_join(HttpServletRequest request, Model model, HttpSession session) {
+		
+		//MemberMyPage.jsp에서 a태그로 pjtCode를 인자로 받아서 세션에 저장
+		
+		String pjtCode = request.getParameter("pjtCode");
+		System.out.println("코드뭐니?" + pjtCode);
+		
+		session.setAttribute("pjtCode", pjtCode);
+		//디비상에 날짜를 조회해서 세션에 담는다.
+		int searchDate = memberDao.selectDate(pjtCode);
+		System.out.println("날짜 뭐니? : "+searchDate);
+		session.setAttribute("day", searchDate);
+		
+		model.addAttribute("page", "../myproject/setting");
+		
+		return "/myproject/myproject";
+	}
 }

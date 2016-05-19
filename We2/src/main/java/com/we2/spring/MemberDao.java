@@ -152,4 +152,14 @@ public class MemberDao {
 	      return results.isEmpty()?null:results;
 	   }
 	
+	
+	public int selectDate(String pjtCode){
+	      String sql = 
+	      "select (endDate-startDate) from pjtMake where pjtCode=?";
+	      int searchDate = jdbcTemplate.queryForObject(sql, new Object[] {pjtCode}, Integer.class);
+	      return searchDate;
+	      }
+	
+	
+	
 	}

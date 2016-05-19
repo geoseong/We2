@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,16 +26,15 @@ public class WillWorkController {
 	}
 	
 	@RequestMapping(value="/list", method=RequestMethod.GET)
-	public String initGet(Model model) throws ParseException{
-	List<WillWorkVO> results = willWorkDAO.selectAll(); 
-	
-	
+	public String initGet(Model model, HttpSession session) throws ParseException{
+	String pjtCode = (String)session.getAttribute("pjtCode");
+	List<WillWorkVO> results = willWorkDAO.selectAll(pjtCode); 
 	String divDoWork1 = results.get(0).doWork; 
 	String divDoWork2 = results.get(1).doWork;
 	String divDoWork3 = results.get(2).doWork;
 	String divDoWork4 = results.get(3).doWork;
 	String divDoWork5 = results.get(4).doWork;
-	
+	System.out.println("세번째 줄 너 왔니?");
 	String [] divWorkList1 = divDoWork1.split(",");
 	String [] divWorkList2 = divDoWork2.split(",");
 	String [] divWorkList3 = divDoWork3.split(",");
@@ -49,25 +49,26 @@ public class WillWorkController {
 	model.addAttribute("results", results);
 	
 	model.addAttribute("page", "../WillWork/WillWork");
-	
 	return "myproject/myproject";
 }
 	
 	@RequestMapping(value="/willwork2", method=RequestMethod.POST)
-	public String AddPost(HttpServletRequest request, Model model, String pjtCode) throws ParseException{
+	public String AddPost(HttpServletRequest request, Model model, HttpSession session) throws ParseException{
+		System.out.println("11111111111111");
 		String doWork = request.getParameter("inputWork"); //�Է��� ��
 		String name = request.getParameter("userName"); //�ش� ���� ����
 		System.out.println("���� : " +  doWork + " �̸� : " + name);
-		// �̸��� ���� �߰��ϱ�
 		
+		String pjtCode = (String)session.getAttribute("pjtCode");
 		willWorkDAO.insertDoWork(name, doWork, pjtCode);
-		return "redirect:willwork";
+		return "redirect:/willwork/list";
 	}
 	
 	@RequestMapping(value="/willwork3", method=RequestMethod.POST)
-	public String DeletePost(HttpServletRequest request, Model model, String pjtCode) throws ParseException{
+	public String DeletePost(HttpServletRequest request, Model model, HttpSession session) throws ParseException{
 		String complete = request.getParameter("complete"); //�����ϱ� ���� ������ ��
 		String name = request.getParameter("userName"); //�ش� ���� ����
+		String pjtCode = (String)session.getAttribute("pjtCode");
 		
 		List<WillWorkVO> One = willWorkDAO.selectOne(name, pjtCode); //������ ���� �� ����� ������ �� �ҷ���
 		String doWork = One.get(0).doWork; //�� ����� ������ �� ����
@@ -93,13 +94,10 @@ public class WillWorkController {
 			System.out.print(list.get(i));
 		}*/
 		
-		//�ĸ� ���� �� ����Ʈ�� ��� ������ ��,�ĸ��� �ٿ��� �ٽ� ��ġ�� �۾�(�����Ͱ� 1���� ��� �ĸ� �Ⱥ���, 2���̻��̸� �ĸ� �ٿ�����, ���� ��� ���� ���� ����)
 				String rebuild = "";
-				
 				if(list.size()==1){
 					rebuild += list.get(0); 
 				}
-				
 				if(list.size()>1){ //����Ʈ ���� 2�� �̻��̸� �ĸ��� �ٿ��� ����
 				for(int i=0; i<list.size();i++){
 					rebuild += list.get(i)+",";
@@ -123,6 +121,6 @@ public class WillWorkController {
 		willWorkDAO.insertDoneWork(name, complete);
 		//List<WillWorkVO> results = willWorkDAO.selectAll();//��� ��� ������ ������
 		//model.addAttribute("results", results);
-		return "redirect:willwork";
+		return "redirect:/willwork/list";
 	}
 }

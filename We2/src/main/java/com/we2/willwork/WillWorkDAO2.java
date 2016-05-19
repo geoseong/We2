@@ -22,8 +22,8 @@ public class WillWorkDAO2 {
 	public WillWorkDAO2(){
 	}
 
-	public List<WillWorkVO> selectAll(){
-		List<WillWorkVO> results = jdbcTemplate.query("select * from willwork", 
+	public List<WillWorkVO> selectAll(String pjtCode){
+		List<WillWorkVO> results = jdbcTemplate.query("select * from willwork where pjtCode=?", 
 				new RowMapper<WillWorkVO>(){ //���� �������� �ڹ� ��ü�� ��ȯ�ϴ� RowMapper �������̽�
 				@Override
 				public WillWorkVO mapRow(ResultSet rs, int rowNum) throws SQLException{
@@ -35,7 +35,7 @@ public class WillWorkDAO2 {
 						rs.getString("name"));
 				return willWorkVO; //WillWorkVO�� DB���� ��ȸ�� ������ ����
 				}
-			});
+			},pjtCode);
 		//results�� ��ȯ
 		return results;
 	}
