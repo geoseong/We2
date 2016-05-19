@@ -24,14 +24,14 @@
 
  <script>
  
-var myVar = setInterval(myTimer, 1000);
+var myVar = setInterval(myTimer, 1000*60*60*24);
 
  <% Object day = session.getAttribute("day");
  %>
  
 	function myTimer(){
-	  if($(".state_line_1").width()<784){
- 		$(".state_line_1").animate({width:"+="+784/<%= day %>});
+	  if($(".state_line_1").width()<1032){
+ 		$(".state_line_1").animate({width:"+="+1032/<%= day %>});
 	 }
 } 
 
@@ -51,8 +51,7 @@ var myVar = setInterval(myTimer, 1000);
                 </sub>  
             </b>
         </h1>
-        
-        <h3>${project.pjtName } </h3>
+        <h3>${project.pjtName} </h3>
         
 <!-- 2. 상단 로그인 부분-->
         <div id = "nav">
@@ -66,7 +65,7 @@ var myVar = setInterval(myTimer, 1000);
             <img src = "/We2/img/project/deadline.png" style = "width:85px; height:45px;">
             <div class ="state_line_0"></div>
             <div class ="state_line_1">
-                <span> D-14</span> <!-- 이 부분 session에 담았으니  이리로 넘어오는 컨트롤러에서 빈에 담아줘야 하-->
+                <span> <%=day%>일</span> <!-- 이 부분 session에 담았으니  이리로 넘어오는 컨트롤러에서 빈에 담아줘야 하-->
             </div>
      </div>
          <!--팀원 보기 아이콘-->
@@ -103,7 +102,7 @@ var myVar = setInterval(myTimer, 1000);
    
    <%String willwork = request.getParameter("willwork"); %>
    <div class ="contents">
-    	<jsp:include page="${page }.jsp" flush="false"></jsp:include>
+    	<jsp:include page="${page}.jsp" flush="false"></jsp:include>
    </div>
 			<!--  contents 영역 끝 ----------------------------------->
    

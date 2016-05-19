@@ -1,8 +1,27 @@
 
+/* 전체를 감싸는 틀  */
 .first_main{
-	padding : 60px 0 0 70px;
+	width:100%;
+	padding : 10px;
+	text-align:center;
 }
 
+/* 타이틀 글씨 */ 
+.first_main h2{
+	padding:20px;
+	padding-bottom:30px;
+	color: #1591BE;	
+	font-size:25px;
+	font-weight:800;
+	text-align: center;
+	
+}
+
+
+.user {
+	border: 1px solid red;
+	text-align: center;
+}
 .people:after{
 	content:"";
 	display:block;
@@ -13,9 +32,12 @@
 	float:left;
 }
 .people {
-	margin:0 0 10px 0;
+	margin-bottom:20px;
+	margin-left:100px;
+	margin-right:100px;
 	border:1px solid #ccc;
-	width:450px;
+	width:50%;
+	text-align:center;
 }
 
 .people> .state_work{
@@ -32,17 +54,16 @@ height:100px;
 
 /* �̸�  */
 .people > .state_work > a> p:nth-of-type(1){ 
-
+    float:left;
 	font-size: 17px;
 	font-weight:bold;
-	padding : 10px 0 10px 0;
-	color: black;
-	 : left;
+	padding : 10px;
+	color: #424444;
 }
 
 /* �ؾ��� ��  */
 .people > .state_work> a> p:nth-of-type(2){ 
-	
+	 float:left;
 	font-size: 13px;
     padding : 5px 0 5px 0;
     width : 320px; 
@@ -51,8 +72,9 @@ height:100px;
 
 /* �Ϸ��� �� ��  */
 .people > .state_work> a> p:nth-of-type(3){ 
+	float:left;
 	font-size: 10px;
-    padding : 5px 0 5px 0;
+    padding : 5px;
     width : 320px; 
     color: black;
 }

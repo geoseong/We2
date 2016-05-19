@@ -1,3 +1,10 @@
+
+select * from pjtmake;
+
+select * from pjtmanager;
+
+delete from pjtmanager where pjtcode=50 or pjtcode=57;
+
 create database we2;
 
 desc pjtmanager;

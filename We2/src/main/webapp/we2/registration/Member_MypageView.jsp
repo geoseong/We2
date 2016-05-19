@@ -111,25 +111,26 @@
 									value="${mVo.email}"></td>
 							</tr>
 		
-							<%-- <tr>
+							
+								<tr>
 								<th>성별</th>
-								<td><c:choose>
-										<c:when test="${mVo.getGender()==0}">
-											<input type="radio" name="gender" value="1"
-												checked="checked"> 남성
-						<input type="radio" name="gender" value="0"> 여성
-					</c:when>
-		
-										<c:otherwise>
-											<input type="radio" name="gender" value="1"> 남성
-						<input type="radio" name="gender" value="0" checked="checked"> 여성
-					</c:otherwise>
-									</c:choose></td>
-							</tr> --%>
+								<td>
+								<c:choose>
+									<c:when test="${mVo.gender==0}">
+										<input type="radio" class="radio" name="gender"  value="0" checked="checked"> 남성 
+										<input type="radio" class="radio" name="gender" value="1" > 여성
+							    	</c:when>
+									<c:otherwise>
+										<input type="radio" class="radio" name="gender" value="0"> 남성 
+										<input type="radio" class="radio" name="gender" value="1" checked="checked"> 여성 
+									</c:otherwise> 
+								</c:choose>
+								</td>
+							  </tr>
 		
 							<tr>
 								<th>가입일</th>
-								<td><input type="text" name="regDate" size="30"
+								<td><input type="text" name="regDate" size="20"
 									value="${mVo.regDate}"></td>
 							</tr>
 						</table>
@@ -150,25 +151,30 @@
 					<div class="my_proj">
 						<h3>내 프로젝트 보기</h3> <br>
 
-						<div class="my_proj_view">
+						
 
 							<div class="ongoing">
-								<table style="width: 600px">
+								<table>
+								   <tr>
+								     <th >프로젝트 이름</th>
+								     <th >프로젝트로 이동</th>
+								    </tr>
 									<c:choose>
 										<c:when test="${pjtlist==null }">
 											<!--프로젝트 pjtlist부분을 다시 수정해야함!!-->
-
 											<tr>
+											    
 												<td colspan="2">현재 진행중인 프로젝트가 없습니다.</td>
 											</tr>
 										</c:when>
 										<c:otherwise>
 											<c:forEach var="pjtlist" items="${pjtlist}">
 												<tr>
-													<td>${pjtlist.pjtName }</td>
-													<td style="text-align: right;"><a class="a_add_btn"
-														href="Project?pjtcode=${pjtlist.pjtCode }" target="_blank">프로젝트
-															바로가기</a></td>
+												    <td>${pjtlist.pjtName }</td><!--  프로젝트 이름 -->
+													<td style="text-align: right;">
+													  <a href="project?pjtCode=${pjtlist.pjtCode}" class="add_btn_pjt">
+													            프로젝트 바로가기</a>
+													</td>
 												</tr>
 											</c:forEach>
 										</c:otherwise>
@@ -176,7 +182,7 @@
 								</table>
 							</div>
 							<!-- ongoing END -->
-						</div> <!--my_proj_view END--> 
+					
 					</div> <!--myproj END-->
 
 				</div><!-- contents END-->

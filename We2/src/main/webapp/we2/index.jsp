@@ -152,7 +152,7 @@
     
    
    <div class="pjtMake">   
-        <form method="post" action="pjtmake">   
+        <form method="post" action="pjtMake">   
            <div class="pjtMakeInner">
                 <h1 style="margin-top:20px;">프로젝트 만들기</h1>
                 
@@ -194,7 +194,7 @@
                   </div> 
                    -->
                   <div class="btn2" style="padding-top:30px;">
-                      <input type="submit" value="만들기"  size="100">
+                      <input type="submit" value="만들기" size="100">
                   </div>
                 </div>
          </div> <!--pjtMakeinner END-->

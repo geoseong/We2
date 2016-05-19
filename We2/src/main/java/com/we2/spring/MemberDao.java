@@ -1,3 +1,4 @@
+
 package com.we2.spring;
 
 import java.sql.Connection;
@@ -12,6 +13,13 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.web.bind.annotation.RequestParam;
+
+//import com.sun.jmx.snmp.Timestamp;
+import com.we2.pjtMake.PjtMakeVO;
+import com.we2.spring.Member;
 
 public class MemberDao {
 	
@@ -126,7 +134,43 @@ public class MemberDao {
 		}
 
 	public static MemberDao getInstance() {
-		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public List<PjtJoinVO> selectAll(String userId){
+		// pjtcode | userId | isLeader | pjtCode | pjtName     | pjtClassify | startDate  | endDate
+	      List<PjtJoinVO> results = 
+            jdbcTemplate.query( //mysql DB연동을 위해 작성
+        		"select * from pjtmanager mgr, pjtmake make where mgr.pjtcode = make.pjtcode and mgr.userId = ?"
+        		, //프로젝트 테이블에서  pjtmanager mgr, pjtmake make를 선택하고 조건문으로 mgr.pjtcode = make.pjtcode mgr.userId인것만을 출력함!! 
+        		new RowMapper<PjtJoinVO>(){
+			      @Override
+			      public PjtJoinVO mapRow(ResultSet rs, int rowNum) throws SQLException {
+			    	  PjtJoinVO pjtJoinVO = new PjtJoinVO(
+			        		 rs.getString("pjtcode"),
+			        		 rs.getString("userId"),
+			        		 rs.getString("isLeader"),
+			        		 rs.getString("pjtCode"),
+			        		 rs.getString("pjtName"),
+			               rs.getString("pjtClassify"),
+			               rs.getString("startDate"),
+			               rs.getString("endDate"));
+			         return pjtJoinVO;
+			      }
+        		}
+	           , userId);
+	      System.out.println("selectAll()::results.isEmpty()::::::"+results.isEmpty());
+	      return results.isEmpty()?null:results;
+	   }
+	
+	
+	public int selectDate(int pjtCode){
+	      String sql = 
+	      "select (endDate-startDate) from pjtMake where pjtCode=?";
+	      int searchDate = jdbcTemplate.queryForObject(sql, new Object[] {pjtCode}, Integer.class);
+	      return searchDate;
+	      }
+	
+	
+	
 	}
