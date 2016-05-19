@@ -33,12 +33,12 @@ public interface FileMapper {
 	
 	final String select_by_id ="select fcode, fname, fileurl, fdate from fileshare order by fcode desc limit #{row_start}, #{row_end}";
 	
-	final String insertFile = "insert into fileshare( fname, fileurl, fdate) values (#{fname}, #{fileurl}, date_format(now(),'%y-%m-%d:hh:mm:ss')";
+	final String insertFile = "insert into fileshare(fname, fileurl, fdate) values (#{fname}, #{fileurl}, date_format(now(),'%y-%m-%d'))";
 
 	
 	final String delete_by_fcode = "delete from fileshare where fcode = #{fcode}";
 	
-	final String update_by_fcode = "update fileshare set fname = #{fname}, fileurl = #{fileurl}, fdate=#{now()} where fcode = #{fcode}";
+	final String update_by_fcode = "update fileshare set fname = #{fname}, fileurl = #{fileurl}, fdate=now() where fcode = #{fcode}";
 			
 	/*final String select_cnt_by_subject = "select * from (select id, subject, name, created_date, mail, memo, hits, ceil (rownum / #{rowsPerPage}) as page from spring_board where subject like '%' || '${likeThis}' || '%' order by id desc) where page = #{page}";
 		
@@ -78,7 +78,7 @@ public interface FileMapper {
 		
 		@Insert(insertFile)  		
 		//@Options(useGeneratedKeys = true, keyProperty = "id")
-		void insertFile(FileBean fileBean) ;
+		void insertFile(@Param("fname")String fname, @Param("fileurl")String fileurl) ;
 		
 		@Select(select_all)
 		int getTotalCnt();
@@ -90,7 +90,6 @@ public interface FileMapper {
 		void fileupdate(
 				@Param("fcode") int rcode,
 				@Param("fname") String fname, 
-				
 				@Param("fileurl")String fileurl);
 		
 }

@@ -11,9 +11,8 @@
 							http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd 
 							 http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd">
-	
-	<!-- Root Context: defines shared resources visible to all other web components -->
-	 
+
+
 	 <!-- search @Autowired -->
 	  <context:annotation-config />
 	  

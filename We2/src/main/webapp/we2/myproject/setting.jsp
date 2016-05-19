@@ -7,13 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>프로젝트 설정</title>
 
-     <link rel="stylesheet" href="/We2/css/w2_reset.css" type="text/css">
-     <link rel="stylesheet" href="/We2/css/02_project.css" type="text/css">
-    <!--  <link rel="stylesheet" type="text/css" href="/We2/css/notice_board_contents.css">  -->
-    <!--  <link rel="stylesheet" type="text/css" href="css/File.css"> -->
      <link rel="stylesheet" type="text/css" href="/We2/css/setting.css"> 
      
-     <script type="text/javascript" src="../js/jquery-1.12.1.min.js"></script> 
 
 
 </head>
@@ -144,7 +139,6 @@
 
 </body>
 
-<script src="js/jquery-1.12.2.min.js"></script>
 <!-- jQuery UI CSS파일  -->
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
 <!--  jQuery 기본 js파일 -->
