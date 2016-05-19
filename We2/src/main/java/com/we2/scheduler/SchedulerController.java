@@ -45,8 +45,9 @@ public class SchedulerController {
 	/* 리스트 */
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String listSpecificPageWork(Model model) throws ParseException{
-		int pjtcode=(Integer)session.getAttribute("pjtCode");
-		
+			System.out.println("scheduler list.get] hi");
+		int pjtcode=Integer.parseInt(session.getAttribute("pjtCode").toString());
+			System.out.println("scheduler list] pjtCode : "+pjtcode);
 		model.addAttribute("Content", schedulerService.getlist(pjtcode));
 		model.addAttribute("page", "../Scheduler/Calendar");
 		System.out.println("--------------------------listSpecificPage");
@@ -79,7 +80,7 @@ public class SchedulerController {
 	
 	
 	@RequestMapping(value="/memoAdd.do", method=RequestMethod.POST)
-	public String writepost(HttpSession session, HttpServletRequest request, Model model)throws IOException {
+	public String writepost(/*HttpSession session, */HttpServletRequest request, Model model)throws IOException {
 		
 		//SchedulerBean객체인 cVo에 변수들을 집어넣는다.
 		SchedulerBean cVo = new SchedulerBean();
@@ -200,9 +201,5 @@ public class SchedulerController {
 			  
 			return "Scheduler/close";   
 		}
-		
-	
-	
-	
 }	
 	

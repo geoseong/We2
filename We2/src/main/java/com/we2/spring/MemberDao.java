@@ -108,6 +108,17 @@ public class MemberDao {
 
 		return results.isEmpty() ? null : results.get(0);
 	}
+	
+	// email로 회원조회
+	public List<Member> selectByEmail(String email) {
+		List<Member> results = jdbcTemplate.query(
+				"select * from MEMBER where email = ?",
+				memRowMapper,
+				email);
+
+		return results.isEmpty() ? null : results;
+	}
+	
 	// 사용자 ID값을 확인하는 메소드
 	public int confirmID(String userId) {
 		List<Member> results = jdbcTemplate.query("select * from MEMBER where USERID=?", memRowMapper, userId);

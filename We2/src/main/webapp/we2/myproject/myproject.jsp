@@ -90,9 +90,10 @@ var myVar = setInterval(myTimer, 1000);
        <div class="menu_item">
            <ul>
                <li><a href="/We2/Notice.do?list=/notice/list.jsp&pjtcode=${project.pjtCode }" id="item_1">공지사항</a></li>
-               <li><a href="/We2/fList.do?File=/File/FileList.jsp&pjtcode=${project.pjtCode }" id="item_2">파일공유</a></li>
+               <li><a href="/We2/file/list?page=1" id="item_2">파일공유</a></li>
                <li><a href="/We2/scheduler/list" id="item_3">스케줄</a></li>
                <li><a href="/myproject/myproject.jsp?willwork=willwork&pjtcode=${project.pjtCode }" id="item_4">할 일</a></li>
+               <li><a href="/We2/project/setting" id="item_5">프로젝트 정보</a></li>
            </ul>
        </div>
     

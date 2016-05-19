@@ -70,10 +70,10 @@ public class FileController {
 				System.out.println("--block_last가 t_pages보다 크므로 내용이 존재하는 페이지만큼만 block_last를 조절.");
 				block_last=t_pages;
 			}
-
+			
 		/* SECTION : REQUEST 영역에 보내기 */
 		// ★★ SELECT 결과물 ★★
-				  model.addAttribute("fileList", fileService.getlist(row_start-1, row_end-1));
+				  model.addAttribute("fileList", fileService.getlist(row_start, row_end));
 				// JSP:INCLUDE PAGE
 				  model.addAttribute("filepage", "fileList");
 				  model.addAttribute("page", "../file/FileList");

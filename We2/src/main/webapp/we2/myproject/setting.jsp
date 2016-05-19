@@ -8,8 +8,14 @@
 <title>프로젝트 설정</title>
 
      <link rel="stylesheet" type="text/css" href="/We2/css/setting.css"> 
-     
+<script type="text/javascript">
 
+function winOpen(email){
+	var url = "invitation?email="+email;
+	  javascript:window.open(url , '프로젝트 멤버초대.', 'width=600 height=270 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
+  }
+
+</script>     
 
 </head>
 <body>
@@ -57,8 +63,10 @@
 	       <tr>
 		       <th>팀원 추가 </th>
 		       <td  colspan="3">
-		       		<input type="email" size="45" name="usremail" id="email_bg" style="width:75%; height:25px; float:left;">  		       	
-		       	    <input type="submit" class="add_btn" value="팀원추가" size="20">
+		       <form name="pjtfrm">
+		       		<input type="email" size="45" name="useremail" id="email_bg" style="width:75%; height:25px; float:left;">  		       	
+		       	    <input type="button" class="add_btn" value="회원검색..." size="20" onclick="winOpen(document.pjtfrm.useremail.value)">
+		       </form>
 		       </td>
 	       </tr>
 	       

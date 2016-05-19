@@ -167,6 +167,7 @@ public class PjtMakeDAO {
 		return results.isEmpty() ? null : results.get(0);
 	}
 	
+	
 	/**회원 초대수락할때 멤버추가하기.*/
 	public void addpjtMember(){
 		

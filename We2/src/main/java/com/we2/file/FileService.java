@@ -20,7 +20,7 @@ public class FileService {
 		ArrayList<FileBean> arraymapper=fileMapper.getList(row_start, row_end);
 		
 		for(int i=0; i<arraymapper.size(); i++){
-			System.out.println("roomshare 테이블 데이터 : " + arraymapper.get(i).getFileurl());
+			System.out.println("fileshare 테이블 데이터 : " + arraymapper.get(i).getFileurl());
 		}
 		return arraymapper;
 	}
