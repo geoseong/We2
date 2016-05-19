@@ -20,16 +20,16 @@ public class PjtMakeDAO {
 	
 	private JdbcTemplate jdbcTemplate;
 	 
-   /* // ��� 1. �����ڸ� ���� DataSource�� > JdbcTemplate�� �����Ͽ� JdbcTemplate ��ü ����.
+   /* // 방법 1. 생성자를 통한 DataSource를 > JdbcTemplate에 전달하여 JdbcTemplate 객체 생성.
     public PjtMakeDAO(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }*/
     
- // ��� 2. setter�� ���� DataSource�� > JdbcTemplate�� �����Ͽ� JdbcTemplate ��ü ����.
+ // 방법 2. setter를 통한 DataSource를 > JdbcTemplate에 전달하여 JdbcTemplate 객체 생성.
     public void setDataSource(DataSource dataSource){
         this.jdbcTemplate = new JdbcTemplate(dataSource);    
     }
-	
+    
 	public void insertPjtMake(final PjtMakeVO pVo) throws ParseException{
 		 KeyHolder keyHolder = new GeneratedKeyHolder();
 		 	
@@ -37,18 +37,18 @@ public class PjtMakeDAO {
 	            @Override
 	            public PreparedStatement createPreparedStatement(Connection con) 
 	                    throws SQLException {
-	                // �Ķ���ͷ� ���޹��� Connection�� �̿��ؼ� PreparedStatement ����
+	                // 파라미터로 전달받은 Connection을 이용해서 PreparedStatement 생성
 	                PreparedStatement pstmt = con.prepareStatement(
                         "insert into pjtMake(pjtName,pjtClassify,startDate,endDate) "
 	                		+"values(?, ?, STR_TO_DATE(?,'%m/%d/%Y'), STR_TO_DATE(?,'%m/%d/%Y'))"
                        , new String[] {"pjtCode"});
-	                // �ε��� �Ķ���� �� ����
+	                // 인덱스 파라미터 값 설정
 	                pstmt.setString(1, pVo.getPjtName());
 	                pstmt.setString(2,  pVo.getPjtClassify());
 	                pstmt.setString(3, pVo.getStartDate());
 	                pstmt.setString(4, pVo.getEndDate());
 	                
-	                // ������ PreparedStatement ��ü ����
+	                // 생성한 PreparedStatement 객체 리턴
 	                return pstmt;
 	            } //end createPreparedStatement()
 	        }, keyHolder);
@@ -56,7 +56,29 @@ public class PjtMakeDAO {
 	        pVo.setPjtCode(keyValue.intValue());
 	}
 	
-	//�ֱ� ����� ������Ʈ ���� ����ϱ�
+	public void inserPjtManager(final String userId, final int pjtCode) throws ParseException{
+			
+		jdbcTemplate.update(new PreparedStatementCreator() {
+				@Override
+				public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+					PreparedStatement pstmt = con.prepareStatement(
+							"insert into pjtManager(pjtCode,userId,isLeader) values(?, ?, 'Y')"
+						);
+					pstmt.setInt(1, pjtCode);
+					pstmt.setString(2, userId);
+					return pstmt;
+				}
+			});
+	}
+	
+	//프로젝트 코드를 구하는 쿼리문
+	public int selectCode() {
+		String sql = "select pjtCode from pjtmake order by pjtcode desc limit 1";
+		int pjtCode = jdbcTemplate.queryForObject(sql, Integer.class);
+		return pjtCode;
+	}
+	
+	//최근 등록한 프로젝트 먼저 출력하기
 	public List<PjtMakeVO> selectAll(){
 		List<PjtMakeVO> results = 
 				jdbcTemplate.query("select * from pjtMake",
@@ -75,8 +97,16 @@ public class PjtMakeDAO {
 		return (List<PjtMakeVO>) (results.isEmpty()?null:results);
 	}
 	
+	//날짜 구하기 
+	public int searchDate(String pjtCode){
+	String sql = 
+	"select (endDate - startDate) from pjtMake make, pjtmanager mgr where make.pjtcode=mgr.pjtcode and pjtmake.pjtcode=?";
+	int count = jdbcTemplate.queryForObject(sql, new Object[] {pjtCode}, Integer.class);
+	return count;
+	}
+	
 	/*
-	// ȸ���� �����ִ� ������Ʈ�̸� �Ѹ���
+	// 회원이 속해있는 프로젝트이름 뿌리기
 	public List<PjtMakeVO> selectUserpjts(String userid){
 		String sql="select * from pjtmake where userid=?";
 		List<PjtMakeVO> list = new ArrayList<PjtMakeVO>();
@@ -99,7 +129,7 @@ public class PjtMakeDAO {
 				pVo.setStartDate(rs.getString("startDate"));
 				pVo.setUserId(rs.getString("userId"));
 				list.add(pVo);
-			}// while�� ��
+			}// while문 끝
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
@@ -109,7 +139,7 @@ public class PjtMakeDAO {
 	}
 	
 	public PjtMakeVO selectuserpjt(String pjtcode){
-		//�ֱ� ����� ��ǰ ���� ����ϱ�
+		//최근 등록한 상품 먼저 출력하기
 		String sql = "select * from pjtMake where pjtcode=?";
 		PjtMakeVO pVo = new PjtMakeVO();
 		Connection conn = null;
@@ -128,7 +158,7 @@ public class PjtMakeDAO {
 				pVo.setStartDate(rs.getString("startDate"));
 				pVo.setEndDate(rs.getString("endDate"));
 				pVo.setUserId(rs.getString("userId"));
-			}// while�� ��
+			}// while문 끝
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{

@@ -22,7 +22,7 @@
 				<input type="hidden" name="itemNum" value="${BoardContent.getItemNum() }">
 				<input type="hidden" name="category" value="${category }">
 				
-				<table>
+			<table>
 				<tr>
 				<td style="border:none; padding:0px;">
 						<table>
@@ -78,7 +78,9 @@
 							<c:when test="${BoardContent.getItemDataType().contains('image') }">
 								<img src="/We2/we2/pjtBoard/data/${BoardContent.getItemPath() }" class="board_img" style="width: 300px;">
 							</c:when>
-							
+							<c:when test="${BoardContent.getItemDataType().contains('pptx') }">
+								<img src="/We2/we2/pjtBoard/data/ppt.JPG" class="board_img" style="width: 300px;">
+							</c:when>
 							<%-- <div class="modal">
 							<c:if test="${BoardContent.getItemDataType().contains('image') }"> <!-- 콘텐츠 타입에 이미지라는 단어를 포함하고 있으면  -->
 								<img src="/We2/we2/pjtBoard/data/${BoardContent.getItemPath() }" > <!-- 이미지를 띄운다 -->
@@ -92,16 +94,14 @@
 								<img src="/We2/we2/pjtBoard/data/datafile.png" style="width: 50px;">
 							</c:otherwise>
 						</c:choose>
-						</div> <!-- modal end -->
+						<!-- </div> modal end -->
 					</td>
-					</table>
-				</td>
+				</table>
+			<!-- 	</td>
 				</tr>
-			</table>
-			
+			</table> -->
 			
 				<br>
-				
 				<div class="write_btn" style="text-align:center;">
 				<input type="submit" value="수정하기" >
 				<input type="button" value="목록"  onclick="location.href='/We2/pjtBoard/list?page=1&category=${category}'">

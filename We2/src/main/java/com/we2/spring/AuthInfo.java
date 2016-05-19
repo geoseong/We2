@@ -26,6 +26,7 @@ public class AuthInfo {
 		this.regDate = regDate;
 	}
 
+
 	public Date getRegDate() {
 		return regDate;
 	}

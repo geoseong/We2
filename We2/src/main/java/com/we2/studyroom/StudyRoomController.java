@@ -287,6 +287,7 @@ public class StudyRoomController {
 			  
 			return "studyRoom/shareArea";   
 		}
+<<<<<<< HEAD
 		/*내용 보기*/
 		@RequestMapping(value="/StudyRoomContent.do", method=RequestMethod.GET)
 		public String StudyRoomContent(@RequestParam("rcode") int rcode, Model model) throws ParseException {
@@ -301,5 +302,24 @@ public class StudyRoomController {
 			  model.addAttribute("page", 1);
 			return "studyRoom/StudyRoomContent";   
 		}
+=======
+		/* 내용보기 */
+
+		@RequestMapping(value="/StudyRoomContent.do", method=RequestMethod.GET)
+		public String StudyRoomcontent(@RequestParam("rcode") int rcode, Model model) throws ParseException {
+>>>>>>> origin/Geoseong
 		
+			logger.info("StudyRoomdelete called!!");
+			logger.info("rcode=["+rcode+"] ");
+			
+			// 시작 rownum 받아오기
+					
+			// BoardDelete -
+			  model.addAttribute("studyroomList", studyroomService.getSearchbyrcode(rcode));	
+			  // JSP:INCLUDE PAGE
+			  model.addAttribute("studyroompage", "StudyRoomContent");
+			  model.addAttribute("page", 1);
+			return "studyRoom/StudyRoomContent";   
+		}
+			
 }

@@ -1,8 +1,5 @@
 package com.we2.pjtMake;
 
-import java.util.Calendar;
-import java.util.Date;
-
 public class PjtMakeVO {
 	
 	private int pjtCode;

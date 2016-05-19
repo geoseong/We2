@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script type="text/javascript" src="../js/board.js"></script>
 <title>We2_프로젝트 게시판 _ 업데이트 하기</title>
 </head>
 <body>
@@ -63,7 +64,7 @@
 				</table>
 				
 				<div class="write_btn" style="text-align:center;">
-				<input type="submit" value="수정" >
+				<input type="submit" value="수정" onclick="return charcheck()">
 				<input type="button" value="목록" style="padding: 5px;" onclick="location.href='/We2/pjtBoard/list?page=1&category=${category}'">
 			    </div>
 			</form>

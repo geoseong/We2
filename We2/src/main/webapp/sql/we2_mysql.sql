@@ -1,7 +1,15 @@
 create database we2;
 
-/*  create user 시작
-> testuser 라는 사용자가 192.168.100.101 아이피를 통해서 접근하는 것을 허용하며, 
+desc pjtmanager;
+select * from pjtmanager;
+select * from pjtmake;
+desc pjtmake;
+desc member;
+
+select pjtCode from pjtMake where userid='park';
+
+/*  create user �떆�옉
+> testuser �씪�뒗 �궗�슜�옄媛� 192.168.100.101 �븘�씠�뵾瑜� �넻�빐�꽌 �젒洹쇳븯�뒗 寃껋쓣 �뿀�슜�븯硫�, 
 drop table pjtmake cascade constraint;
 drop table pjtmanager cascade constraint;
 
@@ -25,21 +33,21 @@ alter table pjtmake modify pjtCode int auto_increment;
 
 
 /*
-> testuser ��� ����ڰ� 192.168.100.101 �����Ǹ� ���ؼ� �����ϴ� ���� ����ϸ�, 
+> testuser 占쏙옙占� 占쏙옙占쏙옙微占� 192.168.100.101 占쏙옙占쏙옙占실몌옙 占쏙옙占쌔쇽옙 占쏙옙占쏙옙占싹댐옙 占쏙옙占쏙옙 占쏙옙占쏙옙玖占�, 
 	ex) CREATE USER 'we2admin'@'192.168.100.101' IDENTIFIED BY '123qwe!@#';
- 비밀번호는 "123qwe!@#" 이고, "we2" 데이터베이스에 대하여 모든 권한을 부여 받음 
+ 鍮꾨�踰덊샇�뒗 "123qwe!@#" �씠怨�, "we2" �뜲�씠�꽣踰좎씠�뒪�뿉 ���븯�뿬 紐⑤뱺 沅뚰븳�쓣 遺��뿬 諛쏆쓬 
  
- > 모든 IP로의 접근을 허용하기 위해서는 호스트주소 부분을 "%"로 처리한다
+ > 紐⑤뱺 IP濡쒖쓽 �젒洹쇱쓣 �뿀�슜�븯湲� �쐞�빐�꽌�뒗 �샇�뒪�듃二쇱냼 遺�遺꾩쓣 "%"濡� 泥섎━�븳�떎
 	ex) CREATE USER 'we2admin'@'%' IDENTIFIED BY '123qwe!@#';
 */
 CREATE USER 'we2admin'@'%' IDENTIFIED BY '1234';
 grant all privileges on we2.* to we2admin@'%';
 flush privileges;
-/* create user 끝 */
+/* create user �걹 */
 
 desc member;
 
-/* MySQL 전체 사용자 목록 보기*/
+/* MySQL �쟾泥� �궗�슜�옄 紐⑸줉 蹂닿린*/
 USE mysql;
 SELECT User, Host from user;
 SELECT * from user;
@@ -49,21 +57,21 @@ select * from member;
 select * from MEMBER where USERID = 'geoseong';
 
 
-/* 사용자에게 부여된 권한 확인 */
+/* �궗�슜�옄�뿉寃� 遺��뿬�맂 沅뚰븳 �솗�씤 */
 SHOW GRANTS FOR we2admin@'%';
 
 
-/* 계정 비밀번호 변경 */
-# Set Password 이용
+/* 怨꾩젙 鍮꾨�踰덊샇 蹂�寃� */
+# Set Password �씠�슜
 SET PASSWORD FOR we2admin='1234';
-# update문 이용
-UPDATE user SET password='새비밀번호' WHERE user='we2admin';
+# update臾� �씠�슜
+UPDATE user SET password='�깉鍮꾨�踰덊샇' WHERE user='we2admin';
 FLUSH PRIVILEGES;
 
--- 테이블 생성
+-- �뀒�씠釉� �깮�꽦
 desc member;
 desc pjtmake;
--- ���̺� ����
+-- 占쏙옙占싱븝옙 占쏙옙占쏙옙
 CREATE TABLE willwork(
 	userId VARCHAR(12),
 	pjtcode int,
@@ -76,23 +84,35 @@ CREATE TABLE willwork(
 ) engine=InnoDB character set=utf8; 
 desc willwork;
 
+<<<<<<< HEAD
+insert into willwork values('pts119', '20', '占쌘듸옙究占�' ,'占쏙옙占쏙옙처占쏙옙', 'Y', '占승쇽옙');
+insert into willwork values('park', '20', '占쌘듸옙究占�' ,'占쏙옙占쏙옙처占쏙옙', 'Y', '占쏙옙占쏙옙');
+insert into willwork values('jeon', '20', '占쌘듸옙究占�' ,'占쏙옙占쏙옙처占쏙옙', 'Y', '占쌍울옙');
+insert into willwork values('bae', '20', '占쌘듸옙究占�' ,'占쏙옙占쏙옙처占쏙옙', 'Y', '占쏙옙占쏙옙');
+insert into willwork values('jo', '20', '占쌘듸옙究占�' ,'占쏙옙占쏙옙처占쏙옙', 'Y', '占쏙옙占쏙옙');
+=======
+//테이블안에 update문을 사용하는 문법
+UPDATE member SET name='우아',pwd='5555',pwd_confirm='5555', email='aa@naver.com',
+phone='010-1111-2222', gender='1', regDate='2000-06-11' WHERE userId='jo';
+
 insert into willwork values('pts119', '20', '�ڵ�ϼ�' ,'����ó��', 'Y', '�¼�');
 insert into willwork values('park', '20', '�ڵ�ϼ�' ,'����ó��', 'Y', '����');
 insert into willwork values('jeon', '20', '�ڵ�ϼ�' ,'����ó��', 'Y', '�ֿ�');
 insert into willwork values('bae', '20', '�ڵ�ϼ�' ,'����ó��', 'Y', '����');
 insert into willwork values('jo', '20', '�ڵ�ϼ�' ,'����ó��', 'Y', '����');
+>>>>>>> branch 'Geoseong' of https://github.com/geoseong/We2.git
 
 desc member;
-insert into member values('geoseong', '�ż�', '1234' ,'imf4@naver.com', '010-2023-6697', 'M', now());
-insert into member values('park', '����', '1234' ,'hyuk9658@naver.com', '010-1234-6327', 'M', now());
-insert into member values('jeon', '�ֿ�', '1234' ,'jeon@naver.com', '010-2233-6645', 'W', now());
-insert into member values('bae', '����', '1234' ,'bae@naver.com', '010-2583-9197', 'W', now());
-insert into member values('jo', '����', '1234' ,'jo@naver.com', '010-2333-2312', 'M', now());
+insert into member values('geoseong', '占신쇽옙', '1234' ,'imf4@naver.com', '010-2023-6697', 'M', now());
+insert into member values('park', '占쏙옙占쏙옙', '1234' ,'hyuk9658@naver.com', '010-1234-6327', 'M', now());
+insert into member values('jeon', '占쌍울옙', '1234' ,'jeon@naver.com', '010-2233-6645', 'W', now());
+insert into member values('bae', '占쏙옙占쏙옙', '1234' ,'bae@naver.com', '010-2583-9197', 'W', now());
+insert into member values('jo', '占쏙옙占쏙옙', '1234' ,'jo@naver.com', '010-2333-2312', 'M', now());
 
-update willwork set dowork = dowork || ', ' || '���ֱ�' where name='����';
-update willwork set dowork = CONCAT(dowork, ', ', '�ٺ�') where name='����';
+update willwork set dowork = dowork || ', ' || '占쏙옙占쌍깍옙' where name='占쏙옙占쏙옙';
+update willwork set dowork = CONCAT(dowork, ', ', '占쌕븝옙') where name='占쏙옙占쏙옙';
 
-select * from willwork where name='����';
+select * from willwork where name='占쏙옙占쏙옙';
 
 
 select * from pjtMake;
@@ -124,7 +144,7 @@ desc pjtMake;
 select * from pjtMake;
 commit;
 
-/* 테이블 생성 시 외래키 한번에 설정 (업데이트할때나 지워질때나 늘 함께하는 외래키설정) */
+/* �뀒�씠釉� �깮�꽦 �떆 �쇅�옒�궎 �븳踰덉뿉 �꽕�젙 (�뾽�뜲�씠�듃�븷�븣�굹 吏��썙吏덈븣�굹 �뒛 �븿猿섑븯�뒗 �쇅�옒�궎�꽕�젙) */
 create table pjtManager(
 	pjtCode int,
     userId varchar(12),
@@ -134,9 +154,9 @@ create table pjtManager(
 );
 desc pjtManager;
 
-/* InnoDB테이블 방식으로 안만들었을때 변경하는 명령어
- * 자세설명 : http://powerhan.tistory.com/175 */
-alter table 테이블_이름 engine=InnoDB;
+/* InnoDB�뀒�씠釉� 諛⑹떇�쑝濡� �븞留뚮뱾�뿀�쓣�븣 蹂�寃쏀븯�뒗 紐낅졊�뼱
+ * �옄�꽭�꽕紐� : http://powerhan.tistory.com/175 */
+alter table �뀒�씠釉�_�씠由� engine=InnoDB;
 alter table member engine=InnoDB, DEFAULT CHARACTER SET utf8;
 alter table pjtMake engine=InnoDB, DEFAULT CHARACTER SET utf8;
 alter table pjtManager engine=InnoDB, DEFAULT CHARACTER SET utf8;
@@ -144,47 +164,51 @@ alter database we2 DEFAULT CHARACTER SET utf8;
 
 
 
-/* 현재 문자셋 정보 보기*/
+/* �쁽�옱 臾몄옄�뀑 �젙蹂� 蹂닿린*/
 show variables like 'c%';
 
-/* InnoDB 방식인지 등등.. 테이블 정보 확인하기 */
+/* InnoDB 諛⑹떇�씤吏� �벑�벑.. �뀒�씠釉� �젙蹂� �솗�씤�븯湲� */
 SHOW TABLE STATUS FROM we2 LIKE 'pjtMake';
 
-/* InnoDB ������� ���.. ���̺� ���� Ȯ���ϱ� */
+/* InnoDB 占쏙옙占쏙옙占쏙옙占� 占쏙옙占�.. 占쏙옙占싱븝옙 占쏙옙占쏙옙 확占쏙옙占싹깍옙 */
 SHOW TABLE STATUS FROM we2 LIKE 'pjtManager';
 
-/* 특정 데이터베이스 안에 있는 테이블 목록 보기 */
+/* �듅�젙 �뜲�씠�꽣踰좎씠�뒪 �븞�뿉 �엳�뒗 �뀒�씠釉� 紐⑸줉 蹂닿린 */
 use we2;
 show tables;
 
 desc pgroup;
 
-/* 컬럼 이름 바꾸기 */
-# ALTER TABLE 테이블명 CHANGE 컬럼이름 새컬럼이름 새컬럼타입
+/* 而щ읆 �씠由� 諛붽씀湲� */
+# ALTER TABLE �뀒�씠釉붾챸 CHANGE 而щ읆�씠由� �깉而щ읆�씠由� �깉而щ읆���엯
 ALTER TABLE member CHANGE userid userId VARCHAR(12);
 
-/* 컬럼 추가하기 */
-#ALTER TABLE 테이블명 ADD COLUMN 칼럼이름 칼럼타입
+/* 而щ읆 異붽��븯湲� */
+#ALTER TABLE �뀒�씠釉붾챸 ADD COLUMN 移쇰읆�씠由� 移쇰읆���엯
 ALTER TABLE pGroup ADD COLUMN itemDataType varchar(50);
 
-/* 컬럼 삭제하기 */
-#ALTER TABLE 테이블명 DROP COLUMN 칼럼이름
+/* 而щ읆 �궘�젣�븯湲� */
+#ALTER TABLE �뀒�씠釉붾챸 DROP COLUMN 移쇰읆�씠由�
 alter table member drop column subEmail;
 
-/* 삽입 */
-# 현재시각은 MySQL에서는 now().
+/* �궫�엯 */
+# �쁽�옱�떆媛곸� MySQL�뿉�꽌�뒗 now().
 #INSERT INTO tablename or columns VALUES(25, 'NAME', 5, 25.5 );
+<<<<<<< HEAD
+insert into member values('geoseong', '嫄곗꽦', '1234' ,'imf4@naver.com', '010-2023-6697', 'M', now());
+=======
 insert into member values('geoseong', '거성', '1234' , '1234', 'imf4@naver.com', '010-2023-6697', 'M', now());
+>>>>>>> branch 'Geoseong' of https://github.com/geoseong/We2.git
 
 insert into pjtMake values('10',
 'ttt',
-'��������',
+'占쏙옙占쏙옙占쏙옙占쏙옙',
 'Thu May 12 00:00:00 KST 2016',
 'Fri May 13 00:00:00 KST 2016');
 
 insert into pjtMake(pjtName,pjtClassify,startDate,endDate) values(
 'ttt', 
-'��������',
+'占쏙옙占쏙옙占쏙옙占쏙옙',
 STR_TO_DATE('05/12/2016','%m/%d/%Y'),
 STR_TO_DATE('05/14/2016','%m/%d/%Y'));
 
@@ -199,7 +223,7 @@ pjtCode int auto_increment,
     endDate date,
 show create table pjtMake;
 
-/* 사용자 삭제 */
+/* �궗�슜�옄 �궘�젣 */
 DROP USER we2admin@localhost;
 DROP USER we2admin@'%';
 DROP USER we2admin@'192.168.0.100';

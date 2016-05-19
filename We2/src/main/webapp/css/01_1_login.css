@@ -49,21 +49,21 @@
  
 .input{
     padding:10px;
-    font-size: 11px;
+    font-size: 15px;
     font-weight:400;
     float:center;
-    color:#4CC4EE;
+    color:#818585;
     text-align: left;
 /*    border: 0.5px solid black;*/
 }
 
 .input span{ 
-    
+     color:#4CC4EE;
      font-size:16px;
      font-weight:600;
 }
 
-/* ÇÊ¼ö·Î ÀÔ·ÂÇÏ¼Å¾ß ÇÕ´Ï´Ù */
+/* ï¿½Ê¼ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼Å¾ï¿½ ï¿½Õ´Ï´ï¿½ */
 .input .error span{
 	 font-size:11px;
 	 font-weight:400;

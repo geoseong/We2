@@ -9,7 +9,6 @@ public class WillWorkVO {
 	String stateWork;
 	String name;
 	
-	
 	public WillWorkVO(String userId, int pjtCode, String doWork, String doneWork, String stateWork, String name) {
 		super();
 		this.userId = userId;

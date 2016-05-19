@@ -40,11 +40,11 @@
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 
 
-	<bean id="memberDao" class="com.we2.registration.MemberDao">
+	<bean id="memberDao" class="com.we2.spring.MemberDao">
 		<constructor-arg ref="dataSource"/>
 	</bean>	
 	
-	<bean id="authService" class="com.we2.registration.AuthService">
+	<bean id="authService" class="com.we2.spring.AuthService">
 		<property name="memberDao" ref="memberDao" />
 	</bean>
 	

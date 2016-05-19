@@ -24,7 +24,7 @@ public class AuthService {
 			throw new IdPasswordNotMatchingException();
 		}
 		System.out.println("memberDao.selectByUserid 실행함 & if문 이후의 라인.");
-		ai.setName(member.getName());
+		ai.setName("AuthinfoService - " + member.getName());
 		return new AuthInfo(member.getUserId(), member.getName(), member.getEmail(),  member.getPhone(), member.getGender(), member.getRegDate());
 		}
 	

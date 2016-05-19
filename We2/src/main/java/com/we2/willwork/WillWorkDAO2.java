@@ -24,7 +24,7 @@ public class WillWorkDAO2 {
 
 	public List<WillWorkVO> selectAll(){
 		List<WillWorkVO> results = jdbcTemplate.query("select * from willwork", 
-				new RowMapper<WillWorkVO>(){ //Äõ¸® ½ÇÇà°á°ú¸¦ ÀÚ¹Ù °´Ã¼·Î º¯È¯ÇÏ´Â RowMapper ÀÎÅÍÆäÀÌ½º
+				new RowMapper<WillWorkVO>(){ //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú¹ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ï´ï¿½ RowMapper ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½
 				@Override
 				public WillWorkVO mapRow(ResultSet rs, int rowNum) throws SQLException{
 				WillWorkVO willWorkVO = new WillWorkVO(rs.getString("userId"),
@@ -33,10 +33,10 @@ public class WillWorkDAO2 {
 						rs.getString("doneWork"),
 						rs.getString("stateWork"),
 						rs.getString("name"));
-				return willWorkVO; //WillWorkVO¿¡ DB¿¡¼­ Á¶È¸ÇÑ ³»¿ëÀ» ÀúÀå
+				return willWorkVO; //WillWorkVOï¿½ï¿½ DBï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 				}
 			});
-		//results¸¦ ¹ÝÈ¯
+		//resultsï¿½ï¿½ ï¿½ï¿½È¯
 		return results;
 	}
 	
@@ -53,7 +53,7 @@ public class WillWorkDAO2 {
 	
 	/*public int Pjtcount(int pjtCode){
 		List<WillWorkVO> results = jdbcTemplate.query("select count(userid) from willwork where pjtcode='"+pjtCode+"'", 
-				new RowMapper<WillWorkVO>(){ //Äõ¸® ½ÇÇà°á°ú¸¦ ÀÚ¹Ù °´Ã¼·Î º¯È¯ÇÏ´Â RowMapper ÀÎÅÍÆäÀÌ½º
+				new RowMapper<WillWorkVO>(){ //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú¹ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ï´ï¿½ RowMapper ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½
 				@Override
 				public WillWorkVO mapRow(ResultSet rs, int rowNum) throws SQLException{
 				WillWorkVO willWorkVO = new WillWorkVO(rs.getString("userId"),
@@ -62,17 +62,19 @@ public class WillWorkDAO2 {
 						rs.getString("doneWork"),
 						rs.getString("stateWork"),
 						rs.getString("name"));
-				return willWorkVO; //WillWorkVO¿¡ DB¿¡¼­ Á¶È¸ÇÑ ³»¿ëÀ» ÀúÀå
+				return willWorkVO; //WillWorkVOï¿½ï¿½ DBï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 				}
 			});
 		
-		//results¸¦ ¹ÝÈ¯
+		//resultsï¿½ï¿½ ï¿½ï¿½È¯
 		return results;
 	}*/
 	
-	public List<WillWorkVO> selectOne(String name){
-		List<WillWorkVO> results = jdbcTemplate.query("select * from willwork where name='"+ name +"'", 
-				new RowMapper<WillWorkVO>(){ //Äõ¸® ½ÇÇà°á°ú¸¦ ÀÚ¹Ù °´Ã¼·Î º¯È¯ÇÏ´Â RowMapper ÀÎÅÍÆäÀÌ½º
+	public List<WillWorkVO> selectOne(String name, String pjtcode){
+		List<WillWorkVO> results = jdbcTemplate.query(
+				"select * from willwork where name=? and pjtcode=?"
+				, 
+				new RowMapper<WillWorkVO>(){ //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú¹ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ï´ï¿½ RowMapper ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½
 				@Override
 				public WillWorkVO mapRow(ResultSet rs, int rowNum) throws SQLException{
 				WillWorkVO willWorkVO = new WillWorkVO(rs.getString("userId"),
@@ -81,28 +83,29 @@ public class WillWorkDAO2 {
 						rs.getString("doneWork"),
 						rs.getString("stateWork"),
 						rs.getString("name"));
-				return willWorkVO; //WillWorkVO¿¡ DB¿¡¼­ Á¶È¸ÇÑ ³»¿ëÀ» ÀúÀå
+				return willWorkVO; //WillWorkVOï¿½ï¿½ DBï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 				}
-			});
+			}, name, pjtcode);
 		
-		//results¸¦ ¹ÝÈ¯
+		//resultsï¿½ï¿½ ï¿½ï¿½È¯
 		return results;
 	}
 	
-	public void insertDoWork(final String name, final String doWork) throws ParseException{
+	public void insertDoWork(final String name, final String doWork, final String pjtcode) throws ParseException{
 		 	// String dowork = dowork + ", " + "doWork" ; 
 	        jdbcTemplate.update(new PreparedStatementCreator() {
 	            @Override
 	            public PreparedStatement createPreparedStatement(Connection con) 
 	                    throws SQLException {
-	                // ÆÄ¶ó¹ÌÅÍ·Î Àü´Þ¹ÞÀº ConnectionÀ» ÀÌ¿ëÇØ¼­ PreparedStatement »ý¼º
+	                // ï¿½Ä¶ï¿½ï¿½ï¿½Í·ï¿½ ï¿½ï¿½ï¿½Þ¹ï¿½ï¿½ï¿½ Connectionï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ø¼ï¿½ PreparedStatement ï¿½ï¿½ï¿½ï¿½
 	                PreparedStatement pstmt = con.prepareStatement(
-	                "update willwork set dowork = CONCAT(dowork, ', ', ?) where name=?"
+	                "update willwork set dowork = CONCAT(dowork, ', ', ?) where name=? and pjtcode=?"
                       );
-	                // ÀÎµ¦½º ÆÄ¶ó¹ÌÅÍ °ª ¼³Á¤
+	                // ï¿½Îµï¿½ï¿½ï¿½ ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	                pstmt.setString(1, doWork);
 	                pstmt.setString(2, name);
-	                // »ý¼ºÇÑ PreparedStatement °´Ã¼ ¸®ÅÏ
+	                pstmt.setString(3, pjtcode);
+	                // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ PreparedStatement ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 	                return pstmt;
 	            } //end createPreparedStatement()
 	        });
@@ -114,14 +117,14 @@ public class WillWorkDAO2 {
             @Override
             public PreparedStatement createPreparedStatement(Connection con) 
                     throws SQLException {
-                // ÆÄ¶ó¹ÌÅÍ·Î Àü´Þ¹ÞÀº ConnectionÀ» ÀÌ¿ëÇØ¼­ PreparedStatement »ý¼º
+                // ï¿½Ä¶ï¿½ï¿½ï¿½Í·ï¿½ ï¿½ï¿½ï¿½Þ¹ï¿½ï¿½ï¿½ Connectionï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ø¼ï¿½ PreparedStatement ï¿½ï¿½ï¿½ï¿½
                 PreparedStatement pstmt = con.prepareStatement(
                 "update willwork set doneWork = CONCAT(donework, ' ', ?) where name=?"
                   );
-                // ÀÎµ¦½º ÆÄ¶ó¹ÌÅÍ °ª ¼³Á¤
+                // ï¿½Îµï¿½ï¿½ï¿½ ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 pstmt.setString(1, doneWork);
                 pstmt.setString(2, name);
-                // »ý¼ºÇÑ PreparedStatement °´Ã¼ ¸®ÅÏ
+                // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ PreparedStatement ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
                 return pstmt;
             } //end createPreparedStatement()
         });
@@ -133,14 +136,14 @@ public class WillWorkDAO2 {
             @Override
             public PreparedStatement createPreparedStatement(Connection con) 
                     throws SQLException {
-                // ÆÄ¶ó¹ÌÅÍ·Î Àü´Þ¹ÞÀº ConnectionÀ» ÀÌ¿ëÇØ¼­ PreparedStatement »ý¼º
+                // ï¿½Ä¶ï¿½ï¿½ï¿½Í·ï¿½ ï¿½ï¿½ï¿½Þ¹ï¿½ï¿½ï¿½ Connectionï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ø¼ï¿½ PreparedStatement ï¿½ï¿½ï¿½ï¿½
                 PreparedStatement pstmt = con.prepareStatement(
                 "update willwork set dowork=? where name=?"
                  );
-                // ÀÎµ¦½º ÆÄ¶ó¹ÌÅÍ °ª ¼³Á¤
+                // ï¿½Îµï¿½ï¿½ï¿½ ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 pstmt.setString(1, doWork);
                 pstmt.setString(2, name);
-                // »ý¼ºÇÑ PreparedStatement °´Ã¼ ¸®ÅÏ
+                // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ PreparedStatement ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
                 return pstmt;
             } //end createPreparedStatement()
         });
