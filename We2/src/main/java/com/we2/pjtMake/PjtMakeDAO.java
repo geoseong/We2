@@ -16,6 +16,8 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
+import com.we2.spring.Member;
+
 public class PjtMakeDAO {
 	
 	private JdbcTemplate jdbcTemplate;
@@ -105,6 +107,65 @@ public class PjtMakeDAO {
 	return count;
 	}
 	
+	
+	/** 프로젝트 정보 뿌리기위한 DAO*/
+	public PjtMakeVO selectAllpjtInfo(String pjtCode){
+			System.out.println("PjtMakeDAO ] pjtCode : "+pjtCode);
+		List<PjtMakeVO> results = jdbcTemplate.query(
+				"select * from pjtMake where pjtCode = ?"
+				,
+				new RowMapper<PjtMakeVO>() {
+					@Override
+					public PjtMakeVO mapRow(ResultSet rs, int rowNum) throws SQLException {
+						PjtMakeVO pjtmake = new PjtMakeVO(
+								rs.getString("pjtName"),
+								rs.getString("pjtClassify"),
+								rs.getString("startDate"),
+								rs.getString("endDate")
+						);
+						return pjtmake;
+					}
+				}
+				, pjtCode);
+		System.out.println("PjtMakeDAO] results.isempty? - "+results.isEmpty());
+		return results.isEmpty() ? null : results.get(0);
+	}
+	
+	/** 해당 프로젝트의 조원들 선택하기*/
+	public List<String> selectAllpjtMem(String pjtCode){
+		System.out.println("PjtMakeDAO ] pjtCode : "+pjtCode);
+		List<String> results = jdbcTemplate.query(
+				"select mem.name pjtmembers from pjtmanager mgr, member mem where mgr.userId=mem.userId and mgr.pjtcode = ?"
+				,
+				new RowMapper<String>() {
+					@Override
+					public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+						String pjtmembers=rs.getString("pjtmembers");
+						return pjtmembers;
+					}
+				}
+				, pjtCode);
+		System.out.println("PjtMakeDAO] results.isempty? - "+results.isEmpty());
+		return results.isEmpty() ? null : results;
+	}
+	
+	/** 방장이 누군지 구하기 */
+	public String selectLeader(String pjtCode){
+		System.out.println("PjtMakeDAO ] pjtCode : "+pjtCode);
+		List<String> results = jdbcTemplate.query(
+				"select userid from pjtmanager where pjtcode=? and isleader='y'"
+				,
+				new RowMapper<String>() {
+					@Override
+					public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+						String leaderid=rs.getString("userid");
+						return leaderid;
+					}
+				}
+				, pjtCode);
+		System.out.println("PjtMakeDAO] results.isempty? - "+results.isEmpty());
+		return results.isEmpty() ? null : results.get(0);
+	}
 	
 	/**회원 초대수락할때 멤버추가하기.*/
 	public void addpjtMember(){

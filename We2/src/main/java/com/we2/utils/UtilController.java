@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.we2.pjtMake.PjtMakeVO;
 
 @Controller
-public class Utilontroller {
+public class UtilController {
 
 	@Autowired
 	ExcelService service;

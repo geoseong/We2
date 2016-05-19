@@ -32,6 +32,8 @@ public class SchedulerController {
 	SchedulerService schedulerService;
 	@Autowired
 	HttpServletRequest request;
+	@Autowired
+	HttpSession session;
 	
 	// 페이징처리 싱글톤 인스턴스객체 얻음
 	RPagingManager paging = RPagingManager.getInstance();
@@ -42,7 +44,9 @@ public class SchedulerController {
 		
 	/* 리스트 */
 	@RequestMapping(value="/list", method=RequestMethod.GET)
-	public String listSpecificPageWork(Model model, int pjtcode) throws ParseException{
+	public String listSpecificPageWork(Model model) throws ParseException{
+		int pjtcode=(Integer)session.getAttribute("pjtCode");
+		
 		model.addAttribute("Content", schedulerService.getlist(pjtcode));
 		model.addAttribute("page", "../Scheduler/Calendar");
 		System.out.println("--------------------------listSpecificPage");
