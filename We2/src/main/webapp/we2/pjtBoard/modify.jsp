@@ -23,8 +23,8 @@
 								<td colspan="3">${BoardUpdate.getItemNum() }</td>
 							</tr>
 							<tr>
-								<th style="width: 80px">작성자</th>
-								<td>${BoardUpdate.getUserId() }</td>
+								<th >작성자</th>
+								<td >${BoardUpdate.getUserId() }</td>
 								<th style="width: 80px">조회수</th>
 								<td>${BoardUpdate.getItemClick() }	</td>
 							</tr>
