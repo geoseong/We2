@@ -1,0 +1,70 @@
+@CHARSET "UTF-8";
+
+#container{
+	width:700px;
+	margin:0;
+	margin-left: auto;
+	margin-right: auto;
+/* 	background:#ccc; */
+}
+table{
+	width: 680px;
+	font-size: 12px;
+	line-height: 20px;
+	border-collapse: collpse;
+}
+
+table td, th {
+	border: #d3d3d3 solid 1px;
+	padding: 0;
+		
+}
+
+th{
+	/* background: aqua; */
+}
+
+a{
+	text-decoration: none;
+	color: black;
+	
+}
+
+#filenum{
+	width:50px;
+	
+}
+
+#filename{
+	width:200px;
+}
+
+#filedownload{
+	width:80px;
+}
+
+#fileupdate{
+	width:40px;
+	
+}
+
+
+#filedelete{
+	width: 80px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

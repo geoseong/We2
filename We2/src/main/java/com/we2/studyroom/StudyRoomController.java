@@ -106,8 +106,8 @@ public class StudyRoomController {
 	
 	/*검색 기능*/
 	
-	@RequestMapping(value="/search", method=RequestMethod.POST)
-	public String studyroomsearch(@RequestParam("page") int page, Model model, String rlocation, String rlocationdetail) throws ParseException{
+	@RequestMapping(value="/search.do", method=RequestMethod.POST)
+	public String studyroomsearch(@RequestParam("page") int page, Model model,@RequestParam("rlocation") String rlocation,@RequestParam("rlocationdetail") String rlocationdetail ) throws ParseException{
 		System.out.println("-------------------------------받아온 파라미터");
 			System.out.println("rows_per_page : " + rows_per_page);
 			System.out.println("page : " + page);
@@ -186,9 +186,9 @@ public class StudyRoomController {
 	 * @throws IOException */
 	
 	@RequestMapping(value="/studyroomwrite.do", method=RequestMethod.POST)
-	public String writepost(HttpSession session, HttpServletRequest request, Model model, String category) throws IOException {
+	public String writepost(HttpSession session, HttpServletRequest request, Model model) throws IOException {
 	    // 해당 경로의 폴더가 안만들어져있다면 직접 만들어놔야할 것.
-		String path=servletContext.getRealPath("we2/studyRoom/data");
+		String path=servletContext.getRealPath("img/studyRoom");
 		System.out.println("path : "+path);
 		// getRealPath : E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps\testweb\
 		String encType="UTF-8";
@@ -235,7 +235,7 @@ public class StudyRoomController {
 		  model.addAttribute("studyroompage", "StudyRoomList");
 		  model.addAttribute("page", 1);
 		
-		return "studyRoom/shareArea";
+		return "studyRoom/close";
 	}
 	
 	
@@ -271,7 +271,7 @@ public class StudyRoomController {
 			// JSP:INCLUDE PAGE
 			  model.addAttribute("studyroompage", "StudyRoomList");
 			  model.addAttribute("page", 1);
-			return "studyRoom/shareArea";   
+			return "studyRoom/close";   
 		}
 		
 		
@@ -346,7 +346,7 @@ public class StudyRoomController {
 			  model.addAttribute("studyroompage", "StudyRoomList");
 			  model.addAttribute("page", 1);
 			  
-			return "studyRoom/shareArea";   
+			return "studyRoom/close";   
 		}
 
 		/*내용 보기*/

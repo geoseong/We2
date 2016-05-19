@@ -105,7 +105,7 @@ public class FileController {
 		// JSP:INCLUDE PAGE
 		  model.addAttribute("filepage", "fileWrite");
 	 
-		return "file/FileWrite";
+		return "file/fileWrite";
 	}
 	
 	/* 글 등록하기 
@@ -148,7 +148,7 @@ public class FileController {
 		  model.addAttribute("filepage", "fileList");
 		  model.addAttribute("page", "../file/FileList");
 		
-		return "myproject/myproject";
+		return "file/close";
 	}
 	
 	
@@ -184,7 +184,7 @@ public class FileController {
 			// JSP:INCLUDE PAGE
 			  model.addAttribute("filepage", "fileList");
 			  model.addAttribute("page", 1);
-			return "myproject/myproject";   
+			return "file/close";   
 		}
 		
 		

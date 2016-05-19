@@ -106,7 +106,7 @@ public class SchedulerController {
 		  model.addAttribute("schdulerpage", "Calendar");
 		  model.addAttribute("page", 1);
 		
-		return "myproject/myproject";
+		return "Scheduler/close";
 	}
 	
 	/* 삭제하기*/ 
@@ -130,7 +130,7 @@ public class SchedulerController {
 			// JSP:INCLUDE PAGE
 			  model.addAttribute("schedulerpage", "Calendar");
 			  model.addAttribute("page", 1);
-			return "myproject/myproject";   
+			return "Scheduler/close";   
 		}
 		
 		
@@ -190,7 +190,7 @@ public class SchedulerController {
 			  model.addAttribute("schedulerpage", "Calendar");
 			  model.addAttribute("page", 1);
 			  
-			return "studyRoom/shareArea";   
+			return "Scheduler/close";   
 		}
 		
 	

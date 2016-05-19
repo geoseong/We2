@@ -56,22 +56,25 @@ function winOpen2(calendarmemo_num){
   // 월을 request영역에 보냄.
   	request.setAttribute("month", month);
   %>
- <div id="wrap_c">
+  
+  
+  
+    <div id ="wrap_c">
 
      <div class ="top"><!-- 달력 상단 부분, 더 좋은 방법이 없을까? -->
    
        <!-- 년 도 --> 
           <span><% out.print("   "+"오늘은 "+currentYear + "년 " + (currentMonth+1) + "월 "+  currentDate+"일"); %></span>
           
-      <div>
+        <div>
           <a href="list?year=<%out.print(year);%>&month=<%out.print(month-1);%>&pjtcode=10"> < &nbsp;</a>
     
 	      <span> <% out.print(year); %>년 &nbsp;&nbsp;<% out.print(month); %>월 </span>
 	     
 	      <a href="list?year=<%out.print(year);%>&month=<%out.print(month+1);%>&pjtcode=10"> &nbsp; > </a>
-   	  <div>
-  
-        </div> <!-- top end -->
+          </div> 
+          
+      </div> <!-- top end -->
     
       <div class = "calendar">
   
@@ -122,7 +125,6 @@ function winOpen2(calendarmemo_num){
 	<!-- //날짜 TD  -->
 	<c:forEach var="j" begin="1" end="${end }">
 	  <td id='name'>
-	  
 		<a href='#' onclick='javascript:winOpen("+pjtcode+")' >
 			${j}
 		</a>
@@ -138,7 +140,7 @@ function winOpen2(calendarmemo_num){
 			</a>
 		<br>
 		</c:forEach>
-	  </td>
+	  </td>  <!-- 날짜부분 -->
 	  
 	  <!-- TD가 7개가 넘어가면 TR을 사용. -->
 	  <c:set var="br" value="${br+1 }"></c:set>
@@ -161,10 +163,9 @@ function winOpen2(calendarmemo_num){
      </tr>
  </table>
  <!-- END : 본격적인 day부분을 td태그 반복하는 부분. -->
-      </div> <!-- calendar_2 end -->
-     
       </div> <!-- calendar end -->
-   </div>  <!-- wrap_c end -->
+     
+      </div> <!-- wrap_c end -->
      
  </body>
 </html>

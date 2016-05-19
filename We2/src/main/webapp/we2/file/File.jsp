@@ -27,6 +27,7 @@ function fileDownLoad(){
 
 </script>
 </head>
+
 <body>
    <input type="hidden" name="fcode" value="${fileList.fcode}" >
 
