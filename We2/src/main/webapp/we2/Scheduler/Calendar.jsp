@@ -20,8 +20,9 @@ int calendarmemo_num;
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <script>
-function winOpen(pjtcode){
-	var url = "memoAdd.do";
+ 
+function winOpen(year, month, day){
+	var url = "memoAdd.do?year="+year+"&month="+month+"&day="+day;
 	javascript:window.open(url, '일정관리 추가하기', 'width=400 height=330 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
 }
 function winOpen2(calendarmemo_num){
@@ -55,8 +56,9 @@ function winOpen2(calendarmemo_num){
 	   if(month<0) { month=11; year=year-1; } //1월부터 12월까지 범위 지정.
 	   if(month>11) { month=0; year=year+1; }
   }
-  // 월을 request영역에 보냄.
+  // 년, 월을 request영역에 보냄.
   	request.setAttribute("month", month);
+  	request.setAttribute("year", year);
   %>
   
   
@@ -127,9 +129,8 @@ function winOpen2(calendarmemo_num){
 	
 	<div class="date">
 	<c:forEach var="j" begin="1" end="${end }">
-	
 	  <td class="name" > <!-- 날짜부분 -->
-		<a href='#' onclick='javascript:winOpen("+pjtcode+")' >
+		<a href='#' onclick='javascript:winOpen(${year}, ${month}, ${j })' >
 			${j}
 		</a>
 		

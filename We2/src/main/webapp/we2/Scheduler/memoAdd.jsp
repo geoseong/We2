@@ -33,9 +33,9 @@
     %>
 
    	<input type="hidden" name="pjtcode" value="<%=pjtcode%>">
-   	 <input type=text name="calendarmemo_year" value="2016" size=4>년
-   	 <input type=text name="calendarmemo_month" size=2>월
-   	 <input type=text name="calendarmemo_day" size=2>일
+   	 <input type=text name="calendarmemo_year" value="${year}" size=4>년
+   	 <input type=text name="calendarmemo_month" size=2 value="${month}">월
+   	 <input type=text name="calendarmemo_day" size=2 value="${day}">일
     <br></td>
    </tr>
    
