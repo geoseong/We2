@@ -1,3 +1,4 @@
+
 package com.we2.spring;
 
 import java.sql.Connection;
@@ -6,9 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
+
 import javax.sql.DataSource;
 
-import org.junit.runner.Request;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
@@ -16,7 +17,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.sun.jmx.snmp.Timestamp;
+//import com.sun.jmx.snmp.Timestamp;
 import com.we2.pjtMake.PjtMakeVO;
 import com.we2.spring.Member;
 
@@ -122,7 +123,6 @@ public class MemberDao {
 		}
 
 	public static MemberDao getInstance() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	

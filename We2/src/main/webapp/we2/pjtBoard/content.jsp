@@ -53,7 +53,7 @@
 									<c:otherwise>
 											<!-- 기본설정경로 : 서블릿경로
 												E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps -->
-										<a href="we2/pjtBoard/data/${BoardContent.getItemPath() }" >${BoardContent.getItemPath() }</a>
+										<a href="/We2/we2/pjtBoard/data/${BoardContent.getItemPath() }" download>${BoardContent.getItemPath() }</a>
 									</c:otherwise>
 								</c:choose>
 								</td>
@@ -73,13 +73,26 @@
 							<c:when test="${empty BoardContent.getItemPath() }">
 									<!-- 기본설정경로 : 서블릿경로
 										E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps -->
-								<img src="/We2/we2/pjtBoard/data/noimg.png" style="width: 50px;">
+								<img src="/We2/img/board/icon_NoImg.png" style="width: 50px;">
 							</c:when>
 							<c:when test="${BoardContent.getItemDataType().contains('image') }">
 								<img src="/We2/we2/pjtBoard/data/${BoardContent.getItemPath() }" class="board_img" style="width: 300px;">
 							</c:when>
-							<c:when test="${BoardContent.getItemDataType().contains('pptx') }">
-								<img src="/We2/we2/pjtBoard/data/ppt.JPG" class="board_img" style="width: 300px;">
+							
+							<c:when test="${BoardContent.getItemDataType().contains('ppt') }">
+								<img src="/We2/img/board/icon_ppt.png" class="board_img" style="width: 70px;">
+							</c:when>
+							
+							<c:when test="${BoardContent.getItemDataType().contains('xls') }">
+								<img src="/We2/img/board/icon_xls.png" class="board_img" style="width: 70px;">
+							</c:when>
+							
+							<c:when test="${BoardContent.getItemDataType().contains('text') }">
+								<img src="/We2/img/board/icon_txt.png" class="board_img" style="width: 70px;">
+							</c:when>
+							
+							<c:when test="${BoardContent.getItemDataType().contains('zip') }">
+								<img src="/We2/img/board/icon_zip.png" class="board_img" style="width: 70px;">
 							</c:when>
 							<%-- <div class="modal">
 							<c:if test="${BoardContent.getItemDataType().contains('image') }"> <!-- 콘텐츠 타입에 이미지라는 단어를 포함하고 있으면  -->
@@ -91,7 +104,7 @@
 							<c:otherwise>
 									<!-- 기본설정경로 : 서블릿경로
 										E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps -->
-								<img src="/We2/we2/pjtBoard/data/datafile.png" style="width: 50px;">
+								<img src="/We2/img/board/icon_data.png" style="width: 50px;">
 							</c:otherwise>
 						</c:choose>
 						<!-- </div> modal end -->

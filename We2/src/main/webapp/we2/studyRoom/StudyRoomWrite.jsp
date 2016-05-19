@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="css/w2_reset.css">
+<!-- <link rel="stylesheet" type="text/css" href="css/w2_reset.css"> -->
 <link rel="stylesheet" type="text/css" href="../css/studyroom_window.css">
 
 <title>스터디룸 공유_글쓰기</title>
@@ -50,15 +50,17 @@
         <th>
         파일첨부 
         </th>
-   		<td colspan=3 >
-   			<input type="file" name="rpictureurl"> 
+   		<td colspan=4 >
+   			<input type="file" name="rpictureurl"> <br> 
+   			
    			<span style="font-size:12px; color:red;">*파일 용량제한은 20MB 입니다.</span>
    		</td>
        </tr>
-
+	<tr>
      <td colspan=5>
 		<TEXTAREA name="rcontent" class="textarea" ROWS="8" COLS="52"></TEXTAREA> <br> 
 	 </td>
+	</tr>
     </table>
     
     
@@ -67,7 +69,7 @@
        <input name="cancel"  class="add_btn"  type="reset" value="다시 작성">
     </div>
    
-  </form>
+ </form>
   
 </body>
 </html>

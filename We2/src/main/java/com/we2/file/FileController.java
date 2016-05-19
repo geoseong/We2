@@ -34,8 +34,7 @@ public class FileController {
 	HttpServletRequest request;
 	
 	// 페이징처리 싱글톤 인스턴스객체 얻음
-	RPagingManager paging = RPagingManager.getInstance();
-	
+	RPagingManager paging = RPagingManager.getInstance();	
 	// 한 페이지에 표시할 레코드 수 정의
 	int rows_per_page=9;
 	// 한 화면에 표시할 페이지 수 정의
@@ -71,20 +70,13 @@ public class FileController {
 				System.out.println("--block_last가 t_pages보다 크므로 내용이 존재하는 페이지만큼만 block_last를 조절.");
 				block_last=t_pages;
 			}
-			System.out.println("t_pages : " + t_pages +" , t_rows : "+t_rows+" , block_total : "+block_total+" , block : "+ block + " , block_first : " + block_first + " , block_last : " + block_last);
-		System.out.println("-------------------------------변수설정 끝");
-		/*//디버깅 : 
-			int size=content.size();
-			for(int i=0; i < size ; i++){
-				System.out.println("get ("+ i +") : "+boardService.getList(row_start, row_end).get(i).getItemDate());
-				System.out.println("-------------------end of get(" + i + ")");
-			} // 디버깅 끝 
-*/	
+
 		/* SECTION : REQUEST 영역에 보내기 */
 		// ★★ SELECT 결과물 ★★
-					model.addAttribute("fileList", fileService.getlist(row_start-1, row_end-1));
+				  model.addAttribute("fileList", fileService.getlist(row_start-1, row_end-1));
 				// JSP:INCLUDE PAGE
 				  model.addAttribute("filepage", "fileList");
+				  model.addAttribute("page", "../file/FileList");
 				// total page int 변수를 보냄
 				  model.addAttribute("t_pages", t_pages);
 				// 현재 페이지 번호를 보냄
@@ -95,15 +87,16 @@ public class FileController {
 				  model.addAttribute("block_last",block_last);
 				  model.addAttribute("block_total",block_total);
 				  model.addAttribute("page_for_block", page_for_block);
+				  
 			
 		System.out.println("--------------------------listSpecificPage");
 		
-		return "file/FileList";
+		return "myproject/myproject";
 	}
 
 
 	@RequestMapping(value="/filewrite.do", method=RequestMethod.GET)
-	public String writeget(HttpSession session, HttpServletRequest request, Model model, FileBean fileBean){
+	public String writeget(HttpSession session, HttpServletRequest request, Model model){
 		System.out.println("---글쓰기 페이지 진입");
 		if(session.getAttribute("authInfo")!=null){
 			System.out.println("로그인 되어있음.");
@@ -120,11 +113,11 @@ public class FileController {
 	 * @throws IOException */	
 	
 	@RequestMapping(value="/filewrite.do", method=RequestMethod.POST)
-	public String writepost(HttpSession session, HttpServletRequest request, Model model, String category) throws IOException {
+	public String writepost(HttpSession session, HttpServletRequest request, Model model) throws IOException {
 	    // 해당 경로의 폴더가 안만들어져있다면 직접 만들어놔야할 것.
 		String path=servletContext.getRealPath("we2/file/data");
 		System.out.println("path : "+path);
-		// getRealPath : E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps\testweb\
+		// getRealPath : E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps\We2\
 		String encType="UTF-8";
 		int sizeLimit = 20*1024*1024;
 		
@@ -136,7 +129,7 @@ public class FileController {
 		//2. 제목
 			String fname=multi.getParameter("fname");
 			fVo.setFname(fname);
-				System.out.println("WriteServlet - title : " + fVo.getFname());
+				System.out.println("WriteServlet - fname : " + fVo.getFname());
 		/*//3. 유저ID는 세션에 떠돌아다니는 (로그인중인) 변수를 getAttribute하면 됨
 			AuthInfo mVo = (AuthInfo)session.getAttribute("authInfo");
 			fVo.setUserId(mVo.getUserId());
@@ -149,13 +142,23 @@ public class FileController {
 		
 		
 		// 게시글 내용들을 Insert하기
-			fileService.insertFile(fVo);
+			fileService.insertFile(fname, fileurl);
 		
+		// alert 메시지.
+			String message=
+					"<script type='text/javascript'>"
+					+"alert('게시물 등록이 완료되었습니다.');"
+					+"opener.location.reload();"
+					+"self.close();"
+					+ "</script>";
+			model.addAttribute("alert",message);
+			
 		// JSP:INCLUDE PAGE
 		  model.addAttribute("filepage", "fileList");
-		  model.addAttribute("page", 1);
-		
-		return "file/FileList";
+		  model.addAttribute("page", "../file/FileList");
+		  
+		System.out.println(message);
+		return "file/close";
 	}
 	
 	
@@ -186,12 +189,22 @@ public class FileController {
 			logger.info("fcode=["+fcode+"] ");
 			fileService.deleteRow(fcode);
 			//�ٽ� �������� ��ȸ�Ѵ�.
+			
+			// alert 메시지.
+			String message=
+					"<script type='text/javascript'>"
+					+"alert('게시물 삭제가 완료되었습니다.');"
+					+"opener.location.reload();"
+					+"self.close();"
+					+ "</script>";
+			model.addAttribute("alert",message);
+		
 			// BoardDelete - 2) �� ���� �� �ٽ� ����Ʈ�� ���ư���
 			model.addAttribute("shareArea", new Integer(fileService.getTotalCnt()));
 			// JSP:INCLUDE PAGE
 			  model.addAttribute("filepage", "fileList");
 			  model.addAttribute("page", 1);
-			return "file/FileList";   
+			return "file/close";   
 		}
 		
 		
@@ -213,7 +226,16 @@ public class FileController {
 		}
 			
 		@RequestMapping(value="/fileupdate.do", method=RequestMethod.POST)
-		public String fileupdatepos(FileBean fileBean, Model model , HttpSession session, HttpServletRequest request) throws IOException {
+		public String fileupdatepos(Model model , HttpSession session, HttpServletRequest request) throws IOException {
+			
+			// pjtCode를 세션에서 받아오고, 세션에 pjtCode가 없으면 We2홈피로 강제이동.
+			String pjtCode=null;
+			if(session.getAttribute("pjtCode")!=null){
+				pjtCode = (String)session.getAttribute("pjtCode");
+			}else{
+				model.addAttribute("alert", "<script type='text/javascript'>alert('로그인 하셔야 합니다.');opener.location.href='/We2';self.close()</script>");
+				return "file/close";
+			}
 			
 			String path=servletContext.getRealPath("we2/file/data");
 			System.out.println("path : "+path);
@@ -232,28 +254,48 @@ public class FileController {
 			fVo.setUserId(mVo.getUserId());
 				System.out.println("WriteServlet - userid : " + fVo.getUserId());*/
 		
-		//4. 파일경로
-			String fileurl = multi.getFilesystemName("fileurl");
-			fVo.setFileurl(fileurl);
-				System.out.println("WriteServlet - fileurl : " + fVo.getFileurl());
-		
-		//5. 코드번호	
+		//4. 코드번호	
 			int fcode=Integer.parseInt(multi.getParameter("fcode"));
 			fVo.setFcode(fcode);
-				System.out.println("WriteServlet - title : " + fVo.getFcode());		
+			System.out.println("WriteServlet - title : " + fVo.getFcode());		
+			
+		//5. 파일경로
+			String fileurl = null;
+			fVo.setFileurl(fileurl);
+				System.out.println("WriteServlet - fileurl : " + fVo.getFileurl());
+				
+				if(multi.getFilesystemName("fileurl") != null){
+					fileurl = multi.getFilesystemName("itemPath");
+					System.out.println("자료 업뎃함.");
+				}else{
+					// BoardMapper에서 select 결과를 받아옴.
+					//fVo = fileService.select_by_num(pjtCode, fcode);
+					fileurl = fVo.getFileurl();
+					System.out.println("자료수정된 것 없음");
+				} //end if
+		
 		// 게시글 내용들을 update 하기
 				
 			
 			logger.info("updateRow called!!");			
 			
-			fileService.updateRow(fcode, fname,fileurl);
+			fileService.updateRow(fcode, fname, fileurl);
 			
+			// alert 메시지.
+						String message=
+								"<script type='text/javascript'>"
+								+"alert('게시물 수정이 완료되었습니다.');"
+								+"opener.location.reload();"
+								+"self.close();"
+								+ "</script>";
+					model.addAttribute("alert",message);
+						
 			  model.addAttribute("shareArea", new Integer(fileService.getTotalCnt()));
 			// JSP:INCLUDE PAGE
 			  model.addAttribute("filepage", "fileList");
-			  model.addAttribute("page", 1);
+			  model.addAttribute("page", "../file/FileList");
 			  
-			return "file/FileList";   
+			return "myproject/myproject";   
 		}
 		
 }

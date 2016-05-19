@@ -31,7 +31,7 @@ public class WillWorkController {
 	int pjtCode = Integer.parseInt((String)session.getAttribute("pjtCode"));
 	List<WillWorkVO> results = willWorkDAO.selectAll(pjtCode);
 	
-	System.out.println("실행이될까용?");
+	System.out.println();
 	
 	String divDoWork1 = results.get(0).doWork; 
 	String divDoWork2 = results.get(1).doWork;

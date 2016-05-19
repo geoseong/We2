@@ -15,6 +15,6 @@ function charcheck(){
 		alert('내용은 적어도 한글자 이상은 입력해주세요~');
 		return false;
 	}
-	alert('현재 문자열 길이 : ' + frm.itemContent.value.length);
+	/*alert('현재 문자열 길이 : ' + frm.itemContent.value.length);*/
 	return true;
 }

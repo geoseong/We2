@@ -23,7 +23,10 @@ public interface StudyRoomMapper {
 			"select * from  limit #{row_start}, #{row_end}";
 	
 	final String select_by_rcode=
-			"select rcode, rname, rlocation, rlocationdetail, rmember, rcontent, rpictureurl from roomshare where rcode=${rcode}";
+			"select * from roomshare where rcode=${rcode}";
+	
+	final String Searchstudyroom=
+			"select * from roomshare where rlocation=${rlocation} and rlocationdetail=${rlocationdetail}";
 	
 	final String select_all = "select count(1) from roomshare";
 	
@@ -81,9 +84,29 @@ public interface StudyRoomMapper {
 		StudyRoomBean getSearchbyrcode(@Param("rcode") int rcode);
 	
 		
+		@Select(Searchstudyroom)				
+		@Results(value = {   
+				@Result(property="rcode", column="rcode"),
+				@Result(property="rname", column="rname"),
+				@Result(property="rlocation", column="rlocation"),
+				@Result(property="rlocationdetail", column="rlocationdetail"),
+				@Result(property="rmemeber", column="rmemeber"),
+				@Result(property="rcontent", column="rcontent"),
+				@Result(property="rpictureurl", column="rpictureurl")
+		})
+		StudyRoomBean getSearchstudyroom(
+				@Param("rlocation") String rlocation,
+				@Param("rlocationdetail") String rlocationdetail);
+			
 		@Insert(insertStudyRoom)  		
 		//@Options(useGeneratedKeys = true, keyProperty = "id")
-		void insertStudyRoom(StudyRoomBean studyRoomBean) ;
+		void insertStudyRoom(
+		@Param("rname") String rname, 
+		@Param("rlocation") String rlocation, 
+		@Param("rlocationdetail") String rlocationdetail, 
+		@Param("rcontent") String rcontent, 
+		@Param("rmember") int rmember, 
+		@Param("rpictureurl")String rpictureurl) ;
 		
 		@Select(select_all)
 		int getTotalCnt();

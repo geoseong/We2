@@ -31,6 +31,8 @@ public class PjtBoardController {
     private ServletContext servletContext;
 	@Autowired
 	HttpServletRequest request;
+	@Autowired
+	HttpSession session;
 	
 	String path="we2/pjtBoard/data";
 	int sizeLimit = 20*1024*1024;
@@ -118,10 +120,6 @@ public class PjtBoardController {
 		
 		System.out.println("Write.get] category : " + category);
 		
-		/*if(session.getAttribute("authInfo")==null){
-			return "redirect:/";
-		}*/
-		
 		// JSP:INCLUDE PAGE
 		  model.addAttribute("Boardpage", "write");
 		// category 보냄
@@ -132,14 +130,14 @@ public class PjtBoardController {
 	/** 글 등록하기 
 	 * @throws IOException */
 	@RequestMapping(value="/write", method=RequestMethod.POST)
-	public String aopwritepost(HttpSession session, /*HttpServletRequest request, */Model model/*, String category*/) throws IOException {
-		System.out.println("write.post] category : "+request.getParameter("category"));
-		
+	public String aopwritepost(/*HttpSession session, HttpServletRequest request, */Model model, String category) throws IOException {
+		System.out.println("write.post] category : "+category);
 		
 		// 해당 경로의 폴더가 안만들어져있다면 직접 만들어놔야할 것.
 		// getRealPath : E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps\testweb\
 		MultipartRequest multi = new MultipartRequest(
 					request, 	servletContext.getRealPath(path), sizeLimit, encType, new DefaultFileRenamePolicy());
+		
 		
 		//PjtBoardBean객체인 pVo에 변수들을 집어넣는다.
 		PjtBoardBean pVo = new PjtBoardBean();
@@ -163,21 +161,15 @@ public class PjtBoardController {
 		//8. 데이터 타입
 			pVo.setItemDataType(multi.getContentType("file"));
 				System.out.println("파일 contentType : " + pVo.getItemDataType());
-
-		// SQL : 게시글 내용들을 Insert하기
-			boardService.insertBoard(request.getParameter("category"), pVo.getItemTitle(), pVo.getUserId(), pVo.getItemPath(), pVo.getItemContent(), pVo.getItemDataType());
-		
+		// 게시글 내용들을 Insert하기
+			boardService.insertBoard(category, pVo.getItemTitle(), pVo.getUserId(), pVo.getItemPath(), pVo.getItemContent(), pVo.getItemDataType());
+		  //boardService.insertBoard(category, cVo.getItemTitle(), cVo.getUserId(), cVo.getItemPath(), cVo.getItemContent(), cVo.getItemDataType());
 		// JSP:INCLUDE PAGE
 		  model.addAttribute("Boardpage", "list");
-		  //model.addAttribute("page", "1");
-		  request.setAttribute("page", 1);
+		  model.addAttribute("page", 1);
 		// category 보냄
-		  //model.addAttribute("category", category);
-		  request.setAttribute("category", request.getParameter("category"));
-		  
-		  //request.setAttribute("msg", "<script type='text/javascript'>alert('입력되었습니다');</script>");
-		  model.addAttribute("msg", "<script type='text/javascript'>alert('입력되었습니다');</script>");
-		return "pjtBoard/boardmain";
+		  model.addAttribute("category", category);
+		return "redirect:list";
 	}
 	
 	@RequestMapping(value="/content", method=RequestMethod.GET)
@@ -211,12 +203,9 @@ public class PjtBoardController {
 	}
 	
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
-	public String aopmodifypost(Model model/*, String category, int itemNum*/) throws IOException {
-		String category =request.getParameter("category");	
-		int itemNum=Integer.parseInt(request.getParameter("itemNum"));
+	public String aopmodifypost(Model model, String category, int itemNum) throws IOException {
 		System.out.println("Modify.POST] itemNum : " + itemNum);
 		System.out.println("Modify.POST] category : " + category);
-		
 		
 		MultipartRequest multi = 
 				new MultipartRequest(

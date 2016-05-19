@@ -9,45 +9,9 @@ public class StudyRoomBean {
 	private int rmember;
 	private String rcontent;
 	private String rpictureurl;
-	private String userId;
-	
-	public String getUserId() {
-		return userId;
-	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
 
-	public StudyRoomBean() {
-		super();
-	}
 
-	public StudyRoomBean(int rcode, String rname, String rlocation, String rlocationdetail, int rmember,
-			String rcontent, String rpictureurl, String userId) {
-		super();
-		this.rcode = rcode;
-		this.rname = rname;
-		this.rlocation = rlocation;
-		this.rlocationdetail = rlocationdetail;
-		this.rmember = rmember;
-		this.rcontent = rcontent;
-		this.rpictureurl = rpictureurl;
-		this.userId = userId;
-	}
-
-	public StudyRoomBean(int rcode, String rname, String rlocation, String rlocationdetail, String string, int rmember,
-			String rcontent, String rpictureurl) {
-		super();
-		this.rcode = rcode;
-		this.rname = rname;
-		this.rlocation = rlocation;
-		this.rlocationdetail = rlocationdetail;
-		this.rmember = rmember;
-		this.rcontent = rcontent;
-		this.rpictureurl = rpictureurl;
-	}
-	
 	public int getRcode() {
 		return rcode;
 	}
@@ -91,5 +55,20 @@ public class StudyRoomBean {
 	public void setRpictureurl(String rpictureurl) {
 		this.rpictureurl = rpictureurl;
 	}
+	public StudyRoomBean() {
+		super();
+	}
 
+	public StudyRoomBean(int rcode, String rname, String rlocation, String rlocationdetail, int rmember,
+			String rcontent, String rpictureurl) {
+		super();
+		this.rcode = rcode;
+		this.rname = rname;
+		this.rlocation = rlocation;
+		this.rlocationdetail = rlocationdetail;
+		this.rmember = rmember;
+		this.rcontent = rcontent;
+		this.rpictureurl = rpictureurl;
+		
+	}
 }

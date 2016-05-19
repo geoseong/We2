@@ -7,13 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>프로젝트 설정</title>
 
-     <link rel="stylesheet" href="/We2/css/w2_reset.css" type="text/css">
-     <link rel="stylesheet" href="/We2/css/02_project.css" type="text/css">
-    <!--  <link rel="stylesheet" type="text/css" href="/We2/css/notice_board_contents.css">  -->
-    <!--  <link rel="stylesheet" type="text/css" href="css/File.css"> -->
      <link rel="stylesheet" type="text/css" href="/We2/css/setting.css"> 
      
-     <script type="text/javascript" src="../js/jquery-1.12.1.min.js"></script> 
 
 
 </head>
@@ -26,29 +21,33 @@
       <table>
 	       <tr>
 	         <th>프로젝트 이름 </th>
-	         	<td>We2</td>
+	         	<td>${pjtInfo.pjtName }</td>
 	       </tr>
 	       
 	       <tr>
 	      	 <th>시작일 </th>
-	      	 	<td>2016년 3월 1일</td>
+	      	 	<td>${pjtInfo.startDate }</td>
 	       </tr>
 	      
 	       <tr>
 	     	 <th>마감일 </th>
-	      	 	<td>2016년 5월 20일</td>
+	      	 	<td>${pjtInfo.endDate }</td>
 	       </tr>
 	       
 	       <tr>
 	      	 <th>팀원 </th>
-	      		 <td>박태성, 정준영, 박상혁, 김동한, 박규민</td>
+	      		 <td>
+					<c:forEach var="pjtmem" items="${pjtmem }" varStatus="status">
+						${pjtmem }<c:if test="${not status.last}">, </c:if>
+					</c:forEach>
+				</td>
 	       </tr>
       </table>
    
     </div> <!-- pjt_info end -->
    
    
-
+<c:if test="${isleader eq 'Y' }">
    <h2 style="float:left;">팀원 관리</h2>
    
   	 <div class = "pjt_team">
@@ -122,7 +121,7 @@
    </table>
    
    </div> <!-- pjt_team end -->
-   
+  </c:if>
    
    <!-- <h2>프로젝트 기간 수정</h2>
  
@@ -144,7 +143,6 @@
 
 </body>
 
-<script src="js/jquery-1.12.2.min.js"></script>
 <!-- jQuery UI CSS파일  -->
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
 <!--  jQuery 기본 js파일 -->

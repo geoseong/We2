@@ -29,7 +29,7 @@ public class AOP_Session {
 	HttpSession session;
 	//request=((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
 	
-	@Pointcut("execution(public * com.we2.sharepjtboard.PjtBoardController.aop*(..))")
+	@Pointcut("execution(public * com.we2..*.aop*(..))")
 	public void sessionCheck(){}
 	
 	/** sessionCheck에 대한 AOP..*/
@@ -60,13 +60,8 @@ public class AOP_Session {
         String ex_str=ex.toString();
         System.out.println("Throwable ex - " + ex_str+"\n------------------");
 
-        /*if(ex_str.contains("NumberFormatException")){
-    	   request.setAttribute("error", "numberformatexception");*/
-    	   request.setAttribute("errormsg", ex_str);
-     /*  }else if(ex_str.contains("NullPointerException")){
-    	   request.setAttribute("error", "sessionAfterthrowing");
-    	   request.setAttribute("errormsg", ex_str);
-       }*/
+        request.setAttribute("error", ex_str);
+        
     }
 
 	 @After("sessionCheck()")

@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page session="false" %>
-<%@ page import="com.we2.studyroom.StudyRoomBean" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Properties" %>
 <%@ page import="java.io.IOException" %>
@@ -27,21 +26,18 @@
 
 <script type="text/javascript">
 
-  function winOpen(rcode){
-	var url = "StudyRoomContent.do?rcode=" + rcode;
-	javascript:window.open(url , '상세내용보기', 'width=500 height=700 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
-	}
+
   
   function check() {
-      if (document.frm.location.value == "지역구분") {
+      if (document.frm.rlocation.value == "지역구분") {
           alert("지역을 선택해주세요.");
-          document.frm.location.focus();
+          document.frm.rlocation.focus();
           return false;
       }
       
-      if (document.frm.type.value == "장소구분") {
+      if (document.frm.rlocationdetail.value == "장소구분") {
           alert("장소를 선택해주세요.");
-          document.frm.type.focus();
+          document.frm.rlocationdetail.focus();
           return false;
       }
       document.frm.submit();
@@ -49,25 +45,25 @@
   }
   function winOpen(rcode){ 
 		var url = "StudyRoomContent.do?rcode=" + rcode;
-		  javascript:window.open(url , '상세내용보기', 'width=530 height=700 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
+		  javascript:window.open(url , '상세내용보기', 'width=600 height=730 left=150 top=100 menubar=no rlocation=no, resizable=no, toolbar=no');
 	  }
 	  
-	  function winOpen2(rcode){
+  function winOpen2(rcode){
 		var url = "StudyRoomupdate.do?rcode=" + rcode;
 
-	   	  javascript:window.open(url , '상세내용보기', 'width=530 height=700 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
+	   	  javascript:window.open(url , '상세내용보기', 'width=570 height=730 left=150 top=100 menubar=no rlocation=no, resizable=no, toolbar=no');
 
 	  }		
 
   function winOpen3(rcode){
 		var url = "StudyRoomdelete.do?rcode=" + rcode;
-		    javascript:window.open(url , '상세내용보기', 'width=530 height=530 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
+		    javascript:window.open(url , '상세내용보기', 'width=570 height=550 left=150 top=100 menubar=no rlocation=no, resizable=no, toolbar=no');
 	}
 
 
 	function winOpen4(){   // 글쓰기
 		var url = "studyroomwrite.do";
-	     javascript:window.open(url , '상세내용보기', 'width=530 height=530 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
+	     javascript:window.open(url , '상세내용보기', 'width=570 height=550 left=150 top=100 menubar=no rlocation=no, resizable=no, toolbar=no');
 	}
 	  
 
@@ -77,8 +73,8 @@
 
 <script type="text/javascript">
   function subMenu() {
-	loc = $("select[name='location']").val();
-	type = $("select[name='type']").val();   
+	loc = $("select[name='rlocation']").val();
+	type = $("select[name='rlocationdetail']").val();   
 	$('#result').innerHtml = (loc +" &gt; " + type) ; 	
 	$("#eeeee").html(loc +"  > "+ type);   
 }
@@ -93,27 +89,27 @@
 	<div class="search_controll">
 		<h2 class="study_room_title"><a href="list?page=1">스터디룸 공유</a></h2>
 		
-		<form action="List?page=1"  method="post" name="frm">
+		<form action="search.do"  method="post" name="frm">
 		<ul class="study_room_menu">
 			<li>
-				<select name='location' id="location" onchange="subMenu()" style="width:350px; height:40px;">
+				<select name='rlocation' id="rlocation" onchange="subMenu()" style="width:350px; height:40px;">
 				 <option value="지역구분" >지역구분</option>
-				 <option value="서울" <c:if test="${'서울'==location}">selected</c:if>>서울</option>
-                 <option value="경기/인천" <c:if test="${'경기/인천'==location}">selected</c:if>>경기/인천</option>
-                 <option value="경남/부산/울산" <c:if test="${'경남/부산/울산'==location}">selected></c:if>>경남/부산/울산</option>
-                 <option value="대구/경북" <c:if test="${'대구/경북'==location}">selected</c:if>>대구/경북</option>
-                 <option value="광주/전라" <c:if test="${'광주/전라'==location}">selected</c:if>>광주/광주/전라</option>
-                 <option value="대전/세종/충청" <c:if test="${'대전/세종/충청'==location}">selected</c:if>>대전/세종/충청</option> 
+				 <option value="서울" <c:if test="${'서울'==rlocation}">selected</c:if>>서울</option>
+                 <option value="경기/인천" <c:if test="${'경기/인천'==rlocation}">selected</c:if>>경기/인천</option>
+                 <option value="경남/부산/울산" <c:if test="${'경남/부산/울산'==rlocation}">selected></c:if>>경남/부산/울산</option>
+                 <option value="대구/경북" <c:if test="${'대구/경북'==rlocation}">selected</c:if>>대구/경북</option>
+                 <option value="광주/전라" <c:if test="${'광주/전라'==rlocation}">selected</c:if>>광주/광주/전라</option>
+                 <option value="대전/세종/충청" <c:if test="${'대전/세종/충청'==rlocation}">selected</c:if>>대전/세종/충청</option> 
                 	        
              </select>
 			</li>
 			
 			<li>
-				<select name='type'  id="type"  onchange="subMenu()" style="width:350px;height:40px;">
+				<select name='rlocationdetail'  id="rlocationdetail"  onchange="subMenu()" style="width:350px;height:40px;">
                 	<option value="장소구분" >장소 구분</option>
-                	<option value="커피전문점" <c:if test="${'커피전문점'==type}">selected</c:if>>커피전문점</option>
-                	<option value="스터디카페/스터디룸" <c:if test="${'스터디카페/스터디룸'==type}">selected</c:if>>스터디카페/스터디룸</option>
-                	<option value="회의실" <c:if test="${'회의실'==type}">selected</c:if>>회의실</option>               
+                	<option value="커피전문점" <c:if test="${'커피전문점'==rlocationdetail}">selected</c:if>>커피전문점</option>
+                	<option value="스터디카페/스터디룸" <c:if test="${'스터디카페/스터디룸'==rlocationdetail}">selected</c:if>>스터디카페/스터디룸</option>
+                	<option value="회의실" <c:if test="${'회의실'==rlocationdetail}">selected</c:if>>회의실</option>               
                </select>
 			</li>
 			
@@ -141,8 +137,9 @@
 				<li>
 			<a href="javascript:winOpen('${roomshare.rcode}')">   
 			 	<%-- <a href="StudyRoomContent.do?rcode=${roomshare.rcode}"> --%> 
+				 <input type="hidden" value="${roomshare.rpictureurl}">
 				 <p class="content_list_img">
-					 <img src="data/${roomshare.rpictureurl}" >
+					 <img src="/We2/we2/studyRoom/data/${roomshare.rpictureurl}" >
 				 </p>
 			  </a>
 			      <div class="detail_txt">
@@ -195,7 +192,7 @@
 				</c:forEach>
 				<c:choose>
 					<c:when test="${block==block_total }">
-						&nbsp;[다음]
+						&nbsp;
 					</c:when>
 					<c:otherwise>
 						&nbsp;<a href="list?page=${block_first + page_for_block}">[다음]</a>

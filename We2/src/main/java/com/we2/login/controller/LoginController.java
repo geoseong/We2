@@ -160,9 +160,10 @@ public class LoginController {
 		return "/index";
 	}
 
-	@RequestMapping(value = "/Member_Mypage", method = RequestMethod.GET)
-	public String Member_MypageView(HttpServletRequest request, AuthInfo authInfo, Model model) {
-
+	
+	@RequestMapping(value="/Member_Mypage", method = RequestMethod.GET)
+	public String aopMember_MypageView(HttpServletRequest request, AuthInfo authInfo, Model model){
+		
 		HttpSession session = request.getSession(); // 세션영역을 가져옴
 
 		authInfo = (AuthInfo) session.getAttribute("authInfo");
