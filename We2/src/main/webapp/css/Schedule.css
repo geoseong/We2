@@ -21,7 +21,7 @@
 
  /* 테이블 안 날짜관련 테그들 부분 */
 .wrap_t a{
-	font-size: 17px;
+	font-size: 15px;
 	font-weight:400;
 	color: #424444;
 	text-align: left;
@@ -53,8 +53,13 @@ table tr{
 }
 
 table td{
-	border: 0.5px solid #d3d3d3; 
-	line-height:120px; /* 테이블 줄간격 */
+	height:120px;
+	border: 0.5px solid #d3d3d3; /* 테이블 줄간격 */
+	vertical-align: top;
+	text-align: left;
+	padding:5px;
+	color:#777777;
+	
 }
 
 
@@ -67,9 +72,9 @@ table td{
 }
 
 .name_1 {
- text-align:left; 
- padding-left:5px;
- font-size: 13px;
+	 text-align:left; 
+	 padding-left:5px;
+	 font-size: 13px;
 
 } 
 
