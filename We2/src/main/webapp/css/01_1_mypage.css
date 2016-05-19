@@ -100,19 +100,12 @@ table th {
 	background-color:#69C5E7;	 
 }
 
-
-
 td input{
 	padding:5px;
     height:20px;
     float:left;
     font-size:15px;	
 }
-
-
-
-
-
 
 
 #section{
@@ -142,13 +135,19 @@ td input{
     height: 3px;
     text-align: center;
     background-color:#4CC4EE;
-    font-size:15px;
-    font-weight: 500;
+    font-size:16px;
+    font-weight: 400;
     color : #89867e;
     text-align: center;
     vertical-align: 7px;
 }
 
+
+
+#second_line b{
+	color :#166BA3; 
+	font-weight: 600;
+}
 #section>#contents {
     width:82%;
     height:770px;
@@ -214,33 +213,40 @@ my_info_view>.my_picture{
 }
 
 .change_leave {
-      width:23%;
-      height: 30px;
-      margin-left:300px;
+      height: 40px;
       margin-top:20px;
 /*      border: 1px solid orange;*/
-      vertical-align: center;
+      vertical-align: middle;
+      text-align: center;
+      
 }
 
+.change_leave input{
+	width:230px;
+	height:40px;
+}
+
+
 .add_btn{
-    float:left;
     margin-top:0;
-    margin-left:10px;
+    margin-left:30px;
 	border:none;
-	background:#4CC4EE;
+	background:#7c8181;
 	color:#fff;
-    font-weight: 400;
+    font-weight:400;
     font-size:15px;
-	width:100px;
 	border-radius:5px;
     text-align: center;
 }
 
 .add_btn:hover{
-    background-color: black;
-    opacity:0.3;
+	background:#4CC4EE;
+	color:#fff;
+    opacity:0.7;
 }
 
+
+/* 내 프로젝트 보기 부분 */
 .my_proj {
    width:100%;
    height:330px;
@@ -251,12 +257,15 @@ my_info_view>.my_picture{
    border-top: 1px solid #4CC4EE;   
 }
 
-/*�궡 �봽濡쒖젥�듃 蹂닿린 ���씠�� 湲��뵪*/
-.my_proj span{
-    margin:40px;
-    font-size:20px;
+
+.my_proj h3{
+    width:100%;
+    font-size:23px;
     font-weight: 600;
+    padding-top:30px; 
     color : #166BA3;
+    text-align:center;
+/*    border: 1px solid red;*/
 }
 
 .my_proj_view {
