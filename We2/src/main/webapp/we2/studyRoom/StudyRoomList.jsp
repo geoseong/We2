@@ -45,25 +45,25 @@
   }
   function winOpen(rcode){ 
 		var url = "StudyRoomContent.do?rcode=" + rcode;
-		  javascript:window.open(url , '상세내용보기', 'width=620 height=700 left=150 top=100 menubar=no rlocation=no, resizable=no, toolbar=no');
+		  javascript:window.open(url , '상세내용보기', 'width=600 height=730 left=150 top=100 menubar=no rlocation=no, resizable=no, toolbar=no');
 	  }
 	  
   function winOpen2(rcode){
 		var url = "StudyRoomupdate.do?rcode=" + rcode;
 
-	   	  javascript:window.open(url , '상세내용보기', 'width=620 height=700 left=150 top=100 menubar=no rlocation=no, resizable=no, toolbar=no');
+	   	  javascript:window.open(url , '상세내용보기', 'width=570 height=730 left=150 top=100 menubar=no rlocation=no, resizable=no, toolbar=no');
 
 	  }		
 
   function winOpen3(rcode){
 		var url = "StudyRoomdelete.do?rcode=" + rcode;
-		    javascript:window.open(url , '상세내용보기', 'width=620 height=530 left=150 top=100 menubar=no rlocation=no, resizable=no, toolbar=no');
+		    javascript:window.open(url , '상세내용보기', 'width=570 height=550 left=150 top=100 menubar=no rlocation=no, resizable=no, toolbar=no');
 	}
 
 
 	function winOpen4(){   // 글쓰기
 		var url = "studyroomwrite.do";
-	     javascript:window.open(url , '상세내용보기', 'width=620 height=530 left=150 top=100 menubar=no rlocation=no, resizable=no, toolbar=no');
+	     javascript:window.open(url , '상세내용보기', 'width=570 height=550 left=150 top=100 menubar=no rlocation=no, resizable=no, toolbar=no');
 	}
 	  
 
@@ -137,9 +137,9 @@
 				<li>
 			<a href="javascript:winOpen('${roomshare.rcode}')">   
 			 	<%-- <a href="StudyRoomContent.do?rcode=${roomshare.rcode}"> --%> 
-				 <input type="text" value="${roomshare.rpictureurl}">
+				 <input type="hidden" value="${roomshare.rpictureurl}">
 				 <p class="content_list_img">
-					 <img src="/We2/img/studyroom/${roomshare.rpictureurl}" >
+					 <img src="/We2/we2/studyRoom/data/${roomshare.rpictureurl}" >
 				 </p>
 			  </a>
 			      <div class="detail_txt">
@@ -192,7 +192,7 @@
 				</c:forEach>
 				<c:choose>
 					<c:when test="${block==block_total }">
-						&nbsp;[다음]
+						&nbsp;
 					</c:when>
 					<c:otherwise>
 						&nbsp;<a href="list?page=${block_first + page_for_block}">[다음]</a>
