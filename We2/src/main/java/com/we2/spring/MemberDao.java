@@ -7,11 +7,15 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 import javax.sql.DataSource;
+
+import org.junit.runner.Request;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import com.sun.jmx.snmp.Timestamp;
 import com.we2.spring.Member;
 
@@ -35,8 +39,11 @@ public class MemberDao {
 	} //MemberDao에 DataSource를 주입함!!
 	
 	public Member selectByUserid(String userId) {
+		System.out.println("MemberDAO userId 인자받은 :::::::::::::::::::::::"+userId);
 		List<Member> results = jdbcTemplate.query("select * from MEMBER where USERID = ?", memRowMapper, userId);
-		System.out.println("userId" + "1234556");
+		System.out.println("MemberDAO] results.isempty? - "+results.isEmpty());
+		System.out.println("MemberDAO] userid - " + results.get(0).getUserId());
+		System.out.println("MemberDAO] pwd - " + results.get(0).getPwd());
 		return results.isEmpty() ? null : results.get(0);
 	}
 
@@ -46,7 +53,9 @@ public class MemberDao {
 		jdbcTemplate.update(new PreparedStatementCreator(){
 			@Override
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException{
+				
 				PreparedStatement pstmt = con.prepareStatement
+				
 				("insert into MEMBER(NAME ,USERID, PWD, PWD_confirm, PHONE, EMAIL, GENDER, REGDATE) values (?,?,?,?,?,?,?,curdate())");
 				pstmt.setString(1, member.getName());
 				pstmt.setString(2, member.getUserId());
@@ -60,10 +69,21 @@ public class MemberDao {
 
 		});
 	}
+	
 	// 사용자 정보를 수정하는 메소드
 	public void update(Member member) { 
-		  jdbcTemplate.update("update member set pwd=?, pwd_confirm=?, phone=?, email=?,  gender=? where userid=?",
-		member.getPwd(), member.getPwd_confirm(), member.getPhone(), member.getEmail(), member.getGender());
+		  jdbcTemplate.update(
+				  "UPDATE member SET name='?',pwd='?',pwd_confirm='?', email='?' ,phone='?', gender='?', regDate='?' WHERE userId='?';"
+				  ,
+		member.getName(),		  
+		member.getPwd(), 
+		member.getPwd_confirm(), 
+		member.getEmail(), 
+		member.getPhone(), 
+		member.getGender(),
+		member.getRegDate(),
+		member.getUserId()
+		);
 	}  
 	  		  
 	public List<Member> selectAll() {
@@ -95,8 +115,13 @@ public class MemberDao {
 		return results.isEmpty() ? null : results.get(0);
 	}
 	// 사용자 ID값을 확인하는 메소드
-	public int confirmID(String userid) {
-		List<Member> results = jdbcTemplate.query("select * from MEMBER where USERID=?", memRowMapper, userid);
+	public int confirmID(String userId) {
+		List<Member> results = jdbcTemplate.query("select * from MEMBER where USERID=?", memRowMapper, userId);
 		return results.isEmpty() ? -1 : 1;
+		}
+
+	public static MemberDao getInstance() {
+		// TODO Auto-generated method stub
+		return null;
 	}
-}
+	}

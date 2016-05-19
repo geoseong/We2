@@ -1,0 +1,349 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
+
+
+body { 
+	font-family: 'Lato', Calibri, Arial, sans-serif; 
+ 	color: #424444; 
+ 	background: #f9f9f9;
+    padding: 0;
+    margin: 0;
+ } 
+
+a { 
+ 	color: #f9f9f9; 
+ 	text-decoration: none; 
+ } 
+ 
+ 
+ #wrap{
+	width: 1200px;
+    margin : 0px auto;
+}
+
+
+#header{
+    width:100%;
+    border-bottom:8px solid #4CC4EE;
+}
+#headerinner {
+    color: #424444;
+    font-size : 45px;
+    margin : 0px auto;
+    padding: 10px 0;
+    width:1200px;
+    height:80px;
+    position:relative;
+   
+}
+#headerinner>h2{
+    position:absolute;
+    top:10px;
+    left:10px;
+    font-weight:bold;
+}
+#headerinner a{
+    color: #4CC4EE;
+    font-size : 50px;
+}
+
+#header a:hover {
+   color:#166BA3;
+   opacity : 0.8;
+}
+
+#nav  {
+    position: absolute;
+    top:77px;
+    right:10px;
+    font-size : 14px;
+    color :#89867e; 
+}
+
+#nav a {
+    font-size : 14px;
+    color :#89867e; 
+    word-spacing: 1.0em;
+}
+
+#nav a:hover {
+   color:#166BA3;
+   opacity : 0.8;
+   font-weight: 600;
+}
+
+/*표 부분*/
+table {
+
+	width:100%; 	
+	border-collapse: collapse;		
+	font-size: 14px;			/* 글꼴 크기 */
+	line-height: 40px;		/* 줄 간격 */	
+	text-align: center;
+}
+
+
+table th,td{
+	border: 0.5px solid #d3d3d3; 	/* 경계선 색상 스타일 굵기 */
+	padding: 5px;
+	/* border-left:0;
+	border-right:0; */ 
+	
+}
+
+
+table th {
+	margin-top:100px;
+	/* border-top: 2px solid #1591BE;
+	border-bottom: 2px solid #1591BE; */
+	font-size:16px;
+	color:#fff;
+	background-color:#69C5E7;	 
+}
+
+td input{
+	padding:5px;
+    height:20px;
+    float:left;
+    font-size:15px;	
+}
+
+
+#section{
+    width:1200px;
+    height:820px;
+    margin:20px auto;
+/*    border: 1px solid red;*/
+  }
+
+
+#section>#menu {
+    width:15%;
+    height:400px;
+    float:left;
+    left:200px;
+    margin:1%;
+    text-align: center;
+}
+
+#menu>b{   
+    font-size:18px;
+    color : #424444;
+    text-align: center;
+}
+
+#menu>#second_line {
+    height: 3px;
+    text-align: center;
+    background-color:#4CC4EE;
+    font-size:16px;
+    font-weight: 400;
+    color : #89867e;
+    text-align: center;
+    vertical-align: 7px;
+}
+
+
+
+#second_line b{
+	color :#166BA3; 
+	font-weight: 600;
+}
+#section>#contents {
+    width:82%;
+    height:770px;
+    margin-left:18%;
+    margin-top:2%;
+    color : #424444;
+/*    border: 1px solid lightgray;*/
+}
+
+.my_info{
+    width:100%;
+    font-size:15px;
+    color : #89867e;
+/*    border: 1px solid black;*/
+}
+
+/*�굹�쓽 �젙蹂� 蹂닿린 ���씠�� 湲��뵪*/
+#contents>.my_info h3{
+    width:100%;
+    font-size:23px;
+    font-weight: 600;
+    padding-top:30px; 
+    color : #166BA3;
+    text-align:center;
+/*    border: 1px solid red;*/
+}
+
+.my_info_view{
+     margin-top: 20px;
+/*     border: 1px solid green;*/
+}
+
+my_info_view>.my_picture{
+    float:left;
+    position:absolute;
+    width:100px;
+}
+
+.my_picture input{
+    position:absolute;
+    float:left;
+    width:170px;
+    height:300px;
+    border: 0.5px solid #89867e;
+    margin-left: 60px;
+    vertical-align: text-bottom;
+}
+
+.my_info_view table{
+     width:500px;
+     margin-left:260px;
+/*     border: 1px solid blue;*/
+}
+
+.my_info_view tr{
+     height:35px;
+}
+.my_info_view td{
+    width:90px;
+}
+.my_info_view input{
+   height: 25px;
+}
+
+.change_leave {
+      height: 40px;
+      margin-top:20px;
+/*      border: 1px solid orange;*/
+      vertical-align: middle;
+      text-align: center;
+      
+}
+
+.change_leave input{
+	width:230px;
+	height:40px;
+}
+
+
+.add_btn{
+    margin-top:0;
+    margin-left:30px;
+	border:none;
+	background:#7c8181;
+	color:#fff;
+    font-weight:400;
+    font-size:15px;
+	border-radius:5px;
+    text-align: center;
+}
+
+.add_btn:hover{
+	background:#4CC4EE;
+	color:#fff;
+    opacity:0.7;
+}
+
+
+/* 내 프로젝트 보기 부분 */
+.my_proj {
+   width:100%;
+   height:330px;
+   margin-top:30px;
+   padding-top:10px;
+   font-size:20px;
+   font-weight: 600;
+   border-top: 1px solid #4CC4EE;   
+}
+
+
+.my_proj h3{
+    width:100%;
+    font-size:23px;
+    font-weight: 600;
+    padding-top:30px; 
+    color : #166BA3;
+    text-align:center;
+/*    border: 1px solid red;*/
+}
+
+.my_proj_view {
+    margin-top:30px;
+    font-size:15px;
+    color : #89867e;
+/*    border: 1px solid red;  */
+}
+
+.ongoing span{
+    margin-left:70px;
+    font-size:16px;
+    font-weight: 600;
+    color : #89867e;
+/*    border: 1px solid red; */
+}
+
+.ongoing>table{
+    margin-left:100px;
+    padding:5px;
+    font-size:13px;
+    font-weight: 400;
+/*    border: 1px solid gray; */
+}
+
+.ongoing td{
+    padding:0px;
+    text-align: center;
+    text-align: left;
+}
+.ongoing tr{
+    padding:0px;
+/*    border: 1px solid red; */
+}
+
+.finish span{
+    margin-left:70px;
+    font-size:16px;
+    font-weight: 600;
+    color : #89867e;
+/*    border: 1px solid red; */
+}
+
+.finish table{
+    margin-left:100px;
+    font-size:13px;
+    font-weight: 400;
+/*    border: 1px solid gray; */
+}
+
+
+
+.add_btn2:hover{
+    background-color: black;
+    opacity:0.3;
+}
+
+.a_add_btn{
+    float:left;
+/*  margin-left:20px;
+    margin-top:10px; */
+    text-align: center;
+/* 	border:none; */
+	background:#4CC4EE;
+	color:#fff;
+    font-weight: 400;
+    font-size:13px;
+	width:120px;
+	height:25px;
+	border-radius:5px;
+}
+
+#footer {
+    color:#89867e;
+    clear:both;
+    text-align:center;
+    padding:5px;	 
+    font-size:15px;
+    bottom: 5%;
+    
+}

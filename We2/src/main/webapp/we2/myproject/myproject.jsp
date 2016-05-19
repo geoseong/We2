@@ -44,14 +44,16 @@ var myVar = setInterval(myTimer, 1000);
 <!-- 1. 상단 로고 부분-->
  <div id = "header">
     <div id = "headerinner">
-        <h2>
+        <h1>
             <b>
                 <sub>
                     <a href="Project/02_project.jsp">We2</a>
                 </sub>  
             </b>
-        </h2>
-        <h3>${project.pjtName }</h3>
+        </h1>
+        
+        <h3>${project.pjtName } </h3>
+        
 <!-- 2. 상단 로그인 부분-->
         <div id = "nav">
             <a href="#">로그아웃</a>
@@ -107,10 +109,10 @@ var myVar = setInterval(myTimer, 1000);
   <!-- 3) 오른쪽 채팅창-->
   <div class = "chat">
       <div class="chat_title">
-      	<img src="../img/project/G_talk_2.png"/>
+      	<img src="/We2/img/G_talk_3.png"/>
       </div>
      
-        <%-- <jsp:include page="${page }.jsp"></jsp:include> --%>
+        <jsp:include page="broadcast.jsp"></jsp:include> 
 
       
   </div>

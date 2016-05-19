@@ -43,19 +43,16 @@ public class pjtMakeCtrl{
 		
 		//필요한 컬럼을 다 받았으니 pjtManager를 추가한다.
 		pjtMakeDAO.inserPjtManager(userId, pjtCode);
-	
 		
-	//날짜 구하는 Dao 
-	int dateSearch = pjtMakeDAO.searchDate(userId);
-	System.out.println(dateSearch);
-		session.setAttribute("day", dateSearch);
-	
+		//날짜 구하는 Dao 
+		int dateSearch = pjtMakeDAO.searchDate(userId);
+		System.out.println(dateSearch);
+			session.setAttribute("day", dateSearch);
 		
-		
-	//프로젝트 생성이 성공했습니다 메시지를 뿌려주기 위한 설정
-	request.setAttribute("test", "success");
-	return "/index";
-	}
+		//프로젝트 생성이 성공했습니다 메시지를 뿌려주기 위한 설정
+		request.setAttribute("test", "success");
+		return "/index";
+		}
 	
 	/*@RequestMapping(value="/invite", method=RequestMethod.GET)
 	public String test2() throws ParseException{

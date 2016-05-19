@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript" src="../js/board.js"></script>
 <meta charset="UTF-8">
 <title>We2_ 프로젝트 게시판 _ 글쓰기</title>
 </head>
@@ -38,7 +39,7 @@
 				</table>
 				<br>
 			<div class="write_btn" align="right" >
-				<input type="submit" value="등록" style="padding: 5px;">
+				<input type="submit" value="등록" style="padding: 5px;"onclick="return charcheck()">
 				<input type="button" value="목록" style="padding: 5px;" onclick="location.href='/We2/pjtBoard/list?page=1&category=${category}'">
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			</div>

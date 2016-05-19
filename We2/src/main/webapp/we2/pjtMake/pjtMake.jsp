@@ -17,10 +17,10 @@
                 <h1>프로젝트 만들기</h1>
              
                 <div class="frame">
-	   				<div class="nameArea">
+	   				<!-- <div class="nameArea"> -->
 	   					<label for="pjtName">프로젝트 이름</label>
 	   					<input type="text" size="26" name="pjtName" id="pjtName" style="height:25px;"> 
-	   				</div>
+	   				<!-- </div> -->
 	   				
 	   				<div class="classifyArea">
 	   					<label for="pjtClassify">프로젝트 분류</label>
@@ -45,7 +45,7 @@
 	   				</div>
 	   				
 	   				<div class="btn2">
-	   				 	<input type="submit" value="만들기" size="100">
+	   				 	<input type="submit" value="만들기" size="100" style="margin-top:20px;" >
 	   				</div>
                 
                 </div>

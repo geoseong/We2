@@ -28,7 +28,7 @@
 <script type="text/javascript">
 
   function winOpen(rcode){
-	var url = "Content.do?rcode=" + rcode;
+	var url = "StudyRoomContent.do?rcode=" + rcode;
 	javascript:window.open(url , '상세내용보기', 'width=500 height=700 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
 	}
   
@@ -48,36 +48,26 @@
       
   }
   function winOpen(rcode){ 
-		var url = "Content.do?rcode=" + rcode;
-		  javascript:window.open(url , '상세내용보기', 'width=500 height=700 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
+		var url = "StudyRoomContent.do?rcode=" + rcode;
+		  javascript:window.open(url , '상세내용보기', 'width=530 height=700 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
 	  }
 	  
 	  function winOpen2(rcode){
 		var url = "StudyRoomupdate.do?rcode=" + rcode;
-<<<<<<< HEAD
-	   	  javascript:window.open(url , '상세내용보기', 'width=530 height=530 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
-=======
-	   	  javascript:window.open(url , '상세내용보기', 'width=500 height=420 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
->>>>>>> branch 'Geoseong' of https://github.com/geoseong/We2.git
+
+	   	  javascript:window.open(url , '상세내용보기', 'width=530 height=700 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
+
 	  }		
 
   function winOpen3(rcode){
 		var url = "StudyRoomdelete.do?rcode=" + rcode;
-<<<<<<< HEAD
 		    javascript:window.open(url , '상세내용보기', 'width=530 height=530 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
-=======
-		    javascript:window.open(url , '상세내용보기', 'width=500 height=420 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
->>>>>>> branch 'Geoseong' of https://github.com/geoseong/We2.git
-		}
+	}
 
 
 	function winOpen4(){   // 글쓰기
 		var url = "studyroomwrite.do";
-<<<<<<< HEAD
 	     javascript:window.open(url , '상세내용보기', 'width=530 height=530 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
-=======
-	     javascript:window.open(url , '상세내용보기', 'width=500 height=420 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
->>>>>>> branch 'Geoseong' of https://github.com/geoseong/We2.git
 	}
 	  
 
@@ -150,7 +140,7 @@
 			<c:forEach var="roomshare" items="${Content}">
 				<li>
 			<a href="javascript:winOpen('${roomshare.rcode}')">   
-			 	<%-- <a href="Content.do?rcode=${roomshare.rcode}"> --%> 
+			 	<%-- <a href="StudyRoomContent.do?rcode=${roomshare.rcode}"> --%> 
 				 <p class="content_list_img">
 					 <img src="data/${roomshare.rpictureurl}" >
 				 </p>

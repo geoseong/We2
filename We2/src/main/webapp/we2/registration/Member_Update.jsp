@@ -75,9 +75,9 @@
 								<td>
 							</tr>
 							<tr>
-								<th><spring:message code="userid" /></th>
-								<td><form:input path="userid" /></td>
-								<form:errors path="userid" />
+								<th><spring:message code="userId" /></th>
+								<td><form:input path="userId" /></td>
+								<form:errors path="userId" />
 							</tr>
 							<tr>
 								<th><spring:message code="pwd" /></th>

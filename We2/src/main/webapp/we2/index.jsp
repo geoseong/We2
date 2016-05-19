@@ -54,7 +54,7 @@
 
 <!-- 1. 상단 로고 부분-->
 <div id = "header">
-    <a href="index.jsp"><b>We2</b></a>
+    <a href="/We2"><b>We2</b></a>
 
  <c:choose>
     <c:when test="${empty authInfo}">
@@ -68,7 +68,7 @@
 	 <c:otherwise>
 	
 	 	<div id = "nav2">
-	 		<a href="mypage">마이페이지</a>
+	 		<a href="Member_Mypage">마이페이지</a>
             <!-- #########위에 로그인 header를 넣는다! -->
          </div>
         <div id = "nav3">
@@ -154,8 +154,10 @@
    <div class="pjtMake">   
         <form method="post" action="pjtmake">   
            <div class="pjtMakeInner">
-                <h1>프로젝트 만들기</h1>
-                <img src="img/index/x.png" id="exit2">
+                <h1 style="margin-top:20px;">프로젝트 만들기</h1>
+                
+                <img src="img/index/x.png" id="exit2" style="width:10px;" >
+                 
                 <div class="frame">
                   <div class="nameArea">
                      <label for="pjtName">프로젝트 이름</label>
@@ -179,8 +181,19 @@
                         <span> &nbsp;~ </span>
                     	<input type="text" size="7" name="endDate" id="term2" style="height:25px;">                          
                   </div>
-              
-                  <div class="btn2">
+                  
+                  
+               
+                  <!-- <div class="inviteArea">
+                     <label for="pjtInvite">프로젝트 초대</label>
+                     준비 중입니다.
+                      <input type="text" size="26" name="invite" style="height:25px;">
+                        <div class="btn1">
+                      <input type="button" value="초대하기" size="50" onclick="invitemember()">
+                      </div>
+                  </div> 
+                   -->
+                  <div class="btn2" style="padding-top:30px;">
                       <input type="submit" value="만들기"  size="100">
                   </div>
                 </div>

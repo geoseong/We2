@@ -84,11 +84,23 @@ CREATE TABLE willwork(
 ) engine=InnoDB character set=utf8; 
 desc willwork;
 
+<<<<<<< HEAD
 insert into willwork values('pts119', '20', '占쌘듸옙究占�' ,'占쏙옙占쏙옙처占쏙옙', 'Y', '占승쇽옙');
 insert into willwork values('park', '20', '占쌘듸옙究占�' ,'占쏙옙占쏙옙처占쏙옙', 'Y', '占쏙옙占쏙옙');
 insert into willwork values('jeon', '20', '占쌘듸옙究占�' ,'占쏙옙占쏙옙처占쏙옙', 'Y', '占쌍울옙');
 insert into willwork values('bae', '20', '占쌘듸옙究占�' ,'占쏙옙占쏙옙처占쏙옙', 'Y', '占쏙옙占쏙옙');
 insert into willwork values('jo', '20', '占쌘듸옙究占�' ,'占쏙옙占쏙옙처占쏙옙', 'Y', '占쏙옙占쏙옙');
+=======
+//테이블안에 update문을 사용하는 문법
+UPDATE member SET name='우아',pwd='5555',pwd_confirm='5555', email='aa@naver.com',
+phone='010-1111-2222', gender='1', regDate='2000-06-11' WHERE userId='jo';
+
+insert into willwork values('pts119', '20', '�ڵ�ϼ�' ,'����ó��', 'Y', '�¼�');
+insert into willwork values('park', '20', '�ڵ�ϼ�' ,'����ó��', 'Y', '����');
+insert into willwork values('jeon', '20', '�ڵ�ϼ�' ,'����ó��', 'Y', '�ֿ�');
+insert into willwork values('bae', '20', '�ڵ�ϼ�' ,'����ó��', 'Y', '����');
+insert into willwork values('jo', '20', '�ڵ�ϼ�' ,'����ó��', 'Y', '����');
+>>>>>>> branch 'Geoseong' of https://github.com/geoseong/We2.git
 
 desc member;
 insert into member values('geoseong', '占신쇽옙', '1234' ,'imf4@naver.com', '010-2023-6697', 'M', now());
@@ -182,7 +194,11 @@ alter table member drop column subEmail;
 /* �궫�엯 */
 # �쁽�옱�떆媛곸� MySQL�뿉�꽌�뒗 now().
 #INSERT INTO tablename or columns VALUES(25, 'NAME', 5, 25.5 );
+<<<<<<< HEAD
 insert into member values('geoseong', '嫄곗꽦', '1234' ,'imf4@naver.com', '010-2023-6697', 'M', now());
+=======
+insert into member values('geoseong', '거성', '1234' , '1234', 'imf4@naver.com', '010-2023-6697', 'M', now());
+>>>>>>> branch 'Geoseong' of https://github.com/geoseong/We2.git
 
 insert into pjtMake values('10',
 'ttt',
