@@ -12,17 +12,17 @@
 <script type="text/javascript">
 
 function winOpen(fcode){
-	var url = "/test/file/filewrite.do";
+	var url = "filewrite.do";
 	  javascript:window.open(url , '상세내용보기', 'width=600 height=270 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
   }
   
   function winOpen2(fcode){
-	var url = "/test/file/fileupdate.do?fcode=" + fcode;
+	var url = "fileupdate.do?fcode=" + fcode;
    	  javascript:window.open(url , '파일수정', 'width=600 height=270 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
   }		
   
 function winOpen3(fcode){
-	var url = "/test/file/filedelete.do?fcode=" + fcode;
+	var url = "filedelete.do?fcode=" + fcode;
      javascript:window.open(url , '파일삭제', 'width=600 height=270 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
 }
 
@@ -54,7 +54,7 @@ function winOpen3(fcode){
 						<td> ${file.fdate} </td>
 						<%-- <td> ${file.fileurl} </td> --%>
 					  	<td align="center">
-							<a href="upload/${file.fileurl}" onClick="window.open(this.href, '다운로드', 'width=400, height=430'); return false;">${file.fileurl}</a>
+							<a href="/We2/img/${file.fileurl}" onClick="window.open(this.href, '다운로드', 'width=400, height=430'); return false;">${file.fileurl}</a>
 
 						</td>
 						<td align="center">

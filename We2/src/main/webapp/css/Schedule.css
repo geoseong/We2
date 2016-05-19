@@ -1,0 +1,103 @@
+@CHARSET "UTF-8";
+
+#container{
+	width:650px;
+	margin:0;
+	margin-left: auto;
+	margin-right: auto;
+/* 	background:#ccc; */
+}
+
+
+#wrap_c {
+	float:left;
+	padding:30px;
+    width:100%;
+	height:760px;
+	margin: 0 auto;
+	border: 1px solid green;
+}
+ 
+/* #wrap_s{
+   width:500px;
+	height:500px;
+	border: 1px solid green; 
+
+}
+ */
+
+
+.top {
+	padding: 20px;
+	text-align:center;
+	font-size: 18px;
+	font-weight:600;
+	color: #424444;
+	/* border: 1px solid pink; */
+}
+
+.top a{
+	font-size: 25px;
+	font-weight:800;
+	color: #1591BE;
+}
+
+.calendar{
+	text-align:center;
+	font-size: 15px;
+	color: #424444;
+	/* border: 1px solid blue; */
+}
+
+table {
+	width:100%; 	
+	border-collapse: collapse;		
+	font-size: 17px;	
+	font-weight:400;		
+	line-height: 40px;		/* 줄 간격 */
+		
+	text-align: left;
+	padding:0
+}
+
+
+table th{
+	/* width:100px; */
+	height:50px;
+	border-bottom: 2px solid #1591BE;
+	background-color:transparent;	
+}
+
+table tr{
+	
+	border: 0.5px solid #d3d3d3; 	/* 경계선 색상 스타일 굵기 */
+	border-left:0;
+	border-right:0;
+}
+
+table td{
+	vertical-align:bottom;
+	font-weight:600;
+}
+
+
+a {
+ text-decoration: none;
+ color: #424444;
+ font-size: 10px;
+}
+
+/* 날짜 부분 */	
+#name {
+	text-align:left;
+	vertical-align:top;
+	padding:0;
+	
+}
+
+#name a {
+ font-size: 17px;
+ font-weight:400;
+
+}
+	

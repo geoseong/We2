@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+	 xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+							http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+							http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd 
+							http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd 
+							 http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	 
+	 <!-- search @Autowired -->
+	  <context:annotation-config />
+	  
+	<!-- JDBC dataSource 설정. 톰캣 server.xml 설정하듯이. -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="com.mysql.jdbc.Driver"/>
+		<property name="jdbcUrl" value="jdbc:mysql://192.168.0.100:3306/we2?characterEncoding=utf8&amp;useSSL=false" />
+		<property name="user" value="we2admin" />
+		<property name="password" value="1234" />
+	</bean>
+	
+<!-- 시작 : MyBatis를 위한 태그들 -->
+		<bean id="sqlSessionFactory"
+			class="org.mybatis.spring.SqlSessionFactoryBean">
+			<property name="dataSource" ref="dataSource"/>	
+		</bean>
+		
+	<!-- commit & rollback 의 스프링이 자동적용 -->
+		<bean id="sqlSession"
+			class="org.mybatis.spring.SqlSessionTemplate">
+			<constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
+		</bean>
+	
+	<!-- 소스코드에 어노테이션 트랜잭션을 활용할 때 -->
+		<bean id="transactionManager"
+			class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+			<property name="dataSource" ref="dataSource"></property>
+		</bean>
+	
+	<!-- @Transactional 사용을 위한 태그 -->
+		<tx:annotation-driven transaction-manager="transactionManager"/>
+
+	<!-- BoardMapper 등록 영역 ( id = 변수명 ) -->
+		<bean id="boardMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">	
+			<property name="mapperInterface" value="com.we2.sharepjtboard.PjtBoardMapper"/><!-- 이 안에 SQL이 들어있음  -->
+			<property name="sqlSessionFactory" ref="sqlSessionFactory"/><!-- SQL 실행하기위한 태그 -->
+		</bean>  
+		
+		<bean id="studyRoomMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">	
+			<property name="mapperInterface" value="com.we2.studyroom.StudyRoomMapper"/><!-- 이 안에 SQL이 들어있음  -->
+			<property name="sqlSessionFactory" ref="sqlSessionFactory"/><!-- SQL 실행하기위한 태그 -->
+			</bean>  
+		
+		<bean id="FileMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">	
+			<property name="mapperInterface" value="com.we2.file.FileMapper"/><!-- 이 안에 SQL이 들어있음  -->
+			<property name="sqlSessionFactory" ref="sqlSessionFactory"/><!-- SQL 실행하기위한 태그 -->
+		</bean>  
+	
+	
+	<!-- BoardService : (서비스)DAO와 컨트롤러의 중간역할. -->
+		<bean id="boardService" class="com.we2.sharepjtboard.PjtBoardService"/>
+		<bean id="studyRoomService" class="com.we2.studyroom.StudyRoomService"/>
+		<bean id="FileService" class="com.we2.file.FileService"/>
+		
+	<!-- Mapper interface 스캔 -->
+		<mybatis:scan base-package="com.we2" />
+<!-- 끝 : MyBatis를 위한 태그들 -->
+
+	<!-- start : 의존주입 -->
+		<bean id="memberDao" class="com.we2.spring.MemberDao">
+			<constructor-arg ref="dataSource"/>
+		</bean>
+	
+		<bean id="authService" class="com.we2.spring.AuthService">
+			<property name="memberDao" ref="memberDao"></property>
+		</bean>		
+		
+		<bean id="willWorkDAO2" class="com.we2.willwork.WillWorkDAO2">
+			<constructor-arg ref="dataSource" />
+		</bean>
+		
+		<bean id="pjtMakeDAO" class="com.we2.pjtMake.PjtMakeDAO">
+			<property name="dataSource" ref="dataSource" />
+		</bean>
+	<!-- end : 의존주입 -->
+</beans>

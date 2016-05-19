@@ -25,6 +25,9 @@ public class StudyRoomService {
 		}
 		return arraymapper;
 	}
+	public StudyRoomBean getSearchstudyroom(String rlocatoin , String rlocationdetail){
+		return this.studyRoomMapper.getSearchstudyroom(rlocatoin, rlocationdetail);
+	}
 	
 	public StudyRoomBean getSearchbyrcode(int rcode){
 		return this.studyRoomMapper.getSearchbyrcode(rcode);
@@ -47,12 +50,12 @@ public class StudyRoomService {
 	
 	public void updateRow(
 			 int rcode,
-			String rname, 
+			 String rname, 
 			 String rlocation, 
 			 String rlocationdetail, 
 			 String rcontent, 
 			 int rmember, 
-			String rpictureurl){
+		     String rpictureurl){
 		System.out.println("studyroomservice updaterow");
 		this.studyRoomMapper.StudyRoomupdate(rcode, rname, rlocation, rlocationdetail, rcontent, rmember, rpictureurl);
 	}
