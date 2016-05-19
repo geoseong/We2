@@ -129,9 +129,9 @@ public class MemberDao {
 	public List<PjtJoinVO> selectAll(String userId){
 		// pjtcode | userId | isLeader | pjtCode | pjtName     | pjtClassify | startDate  | endDate
 	      List<PjtJoinVO> results = 
-            jdbcTemplate.query(
+            jdbcTemplate.query( //mysql DB연동을 위해 작성
         		"select * from pjtmanager mgr, pjtmake make where mgr.pjtcode = make.pjtcode and mgr.userId = ?"
-        		,
+        		, //프로젝트 테이블에서  pjtmanager mgr, pjtmake make를 선택하고 조건문으로 mgr.pjtcode = make.pjtcode mgr.userId인것만을 출력함!! 
         		new RowMapper<PjtJoinVO>(){
 			      @Override
 			      public PjtJoinVO mapRow(ResultSet rs, int rowNum) throws SQLException {
