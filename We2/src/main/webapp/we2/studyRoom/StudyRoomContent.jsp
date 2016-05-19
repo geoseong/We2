@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 
 
-<link rel="stylesheet" type="text/css" href="css/studyroom_content.css">
-<link rel="stylesheet" type="text/css" href="css/w2_reset.css">
 <link rel="stylesheet" type="text/css" href="../css/studyroom_window.css">
 
 
@@ -26,8 +24,8 @@
        <table>
 	     <tr>
 	       <td>
-	  		<img src="/we2/studyRoom/data/${studyroomList.rpictureurl}">	  
-	        </td>
+	  			<img src="/We2/we2/studyRoom/data/${studyroomList.rpictureurl}" style="width: 500px;">	  
+	       </td>
 	     </tr>
 	   </table>
  

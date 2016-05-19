@@ -78,8 +78,21 @@
 							<c:when test="${BoardContent.getItemDataType().contains('image') }">
 								<img src="/We2/we2/pjtBoard/data/${BoardContent.getItemPath() }" class="board_img" style="width: 300px;">
 							</c:when>
-							<c:when test="${BoardContent.getItemDataType().contains('pptx') }">
-								<img src="/We2/we2/pjtBoard/data/ppt.JPG" class="board_img" style="width: 300px;">
+							
+							<c:when test="${BoardContent.getItemDataType().contains('ppt') }">
+								<img src="/We2/img/board/icon_ppt.png" class="board_img" style="width: 70px;">
+							</c:when>
+							
+							<c:when test="${BoardContent.getItemDataType().contains('xls') }">
+								<img src="/We2/img/board/icon_xls.png" class="board_img" style="width: 70px;">
+							</c:when>
+							
+							<c:when test="${BoardContent.getItemDataType().contains('text') }">
+								<img src="/We2/img/board/icon_txt.png" class="board_img" style="width: 70px;">
+							</c:when>
+							
+							<c:when test="${BoardContent.getItemDataType().contains('zip') }">
+								<img src="/We2/img/board/icon_zip.png" class="board_img" style="width: 70px;">
 							</c:when>
 							<%-- <div class="modal">
 							<c:if test="${BoardContent.getItemDataType().contains('image') }"> <!-- 콘텐츠 타입에 이미지라는 단어를 포함하고 있으면  -->

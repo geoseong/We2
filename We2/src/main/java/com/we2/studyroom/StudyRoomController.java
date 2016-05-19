@@ -18,8 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import com.we2.sharepjtboard.PjtBoardBean;
-import com.we2.spring.AuthInfo;
 
 
 @Controller
@@ -29,10 +27,13 @@ public class StudyRoomController {
 	private static final Logger logger = LoggerFactory.getLogger(StudyRoomController.class);
 	@Autowired
     private ServletContext servletContext;
+	String path="we2/studyRoom/data";
 	@Autowired
 	StudyRoomService studyroomService;
 	@Autowired
 	HttpServletRequest request;
+	@Autowired
+	HttpSession session;
 	
 	// 페이징처리 싱글톤 인스턴스객체 얻음
 	RPagingManager paging = RPagingManager.getInstance();
@@ -168,7 +169,7 @@ public class StudyRoomController {
 	
 	/** 글쓰기 폼 띄우기 */
 	@RequestMapping(value="/studyroomwrite.do", method=RequestMethod.GET)
-	public String writeget(HttpSession session, HttpServletRequest request, Model model, StudyRoomBean studyRoomBean){
+	public String writeget(Model model, StudyRoomBean studyRoomBean){
 		System.out.println("---글쓰기 페이지 진입");
 		if(session.getAttribute("authInfo")!=null){
 			System.out.println("로그인 되어있음.");
@@ -186,15 +187,19 @@ public class StudyRoomController {
 	 * @throws IOException */
 	
 	@RequestMapping(value="/studyroomwrite.do", method=RequestMethod.POST)
-	public String writepost(HttpSession session, HttpServletRequest request, Model model) throws IOException {
-	    // 해당 경로의 폴더가 안만들어져있다면 직접 만들어놔야할 것.
-		String path=servletContext.getRealPath("img/studyRoom");
-		System.out.println("path : "+path);
+	public String writepost(/*HttpServletRequest request, */Model model) throws IOException {
+	    System.out.println("studyroomwrite.POST]");
+		// 해당 경로의 폴더가 안만들어져있다면 직접 만들어놔야할 것.
+		
 		// getRealPath : E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps\testweb\
 		String encType="UTF-8";
 		int sizeLimit = 20*1024*1024;
 		
-		MultipartRequest multi = new MultipartRequest(request, path, sizeLimit, encType, new DefaultFileRenamePolicy());
+			System.out.println("multipartrequest적용 전");
+		
+		MultipartRequest multi = new MultipartRequest(request, servletContext.getRealPath(path), sizeLimit, encType, new DefaultFileRenamePolicy());
+		
+			System.out.println("multipartrequest적용 후");
 		
 		//PjtBoardBean객체인 sVo에 변수들을 집어넣는다.
 		StudyRoomBean sVo = new StudyRoomBean();
