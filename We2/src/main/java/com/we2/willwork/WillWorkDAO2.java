@@ -22,7 +22,7 @@ public class WillWorkDAO2 {
 	public WillWorkDAO2(){
 	}
 
-	public List<WillWorkVO> selectAll(String pjtCode){
+	public List<WillWorkVO> selectAll(int pjtCode){
 		List<WillWorkVO> results = jdbcTemplate.query("select * from willwork where pjtCode=?", 
 				new RowMapper<WillWorkVO>(){ //���� �������� �ڹ� ��ü�� ��ȯ�ϴ� RowMapper �������̽�
 				@Override

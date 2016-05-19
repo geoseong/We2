@@ -167,4 +167,19 @@ public class PjtMakeDAO {
 		return pVo;
 	}
 	*/
+	
+	public void insertWillWork(final String userId, final int pjtCode, final String name) throws ParseException{
+		jdbcTemplate.update(new PreparedStatementCreator() {
+				@Override
+				public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+					PreparedStatement pstmt = con.prepareStatement(
+			"insert into willwork(userId, pjtCode, dowork, donework, statework,name) values(?, ?, '','', 'Y', ?);"
+						);
+					pstmt.setString(1, userId);
+					pstmt.setInt(2, pjtCode);
+					pstmt.setString(3, name);
+					return pstmt;
+				}
+			});
+	}
 }

@@ -27,8 +27,12 @@ public class WillWorkController {
 	
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String initGet(Model model, HttpSession session) throws ParseException{
-	String pjtCode = (String)session.getAttribute("pjtCode");
-	List<WillWorkVO> results = willWorkDAO.selectAll(pjtCode); 
+	System.out.println("첫번째줄 너왔니?");
+	int pjtCode = Integer.parseInt((String)session.getAttribute("pjtCode"));
+	List<WillWorkVO> results = willWorkDAO.selectAll(pjtCode);
+	
+	System.out.println("실행이될까용?");
+	
 	String divDoWork1 = results.get(0).doWork; 
 	String divDoWork2 = results.get(1).doWork;
 	String divDoWork3 = results.get(2).doWork;

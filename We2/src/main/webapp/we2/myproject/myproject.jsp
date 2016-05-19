@@ -24,7 +24,7 @@
 
  <script>
  
-var myVar = setInterval(myTimer, 1000);
+var myVar = setInterval(myTimer, 1000*60*60*24);
 
  <% Object day = session.getAttribute("day");
  %>

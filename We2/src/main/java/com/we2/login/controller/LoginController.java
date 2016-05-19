@@ -222,9 +222,10 @@ public class LoginController {
 		
 		//MemberMyPage.jsp에서 a태그로 pjtCode를 인자로 받아서 세션에 저장
 		
-		String pjtCode = request.getParameter("pjtCode");
+		int pjtCode = Integer.parseInt(request.getParameter("pjtCode"));
 		System.out.println("코드뭐니?" + pjtCode);
 		
+	
 		session.setAttribute("pjtCode", pjtCode);
 		//디비상에 날짜를 조회해서 세션에 담는다.
 		int searchDate = memberDao.selectDate(pjtCode);

@@ -153,7 +153,7 @@ public class MemberDao {
 	   }
 	
 	
-	public int selectDate(String pjtCode){
+	public int selectDate(int pjtCode){
 	      String sql = 
 	      "select (endDate-startDate) from pjtMake where pjtCode=?";
 	      int searchDate = jdbcTemplate.queryForObject(sql, new Object[] {pjtCode}, Integer.class);

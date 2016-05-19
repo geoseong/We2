@@ -34,8 +34,9 @@ public class pjtMakeCtrl{
 		
 		//pjtManager에 디비를 추가 할 때 필요한 컬럼은(userId, pjtCode, isLeader)이다.
 		//또한 프로젝트를 만드는 사람은 로그인한 사람이니 그 사람의 아이디를 불러와서 userId를 넘겨주고 또 리더로 지정해주면 된다.
-		AuthInfo member= (AuthInfo)session.getAttribute("authInfo");
-		String userId = member.getUserId(); 
+		AuthInfo authInfo= (AuthInfo)session.getAttribute("authInfo");
+		String userId = authInfo.getUserId(); 
+		String name = authInfo.getName();
 		
 		// 방금 생성한 프로젝트 코드를 조회하는 DAO
 		int pjtCode = pjtMakeDAO.selectCode();
@@ -51,6 +52,12 @@ public class pjtMakeCtrl{
 		int dateSearch = pjtMakeDAO.searchDate(pjtCode);
 		System.out.println("마지막 날짜와 시작날짜의 차 : " + dateSearch);
 		session.setAttribute("day", dateSearch);
+		
+		System.out.println("내 아이디, 코드, 이름은 : " + userId + "이구" + pjtCode +"이구" + name + "야" );
+		//프로젝트 생성 후 willwork에 대한 정보도 디비로 포함시켜야 나중에 할 일 부분에서 볼 수 있음
+		pjtMakeDAO.insertWillWork(userId, pjtCode, name);
+		
+		System.out.println("할 일에 대한 작업이 성공했어! 거의 다왔어!!");
 		
 		//프로젝트 생성이 성공했습니다 메시지를 뿌려주기 위한 설정
 		request.setAttribute("test", "success");
