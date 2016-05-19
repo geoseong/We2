@@ -25,6 +25,9 @@ public class StudyRoomService {
 		}
 		return arraymapper;
 	}
+	public StudyRoomBean getSearchstudyroom(String rlocatoin , String rlocationdetail){
+		return this.studyRoomMapper.getSearchstudyroom(rlocatoin, rlocationdetail);
+	}
 	
 	public StudyRoomBean getSearchbyrcode(int rcode){
 		return this.studyRoomMapper.getSearchbyrcode(rcode);

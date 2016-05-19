@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page session="false" %>
-<%@ page import="com.we2.studyroom.StudyRoomBean" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Properties" %>
 <%@ page import="java.io.IOException" %>
@@ -49,25 +48,25 @@
   }
   function winOpen(rcode){ 
 		var url = "StudyRoomContent.do?rcode=" + rcode;
-		  javascript:window.open(url , '상세내용보기', 'width=530 height=700 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
+		  javascript:window.open(url , '상세내용보기', 'width=620 height=700 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
 	  }
 	  
 	  function winOpen2(rcode){
 		var url = "StudyRoomupdate.do?rcode=" + rcode;
 
-	   	  javascript:window.open(url , '상세내용보기', 'width=530 height=700 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
+	   	  javascript:window.open(url , '상세내용보기', 'width=620 height=700 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
 
 	  }		
 
   function winOpen3(rcode){
 		var url = "StudyRoomdelete.do?rcode=" + rcode;
-		    javascript:window.open(url , '상세내용보기', 'width=530 height=530 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
+		    javascript:window.open(url , '상세내용보기', 'width=620 height=530 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
 	}
 
 
 	function winOpen4(){   // 글쓰기
 		var url = "studyroomwrite.do";
-	     javascript:window.open(url , '상세내용보기', 'width=530 height=530 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
+	     javascript:window.open(url , '상세내용보기', 'width=620 height=530 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
 	}
 	  
 
@@ -93,7 +92,7 @@
 	<div class="search_controll">
 		<h2 class="study_room_title"><a href="list?page=1">스터디룸 공유</a></h2>
 		
-		<form action="List?page=1"  method="post" name="frm">
+		<form action="search?page=1"  method="post" name="frm">
 		<ul class="study_room_menu">
 			<li>
 				<select name='location' id="location" onchange="subMenu()" style="width:350px; height:40px;">

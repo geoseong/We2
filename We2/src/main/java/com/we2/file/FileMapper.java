@@ -33,8 +33,8 @@ public interface FileMapper {
 	
 	final String select_by_id ="select fcode, fname, fileurl, fdate from fileshare order by fcode desc limit #{row_start}, #{row_end}";
 	
-	final String insertFile = "insert into fileshare( fname, fileurl, fdate) values (#{fname}, #{fileurl}, now())";
-			
+	final String insertFile = "insert into fileshare( fname, fileurl, fdate) values (#{fname}, #{fileurl}, date_format(now(),'%y-%m-%d:hh:mm:ss')";
+
 	
 	final String delete_by_fcode = "delete from fileshare where fcode = #{fcode}";
 	
