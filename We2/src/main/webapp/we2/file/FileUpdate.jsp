@@ -5,29 +5,32 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="../css/w2_reset.css">
+<link rel="stylesheet" type="text/css" href="../css/studyroom_window.css">
 <title>Insert title here</title>
 </head>
 <body>
     <H2>파일 수정</H2>
-  <HR>
   
  <form name="frm" method="post" action="fileupdate.do"  enctype="multipart/form-data" >
    <input type="text" name="fcode" value="${fileList.fcode}" >
    <input type="hidden" name="fileurl" value="${fileList.fileurl}" >
       <table> 
  	   	<tr>  
-   		   <td>파일명 : </td>
-   		   <td><input type="text" name="fname" size=15 value="${fileList.fname}"></td> 
+   		   <th>파일명 </th>
+   		   <td><input type="text" name="fname" size=30 value="${fileList.fname}"></td> 
    		 </tr>    
       </table>
        
       <table>
    		  <tr>
-             <td>파일첨부 : <input type="file" name="fileurl" value="data/${fileList.fileurl}"></td>		
-          </tr>
-          <tr>
-             <td>(파일 용량 제한은 20MB 입니다.)</td>
-          </tr>   
+             <th>파일첨부</th>
+	             <td>
+	             <input type="file" name="fileurl" value="data/${fileList.fileurl}">
+	             </td>		
+          
+		          <td style="font-size:12px; color:red;">
+		             파일 용량 제한은 20MB 입니다.
+		          </td>   
      </table>
 
 		<br>

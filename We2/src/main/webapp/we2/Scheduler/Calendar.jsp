@@ -5,6 +5,8 @@
 <link rel="stylesheet"  href="../css/Schedule.css" type="text/css">
 <link rel="stylesheet"  href="../css/w2_reset.css" type="text/css">
 
+<script type="text/javascript" src="../js/jquery-1.12.1.min.js"></script>
+
 <fmt:requestEncoding value="UTF-8"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%!
@@ -61,7 +63,7 @@ function winOpen2(calendarmemo_num){
   
     <div id ="wrap_c">
 
-     <div class ="top"><!-- 달력 상단 부분, 더 좋은 방법이 없을까? -->
+     <div class ="wrap_t"><!-- 테이블 전체를 감싸는 div -->
    
        <!-- 년 도 --> 
           <span><% out.print("   "+"오늘은 "+currentYear + "년 " + (currentMonth+1) + "월 "+  currentDate+"일"); %></span>
@@ -73,10 +75,8 @@ function winOpen2(calendarmemo_num){
 	     
 	      <a href="list?year=<%out.print(year);%>&month=<%out.print(month+1);%>&pjtcode=10"> &nbsp; > </a>
           </div> 
-          
-      </div> <!-- top end -->
-    
-      <div class = "calendar">
+          <br>
+          <div class = "calendar">
   
   	<!-- td와 tr 영역 너비가 내용이 많아지면 너비가 늘어납니다. 크기를 고정시켜주셔요~~ ㅜㅜ -->
       <table> <!-- 달력 부분 -->
@@ -94,6 +94,7 @@ function winOpen2(calendarmemo_num){
      <!-- 원래 새 table이 만들어졌으나 합침. <div class="calendar_2"> -->
           
     <!-- <table> -->
+    
      <tr>
     <%
     // 파라미터 받는다. - 프로젝트코드
@@ -123,49 +124,56 @@ function winOpen2(calendarmemo_num){
    </c:forEach>
   
 	<!-- //날짜 TD  -->
+	
+	<div class="date">
 	<c:forEach var="j" begin="1" end="${end }">
-	  <td id='name'>
+	
+	  <td class="name" > <!-- 날짜부분 -->
 		<a href='#' onclick='javascript:winOpen("+pjtcode+")' >
 			${j}
 		</a>
-	  <br>
- 	<!-- //내용 출력 -->	  
+		
+ 	   <!-- //내용 출력 -->	  
 		<c:forEach var="content" items="${Content }">
-			<a href="#" onclick='javascript:winOpen2("${content.calendarmemo_num}")'>
+			<a class="name_1" href="#" onclick='javascript:winOpen2("${content.calendarmemo_num}")'>
 				<c:if test="${month==content.calendarmemo_month}">
 					<c:if test="${j==content.calendarmemo_day}">
-					${content.calendarmemo_contents }<br>
+					${content.calendarmemo_contents }
 					</c:if>
 				</c:if>
 			</a>
-		<br>
 		</c:forEach>
-	  </td>  <!-- 날짜부분 -->
+	  </td>  
+	  </div>  <!-- date end -->
+	  <!-- 날짜부분 -->
 	  
 	  <!-- TD가 7개가 넘어가면 TR을 사용. -->
 	  <c:set var="br" value="${br+1 }"></c:set>
-		 <c:if test="${(br%7)==0 && j != end}">
-	  		</tr><tr>
-		 </c:if>
-	</c:forEach> 
-	
-	<!-- 마지막 주의 빈 칸 TD를 채워넣는 부분 -->
-	<c:forEach var="k" begin="${br }" end="35">
+		<c:if test="${(br%7)==0 && j != end}">
+	  	</tr>
+	  		
+	<tr> 
+		</c:if>
+			</c:forEach> 
+				<!-- 마지막 주의 빈 칸 TD를 채워넣는 부분 -->
+				<c:forEach var="k" begin="${br }" end="35">
 		<c:choose>
-		<c:when test="${(k%7)!=0 }">
-			<td> </td>
-		</c:when>
-		<c:otherwise>
-			
-		</c:otherwise>
+			<c:when test="${(k%7)!=0 }">
+				<td> </td>
+			</c:when>
+			<c:otherwise>
+			</c:otherwise>
 		</c:choose>
 	</c:forEach>
      </tr>
  </table>
  <!-- END : 본격적인 day부분을 td태그 반복하는 부분. -->
-      </div> <!-- calendar end -->
-     
-      </div> <!-- wrap_c end -->
+ 
+         </div> <!-- calendar end -->          
+          
+      </div> <!-- wrap_t end -->
+   
+   </div> <!-- wrap_c end -->
      
  </body>
 </html>

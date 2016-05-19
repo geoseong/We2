@@ -31,7 +31,7 @@ public interface SchedulerMapper {
 	final String select_by_pjtcode ="select * from scheduler where pjtcode=${pjtcode} order by calendarmemo_num asc";
 	
 	final String insertScheduler = "insert into scheduler(calendarmemo_year, calendarmemo_month, calendarmemo_day, calendarmemo_contents, pjtcode)"
-			+ " values(#{calendarmemo_year}, #{calendarmemo_month}, #{calendarmemo_day}, #{calendarmemo_contents}, #{pjtcode})";
+			+ " values(#{calendarmemo_year}, #{calendarmemo_month}, #{calendarmemo_day}, #{calendarmemo_contents}, 10)";
 	
 	
 	final String deleteScheduler = "delete from scheduler where calendarmemo_num = #{calendarmemo_num}";
@@ -76,7 +76,11 @@ public interface SchedulerMapper {
 		
 		@Insert(insertScheduler)  		
 		//@Options(useGeneratedKeys = true, keyProperty = "id")
-		void insertScheduler(SchedulerBean schdulerBean) ;
+		void insertScheduler(@Param("pjtcode") int pjtcode,
+				@Param("calendarmemo_year") int calendarmemo_year, 
+				@Param("calendarmemo_month") int calendarmemo_month, 
+				@Param("calendarmemo_day") int calendarmemo_day, 
+				@Param("calendarmemo_contents") String calendarmemo_contents ) ;
 		
 		@Select(select_all)
 		int getTotalCnt();

@@ -1,6 +1,10 @@
 @CHARSET "UTF-8";
 
-
+h2 {
+	text-align: center;
+	color:#1591BE;
+	font-weight: 600;
+}
 
 /*표 부분*/
 table {
