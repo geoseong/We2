@@ -22,34 +22,39 @@
 	padding : 10px 0 0 0;	
 }
 
-/* ÀÌ¹ÌÁö */
+/* ï¿½Ì¹ï¿½ï¿½ï¿½ */
 .people> div> img{
 width:100px;
 height:100px;
 }
 
-/* aÅÂ±× */
+/* aï¿½Â±ï¿½ */
 
-/* ÀÌ¸§  */
+/* ï¿½Ì¸ï¿½  */
 .people > .state_work > a> p:nth-of-type(1){ 
 
 	font-size: 17px;
 	font-weight:bold;
 	padding : 10px 0 10px 0;
+	color: black;
+	 : left;
 }
 
-/* ÇØ¾ßÇÒ ÀÏ  */
+/* ï¿½Ø¾ï¿½ï¿½ï¿½ ï¿½ï¿½  */
 .people > .state_work> a> p:nth-of-type(2){ 
 	
-	font-size: 15px;
+	font-size: 13px;
     padding : 5px 0 5px 0;
     width : 320px; 
+    color: black;
 }
 
-/* ¿Ï·áÇÑ ÀÏ ÀÏ  */
+/* ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½  */
 .people > .state_work> a> p:nth-of-type(3){ 
 	font-size: 10px;
     padding : 5px 0 5px 0;
+    width : 320px; 
+    color: black;
 }
 
 .modal_bg{

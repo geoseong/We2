@@ -6,8 +6,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="css/reset.css">
-<link rel="stylesheet" type="text/css" href="css/WillWork.css">
+<!-- <link rel="stylesheet" type="text/css" href="../css/reset.css"> -->
+<link rel="stylesheet" type="text/css" href="../css/WillWork.css">
 </head>
 <body>
 
@@ -19,7 +19,7 @@
 <c:if test="${not empty results}">
 	<div class="people" id="member1">
 			<div>
-					<img src="img/people_m1.png"/>
+					<img src="../img/people_m1.png"/>
 			</div>
 		 <div class="state_work">
 				<a class="tag1">
@@ -59,7 +59,7 @@
 <c:if test="${not empty results }">
 	<div class="people" id="member2">
 			<div>
-					<img src="img/people_w1.png"/>
+					<img src="../img/people_w1.png"/>
 			</div>
 			 <div class="state_work">
 					<a class="tag1">
@@ -97,7 +97,7 @@
 <c:if test="${not empty results }">
 	<div class="people" id="member3">
 			<div>
-					<img src="img/people_m2.png"/>
+					<img src="../img/people_m2.png"/>
 			</div>
 			<div class="state_work">
 					<a class="tag1">
@@ -129,7 +129,7 @@
 <c:if test="${not empty results }">
 	<div class="people" id="member4">
 			<div>
-					<img src="img/people_w2.png"/>
+					<img src="../img/people_w2.png"/>
 			</div>
 			 <div class="state_work">
 					<a class="tag1">
@@ -162,13 +162,13 @@
 <c:if test="${not empty results }">
 	<div class="people" id="member5">
 			<div>
-					<img src="img/people_m6.png"/>
+					<img src="../img/people_m6.png"/>
 			</div>
 		 <div class="state_work">
 				<a class="tag1">
 					<c:forEach var="user4" items="${results}" varStatus="status">
 							<c:if test="${status.index ==4}">
-							<p> ${user3.name}<!-- 이름 -->
+							<p> ${user4.name}<!-- 이름 -->
 							<p> 해야할 일 : ${user4.doWork}		
 							<p> 완료한 일: ${user4.doneWork}
 						</c:if>
@@ -202,7 +202,7 @@
   <div class="second_main">
 	<div class="showwork">
 		<h3 class="perform_title">할 일 설정</h3>
-		<div class="imgtest"><img src="img/people_m1.png" alt=""></div>
+		<div class="imgtest"><img src="../img/people_m1.png" alt=""></div>
 		<div class="now_work"> <!-- 지금까지 한 일 -->
 			<%-- <p><c:forEach var="username0" items="${results}">
 						<p>${username0.name}<!-- 이름 --></p>
@@ -266,7 +266,7 @@
   <div class="second_main">
 	<div class="showwork">
 		<h3 class="perform_title">할 일 설정</h3>
-		<div class="imgtest"><img src="img/people_w1.png" alt=""></div>
+		<div class="imgtest"><img src="../img/people_w1.png" alt=""></div>
 		<div class="now_work">
 				<%-- <p><c:forEach var="username1" items="${username1}">
 						<p>${username1}<!-- 이름 --></p>
@@ -323,7 +323,7 @@
   <div class="second_main">
 	<div class="showwork">
 		<h3 class="perform_title">할 일 설정</h3>
-		<div class="imgtest"><img src="img/people_m2.png" alt=""></div>
+		<div class="imgtest"><img src="../img/people_m2.png" alt=""></div>
 		<div class="now_work">
 			<%-- <p><c:forEach var="username2" items="${username2}">
 						<p>${username2}<!-- 이름 --></p>
@@ -380,7 +380,7 @@
   <div class="second_main">
 	<div class="showwork">
 		<h3 class="perform_title">할 일 설정</h3>
-		<div class="imgtest"><img src="img/people_w2.png" alt=""></div>
+		<div class="imgtest"><img src="../img/people_w2.png" alt=""></div>
 		<div class="now_work">
 			<%-- <p><c:forEach var="username3" items="${username3}">
 						<p>${username3}<!-- 이름 --></p>
@@ -435,7 +435,7 @@
   <div class="second_main">
 	<div class="showwork">
 		<h3 class="perform_title">할 일 설정</h3>
-		<div class="imgtest"><img src="img/people_m6.png" alt=""></div>
+		<div class="imgtest"><img src="../img/people_m6.png" alt=""></div>
 		<div class="now_work">
 			<%-- <p><c:forEach var="username4" items="${username4 }">
 						<p>${username4}<!-- 이름 --></p>
@@ -486,7 +486,6 @@
 
 </body>
 
-<script src="js/jquery-1.11.0.min.js"></script>
-<script src="js/WillWork.js"></script>
+<script src="../js/WillWork.js"></script>
 
 </html>

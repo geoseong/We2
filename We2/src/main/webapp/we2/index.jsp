@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -32,6 +33,15 @@
       }
     
    </style>
+   <%
+	if(request.getAttribute("test") != null){
+		%>
+			<script>
+				alert("프로젝트 생성이 완료되었습니다.");
+			</script>
+		<%
+	}
+%>
 </head>
         
 <body>
@@ -98,7 +108,6 @@
         
 <!-- 3. 중간 메뉴 : 부분 2 (아래의 4개 박스)--> 
     <div id = "menu">
-        
     
   <!-- 3.-1 중간 메뉴의 box--> 
             <!--id: 한문서에 한번 /class:한문서에 여러번--> 
@@ -143,8 +152,7 @@
     
    
    <div class="pjtMake">   
-        <form method="post" action="pjtmake.do">   
- 
+        <form method="post" action="pjtmake">   
            <div class="pjtMakeInner">
                 <h1 style="margin-top:20px;">프로젝트 만들기</h1>
                 
@@ -167,15 +175,11 @@
                   
                   <div class="imageArea">      
                      <label for="pjtTerm">프로젝트 기간</label>
-                        
 	   					<img src="img/index/calendar.png" class="img1" style="width:50px;">
-                        
 	   					<img src="img/index/calendar.png" class="img2" style="width:50px;">		
-	   					<input type="text" size="7" name="term1" id="term1" style="height:25px;">
-                        
-                        <span> ~ </span>
-                        
-                     <input type="text" size="7" name="endDate" id="term2" style="height:25px;">                          
+	   					<input type="text" size="7" name="startDate" id="term1" style="height:25px;">
+                        <span> &nbsp;~ </span>
+                    	<input type="text" size="7" name="endDate" id="term2" style="height:25px;">                          
                   </div>
                   
                   
@@ -192,7 +196,6 @@
                   <div class="btn2" style="padding-top:30px;">
                       <input type="submit" value="만들기"  size="100">
                   </div>
-                
                 </div>
          </div> <!--pjtMakeinner END-->
          

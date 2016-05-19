@@ -1,4 +1,4 @@
-package com.we2.willwork;
+/*package com.we2.willwork;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -83,8 +83,8 @@ public class WillWork extends HttpServlet {
 		request.setAttribute("user3", doWork3);
 		request.setAttribute("user4", doWork4);
 
-		/*${user0}.doWork라고 출력하면 doWork의 모든 할일이 출력됨*/
-		/*${user0}.doneWork라고 출력하면 doneWork의 모든 완료한 일이 출력됨*/
+		${user0}.doWork라고 출력하면 doWork의 모든 할일이 출력됨
+		${user0}.doneWork라고 출력하면 doneWork의 모든 완료한 일이 출력됨
 		
 		// 4-1. 배열에 할 일을 저장하기 위한 과정 
 		//List<WillWorkVO> 변수값의 0번째 값 (결과가 1행 뿐이기 떄문에 )을 String변수에 저장
@@ -116,7 +116,7 @@ public class WillWork extends HttpServlet {
 	
 			
 		
-		/**select를 해서 ..
+		*//**select를 해서 ..
 		String donework0 : 모든 할일이 저장되어 있는..
 
 		a : 할 일을 배열로 ,로 나눔
@@ -134,7 +134,7 @@ public class WillWork extends HttpServlet {
 		그리고 doWork 컬럼을 Update.
 
 		doneWork 컬럼을 Select로 가져옴.
-		+완료할 일 string을 합쳐서 doneWork 컬럼에 Update.*/
+		+완료할 일 string을 합쳐서 doneWork 컬럼에 Update.*//*
 		
 		//a --- 5명 인원중 몇번째인지 잘 살펴볼 것.
 		// : doworklist0=dowork0.split(",");
@@ -147,7 +147,7 @@ public class WillWork extends HttpServlet {
 		String isfalse = "";
 		
 		
-		/** 여기부터 user 변수 if문으로 판별해서 넣기*/
+		*//** 여기부터 user 변수 if문으로 판별해서 넣기*//*
 
 		// 체크한 걸 받는 배열.
 		if(request.getAttribute("workarray")!=null){
@@ -182,10 +182,10 @@ public class WillWork extends HttpServlet {
 			for(int i=0; i<compareuser.length; i++){
 				for(int j=0; j<worklist.length; j++){
 					if(compareuser[i].trim().equals(worklist[j].trim())){
-						/*istrue+=", "+doworklist1[i];
+						istrue+=", "+doworklist1[i];
 						isequal[j]=doworklist1[i];
 						System.out.println("isequal - "+isequal[j]);
-						System.out.println(doworklist1[i] +"--"+worklist[j]+ " : 일치");*/	
+						System.out.println(doworklist1[i] +"--"+worklist[j]+ " : 일치");	
 						list.remove(compareuser[i]);			
 					}else{
 						//isfalse+=worklist[j];
@@ -247,3 +247,4 @@ public class WillWork extends HttpServlet {
 		doGet(request,response);
 	}
 }
+*/

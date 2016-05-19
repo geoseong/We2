@@ -8,12 +8,6 @@
 <link rel="stylesheet" type="text/css" href="css/w2_reset.css">
 <link rel="stylesheet" type="text/css" href="css/02_1_pjtMake.css">
 
-<script type="text/javascript">
-
-function pjtmessage(){
-	alert("점검중입니다. (~04/08)");
-}
-</script>
 </head>
 <body>
    <div class="pjtMake">   
