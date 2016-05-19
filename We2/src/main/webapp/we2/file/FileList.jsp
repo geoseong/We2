@@ -34,10 +34,13 @@ function winOpen3(fcode){
 <div id="container">		
 	
 	<div class="content_wrap">
-		<h2>파일 공유 </h2>	&nbsp;	&nbsp;	&nbsp;<a  href="javascript:winOpen('${file.fcode}')">글쓰기</a>
+		<h2>파일 공유 </h2>
+		<a  href="javascript:winOpen('${file.fcode}')" class="write"> 글쓰기</a>
+		
+		
 		<table class="content_list">
 	   			
-	   			<tr id="Listtr">
+	   			<tr class="Listtr">
 		   		 	    <th id="filenum" >번호</th>
 		   			    <th id="filename">파일명</th>	  
 		   			    <th id="filedate">날짜</th>	  
@@ -45,10 +48,10 @@ function winOpen3(fcode){
 		   				<th id="filedownload">다운로드</th>
 		   				<th id="fileupdate">수정</th>
 		   				<th id="filedelete">삭제</th>
-		   			</tr>		
+		   		</tr>		
 		   		
 				<c:forEach var="file"   items="${fileList}">																
-					<tr>
+					<tr class="Listtr">
 						<td> ${file.fcode} </td>
 						<td> ${file.fname} </td>
 						<td> ${file.fdate} </td>
