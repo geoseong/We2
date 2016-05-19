@@ -47,7 +47,7 @@ var myVar = setInterval(myTimer, 1000);
         <h1>
             <b>
                 <sub>
-                    <a href="Project/02_project.jsp">We2</a>
+                    <a href="/We2">We2</a>
                 </sub>  
             </b>
         </h1>

@@ -54,15 +54,19 @@ public class SchedulerController {
 
 	//** 글쓰기 폼 띄우기 *//*
 	@RequestMapping(value="/memoAdd.do", method=RequestMethod.GET)
-	public String writeget(HttpSession session, HttpServletRequest request, Model model, SchedulerBean studyRoomBean){
+	public String writeget(HttpSession session, HttpServletRequest request, Model model, int year, int month, int day){
 		System.out.println("---글쓰기 페이지 진입");
 		if(session.getAttribute("authInfo")!=null){
 			System.out.println("로그인 되어있음.");
 		}
+		System.out.println("year : "+year + ", month : "+month + ", day : "+day);
 		System.out.println("로그인 안됨");
 		// JSP:INCLUDE PAGE
 		  model.addAttribute("schedulerpage", "memoAdd");
-	 
+		  model.addAttribute(Integer.toString(year));
+		  model.addAttribute(Integer.toString(month));
+		  model.addAttribute(Integer.toString(day));
+
 		return "Scheduler/memoAdd";
 	}
 	
