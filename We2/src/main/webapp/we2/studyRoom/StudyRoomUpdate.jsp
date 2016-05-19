@@ -53,18 +53,10 @@
     	</td>
     </tr>
     
-       <%-- <tr>
-   		<td>
-   		<p class="content_list_img">
-					 <img src="/We2/we2/studyRoom/data/${studyroomList.rpictureurl}" >
-				 </p>
-   		
-   			<input type="file" name="rpictureurl" value="${studyroomList.rpictureurl}"> (파일 용량 제한은 20MB 입니다.)
-   		</td> --%>
-        <tr>
+            <tr>
          <td colspan=5 >
    		    <p class="content_list_img">
-			    <img src="/We2/we2/studyRoom/data/${roomshare.rpictureurl}" style="width:275px;" >
+			 
 			</p>
    			<input type="file" name="rpictureurl" value="${studyroomList.rpictureurl}" style="text-align:center;">
   			<span style="font-size:12px; color:red;">*파일 용량제한은 20MB 입니다.</span>
