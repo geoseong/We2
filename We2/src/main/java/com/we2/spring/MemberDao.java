@@ -17,6 +17,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sun.jmx.snmp.Timestamp;
+import com.we2.pjtMake.PjtMakeVO;
 import com.we2.spring.Member;
 
 public class MemberDao {
@@ -124,4 +125,31 @@ public class MemberDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public List<PjtJoinVO> selectAll(String userId){
+		// pjtcode | userId | isLeader | pjtCode | pjtName     | pjtClassify | startDate  | endDate
+	      List<PjtJoinVO> results = 
+            jdbcTemplate.query(
+        		"select * from pjtmanager mgr, pjtmake make where mgr.pjtcode = make.pjtcode and mgr.userId = ?"
+        		,
+        		new RowMapper<PjtJoinVO>(){
+			      @Override
+			      public PjtJoinVO mapRow(ResultSet rs, int rowNum) throws SQLException {
+			    	  PjtJoinVO pjtJoinVO = new PjtJoinVO(
+			        		 rs.getString("pjtcode"),
+			        		 rs.getString("userId"),
+			        		 rs.getString("isLeader"),
+			        		 rs.getString("pjtCode"),
+			        		 rs.getString("pjtName"),
+			               rs.getString("pjtClassify"),
+			               rs.getString("startDate"),
+			               rs.getString("endDate"));
+			         return pjtJoinVO;
+			      }
+        		}
+	           , userId);
+	      System.out.println("selectAll()::results.isEmpty()::::::"+results.isEmpty());
+	      return results.isEmpty()?null:results;
+	   }
+	
 	}
