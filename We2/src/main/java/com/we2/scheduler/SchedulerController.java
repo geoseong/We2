@@ -100,7 +100,7 @@ public class SchedulerController {
 			cVo.setPjtcode(pjtcode);
 				System.out.println("WriteServlet - title : " + cVo.getPjtcode());
 		// 게시글 내용들을 Insert하기
-			schedulerService.insertScheduler(cVo);
+			schedulerService.insertScheduler(pjtcode, calendarmemo_year, calendarmemo_month, calendarmemo_day, calendarmemo_contents);
 			/*calendarmemo_num, calendarmemo_year, calendarmemo_month, calendarmemo_day, calendarmemo_contents*/
 		// JSP:INCLUDE PAGE
 		  model.addAttribute("schdulerpage", "Calendar");
@@ -149,7 +149,7 @@ public class SchedulerController {
 			return "Scheduler/memoUpdate";   
 		}
 			
-		@RequestMapping(value="/StudyRoomupdate.do", method=RequestMethod.POST)
+		@RequestMapping(value="/memoUpdate.do", method=RequestMethod.POST)
 		public String StudyRoomupdatepos(SchedulerBean studyRoomBean, Model model , HttpSession session) throws IOException {
 			
 			//PjtBoardBean객체인 cVo에 변수들을 집어넣는다.

@@ -105,6 +105,12 @@ public class PjtMakeDAO {
 	return count;
 	}
 	
+	
+	/**회원 초대수락할때 멤버추가하기.*/
+	public void addpjtMember(){
+		
+	}
+	
 	/*
 	// 회원이 속해있는 프로젝트이름 뿌리기
 	public List<PjtMakeVO> selectUserpjts(String userid){

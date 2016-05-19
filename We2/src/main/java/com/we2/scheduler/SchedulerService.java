@@ -24,11 +24,15 @@ public class SchedulerService {
 	public SchedulerBean getSearchbycalendarmemo_num(int calendarmemo_num){
 		return this.schedulerMapper.getSearchbycalendarmemo_num(calendarmemo_num);
 	}
-	
 
-	public void insertScheduler (SchedulerBean schedulerBean){
+	public void insertScheduler ( 
+			 int pjtcode,		 
+			 int calendarmemo_year, 
+			 int calendarmemo_month, 
+			 int calendarmemo_day, 
+			 String calendarmemo_contents){
 		System.out.println("게시물 insert 완료.");
-		schedulerMapper.insertScheduler(schedulerBean);
+		schedulerMapper.insertScheduler(pjtcode, calendarmemo_year, calendarmemo_month, calendarmemo_day, calendarmemo_contents);
 	}
 	public void deleteScheduler(int calendarmemo_num){
 		this.schedulerMapper.deleteScheduler(calendarmemo_num);

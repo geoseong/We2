@@ -36,9 +36,8 @@ public class FileService {
 		return nCnt;
 	}
 
-	public void insertFile (FileBean fileBean){
-		System.out.println("게시물 insert 완료.");
-		fileMapper.insertFile(fileBean);
+	public void insertFile (String fname, String fileurl){
+		fileMapper.insertFile(fname, fileurl);
 	}
 	
 	public void deleteRow(int fcode){
@@ -50,7 +49,6 @@ public class FileService {
 			 int fcode,
 		   	 String fname, 
 			 String fileurl
-			 
 			 ){
 		System.out.println("fileservice updaterow");
 		this.fileMapper.fileupdate(fcode, fname, fileurl);

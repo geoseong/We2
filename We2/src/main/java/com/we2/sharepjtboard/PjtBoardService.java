@@ -55,6 +55,7 @@ public class PjtBoardService {
 	
 	// 게시물 등록
 	public void insertBoard (String category, String itemTitle, String userId, String itemPath, String itemContent, String itemDataType){
+		
 		boardMapper.insertBoard(category, itemTitle, userId, itemPath, itemContent, itemDataType);
 	}
 	

@@ -9,15 +9,7 @@ public class StudyRoomBean {
 	private int rmember;
 	private String rcontent;
 	private String rpictureurl;
-	private String userId;
-	
-	public String getUserId() {
-		return userId;
-	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
 
 
 	public int getRcode() {
@@ -68,7 +60,7 @@ public class StudyRoomBean {
 	}
 
 	public StudyRoomBean(int rcode, String rname, String rlocation, String rlocationdetail, int rmember,
-			String rcontent, String rpictureurl, String userId) {
+			String rcontent, String rpictureurl) {
 		super();
 		this.rcode = rcode;
 		this.rname = rname;
@@ -77,6 +69,6 @@ public class StudyRoomBean {
 		this.rmember = rmember;
 		this.rcontent = rcontent;
 		this.rpictureurl = rpictureurl;
-		this.userId = userId;
+		
 	}
 }
