@@ -6,8 +6,19 @@ public class FileBean {
 	private int fcode;
 	private String fname;
 	private String fileurl;
+	private String pjtCode; 
 	private Date fdate;
 	
+	
+	
+	public String getPjtCode() {
+		return pjtCode;
+	}
+
+	public void setPjtCode(String pjtCode) {
+		this.pjtCode = pjtCode;
+	}
+
 	public int getFcode() {
 		return fcode;
 	}
