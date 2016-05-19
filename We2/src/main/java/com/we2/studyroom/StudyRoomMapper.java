@@ -100,7 +100,13 @@ public interface StudyRoomMapper {
 			
 		@Insert(insertStudyRoom)  		
 		//@Options(useGeneratedKeys = true, keyProperty = "id")
-		void insertStudyRoom(StudyRoomBean studyRoomBean) ;
+		void insertStudyRoom(
+		@Param("rname") String rname, 
+		@Param("rlocation") String rlocation, 
+		@Param("rlocationdetail") String rlocationdetail, 
+		@Param("rcontent") String rcontent, 
+		@Param("rmember") int rmember, 
+		@Param("rpictureurl")String rpictureurl) ;
 		
 		@Select(select_all)
 		int getTotalCnt();

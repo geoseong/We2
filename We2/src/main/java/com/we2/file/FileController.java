@@ -96,7 +96,7 @@ public class FileController {
 
 
 	@RequestMapping(value="/filewrite.do", method=RequestMethod.GET)
-	public String writeget(HttpSession session, HttpServletRequest request, Model model, FileBean fileBean){
+	public String writeget(HttpSession session, HttpServletRequest request, Model model){
 		System.out.println("---글쓰기 페이지 진입");
 		if(session.getAttribute("authInfo")!=null){
 			System.out.println("로그인 되어있음.");

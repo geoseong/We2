@@ -229,7 +229,7 @@ public class StudyRoomController {
 			sVo.setRmember(rmember);
 			System.out.println("WriteServlet - title : " + sVo.getRmember());
 		// 게시글 내용들을 Insert하기
-			studyroomService.insertStudyRoom(sVo);
+			studyroomService.insertStudyRoom(sVo.getRname(), sVo.getRlocation(), sVo.getRlocationdetail(), sVo.getRcontent(), sVo.getRmember(),sVo.getRpictureurl());
 		
 		// JSP:INCLUDE PAGE
 		  model.addAttribute("studyroompage", "StudyRoomList");

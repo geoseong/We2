@@ -39,10 +39,21 @@ public class StudyRoomService {
 		nCnt =this.studyRoomMapper.getTotalCnt();
 		return nCnt;
 	}
-	public void insertStudyRoom (StudyRoomBean studyRoomBean){
+	public void insertStudyRoom (
+			 String rname, 
+			 String rlocation, 
+			 String rlocationdetail, 
+			 String rcontent, 
+			 int rmember, 
+		     String rpictureurl){
 		System.out.println("게시물 insert 완료.");
-		studyRoomMapper.insertStudyRoom(studyRoomBean);
+		studyRoomMapper.insertStudyRoom(rname, rlocation, rlocationdetail, rcontent, rmember, rpictureurl);
 	}
+	
+
+
+	
+	
 	public void deleteRow(int rcode){
 		this.studyRoomMapper.StudyRoomdelete(rcode);
 		
