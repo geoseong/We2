@@ -132,14 +132,14 @@ public class PjtBoardController {
 	/** 글 등록하기 
 	 * @throws IOException */
 	@RequestMapping(value="/write", method=RequestMethod.POST)
-	public String aopwritepost(HttpSession session, /*HttpServletRequest request, */Model model, String category) throws IOException {
-		System.out.println("write.post] category : "+category);
+	public String aopwritepost(HttpSession session, /*HttpServletRequest request, */Model model/*, String category*/) throws IOException {
+		System.out.println("write.post] category : "+request.getParameter("category"));
+		
 		
 		// 해당 경로의 폴더가 안만들어져있다면 직접 만들어놔야할 것.
 		// getRealPath : E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps\testweb\
 		MultipartRequest multi = new MultipartRequest(
 					request, 	servletContext.getRealPath(path), sizeLimit, encType, new DefaultFileRenamePolicy());
-		
 		
 		//PjtBoardBean객체인 pVo에 변수들을 집어넣는다.
 		PjtBoardBean pVo = new PjtBoardBean();
@@ -163,14 +163,17 @@ public class PjtBoardController {
 		//8. 데이터 타입
 			pVo.setItemDataType(multi.getContentType("file"));
 				System.out.println("파일 contentType : " + pVo.getItemDataType());
-		// 게시글 내용들을 Insert하기
-			boardService.insertBoard(category, pVo.getItemTitle(), pVo.getUserId(), pVo.getItemPath(), pVo.getItemContent(), pVo.getItemDataType());
+
+		// SQL : 게시글 내용들을 Insert하기
+			boardService.insertBoard(request.getParameter("category"), pVo.getItemTitle(), pVo.getUserId(), pVo.getItemPath(), pVo.getItemContent(), pVo.getItemDataType());
 		
 		// JSP:INCLUDE PAGE
 		  model.addAttribute("Boardpage", "list");
-		  model.addAttribute("page", 1);
+		  //model.addAttribute("page", "1");
+		  request.setAttribute("page", 1);
 		// category 보냄
-		  model.addAttribute("category", category);
+		  //model.addAttribute("category", category);
+		  request.setAttribute("category", request.getParameter("category"));
 		  
 		  //request.setAttribute("msg", "<script type='text/javascript'>alert('입력되었습니다');</script>");
 		  model.addAttribute("msg", "<script type='text/javascript'>alert('입력되었습니다');</script>");

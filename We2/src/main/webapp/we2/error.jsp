@@ -14,18 +14,21 @@
 </style>
 </head>
 <body>
+
 <div style="color: blue;">
-	<h1>Error page ^^</h1><br>
+	<h1>Welcome to We2 Error page ^^</h1><br>
+	
 	<span style="font-size: 12pt; color: rgb(0, 117, 200);">
 		<a href="/We2" style="text-decoration: none;" id="atag">
 		<b>이전 페이지로 돌아가기</b>
 		</a>
 	</span>
 </div>
-<br><br>
-<span style="font-size: 12pt; color: red ; border: 2px dotted black; margin: 20px; padding:20px;">
-원인 : ${errormsg }
-</span>
+<br>
+<div style="font-size: 12pt; color: red ; border: 2px dotted black; margin: 20px; padding:20px;">
+<b>원인 : </b>
+<br>${errormsg }
+</div>
 <%
 	String errormsg = (String)request.getAttribute("error");
 	String pagemsg = (String)request.getAttribute("page");

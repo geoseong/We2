@@ -48,7 +48,7 @@ public class AOP_Session {
     public void afterReturningTargetMethod(JoinPoint thisJoinPoint,
             Object retVal) {
         System.out.println("AOP_Aspect.afterReturningTargetMethod 실행됨." + 
-                           " return value is [" + retVal + "]");
+                           " return value is [" + retVal + "]\n------------------");
        /* AuthInfo authinfo = (AuthInfo)request.getAttribute("authInfo");
         System.out.println("afterthrowing.authinfo = " + authinfo.getPhone());*/
     } //end @AfterReturning
@@ -58,20 +58,20 @@ public class AOP_Session {
         System.out.println("AOP_Aspect.afterThrowingTargetMethod executed.");
        // HttpServletRequest request= ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
         String ex_str=ex.toString();
-        System.out.println("Throwable ex - " + ex_str);
+        System.out.println("Throwable ex - " + ex_str+"\n------------------");
 
-        if(ex_str.contains("NumberFormatException")){
-    	   request.setAttribute("error", "numberformatexception");
+        /*if(ex_str.contains("NumberFormatException")){
+    	   request.setAttribute("error", "numberformatexception");*/
     	   request.setAttribute("errormsg", ex_str);
-       }else if(ex_str.contains("NullPointerException")){
+     /*  }else if(ex_str.contains("NullPointerException")){
     	   request.setAttribute("error", "sessionAfterthrowing");
     	   request.setAttribute("errormsg", ex_str);
-       }
+       }*/
     }
 
 	 @After("sessionCheck()")
 	    public void afterTargetMethod(JoinPoint thisJoinPoint) {
-	        System.out.println("AOP_Aspect.@After executed.");
+	        System.out.println("AOP_Aspect.@After executed.\n------------------");
 	    }
 	
 } //end Class
