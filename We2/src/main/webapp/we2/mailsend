@@ -1,0 +1,8 @@
+<a href="http://localhost:8080/We2/" style="background-color: lime;" target="_blank">what</a>
+<br>
+<form action="http://localhost:8080/We2/">
+<input type="hidden" name="pjtCode" value="${pjtCode}">
+<input type="text" value="누가 코골아">
+<input type="text" value="쿨쿨">
+<input type="submit" value="초대 수락">
+</form>

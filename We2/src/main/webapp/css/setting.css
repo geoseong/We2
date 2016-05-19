@@ -1,0 +1,184 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
+@CHARSET "UTF-8";
+
+body { 
+	font-family: 'Lato', Calibri, Arial, sans-serif; 
+ 	color: #424444; 
+ 	background: #f9f9f9;
+    padding: 0;
+    margin: 0;
+ } 
+
+a { 
+ 	color: #f9f9f9; 
+ 	text-decoration: none; 
+ } 
+ 
+ 
+ h2 {
+ padding:10px;
+ margin-top:30px;
+ font-weight:600;
+ font-size: 20px;
+ color:#1591BE;
+ 
+ }
+ 
+
+table {
+	width:100%; 	
+	border-collapse: collapse;		
+	font-size: 14px;			/* 글꼴 크기 */
+	line-height: 50px;		/* 줄 간격 */	
+}
+
+
+
+table th,td{
+	border: 0.5px solid #d3d3d3;  /* 경계선 색상 스타일 굵기 */ */
+	padding: 20px;
+    border-left:0;
+	border-right:0;  
+}
+
+tabel td {
+	padding-left:20px;
+
+}
+
+table th {
+	width:20%;
+	margin-top:100px;
+    /* border-top: 2px solid #1591BE;
+	border-bottom: 2px solid #1591BE; */
+	background-color:#efefef;
+	font-size:16px;
+	color:#424444; 
+}
+
+/* 이메일 입력란 */
+
+#email_bg{
+	background-image: url(../img/input_email.png);
+	background-repeat: no-repeat;
+    background-position: 0px 3px;
+}
+
+
+
+/* 팀원 강퇴 부분 */
+form {
+	vertical-align:middle;
+	line-height:70px;
+}
+
+/* 팀원 체크 박스 */
+.check {
+	width:20px;
+	height:20px;
+	margin-left:10px;
+	margin-right:10px;
+	text-align:left;
+	vertical-align:middle;	
+}
+
+/* 팀원들 이미지 */
+.pjt_team img{
+	float:left;
+}
+
+
+/* 프로젝트 기간 관련 디자인 */
+#pjt_time{
+	height:180px;
+   /*  border: 1px solid #1591BE;  */
+
+}
+
+ /* 달력 이미지 */
+.imageArea{ 
+	margin-top:10px;
+    margin-left:130px;
+    
+}
+.img1{
+    margin-left:25px;
+}
+
+.img2{
+    margin-left:82px;
+}
+
+/* 기간 입력 부분 디자인  */
+
+.time {
+	margin-top:10px;
+	margin-left:140px;
+}
+
+#term1 {
+	float:left;
+}
+
+#term2 {
+	float:left;
+}
+
+.time span{
+	float:left;
+    font-size:20px;
+    font-weight:600;
+    margin-left:20px;
+    margin-right:20px;
+}
+
+ .imageArea > input:nth-of-type(1) {
+   margin : 0 0 0 130px;
+ }
+ 
+  .imageArea > input:nth-of-type(2) {
+   margin : 0px;
+ }
+ 
+.time>.add_btn {
+	float:right;
+}
+
+
+ /* 버튼 관련 디자인 */
+.add_btn{
+
+	float:left;
+	border:none;
+	background:#4CC4EE;
+	color:#fff;
+    font-weight: 400;
+    font-size:15px;
+	width:100px;
+	height:30px;
+	border-radius:5px;
+	text-align:center;
+}
+
+.add_btn:hover{
+    background-color: black;
+    color:#fff;
+    opacity:0.3;
+}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
