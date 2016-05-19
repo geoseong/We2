@@ -1,14 +1,14 @@
 @CHARSET "UTF-8";
 
 h2 {
-	text-align: center;
-	color:#1591BE;
-	font-weight: 600;
+	font-weight: 800;
+	padding:10px;
+	font-size:23px;
 }
 
 /*표 부분*/
 table {
-	width:500px;
+	width:100%;
 	border-collapse: collapse;		
 	font-size: 14px;			/* 글꼴 크기 */
 	line-height: 40px;		/* 줄 간격 */	
@@ -71,7 +71,7 @@ a:hover {
 	border:none;
 	background:#d3d3d3;
 	color:#424444;
-    font-weight:600;
+    font-weight:400;
     font-size:15px;
 	width:80px;
 	height:29px;
