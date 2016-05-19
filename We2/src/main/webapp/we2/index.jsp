@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -32,6 +33,15 @@
       }
     
    </style>
+   <%
+	if(request.getAttribute("test") != null){
+		%>
+			<script>
+				alert("프로젝트 생성이 완료되었습니다.");
+			</script>
+		<%
+	}
+%>
 </head>
         
 <body>
@@ -47,7 +57,7 @@
     <a href="index.jsp"><b>We2</b></a>
 
  <c:choose>
-    <c:when test="${empty loginUser}">
+    <c:when test="${empty authInfo}">
 
 		   <div id = "nav">
             <a href="login" class="loginButton">로그인</a><!-- A태그를 사용하면 get으로 넘어간다.!! -->
@@ -98,7 +108,6 @@
         
 <!-- 3. 중간 메뉴 : 부분 2 (아래의 4개 박스)--> 
     <div id = "menu">
-        
     
   <!-- 3.-1 중간 메뉴의 box--> 
             <!--id: 한문서에 한번 /class:한문서에 여러번--> 
@@ -143,13 +152,10 @@
     
    
    <div class="pjtMake">   
-        <form method="post" action="pjtmake.do">   
- 
+        <form method="post" action="pjtmake">   
            <div class="pjtMakeInner">
                 <h1>프로젝트 만들기</h1>
-                
                 <img src="img/index/x.png" id="exit2">
-                 
                 <div class="frame">
                   <div class="nameArea">
                      <label for="pjtName">프로젝트 이름</label>
@@ -167,32 +173,16 @@
                   
                   <div class="imageArea">      
                      <label for="pjtTerm">프로젝트 기간</label>
-                        
 	   					<img src="img/index/calendar.png" class="img1" style="width:50px;">
-                        
 	   					<img src="img/index/calendar.png" class="img2" style="width:50px;">		
-	   					<input type="text" size="7" name="term1" id="term1" style="height:25px;">
-                        
-                        <span> ~ </span>
-                        
-                     <input type="text" size="7" name="endDate" id="term2" style="height:25px;">                          
+	   					<input type="text" size="7" name="startDate" id="term1" style="height:25px;">
+                        <span> &nbsp;~ </span>
+                    	<input type="text" size="7" name="endDate" id="term2" style="height:25px;">                          
                   </div>
-                  
-                  
-               
-                  <!-- <div class="inviteArea">
-                     <label for="pjtInvite">프로젝트 초대</label>
-                     준비 중입니다.
-                      <input type="text" size="26" name="invite" style="height:25px;">
-                        <div class="btn1">
-                      <input type="button" value="초대하기" size="50" onclick="invitemember()">
-                      </div>
-                  </div> 
-                   -->
+              
                   <div class="btn2">
                       <input type="submit" value="만들기"  size="100">
                   </div>
-                
                 </div>
          </div> <!--pjtMakeinner END-->
          

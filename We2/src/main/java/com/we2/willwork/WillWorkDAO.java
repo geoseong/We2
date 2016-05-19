@@ -1,4 +1,4 @@
-package com.we2.willwork;
+/*package com.we2.willwork;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -276,3 +276,4 @@ public class WillWorkDAO {
 		}		
 	}
 }
+*/

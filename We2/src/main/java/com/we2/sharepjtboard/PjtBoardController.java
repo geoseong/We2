@@ -348,9 +348,15 @@ public class PjtBoardController {
 	
 	
 	/** 테스트 영역 */
-	@RequestMapping(value="/mailtest", method=RequestMethod.GET)
+	/*@RequestMapping(value="/mailtest", method=RequestMethod.GET)
 	public String pjt(Model model, String category) {
 		model.addAttribute("page","boardmain");
+		return "myproject/myproject";
+	}*/
+	
+	@RequestMapping(value="/mailtest", method=RequestMethod.GET)
+	public String pjt(Model model, String category) {
+		model.addAttribute("page","../WillWork/WillWork.jsp");
 		return "myproject/myproject";
 	}
 	

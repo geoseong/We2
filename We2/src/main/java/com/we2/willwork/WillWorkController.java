@@ -16,22 +16,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Controller
+@RequestMapping("/willwork")
 public class WillWorkController {
 	
 	private WillWorkDAO2 willWorkDAO;
 	public void setWillWorkDAO(WillWorkDAO2 willWorkDAO) {
 		this.willWorkDAO = willWorkDAO;
 	}
-	//(Ã³À½ ½ÇÇàÇßÀ» ¶§ ½ÃÀÛÇÏ´Â È­¸é ÇÒÀÏ³ª´©±â -> Á¶È¸)
-	@RequestMapping(value="/willwork", method=RequestMethod.GET)
+	
+	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String initGet(Model model) throws ParseException{
-	List<WillWorkVO> results = willWorkDAO.selectAll(); //¸ðµç »ç¶÷¿¡ ´ëÇÑ Á¤º¸¸¦ °¡Á®¿È
+	List<WillWorkVO> results = willWorkDAO.selectAll(); 
 	
-	// »ç¶÷ ¼ö¸¦ ±¸ÇØ¼­ ±× »ç¶÷ ¼ö¿¡ ¸Â°Ô Á¤º¸¸¦ °¡Á®¿È
 	
-	//Select All¿¡¼­ ¹Þ¾Æ¿Â ¸ðµç »ç¶÷ Á¤º¸¸¦ ¹ÙÅÁÀ¸·Î 1Â÷·Î °¢ »ç¶÷¸¶´Ù ÇÒ ÀÏÀ» ³ª´©°í, 2Â÷·Î ÄÞ¸¶·Î ¶Ç ³ª´®
-	
-	String divDoWork1 = results.get(0).doWork; //1¹ø »ç¶÷¿¡ ´ëÇÑ ÇÒÀÏÀ» ´ã´Â´Ù.
+	String divDoWork1 = results.get(0).doWork; 
 	String divDoWork2 = results.get(1).doWork;
 	String divDoWork3 = results.get(2).doWork;
 	String divDoWork4 = results.get(3).doWork;
@@ -50,80 +48,83 @@ public class WillWorkController {
 	model.addAttribute("divWorkList5", divWorkList5);
 	model.addAttribute("results", results);
 	
-	return "/WillWork/WillWork";
+	model.addAttribute("page", "../WillWork/WillWork");
+	
+	return "myproject/myproject";
 }
 	
-	//ÇÒ ÀÏÀ» Ãß°¡ÇßÀ» ¶§ ½ÇÇàµÇ´Â ÄÁÆ®·Ñ·¯(Ãß°¡ -> Á¶È¸ -> ÇÒÀÏ³ª´©±â )
-	//Æ¯Á¤ ÀÎ¹°ÀÇ ÀÌ¸§°ú, ÀÔ·ÂÇÑ ÀÏÀÌ ³Ñ¾î¿È!
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½ï¿½Æ®ï¿½Ñ·ï¿½(ï¿½ß°ï¿½ -> ï¿½ï¿½È¸ -> ï¿½ï¿½ï¿½Ï³ï¿½ï¿½ï¿½ï¿½ï¿½ )
+	//Æ¯ï¿½ï¿½ ï¿½Î¹ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½, ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾ï¿½ï¿½!
 	@RequestMapping(value="/willwork2", method=RequestMethod.POST)
-	public String AddPost(HttpServletRequest request, Model model) throws ParseException{
-		String doWork = request.getParameter("inputWork"); //ÀÔ·ÂÇÑ ÀÏ
-		String name = request.getParameter("userName"); //ÇØ´ç À¯Àú ³×ÀÓ
-		System.out.println("ÇÒÀÏ : " +  doWork + " ÀÌ¸§ : " + name);
-		// ÀÌ¸§°ú ÇÒÀÏ Ãß°¡ÇÏ±â
-		willWorkDAO.insertDoWork(name, doWork);
+	public String AddPost(HttpServletRequest request, Model model, String pjtCode) throws ParseException{
+		String doWork = request.getParameter("inputWork"); //ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½ï¿½
+		String name = request.getParameter("userName"); //ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ : " +  doWork + " ï¿½Ì¸ï¿½ : " + name);
+		// ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ï±ï¿½
+		
+		willWorkDAO.insertDoWork(name, doWork, pjtcode);
 		return "redirect:willwork";
 	}
 	
-	//ÇÒÀÏÀ» ¿Ï·áÇÏ´Â ¹öÆ°À» ´­·¶À» ¶§ ½ÇÇàµÇ´Â Controller (¼±ÅÃÇÑ »ç¶÷ÀÇ Á¤º¸Á¶È¸ -> ÇÒÀÏ ³ª´©±â -> Á¦°Å)
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ Controller (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¸ -> ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ -> ï¿½ï¿½ï¿½ï¿½)
 	@RequestMapping(value="/willwork3", method=RequestMethod.POST)
 	public String DeletePost(HttpServletRequest request, Model model) throws ParseException{
-		String complete = request.getParameter("complete"); //Á¦°ÅÇÏ±â À§ÇØ ¼±ÅÃÇÑ ÀÏ
-		String name = request.getParameter("userName"); //ÇØ´ç À¯Àú ³×ÀÓ
+		String complete = request.getParameter("complete"); //ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+		String name = request.getParameter("userName"); //ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		
-		List<WillWorkVO> One = willWorkDAO.selectOne(name); //³×ÀÓÀ» ÅëÇØ ÇÑ »ç¶÷ÀÇ Á¤º¸¸¦ ÂÓ ºÒ·¯¿È
-		String doWork = One.get(0).doWork; //±× »ç¶÷ÀÇ ÇÒÀÏÀ» ÂÓ ³ª¿­
-		String[] doWorkList = doWork.split(","); //ÄÄ¸¶·Î ±¸ºÐµÈ ¹®ÀÚ¿­À» ³ª´²¼­ ¹è¿­¿¡ ´ã´Â´Ù.
-		ArrayList<String> list = new ArrayList<String>(); //ÄÄ¸¶¸¦ Á¦°ÅÇÑ ÇÒ ÀÏÀ» ¸®½ºÆ®¿¡ ÀúÀå
+		List<WillWorkVO> One = willWorkDAO.selectOne(name); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½
+		String doWork = One.get(0).doWork; //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		String[] doWorkList = doWork.split(","); //ï¿½Ä¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ðµï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½Â´ï¿½.
+		ArrayList<String> list = new ArrayList<String>(); //ï¿½Ä¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		for(int i=0; i<doWorkList.length; i++)
 		{
 			list.add(doWorkList[i]);
 		}
 		
-		for(int i=0; i<list.size(); i++) //¸®½ºÆ®¿Í ºñ±³ÇØ¼­ ¼±ÅÃÇÑ °ªÀ» Á¦°Å 
+		for(int i=0; i<list.size(); i++) //ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 		{
 			if(complete.trim().equals(list.get(i).trim()))
 			{
-				System.out.println("Á¦°ÅÇÑ °ªÀº : " + list.get(i));
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : " + list.get(i));
 				list.remove(i);
 			}
 		}
 		
-		/*System.out.print("Á¦°ÅÇÑ ÈÄ ¸®½ºÆ® ¸ñ·Ï : ");
-		for(int i=0; i<list.size(); i++) //Á¦°ÅÇÑ ÈÄ ÀÇ ¸ñ·Ï 
+		/*System.out.print("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ : ");
+		for(int i=0; i<list.size(); i++) //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ 
 		{
 			System.out.print(list.get(i));
 		}*/
 		
-		//ÄÄ¸¶ Á¦°Å ÈÄ ¸®½ºÆ®¿¡ ´ã°í Á¦°ÅÇÑ µÚ,ÄÄ¸¶¸¦ ºÙ¿©¼­ ´Ù½Ã ÇÕÄ¡´Â ÀÛ¾÷(µ¥ÀÌÅÍ°¡ 1°³ÀÎ °æ¿ì ÄÄ¸¶ ¾ÈºÙÀÓ, 2°³ÀÌ»óÀÌ¸é ÄÄ¸¶ ºÙ¿©¾ßÇÔ, ¾ø´Â °æ¿ì ¾ø´Â °ªÀ» Àü´Þ)
+		//ï¿½Ä¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½,ï¿½Ä¸ï¿½ï¿½ï¿½ ï¿½Ù¿ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Û¾ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ 1ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ä¸ï¿½ ï¿½Èºï¿½ï¿½ï¿½, 2ï¿½ï¿½ï¿½Ì»ï¿½ï¿½Ì¸ï¿½ ï¿½Ä¸ï¿½ ï¿½Ù¿ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
 				String rebuild = "";
 				
 				if(list.size()==1){
 					rebuild += list.get(0); 
 				}
 				
-				if(list.size()>1){ //¸®½ºÆ® °ªÀÌ 2°³ ÀÌ»óÀÌ¸é ÄÄ¸¶¸¦ ºÙ¿©¼­ ¿¬°á
+				if(list.size()>1){ //ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ 2ï¿½ï¿½ ï¿½Ì»ï¿½ï¿½Ì¸ï¿½ ï¿½Ä¸ï¿½ï¿½ï¿½ ï¿½Ù¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 				for(int i=0; i<list.size();i++){
 					rebuild += list.get(i)+",";
 				}
 				System.out.println();
-				//System.out.println("rebuild µÈ String °ª : " + rebuild);
+				//System.out.println("rebuild ï¿½ï¿½ String ï¿½ï¿½ : " + rebuild);
 				rebuild = rebuild.substring(0, rebuild.length()-1);
-				//System.out.println("rebuild ¼öÁ¤ ÈÄ String °ª : " + rebuild);
+				//System.out.println("rebuild ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ String ï¿½ï¿½ : " + rebuild);
 				}
 				if(list.size()==0)
 				{
 					rebuild = "";
 				}
 				
-				//completeÀº ÇÒÀÏ ¿Ï·á¶ó°í ³»°¡ ¼±ÅÃÇÑ °Å´Ï±î doneWork¿¡¼­ Ãß°¡¸¦ ÇØÁÖµÇ .. °ªÀÌ ÀÖÀ»¶§¸¸ ÄÄ¸¶¸¦ ³Ö¾îÁÖ¾î¾ß ÇÏ´Âµ¥..ÀÌ°Ô¹®Á¦  
-				//rebuild´Â completeÀ» Á¦°ÅÇÏ°í 
+				//completeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å´Ï±ï¿½ doneWorkï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Öµï¿½ .. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ä¸ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½Ö¾ï¿½ï¿½ ï¿½Ï´Âµï¿½..ï¿½Ì°Ô¹ï¿½ï¿½ï¿½  
+				//rebuildï¿½ï¿½ completeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ 
 		if(complete!=null){
 		willWorkDAO.updateWillWork(name, rebuild);
 		}
 		
 		willWorkDAO.insertDoneWork(name, complete);
-		//List<WillWorkVO> results = willWorkDAO.selectAll();//¸ðµç »ç¶÷ Á¤º¸¸¦ °¡Á®¿È
+		//List<WillWorkVO> results = willWorkDAO.selectAll();//ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		//model.addAttribute("results", results);
 		return "redirect:willwork";
 	}
