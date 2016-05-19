@@ -158,7 +158,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/Member_Mypage", method = RequestMethod.GET)
-	public String Member_MypageView(HttpServletRequest request, AuthInfo authInfo, Model model){
+	public String aopMember_MypageView(HttpServletRequest request, AuthInfo authInfo, Model model){
 		
 		HttpSession session = request.getSession(); // 세션영역을 가져옴
 

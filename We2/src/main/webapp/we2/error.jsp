@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>error page</title>
+<title>We2 error page</title>
 <style type="text/css">
 #atag:hover{
     text-decoration: underline;
@@ -27,7 +27,7 @@
 <br>
 <div style="font-size: 12pt; color: red ; border: 2px dotted black; margin: 20px; padding:20px;">
 <b>원인 : </b>
-<br>${errormsg }
+<br>${error }
 </div>
 <%
 	String errormsg = (String)request.getAttribute("error");
@@ -40,8 +40,8 @@
 	<c:when test="${error eq 'sessionAfterthrowing' }">
 		<c:redirect url="/login"></c:redirect>
 	</c:when>
-	<c:when test="${error eq 'authentication' }">
-		<c:redirect url="/pjtBoard/list?page=1&category=group"></c:redirect>
+	<c:when test="${error.contains('NullPointer') }">
+		<c:redirect url="/login"></c:redirect>
 	</c:when>
 </c:choose>
 </body>

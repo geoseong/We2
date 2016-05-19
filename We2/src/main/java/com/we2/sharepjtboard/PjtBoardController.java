@@ -31,6 +31,8 @@ public class PjtBoardController {
     private ServletContext servletContext;
 	@Autowired
 	HttpServletRequest request;
+	@Autowired
+	HttpSession session;
 	
 	String path="we2/pjtBoard/data";
 	int sizeLimit = 20*1024*1024;
@@ -118,10 +120,6 @@ public class PjtBoardController {
 		
 		System.out.println("Write.get] category : " + category);
 		
-		/*if(session.getAttribute("authInfo")==null){
-			return "redirect:/";
-		}*/
-		
 		// JSP:INCLUDE PAGE
 		  model.addAttribute("Boardpage", "write");
 		// category 보냄
@@ -132,7 +130,7 @@ public class PjtBoardController {
 	/** 글 등록하기 
 	 * @throws IOException */
 	@RequestMapping(value="/write", method=RequestMethod.POST)
-	public String aopwritepost(HttpSession session, /*HttpServletRequest request, */Model model, String category) throws IOException {
+	public String aopwritepost(/*HttpSession session, HttpServletRequest request, */Model model, String category) throws IOException {
 		System.out.println("write.post] category : "+category);
 		
 		// 해당 경로의 폴더가 안만들어져있다면 직접 만들어놔야할 것.
@@ -165,7 +163,7 @@ public class PjtBoardController {
 				System.out.println("파일 contentType : " + pVo.getItemDataType());
 		// 게시글 내용들을 Insert하기
 			boardService.insertBoard(category, pVo.getItemTitle(), pVo.getUserId(), pVo.getItemPath(), pVo.getItemContent(), pVo.getItemDataType());
-		
+		  //boardService.insertBoard(category, cVo.getItemTitle(), cVo.getUserId(), cVo.getItemPath(), cVo.getItemContent(), cVo.getItemDataType());
 		// JSP:INCLUDE PAGE
 		  model.addAttribute("Boardpage", "list");
 		  model.addAttribute("page", 1);
