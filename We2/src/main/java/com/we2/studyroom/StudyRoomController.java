@@ -39,7 +39,8 @@ public class StudyRoomController {
 	
 	// 한 페이지에 표시할 레코드 수 정의
 	int rows_per_page=9;
-	// 한 화면에 표시할 페이지 수 정의
+
+
 	int page_for_block=10;
 	
 	
@@ -286,10 +287,27 @@ public class StudyRoomController {
 			  
 			return "studyRoom/shareArea";   
 		}
+<<<<<<< HEAD
+		/*내용 보기*/
+		@RequestMapping(value="/StudyRoomContent.do", method=RequestMethod.GET)
+		public String StudyRoomContent(@RequestParam("rcode") int rcode, Model model) throws ParseException {
+		
+			logger.info("StudyRoomupdate called!!");
+			logger.info("rcode=["+rcode+"] ");			
+					
+			// Update
+			  model.addAttribute("studyroomList", studyroomService.getSearchbyrcode(rcode));	
+			  // JSP:INCLUDE PAGE
+			  model.addAttribute("studyroompage", "StudyRoomContent");
+			  model.addAttribute("page", 1);
+			return "studyRoom/StudyRoomContent";   
+		}
+=======
 		/* 내용보기 */
 
 		@RequestMapping(value="/StudyRoomContent.do", method=RequestMethod.GET)
 		public String StudyRoomcontent(@RequestParam("rcode") int rcode, Model model) throws ParseException {
+>>>>>>> origin/Geoseong
 		
 			logger.info("StudyRoomdelete called!!");
 			logger.info("rcode=["+rcode+"] ");

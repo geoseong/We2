@@ -17,7 +17,7 @@
 				<table>
 					<tr>
 						<th> 작성자 </th>
-						<td>${authInfo.userId }</td>
+						<td style="text-align:left; padding-left:10px;">${authInfo.userId }</td>
 					</tr>
 					<tr>
 						<th class="write_th"> 제    목 </th>
