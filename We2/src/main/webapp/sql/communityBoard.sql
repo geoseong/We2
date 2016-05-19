@@ -93,9 +93,5 @@ from cFindwork ;
 
 select  * from cFreework;
 
-ALTER TABLE cFindwork CHANGE itemContent itemContent VARCHAR(3000);
-
-ALTER TABLE cFreework CHANGE itemContent itemContent VARCHAR(3000);
 
 
-select itemdatatype from ptest;

@@ -34,7 +34,8 @@ public class FileController {
 	HttpServletRequest request;
 	
 	// 페이징처리 싱글톤 인스턴스객체 얻음
-	RPagingManager paging = RPagingManager.getInstance();	
+	RPagingManager paging = RPagingManager.getInstance();
+	
 	// 한 페이지에 표시할 레코드 수 정의
 	int rows_per_page=9;
 	// 한 화면에 표시할 페이지 수 정의
@@ -70,13 +71,20 @@ public class FileController {
 				System.out.println("--block_last가 t_pages보다 크므로 내용이 존재하는 페이지만큼만 block_last를 조절.");
 				block_last=t_pages;
 			}
-
+			System.out.println("t_pages : " + t_pages +" , t_rows : "+t_rows+" , block_total : "+block_total+" , block : "+ block + " , block_first : " + block_first + " , block_last : " + block_last);
+		System.out.println("-------------------------------변수설정 끝");
+		/*//디버깅 : 
+			int size=content.size();
+			for(int i=0; i < size ; i++){
+				System.out.println("get ("+ i +") : "+boardService.getList(row_start, row_end).get(i).getItemDate());
+				System.out.println("-------------------end of get(" + i + ")");
+			} // 디버깅 끝 
+*/	
 		/* SECTION : REQUEST 영역에 보내기 */
 		// ★★ SELECT 결과물 ★★
-				  model.addAttribute("fileList", fileService.getlist(row_start-1, row_end-1));
+					model.addAttribute("fileList", fileService.getlist(row_start-1, row_end-1));
 				// JSP:INCLUDE PAGE
 				  model.addAttribute("filepage", "fileList");
-				  model.addAttribute("page", "../file/FileList");
 				// total page int 변수를 보냄
 				  model.addAttribute("t_pages", t_pages);
 				// 현재 페이지 번호를 보냄
@@ -87,11 +95,10 @@ public class FileController {
 				  model.addAttribute("block_last",block_last);
 				  model.addAttribute("block_total",block_total);
 				  model.addAttribute("page_for_block", page_for_block);
-				  
 			
 		System.out.println("--------------------------listSpecificPage");
 		
-		return "myproject/myproject";
+		return "file/FileList";
 	}
 
 
@@ -105,7 +112,7 @@ public class FileController {
 		// JSP:INCLUDE PAGE
 		  model.addAttribute("filepage", "fileWrite");
 	 
-		return "file/FileWrite";
+		return "file/fileWrite";
 	}
 	
 	/* 글 등록하기 
@@ -148,7 +155,7 @@ public class FileController {
 		  model.addAttribute("filepage", "fileList");
 		  model.addAttribute("page", 1);
 		
-		return "myproject/myproject";
+		return "file/FileList";
 	}
 	
 	
@@ -184,7 +191,7 @@ public class FileController {
 			// JSP:INCLUDE PAGE
 			  model.addAttribute("filepage", "fileList");
 			  model.addAttribute("page", 1);
-			return "myproject/myproject";   
+			return "file/FileList";   
 		}
 		
 		
@@ -244,9 +251,9 @@ public class FileController {
 			  model.addAttribute("shareArea", new Integer(fileService.getTotalCnt()));
 			// JSP:INCLUDE PAGE
 			  model.addAttribute("filepage", "fileList");
-			  model.addAttribute("page", "../file/FileList");
+			  model.addAttribute("page", 1);
 			  
-			return "myproject/myproject";   
+			return "file/FileList";   
 		}
 		
 }

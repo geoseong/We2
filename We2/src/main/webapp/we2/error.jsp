@@ -15,14 +15,15 @@
 </head>
 <body>
 <div style="color: blue;">
-	<h1>Error page ^^</h1>
+	<h1>Error page ^^</h1><br>
 	<span style="font-size: 12pt; color: rgb(0, 117, 200);">
 		<a href="/We2" style="text-decoration: none;" id="atag">
 		<b>이전 페이지로 돌아가기</b>
 		</a>
 	</span>
 </div>
-<span style="font-size: 12pt; color: red ; border: 2px dotted black; padding: 20px;">
+<br><br>
+<span style="font-size: 12pt; color: red ; border: 2px dotted black; margin: 20px; padding:20px;">
 원인 : ${errormsg }
 </span>
 <%

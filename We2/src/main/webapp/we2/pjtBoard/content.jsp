@@ -31,9 +31,9 @@
 								<td colspan="3">${BoardContent.getItemNum() }</td>
 							</tr>
 							<tr>
-								<th>작성자</th>
+								<th style="width: 80px">작성자</th>
 								<td>${BoardContent.getUserId()}</td>
-								<th>조회수</th>
+								<th style="width: 80px">조회수</th>
 								<td>${BoardContent.getItemClick() }	</td>
 							</tr>
 							<tr>
@@ -73,29 +73,14 @@
 							<c:when test="${empty BoardContent.getItemPath() }">
 									<!-- 기본설정경로 : 서블릿경로
 										E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps -->
-								<img src="/We2/img/board/icon_NoImg.png" style="width:70px;">
+								<img src="/We2/we2/pjtBoard/data/noimg.png" style="width: 50px;">
 							</c:when>
-							
 							<c:when test="${BoardContent.getItemDataType().contains('image') }">
 								<img src="/We2/we2/pjtBoard/data/${BoardContent.getItemPath() }" class="board_img" style="width: 300px;">
 							</c:when>
-							
-							<c:when test="${BoardContent.getItemDataType().contains('ppt') }">
-								<img src="/We2/img/board/icon_ppt.png" class="board_img" style="width: 70px;">
+							<c:when test="${BoardContent.getItemDataType().contains('pptx') }">
+								<img src="/We2/we2/pjtBoard/data/ppt.JPG" class="board_img" style="width: 300px;">
 							</c:when>
-							
-							<c:when test="${BoardContent.getItemDataType().contains('xls') }">
-								<img src="/We2/img/board/icon_xls.png" class="board_img" style="width: 70px;">
-							</c:when>
-							
-							<c:when test="${BoardContent.getItemDataType().contains('text') }">
-								<img src="/We2/img/board/icon_txt.png" class="board_img" style="width: 70px;">
-							</c:when>
-							
-							<c:when test="${BoardContent.getItemDataType().contains('zip') }">
-								<img src="/We2/img/board/icon_zip.png" class="board_img" style="width: 70px;">
-							</c:when>
-							
 							<%-- <div class="modal">
 							<c:if test="${BoardContent.getItemDataType().contains('image') }"> <!-- 콘텐츠 타입에 이미지라는 단어를 포함하고 있으면  -->
 								<img src="/We2/we2/pjtBoard/data/${BoardContent.getItemPath() }" > <!-- 이미지를 띄운다 -->
@@ -106,7 +91,7 @@
 							<c:otherwise>
 									<!-- 기본설정경로 : 서블릿경로
 										E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps -->
-								<img src="/We2/img/board/icon_data.png" style="width: 70px;">
+								<img src="/We2/we2/pjtBoard/data/datafile.png" style="width: 50px;">
 							</c:otherwise>
 						</c:choose>
 						<!-- </div> modal end -->

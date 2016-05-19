@@ -53,8 +53,6 @@ public class WillWorkController {
 	return "myproject/myproject";
 }
 	
-	//�� ���� �߰����� �� ����Ǵ� ��Ʈ�ѷ�(�߰� -> ��ȸ -> ���ϳ����� )
-	//Ư�� �ι��� �̸���, �Է��� ���� �Ѿ��!
 	@RequestMapping(value="/willwork2", method=RequestMethod.POST)
 	public String AddPost(HttpServletRequest request, Model model, String pjtCode) throws ParseException{
 		String doWork = request.getParameter("inputWork"); //�Է��� ��
@@ -62,17 +60,16 @@ public class WillWorkController {
 		System.out.println("���� : " +  doWork + " �̸� : " + name);
 		// �̸��� ���� �߰��ϱ�
 		
-		willWorkDAO.insertDoWork(name, doWork, pjtcode);
+		willWorkDAO.insertDoWork(name, doWork, pjtCode);
 		return "redirect:willwork";
 	}
 	
-	//������ �Ϸ��ϴ� ��ư�� ������ �� ����Ǵ� Controller (������ ����� ������ȸ -> ���� ������ -> ����)
 	@RequestMapping(value="/willwork3", method=RequestMethod.POST)
-	public String DeletePost(HttpServletRequest request, Model model) throws ParseException{
+	public String DeletePost(HttpServletRequest request, Model model, String pjtCode) throws ParseException{
 		String complete = request.getParameter("complete"); //�����ϱ� ���� ������ ��
 		String name = request.getParameter("userName"); //�ش� ���� ����
 		
-		List<WillWorkVO> One = willWorkDAO.selectOne(name); //������ ���� �� ����� ������ �� �ҷ���
+		List<WillWorkVO> One = willWorkDAO.selectOne(name, pjtCode); //������ ���� �� ����� ������ �� �ҷ���
 		String doWork = One.get(0).doWork; //�� ����� ������ �� ����
 		String[] doWorkList = doWork.split(","); //�ĸ��� ���е� ���ڿ��� ������ �迭�� ��´�.
 		ArrayList<String> list = new ArrayList<String>(); //�ĸ��� ������ �� ���� ����Ʈ�� ����

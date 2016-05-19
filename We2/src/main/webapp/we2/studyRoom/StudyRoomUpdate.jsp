@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="../css/w2_reset.css">
+<link rel="stylesheet" type="text/css" href="css/w2_reset.css">
 <link rel="stylesheet" type="text/css" href="../css/studyroom_window.css">
 </head>
 <body>
@@ -53,14 +53,6 @@
     	</td>
     </tr>
     
-       <%-- <tr>
-   		<td>
-   		<p class="content_list_img">
-					 <img src="/We2/we2/studyRoom/data/${studyroomList.rpictureurl}" >
-				 </p>
-   		
-   			<input type="file" name="rpictureurl" value="${studyroomList.rpictureurl}"> (파일 용량 제한은 20MB 입니다.)
-   		</td> --%>
         <tr>
          <td colspan=5 >
    		    <p class="content_list_img">
@@ -85,14 +77,7 @@
     <input name="cancel" class="add_btn" type="reset" value="다시 작성">
    </div>
  
-  <!-- <tr>
-   <td align="center" colspan=5>
-    <input name="add" type=submit value="위치 수정">
-    
-    <input name="cancel" type="reset" value="다시 작성">
-   </td>
-  </tr>
-  </table> -->
+ 
   </form>
 </body>
 </html>
