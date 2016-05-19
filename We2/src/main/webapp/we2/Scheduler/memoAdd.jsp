@@ -7,6 +7,10 @@
 <head>
 <meta charset="UTF-8">
 <title>일정추가</title>
+
+<link rel="stylesheet" type="text/css" href="../css/w2_reset.css">
+<link rel="stylesheet" type="text/css" href="../css/studyroom_window.css">
+
 <script type="text/javascript" src="js/Schedule.js"></script>
 </head>
 <body>
