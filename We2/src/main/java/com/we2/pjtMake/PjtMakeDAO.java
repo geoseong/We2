@@ -98,9 +98,9 @@ public class PjtMakeDAO {
 	}
 	
 	//날짜 구하기 
-	public int searchDate(String pjtCode){
+	public int searchDate(int pjtCode){
 	String sql = 
-	"select (endDate - startDate) from pjtMake make, pjtmanager mgr where make.pjtcode=mgr.pjtcode and pjtmake.pjtcode=?";
+			"select (endDate - startDate) from pjtmake where pjtcode=?";
 	int count = jdbcTemplate.queryForObject(sql, new Object[] {pjtCode}, Integer.class);
 	return count;
 	}

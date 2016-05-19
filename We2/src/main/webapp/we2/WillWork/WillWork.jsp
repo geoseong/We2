@@ -18,14 +18,15 @@
 <div class="first_main">
 
 <div class = "title" >
-<h2> 할일 </h2>
-
+<h2> 할 일 </h2>
 </div>
+
+<div class = "user">
 <!-- User1 -->	
 <c:if test="${not empty results}">
 	<div class="people" id="member1">
 			<div>
-					<img src="../img/people_m1.png"/>
+				<img src="../img/people_m1.png"/>
 			</div>
 		 <div class="state_work">
 				<a class="tag1">
@@ -196,6 +197,8 @@
 		</div>	
 	</div>
 </c:if>
+
+</div> <!-- user end -->
 </div>  <!-- first main end -->
 
 
