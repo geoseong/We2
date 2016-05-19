@@ -171,7 +171,10 @@ public class PjtBoardController {
 		  model.addAttribute("page", 1);
 		// category 보냄
 		  model.addAttribute("category", category);
-		return "redirect:list";
+		  
+		  //request.setAttribute("msg", "<script type='text/javascript'>alert('입력되었습니다');</script>");
+		  model.addAttribute("msg", "<script type='text/javascript'>alert('입력되었습니다');</script>");
+		return "pjtBoard/boardmain";
 	}
 	
 	@RequestMapping(value="/content", method=RequestMethod.GET)
@@ -205,9 +208,12 @@ public class PjtBoardController {
 	}
 	
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
-	public String aopmodifypost(Model model, String category, int itemNum) throws IOException {
+	public String aopmodifypost(Model model/*, String category, int itemNum*/) throws IOException {
+		String category =request.getParameter("category");	
+		int itemNum=Integer.parseInt(request.getParameter("itemNum"));
 		System.out.println("Modify.POST] itemNum : " + itemNum);
 		System.out.println("Modify.POST] category : " + category);
+		
 		
 		MultipartRequest multi = 
 				new MultipartRequest(

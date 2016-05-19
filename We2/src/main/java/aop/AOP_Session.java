@@ -35,13 +35,13 @@ public class AOP_Session {
 	/** sessionCheck에 대한 AOP..*/
 	@Before("sessionCheck()")
 	public void beforesessionCheck(JoinPoint thisJoinPoint) throws Throwable  {
-		System.out.println("#### sessionCheck Aspect 시작 ####");     
+		System.out.println("----- sessionCheck Aspect 시작 -----");     
 
     	System.out.println("@Before : authinfo 정의직전");
     	AuthInfo authinfo = (AuthInfo) session.getAttribute("authInfo");
     	  	System.out.println("AOP] member.userid : " + authinfo.getUserId());
 	
-		 System.out.println("#### sessionCheck Aspect 끝 ####");
+		 System.out.println("----- sessionCheck Aspect 끝 -----");
      } //end @before
 	
 	@AfterReturning(pointcut = "aop.AOP_Session.sessionCheck()", returning = "retVal")
@@ -57,9 +57,16 @@ public class AOP_Session {
     public void afterThrowingTargetMethod(JoinPoint thisJoinPoint , Throwable ex) throws IOException,  ServletException{
         System.out.println("AOP_Aspect.afterThrowingTargetMethod executed.");
        // HttpServletRequest request= ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
-        System.out.println("Throwable ex - " + ex);
-        request.setAttribute("error", "sessionAfterthrowing");
-       
+        String ex_str=ex.toString();
+        System.out.println("Throwable ex - " + ex_str);
+
+        if(ex_str.contains("NumberFormatException")){
+    	   request.setAttribute("error", "numberformatexception");
+    	   request.setAttribute("errormsg", ex_str);
+       }else if(ex_str.contains("NullPointerException")){
+    	   request.setAttribute("error", "sessionAfterthrowing");
+    	   request.setAttribute("errormsg", ex_str);
+       }
     }
 
 	 @After("sessionCheck()")

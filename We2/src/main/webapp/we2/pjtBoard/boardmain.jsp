@@ -3,6 +3,7 @@
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -17,6 +18,9 @@
 </head>
 
 <body>
+${msg }
+<c:set scope="request" var="msg" value="${false }"/>
+
  <!-- wrap : div를 한번더 감싸고 액션의 기준이 될 수 있음-->
 <div id="wrap"> 
 
@@ -35,7 +39,7 @@
 <!-- 2. 상단 메뉴 부분-->
         <div id = "nav">
 
-            <a href="Project">프로젝트 </a>
+            <a href="../Member_Mypage">프로젝트 </a>
             <a href="../cBoard/list?page=1&category=cFindwork">커뮤니티 </a>
             <a href="../pjtBoard/list?page=1&category=group">프로젝트공유 </a>
             <a href="../studyroom/list?page=1">스터디룸공유 &nbsp;</a>

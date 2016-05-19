@@ -11,8 +11,9 @@
 </head>
 <body>
 <!--  게시판 영역 - css에서 #contents 블록의 테두리선(border)를 없애주시면 됩니다. -->
-		<form action="write?category=${category }" method="post" enctype="multipart/form-data" name="frm">
-<%-- 		<input type="text" name="category" value="${category }">--%>				
+		<form action="write" method="post" enctype="multipart/form-data" name="frm">
+			<!-- <input type="hidden" name="page" value="1"> -->
+			<input type="hidden" name="category" value="${category }">				
 				<table>
 					<tr>
 						<th> 작성자 </th>

@@ -22,8 +22,9 @@
 		</a>
 	</span>
 </div>
-${error }
-${page }
+<span style="font-size: 12pt; color: red ; border: 2px dotted black; padding: 20px;">
+원인 : ${errormsg }
+</span>
 <%
 	String errormsg = (String)request.getAttribute("error");
 	String pagemsg = (String)request.getAttribute("page");

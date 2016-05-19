@@ -11,8 +11,8 @@
 <body>
 <!--  게시판 영역 - css에서 #contents 블록의 테두리선(border)를 없애주시면 됩니다. -->			
 			<form action="modify" method="post" enctype="multipart/form-data" name="frm">
-				<input type="hidden" name="itemNum" value="${BoardUpdate.getItemNum() }">
-				<input type="hidden" name="category" value="${category }">
+				<input type="text" name="itemNum" value="${BoardUpdate.getItemNum() }">
+				<input type="text" name="category" value="${category }">
 				<table class="modify">
 				<tr>
 					<td style="border:none; padding:0px;">
