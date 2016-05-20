@@ -73,8 +73,8 @@ public class CBoardService {
 	}
 	
 	// 게시물 업데이트
-	public void updateBoard(String category, String itemTitle, String itemPath, String itemContent, String itemDataType){
-		boardMapper.updateBoard(category, itemTitle, itemPath, itemContent, itemDataType);
+	public void updateBoard(String category, int ItemNum, String itemTitle, String itemPath, String itemContent, String itemDataType){
+		boardMapper.updateBoard(category, ItemNum, itemTitle, itemPath, itemContent, itemDataType);
 	}
 	
 	// 게시물 삭제

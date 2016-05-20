@@ -54,12 +54,13 @@ public class PjtBoardController {
 			System.out.println("page : " + page);
 		System.out.println("-------------------------------변수설정 시작");
 
-		if(category.equals("group")){
-			category="pGroup";
-		}else if(category.equals("exam")){
-			category="pTest";
-		}else if(category.equals("collabo")){
-			category="pWithWork";
+		String boardname=null;
+		if(category.equals("pGroup")){
+			boardname="조별과제";
+		}else if(category.equals("pTest")){
+			boardname="시험공부";
+		}else if(category.equals("pWithWork")){
+			boardname="회사협업";
 		}
 		System.out.println("List.GET] category : " + category);
 		
@@ -109,6 +110,7 @@ public class PjtBoardController {
 		  model.addAttribute("page_for_block", page_for_block);
 		// category 보냄
 		  model.addAttribute("category", category);
+		  model.addAttribute("boardname", boardname);
 		System.out.println("--------------------------listSpecificPage");
 		
 		return "pjtBoard/boardmain";
@@ -118,7 +120,7 @@ public class PjtBoardController {
 	@RequestMapping(value="/write", method=RequestMethod.GET)
 	public String aopwriteget(HttpSession session, /*HttpServletRequest request,*/ Model model,String category){
 		
-		System.out.println("Write.get] category : " + category);
+		System.out.println("Write.get] category : " + request.getParameter("category"));
 		
 		// JSP:INCLUDE PAGE
 		  model.addAttribute("Boardpage", "write");
@@ -130,14 +132,13 @@ public class PjtBoardController {
 	/** 글 등록하기 
 	 * @throws IOException */
 	@RequestMapping(value="/write", method=RequestMethod.POST)
-	public String aopwritepost(/*HttpSession session, HttpServletRequest request, */Model model, String category) throws IOException {
+	public String aopwritepost(Model model, String category) throws IOException {
 		System.out.println("write.post] category : "+category);
 		
 		// 해당 경로의 폴더가 안만들어져있다면 직접 만들어놔야할 것.
 		// getRealPath : E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps\testweb\
 		MultipartRequest multi = new MultipartRequest(
 					request, 	servletContext.getRealPath(path), sizeLimit, encType, new DefaultFileRenamePolicy());
-		
 		
 		//PjtBoardBean객체인 pVo에 변수들을 집어넣는다.
 		PjtBoardBean pVo = new PjtBoardBean();
@@ -199,12 +200,13 @@ public class PjtBoardController {
 		model.addAttribute("Boardpage", "modify");
 		// category 보냄
 		  model.addAttribute("category", category);
+		  model.addAttribute("itemNum",itemNum);
 		return "pjtBoard/boardmain";
 	}
 	
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
-	public String aopmodifypost(Model model, String category, int itemNum) throws IOException {
-		System.out.println("Modify.POST] itemNum : " + itemNum);
+	public String aopmodifypost(Model model, String category/*, int itemNum*/) throws IOException {
+		System.out.println("Modify.POST] itemNum : " + request.getParameter("itemNum"));
 		System.out.println("Modify.POST] category : " + category);
 		
 		MultipartRequest multi = 
@@ -219,7 +221,7 @@ public class PjtBoardController {
 		//1. 글번호를 파라미터로 받아온다.
 			System.out.println("ItemNum 정의 전");
 		int ItemNum = Integer.parseInt(multi.getParameter("itemNum"));
-			System.out.println("ItemNum 정의 후");
+			System.out.println("ItemNum 정의 후 : " + ItemNum);
 		//2. 제목
 			String ItemTitle=multi.getParameter("itemTitle");
 		//3. 유저ID는
@@ -231,14 +233,14 @@ public class PjtBoardController {
 			// 파일수정 아무것도 안하면 null값을 받아오는데, 파일이 날라갈 것을 방지하기위한 if문.
 				if(multi.getFilesystemName("itemPath")!=null){
 					ItemPath = multi.getFilesystemName("itemPath");
-					ItemDataType=multi.getContentType("file");
-					System.out.println("자료 업뎃함.");
+					ItemDataType=multi.getContentType("itemPath");
+					System.out.println("자료 업뎃함." + ItemDataType);
 				}else{
 					// BoardMapper에서 select 결과를 받아옴.
 					pVo = boardService.select_by_num(category, ItemNum);
 					ItemPath = pVo.getItemPath();
 					ItemDataType=pVo.getItemDataType();
-					System.out.println("자료수정된 것 없음");
+					System.out.println("자료수정된 것 없음" + ItemDataType);
 				} //end if
 		//7. 게시물 내용
 			String ItemContent=multi.getParameter("itemContent");
@@ -248,10 +250,10 @@ public class PjtBoardController {
 			System.out.println("doPost itemTitle --"+ItemTitle);
 			System.out.println("doPost itemPath --"+ItemPath);
 			System.out.println("doPost itemContent --"+ItemContent);
-			System.out.println("doPost itemContent --"+ItemDataType);
+			System.out.println("doPost ItemDataType --"+ItemDataType);
 			
 			// 글번호, 제목, 게시물 작성일, 파일경로, 게시물 내용을 Update Set.
-			boardService.updateBoard(category, ItemTitle, ItemPath, ItemContent, ItemDataType);
+			boardService.updateBoard(category, ItemNum, ItemTitle, ItemPath, ItemContent, ItemDataType);
 
 			// JSP:INCLUDE PAGE
 				  model.addAttribute("Boardpage", "list");

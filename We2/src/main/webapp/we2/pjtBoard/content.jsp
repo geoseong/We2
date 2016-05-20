@@ -87,6 +87,10 @@
 								<img src="/We2/img/board/icon_xls.png" class="board_img" style="width: 70px;">
 							</c:when>
 							
+							<c:when test="${BoardContent.getItemDataType().contains('sheet') }">
+								<img src="/We2/img/board/icon_xls.png" class="board_img" style="width: 70px;">
+							</c:when>
+							
 							<c:when test="${BoardContent.getItemDataType().contains('text') }">
 								<img src="/We2/img/board/icon_txt.png" class="board_img" style="width: 70px;">
 							</c:when>

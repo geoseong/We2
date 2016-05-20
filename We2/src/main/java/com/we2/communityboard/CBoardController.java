@@ -53,10 +53,11 @@ public class CBoardController {
 			System.out.println("page : " + page);
 		System.out.println("-------------------------------변수설정 시작");
 
-		if(category.equals("findwork")){   // 팀원 구하기 게시판
-			category="cFindwork";  // 테이블명
-		}else if(category.equals("freework")){   // 자유게시판
-			category="cFreework";
+		String boardname=null;
+		if(category.equals("cFindwork")){   // 팀원 구하기 게시판
+			boardname="팀원구하기";
+		}else if(category.equals("cFreework")){   // 자유게시판
+			boardname="자유";
 		}
 		
 		System.out.println("List.GET] category : " + category);
@@ -107,6 +108,7 @@ public class CBoardController {
 		  model.addAttribute("page_for_block", page_for_block);
 		// category 보냄
 		  model.addAttribute("category", category);
+		  model.addAttribute("boardname", boardname);
 		System.out.println("--------------------------listSpecificPage");
 		
 		return "cBoard/boardmain";
@@ -118,10 +120,6 @@ public class CBoardController {
 	public String writeget(HttpSession session, /*HttpServletRequest request,*/ Model model,String category){
 		
 		System.out.println("Write.get] category : " + category);
-		
-		/*if(session.getAttribute("authInfo")==null){
-			return "redirect:/";
-		}*/
 		
 		// JSP:INCLUDE PAGE
 		  model.addAttribute("Boardpage", "write");
@@ -202,6 +200,7 @@ public class CBoardController {
 		model.addAttribute("Boardpage", "modify");
 		// category 보냄
 		  model.addAttribute("category", category);
+		  model.addAttribute("itemNum",itemNum);
 		return "cBoard/boardmain";
 	}
 	
@@ -234,14 +233,14 @@ public class CBoardController {
 			// 파일수정 아무것도 안하면 null값을 받아오는데, 파일이 날라갈 것을 방지하기위한 if문.
 				if(multi.getFilesystemName("itemPath")!=null){
 					ItemPath = multi.getFilesystemName("itemPath");
-					ItemDataType=multi.getContentType("file");
-					System.out.println("자료 업뎃함.");
+					ItemDataType=multi.getContentType("itemPath");
+					System.out.println("자료 업뎃함." + ItemDataType);
 				}else{
 					// BoardMapper에서 select 결과를 받아옴.
 					cVo = boardService.select_by_num(category, ItemNum);
 					ItemPath = cVo.getItemPath();
 					ItemDataType=cVo.getItemDataType();
-					System.out.println("자료수정된 것 없음");
+					System.out.println("자료수정된 것 없음" + ItemDataType);
 				} //end if
 		//7. 게시물 내용
 			String ItemContent=multi.getParameter("itemContent");
@@ -251,10 +250,10 @@ public class CBoardController {
 			System.out.println("doPost itemTitle --"+ItemTitle);
 			System.out.println("doPost itemPath --"+ItemPath);
 			System.out.println("doPost itemContent --"+ItemContent);
-			System.out.println("doPost itemContent --"+ItemDataType);
+			System.out.println("doPost ItemDataType --"+ItemDataType);
 			
 			// 글번호, 제목, 게시물 작성일, 파일경로, 게시물 내용을 Update Set.
-			boardService.updateBoard(category, ItemTitle, ItemPath, ItemContent, ItemDataType);
+			boardService.updateBoard(category, ItemNum, ItemTitle, ItemPath, ItemContent, ItemDataType);
 
 			// JSP:INCLUDE PAGE
 				  model.addAttribute("Boardpage", "list");

@@ -9,9 +9,9 @@
 </head>
 <body>
 <!--  게시판 영역 - css에서 #contents 블록의 테두리선(border)를 없애주시면 됩니다. -->			
-			<form action="modify" method="post" enctype="multipart/form-data" name="frm">
-				<input type="hidden" name="itemNum" value="${BoardUpdate.getItemNum() }">
-				<input type="hidden" name="category" value="${category }">
+			<form action="modify?category=${category }&itemNum=${itemNum}" method="post" enctype="multipart/form-data" name="frm">
+				<%-- <input type="hidden" name="itemNum" value="${BoardUpdate.getItemNum() }">
+				<input type="hidden" name="category" value="${category }"> --%>
 				<table class="modify">
 				<tr>
 					<td style="border:none; padding:0px;">
@@ -45,7 +45,7 @@
 							</tr>
 						</table>
 					</td>
-					<td style="width:200px; border:0.5px solid #d3d3d3;">
+					<%-- <td style="width:200px; border:0.5px solid #d3d3d3;">
 						<c:choose>
 							<c:when test="${empty BoardUpdate.getItemPath() }">
 									<!-- 기본설정경로 : 서블릿경로
@@ -58,7 +58,7 @@
 								<img src="/We2/we2/cBoard/data/${BoardUpdate.getItemPath() }" style="width: 200px;">
 							</c:otherwise>
 						</c:choose>
-					</td>
+					</td> --%>
 				</tr>
 				</table>
 				

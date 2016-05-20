@@ -40,7 +40,7 @@ public interface PjtBoardMapper {
 	final String select_all = "select count(1) from ${category}";
 	
 	final String modify = 
-			"update ${category} set itemTitle=#{itemTitle}, itemPath=#{itemPath}, itemContent=#{itemContent}, itemDataType=#{itemDataType}";
+			"update ${category} set itemTitle=#{itemTitle}, itemPath=#{itemPath}, itemContent=#{itemContent}, itemDataType=#{itemDataType} where ItemNum=#{ItemNum}";
 	
 	final String delete="delete from ${category} where itemNum=#{itemNum}";
 	
@@ -96,6 +96,7 @@ public interface PjtBoardMapper {
 	@Update(modify)
 	void updateBoard(
 			@Param("category") String category, 
+			@Param("ItemNum") int ItemNum,
 			@Param("itemTitle") String itemTitle, 
 			@Param("itemPath") String itemPath, 
 			@Param("itemContent") String itemContent, 

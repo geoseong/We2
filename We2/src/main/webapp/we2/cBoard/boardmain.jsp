@@ -37,7 +37,7 @@
 
             <a href="../Member_Mypage">프로젝트 </a>
             <a href="../cBoard/list?page=1&category=cFindwork">커뮤니티 </a>
-            <a href="../pjtBoard/list?page=1&category=group">프로젝트공유 </a>
+            <a href="../pjtBoard/list?page=1&category=pGroup">프로젝트공유 </a>
             <a href="../studyroom/list?page=1">스터디룸공유 &nbsp;</a>
             
             <!-- 로그인 되어있으면 로그인만 표시, 안되어있으면 로그아웃만 표시. -->
@@ -68,7 +68,7 @@
   
 	 <!-- 게시판 include 영역 -->
 	  <div id="contents">
-	  	<h2>팀원구하기 게시판</h2>
+	  	<h2>${boardname } 게시판</h2>
 	  	
 			<jsp:include page="${Boardpage }.jsp"/>
 			

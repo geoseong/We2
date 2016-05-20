@@ -110,7 +110,7 @@ public class PjtCtrl {
 					"<script type='text/javascript'>"
 					+"alert('이메일 발송이 완료되었습니다.');"
 					/*+"opener.location.reload();"*/
-					/*+"self.close();"*/
+					+"self.close();"
 					+ "</script>";
 		 model.addAttribute("alert",message);
 		 return "myproject/invitation";
