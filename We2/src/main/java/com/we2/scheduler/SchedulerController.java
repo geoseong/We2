@@ -27,6 +27,7 @@ public class SchedulerController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(SchedulerController.class);
 	@Autowired
+	
     private ServletContext servletContext;
 	@Autowired
 	SchedulerService schedulerService;
@@ -109,7 +110,7 @@ public class SchedulerController {
 			cVo.setPjtcode(pjtcode);
 				System.out.println("WriteServlet - title : " + cVo.getPjtcode());
 		// 게시글 내용들을 Insert하기
-			schedulerService.insertScheduler(pjtcode, calendarmemo_year, calendarmemo_month, calendarmemo_day, calendarmemo_contents);
+			schedulerService.insertScheduler(cVo.getPjtcode(), cVo.getCalendarmemo_year(), cVo.getCalendarmemo_month(), cVo.getCalendarmemo_day(), cVo.getCalendarmemo_contents());
 			/*calendarmemo_num, calendarmemo_year, calendarmemo_month, calendarmemo_day, calendarmemo_contents*/
 		// JSP:INCLUDE PAGE
 		  model.addAttribute("schdulerpage", "Calendar");

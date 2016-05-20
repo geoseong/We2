@@ -16,7 +16,7 @@
 <script type="text/javascript">
 function cclose(){
 	
-	alert("수정이 완료되었습니다.");
+	alert("요청이 완료되었습니다.");
 	opener.location.reload(); 
 	self.close();
 }
