@@ -24,7 +24,7 @@ public interface FileMapper {
 			"select * from  limit #{row_start}, #{row_end}";
 	
 	final String select_by_fcode=
-			"select fcode, fname, fileurl, fdate from fileshare where fcode=${fcode}";
+			"select fcode, fname, fileurl, fdate, pjtcode from fileshare where fcode=${fcode}";
 	
 	final String select_all = "select count(1) from fileshare";
 	
@@ -53,13 +53,12 @@ public interface FileMapper {
 	
 		@Select(select_by_id)				
 		@Results(value = {   
-				@Result(property="rcode", column="rcode"),
-				@Result(property="rname", column="rname"),
-				@Result(property="rlocation", column="rlocation"),
-				@Result(property="rlocationdetail", column="rlocationdetail"),
-				@Result(property="rmemeber", column="rmemeber"),
-				@Result(property="rcontent", column="rcontent"),
-				@Result(property="rpictureurl", column="rpictureurl")
+				@Result(property="fcode", column="fcode"),
+				@Result(property="fname", column="fname"),
+				@Result(property="fileurl", column="fileurl"),
+				@Result(property="fdate", column="fdate"),
+				@Result(property="pjftcode", column="pjftcode"),
+				
 		})
 		ArrayList<FileBean> getList(@Param("row_start") int row_start, @Param("row_end") int row_end);
 		

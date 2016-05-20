@@ -28,6 +28,7 @@ public class FileController {
 	private static final Logger logger = LoggerFactory.getLogger(FileController.class);
 	@Autowired
     private ServletContext servletContext;
+	String path="we2/file/data";
 	@Autowired
 	FileService fileService;
 	@Autowired
@@ -115,13 +116,12 @@ public class FileController {
 	@RequestMapping(value="/filewrite.do", method=RequestMethod.POST)
 	public String writepost(HttpSession session, HttpServletRequest request, Model model) throws IOException {
 	    // 해당 경로의 폴더가 안만들어져있다면 직접 만들어놔야할 것.
-		String path=servletContext.getRealPath("we2/file/data");
-		System.out.println("path : "+path);
+		
 		// getRealPath : E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps\We2\
 		String encType="UTF-8";
 		int sizeLimit = 20*1024*1024;
 		
-		MultipartRequest multi = new MultipartRequest(request, path, sizeLimit, encType, new DefaultFileRenamePolicy());
+		MultipartRequest multi = new MultipartRequest(request, servletContext.getRealPath(path), sizeLimit, encType, new DefaultFileRenamePolicy());
 		
 		//PjtBoardBean객체인 fVo에 변수들을 집어넣는다.
 		FileBean fVo = new FileBean();
@@ -142,7 +142,7 @@ public class FileController {
 		
 		
 		// 게시글 내용들을 Insert하기
-			fileService.insertFile(fname, fileurl);
+			fileService.insertFile(fVo.getFname() , fVo.getFileurl());
 		
 		// alert 메시지.
 			String message=
