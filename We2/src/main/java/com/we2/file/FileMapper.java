@@ -20,8 +20,7 @@ public interface FileMapper {
 	
 	// 페이징 select문.
 	final String select = 
-			 
-			"select * from  limit #{row_start}, #{row_end}";
+			"select fcode, fname, fileurl, pjtCode, date_format(fdate,'%Y-%m-%d') from limit #{row_start}, #{row_end}";
 	
 	final String select_by_fcode=
 			"select fcode, fname, fileurl, fdate, pjtcode from fileshare where fcode=${fcode}";
@@ -31,9 +30,9 @@ public interface FileMapper {
 	final String count_plus=
 			"update set itemClick=itemClick+1 where itemNum=#{itemNum}";
 	
-	final String select_by_id ="select fcode, fname, fileurl, fdate from fileshare order by fcode desc limit #{row_start}, #{row_end}";
+	final String select_by_id ="select fcode, fname, fileurl, date_format(fdate,'%Y-%m-%d') fdate from fileshare order by fcode desc limit #{row_start}, #{row_end}";
 	
-	final String insertFile = "insert into fileshare(fname, fileurl, fdate) values (#{fname}, #{fileurl}, date_format(now(),'%y-%m-%d'))";
+	final String insertFile = "insert into fileshare(fname, fileurl, fdate) values (#{fname}, #{fileurl}, date_format(now(),'%Y-%m-%d'))";
 
 	
 	final String delete_by_fcode = "delete from fileshare where fcode = #{fcode}";

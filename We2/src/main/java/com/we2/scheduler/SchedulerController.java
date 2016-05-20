@@ -33,6 +33,8 @@ public class SchedulerController {
 	SchedulerService schedulerService;
 	@Autowired
 	HttpServletRequest request;
+	@Autowired
+	HttpSession session;
 	
 	// 페이징처리 싱글톤 인스턴스객체 얻음
 	RPagingManager paging = RPagingManager.getInstance();
@@ -43,7 +45,10 @@ public class SchedulerController {
 		
 	/* 리스트 */
 	@RequestMapping(value="/list", method=RequestMethod.GET)
-	public String listSpecificPageWork(Model model, int pjtcode) throws ParseException{
+	public String listSpecificPageWork(Model model) throws ParseException{
+			System.out.println("scheduler list.get] hi");
+		int pjtcode=Integer.parseInt(session.getAttribute("pjtCode").toString());
+			System.out.println("scheduler list] pjtCode : "+pjtcode);
 		model.addAttribute("Content", schedulerService.getlist(pjtcode));
 		model.addAttribute("page", "../Scheduler/Calendar");
 		System.out.println("--------------------------listSpecificPage");
@@ -76,7 +81,7 @@ public class SchedulerController {
 	
 	
 	@RequestMapping(value="/memoAdd.do", method=RequestMethod.POST)
-	public String writepost(HttpSession session, HttpServletRequest request, Model model)throws IOException {
+	public String writepost(/*HttpSession session, */HttpServletRequest request, Model model)throws IOException {
 		
 		//SchedulerBean객체인 cVo에 변수들을 집어넣는다.
 		SchedulerBean cVo = new SchedulerBean();
@@ -197,9 +202,5 @@ public class SchedulerController {
 			  
 			return "Scheduler/close";   
 		}
-		
-	
-	
-	
 }	
 	

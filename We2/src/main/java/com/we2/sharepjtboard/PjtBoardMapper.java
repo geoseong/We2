@@ -28,7 +28,7 @@ public interface PjtBoardMapper {
 			"update ${category} set itemClick=itemClick+1 where itemNum=#{itemNum}";
 	
 	final String insert =
-			"insert into ${category}(itemTitle,userId,itemDate,itemClick,itemPath,itemContent, itemDataType)"
+			"insert into ${category} (itemTitle,userId,itemDate,itemClick,itemPath,itemContent, itemDataType)"
 			+ " values(#{itemTitle}, "
 			+ "#{userId}, "
 			+ "curdate(), "

@@ -11,7 +11,7 @@
 </head>
 <body>
    <div class="pjtMake">   
-   	  <form method="post" action="test" >	
+   	  <form method="post" action="pjtMake" >	
           
    	     <div class="pjtMakeInner">
                 <h1>프로젝트 만들기</h1>

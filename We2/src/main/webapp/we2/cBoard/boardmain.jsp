@@ -35,7 +35,7 @@
 <!-- 2. 상단 메뉴 부분-->
         <div id = "nav">
 
-            <a href="Project">프로젝트 </a>
+            <a href="../Member_Mypage">프로젝트 </a>
             <a href="../cBoard/list?page=1&category=cFindwork">커뮤니티 </a>
             <a href="../pjtBoard/list?page=1&category=group">프로젝트공유 </a>
             <a href="../studyroom/list?page=1">스터디룸공유 &nbsp;</a>

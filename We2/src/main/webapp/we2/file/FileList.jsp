@@ -26,7 +26,6 @@ function winOpen3(fcode){
      javascript:window.open(url , '파일삭제', 'width=600 height=270 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
 }
 
-
 </script>
 </head>
 
@@ -57,8 +56,8 @@ function winOpen3(fcode){
 						<td> ${file.fdate} </td>
 						<%-- <td> ${file.fileurl} </td> --%>
 					  	<td align="center">
-							<a href="/We2/img/${file.fileurl}"  download>${file.fileurl}</a>
-									<!--OLD onClick="window.open(this.href, '다운로드', 'width=400, height=430'); return false;"  -->
+							<a href="/We2/we2/file/data/${file.fileurl}"  download>${file.fileurl}</a>
+									<!--OLD: onClick="window.open(this.href, '다운로드', 'width=400, height=430'); return false;"  -->
 						</td>
 						<td align="center">
 							<a  href="javascript:winOpen2('${file.fcode}')">수정</a>

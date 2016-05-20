@@ -73,12 +73,11 @@ a {
 
 /*표 부분*/
 table {
-
 	width:100%; 	
 	border-collapse: collapse;		
 	font-size: 14px;			/* 글꼴 크기 */
-	line-height: 40px;		/* 줄 간격 */	
-	text-align: center;
+	/* line-height: 40px;	 */	/* 줄 간격 */	
+	/* text-align: center; */
 }
 
 
@@ -103,7 +102,7 @@ table th {
 td input{
 	padding:5px;
     height:20px;
-    float:left;
+    /* float:left; */
     font-size:15px;	
 }
 
@@ -197,7 +196,7 @@ my_info_view>.my_picture{
 }
 
 .my_info_view table{
-     width:500px;
+     width:450px;
      margin-left:260px;
 /*     border: 1px solid blue;*/
 }
@@ -205,13 +204,15 @@ my_info_view>.my_picture{
 .my_info_view tr{
      height:35px;
 }
-.my_info_view td{
+/* .my_info_view td{
     width:90px;
-}
+} */
 .my_info_view input{
    height: 25px;
 }
 
+
+/*  수정하기, 삭제하기 버튼 */
 .change_leave {
       height: 40px;
       margin-top:20px;
@@ -222,19 +223,16 @@ my_info_view>.my_picture{
 }
 
 .change_leave input{
-	width:230px;
+	width:150px;
 	height:40px;
 }
 
 
 .add_btn{
-    margin-top:0;
-    margin-left:30px;
 	border:none;
-	background:#7c8181;
-	color:#fff;
-    font-weight:400;
+    font-weight:600;
     font-size:15px;
+    color:#424444;
 	border-radius:5px;
     text-align: center;
 }
@@ -268,37 +266,24 @@ my_info_view>.my_picture{
 /*    border: 1px solid red;*/
 }
 
-.my_proj_view {
-    margin-top:30px;
-    font-size:15px;
-    color : #89867e;
-/*    border: 1px solid red;  */
-}
 
-.ongoing span{
-    margin-left:70px;
-    font-size:16px;
-    font-weight: 600;
-    color : #89867e;
-/*    border: 1px solid red; */
-}
-
+/* 내 프로젝트 보기  표부분*/ 
 .ongoing>table{
-    margin-left:100px;
+	width:700px;
+	margin-left:140px;
     padding:5px;
-    font-size:13px;
-    font-weight: 400;
-/*    border: 1px solid gray; */
+    font-size:15px;
+    font-weight:400;
+    text-align:center;
+    line-height:30px;
 }
 
-.ongoing td{
-    padding:0px;
-    text-align: center;
-    text-align: left;
+.ongoing th {
+	line-height:25px;
 }
-.ongoing tr{
-    padding:0px;
-/*    border: 1px solid red; */
+
+.ongoing td {
+    padding:10px;
 }
 
 .finish span{
@@ -316,26 +301,19 @@ my_info_view>.my_picture{
 /*    border: 1px solid gray; */
 }
 
-
-
-.add_btn2:hover{
-    background-color: black;
-    opacity:0.3;
-}
-
-.a_add_btn{
+.add_btn_pjt{
     float:left;
-/*  margin-left:20px;
-    margin-top:10px; */
     text-align: center;
-/* 	border:none; */
-	background:#4CC4EE;
-	color:#fff;
-    font-weight: 400;
-    font-size:13px;
-	width:120px;
-	height:25px;
-	border-radius:5px;
+	background:#d3d3d3;
+	color:#424444;
+    font-weight:600;
+    font-size:14px;
+	width:150px;
+}
+.add_btn_pjt:hover{
+    background-color:#4CC4EE;
+    color:#fff;
+    opacity:0.7;
 }
 
 #footer {
@@ -345,5 +323,12 @@ my_info_view>.my_picture{
     padding:5px;	 
     font-size:15px;
     bottom: 5%;
-    
 }
+/* 남자 여자 선택 버튼 */
+.radio{
+	/* text-align:left; */
+	width:50px;
+	height:30px;
+}
+
+

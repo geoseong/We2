@@ -1,3 +1,10 @@
+
+select * from pjtmake;
+
+select * from pjtmanager;
+
+delete from pjtmanager where pjtcode=50 or pjtcode=57;
+
 create database we2;
 
 desc pjtmanager;
@@ -7,6 +14,8 @@ desc pjtmake;
 desc member;
 
 select pjtCode from pjtMake where userid='park';
+ALTER TABLE ptest CHANGE itemContent itemContent VARCHAR(3000);
+ALTER TABLE pwithwork CHANGE itemContent itemContent VARCHAR(3000);
 
 /*  create user �떆�옉
 > testuser �씪�뒗 �궗�슜�옄媛� 192.168.100.101 �븘�씠�뵾瑜� �넻�빐�꽌 �젒洹쇳븯�뒗 寃껋쓣 �뿀�슜�븯硫�, 

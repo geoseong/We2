@@ -1,3 +1,4 @@
+
 package com.we2.spring;
 
 import java.sql.Connection;
@@ -6,9 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
+
 import javax.sql.DataSource;
 
-import org.junit.runner.Request;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
@@ -16,7 +17,8 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.sun.jmx.snmp.Timestamp;
+//import com.sun.jmx.snmp.Timestamp;
+import com.we2.pjtMake.PjtMakeVO;
 import com.we2.spring.Member;
 
 public class MemberDao {
@@ -114,6 +116,17 @@ public class MemberDao {
 
 		return results.isEmpty() ? null : results.get(0);
 	}
+	
+	// email로 회원조회
+	public List<Member> selectByEmail(String email) {
+		List<Member> results = jdbcTemplate.query(
+				"select * from MEMBER where email = ?",
+				memRowMapper,
+				email);
+
+		return results.isEmpty() ? null : results;
+	}
+	
 	// 사용자 ID값을 확인하는 메소드
 	public int confirmID(String userId) {
 		List<Member> results = jdbcTemplate.query("select * from MEMBER where USERID=?", memRowMapper, userId);
@@ -121,7 +134,43 @@ public class MemberDao {
 		}
 
 	public static MemberDao getInstance() {
-		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public List<PjtJoinVO> selectAll(String userId){
+		// pjtcode | userId | isLeader | pjtCode | pjtName     | pjtClassify | startDate  | endDate
+	      List<PjtJoinVO> results = 
+            jdbcTemplate.query( //mysql DB연동을 위해 작성
+        		"select * from pjtmanager mgr, pjtmake make where mgr.pjtcode = make.pjtcode and mgr.userId = ?"
+        		, //프로젝트 테이블에서  pjtmanager mgr, pjtmake make를 선택하고 조건문으로 mgr.pjtcode = make.pjtcode mgr.userId인것만을 출력함!! 
+        		new RowMapper<PjtJoinVO>(){
+			      @Override
+			      public PjtJoinVO mapRow(ResultSet rs, int rowNum) throws SQLException {
+			    	  PjtJoinVO pjtJoinVO = new PjtJoinVO(
+			        		 rs.getString("pjtcode"),
+			        		 rs.getString("userId"),
+			        		 rs.getString("isLeader"),
+			        		 rs.getString("pjtCode"),
+			        		 rs.getString("pjtName"),
+			               rs.getString("pjtClassify"),
+			               rs.getString("startDate"),
+			               rs.getString("endDate"));
+			         return pjtJoinVO;
+			      }
+        		}
+	           , userId);
+	      System.out.println("selectAll()::results.isEmpty()::::::"+results.isEmpty());
+	      return results.isEmpty()?null:results;
+	   }
+	
+	
+	public int selectDate(int pjtCode){
+	      String sql = 
+	      "select (endDate-startDate) from pjtMake where pjtCode=?";
+	      int searchDate = jdbcTemplate.queryForObject(sql, new Object[] {pjtCode}, Integer.class);
+	      return searchDate;
+	      }
+	
+	
+	
 	}
