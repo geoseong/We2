@@ -35,8 +35,8 @@ public class MailSend {
 
 			// session = Session.getDefaultInstance(p);
 			MimeMessage msg = new MimeMessage(session);
-			String message = "Gmail SMTP 서버를 이용한 JavaMail 테스트";
-			msg.setSubject("거셩 님이 당신을 초대합니다. We2");
+			String message = "We2가 당신을 초대합니다. message";
+			msg.setSubject("We2가 당신을 초대합니다.");
 			Address fromAddr = new InternetAddress("parkopp@gmail.com"); // 보내는 사람의 메일주소
 			msg.setFrom(fromAddr);
 			Address toAddr = new InternetAddress(receiver); // 받는 사람의 메일주소
@@ -49,7 +49,7 @@ public class MailSend {
 			BodyPart messageBodyPart = new MimeBodyPart();
 
 			// Fill the message
-			messageBodyPart.setText("We2 프로젝트에 당신을 초대합니다. www.naver.com"); 	//메시지 쓰는 곳
+			messageBodyPart.setText("We2 프로젝트에 당신을 초대합니다."); 	//메시지 쓰는 곳
 			Multipart multipart = new MimeMultipart();
 			multipart.addBodyPart(messageBodyPart);
 
@@ -76,6 +76,7 @@ public class MailSend {
 				htmlText = htmlText + newline; 
 				System.out.println("내용 : " + htmlText);
 			}
+			String a = "</div><input type='submit' value='초대 수락하기'>";
 			msg.setContent(htmlText, "text/html;charset=UTF-8");
 			//msg.setContent(mailcontext, "mail");
 			

@@ -9,8 +9,8 @@
 
   <title>WE2_프로젝트</title>
 
-     <link rel="stylesheet" href="../css/w2_reset.css" type="text/css">
-     <link rel="stylesheet" href="../css/02_project.css" type="text/css">
+     <link rel="stylesheet" href="/We2/css/w2_reset.css" type="text/css">
+     <link rel="stylesheet" href="/We2/css/02_project.css" type="text/css">
     <!-- 규민c 공지사항 css : 
     	해당 기능이 이 공통으로 사용되는 jsp페이지에 포함되면 다른 메뉴의 css와 충돌 일어나서 
     	해당 기능 jsp에다가 css를 넣어 놓음 
@@ -20,7 +20,7 @@
     	해당 기능 jsp에다가 css를 넣어 놓음 
      <link rel="stylesheet" type="text/css" href="../css/File.css"> -->
      
-     <script type="text/javascript" src="../js/jquery-1.12.1.min.js"></script> 
+     <script type="text/javascript" src="/We2/js/jquery-1.12.1.min.js"></script> 
 
  <script>
  
@@ -55,7 +55,7 @@ var myVar = setInterval(myTimer, 1000*60*60*24);
         
 <!-- 2. 상단 로그인 부분-->
         <div id = "nav">
-            <a href="#">로그아웃</a>
+            <a href="/We2/logout">로그아웃</a>
         </div>
     </div>
         <!--프로젝트 진행 중 부분-->
@@ -69,13 +69,13 @@ var myVar = setInterval(myTimer, 1000*60*60*24);
             </div>
      </div>
          <!--팀원 보기 아이콘-->
-         <div id = "viewfriends"><a href="#">
+         <!-- <div id = "viewfriends"><a href="#">
              <img src = "/We2/img/project/viewfriends.png" style="width:31px; height:31px;"></a> 
          </div>
-        <!--팀원 추가 아이콘-->
+        팀원 추가 아이콘
          <div id = "plusfriends"><a href="#">
              <img src = "/We2/img/project/plusfriends.png" style="width:27px; height:27px;"></a> 
-         </div>
+         </div> -->
      
 </div><!-- header END -->
      
@@ -88,10 +88,10 @@ var myVar = setInterval(myTimer, 1000*60*60*24);
        
        <div class="menu_item">
            <ul>
-               <li><a href="/We2/Notice.do?list=/notice/list.jsp&pjtcode=${project.pjtCode }" id="item_1">공지사항</a></li>
+               <li><a href="/We2/notice/list" id="item_1">공지사항</a></li>
                <li><a href="/We2/file/list?page=1" id="item_2">파일공유</a></li>
                <li><a href="/We2/scheduler/list" id="item_3">스케줄</a></li>
-               <li><a href="/myproject/myproject.jsp?willwork=willwork&pjtcode=${project.pjtCode }" id="item_4">할 일</a></li>
+               <li><a href="/We2/willwork/list" id="item_4">할 일</a></li>
                <li><a href="/We2/project/setting" id="item_5">프로젝트 정보</a></li>
            </ul>
        </div>
@@ -109,10 +109,10 @@ var myVar = setInterval(myTimer, 1000*60*60*24);
   <!-- 3) 오른쪽 채팅창-->
   <div class = "chat">
       <div class="chat_title">
-      	<img src="/We2/img/G_talk_3.png"/>
+      	<!-- <img src="/We2/img/G_talk_3.png"/> -->
       </div>
      
-        <jsp:include page="broadcast.jsp"></jsp:include> 
+        <%-- <jsp:include page="broadcast.jsp"></jsp:include>  --%>
 
       
   </div>

@@ -26,13 +26,13 @@ public class SchedulerService {
 	}
 
 	public void insertScheduler ( 
-			 int pjtcode,		 
 			 int calendarmemo_year, 
 			 int calendarmemo_month, 
 			 int calendarmemo_day, 
-			 String calendarmemo_contents){
+			 String calendarmemo_contents,
+			 String pjtcode){
 		System.out.println("게시물 insert 완료.");
-		schedulerMapper.insertScheduler(pjtcode, calendarmemo_year, calendarmemo_month, calendarmemo_day, calendarmemo_contents);
+		schedulerMapper.insertScheduler( calendarmemo_year, calendarmemo_month, calendarmemo_day, calendarmemo_contents, pjtcode);
 	}
 	public void deleteScheduler(int calendarmemo_num){
 		this.schedulerMapper.deleteScheduler(calendarmemo_num);
@@ -40,7 +40,7 @@ public class SchedulerService {
 	}
 	
 	public void updateScheduler(
-			 int pjtcode,
+			String pjtcode,
 			 int calendarmemo_num,
 			 int calendarmemo_year, 
 			 int calendarmemo_month, 

@@ -4,46 +4,42 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>일정 삭제</title>
+
+<link rel="stylesheet" type="text/css" href="../css/schedule_window.css">
 </head>
 <body>
 
   <H2>일정 삭제</H2>
-  <HR>
+
  <form name="frm" method="post" action="memoDelete.do">
   <input type="hidden" name="calendarmemo_num" value="${calendarmemo.calendarmemo_num}" >
   
   
  <table>
   <tr>
-   	<td>일자 : &nbsp;</td>
+   	<th>날짜</th>
    	<td>
-   	 <input type=text name="calendarmemo_year" size=4 value="${calendarmemo.calendarmemo_year}">년
-   	 <input type=text name="calendarmemo_month" size=2 value="${calendarmemo.calendarmemo_month}">월
-   	 <input type=text name="calendarmemo_day" size=2 value="${calendarmemo.calendarmemo_day}">일
-    <br></td>
+   	 <input type=text name="calendarmemo_year" size=2 value="${calendarmemo.calendarmemo_year}">년 &nbsp;
+   	 <input type=text name="calendarmemo_month" size=1 value="${calendarmemo.calendarmemo_month}">월 &nbsp;
+   	 <input type=text name="calendarmemo_day" size=1 value="${calendarmemo.calendarmemo_day}">일
+    </td>
    </tr>
    
    <tr>
-    <td align="left" valign="top">내용 <br></td></tr>
-   
-   <tr>  
-    <td colspan=5>
+     <th>내용</th>
+       <td colspan=5>
      <TEXTAREA name="calendarmemo_contents" class="textarea" ROWS="8" COLS="42" >${calendarmemo.calendarmemo_contents}</TEXTAREA>
-   <br> </td>
+    </td>
    </tr>
+   </table>
   
+
+   <div class = "button">
+    <input name="delete" class="add_btn" type=submit value="삭제하기" >
+    <input name="back" class="add_btn" type="button"   value="뒤로가기"  onclick="location.href='memoUpdate.do'+calendarmemo_num">
+   </div>
   
-  
-  <tr>
-   <td align="center" colspan=5>
-  
-    <input name="delete" type=submit value="삭제하기" >
-    <input name="back" type="button"   value="뒤로가기"  onclick="location.href='memoUpdate.do'+calendarmemo_num">
-  
-   </td>
-  </tr>
-  </table>
   </form>
 
 </body>

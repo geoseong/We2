@@ -30,7 +30,7 @@
 
     <script type="text/javascript">
         var textarea = document.getElementById("messageWindow");
-        var webSocket = new WebSocket('ws://192.168.0.165:8080/We2/broadcasting');
+        var webSocket = new WebSocket('ws://192.168.0.100:8080/We2/broadcasting');
         var inputMessage = document.getElementById('inputMessage');
         var inputId = document.getElementById('inputId');
     webSocket.onerror = function(event) {

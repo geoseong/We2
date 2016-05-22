@@ -8,10 +8,10 @@
 <meta charset="UTF-8">
 <title>일정추가</title>
 
-<link rel="stylesheet" type="text/css" href="../css/w2_reset.css">
-<link rel="stylesheet" type="text/css" href="../css/studyroom_window.css">
+<link rel="stylesheet" type="text/css" href="/We2/css/w2_reset.css">
+<link rel="stylesheet" type="text/css" href="/We2/css/schedule_window.css">
 
-<script type="text/javascript" src="js/Schedule.js"></script>
+<script type="text/javascript" src="/We2/js/Schedule.js"></script>
 </head>
 <body>
 
@@ -29,13 +29,13 @@
     // 파라미터 받는다. - 프로젝트코드
     String pjtcode = request.getParameter("pjtcode");
 
-    System.out.println("pjtcode(caffl) : " + pjtcode);
+    System.out.println("pjtcode(memoadd) : " + pjtcode);
     %>
 
-   	<input type="hidden" name="pjtcode" value="<%=pjtcode%>">
-   	 <input type=text name="calendarmemo_year" value="${year}" size=4>년
-   	 <input type=text name="calendarmemo_month" size=2 value="${month}">월
-   	 <input type=text name="calendarmemo_day" size=2 value="${day}">일
+   	<input type="hidden" name="pjtcode" value="${pjtcode}" >
+   	 <input type=text  id="calendarmemo_year" name='calendarmemo_year' value="${year}" size=4>년
+   	 <input type=text  id="calendarmemo_month" name='calendarmemo_month' size=2 value="${month}">월
+   	 <input type=text  id="calendarmemo_day" name='calendarmemo_day' size=2 value="${day}">일
     <br></td>
    </tr>
    

@@ -31,7 +31,7 @@
 
             <a href="02_project.html">프로젝트 </a>
             <a href="../cBoard/list?page=1&category=cFindwork">커뮤니티 </a>
-            <a href="../pjtBoard/list?page=1&category=group">프로젝트공유 </a>
+            <a href="../pjtBoard/list?page=1&category=pGroup">프로젝트공유 </a>
             <a href="../studyroom/list?page=1">스터디룸공유 &nbsp;</a>
             
             <c:choose>

@@ -42,6 +42,16 @@
 		<%
 	}
 %>
+
+ <%
+	if(request.getAttribute("outout") != null){
+		%>
+			<script>
+				alert("로그아웃 되었습니다.");
+			</script>
+		<%
+	}
+%>
 </head>
         
 <body>
@@ -146,9 +156,8 @@
     
   </div><!--big wrap END-->  
   
-    <!-- <script type="text/javascript" src="js/jquery-1.12.1.min.js"></script>  -->
-    <script type="text/javascript" src="js/main_slider2.js"></script>
-    
+    <script type="text/javascript" src="js/jquery-1.12.1.min.js"></script> 
+    <!-- <script type="text/javascript" src="/We2/js/main_slider2.js"></script> -->
     
    
    <div class="pjtMake">   

@@ -13,17 +13,17 @@
 
 function winOpen(fcode){
 	var url = "filewrite.do";
-	  javascript:window.open(url , '상세내용보기', 'width=600 height=270 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
+	  javascript:window.open(url , '상세내용보기', 'width=480 height=300 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
   }
   
   function winOpen2(fcode){
 	var url = "fileupdate.do?fcode=" + fcode;
-   	  javascript:window.open(url , '파일수정', 'width=600 height=270 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
+   	  javascript:window.open(url , '파일수정', 'width=530 height=300 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
   }		
   
 function winOpen3(fcode){
 	var url = "filedelete.do?fcode=" + fcode;
-     javascript:window.open(url , '파일삭제', 'width=600 height=270 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
+     javascript:window.open(url , '파일삭제', 'width=480 height=300 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
 }
 
 </script>

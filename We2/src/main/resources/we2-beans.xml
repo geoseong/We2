@@ -87,5 +87,9 @@
 		<bean id="pjtMakeDAO" class="com.we2.pjtMake.PjtMakeDAO">
 			<property name="dataSource" ref="dataSource" />
 		</bean>
+		
+		<bean id="noticeDao" class="com.we2.notice.NoticeDao">
+			<constructor-arg ref="dataSource" />
+		</bean>
 	<!-- end : 의존주입 -->
 </beans>

@@ -27,7 +27,7 @@ public class PjtMakeDAO {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }*/
     
- // 방법 2. setter를 통한 DataSource를 > JdbcTemplate에 전달하여 JdbcTemplate 객체 생성.
+ // 방법 2. setter를 통한 DataSource를 > JdbcTemplate 전달하여 JdbcTemplate 객체 생성.
     public void setDataSource(DataSource dataSource){
         this.jdbcTemplate = new JdbcTemplate(dataSource);    
     }
@@ -100,7 +100,8 @@ public class PjtMakeDAO {
 	}
 	
 	//날짜 구하기 
-	public int searchDate(int pjtCode){
+	public int searchDate(){
+		int pjtCode=20;
 	String sql = 
 			"select (endDate - startDate) from pjtmake where pjtcode=?";
 	int count = jdbcTemplate.queryForObject(sql, new Object[] {pjtCode}, Integer.class);
@@ -169,72 +170,20 @@ public class PjtMakeDAO {
 	
 	
 	/**회원 초대수락할때 멤버추가하기.*/
-	public void addpjtMember(){
-		
+	public void addpjtMember(String pjtCode, String userId){
+		jdbcTemplate.update(new PreparedStatementCreator() {
+			@Override
+			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+				PreparedStatement pstmt = con.prepareStatement(
+						"insert into pjtManager(pjtCode,userId,isLeader) values(?, ?, 'N')"
+					);
+				pstmt.setString(1, pjtCode);
+				pstmt.setString(2, userId);
+				return pstmt;
+			}
+		});
 	}
 	
-	/*
-	// 회원이 속해있는 프로젝트이름 뿌리기
-	public List<PjtMakeVO> selectUserpjts(String userid){
-		String sql="select * from pjtmake where userid=?";
-		List<PjtMakeVO> list = new ArrayList<PjtMakeVO>();
-		
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		try{
-			conn = DBManager.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, userid);
-			rs = pstmt.executeQuery();
-			while(rs.next()){
-				PjtMakeVO pVo = new PjtMakeVO();
-				pVo.setPjtCode(rs.getInt("pjtCode"));
-				pVo.setPjtName(rs.getString("pjtName"));
-				pVo.setPjtClassify(rs.getString("pjtClassify"));
-				pVo.setEndDate(rs.getString("endDate"));
-				pVo.setStartDate(rs.getString("startDate"));
-				pVo.setUserId(rs.getString("userId"));
-				list.add(pVo);
-			}// while문 끝
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			DBManager.close(conn, pstmt, rs);
-		}
-		return list;
-	}
-	
-	public PjtMakeVO selectuserpjt(String pjtcode){
-		//최근 등록한 상품 먼저 출력하기
-		String sql = "select * from pjtMake where pjtcode=?";
-		PjtMakeVO pVo = new PjtMakeVO();
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		try{
-			conn = DBManager.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, pjtcode);
-			rs = pstmt.executeQuery();
-			while(rs.next()){	
-				pVo.setPjtCode(rs.getInt("pjtCode"));
-				pVo.setPjtName(rs.getString("pjtName"));
-				pVo.setPjtClassify(rs.getString("pjtClassify"));
-				pVo.setStartDate(rs.getString("startDate"));
-				pVo.setEndDate(rs.getString("endDate"));
-				pVo.setUserId(rs.getString("userId"));
-			}// while문 끝
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			DBManager.close(conn, pstmt, rs);
-		}
-		return pVo;
-	}
-	*/
 	
 	public void insertWillWork(final String userId, final int pjtCode, final String name) throws ParseException{
 		jdbcTemplate.update(new PreparedStatementCreator() {

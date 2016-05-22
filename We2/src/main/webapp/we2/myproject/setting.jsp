@@ -53,7 +53,7 @@ function winOpen(email){
     </div> <!-- pjt_info end -->
    
    
-<c:if test="${isleader eq 'Y' }">
+<%-- <c:if test="${isleader eq 'Y' }">
    <h2 style="float:left;">팀원 관리</h2>
    
   	 <div class = "pjt_team">
@@ -129,7 +129,7 @@ function winOpen(email){
    </table>
    
    </div> <!-- pjt_team end -->
-  </c:if>
+  </c:if> --%>
    
    <!-- <h2>프로젝트 기간 수정</h2>
  

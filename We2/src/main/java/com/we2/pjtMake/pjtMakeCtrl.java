@@ -49,14 +49,13 @@ public class pjtMakeCtrl{
 		//날짜 구하는 Dao 
 		
 		//프로젝트 생성후 날짜를 구해서 세션에 저장한다. 
-		int dateSearch = pjtMakeDAO.searchDate(pjtCode);
+		int dateSearch = pjtMakeDAO.searchDate();
 		System.out.println("마지막 날짜와 시작날짜의 차 : " + dateSearch);
 		session.setAttribute("day", dateSearch);
 		
 		System.out.println("내 아이디, 코드, 이름은 : " + userId + "이구" + pjtCode +"이구" + name + "야" );
 		//프로젝트 생성 후 willwork에 대한 정보도 디비로 포함시켜야 나중에 할 일 부분에서 볼 수 있음
 		pjtMakeDAO.insertWillWork(userId, pjtCode, name);
-		
 		System.out.println("할 일에 대한 작업이 성공했어! 거의 다왔어!!");
 		
 		//프로젝트 생성이 성공했습니다 메시지를 뿌려주기 위한 설정

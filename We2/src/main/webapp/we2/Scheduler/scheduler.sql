@@ -12,7 +12,7 @@ CREATE TABLE scheduler (
 select * from scheduler;
 select * from scheduler where pjtcode=10 order by calendarmemo_day asc;
 
-insert into scheduler(calendarmemo_year, pjtcode, calendarmemo_month, calendarmemo_day, calendarmemo_contents) values( date_format(now() ,'%Y'), 10, date_format(now() ,'%m'), date_format(now() ,'%d'), 'test1')
+insert into scheduler(calendarmemo_year, pjtcode, calendarmemo_month, calendarmemo_day, calendarmemo_contents) values( date_format(now() ,'%Y'), 20, date_format(now() ,'%m'), 8, 'test1')
 
 drop table scheduler;
 

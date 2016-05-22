@@ -2,13 +2,12 @@
 /* 전체를 감싸는 틀  */
 .first_main{
 	width:100%;
-	padding : 10px;
 	text-align:center;
 }
 
 /* 타이틀 글씨 */ 
 .first_main h2{
-	padding:20px;
+	padding-top:50px;
 	padding-bottom:30px;
 	color: #1591BE;	
 	font-size:25px;
@@ -19,8 +18,9 @@
 
 
 .user {
-	border: 1px solid red;
-	text-align: center;
+	width:100%;
+/* 	border: 1px solid red; */
+	
 }
 .people:after{
 	content:"";
@@ -33,15 +33,16 @@
 }
 .people {
 	margin-bottom:20px;
-	margin-left:100px;
-	margin-right:100px;
+    margin-left:20%;
 	border:1px solid #ccc;
-	width:50%;
+	width:60%; 
 	text-align:center;
 }
 
 .people> .state_work{
 	padding : 10px 0 0 0;	
+	color: #424444;
+
 }
 
 /* �̹��� */
@@ -53,41 +54,73 @@ height:100px;
 /* a�±� */
 
 /* �̸�  */
+  /* 이미지에 대한 부분 */ 
 .people > .state_work > a> p:nth-of-type(1){ 
     float:left;
-	font-size: 17px;
+	font-size: 20px;
 	font-weight:bold;
-	padding : 10px;
-	color: #424444;
+
 }
 
 /* �ؾ��� ��  */
+/* 해야할 일 목록 글씨에 대한 부분 */ 
 .people > .state_work> a> p:nth-of-type(2){ 
-	 float:left;
-	font-size: 13px;
-    padding : 5px 0 5px 0;
-    width : 320px; 
-    color: black;
+	float:left;
+	font-size: 15px;
+	padding-top:15px;
+    padding-left:40px;  
+    padding-bottom:10px;
+   
+    text-align: left;
+ 
 }
+
+#workname1{
+	padding-left : 10px;
+}
+#workname2{
+	padding-left : 40px;
+}
+#workname3{
+	padding-left : 80px;
+}
+
+#workname4{
+	padding-left : 70px;
+}
+#workname5{
+	padding-left : 60px;
+}
+
 
 /* �Ϸ��� �� ��  */
 .people > .state_work> a> p:nth-of-type(3){ 
 	float:left;
 	font-size: 10px;
-    padding : 5px;
-    width : 320px; 
-    color: black;
+    padding-left:50px;  
+    color: #424444;
+    text-align: left;
 }
 
-.modal_bg{
-	position:fixed;
+
+/* 완료한 일 목록 글씨에 대한 부분 */ 
+ .tag1 {
+	
+	font-size: 15px;
+	text-align:left;
+
+} 
+
+/* 모달관련 */
+ .modal_bg{
+ 	position:absolute;
 	width:100%;
 	height:100%;
 	display:block;
 	z-index:999;
 	background-color:#000;
-	opacity:0.5;
-}
+	opacity:0.3;
+} 
 
 .second_body1, .second_body2, .second_body3, .second_body4, .second_body5{
 	position:absolute;
@@ -105,8 +138,22 @@ height:100px;
  margin : 0 auto;
  padding:20px;
  border-radius:10px;
+ font-size:18px;
  }
 
+.showwork h3{
+	padding-bottom:20px;
+	color: #1591BE;	
+	font-size:25px;
+	font-weight:800;
+	text-align: center;
+}
+
+.imgtest img{
+	width:120px;
+}
+
+/* 모달 안의 타이틀 글씨  */
  .top{
   margin : 0 0 0 20;
  }
@@ -181,9 +228,17 @@ height:100px;
 	line-height:120%
 }
 
+/* 지금까지 한일 */ 
 .margin_item{
 	display:block;
 	margin:8px 0;
+	font-weight: 600;
+	font-size: 18px;
+}
+
+/* 완료한 일 */
+.done_work p{
+	 font-size: 15px;
 }
 
 .input_work{
@@ -203,6 +258,7 @@ height:100px;
 	width:100px;
 	height:30px;
 	border-radius:10px;
+	margin-left: 5px;
 }
 
 .add_btn2{
@@ -257,6 +313,6 @@ div >.checkwork{
 	border-radius:10px;
 	position:absolute;
 	top:23px;
-	right:26px;
+	right:50px;
 }
 

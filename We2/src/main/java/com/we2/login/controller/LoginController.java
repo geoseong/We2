@@ -223,13 +223,14 @@ public class LoginController {
 		
 		//MemberMyPage.jsp에서 a태그로 pjtCode를 인자로 받아서 세션에 저장
 		
-		int pjtCode = Integer.parseInt(request.getParameter("pjtCode"));
-		System.out.println("코드뭐니?" + pjtCode);
+		String pjtCode = request.getParameter("pjtCode");
+		System.out.println("pjtCode 뭐니?" + pjtCode);
 		
-	
-		session.setAttribute("pjtCode", pjtCode);
+		session.setAttribute("pjtCode", "20");
+		
+		int Code = Integer.parseInt(pjtCode);
 		//디비상에 날짜를 조회해서 세션에 담는다.
-		int searchDate = memberDao.selectDate(pjtCode);
+		int searchDate = memberDao.selectDate(Code);
 		System.out.println("날짜 뭐니? : "+searchDate);
 		session.setAttribute("day", searchDate);
 		
@@ -237,4 +238,12 @@ public class LoginController {
 		
 		return "/myproject/myproject";
 	}
+	
+	@RequestMapping(value="Member_Delete")
+	public String deleteget(HttpSession session){
+		AuthInfo authinfo = (AuthInfo)session.getAttribute("authInfo");
+		authinfo.getUserId();
+		return "registration/Member_Aggrement";
+	}
 }
+

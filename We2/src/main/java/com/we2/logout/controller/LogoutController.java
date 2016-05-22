@@ -28,8 +28,9 @@ public class LogoutController {
 	private MemberDao memberDao;
 	
 	@RequestMapping(value = "/logout")
-		public String logout(HttpSession session) {
+		public String logout(HttpSession session, HttpServletRequest request) {
 		session.invalidate();
+		request.setAttribute("outout", "logout");
 		return "index";
 		} // end logout()
 	}

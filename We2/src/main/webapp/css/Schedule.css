@@ -53,11 +53,11 @@ table tr{
 }
 
 table td{
-	height:150px;
+	height:120px;
 	border: 0.5px solid #d3d3d3; /* 테이블 줄간격 */
 	vertical-align: top;
 	text-align: left;
-
+	padding:5px;
 	color:#777777;
 	
 }

@@ -71,11 +71,11 @@ function winOpen2(calendarmemo_num){
           <span><% out.print("   "+"오늘은 "+currentYear + "년 " + (currentMonth+1) + "월 "+  currentDate+"일"); %></span>
           
         <div>
-          <a href="list?year=<%out.print(year);%>&month=<%out.print(month-1);%>&pjtcode=10"> < &nbsp;</a>
+          <a href="list?year=<%out.print(year);%>&month=<%out.print(month-1);%>"> < &nbsp;</a>
     
 	      <span> <% out.print(year); %>년 &nbsp;&nbsp;<% out.print(month); %>월 </span>
 	     
-	      <a href="list?year=<%out.print(year);%>&month=<%out.print(month+1);%>&pjtcode=10"> &nbsp; > </a>
+	      <a href="list?year=<%out.print(year);%>&month=<%out.print(month+1);%>"> &nbsp; > </a>
           </div> 
           <br>
           <div class = "calendar">
@@ -103,7 +103,7 @@ function winOpen2(calendarmemo_num){
     String pjtcode = request.getParameter("pjtcode");
     System.out.println("pjtcode(cal) : " + pjtcode);
     
-   cal.set(year, month, 1); //현재 날짜를 현재 월의 1일로 설정
+   cal.set(year, month-1, 1); //현재 날짜를 현재 월의 1일로 설정
    int startDay=cal.get(java.util.Calendar.DAY_OF_WEEK); //현재날짜(1일)의 요일
  		//리퀘스트영역에 현재날짜(1일)의 요일을 보냄 
 		request.setAttribute("startDay", startDay);

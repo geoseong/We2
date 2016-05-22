@@ -41,11 +41,12 @@ public class PjtCtrl {
 	}
 	
 	@RequestMapping(value="/setting", method=RequestMethod.GET)
-	public String aopsettingGet(Model model){
+	public String settingGet(Model model){
 		// pjtCode를 받는다. 
-		String pjtCode=(String)session.getAttribute("pjtCode");
-		System.out.println("session에서 받은 pjtCode = " + pjtCode);
-		
+		/*String pjtCode=(String)session.getAttribute("pjtCode");
+		System.out.println("session에서 받은 pjtCode = " + pjtCode);*/
+		String pjtCode="20";
+				
 		// SQL : 방장의 ID 구하기
 		String pjtleader = pDao.selectLeader(pjtCode);
 			System.out.println("이바닥의 방장은 바로 - " + pjtleader);
@@ -75,7 +76,7 @@ public class PjtCtrl {
 	}
 	
 	@RequestMapping("/invitation")
-	public String aopmailsendGet(Model model) {
+	public String mailsendGet(Model model) {
 			System.out.println("invitation.get] Welcome!!");
 		String email=request.getParameter("email");
 			System.out.println("invitation.get] email : " + email);
@@ -86,23 +87,25 @@ public class PjtCtrl {
 	}
 	
 	@RequestMapping(value="/invitation", method=RequestMethod.POST)
-	public String aopmailsendPost(Model model){
+	public String mailsendPost(Model model){
 		// pjtCode를 받는다. 
-			String pjtCode = (String)session.getAttribute("pjtCode");
-		
+			/*String pjtCode = (String)session.getAttribute("pjtCode");
+			System.out.println("invitation pjtCode : " + pjtCode);*/
 		String[] ids=request.getParameterValues("item");
+		
+		String pjtCode = "20";
+		
+		// 메일전송 태그를 갖고있는 파일경로 지정.
+		String path=servletContext.getRealPath("we2/mailsend");
+		
+		MailSend mailsend = new MailSend();
 		
 		for(String a : ids){
 			System.out.println("invitation.post] 선택된 id들 : " + a);
+			mailsend.main(path, a);
 		}
-		
-		// 메일전송 태그를 갖고있는 파일경로 지정.
-		/*String path=servletContext.getRealPath("we2/mailsend");
-		
-		MailSend mailsend = new MailSend();
-		mailsend.main(path, "imf4@naver.com");
 		SMTPAuthenticator smtpauth = new SMTPAuthenticator();
-		smtpauth.getPasswordAuthentication();*/
+		smtpauth.getPasswordAuthentication();
 		
 		
 		// alert 메시지.
@@ -114,6 +117,17 @@ public class PjtCtrl {
 					+ "</script>";
 		 model.addAttribute("alert",message);
 		 return "myproject/invitation";
+	}
+	
+	@RequestMapping(value="/addmember", method=RequestMethod.GET)
+	public String mailaddgt(Model model){
+		System.out.println("/addmember.get 시작");
+		 AuthInfo authinfo = (AuthInfo)session.getAttribute("authInfo");
+		 String userId = authinfo.getUserId();
+		 String pjtCode = (String)session.getAttribute("pjtCode");
+		
+		pDao.addpjtMember(pjtCode, userId);
+		return "index";
 	}
 	
 }

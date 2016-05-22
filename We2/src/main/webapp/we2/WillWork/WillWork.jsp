@@ -6,17 +6,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<!-- <link rel="stylesheet" type="text/css" href="../css/reset.css"> -->
-<link rel="stylesheet" type="text/css" href="../css/WillWork.css">
+<link rel="stylesheet" type="text/css" href="../We2/css/we2_reset.css">
+<link rel="stylesheet" type="text/css" href="/We2/css/WillWork.css">
 </head>
 <body>
 
 <div class="modal_bg">
 </div>
 
-
 <div class="first_main">
-
 <div class = "title" >
 <h2> 할 일 </h2>
 </div>
@@ -29,12 +27,13 @@
 				<img src="../img/people_m1.png"/>
 			</div>
 		 <div class="state_work">
+		     
 				<a class="tag1">
 					 <c:forEach var="user0" items="${results}" varStatus="status">
 						<c:if test="${status.index ==0}">
-							<p> ${user0.name}<!-- 이름 -->
-							<p> 해야할 일 : ${user0.doWork}
-							<p> 완료한 일: ${user0.doneWork}
+							<p> ${user0.name}<!-- 이름 --> </p>
+							<p> 해야할 일: &nbsp;&nbsp; ${user0.doWork}
+							<p id="workname1"> 완료한 일: &nbsp;&nbsp; ${user0.doneWork}
 						</c:if>
 					</c:forEach> 
 					
@@ -56,6 +55,7 @@
 				    	
 			    	</p> --%>
 			    </a>
+			  
 		</div>	
 	</div>
 </c:if>
@@ -73,8 +73,8 @@
 						<c:forEach var="user1" items="${results}" varStatus="status">
 							<c:if test="${status.index ==1}">
 							<p> ${user1.name}<!-- 이름 -->
-							<p> 해야할 일 : ${user1.doWork}		
-							<p> 완료한 일: ${user1.doneWork}
+							<p> 해야할 일: &nbsp;&nbsp; ${user1.doWork}		
+							<p id="workname2"> 완료한 일: &nbsp;&nbsp; ${user1.doneWork}
 						</c:if>
 						</c:forEach>
 						
@@ -111,8 +111,8 @@
 						<c:forEach var="user2" items="${results}" varStatus="status">
 							<c:if test="${status.index ==2}">
 							<p> ${user2.name}<!-- 이름 -->
-							<p> 해야할 일 : ${user2.doWork}		
-							<p> 완료한 일: ${user2.doneWork}
+							<p> 해야할 일: ${user2.doWork}		
+							<p id="workname3"> 완료한 일: ${user2.doneWork}
 						</c:if>
 						</c:forEach>
 						
@@ -143,8 +143,8 @@
 						<c:forEach var="user3" items="${results}" varStatus="status">
 							<c:if test="${status.index ==3}">
 							<p> ${user3.name}<!-- 이름 -->
-							<p> 해야할 일 : ${user3.doWork}		
-							<p> 완료한 일: ${user3.doneWork}
+							<p> 해야할 일:&nbsp;&nbsp; ${user3.doWork}		
+							<p id="workname4"> 완료한 일:&nbsp;&nbsp; ${user3.doneWork}
 						</c:if>
 						</c:forEach>
 				    	<%-- <p> 해야할 일 : 				    	
@@ -176,8 +176,8 @@
 					<c:forEach var="user4" items="${results}" varStatus="status">
 							<c:if test="${status.index ==4}">
 							<p> ${user4.name}<!-- 이름 -->
-							<p> 해야할 일 : ${user4.doWork}		
-							<p> 완료한 일: ${user4.doneWork}
+							<p> 해야할 일 :&nbsp;&nbsp; ${user4.doWork}		
+							<p id="workname5"> 완료한 일:&nbsp;&nbsp; ${user4.doneWork}
 						</c:if>
 						</c:forEach>
 			    	<%-- <p> 해야할 일 : 				    	
@@ -216,7 +216,7 @@
 			<%-- <p><c:forEach var="username0" items="${results}">
 						<p>${username0.name}<!-- 이름 --></p>
 			</c:forEach></p> --%>
-			<span class="margin_item">＊지금까지 한일</span>
+			<span class="margin_item">지금까지 한일</span>
 			
 			<form action="" method="">
 			<ul class="done_work">
@@ -280,11 +280,11 @@
 				<%-- <p><c:forEach var="username1" items="${username1}">
 						<p>${username1}<!-- 이름 --></p>
 					</c:forEach></p> --%>
-			<span class="margin_item">＊지금까지 한일</span>
+			<span class="margin_item">지금까지 한일</span>
 			<ul class="done_work">
 				<c:forEach var="user1" items="${results}" varStatus="status">
 					<c:if test="${status.index ==1}">
-					<p> 완료한 일: ${user1.doneWork}
+					<p> 완료한 일  :  &nbsp; &nbsp;${user1.doneWork}
 					</c:if>
 				</c:forEach> 
 			</ul>
@@ -337,9 +337,8 @@
 			<%-- <p><c:forEach var="username2" items="${username2}">
 						<p>${username2}<!-- 이름 --></p>
 					</c:forEach></p> --%>
-			<span class="margin_item">＊지금까지 한일</span>
+			<span class="margin_item">지금까지 한일</span>
 			<ul class="done_work">
-				
 			    <c:forEach var="user2" items="${results}" varStatus="status">
 					<c:if test="${status.index ==2}">
 					<p> 완료한 일: ${user2.doneWork}
@@ -394,7 +393,7 @@
 			<%-- <p><c:forEach var="username3" items="${username3}">
 						<p>${username3}<!-- 이름 --></p>
 					</c:forEach></p> --%>
-			<span class="margin_item">＊지금까지 한일</span>
+			<span class="margin_item">지금까지 한일</span>
 			<ul class="done_work">
 				<c:forEach var="user3" items="${results}" varStatus="status">
 					<c:if test="${status.index ==3}">
@@ -449,7 +448,7 @@
 			<%-- <p><c:forEach var="username4" items="${username4 }">
 						<p>${username4}<!-- 이름 --></p>
 					</c:forEach></p> --%>
-			<span class="margin_item">＊지금까지 한일</span>
+			<span class="margin_item">지금까지 한일</span>
 			<ul class="done_work">
 				<c:forEach var="user4" items="${results}" varStatus="status">
 					<c:if test="${status.index ==4}">
@@ -495,6 +494,7 @@
 
 </body>
 
-<script src="../js/WillWork.js"></script>
+<script src="/We2/js/WillWork.js"></script>
+<!-- <script type="text/javascript" src="/We2/js/jquery-1.12.1.min.js"></script> -->
 
 </html>
