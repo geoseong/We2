@@ -8,15 +8,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>WE2_프로젝트</title>
-<link rel="stylesheet" type="text/css" href="../css/w2_reset.css">
-<link rel="stylesheet" type="text/css" href="../css/notice.css">
+<link rel="stylesheet" type="text/css" href="/We2/css/w2_reset.css">
+<link rel="stylesheet" type="text/css" href="/We2/css/notice.css">
  
 </head>
+<!-- toString().contains('글쓰기가') -->
+<c:choose>
+	<c:when test="${msg.toString().contains('글쓰기가') || msg.toString().contains('수정') || msg.toString().contains('삭제') }">
+		<script type='text/javascript'>
+			alert('${msg}');
+		</script>
+	</c:when>
+	<c:otherwise>
+	</c:otherwise>
+</c:choose>
+		<c:set scope="request" var="alert" value="${false }"/>
 <body>
-	<script type="text/javascript">
-		
-	</script>
-<body>
+
 	<div id="container">	
 	
 			<div id="content_wrap">
@@ -25,7 +33,7 @@
 				
 				<!-- 글쓰기 버튼 -->
 				<div class="btn">
-                  <form action="write_view" method="get" name =" random ">
+                  <form action="write_view" method="get" name ="random ">
 				     <input class ="add_btn_write" type="submit" value="글쓰기" >
 					<!--  <input class="add_btn" type="hidden" name="write" value="../notice/write_view.jsp"> -->
 			      </form> 

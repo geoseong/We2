@@ -7,11 +7,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>글 수정</title>
-<link rel="stylesheet" href="../css/w2_reset.css" type="text/css"> 
-<link rel="stylesheet" href="../css/02_project.css" type="text/css">  
-<link rel="stylesheet" type="text/css" href="../css/notice.css">
+<link rel="stylesheet" href="/We2/css/w2_reset.css" type="text/css"> 
+<link rel="stylesheet" href="/We2/css/02_project.css" type="text/css">  
+<link rel="stylesheet" type="text/css" href="/We2/css/notice.css">
 
-<script type="text/javascript" src="js/jquery-1.12.1.min.js"></script>
+<script type="text/javascript" src="/We2/js/jquery-1.12.1.min.js"></script>
 </head>
 
 <script type="text/javascript">
@@ -81,22 +81,23 @@
 		
 		<table>
 			<c:forEach items="${content}" var="content">
-				<form name=modifyform method="post" action="modify?num=${content.num }">
+				<form name="modifyform" method="post" action="modify?num=${content.num }">
 
 
 					<table class="notice">
 						<tr>
 							<th align="center">제목</th>
-							<td><input name="title" size="50" maxlength="100"
-								value="${content.title }"></td>
+							<td>
+								<input name="title" size="50" maxlength="100" value="${content.title }">
+							</td>
 						</tr>
 
 
 						<tr>
 							<th align="center">이름</th>
-							<td style="padding-left: 15px;">&nbsp;&nbsp;${content.writer }<input
-								type="hidden" name="writer" size="50" maxlength="100"
-								value="${content.writer} "></td>
+							<td style="padding-left: 15px;">&nbsp;&nbsp;${content.writer }
+								<input type="hidden" name="writer" size="50" maxlength="100" value="${content.writer} ">
+							</td>
 						</tr>
 
 						<!-- 				<tr>
@@ -113,7 +114,7 @@
 
 					</table>
 					<div class="c_btn">
-						<input class="add_btn" type="button" value="수정하기" onclick="javascript:modifyCheck();">
+						<input class="add_btn" type="submit" value="수정하기" onclick="javascript:modifyCheck();">
 						<input class="add_btn" type="button" value="돌아가기" onclick="javacript:history.back(-1)">
 					</div>
 				</form>

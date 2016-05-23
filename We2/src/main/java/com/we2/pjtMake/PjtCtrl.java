@@ -34,10 +34,12 @@ public class PjtCtrl {
 	
 	/** pjtCode 세션 보내기 테스트용. */
 	@RequestMapping("/")
-	public String makepjtsession(String pjtCode) {
-		session.setAttribute("pjtCode", pjtCode);
+	public String makepjtsession(Model model) {
+		int pjtCode = (Integer)request.getAttribute("pjtCode");
+		System.out.println("PjtCtrl root : " + pjtCode);
+		//session.setAttribute("pjtCode", );
 		
-		return "redirect:/project/setting";
+		return "redirect:/notice/list";
 	}
 	
 	@RequestMapping(value="/setting", method=RequestMethod.GET)

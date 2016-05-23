@@ -136,7 +136,7 @@
 						</table>
 
 				<div class="change_leave">
-					<input type="button" value="수정하기" class="add_btn" onclick="joinCheck()" /> 
+					<input type="submit" value="수정하기" class="add_btn" onclick="joinCheck()" /> 
 					<input type="button" value="회원탈퇴" class="add_btn" onclick="Member_Delete" />
 				</div>
 			</form>
@@ -172,7 +172,7 @@
 												<tr>
 												    <td>${pjtlist.pjtName }</td><!--  프로젝트 이름 -->
 													<td style="text-align: right;">
-													  <a href="notice/list?pjtCode=20" class="add_btn_pjt" target="_blank">
+													  <a href="project?pjtCode=${pjtlist.pjtcode }" class="add_btn_pjt" target="_blank">
 													            프로젝트 바로가기</a>
 													</td>
 												</tr>

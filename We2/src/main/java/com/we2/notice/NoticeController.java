@@ -19,21 +19,17 @@ public class NoticeController {
 	NoticeDao noticeDao;
 	@Autowired
 	HttpSession session;
-	/*int pjtCode = Integer.parseInt(request.getParameter("pjtCode"));*/
 	
 	@RequestMapping("/list")
 	public String list(Model model) {
-		/*Notice notice = new NoticeList();
-		notice.execute(model);*/
 		System.out.println("///////list session 받기 전.--------");
-		/*String pjtCode = (String)session.getAttribute("pjtCode");*/
-		String pjtCode = "20";
-		//int  pjtCode = Integer.parseInt(code);
-		System.out.println("/list pjtcode : "+pjtCode);
+		int pjtCode = (Integer)session.getAttribute("pjtCode");
+			System.out.println("/notice list pjtcode : "+pjtCode);
 		
 		model.addAttribute("page", "../notice/list");
 		model.addAttribute("content",noticeDao.list(pjtCode));
-
+		String a = "ss";
+		
 		return "myproject/myproject"; 
 	}
 	
@@ -43,34 +39,24 @@ public class NoticeController {
 		return "myproject/myproject";
 	}
 	
+	
 	@RequestMapping("/write")
 	public String write(HttpServletRequest request, Model model) {
-		/*session.setAttribute("pjtCode", pjtCode);*/
-		//int pjtCode = Integer.parseInt((String)session.getAttribute("pjtCode"));
-		/*String pjtCode = (String)session.getAttribute("pjtCode");*/
-		String pjtCode = "20";
-		System.out.println("/write pjtcode : "+pjtCode);
-		
-		String title = request.getParameter("title");
-		String writer = request.getParameter("writer");
-		String content = request.getParameter("content");
-		
-		model.addAttribute("title", title);
-		model.addAttribute("writer", writer);
-		model.addAttribute("content", content);
-		
-		/*model.addAttribute("page", "../notice/list");*/
+		int pjtCode = (Integer)session.getAttribute("pjtCode");
+			System.out.println("/notice write pjtcode : "+pjtCode);
 		model.addAttribute("content", noticeDao.write(request, pjtCode));
-		
+		model.addAttribute("msg", "글쓰기가 완료되었습니다.");
+				/*, 
+				"<script type='text/javascript'>"
+				+ "alert('글쓰기가 완료되었습니다.');"
+				+ "</script>");*/
 		return list(model);
 	}
 	
 	@RequestMapping("/view")
 	public String view(@RequestParam("num") String num, Model model){
-		//int pjtCode = Integer.parseInt((String)session.getAttribute("pjtCode"));
-		/*String pjtCode = (String)session.getAttribute("pjtCode");*/
-		String pjtCode = "20";
-		System.out.println("/view pjtcode : "+pjtCode);
+		int pjtCode = (Integer)session.getAttribute("pjtCode");
+			System.out.println("/notice view pjtcode : "+pjtCode);
 		
 		model.addAttribute("num", num);
 		model.addAttribute("page", "../notice/view");
@@ -80,35 +66,28 @@ public class NoticeController {
 	}
 	
 	@RequestMapping("/modify")
-	public String modify(@RequestParam("num") String num, Model model, HttpServletRequest request) {
-		System.out.println("111111111111");
+	public String modify(@RequestParam("num") String num, Model model) {
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		
 		model.addAttribute("num", num);
-/*		model.addAttribute("title", title);
-		model.addAttribute("content", content);*/
+
+		int pjtCode = (Integer)session.getAttribute("pjtCode");
+			System.out.println("/notice modify pjtcode : "+pjtCode);
 		
-		//int Code = Integer.parseInt((String)session.getAttribute("pjtCode"));
-		/*String pjtCode = (String)session.getAttribute("pjtCode");*/
-		String pjtCode = "20";
-		System.out.println("/modify pjtcode : "+pjtCode);
-		
-		model.addAttribute("page", "../notice/list");
+		//model.addAttribute("page", "../notice/list");
 		
 		model.addAttribute("content", noticeDao.modify(num, request, pjtCode));
-		model.addAttribute("content",noticeDao.list(pjtCode));
-		
-		return "myproject/myproject";
+		//--model.addAttribute("content",noticeDao.list(pjtCode));
+		model.addAttribute("msg", "수정이 완료되었습니다.");
+		return list(model);
 	}
 	
 	@RequestMapping("/modify_view")
 	public String modify_view(@RequestParam("num") String num, Model model) {
 		
-		//int pjtCode = Integer.parseInt((String)session.getAttribute("pjtCode"));
-		/*String pjtCode = (String)session.getAttribute("pjtCode");*/
-		String pjtCode = "20";
-		System.out.println("/modify_view pjtcode : "+pjtCode);
+		int pjtCode = (Integer)session.getAttribute("pjtCode");
+			System.out.println("/notice modify_view pjtcode : "+pjtCode);
 		
 		model.addAttribute("num", num);
 		model.addAttribute("content", noticeDao.view(num, pjtCode));
@@ -117,19 +96,20 @@ public class NoticeController {
 		return "myproject/myproject";
 	}
 	
+	
 	@RequestMapping("/delete") 
 	public String delete(@RequestParam("num") String num, Model model) {
 		model.addAttribute("num", num);
-		model.addAttribute("page", "../notice/list");
-		model.addAttribute("content", noticeDao.delete(num, model));
+		//model.addAttribute("page", "../notice/list");
+		//model.addAttribute("content", noticeDao.delete(num, model));
 		
-		//int pjtCode = Integer.parseInt((String)session.getAttribute("pjtCode"));
-		/*String pjtCode = (String)session.getAttribute("pjtCode");*/
-		String pjtCode = "20";
-		System.out.println("/delete pjtcode : "+pjtCode);
+		int pjtCode = (Integer)session.getAttribute("pjtCode");
+			System.out.println("/notice delete pjtcode : "+pjtCode);
 		
-		model.addAttribute("content",noticeDao.list(pjtCode));
+		noticeDao.delete(num);
+		//--model.addAttribute("content",noticeDao.list(pjtCode));
 		
-		return "myproject/myproject";
+		model.addAttribute("msg", "삭제가 완료되었습니다.");
+		return list(model);
 	}
 }

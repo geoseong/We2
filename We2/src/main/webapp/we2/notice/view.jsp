@@ -38,10 +38,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>글 보기</title>
-<link rel="stylesheet" href="../css/w2_reset.css" type="text/css">
-<link rel="stylesheet" href="../css/02_project.css" type="text/css">
+<link rel="stylesheet" href="/We2/css/w2_reset.css" type="text/css">
+<link rel="stylesheet" href="/We2/css/02_project.css" type="text/css">
 <link rel="stylesheet" type="text/css" href="../css/notice.css">
-<script type="text/javascript" src="js/jquery-1.12.1.min.js"></script>
+<script type="text/javascript" src="/We2/js/jquery-1.12.1.min.js"></script>
 </head>
 
 
@@ -83,9 +83,7 @@
 
                        </table>
 						<div class="c_btn">
-						<!-- <input class="add_btn" type="button" value="목록" onclick="location.href='/We2/Notice.do?list=../notice/list.jsp';">  -->
 						<input class="add_btn" type="button" value="목록" onclick="location.href='/We2/notice/list';"> 
-						<%-- <input class="add_btn" type="button" value="수정" onclick="location.href='/We2/Notice.do?modify=../notice/modify.jsp&num=${content.num }';">  --%>
 						<input class="add_btn" type="button" value="수정" onclick="location.href='/We2/notice/modify_view?num=${content.num }';"> 
 						<input class="add_btn" type="button" value="삭제" onclick="location.href='/We2/notice/delete?num=${content.num }';">
 						</div>

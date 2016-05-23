@@ -6,9 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=uft-8">
 <title>글쓰기 게시판</title>
 
-<script type="text/javascript" src="js/jquery-1.12.1.min.js"></script>
-<link rel="stylesheet" type="text/css" href="../css/w2_reset.css">
-<link rel="stylesheet" type="text/css" href="../css/notice.css">
+<script type="text/javascript" src="/We2/js/jquery-1.12.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/We2/css/w2_reset.css">
+<link rel="stylesheet" type="text/css" href="/We2/css/notice.css">
 </head>
 
 <script type="text/javascript">

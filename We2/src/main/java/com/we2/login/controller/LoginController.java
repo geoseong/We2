@@ -169,15 +169,16 @@ public class LoginController {
 		authInfo = (AuthInfo) session.getAttribute("authInfo");
 
 		String userId = authInfo.getUserId();
-		System.out.println("authInfo::::::::::" + authInfo);
+			System.out.println("authInfo::::::::::" + authInfo);
 		
 		AuthInfo mVo = (AuthInfo) session.getAttribute("authInfo");
-		System.out.println("mVo.getUserId()::::::::" + mVo.getUserId());
-		System.out.println("mVo.getGender()성별 오류출력:::::"+ mVo.getGender());
+			System.out.println("mVo.getUserId()::::::::" + mVo.getUserId());
+			System.out.println("mVo.getGender()성별 오류출력:::::"+ mVo.getGender());
 		
 		List<PjtJoinVO> list = memberDao.selectAll(userId);
-		System.out.println("list.size()::::::::::" + list.size());
+			System.out.println("list.size()::::::::::" + list.size());
 		model.addAttribute("pjtlist", list);
+		
 		// 세션에서 authInfo값을 가져옴
 		// mVo에 모든 값이 들어가져 있고 성만 값을 가져옴!
 		model.addAttribute("mVo", mVo);
@@ -198,7 +199,6 @@ public class LoginController {
 			System.out.println("pwd_confirm 는 not null이다.");
 		}
 		if (request.getParameter("pwd") != null && request.getParameter("pwd_conrifm") != null) {
-
 			member.setName(request.getParameter("name"));
 			member.setUserId(request.getParameter("userId"));
 			member.setPwd(request.getParameter("pwd"));
@@ -211,35 +211,36 @@ public class LoginController {
 			
 			memberDao.update(member);
 		}
-
-		if (!request.getParameter("pwd").equals(request.getParameter("pwd_conrifm"))) {
-		}
-		// System.out.println("Member_Mypage gender - " + member.getGender());
 		return "index";
 	}
 	
 	@RequestMapping(value = "/project", method = RequestMethod.GET)
 	public String member_join(HttpServletRequest request, Model model, HttpSession session) {
 		
+		System.out.println("/project 시작");
+		
 		//MemberMyPage.jsp에서 a태그로 pjtCode를 인자로 받아서 세션에 저장
+		int pjtCode = Integer.parseInt(request.getParameter("pjtCode"));
+			System.out.println("/project pjtCode : " + pjtCode);
+		session.setAttribute("pjtCode", pjtCode);
 		
-		String pjtCode = request.getParameter("pjtCode");
-		System.out.println("pjtCode 뭐니?" + pjtCode);
+		System.out.println("/project DAO 진입 전");
 		
-		session.setAttribute("pjtCode", "20");
-		
-		int Code = Integer.parseInt(pjtCode);
+		//int Code = Integer.parseInt(pjtCode);
 		//디비상에 날짜를 조회해서 세션에 담는다.
-		int searchDate = memberDao.selectDate(Code);
-		System.out.println("날짜 뭐니? : "+searchDate);
+		int searchDate = memberDao.selectDate(pjtCode);
+			System.out.println("endDate-startDate : "+searchDate);
+			
+		// endDate-startDate를 세션에 날림.
 		session.setAttribute("day", searchDate);
 		
-		model.addAttribute("page", "../myproject/setting");
+		/*// project jsp include에 들어갈 jsp지정.
+		model.addAttribute("page", "../myproject/setting");*/
 		
-		return "/myproject/myproject";
+		return "redirect:/notice/list";
 	}
 	
-	@RequestMapping(value="Member_Delete")
+	@RequestMapping(value="Member_Delete", method=RequestMethod.GET)
 	public String deleteget(HttpSession session){
 		AuthInfo authinfo = (AuthInfo)session.getAttribute("authInfo");
 		authinfo.getUserId();
