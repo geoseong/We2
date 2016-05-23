@@ -171,6 +171,7 @@ public class MemberDao {
 	      return searchDate;
 	      }
 	
-	
-	
+	public void delete(Member member) { 
+		  jdbcTemplate.update("delete from member where userId=?;",member.getUserId());
 	}
+}

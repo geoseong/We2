@@ -137,7 +137,7 @@
 
 				<div class="change_leave">
 					<input type="submit" value="수정하기" class="add_btn" onclick="joinCheck()" /> 
-					<input type="button" value="회원탈퇴" class="add_btn" onclick="Member_Delete" />
+					<input type="button" value="회원탈퇴" class="add_btn" onclick="Delete_form" />
 				</div>
 			</form>
 

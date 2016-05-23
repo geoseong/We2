@@ -266,12 +266,12 @@ $(".pjtMakeInner").hide();
        
      function invitemember(){
         
-         if (document.frm.userid.value == "") {
+         if (document.frm.userId.value == "") {
             alert('아이디를 입력하여 주십시오.');
-            frm.userid.focus();
+            frm.userId.focus();
             return;
          }
-         var url = "We2_idCheck.do?userid=" + document.frm.userid.value;
+         var url = "We2_idCheck?userId=" + document.frm.userId.value;
          window.open(url, "_blank_1", "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=450, height=200");
      }
    </script>

@@ -1,7 +1,5 @@
 package com.we2.login.controller;
 
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -21,8 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.we2.pjtMake.PjtMakeDAO;
-import com.we2.pjtMake.PjtMakeVO;
 import com.we2.spring.AuthInfo;
 import com.we2.spring.AuthService;
 import com.we2.spring.IdPasswordNotMatchingException;
@@ -238,13 +234,6 @@ public class LoginController {
 		model.addAttribute("page", "../myproject/setting");*/
 		
 		return "redirect:/notice/list";
-	}
-	
-	@RequestMapping(value="Member_Delete", method=RequestMethod.GET)
-	public String deleteget(HttpSession session){
-		AuthInfo authinfo = (AuthInfo)session.getAttribute("authInfo");
-		authinfo.getUserId();
-		return "registration/Member_Aggrement";
 	}
 }
 
