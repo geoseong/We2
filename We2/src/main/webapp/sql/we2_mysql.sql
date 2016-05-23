@@ -93,21 +93,17 @@ desc willwork;
 UPDATE member SET name='우아',pwd='5555',pwd_confirm='5555', email='aa@naver.com',
 phone='010-1111-2222', gender='1', regDate='2000-06-11' WHERE userId='jo';
 
-insert into willwork values('pts119', '20', '�ڵ�ϼ�' ,'����ó��', 'Y', '�¼�');
-insert into willwork values('park', '20', '�ڵ�ϼ�' ,'����ó��', 'Y', '����');
-insert into willwork values('jeon', '20', '�ڵ�ϼ�' ,'����ó��', 'Y', '�ֿ�');
-insert into willwork values('bae', '20', '�ڵ�ϼ�' ,'����ó��', 'Y', '����');
-insert into willwork values('jo', '20', '�ڵ�ϼ�' ,'����ó��', 'Y', '����');
+
 
 desc member;
-insert into member values('geoseong', '占신쇽옙', '1234' ,'imf4@naver.com', '010-2023-6697', 'M', now());
-insert into member values('park', '占쏙옙占쏙옙', '1234' ,'hyuk9658@naver.com', '010-1234-6327', 'M', now());
-insert into member values('jeon', '占쌍울옙', '1234' ,'jeon@naver.com', '010-2233-6645', 'W', now());
-insert into member values('bae', '占쏙옙占쏙옙', '1234' ,'bae@naver.com', '010-2583-9197', 'W', now());
-insert into member values('jo', '占쏙옙占쏙옙', '1234' ,'jo@naver.com', '010-2333-2312', 'M', now());
+insert into member values('geoseong', '거성', '1234' ,'imf4@naver.com', '010-2023-6697', 'M', now());
+insert into member values('park', '상혁', '1234' ,'hyuk9658@naver.com', '010-1234-6327', 'M', now());
+insert into member values('jeon', '주영', '1234' ,'jeon@naver.com', '010-2233-6645', 'W', now());
+insert into member values('bae', '건희', '1234' ,'bae@naver.com', '010-2583-9197', 'W', now());
+insert into member values('jo', '성혁', '1234' ,'jo@naver.com', '010-2333-2312', 'M', now());
 
-update willwork set dowork = dowork || ', ' || '占쏙옙占쌍깍옙' where name='占쏙옙占쏙옙';
-update willwork set dowork = CONCAT(dowork, ', ', '占쌕븝옙') where name='占쏙옙占쏙옙';
+update willwork set dowork = dowork || ', ' || '할일' where name='할일';
+update willwork set dowork = CONCAT(dowork, ', ', '할일') where name='할일';
 
 select * from willwork where name='占쏙옙占쏙옙';
 
@@ -151,7 +147,6 @@ create table pjtManager(
 desc pjtManager;
 
  *   : http://powerhan.tistory.com/175 */
-alter table �뀒�씠釉�_�씠由� engine=InnoDB;
 alter table member engine=InnoDB, DEFAULT CHARACTER SET utf8;
 alter table pjtMake engine=InnoDB, DEFAULT CHARACTER SET utf8;
 alter table pjtManager engine=InnoDB, DEFAULT CHARACTER SET utf8;

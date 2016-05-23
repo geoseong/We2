@@ -27,7 +27,7 @@
    	<td>
 	<%
     // 파라미터 받는다. - 프로젝트코드
-    String pjtcode = request.getParameter("pjtcode");
+    int pjtcode = (Integer)request.getAttribute("pjtcode");
 
     System.out.println("pjtcode(memoadd) : " + pjtcode);
     %>

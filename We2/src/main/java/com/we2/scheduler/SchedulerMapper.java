@@ -21,7 +21,7 @@ public interface SchedulerMapper {
 			"select * from  limit #{row_start}, #{row_end}";
 	
 	final String select_by_calendarmemo_num=
-			"select * from scheduler where calendarmemo_num=${calendarmemo_num}";
+			"select * from scheduler where calendarmemo_num=${calendarmemo_num} and pjtCode=${pjtCode}";
 	
 	final String select_all = "select count(1) from scheduler";
 	
@@ -34,7 +34,7 @@ public interface SchedulerMapper {
 			+ " values(#{calendarmemo_year}, #{calendarmemo_month}, #{calendarmemo_day}, #{calendarmemo_contents}, ${pjtcode})";
 	
 	
-	final String deleteScheduler = "delete from scheduler where calendarmemo_num = #{calendarmemo_num}";
+	final String deleteScheduler = "delete from scheduler where calendarmemo_num = #{calendarmemo_num} and pjtCode=${pjtCode}";
 	
 	final String updateScheduler = "update scheduler set calendarmemo_year = #{calendarmemo_year}, calendarmemo_month = #{calendarmemo_month}, calendarmemo_day = #{calendarmemo_day}, calendarmemo_contents = #{calendarmemo_contents}, pjtcode=${pjtcode} where calendarmemo_num = ${calendarmemo_num}";
 			
@@ -70,7 +70,7 @@ public interface SchedulerMapper {
 				@Result(property="calendarmemo_day", column="calendarmemo_day"),
 				@Result(property="calendarmemo_contents", column="calendarmemo_contents")
 		})
-		SchedulerBean getSearchbycalendarmemo_num(@Param("calendarmemo_num") int calendarmemo_num);
+		SchedulerBean getSearchbycalendarmemo_num(@Param("calendarmemo_num") int calendarmemo_num, @Param("pjtCode") int pjtCode);
 	
 		
 		@Insert(insertScheduler)  		
@@ -80,17 +80,17 @@ public interface SchedulerMapper {
 				@Param("calendarmemo_month") int calendarmemo_month, 
 				@Param("calendarmemo_day") int calendarmemo_day, 
 				@Param("calendarmemo_contents") String calendarmemo_contents,
-				@Param("pjtcode") String pjtcode ) ;
+				@Param("pjtcode") int pjtcode ) ;
 		
 		@Select(select_all)
 		int getTotalCnt();
 		
 		@Delete(deleteScheduler)  
-		void deleteScheduler(@Param("calendarmemo_num") int calendarmemo_num);
+		void deleteScheduler(@Param("calendarmemo_num") int calendarmemo_num, @Param("pjtCode") int pjtCode);
 	
 		@Update(updateScheduler) 
 		void updateScheduler(
-				@Param("pjtcode") String pjtcode,
+				@Param("pjtcode") int pjtcode,
 				@Param("calendarmemo_num") int calendarmemo_num,
 				@Param("calendarmemo_year") int calendarmemo_year, 
 				@Param("calendarmemo_month") int calendarmemo_month, 

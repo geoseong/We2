@@ -110,7 +110,7 @@ public class PjtMakeDAO {
 	
 	
 	/** 프로젝트 정보 뿌리기위한 DAO*/
-	public PjtMakeVO selectAllpjtInfo(String pjtCode){
+	public PjtMakeVO selectAllpjtInfo(int pjtCode){
 			System.out.println("PjtMakeDAO ] pjtCode : "+pjtCode);
 		List<PjtMakeVO> results = jdbcTemplate.query(
 				"select * from pjtMake where pjtCode = ?"
@@ -133,7 +133,7 @@ public class PjtMakeDAO {
 	}
 	
 	/** 해당 프로젝트의 조원들 선택하기*/
-	public List<String> selectAllpjtMem(String pjtCode){
+	public List<String> selectAllpjtMem(int pjtCode){
 		System.out.println("PjtMakeDAO ] pjtCode : "+pjtCode);
 		List<String> results = jdbcTemplate.query(
 				"select mem.name pjtmembers from pjtmanager mgr, member mem where mgr.userId=mem.userId and mgr.pjtcode = ?"
@@ -151,7 +151,7 @@ public class PjtMakeDAO {
 	}
 	
 	/** 방장이 누군지 구하기 */
-	public String selectLeader(String pjtCode){
+	public String selectLeader(int pjtCode){
 		System.out.println("PjtMakeDAO ] pjtCode : "+pjtCode);
 		List<String> results = jdbcTemplate.query(
 				"select userid from pjtmanager where pjtcode=? and isleader='y'"
@@ -170,14 +170,14 @@ public class PjtMakeDAO {
 	
 	
 	/**회원 초대수락할때 멤버추가하기.*/
-	public void addpjtMember(String pjtCode, String userId){
+	public void addpjtMember(int pjtCode, String userId){
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			@Override
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
 				PreparedStatement pstmt = con.prepareStatement(
 						"insert into pjtManager(pjtCode,userId,isLeader) values(?, ?, 'N')"
 					);
-				pstmt.setString(1, pjtCode);
+				pstmt.setInt(1, pjtCode);
 				pstmt.setString(2, userId);
 				return pstmt;
 			}

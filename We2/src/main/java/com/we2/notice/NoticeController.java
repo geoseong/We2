@@ -28,7 +28,6 @@ public class NoticeController {
 		
 		model.addAttribute("page", "../notice/list");
 		model.addAttribute("content",noticeDao.list(pjtCode));
-		String a = "ss";
 		
 		return "myproject/myproject"; 
 	}
@@ -46,10 +45,6 @@ public class NoticeController {
 			System.out.println("/notice write pjtcode : "+pjtCode);
 		model.addAttribute("content", noticeDao.write(request, pjtCode));
 		model.addAttribute("msg", "글쓰기가 완료되었습니다.");
-				/*, 
-				"<script type='text/javascript'>"
-				+ "alert('글쓰기가 완료되었습니다.');"
-				+ "</script>");*/
 		return list(model);
 	}
 	

@@ -19,15 +19,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.we2.spring.AuthInfo;
 
-
-
 @Controller
 @RequestMapping(value="/scheduler")
 public class SchedulerController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(SchedulerController.class);
 	@Autowired
-	
     private ServletContext servletContext;
 	@Autowired
 	SchedulerService schedulerService;
@@ -47,9 +44,10 @@ public class SchedulerController {
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String listSpecificPageWork(Model model) throws ParseException{
 			System.out.println("scheduler list.get] hi");
-		/*int pjtcode=Integer.parseInt(session.getAttribute("pjtCode").toString());*/
-			int pjtCode = 20;
+		
+		int pjtCode = (Integer)session.getAttribute("pjtCode");
 			System.out.println("scheduler list] pjtCode : "+pjtCode);
+			
 		model.addAttribute("Content", schedulerService.getlist(pjtCode));
 		model.addAttribute("page", "../Scheduler/Calendar");
 		System.out.println("--------------------------schedulerList");
@@ -62,28 +60,24 @@ public class SchedulerController {
 	//** 글쓰기 폼 띄우기 *//*
 	@RequestMapping(value="/memoAdd.do", method=RequestMethod.GET)
 	public String writeget(HttpSession session, HttpServletRequest request, Model model, int year, int month, int day){
-		/*String pjtcode=session.getAttribute("pjtCode").toString();*/
-		String pjtcode="20";
+		int pjtCode = (Integer)session.getAttribute("pjtCode");
+			System.out.println("/memoAdd.do pjtcode : "+pjtCode);
 		System.out.println("---글쓰기 페이지 진입");
-		if(session.getAttribute("authInfo")!=null){
-			System.out.println("로그인 되어있음.");
-		}
+		
 		System.out.println("year : "+year + ", month : "+month + ", day : "+day);
-		System.out.println("로그인 안됨");
+		
 		// JSP:INCLUDE PAGE
 		  model.addAttribute("schedulerpage", "memoAdd");
 		  model.addAttribute("year", year);
 		  model.addAttribute("month", month);
 		  model.addAttribute("day", day);
-		  model.addAttribute("pjtcode", pjtcode);
+		  model.addAttribute("pjtcode", pjtCode);
 
 		return "Scheduler/memoAdd";
 	}
 	
 	
 	/* 글 등록하기 */
-	
-	
 	@RequestMapping(value="/memoAdd.do", method=RequestMethod.POST)
 	public String writepost(/*HttpSession session, */HttpServletRequest request, Model model)throws IOException {
 		
@@ -92,13 +86,11 @@ public class SchedulerController {
 		//1. 글번호는 DAO의 SQL sequence로 내부적으로 처리.
 		System.out.println("scheduler 글쓰기");
 	
-		
 		//2. 년도				
 			int calendarmemo_year=Integer.parseInt(request.getParameter("calendarmemo_year"));
 			cVo.setCalendarmemo_year(calendarmemo_year);
 				System.out.println("WriteServlet - title : " + cVo.getCalendarmemo_num());
 				System.out.println("calendarmemo_year 테스트"+calendarmemo_year);
-
 		//3. 달				
 			int calendarmemo_month=Integer.parseInt(request.getParameter("calendarmemo_month"));
 			cVo.setCalendarmemo_month(calendarmemo_month);
@@ -116,55 +108,61 @@ public class SchedulerController {
 		
 				
     	//6 . 프로젝트 코드				
-		    String pjtcode = request.getParameter("pjtcode");
-			cVo.setPjtcode(pjtcode);
+			int pjtCode = (Integer)session.getAttribute("pjtCode");
+				System.out.println("/memoAdd.do POST pjtcode : "+pjtCode);
+			cVo.setPjtcode(pjtCode);
 				System.out.println("schduler - pjt코드 : " + cVo.getPjtcode());;
 				
 		// 게시글 내용들을 Insert하기
 			schedulerService.insertScheduler(cVo.getCalendarmemo_year(), cVo.getCalendarmemo_month(), cVo.getCalendarmemo_day(), cVo.getCalendarmemo_contents(), cVo.getPjtcode());
 			/*calendarmemo_num, calendarmemo_year, calendarmemo_month, calendarmemo_day, calendarmemo_contents*/
+
 		// JSP:INCLUDE PAGE
-		
 		  model.addAttribute("schdulerpage", "Calendar");
 		  model.addAttribute("page", 1);
-		
+		  model.addAttribute("msg", "글쓰기가 완료되었습니다.");
 		return "Scheduler/close";
 	}
 	
 	/* 삭제하기*/ 
-
-		@RequestMapping(value="/memoDelete.do", method=RequestMethod.GET)
-		public String StudyRoomdelete(@RequestParam("calendarmemo_num") int calendarmemo_num, Model model) throws ParseException {
-		
-			// BoardDelete -
-			  model.addAttribute("calendarmemo", schedulerService.getSearchbycalendarmemo_num(calendarmemo_num));	
-			  // JSP:INCLUDE PAGE
-			  model.addAttribute("schedulerpage", "memoDelete");
-			  model.addAttribute("page", 1);
-			return "Scheduler/memoDelete";   
-		}
-			
-		@RequestMapping(value="/memoDelete.do", method=RequestMethod.POST)
-		public String StudyRoomdeletepos(@RequestParam("calendarmemo_num") int calendarmemo_num, Model model) {
+	@RequestMapping(value="/memoDelete.do", method=RequestMethod.GET)
+	public String StudyRoomdelete(@RequestParam("calendarmemo_num") int calendarmemo_num, Model model) throws ParseException {
 	
-			schedulerService.deleteScheduler(calendarmemo_num);
+		int pjtCode = (Integer)session.getAttribute("pjtCode");
+			System.out.println("/memoDelete.do GET pjtcode : "+pjtCode);
+		// BoardDelete -
+		  model.addAttribute("calendarmemo", schedulerService.getSearchbycalendarmemo_num(calendarmemo_num, pjtCode));	
+		  // JSP:INCLUDE PAGE
+		  model.addAttribute("schedulerpage", "memoDelete");
+		  model.addAttribute("page", 1);
+		return "Scheduler/memoDelete";   
+	}
 			
-			// JSP:INCLUDE PAGE
-			  model.addAttribute("schedulerpage", "Calendar");
-			  model.addAttribute("page", 1);
-			return "Scheduler/close";   
-		}
+	@RequestMapping(value="/memoDelete.do", method=RequestMethod.POST)
+	public String StudyRoomdeletepos(@RequestParam("calendarmemo_num") int calendarmemo_num, Model model) {
+
+		int pjtCode = (Integer)session.getAttribute("pjtCode");
+			System.out.println("/memoDelete.do POST pjtcode : "+pjtCode);
+		schedulerService.deleteScheduler(calendarmemo_num, pjtCode);
+		
+		// JSP:INCLUDE PAGE
+		  model.addAttribute("schedulerpage", "Calendar");
+		  model.addAttribute("page", 1);
+		  model.addAttribute("msg", "삭제가 완료되었습니다.");
+		return "Scheduler/close";   
+	}
 		
 		
 		
 	 /*수정하기*/ 
-		
 		@RequestMapping(value="/memoUpdate.do", method=RequestMethod.GET)
 		public String StudyRoomupdate(@RequestParam("calendarmemo_num") int calendarmemo_num, Model model) throws ParseException {
 			System.out.println("/memoupdate.get 시작");
 			
+			int pjtCode = (Integer)session.getAttribute("pjtCode");
+				System.out.println("/memoUpdate.do GET pjtcode : "+pjtCode);
 			// Update
-			  model.addAttribute("calendarmemo", schedulerService.getSearchbycalendarmemo_num(calendarmemo_num));	
+			  model.addAttribute("calendarmemo", schedulerService.getSearchbycalendarmemo_num(calendarmemo_num, pjtCode));	
 			  // JSP:INCLUDE PAGE
 			  model.addAttribute("schedulerpage", "memoUpdate");
 			  model.addAttribute("page", 1);
@@ -202,20 +200,19 @@ public class SchedulerController {
 					System.out.println("WriteServlet - boardpath : " + cVo.getCalendarmemo_contents());
 					
 			//6. 코드번호				
-					/*String pjtCode =(String)session.getAttribute("pjtCode");*/
-					String pjtCode = "20";
+				int pjtCode = (Integer)session.getAttribute("pjtCode");
+					System.out.println("/memoUpdate.do GET pjtcode : "+pjtCode);
 				cVo.setPjtcode(pjtCode);
 					System.out.println("WriteServlet - pjtcode : " + cVo.getPjtcode());
+					
 		// 게시글 내용들을 update 하기
-		
-			
 			logger.info("updateRow called!!");			
-			
 			schedulerService.updateScheduler(pjtCode, calendarmemo_num, calendarmemo_year, calendarmemo_month, calendarmemo_day, calendarmemo_contents);
+
 			/* JSP:INCLUDE PAGE*/
 			  model.addAttribute("schedulerpage", "Calendar");
 			  model.addAttribute("page", 1);
-			  
+			  model.addAttribute("msg", "수정이 완료되었습니다.");
 			return "Scheduler/close";   
 		}
 }	

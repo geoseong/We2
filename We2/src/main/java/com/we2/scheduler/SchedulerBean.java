@@ -4,7 +4,7 @@ public class SchedulerBean {
 	
 	
 	private int calendarmemo_num;
-	private String pjtcode;
+	private int pjtcode;
 	private int calendarmemo_year;
 	private int calendarmemo_month;
 	private int calendarmemo_day;
@@ -15,7 +15,7 @@ public class SchedulerBean {
 		super();
 	}
 	
-	public SchedulerBean(int calendarmemo_num, String pjtcode, int calendarmemo_year, int calendarmemo_month,
+	public SchedulerBean(int calendarmemo_num, int pjtcode, int calendarmemo_year, int calendarmemo_month,
 			int calendarmemo_day, String calendarmemo_contents) {
 		super();
 		this.calendarmemo_num = calendarmemo_num;
@@ -31,10 +31,10 @@ public class SchedulerBean {
 	public void setCalendarmemo_num(int calendarmemo_num) {
 		this.calendarmemo_num = calendarmemo_num;
 	}
-	public String getPjtcode() {
+	public int getPjtcode() {
 		return pjtcode;
 	}
-	public void setPjtcode(String pjtcode) {
+	public void setPjtcode(int pjtcode) {
 		this.pjtcode = pjtcode;
 	}
 	public int getCalendarmemo_year() {
@@ -61,7 +61,5 @@ public class SchedulerBean {
 	public void setCalendarmemo_contents(String calendarmemo_contents) {
 		this.calendarmemo_contents = calendarmemo_contents;
 	}
-	
-	
 
 }

@@ -32,12 +32,26 @@ public class PjtCtrl {
 	@Autowired
     private ServletContext servletContext;
 	
+
 	/** pjtCode 세션 보내기 테스트용. */
-	@RequestMapping("/")
-	public String makepjtsession(Model model) {
-		int pjtCode = (Integer)request.getAttribute("pjtCode");
-		System.out.println("PjtCtrl root : " + pjtCode);
-		//session.setAttribute("pjtCode", );
+	@RequestMapping(method = RequestMethod.GET)
+	public String projectsession(HttpServletRequest request, Model model, HttpSession session) {
+		
+		System.out.println("/project 시작");
+		
+		//MemberMyPage.jsp에서 a태그로 pjtCode를 인자로 받아서 세션에 저장
+		int pjtCode = Integer.parseInt(request.getParameter("pjtCode"));
+			System.out.println("/project pjtCode : " + pjtCode);
+		session.setAttribute("pjtCode", pjtCode);
+		
+		System.out.println("/project DAO 진입 전");
+		
+		//디비상에 날짜를 조회해서 세션에 담는다.
+		int searchDate = mDao.selectDate(pjtCode);
+			System.out.println("endDate-startDate : "+searchDate);
+			
+		// endDate-startDate를 세션에 날림.
+		session.setAttribute("day", searchDate);
 		
 		return "redirect:/notice/list";
 	}
@@ -45,9 +59,8 @@ public class PjtCtrl {
 	@RequestMapping(value="/setting", method=RequestMethod.GET)
 	public String settingGet(Model model){
 		// pjtCode를 받는다. 
-		/*String pjtCode=(String)session.getAttribute("pjtCode");
-		System.out.println("session에서 받은 pjtCode = " + pjtCode);*/
-		String pjtCode="20";
+		int pjtCode = Integer.parseInt(request.getParameter("pjtCode"));
+			System.out.println("/project setting GET pjtCode : " + pjtCode);
 				
 		// SQL : 방장의 ID 구하기
 		String pjtleader = pDao.selectLeader(pjtCode);
@@ -77,7 +90,7 @@ public class PjtCtrl {
 		return "myproject/myproject";
 	}
 	
-	@RequestMapping("/invitation")
+	@RequestMapping(value="/invitation", method=RequestMethod.GET)
 	public String mailsendGet(Model model) {
 			System.out.println("invitation.get] Welcome!!");
 		String email=request.getParameter("email");
@@ -90,12 +103,9 @@ public class PjtCtrl {
 	
 	@RequestMapping(value="/invitation", method=RequestMethod.POST)
 	public String mailsendPost(Model model){
-		// pjtCode를 받는다. 
-			/*String pjtCode = (String)session.getAttribute("pjtCode");
-			System.out.println("invitation pjtCode : " + pjtCode);*/
-		String[] ids=request.getParameterValues("item");
-		
-		String pjtCode = "20";
+		int pjtCode = Integer.parseInt(request.getParameter("pjtCode"));
+			System.out.println("/project invitation POST pjtCode : " + pjtCode);
+			String[] ids=request.getParameterValues("item");
 		
 		// 메일전송 태그를 갖고있는 파일경로 지정.
 		String path=servletContext.getRealPath("we2/mailsend");
@@ -126,7 +136,8 @@ public class PjtCtrl {
 		System.out.println("/addmember.get 시작");
 		 AuthInfo authinfo = (AuthInfo)session.getAttribute("authInfo");
 		 String userId = authinfo.getUserId();
-		 String pjtCode = (String)session.getAttribute("pjtCode");
+		 int pjtCode = Integer.parseInt(request.getParameter("pjtCode"));
+			System.out.println("/project addmember GET pjtCode : " + pjtCode);
 		
 		pDao.addpjtMember(pjtCode, userId);
 		return "index";

@@ -50,7 +50,6 @@ public class LoginController {
 	private static final int String = 0;
 
 	@RequestMapping(method = RequestMethod.GET)
-
 	public String index(Locale locale) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		return "index";
@@ -210,7 +209,7 @@ public class LoginController {
 		return "index";
 	}
 	
-	@RequestMapping(value = "/project", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/project", method = RequestMethod.GET)
 	public String member_join(HttpServletRequest request, Model model, HttpSession session) {
 		
 		System.out.println("/project 시작");
@@ -222,7 +221,6 @@ public class LoginController {
 		
 		System.out.println("/project DAO 진입 전");
 		
-		//int Code = Integer.parseInt(pjtCode);
 		//디비상에 날짜를 조회해서 세션에 담는다.
 		int searchDate = memberDao.selectDate(pjtCode);
 			System.out.println("endDate-startDate : "+searchDate);
@@ -230,10 +228,7 @@ public class LoginController {
 		// endDate-startDate를 세션에 날림.
 		session.setAttribute("day", searchDate);
 		
-		/*// project jsp include에 들어갈 jsp지정.
-		model.addAttribute("page", "../myproject/setting");*/
-		
 		return "redirect:/notice/list";
-	}
+	}*/
 }
 
