@@ -27,6 +27,7 @@ public class ExcelDAO{
 						@Override
 						public PjtMakeVO mapRow(ResultSet rs, int rowNum) throws SQLException {
 							PjtMakeVO pjtMakeVO = new PjtMakeVO(
+									rs.getInt("pjtCode"),
 									rs.getString("pjtName"),
 									rs.getString("pjtClassify"),
 									rs.getString("startDate"),
