@@ -29,22 +29,14 @@ public class LogoutController {
 	public String Delete_form() {
 		return "registration/Member_DeleteAggrement";
 	}
-	
-	@RequestMapping(value= "Member_delete", method= RequestMethod.POST)
-	 public String Member_delete(Member member, HttpServletRequest request){
-	 
-		 	HttpSession session = request.getSession(); // 세션영역을 가져옴
-		 	
-		 	member = (Member)session.getAttribute("member");
-		 	
-		 	try{
-		 		if(member !=null){
-		 		Member mDao = Member.getInstance();
-		 		int result = mDao.d
-		 	}
-		 	
-		 	
-		 return "/index";
-	  	}
-		 	
+
+	@RequestMapping(value = "Member_delete", method = RequestMethod.POST)
+	public String Member_delete(Member member, HttpServletRequest request) {
+
+		HttpSession session = request.getSession(); // �꽭�뀡�쁺�뿭�쓣 媛��졇�샂
+
+		member = (Member) session.getAttribute("member");
+
+		return "/index";
+	}
 }
