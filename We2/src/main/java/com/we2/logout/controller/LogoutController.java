@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.we2.spring.Member;
@@ -29,22 +30,21 @@ public class LogoutController {
 	public String Delete_form() {
 		return "registration/Member_DeleteAggrement";
 	}
-	
-	@RequestMapping(value= "Member_delete", method= RequestMethod.POST)
-	 public String Member_delete(Member member, HttpServletRequest request){
-	 
-		 	HttpSession session = request.getSession(); // 세션영역을 가져옴
-		 	
-		 	member = (Member)session.getAttribute("member");
-		 	
-		 	try{
-		 		if(member !=null){
-		 		Member mDao = Member.getInstance();
-		 		int result = mDao.d
-		 	}
-		 	
-		 	
-		 return "/index";
-	  	}
-		 	
+
+	@RequestMapping(value = "Member_delete", method = RequestMethod.POST)
+	public String Member_delete(Member member, HttpServletRequest request , Model model) {
+
+		HttpSession session = request.getSession(); // �꽭�뀡�쁺�뿭�쓣 媛��졇�샂
+
+		member = (Member) session.getAttribute("member");
+			
+		try{
+			memberDao.delete(member);
+		}catch(Exception e){
+			e.getStackTrace();
+			request.setAttribute("message", "잘못된 접근입니다. 다시 시도해 주세요");
+		}
+		session.invalidate();
+		return "/index";
+	}
 }
