@@ -30,7 +30,7 @@ public class LogoutController {
 		return "registration/Member_DeleteAggrement";
 	}
 	
-	/*@RequestMapping(value= "Member_delete", method= RequestMethod.POST)
+	@RequestMapping(value= "Member_delete", method= RequestMethod.POST)
 	 public String Member_delete(Member member, HttpServletRequest request){
 	 
 		 	HttpSession session = request.getSession(); // 세션영역을 가져옴
@@ -45,6 +45,6 @@ public class LogoutController {
 		 	
 		 	
 		 return "/index";
-	  	}*/
+	  	}
 		 	
 }
