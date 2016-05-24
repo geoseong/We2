@@ -24,7 +24,7 @@ import com.we2.spring.Member;
 public class MemberDao {
 	
 	private JdbcTemplate jdbcTemplate;
-	//제네릭을 통해 Member만을 사용한다고 하고 정의!!
+	//�젣�꽕由��쓣 �넻�빐 Member留뚯쓣 �궗�슜�븳�떎怨� �븯怨� �젙�쓽!!
 	private RowMapper<Member> memRowMapper = new RowMapper<Member>() {
 		@Override
 		public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -38,10 +38,10 @@ public class MemberDao {
 	
 	public MemberDao(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
-	} //MemberDao에 DataSource를 주입함!!
+	} //MemberDao�뿉 DataSource瑜� 二쇱엯�븿!!
 	
 	public Member selectByUserid(String userId) {
-		System.out.println("MemberDAO userId 인자받은 :::::::::::::::::::::::"+userId);
+		System.out.println("MemberDAO userId �씤�옄諛쏆� :::::::::::::::::::::::"+userId);
 		List<Member> results = jdbcTemplate.query("select * from MEMBER where USERID = ?", memRowMapper, userId);
 		System.out.println("MemberDAO] results.isempty? - "+results.isEmpty());
 		System.out.println("MemberDAO] userid - " + results.get(0).getUserId());
@@ -50,7 +50,7 @@ public class MemberDao {
 	}
 
 	
-// 사용자를 mysqlDB에 집어넣는 메소드
+// �궗�슜�옄瑜� mysqlDB�뿉 吏묒뼱�꽔�뒗 硫붿냼�뱶
 	public void insert(final Member member){
 		jdbcTemplate.update(new PreparedStatementCreator(){
 			@Override
@@ -72,7 +72,7 @@ public class MemberDao {
 		});
 	}
 	
-	// 사용자 정보를 수정하는 메소드
+	// �궗�슜�옄 �젙蹂대�� �닔�젙�븯�뒗 硫붿냼�뱶
 	public void update(Member member) { 
 		  jdbcTemplate.update(
 				  "UPDATE member SET name='?',pwd='?',pwd_confirm='?', email='?' ,phone='?', gender='?', regDate='?' WHERE userId='?';"
@@ -117,7 +117,7 @@ public class MemberDao {
 		return results.isEmpty() ? null : results.get(0);
 	}
 	
-	// email로 회원조회
+	// email濡� �쉶�썝議고쉶
 	public List<Member> selectByEmail(String email) {
 		List<Member> results = jdbcTemplate.query(
 				"select * from MEMBER where email like '%"+email+"%'",
@@ -126,7 +126,7 @@ public class MemberDao {
 		return results.isEmpty() ? null : results;
 	}
 	
-	// 사용자 ID값을 확인하는 메소드
+	// �궗�슜�옄 ID媛믪쓣 �솗�씤�븯�뒗 硫붿냼�뱶
 	public int confirmID(String userId) {
 		List<Member> results = jdbcTemplate.query("select * from MEMBER where USERID=?", memRowMapper, userId);
 		return results.isEmpty() ? -1 : 1;
@@ -139,9 +139,9 @@ public class MemberDao {
 	public List<PjtJoinVO> selectAll(String userId){
 		// pjtcode | userId | isLeader | pjtCode | pjtName     | pjtClassify | startDate  | endDate
 	      List<PjtJoinVO> results = 
-            jdbcTemplate.query( //mysql DB연동을 위해 작성
+            jdbcTemplate.query( //mysql DB�뿰�룞�쓣 �쐞�빐 �옉�꽦
         		"select * from pjtmanager mgr, pjtmake make where mgr.pjtcode = make.pjtcode and mgr.userId = ?"
-        		, //프로젝트 테이블에서  pjtmanager mgr, pjtmake make를 선택하고 조건문으로 mgr.pjtcode = make.pjtcode mgr.userId인것만을 출력함!! 
+        		, //�봽濡쒖젥�듃 �뀒�씠釉붿뿉�꽌  pjtmanager mgr, pjtmake make瑜� �꽑�깮�븯怨� 議곌굔臾몄쑝濡� mgr.pjtcode = make.pjtcode mgr.userId�씤寃껊쭔�쓣 異쒕젰�븿!! 
         		new RowMapper<PjtJoinVO>(){
 			      @Override
 			      public PjtJoinVO mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -171,6 +171,7 @@ public class MemberDao {
 	      }
 	
 	public void delete(Member member) { 
-		  jdbcTemplate.update("delete from member where userId=?;",member.getUserId());
+		  System.out.println(jdbcTemplate.update("delete from member where userId=?;",member.getUserId()));;
+		  
 	}
 }
