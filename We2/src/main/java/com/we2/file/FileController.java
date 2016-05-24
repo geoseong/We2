@@ -32,6 +32,8 @@ public class FileController {
 	FileService fileService;
 	@Autowired
 	HttpServletRequest request;
+	@Autowired
+	HttpSession session;
 
 	// 페이징처리 싱글톤 인스턴스객체 얻음
 	RPagingManager paging = RPagingManager.getInstance();
@@ -56,13 +58,21 @@ public class FileController {
 		int row_end = 0;
 		row_end = paging.getLastRowInPage(page, rows_per_page);
 
+		// pjtCode 받아내기
+				int pjtCode = (Integer)session.getAttribute("pjtCode");
+					System.out.println("/file list pjtcode : "+pjtCode);
+					
 		System.out.println("row_end : " + row_end);
-		int t_rows = fileService.getTotalCnt();
+		int t_rows = fileService.getTotalCnt(pjtCode);
 		int t_pages = paging.getTotalPage(t_rows, rows_per_page);
 
 		// 블락설정 : 한 화면에 표시될 페이지를 토대로 page세션1(1~10), page세션2(11~20)을 정의
 		int block = paging.getPageBlock(page, page_for_block);
+			System.out.println("/file list.GET \n └ t_pages : "+t_pages+" / " + "page_for_block : "+page_for_block);
 		int block_total = paging.getPageBlock(t_pages, page_for_block);
+			if(block_total==0){
+				block_total=1;
+			}
 		int block_first = paging.getFirstPageInBlock(block, page_for_block);
 		int block_last = paging.getLastPageBlock(block, page_for_block);
 		if (block_last > t_pages) {
@@ -70,9 +80,10 @@ public class FileController {
 			block_last = t_pages;
 		}
 
+		System.out.println("/file list.GET \n └ block : "+block+" / " + "block_total : "+block_total);
 		/* SECTION : REQUEST 영역에 보내기 */
 		// ★★ SELECT 결과물 ★★
-		model.addAttribute("fileList", fileService.getlist(row_start, row_end));
+		model.addAttribute("fileList", fileService.getlist(row_start, row_end, pjtCode));
 		// JSP:INCLUDE PAGE
 		model.addAttribute("filepage", "fileList");
 		model.addAttribute("page", "../file/FileList");
@@ -105,14 +116,7 @@ public class FileController {
 		return "file/fileWrite";
 	}
 
-	/*
-	 * 글 등록하기
-	 * 
-	 * @throws ParseException
-	 * 
-	 * @throws IOException
-	 */
-
+	/* 글 등록하기	 */
 	@RequestMapping(value = "/filewrite.do", method = RequestMethod.POST)
 	public String writepost(HttpSession session, HttpServletRequest request, Model model) throws IOException {
 		// 해당 경로의 폴더가 안만들어져있다면 직접 만들어놔야할 것.
@@ -144,8 +148,12 @@ public class FileController {
 		fVo.setFileurl(fileurl);
 		System.out.println("WriteServlet - fileurl : " + fVo.getFileurl());
 
+		// pjtCode 받아내기
+		int pjtCode = (Integer)session.getAttribute("pjtCode");
+			System.out.println("/file write pjtcode : "+pjtCode);
+		
 		// 게시글 내용들을 Insert하기
-		fileService.insertFile(fVo.getFname(), fVo.getFileurl());
+		fileService.insertFile(fVo.getFname(), fVo.getFileurl(), pjtCode);
 
 		// alert 메시지.
 		String message = "<script type='text/javascript'>" + "alert('게시물 등록이 완료되었습니다.');" + "opener.location.reload();"
@@ -160,8 +168,8 @@ public class FileController {
 		return "file/close";
 	}
 
+	
 	/* 삭제하기 */
-
 	@RequestMapping(value = "/filedelete.do", method = RequestMethod.GET)
 	public String filedelete(@RequestParam("fcode") int fcode, Model model) throws ParseException {
 
@@ -170,8 +178,10 @@ public class FileController {
 
 		// 시작 rownum 받아오기
 
+		int pjtCode = (Integer)session.getAttribute("pjtCode");
+			System.out.println("/file delete.GET pjtcode : "+pjtCode);
 		// BoardDelete -
-		model.addAttribute("fileList", fileService.getSearchbyfcode(fcode));
+		model.addAttribute("fileList", fileService.getSearchbyfcode(fcode, pjtCode));
 		// JSP:INCLUDE PAGE
 		model.addAttribute("filepage", "fileDelete");
 		model.addAttribute("page", 1);
@@ -183,16 +193,21 @@ public class FileController {
 
 		logger.info("DeleteSpecificRow called!!");
 		logger.info("fcode=[" + fcode + "] ");
-		fileService.deleteRow(fcode);
-		// �ٽ� �������� ��ȸ�Ѵ�.
 
+		int pjtCode = (Integer)session.getAttribute("pjtCode");
+		System.out.println("/file delete.POST pjtcode : "+pjtCode);
+
+		// SQL
+		fileService.deleteRow(fcode, pjtCode);
+		
 		// alert 메시지.
 		String message = "<script type='text/javascript'>" + "alert('게시물 삭제가 완료되었습니다.');" + "opener.location.reload();"
 				+ "self.close();" + "</script>";
 		model.addAttribute("alert", message);
 
-		// BoardDelete - 2) �� ���� �� �ٽ� ����Ʈ�� ���ư���
-		model.addAttribute("shareArea", new Integer(fileService.getTotalCnt()));
+		
+		// BoardDelete - 2) 
+		model.addAttribute("shareArea", new Integer(fileService.getTotalCnt(pjtCode)));
 		// JSP:INCLUDE PAGE
 		model.addAttribute("filepage", "fileList");
 		model.addAttribute("page", 1);
@@ -207,8 +222,11 @@ public class FileController {
 		logger.info("fileupdate called!!");
 		logger.info("fcode=[" + fcode + "] ");
 
+		int pjtCode = (Integer)session.getAttribute("pjtCode");
+			System.out.println("/file fileupdate.GET pjtcode : "+pjtCode);
+		
 		// Update
-		model.addAttribute("fileList", fileService.getSearchbyfcode(fcode));
+		model.addAttribute("fileList", fileService.getSearchbyfcode(fcode, pjtCode));
 		// JSP:INCLUDE PAGE
 		model.addAttribute("filepage", "fileUpdate");
 		model.addAttribute("page", 1);
@@ -218,15 +236,9 @@ public class FileController {
 	@RequestMapping(value = "/fileupdate.do", method = RequestMethod.POST)
 	public String fileupdatepos(Model model, HttpSession session, HttpServletRequest request) throws IOException {
 
-		// pjtCode를 세션에서 받아오고, 세션에 pjtCode가 없으면 We2홈피로 강제이동.
-		String pjtCode = "20";
-		/*
-		 * if(session.getAttribute("pjtCode")!=null){ pjtCode =
-		 * (String)session.getAttribute("pjtCode"); }else{
-		 * model.addAttribute("alert",
-		 * "<script type='text/javascript'>alert('로그인 하셔야 합니다.');opener.location.href='/We2';self.close()</script>"
-		 * ); return "file/close"; }
-		 */
+		// pjtCode를 세션에서 받아오고
+		int pjtCode = (Integer)session.getAttribute("pjtCode");
+			System.out.println("/file fileupdate.POST pjtcode : "+pjtCode);
 
 		String path = servletContext.getRealPath("we2/file/data");
 		System.out.println("path : " + path);
@@ -258,26 +270,27 @@ public class FileController {
 		fVo.setFileurl(fileurl);
 		System.out.println("WriteServlet - fileurl : " + fVo.getFileurl());
 
+		// 파일수정 아무것도 안하면 null값을 받아오는데, 파일이 날라갈 것을 방지하기위한 if문.
 		if (multi.getFilesystemName("fileurl") != null) {
 			fileurl = multi.getFilesystemName("fileurl");
 			System.out.println("자료 업뎃함.");
 		} else {
 			// BoardMapper에서 select 결과를 받아옴.
-			// fVo = fileService.select_by_num(pjtCode, fcode);
+			fVo = fileService.select_by_num(pjtCode, fcode);
 			fileurl = fVo.getFileurl();
 			System.out.println("자료수정된 것 없음");
 		} // end if
 
 		// 게시글 내용들을 update 하기
-		logger.info("updateRow called!!");
-
-		fileService.updateRow(fcode, fname, fileurl);
+		// SQL
+		fileService.updateRow(fcode, fname, fileurl, pjtCode);
+		
 		// alert 메시지.
 		String message = "<script type='text/javascript'>" + "alert('게시물 수정이 완료되었습니다.');" + "opener.location.reload();"
 				+ "self.close();" + "</script>";
 		model.addAttribute("alert", message);
 
-		model.addAttribute("shareArea", new Integer(fileService.getTotalCnt()));
+		model.addAttribute("shareArea", new Integer(fileService.getTotalCnt(pjtCode)));
 		// JSP:INCLUDE PAGE
 		model.addAttribute("filepage", "fileList");
 		model.addAttribute("page", "../file/FileList");

@@ -10,8 +10,8 @@ public class PjtMakeVO {
 	
 	public PjtMakeVO(){
 	}
-	//»ý¼ºÀÚ
-	public PjtMakeVO(String pjtName, String pjtClassify, String startDate, String endDate) {
+	public PjtMakeVO(int pjtCode, String pjtName, String pjtClassify, String startDate, String endDate) {
+		this.pjtCode = pjtCode;
 		this.pjtName = pjtName;
 		this.pjtClassify = pjtClassify;
 		this.startDate = startDate;

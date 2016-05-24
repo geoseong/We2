@@ -140,7 +140,8 @@ public class SchedulerController {
 			
 	@RequestMapping(value="/memoDelete.do", method=RequestMethod.POST)
 	public String StudyRoomdeletepos(@RequestParam("calendarmemo_num") int calendarmemo_num, Model model) {
-
+		
+		System.out.println("/memoDelete.do POST calendarmemo_num : "+calendarmemo_num);
 		int pjtCode = (Integer)session.getAttribute("pjtCode");
 			System.out.println("/memoDelete.do POST pjtcode : "+pjtCode);
 		schedulerService.deleteScheduler(calendarmemo_num, pjtCode);
@@ -162,10 +163,14 @@ public class SchedulerController {
 			int pjtCode = (Integer)session.getAttribute("pjtCode");
 				System.out.println("/memoUpdate.do GET pjtcode : "+pjtCode);
 			// Update
-			  model.addAttribute("calendarmemo", schedulerService.getSearchbycalendarmemo_num(calendarmemo_num, pjtCode));	
+			  model.addAttribute("calendarmemo", schedulerService.getSearchbycalendarmemo_num(calendarmemo_num, pjtCode));
+			  
+			  String contents = schedulerService.getSearchbycalendarmemo_num(calendarmemo_num, pjtCode).getCalendarmemo_contents().replace("\r\n","<br>");
+			  System.out.println("contents : " + contents);
 			  // JSP:INCLUDE PAGE
 			  model.addAttribute("schedulerpage", "memoUpdate");
 			  model.addAttribute("page", 1);
+			  model.addAttribute("calcontents",contents);
 			return "Scheduler/memoUpdate";   
 		}
 			

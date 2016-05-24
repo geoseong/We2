@@ -120,9 +120,8 @@ public class MemberDao {
 	// email로 회원조회
 	public List<Member> selectByEmail(String email) {
 		List<Member> results = jdbcTemplate.query(
-				"select * from MEMBER where email = ?",
-				memRowMapper,
-				email);
+				"select * from MEMBER where email like '%"+email+"%'",
+				memRowMapper);
 
 		return results.isEmpty() ? null : results;
 	}

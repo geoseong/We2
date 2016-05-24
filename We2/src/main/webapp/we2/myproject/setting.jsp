@@ -10,10 +10,16 @@
      <link rel="stylesheet" type="text/css" href="/We2/css/setting.css"> 
 <script type="text/javascript">
 
-function winOpen(email){
-	var url = "invitation?email="+email;
-	  javascript:window.open(url , '프로젝트 멤버초대.', 'width=600 height=270 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
-  }
+	function winOpen(email){
+		var url = "invitation?email="+email;
+		var mailvalue=document.pjtfrm.useremail.value;
+		if(mailvalue.length==0){
+			alert("이메일주소는 입력되어야 합니다.");
+			return false;
+		}
+		javascript:window.open(url , '프로젝트 멤버초대.', 'width=600 height=270 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
+		return true;
+	}
 
 </script>     
 
@@ -27,22 +33,23 @@ function winOpen(email){
       <table>
 	       <tr>
 	         <th>프로젝트 이름 </th>
-	         	<td>${pjtInfo.pjtName }</td>
+	         	<td>&nbsp;&nbsp;&nbsp;${pjtInfo.pjtName }</td>
 	       </tr>
 	       
 	       <tr>
 	      	 <th>시작일 </th>
-	      	 	<td>${pjtInfo.startDate }</td>
+	      	 	<td>&nbsp;&nbsp;&nbsp;${pjtInfo.startDate }</td>
 	       </tr>
 	      
 	       <tr>
 	     	 <th>마감일 </th>
-	      	 	<td>${pjtInfo.endDate }</td>
+	      	 	<td>&nbsp;&nbsp;&nbsp;${pjtInfo.endDate }</td>
 	       </tr>
 	       
 	       <tr>
 	      	 <th>팀원 </th>
 	      		 <td>
+	      		 &nbsp;&nbsp;&nbsp;
 					<c:forEach var="pjtmem" items="${pjtmem }" varStatus="status">
 						${pjtmem }<c:if test="${not status.last}">, </c:if>
 					</c:forEach>
@@ -53,7 +60,7 @@ function winOpen(email){
     </div> <!-- pjt_info end -->
    
    
-<%-- <c:if test="${isleader eq 'Y' }">
+<c:if test="${isleader eq 'Y' }">
    <h2 style="float:left;">팀원 관리</h2>
    
   	 <div class = "pjt_team">
@@ -65,7 +72,7 @@ function winOpen(email){
 		       <td  colspan="3">
 		       <form name="pjtfrm">
 		       		<input type="email" size="45" name="useremail" id="email_bg" style="width:75%; height:25px; float:left;">  		       	
-		       	    <input type="button" class="add_btn" value="회원검색..." size="20" onclick="winOpen(document.pjtfrm.useremail.value)">
+		       	    <input type="button" class="add_btn" value="회원검색..." size="20" onclick="return winOpen(document.pjtfrm.useremail.value)">
 		       </form>
 		       </td>
 	       </tr>
@@ -129,15 +136,15 @@ function winOpen(email){
    </table>
    
    </div> <!-- pjt_team end -->
-  </c:if> --%>
+  </c:if>
    
-   <!-- <h2>프로젝트 기간 수정</h2>
+   <h2>프로젝트 기간 수정</h2>
  
       <div id = "pjt_time">
       
 	      <div class="imageArea">               
-		   		<img src="../img/calendar.png" class="img1" style="width:50px;">          
-		   		<img src="../img/calendar.png" class="img2" style="width:50px;">	
+		   		<img src="/We2/img/index/calendar.png" class="img1" style="width:50px;">          
+		   		<img src="/We2/img/index/calendar.png" class="img2" style="width:50px;">	
 		   </div>
        
 	        <div class="time">   
@@ -147,7 +154,8 @@ function winOpen(email){
 	            
 	            <input type="submit" class="add_btn" value="수정하기" size="20" style="margin-right:5px;" >                             
 	        </div>
-     </div>  pjt_time end -->
+     </div>  
+     <!-- pjt_time end -->
 
 </body>
 
@@ -185,7 +193,7 @@ $(function() {
       //입력값이 있다면?
        if($(this).val()) {
     	 $(this).css("background-image","none");
-    }else{
+    	}else{
     	 $(this).css("background-image","url(../img/input_email.png)");
     }
   });

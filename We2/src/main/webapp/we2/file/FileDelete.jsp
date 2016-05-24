@@ -11,7 +11,7 @@
 <body>
     <H2 style="text-align:center; color:#69C5E7;">파일 삭제</H2>
   
- <form name="frm" method="post" action="filedelete.do?fcode=${fileList.fcode}"  >
+ <form name="frm" method="post" action="filedelete.do"  >
      <input type="hidden" name="fcode" value="${fileList.fcode}" >
   
       <table> 
@@ -20,7 +20,7 @@
    		   <td><input type="text" name="fname" size=30 value="${fileList.fname}"></td> 
    		 <tr>
    		    <th>첨부파일</th>
-   		   <td> <img src=""value="${fileList.fcode}"> </td> 
+   		   <td> ${fileList.fileurl}</td> 
    		 </tr>    
       </table>
 
@@ -28,6 +28,7 @@
  		  <input name="add" class="add_btn" type=submit value="삭제하기" >    
      	  <input name="cancel"  class="add_btn" type="button"  value="취소" onclick="window.close()">
       </div>    
+</form>
    
 </body>
 </html>

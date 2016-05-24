@@ -58,9 +58,12 @@ public class PjtCtrl {
 	
 	@RequestMapping(value="/setting", method=RequestMethod.GET)
 	public String settingGet(Model model){
+		
+		System.out.println("/project setting : welcome to setting method");
+		
 		// pjtCode를 받는다. 
-		int pjtCode = Integer.parseInt(request.getParameter("pjtCode"));
-			System.out.println("/project setting GET pjtCode : " + pjtCode);
+		int pjtCode = (Integer)session.getAttribute("pjtCode");
+			System.out.println("/project setting pjtcode : "+pjtCode);
 				
 		// SQL : 방장의 ID 구하기
 		String pjtleader = pDao.selectLeader(pjtCode);

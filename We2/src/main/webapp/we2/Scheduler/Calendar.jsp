@@ -2,10 +2,10 @@
  	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="java.util.List" %>
-<link rel="stylesheet"  href="../css/Schedule.css" type="text/css">
-<link rel="stylesheet"  href="../css/w2_reset.css" type="text/css">
+<link rel="stylesheet"  href="/We2/css/Schedule.css" type="text/css">
+<link rel="stylesheet"  href="/We2/css/w2_reset.css" type="text/css">
 
-<script type="text/javascript" src="../js/jquery-1.12.1.min.js"></script>
+<script type="text/javascript" src="/We2/js/jquery-1.12.1.min.js"></script>
 
 <fmt:requestEncoding value="UTF-8"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -23,12 +23,12 @@ int calendarmemo_num;
  
 function winOpen(year, month, day){
 	var url = "memoAdd.do?year="+year+"&month="+month+"&day="+day;
-	javascript:window.open(url, '일정관리 추가하기', 'width=400 height=330 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
+	javascript:window.open(url, '일정관리 추가하기', 'width=550 height=450 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
 }
 function winOpen2(calendarmemo_num){
 	var url = "memoUpdate.do?calendarmemo_num=" + calendarmemo_num;
 	/* var url = "/We2/Scheduler/memoUpdate.jsp?calendarmemo_num=" + calendarmemo_num; */
-	javascript:window.open(url , '일정관리 수정하기', 'width=400 height=330 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
+	javascript:window.open(url , '일정관리 수정하기', 'width=550 height=450 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
 }
 </script>
 
@@ -97,19 +97,15 @@ function winOpen2(calendarmemo_num){
           
     <!-- <table> -->
     
-     <tr>
-    <%
-    // 파라미터 받는다. - 프로젝트코드
-    String pjtcode = request.getParameter("pjtcode");
-    System.out.println("pjtcode(cal) : " + pjtcode);
-    
-   cal.set(year, month-1, 1); //현재 날짜를 현재 월의 1일로 설정
-   int startDay=cal.get(java.util.Calendar.DAY_OF_WEEK); //현재날짜(1일)의 요일
- 		//리퀘스트영역에 현재날짜(1일)의 요일을 보냄 
-		request.setAttribute("startDay", startDay);
-   int end=cal.getActualMaximum(java.util.Calendar.DAY_OF_MONTH); //이 달의 끝나는 날
-   		//리퀘스트영역에 달의 끝나는 날을 보냄 
-   		request.setAttribute("end", end);
+   <tr>
+   <%
+	   cal.set(year, month-1, 1); //현재 날짜를 현재 월의 1일로 설정
+	   int startDay=cal.get(java.util.Calendar.DAY_OF_WEEK); //현재날짜(1일)의 요일
+	 		//리퀘스트영역에 현재날짜(1일)의 요일을 보냄 
+			request.setAttribute("startDay", startDay);
+	   int end=cal.getActualMaximum(java.util.Calendar.DAY_OF_MONTH); //이 달의 끝나는 날
+	   		//리퀘스트영역에 달의 끝나는 날을 보냄 
+	   		request.setAttribute("end", end);
    %>
    
    <!-- jsp 내장변수지정. 스타일관계없음 -->
@@ -129,24 +125,25 @@ function winOpen2(calendarmemo_num){
 	
 	<div class="date">
 	<c:forEach var="j" begin="1" end="${end }">
-	  <td class="name" > <!-- 날짜부분 -->
+	  <!-- start : 날짜부분 -->
+	  <td class="name" >
 		<a href='#' onclick='javascript:winOpen(${year}, ${month}, ${j })' >
-			${j}
+		${j}
 		</a>
-		
+		<br>
  	   <!-- //내용 출력 -->	  
 		<c:forEach var="content" items="${Content }">
-			<a class="name_1" href="#" onclick='javascript:winOpen2("${content.calendarmemo_num}")'>
-				<c:if test="${month==content.calendarmemo_month}">
-					<c:if test="${j==content.calendarmemo_day}">
-					${content.calendarmemo_contents }
-					</c:if>
+			<c:if test="${month==content.getCalendarmemo_month()}">
+				<c:if test="${j==content.getCalendarmemo_day()}">
+					<a class="name_1" href="#" onclick='javascript:winOpen2("${content.getCalendarmemo_num()}")'>
+						${content.getCalendarmemo_contents() }
+					</a>
 				</c:if>
-			</a>
+			</c:if>
 		</c:forEach>
 	  </td>  
 	  </div>  <!-- date end -->
-	  <!-- 날짜부분 -->
+	  <!-- end : 날짜부분 -->
 	  
 	  <!-- TD가 7개가 넘어가면 TR을 사용. -->
 	  <c:set var="br" value="${br+1 }"></c:set>

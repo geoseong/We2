@@ -12,9 +12,8 @@
 
   <H2>일정 삭제</H2>
 
- <form name="frm" method="post" action="memoDelete.do">
+ <form action="memoDelete.do" method="POST" name="frm">
   <input type="hidden" name="calendarmemo_num" value="${calendarmemo.calendarmemo_num}" >
-  
   
  <table>
   <tr>
@@ -36,7 +35,7 @@
   
 
    <div class = "button">
-    <input name="delete" class="add_btn" type=submit value="삭제하기" >
+    <input name="delete" class="add_btn" type="submit" value="삭제하기" >
     <input name="back" class="add_btn" type="button"   value="뒤로가기"  onclick="location.href='memoUpdate.do'+calendarmemo_num">
    </div>
   

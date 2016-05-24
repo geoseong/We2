@@ -12,6 +12,8 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
+import com.we2.sharepjtboard.PjtBoardBean;
+
 
 
 
@@ -23,22 +25,25 @@ public interface FileMapper {
 			"select fcode, fname, fileurl, pjtCode, date_format(fdate,'%Y-%m-%d') from limit #{row_start}, #{row_end}";
 	
 	final String select_by_fcode=
-			"select fcode, fname, fileurl, fdate, pjtcode from fileshare where fcode=${fcode}";
+			"select * from fileshare where fcode=${fcode} and pjtCode=${pjtCode}";
 	
-	final String select_all = "select count(1) from fileshare";
+	final String select_all = "select count(1) from fileshare where pjtCode=${pjtCode}";
 	
 	final String count_plus=
 			"update set itemClick=itemClick+1 where itemNum=#{itemNum}";
 	
-	final String select_by_id ="select fcode, fname, fileurl, date_format(fdate,'%Y-%m-%d') fdate from fileshare order by fcode desc limit #{row_start}, #{row_end}";
+	final String select_by_id ="select fcode, fname, fileurl, date_format(fdate,'%Y-%m-%d') fdate from fileshare where pjtcode=${pjtcode} order by fcode desc limit #{row_start}, #{row_end}";
 	
-	final String insertFile = "insert into fileshare(fname, fileurl, fdate) values (#{fname}, #{fileurl}, date_format(now(),'%Y-%m-%d'))";
+	final String insertFile = "insert into fileshare(fname, fileurl, fdate, pjtCode) values (#{fname}, #{fileurl}, date_format(now(),'%Y-%m-%d'), ${pjtCode})";
 
 	
-	final String delete_by_fcode = "delete from fileshare where fcode = #{fcode}";
+	final String delete_by_fcode = "delete from fileshare where fcode = #{fcode} and pjtCode=${pjtCode}";
 	
-	final String update_by_fcode = "update fileshare set fname = #{fname}, fileurl = #{fileurl}, fdate=now() where fcode = #{fcode}";
+	final String update_by_fcode = "update fileshare set fname = #{fname}, fileurl = #{fileurl}, fdate=now() where fcode = #{fcode} and pjtCode=${pjtCode}";
 			
+	final String select_by_num =
+			"select * from fileshare where fcode=${fcode} and pjtCode=${pjtCode}";
+	
 	/*final String select_cnt_by_subject = "select * from (select id, subject, name, created_date, mail, memo, hits, ceil (rownum / #{rowsPerPage}) as page from spring_board where subject like '%' || '${likeThis}' || '%' order by id desc) where page = #{page}";
 		
 		final String select_rows_by_subject = "select * from (select id, subject, name, ceil(rownum/#{rowsPerPage}) as page from spring_board where subject like '%' || '${likeThis}' || '%' order by id desc) where page = #{page}";
@@ -56,10 +61,10 @@ public interface FileMapper {
 				@Result(property="fname", column="fname"),
 				@Result(property="fileurl", column="fileurl"),
 				@Result(property="fdate", column="fdate"),
-				@Result(property="pjftcode", column="pjftcode"),
+				@Result(property="pjtcode", column="pjtcode"),
 				
 		})
-		ArrayList<FileBean> getList(@Param("row_start") int row_start, @Param("row_end") int row_end);
+		ArrayList<FileBean> getList(@Param("row_start") int row_start, @Param("row_end") int row_end, @Param("pjtcode") int pjtcode);
 		
 		@Select(select_by_fcode)				
 		@Results(value = {   
@@ -71,25 +76,39 @@ public interface FileMapper {
 				@Result(property="rcontent", column="rcontent"),
 				@Result(property="rpictureurl", column="rpictureurl")
 		})
-		FileBean getSearchbyfcode(@Param("fcode") int fcode);
+		FileBean getSearchbyfcode(@Param("fcode") int fcode, @Param("pjtCode") int pjtCode);
 	
 		
 		@Insert(insertFile)  		
 		//@Options(useGeneratedKeys = true, keyProperty = "id")
-		void insertFile(@Param("fname")String fname, @Param("fileurl")String fileurl) ;
+		void insertFile(@Param("fname")String fname, @Param("fileurl")String fileurl, @Param("pjtCode") int pjtCode) ;
 		
 		@Select(select_all)
-		int getTotalCnt();
+		int getTotalCnt(@Param("pjtCode") int pjtCode);
 		
 		@Delete(delete_by_fcode)  
-		void filedelete(@Param("fcode") int fcode);
+		void filedelete(@Param("fcode") int fcode, @Param("pjtCode") int pjtCode);
 		
 		@Update(update_by_fcode) 
 		void fileupdate(
 				@Param("fcode") int rcode,
 				@Param("fname") String fname, 
-				@Param("fileurl")String fileurl);
+				@Param("fileurl")String fileurl,
+				@Param("pjtCode") int pjtCode);
 		
+		@Select(select_by_num)
+		@Results(value = {
+				@Result(property="itemNum", column="itemNum"),
+				@Result(property="itemTitle", column="itemTitle"),
+				@Result(property="userId", column="userId"),
+				@Result(property="itemDate", column="idate"),
+				@Result(property="itemClick", column="itemClick"),
+				@Result(property="itemPath", column="itemPath"),
+				@Result(property="itemContent", column="itemContent"),
+				@Result(property="itemDataType", column="itemDataType")
+		})
+		FileBean select_by_num(@Param("pjtCode")int pjtCode, @Param("fcode")int fcode);
+
 }
 		
 /*	

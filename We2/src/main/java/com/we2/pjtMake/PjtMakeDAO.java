@@ -83,20 +83,22 @@ public class PjtMakeDAO {
 	//최근 등록한 프로젝트 먼저 출력하기
 	public List<PjtMakeVO> selectAll(){
 		List<PjtMakeVO> results = 
-				jdbcTemplate.query("select * from pjtMake",
-						new RowMapper<PjtMakeVO>(){
-		@Override
-		public PjtMakeVO mapRow(ResultSet rs, int rowNum) throws SQLException {
-			PjtMakeVO pjtMakeVO = new PjtMakeVO(
-					rs.getString("pjtName"),
-					rs.getString("pjtClassify"),
-					rs.getString("startDate"),
-					rs.getString("pjtClasendDateify"));
-			pjtMakeVO.setPjtCode(rs.getInt("pjtCode"));
-			return pjtMakeVO;
-		}
-		});
-		return (List<PjtMakeVO>) (results.isEmpty()?null:results);
+				jdbcTemplate.query("select * from pjtMake"
+				,
+				new RowMapper<PjtMakeVO>(){
+					@Override
+					public PjtMakeVO mapRow(ResultSet rs, int rowNum) throws SQLException {
+						PjtMakeVO pjtMakeVO = new PjtMakeVO(
+								rs.getInt("pjtCode"),
+								rs.getString("pjtName"),
+								rs.getString("pjtClassify"),
+								rs.getString("startDate"),
+								rs.getString("pjtClasendDateify"));
+						return pjtMakeVO;
+					}
+				}
+			);
+		return results.isEmpty()?null:results;
 	}
 	
 	//날짜 구하기 
@@ -119,6 +121,7 @@ public class PjtMakeDAO {
 					@Override
 					public PjtMakeVO mapRow(ResultSet rs, int rowNum) throws SQLException {
 						PjtMakeVO pjtmake = new PjtMakeVO(
+								rs.getInt("pjtCode"),
 								rs.getString("pjtName"),
 								rs.getString("pjtClassify"),
 								rs.getString("startDate"),

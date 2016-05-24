@@ -10,7 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>일정 수정</title>
 
-<link rel="stylesheet" type="text/css" href="../css/schedule_window.css">
+<link rel="stylesheet" type="text/css" href="/We2/css/schedule_window.css">
 </head>
 <body>
 
@@ -33,7 +33,7 @@
    <tr>
     <th>내용</th>
       <td colspan=5>
-       <TEXTAREA name="calendarmemo_contents" class="textarea" ROWS="8" COLS="42" > ${calendarmemo.calendarmemo_contents}</TEXTAREA>
+       <TEXTAREA name="calendarmemo_contents" class="textarea" ROWS="8" COLS="30" ><%-- ${calendarmemo.calendarmemo_contents} --%>${calendarmemo.calendarmemo_contents }</TEXTAREA>
       </td>
    </tr>
     </table>

@@ -70,6 +70,39 @@ function winOpen3(fcode){
 					</tr>										
 				</c:forEach>	 			
 			</table>
+			
+			<!-- ★★ 페이징 카운트 넣는 곳 ★★ -->
+				<div class ="counting" align="center">
+				<br>
+				<c:choose>
+					<c:when test="${block-1==0 }">
+					</c:when>
+					<c:otherwise>
+						<a href="list?page=${block_first - page_for_block }&category=${category}">[이전]</a>&nbsp;
+					</c:otherwise>
+				</c:choose>
+				<c:forEach var="i" begin="${block_first }" end="${block_last}" >
+					<c:choose>
+						<c:when test="${i == c_page }">
+							<b> [ ${i} ] </b>
+						</c:when>
+						<c:otherwise>
+							<a href="list?page=${i }&category=${category}">
+								[ ${i} ]
+							</a>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				<c:choose>
+					<c:when test="${block==block_total }">
+					</c:when>
+					<c:otherwise>
+						&nbsp;<a href="list?page=${block_first + page_for_block}&category=${category}">[다음]</a>
+					</c:otherwise>
+				</c:choose>
+				</div>  
+				<!-- ★★ counting end ★★ -->
+				
 	</div>
 	
 </div>
