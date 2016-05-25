@@ -28,39 +28,110 @@ public class WillWorkController {
    @RequestMapping(value="/list", method=RequestMethod.GET)
    public String initGet(Model model, HttpSession session) throws ParseException{
    System.out.println("첫번째줄 너왔니?");
-   /*int pjtCode = Integer.parseInt((String)session.getAttribute("pjtCode"));*/
-   int pjtCode=20;
-      System.out.println("list.get pjtcode : "+pjtCode);
-      
+  
+   int pjtCode =(int)session.getAttribute("pjtCode");
+   System.out.println("코드 세션테스트 : " + pjtCode);
+   //int pjtCode=20;
+   int countPeople = willWorkDAO.selectPeople(pjtCode);
    List<WillWorkVO> results = willWorkDAO.selectAll(pjtCode);
-   System.out.println("너..담을 수 있는 거니?");
+
+   String divDoWork1="";
+   String divDoWork2="";
+   String divDoWork3="";
+   String divDoWork4="";
+   String divDoWork5="";
+  
+   if(countPeople==1)
+   {
+   divDoWork1 = results.get(0).doWork; 
+   String [] divWorkList1 = divDoWork1.split(","); 
+   model.addAttribute("divWorkList1", divWorkList1);
+   }
+   else if(countPeople==2)
+   {
+	   divDoWork1 = results.get(0).doWork; 
+	   String [] divWorkList1 = divDoWork1.split(","); 
+	   divDoWork2 = results.get(1).doWork;
+	   String [] divWorkList2 = divDoWork2.split(","); 
+	   model.addAttribute("divWorkList1", divWorkList1);
+	   model.addAttribute("divWorkList2", divWorkList2);
+   }
+   else if(countPeople==3)
+   {
+	   divDoWork1 = results.get(0).doWork; 
+	   divDoWork2 = results.get(1).doWork;
+	   divDoWork3 = results.get(2).doWork;
+	   String [] divWorkList1 = divDoWork1.split(",");
+	   String [] divWorkList2 = divDoWork2.split(",");
+	   String [] divWorkList3 = divDoWork3.split(",");
+	   model.addAttribute("divWorkList1", divWorkList1);
+	   model.addAttribute("divWorkList2", divWorkList2);
+	   model.addAttribute("divWorkList3", divWorkList3);
+   }
+   else if(countPeople==4)
+   {
+	   divDoWork1 = results.get(0).doWork; 
+	   divDoWork2 = results.get(1).doWork;
+	   divDoWork3 = results.get(2).doWork;
+	   divDoWork4 = results.get(3).doWork;
+	   String [] divWorkList1 = divDoWork1.split(",");
+	   String [] divWorkList2 = divDoWork2.split(",");
+	   String [] divWorkList3 = divDoWork3.split(",");
+	   String [] divWorkList4 = divDoWork4.split(",");
+	   model.addAttribute("divWorkList1", divWorkList1);
+	   model.addAttribute("divWorkList2", divWorkList2);
+	   model.addAttribute("divWorkList3", divWorkList3);
+	   model.addAttribute("divWorkList4", divWorkList4);
+   }
+   else if(countPeople==5)
+   {
+	   divDoWork1 = results.get(0).doWork; 
+	   divDoWork2 = results.get(1).doWork;
+	   divDoWork3 = results.get(2).doWork;
+	   divDoWork4 = results.get(3).doWork;
+	    divDoWork5 = results.get(4).doWork;
+	    
+	   System.out.println("세번째 줄 너 왔니?");
+	   String [] divWorkList1 = divDoWork1.split(",");
+	   String [] divWorkList2 = divDoWork2.split(",");
+	   String [] divWorkList3 = divDoWork3.split(",");
+	   String [] divWorkList4 = divDoWork4.split(",");
+	   String [] divWorkList5 = divDoWork5.split(",");
+	  
+	   model.addAttribute("divWorkList1", divWorkList1);
+	   model.addAttribute("divWorkList2", divWorkList2);
+	   model.addAttribute("divWorkList3", divWorkList3);
+	   model.addAttribute("divWorkList4", divWorkList4);
+	   model.addAttribute("divWorkList5", divWorkList5);
+   }
+  
    
-   String divDoWork1 = results.get(0).doWork; 
-   String divDoWork2 = results.get(1).doWork;
-   String divDoWork3 = results.get(2).doWork;
-   String divDoWork4 = results.get(3).doWork;
-   String divDoWork5 = results.get(4).doWork;
+  /* divDoWork1 = results.get(0).doWork; 
+   divDoWork2 = results.get(1).doWork;
+   divDoWork3 = results.get(2).doWork;
+   divDoWork4 = results.get(3).doWork;
+    divDoWork5 = results.get(4).doWork;
+    
    System.out.println("세번째 줄 너 왔니?");
    String [] divWorkList1 = divDoWork1.split(",");
    String [] divWorkList2 = divDoWork2.split(",");
    String [] divWorkList3 = divDoWork3.split(",");
    String [] divWorkList4 = divDoWork4.split(",");
    String [] divWorkList5 = divDoWork5.split(",");
-   
+  
    model.addAttribute("divWorkList1", divWorkList1);
    model.addAttribute("divWorkList2", divWorkList2);
    model.addAttribute("divWorkList3", divWorkList3);
    model.addAttribute("divWorkList4", divWorkList4);
-   model.addAttribute("divWorkList5", divWorkList5);
+   model.addAttribute("divWorkList5", divWorkList5);*/
+   model.addAttribute("countPeople", countPeople);
    model.addAttribute("results", results);
-   
    model.addAttribute("page", "../WillWork/WillWork");
    return "myproject/myproject";
 }
    
    @RequestMapping(value="/willwork2", method=RequestMethod.POST)
    public String AddPost(HttpServletRequest request, Model model, HttpSession session) throws ParseException{
-      System.out.println("11111111111111");
       String doWork = request.getParameter("inputWork"); //�Է��� ��
       String name = request.getParameter("userName"); //�ش� ���� ����
       System.out.println("할일 : " +  doWork + " 이름 : " + name);
@@ -73,10 +144,9 @@ public class WillWorkController {
    
    @RequestMapping(value="/willwork3", method=RequestMethod.POST)
    public String DeletePost(HttpServletRequest request, Model model, HttpSession session) throws ParseException{
-      String complete = request.getParameter("complete"); //�����ϱ� ���� ������ ��
-      String name = request.getParameter("userName"); //�ش� ���� ����
-      /*int pjtCode = Integer.parseInt((String)session.getAttribute("pjtCode"));*/
-      int pjtCode=20;
+      String complete = request.getParameter("complete"); 
+      String name = request.getParameter("userName");
+     int pjtCode=20;
       
       List<WillWorkVO> One = willWorkDAO.selectOne(name, pjtCode); //������ ���� �� ����� ������ �� �ҷ���
       String doWork = One.get(0).doWork; //�� ����� ������ �� ����
@@ -95,12 +165,6 @@ public class WillWorkController {
             list.remove(i);
          }
       }
-      
-      /*System.out.print("������ �� ����Ʈ ��� : ");
-      for(int i=0; i<list.size(); i++) //������ �� �� ��� 
-      {
-         System.out.print(list.get(i));
-      }*/
       
             String rebuild = "";
             if(list.size()==1){

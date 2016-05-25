@@ -20,190 +20,139 @@
 </div>
 
 <div class = "user">
-<!-- User1 -->	
-<c:if test="${not empty results}">
+<!-- User1은 프로젝트를 만들면 무조건 그 사람이기 때문에 if문을 안써도된다.  -->	
+
 	<div class="people" id="member1">
 			<div>
 				<img src="../img/people_m1.png"/>
 			</div>
-		 <div class="state_work">
-		     
-				<a class="tag1">
+			 <div class="state_work"> <!-- 이름과 할일 부분을 묶은 것 -->
 					 <c:forEach var="user0" items="${results}" varStatus="status">
 						<c:if test="${status.index ==0}">
-							<p> ${user0.name}<!-- 이름 --> </p>
-							<p> 해야할 일: &nbsp;&nbsp; ${user0.doWork}
-							<p id="workname1"> 완료한 일: &nbsp;&nbsp; ${user0.doneWork}
+						<div class="name"> <!-- 이름영역 -->
+							<p> ${user0.name}</p>
+						</div>
+						<div class="dowork_donework"> <!-- 해야할일, 완료한 일 영역을 2개의 div로 나눔 -->
+							<div>
+							해야할 일 :  ${user0.doWork}
+							</div>
+							<div>
+							완료한 일 : ${user0.doneWork}
+							</div>
+						</div>
 						</c:if>
 					</c:forEach> 
-					
-			    	<%-- <p> 해야할 일 : 				    	
-			    		<c:forEach var="user0" items="${results}">
-				    		<c:if test="${status.index==0}">
-								${user0.doWork}
-							</c:if>
-			    		</c:forEach>   		
-					</p>
-					
-			    	<p> 완료한 일:
-				    
-				    	<c:forEach var="user0" items="${results}">
-				    		<c:if test="${status.index ==0}">
-							<p>${user0.doneWork}</p>
-							</c:if>
-			    		</c:forEach>   					    			
-				    	
-			    	</p> --%>
-			    </a>
-			  
-		</div>	
+			</div>	
 	</div>
-</c:if>
 	
 	
 	
 <!-- User2 -->
-<c:if test="${not empty results }">
+<c:if test="${countPeople >1}">
 	<div class="people" id="member2">
 			<div>
-					<img src="../img/people_w1.png"/>
+				<img src="../img/people_w1.png"/>
 			</div>
-			 <div class="state_work">
-					<a class="tag1">
-						<c:forEach var="user1" items="${results}" varStatus="status">
-							<c:if test="${status.index ==1}">
-							<p> ${user1.name}<!-- 이름 -->
-							<p> 해야할 일: &nbsp;&nbsp; ${user1.doWork}		
-							<p id="workname2"> 완료한 일: &nbsp;&nbsp; ${user1.doneWork}
+			 <div class="state_work"> <!-- 이름과 할일 부분을 묶은 것 -->
+					 <c:forEach var="user1" items="${results}" varStatus="status">
+						<c:if test="${status.index ==1}">
+						<div class="name"> <!-- 이름영역 -->
+							<p> ${user1.name}</p>
+						</div>
+						<div class="dowork_donework"> <!-- 해야할일, 완료한 일 영역을 2개의 div로 나눔 -->
+							<div>
+							해야할 일 :  ${user1.doWork}
+							</div>
+							<div>
+							완료한 일 : ${user1.doneWork}
+							</div>
+						</div>
 						</c:if>
-						</c:forEach>
-						
-				    	<%-- <p> 해야할 일 : 				    	
-				    		<c:forEach var="user1" items="${results }">
-					    		<c:if test="${status.index ==1}">
-								${user1.doWork}
-								</c:if>
-				    		</c:forEach>   		
-						</p>
-						
-				    	<p> 완료한 일:
-					    
-				    	<c:forEach var="user1" items="${results}">
-				    			<c:if test="${status.index ==1}">
-								${user1.doneWork}
-								</c:if>
-			    		</c:forEach>   					    			
-					    	
-				    	</p> --%>
-				    </a>
+					</c:forEach> 
 			</div>	
-		</div>
+	</div>
 </c:if>
 	
 <!-- User3 -->
-<c:if test="${not empty results }">
-	<div class="people" id="member3">
+<c:if test="${countPeople >2}">
+	<div class="people" id="member2">
 			<div>
-					<img src="../img/people_m2.png"/>
+				<img src="../img/people_m2.png"/>
 			</div>
-			<div class="state_work">
-					<a class="tag1">
-						<c:forEach var="user2" items="${results}" varStatus="status">
-							<c:if test="${status.index ==2}">
-							<p> ${user2.name}<!-- 이름 -->
-							<p> 해야할 일: ${user2.doWork}		
-							<p id="workname3"> 완료한 일: ${user2.doneWork}
+			 <div class="state_work"> <!-- 이름과 할일 부분을 묶은 것 -->
+					 <c:forEach var="user2" items="${results}" varStatus="status">
+						<c:if test="${status.index ==2}">
+						<div class="name"> <!-- 이름영역 -->
+							<p> ${user2.name}</p>
+						</div>
+						<div class="dowork_donework"> <!-- 해야할일, 완료한 일 영역을 2개의 div로 나눔 -->
+							<div>
+							해야할 일 :  ${user2.doWork}
+							</div>
+							<div>
+							완료한 일 : ${user2.doneWork}
+							</div>
+						</div>
 						</c:if>
-						</c:forEach>
-						
-				    	<%-- <p> 해야할 일 : 				    	
-				    		<c:forEach var="user2" items="${results }">
-				    			${user2.doWork}
-				    		</c:forEach>   		
-						</p>
-						
-				    	<p> 완료한 일:
-					    	<c:forEach var="user2" items="${results }">
-					    			${user2.doneWork}
-				    		</c:forEach>   					    			
-				    	</p> --%>
-				    </a>
+					</c:forEach> 
 			</div>	
 	</div>
 </c:if>
 
 <!-- User4 -->
-<c:if test="${not empty results }">
+<c:if test="${countPeople >3}">
 	<div class="people" id="member4">
 			<div>
-					<img src="../img/people_w2.png"/>
+				<img src="../img/people_w2.png"/>
 			</div>
-			 <div class="state_work">
-					<a class="tag1">
-						<c:forEach var="user3" items="${results}" varStatus="status">
-							<c:if test="${status.index ==3}">
-							<p> ${user3.name}<!-- 이름 -->
-							<p> 해야할 일:&nbsp;&nbsp; ${user3.doWork}		
-							<p id="workname4"> 완료한 일:&nbsp;&nbsp; ${user3.doneWork}
+			 <div class="state_work"> <!-- 이름과 할일 부분을 묶은 것 -->
+					 <c:forEach var="user3" items="${results}" varStatus="status">
+						<c:if test="${status.index ==3}">
+						<div class="name"> <!-- 이름영역 -->
+							<p> ${user3.name}</p>
+						</div>
+						<div class="dowork_donework"> <!-- 해야할일, 완료한 일 영역을 2개의 div로 나눔 -->
+							<div>
+							해야할 일 :  ${user3.doWork}
+							</div>
+							<div>
+							완료한 일 : ${user3.doneWork}
+							</div>
+						</div>
 						</c:if>
-						</c:forEach>
-				    	<%-- <p> 해야할 일 : 				    	
-				    		<c:forEach var="user3" items="${results}">
-				    			${user3.doWork}
-				    		</c:forEach>   		
-						</p>
-						
-				    	<p> 완료한 일:
-					    
-					    	<c:forEach var="user3" items="${results}">
-					    			${user3.doneWork}
-				    		</c:forEach>   					    			
-					    	
-				    	</p> --%>
-				    </a>
+					</c:forEach> 
 			</div>	
 	</div>
 </c:if>
 
 <!-- User5 -->
-<c:if test="${not empty results }">
+<c:if test="${countPeople >4}">
 	<div class="people" id="member5">
 			<div>
-					<img src="../img/people_m6.png"/>
+				<img src="../img/people_m6.png"/>
 			</div>
-		 <div class="state_work">
-				<a class="tag1">
-					<c:forEach var="user4" items="${results}" varStatus="status">
-							<c:if test="${status.index ==4}">
-							<p> ${user4.name}<!-- 이름 -->
-							<p> 해야할 일 :&nbsp;&nbsp; ${user4.doWork}		
-							<p id="workname5"> 완료한 일:&nbsp;&nbsp; ${user4.doneWork}
+			 <div class="state_work"> <!-- 이름과 할일 부분을 묶은 것 -->
+					 <c:forEach var="user4" items="${results}" varStatus="status">
+						<c:if test="${status.index ==4}">
+						<div class="name"> <!-- 이름영역 -->
+							<p> ${user4.name}</p>
+						</div>
+						<div class="dowork_donework"> <!-- 해야할일, 완료한 일 영역을 2개의 div로 나눔 -->
+							<div>
+							해야할 일 :  ${user4.doWork}
+							</div>
+							<div>
+							완료한 일 : ${user4.doneWork}
+							</div>
+						</div>
 						</c:if>
-						</c:forEach>
-			    	<%-- <p> 해야할 일 : 				    	
-			    		<c:forEach var="user4" items="${results }">
-			    			${user4.doWork}
-			    		</c:forEach>   		
-					</p>
-					
-			    	<p> 완료한 일:
-				    
-				    	<c:forEach var="user4" items="${results}">
-				    			${user4.doneWork}
-			    		</c:forEach>   					    			
-				    	
-			    	</p> --%>
-			    </a>
-		</div>	
+					</c:forEach> 
+			</div>	
 	</div>
 </c:if>
 
 </div> <!-- user end -->
 </div>  <!-- first main end -->
-
-
-
-
 
 <!-- 첫 번째 인물에 대한 링크 -->
 

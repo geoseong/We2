@@ -42,7 +42,8 @@
 .people> .state_work{
 	padding : 10px 0 0 0;	
 	color: #424444;
-
+	font-size: 15px;
+	text-align:left;
 }
 
 /* �̹��� */
@@ -75,28 +76,21 @@ height:100px;
  
 }
 
-#workname1{
-	padding-left : 10px;
-}
-#workname2{
-	padding-left : 40px;
-}
-#workname3{
-	padding-left : 80px;
+.dowork_donework{
+	padding-left : 70px;
+	font-style: normal;
 }
 
-#workname4{
-	padding-left : 70px;
-}
-#workname5{
-	padding-left : 60px;
+.name{
+	font-weight: bold;
+	font-size:18px;
 }
 
 
 /* �Ϸ��� �� ��  */
 .people > .state_work> a> p:nth-of-type(3){ 
-	float:left;
-	font-size: 10px;
+   float:left;
+    font-size: 10px;
     padding-left:50px;  
     color: #424444;
     text-align: left;
@@ -105,10 +99,8 @@ height:100px;
 
 /* 완료한 일 목록 글씨에 대한 부분 */ 
  .tag1 {
-	
 	font-size: 15px;
 	text-align:left;
-
 } 
 
 /* 모달관련 */

@@ -1,15 +1,17 @@
 package com.we2.willwork;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
+
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
-
-import com.we2.pjtMake.PjtMakeVO;
 
 public class WillWorkDAO2 {
    
@@ -21,6 +23,13 @@ public class WillWorkDAO2 {
    
    public WillWorkDAO2(){
    }
+   
+   //할 일 부분, 사람 수를 구하는 쿼리문
+	public int selectPeople(int pjtCode) {
+		String sql = "select count(*) from willwork where pjtcode=?";
+		int people = jdbcTemplate.queryForObject(sql, new Object[] {pjtCode}, Integer.class);
+		return people;
+	}
 
    public List<WillWorkVO> selectAll(int pjtCode){
       List<WillWorkVO> results = jdbcTemplate.query("select * from willwork where pjtCode=?", 
