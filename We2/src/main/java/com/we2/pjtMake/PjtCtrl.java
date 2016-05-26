@@ -1,8 +1,5 @@
 package com.we2.pjtMake;
 
-import java.util.Enumeration;
-
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -14,8 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.we2.spring.AuthInfo;
 import com.we2.spring.MemberDao;
-import com.we2.utils.MailSend;
-import com.we2.utils.MailSend.SMTPAuthenticator;
+import com.we2.utils.We2MailSender;
 
 @Controller
 @RequestMapping("/project")
@@ -29,9 +25,10 @@ public class PjtCtrl {
 	PjtMakeDAO pDao;
 	@Autowired
 	MemberDao mDao;
+	/*@Autowired
+    private ServletContext servletContext;*/
 	@Autowired
-    private ServletContext servletContext;
-	
+    private We2MailSender emailSender;
 
 	/** pjtCode 세션 보내기 테스트용. */
 	@RequestMapping(method = RequestMethod.GET)
@@ -106,21 +103,26 @@ public class PjtCtrl {
 	
 	@RequestMapping(value="/invitation", method=RequestMethod.POST)
 	public String mailsendPost(Model model){
-		int pjtCode = Integer.parseInt(request.getParameter("pjtCode"));
-			System.out.println("/project invitation POST pjtCode : " + pjtCode);
-			String[] ids=request.getParameterValues("item");
+		int pjtCode = (Integer)session.getAttribute("pjtCode");
+			System.out.println("/project invitation.POST pjtcode : "+pjtCode);
+			
+		String[] usermails=request.getParameterValues("item");
+		for(int i=0; i<usermails.length; i++){
+			System.out.println("usermails["+i+"] : "+usermails[i]);
+		}
+		emailSender.sendEmail(usermails);
 		
-		// 메일전송 태그를 갖고있는 파일경로 지정.
+		/*// 메일전송 태그를 갖고있는 파일경로 지정.
 		String path=servletContext.getRealPath("we2/mailsend");
 		
 		MailSend mailsend = new MailSend();
 		
-		for(String a : ids){
+		for(String a : usermails){
 			System.out.println("invitation.post] 선택된 id들 : " + a);
 			mailsend.main(path, a);
 		}
 		SMTPAuthenticator smtpauth = new SMTPAuthenticator();
-		smtpauth.getPasswordAuthentication();
+		smtpauth.getPasswordAuthentication();*/
 		
 		
 		// alert 메시지.

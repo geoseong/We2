@@ -86,7 +86,7 @@ table td{
 	</tr>	
 	<c:forEach var="searchemail" items="${searchemail }">
 	<tr>
-		<td><input type="checkbox" name="item" value="${searchemail.getUserId() }"></td>
+		<td><input type="checkbox" name="item" value="${searchemail.getEmail() }"></td>
 		<td>${searchemail.getEmail() }</td>
 		<td>${searchemail.getName() }</td>
 		<td>${searchemail.getUserId() }</td>

@@ -72,7 +72,7 @@
 		
 <!-- 끝 : MyBatis를 위한 태그들 -->
 
-	<!-- start : 의존주입 -->
+<!-- start : 의존주입 -->
 		<bean id="memberDao" class="com.we2.spring.MemberDao">
 			<constructor-arg ref="dataSource"/>
 		</bean>
@@ -92,5 +92,7 @@
 		<bean id="noticeDao" class="com.we2.notice.NoticeDao">
 			<constructor-arg ref="dataSource" />
 		</bean>
-	<!-- end : 의존주입 -->
+<!-- end : 의존주입 -->
+
+
 </beans>

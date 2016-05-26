@@ -43,7 +43,7 @@
 	<!-- Excel 파일생성 bean객체 삽입 -->
 	
 	
-	<!-- label.properties 설정 -->
+<!-- label.properties 설정 -->
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basenames">

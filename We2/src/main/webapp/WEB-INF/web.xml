@@ -20,6 +20,7 @@
 				classpath:we2-beans.xml
 				classpath:we2-controller.xml
 				classpath:we2-springmvc.xml
+				classpath:we2-utils.xml
 			</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>

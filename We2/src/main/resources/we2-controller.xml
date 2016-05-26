@@ -30,7 +30,7 @@
  		 </bean> -->
 <!-- end : 컨트롤러 bean 생성 -->
 	 
-	<!-- 시작 : AOP bean 설정 -->
+<!-- 시작 : AOP bean 설정 -->
 	<aop:aspectj-autoproxy/>
 	<bean id="aopsession" class="aop.AOP_Session"/>
 	<!-- <bean id="aopauth" class="aop.AOP_Auth"/> -->
@@ -42,9 +42,9 @@
 			<aop:around pointcut-ref="aoptest" method="loginCheck" />
 		</aop:aspect>
 	</aop:config> -->
-    <!-- 끝 : AOP bean 설정 -->
+<!-- 끝 : AOP bean 설정 -->
 
-	 <!-- 컨트롤러 bean 생성 -->
+<!-- start : 컨트롤러 bean 생성 -->
 	<bean class="com.we2.pjtMake.pjtMakeCtrl">
 		<property name="pjtMakeDAO" ref="pjtMakeDAO"/>
 	</bean>
@@ -52,5 +52,6 @@
 	<bean class="com.we2.willwork.WillWorkController">
 		<property name="willWorkDAO" ref="willWorkDAO2"/>
 	</bean>
+<!-- end : 컨트롤러 bean 생성 -->
 
 </beans>
