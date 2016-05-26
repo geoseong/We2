@@ -49,6 +49,7 @@ $("#nav>a").click(function(){
           <div class="input">
           
             <form:form action="login" commandName="loginCommand" name="frm" method="POST">
+            	<input type="hidden" name="pjtadd" value="${pjtadd }">
               <div class = "id">
                 <span>User ID</span><br>
                 <form:input path="userId" style="width:240px; height:30px;"/>

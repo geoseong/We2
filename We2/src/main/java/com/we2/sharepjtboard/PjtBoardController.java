@@ -53,7 +53,7 @@ public class PjtBoardController {
 			System.out.println("rows_per_page : " + rows_per_page);
 			System.out.println("page : " + page);
 		System.out.println("-------------------------------변수설정 시작");
-
+		
 		String boardname=null;
 		if(category.equals("pGroup")){
 			boardname="조별과제";

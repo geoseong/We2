@@ -108,23 +108,16 @@ public class PjtCtrl {
 			
 		String[] usermails=request.getParameterValues("item");
 		for(int i=0; i<usermails.length; i++){
-			System.out.println("usermails["+i+"] : "+usermails[i]);
+			System.out.println("/invitation.POST usermails["+i+"] : "+usermails[i]);
 		}
-		emailSender.sendEmail(usermails);
 		
-		/*// 메일전송 태그를 갖고있는 파일경로 지정.
-		String path=servletContext.getRealPath("we2/mailsend");
+		AuthInfo authinfo=(AuthInfo)session.getAttribute("authInfo");
+		String captain=authinfo.getName();
+			System.out.println("/project invitation.POST 현재 로그인된 사용자 : " + captain);
 		
-		MailSend mailsend = new MailSend();
-		
-		for(String a : usermails){
-			System.out.println("invitation.post] 선택된 id들 : " + a);
-			mailsend.main(path, a);
-		}
-		SMTPAuthenticator smtpauth = new SMTPAuthenticator();
-		smtpauth.getPasswordAuthentication();*/
-		
-		
+			// 선택된 유저들, pjtMake의 정보 모두 select , pjtManager의 회원정보 select
+		emailSender.sendEmail(captain, usermails, pDao.selectAllpjtInfo(pjtCode), pDao.selectAllpjtMem(pjtCode));
+
 		// alert 메시지.
 			String message=
 					"<script type='text/javascript'>"
@@ -136,16 +129,52 @@ public class PjtCtrl {
 		 return "myproject/invitation";
 	}
 	
-	@RequestMapping(value="/addmember", method=RequestMethod.GET)
-	public String mailaddgt(Model model){
-		System.out.println("/addmember.get 시작");
-		 AuthInfo authinfo = (AuthInfo)session.getAttribute("authInfo");
-		 String userId = authinfo.getUserId();
-		 int pjtCode = Integer.parseInt(request.getParameter("pjtCode"));
-			System.out.println("/project addmember GET pjtCode : " + pjtCode);
+	@RequestMapping(value="/addmember", method=RequestMethod.POST)
+	public String mailaddpost(Model model){
+		System.out.println("/addmember.POST 시작");
+		 /*int pjtCode = Integer.parseInt(request.getParameter("pjtCode"));*/
+		int pjtCode=Integer.parseInt(request.getParameter("pjtCode"));
+			System.out.println("/project addmember POST pjtCode : " + pjtCode);
 		
-		pDao.addpjtMember(pjtCode, userId);
-		return "index";
+		// 세션에 pjtCode 보냄.
+		session.setAttribute("pjtCode", pjtCode);
+		
+		if(session.getAttribute("authInfo")==null){
+			System.out.println("로그인 팝업 띄움");
+			model.addAttribute("pjtadd", "pjtadd");
+			return "redirect:/login";
+		}
+		
+		return "redirect:/project/addpjtmember";
 	}
-	
+
+	@RequestMapping(value="/addpjtmember", method=RequestMethod.GET)
+	public String mailadd(Model model){
+		int pjtCode=0;
+		
+		if(session.getAttribute("pjtCode")==null){
+			return "redirect:/login";
+		}else{
+			pjtCode=(Integer)session.getAttribute("pjtCode");
+				System.out.println("/project addpjtmember.POST pjtcode : "+pjtCode);
+		}
+		
+		if(session.getAttribute("authInfo")==null){
+			return "redirect:/login";
+		}else{
+			 AuthInfo authinfo = (AuthInfo)session.getAttribute("authInfo");
+			 String userId = authinfo.getUserId();
+			 
+			 pDao.addpjtMember(pjtCode, userId);
+			 System.out.println("/project addpjtmember.POST insert 완료됨");
+		}
+		 /*String message=
+			 "<script type='text/javascript'>"
+				 +"alert('프로젝트에 일원이 되셨습니다. '마이페이지'에서 확인 해 보세요.');"
+				 + "self.close();"
+				 + "</script>";
+		 model.addAttribute("alert",message);*/
+		 
+		 return "redirect:/";
+	}
 }

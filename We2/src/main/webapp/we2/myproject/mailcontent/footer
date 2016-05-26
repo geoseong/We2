@@ -1,0 +1,17 @@
+<br>
+	<input type="submit" value="초대 수락하기"
+		style="
+			float: left; 
+			border: none; 
+			background-color: #4CC4EE; 
+			color: #fff;
+			font-weight: 400; 
+			font-size: 15px; 
+			width: 150px; 
+			height: 30px; 
+			border-radius: 5px; 
+			text-align: center;">
+
+<br>
+</form>
+</div>

@@ -71,7 +71,6 @@
 						<td align="center"><a href = "/We2/notice/view?num=${content.num }">${content.title }</a></td>
 						<td align="center">${content.writer }</td>
 						<td align="center">${content.writedate }</td>
-						
 					</tr>
 					</c:forEach>
 					

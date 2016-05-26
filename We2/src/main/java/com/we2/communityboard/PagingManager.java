@@ -12,7 +12,7 @@ public class PagingManager {
 		public static PagingManager getInstance(){
 			return pagingManager;
 		}
-		
+
 		// 현재페이지 시작레코드
 		public int getFirstRowInPage(int page, int rows_per_page){
 			return ((page-1)*rows_per_page+1)-1;

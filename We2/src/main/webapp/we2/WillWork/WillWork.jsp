@@ -154,6 +154,8 @@
 </div> <!-- user end -->
 </div>  <!-- first main end -->
 
+
+
 <!-- 첫 번째 인물에 대한 링크 -->
 
 <div class="second_body1">
@@ -161,13 +163,9 @@
 	<div class="showwork">
 		<h3 class="perform_title">할 일 설정</h3>
 		<div class="imgtest"><img src="../img/people_m1.png" alt=""></div>
-		<div class="now_work"> <!-- 지금까지 한 일 -->
-			<%-- <p><c:forEach var="username0" items="${results}">
-						<p>${username0.name}<!-- 이름 --></p>
-			</c:forEach></p> --%>
+		<div class="now_work">
 			<span class="margin_item">지금까지 한일</span>
-			
-			<form action="" method="">
+			 <form action="willwork2" method="post" class="input_form">
 			<ul class="done_work">
 				<c:forEach var="user0" items="${results}" varStatus="status">
 					<c:if test="${status.index ==0}">
@@ -191,6 +189,7 @@
 	    </c:forEach> 
 		</form>
 	</div>
+	
 	<div class="complet_work">
 		<div>할 일 완료</div>
 		<div class="checkwork">
@@ -200,11 +199,9 @@
 				 	 <c:forEach var="user0" items="${results}" varStatus="status">
 						<c:if test="${status.index ==0}">
 						  <input type="hidden" name="userName" value="${user0.name}">
-							
 							<c:if test="${divWorkList1 ne ''}">
 								<input type="checkbox" name="complete" value="${divWorkList1}">
 							</c:if>
-							
 						</c:if>
 					</c:forEach> 
 					<label>${divWorkList1}</label>	 					
@@ -214,6 +211,7 @@
 		 	</form>
 		</div>
 	 </div>
+	 
   </div>
 </div>
 
@@ -226,9 +224,6 @@
 		<h3 class="perform_title">할 일 설정</h3>
 		<div class="imgtest"><img src="../img/people_w1.png" alt=""></div>
 		<div class="now_work">
-				<%-- <p><c:forEach var="username1" items="${username1}">
-						<p>${username1}<!-- 이름 --></p>
-					</c:forEach></p> --%>
 			<span class="margin_item">지금까지 한일</span>
 			<ul class="done_work">
 				<c:forEach var="user1" items="${results}" varStatus="status">
@@ -245,12 +240,13 @@
 		<c:if test="${status.index ==1}">
 		<label>할 일 입력</label>
 		<input type="text" size="25" name="inputWork"/> <!-- 입력한 일 -->
-		<input type="hidden" name="userName" value="${user1.name}"> <!-- 해당 유저네임 -->
-	    <input type="submit" value="추가하기" class="add_btn"/>
-	    </c:if>	
+		<input type="hidden" name="userName"  value="${user1.name}"> <!-- 해당 유저네임 -->
+	      <input type="submit" value="추가하기" class="add_btn"/>
+	      </c:if>	
 	    </c:forEach>
-		</form>
+        </form>
 	</div>
+	
 	<div class="complet_work">
 		<div>할 일 완료</div>
 		<div class="checkwork">
@@ -260,7 +256,9 @@
 				 	 <c:forEach var="user1" items="${results}" varStatus="status">
 						<c:if test="${status.index ==1}">
 						<input type="hidden" name="userName" value="${user1.name}">
-						<input type="checkbox" name="complete" value="${divWorkList2}">
+						<c:if test="${divWorkList2 ne ''}">
+							<input type="checkbox" name="complete" value="${divWorkList2}">
+						</c:if>
 						</c:if>
 					</c:forEach> 
 					<label>${divWorkList2}</label>	 					
@@ -317,7 +315,9 @@
 				 	 <c:forEach var="user2" items="${results}" varStatus="status">
 						<c:if test="${status.index ==2}">
 						<input type="hidden" name="userName" value="${user2.name}">
-						<input type="checkbox" name="complete" value="${divWorkList3}">
+						<c:if test="${divWorkList3 ne ''}">
+							<input type="checkbox" name="complete" value="${divWorkList3}">
+						</c:if>
 						</c:if>
 					</c:forEach> 
 					<label>${divWorkList3}</label>	 					
@@ -373,7 +373,9 @@
 				 	 <c:forEach var="user3" items="${results}" varStatus="status">
 						<c:if test="${status.index ==3}">
 						<input type="hidden" name="userName" value="${user3.name}">
-						<input type="checkbox" name="complete" value="${divWorkList4}">
+						<c:if test="${divWorkList4 ne ''}">
+							<input type="checkbox" name="complete" value="${divWorkList4}">
+						</c:if>
 						</c:if>
 					</c:forEach> 
 					<label>${divWorkList4}</label>	 					
@@ -428,7 +430,9 @@
 				 	 <c:forEach var="user4" items="${results}" varStatus="status">
 						<c:if test="${status.index ==4}">
 						<input type="hidden" name="userName" value="${user4.name}">
-						<input type="checkbox" name="complete" value="${divWorkList5}">
+						<c:if test="${divWorkList5 ne ''}">
+							<input type="checkbox" name="complete" value="${divWorkList5}">
+						</c:if>
 						</c:if>
 					</c:forEach> 
 					<label>${divWorkList5}</label>	 					

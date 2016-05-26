@@ -1,0 +1,16 @@
+<div style="font-family: 'Lato', Calibri, Arial, sans-serif; padding: 20px; background: #f9f9f9;font-size: 15px;">
+    	<p style="
+		 	text-align: left;
+		    font-size: 40px;
+		    width: 100px;">
+		    <a href="http://192.168.0.100:9080/We2/" style="
+		    		font-weight: bold;
+		    		text-decoration:none;
+		    		color: #4CC4EE;">
+		    	We2
+	    	</a>
+	    </p>
+
+<br>
+<form action="http://192.168.0.100:9080/We2/project/addmember" method="POST" name="frm">
+<h1>We2 프로젝트에 당신을 초대합니다.</h1>

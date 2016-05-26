@@ -74,18 +74,26 @@ public class LoginController {
 	 */
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String loginget(LoginCommand loginCommand,
+	public String loginget(LoginCommand loginCommand, @RequestParam(value="pjtadd", defaultValue="false")String pjtadd, Model model,
 			@CookieValue(value = "REMEMBER", required = false) Cookie rememberCookie) {
 		if (rememberCookie != null) {
 			loginCommand.setUserId(rememberCookie.getValue());
 			loginCommand.setRememberUserid(true);
+		}
+		System.out.println("login.get cookie 지나감");
+		if(pjtadd.equals("pjtadd")){
+			System.out.println("login.get : pjtadd equals pjtadd");
+			model.addAttribute("pjtadd", "add");
+		}else{
+			System.out.println("login.get : pjtadd not equal pjtadd , actual : "+pjtadd);
+			pjtadd="";
 		}
 		return "registration/Member_Login";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String loginpost(LoginCommand loginCommand, Errors errors, HttpSession session,
-			HttpServletResponse response) {
+			HttpServletResponse response, String pjtadd) {
 		// 디버깅 여기까지 데이터가 옴!!
 		System.out.println("login" + "post방식으로 Logincontroller까지 옴!!");
 
@@ -120,7 +128,15 @@ public class LoginController {
 
 			logger.info("회원 " + authInfo.getUserId() + "로그인함.");
 			System.out.println("authInfo" + "authInfo값이 제대로 나오는지 디버깅!! 로그인 컨트롤러");
-			return "index";
+			
+			System.out.println("pjtadd : "+pjtadd);
+			if( pjtadd.equals("add")){
+				System.out.println("pjtadd 값이 pjtadd과 일치함. project/addpjtmember로 이동함.");
+				pjtadd=null;
+				return "redirect:/project/addpjtmember";
+			}
+			
+			return "/index";
 		} catch (IdPasswordNotMatchingException e) {
 			errors.reject("idPasswordNotMatching");
 			return "/index";

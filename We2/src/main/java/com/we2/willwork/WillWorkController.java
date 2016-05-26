@@ -41,6 +41,8 @@ public class WillWorkController {
    String divDoWork4="";
    String divDoWork5="";
   
+   
+   
    if(countPeople==1)
    {
    divDoWork1 = results.get(0).doWork; 
@@ -124,6 +126,7 @@ public class WillWorkController {
    model.addAttribute("divWorkList3", divWorkList3);
    model.addAttribute("divWorkList4", divWorkList4);
    model.addAttribute("divWorkList5", divWorkList5);*/
+   
    model.addAttribute("countPeople", countPeople);
    model.addAttribute("results", results);
    model.addAttribute("page", "../WillWork/WillWork");
@@ -136,8 +139,7 @@ public class WillWorkController {
       String name = request.getParameter("userName"); //�ش� ���� ����
       System.out.println("할일 : " +  doWork + " 이름 : " + name);
       
-     /* int pjtCode = Integer.parseInt((String)session.getAttribute("pjtCode"));*/
-      int pjtCode=20;
+      int pjtCode =(int)session.getAttribute("pjtCode");
       willWorkDAO.insertDoWork(name, doWork, pjtCode);
       return "redirect:/willwork/list";
    }
@@ -146,7 +148,7 @@ public class WillWorkController {
    public String DeletePost(HttpServletRequest request, Model model, HttpSession session) throws ParseException{
       String complete = request.getParameter("complete"); 
       String name = request.getParameter("userName");
-     int pjtCode=20;
+      int pjtCode =(int)session.getAttribute("pjtCode");
       
       List<WillWorkVO> One = willWorkDAO.selectOne(name, pjtCode); //������ ���� �� ����� ������ �� �ҷ���
       String doWork = One.get(0).doWork; //�� ����� ������ �� ����

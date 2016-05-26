@@ -9,11 +9,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
    <title>We2_메인화면</title>
-    <link rel="stylesheet" href="css/01_main_intro.css" type="text/css">
-    <link rel="stylesheet" href="css/w2_reset.css" type="text/css">
-    <link rel="stylesheet" href="css/w3_slide.css" type="text/css">
-    <link rel="stylesheet" type="text/css" href="css/w2_reset.css">
-<link rel="stylesheet" type="text/css" href="css/02_1_pjtMake.css">
+    <link rel="stylesheet" href="/We2/css/01_main_intro.css" type="text/css">
+    <link rel="stylesheet" href="/We2/css/w2_reset.css" type="text/css">
+    <link rel="stylesheet" href="/We2/css/w3_slide.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="/We2/css/02_1_pjtMake.css">
 
     <!-- 슬라이드 이미지를 위한 준비-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,9 +40,6 @@
 			</script>
 		<%
 	}
-%>
-
- <%
 	if(request.getAttribute("outout") != null){
 		%>
 			<script>
@@ -55,9 +51,13 @@
 </head>
         
 <body>
-
+<c:if test="${!alert.contains('hi') }">
+	${alert }
+	<c:set scope="session" var="alert" value="hi"/>
+</c:if>
 <!-- '프로젝트 만들기' 메뉴의 모달창 영역 -->
-<div class="modal_bg">
+<div class="modal_bg" >
+<table cellpadding='3px'></table>
 </div>
 
 <div id = "bigwrap">  <!-- 화면 디자인 틀을 잡아주는 id -->
@@ -97,15 +97,15 @@
       <div id = "slider">
     
         <div class="main_slider">
-            <img src="img/index/main_1.jpg">
-            <img src="img/index/main_2.jpg">
-            <img src="img/index/main_3.jpg">
-            <img src="img/index/main_4.jpg">
+            <img src="/We2/img/index/main_1.jpg">
+            <img src="/We2/img/index/main_2.jpg">
+            <img src="/We2/img/index/main_3.jpg">
+            <img src="/We2/img/index/main_4.jpg">
         </div>
         
         <div class="slider_control">
-            <span class="btn_prev"><a href="#"><img src="img/index/btn-left.png" style="width:40px;"></a></span>
-            <span class="btn_next"><a href="#"><img src="img/index/btn-right.png" style="width:40px"></a></span>
+            <span class="btn_prev"><a href="#"><img src="/We2/img/index/btn-left.png" style="width:40px;"></a></span>
+            <span class="btn_next"><a href="#"><img src="/We2/img/index/btn-right.png" style="width:40px"></a></span>
         </div>
         
           <div class ="img-txt"><b><span>Catch The Free Rider, We2</span></b></div>
@@ -125,22 +125,22 @@
             <div id = "box-wrap">
                 <div class = "box" style="background-color:#CE6628;">  <!-- 프로젝트 만들기 -->
                     <a class="makeButton">
-                         <img src = "img/index/icon_01.png" style="width:200px"> 
+                         <img src = "/We2/img/index/icon_01.png" style="width:200px"> 
                     </a>
                 </div>
                 <div class = "box" style="background-color:#E99323;"> <!-- 커뮤니티 -->
                     <a href="cBoard/list?page=1&category=cFindwork">
-                       <img src = "img/index/icon_02.png" style="width:200px">   
+                       <img src = "/We2/img/index/icon_02.png" style="width:200px">   
                     </a>
                 </div>
                 <div class = "box" style="background-color:#1591BE;"> <!-- 프로젝트 공유 -->
                     <a href="pjtBoard/list?page=1&category=pGroup">
-                      <img src = "img/index/icon_03.png" style="width:200px"> 
+                      <img src = "/We2/img/index/icon_03.png" style="width:200px"> 
                     </a>
                 </div>
                 <div class = "box" style="background-color:#166BA3; "> <!-- 스터디룸 공유 -->
                     <a href="studyroom/list?page=1">
-                      <img src = "img/index/icon_04.png" style="width:200px"> 
+                      <img src = "/We2/img/index/icon_04.png" style="width:200px"> 
                     </a>
                 </div>
             </div>  <!--box-wrap END-->
@@ -156,7 +156,7 @@
     
   </div><!--big wrap END-->  
   
-    <script type="text/javascript" src="js/jquery-1.12.1.min.js"></script> 
+    <script type="text/javascript" src="/We2/js/jquery-1.12.1.min.js"></script> 
     <!-- <script type="text/javascript" src="/We2/js/main_slider2.js"></script> -->
     
    
@@ -165,7 +165,7 @@
            <div class="pjtMakeInner">
                 <h1 style="margin-top:20px;">프로젝트 만들기</h1>
                 
-                <img src="img/index/x.png" id="exit2" style="width:10px;" >
+                <img src="/We2/img/index/x.png" id="exit2" style="width:10px;" >
                  
                 <div class="frame">
                   <div class="nameArea">
@@ -184,8 +184,8 @@
                   
                   <div class="imageArea">      
                      <label for="pjtTerm">프로젝트 기간</label>
-	   					<img src="img/index/calendar.png" class="img1" style="width:50px;">
-	   					<img src="img/index/calendar.png" class="img2" style="width:50px;">		
+	   					<img src="/We2/img/index/calendar.png" class="img1" style="width:50px;">
+	   					<img src="/We2/img/index/calendar.png" class="img2" style="width:50px;">		
 	   					<input type="text" size="7" name="startDate" id="term1" style="height:25px;">
                         <span> &nbsp;~ </span>
                     	<input type="text" size="7" name="endDate" id="term2" style="height:25px;">                          
@@ -216,7 +216,7 @@
      
  
     </body>
-<script src="js/jquery-1.12.2.min.js"></script>
+<!-- <script src="js/jquery-1.12.2.min.js"></script> -->
 <!-- jQuery UI CSS파일  -->
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
 <!--  jQuery 기본 js파일 -->
@@ -260,7 +260,7 @@ $(".pjtMakeInner").hide();
     
 </script>
 
-    <script type="text/javascript" src="js/main_slider2.js"></script>
+    <script type="text/javascript" src="/We2/js/main_slider2.js"></script>
     
     <script type="text/javascript">
        
