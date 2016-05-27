@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.we2.login.controller.LoginCommand;
 import com.we2.spring.AuthInfo;
 import com.we2.spring.MemberDao;
 import com.we2.utils.We2MailSender;
@@ -133,21 +134,22 @@ public class PjtCtrl {
 	}
 	
 	@RequestMapping(value="/addmember", method=RequestMethod.POST)
-	public String mailaddpost(Model model ){
-		System.out.println("/addmember.POST 시작");
+	public String mailaddpost(Model model, HttpServletRequest request){
+			System.out.println("/addmember.POST 시작");
 		int pjtCode=Integer.parseInt(request.getParameter("pjtCode"));
 			System.out.println("/project addmember POST pjtCode : " + pjtCode);
-		
+		String pjtadd=request.getParameter("pjtadd");
+			System.out.println("/project addmember POST pjtadd : " + pjtadd);
+			model.addAttribute("pjtadd", pjtadd);
+			//request.setAttribute("pjtadd", pjtadd);
+			
 		// 세션에 pjtCode 보냄.
 		session.setAttribute("pjtCode", pjtCode);
 		
 		if(session.getAttribute("authInfo")==null){
-			System.out.println("로그인 팝업 띄움");
-			model.addAttribute("pjtadd", "pjtadd");
-			//request.setAttribute("pjtadd", "pjtadd");
 			return "redirect:/login";
 		}
-		 
+		System.out.println("/project/addpjtmember로 redirect");
 		return "redirect:/project/addpjtmember";
 	}
 
@@ -163,9 +165,10 @@ public class PjtCtrl {
 		}
 		
 		// 현재 로그인중인 user의 userid를 뽑아냄.
-			AuthInfo authinfo = (AuthInfo)session.getAttribute("authInfo");
-			String userId = authinfo.getUserId();
-			String username = authinfo.getName();
+		AuthInfo authinfo = (AuthInfo)session.getAttribute("authInfo");
+		String userId = authinfo.getUserId();
+		String username = authinfo.getName();
+		
 		// 현재 로그인된 유저가 가입하려는 프로젝트에 가입되어있나 확인.
 		if(pDao.checkpjtmember(pjtCode, userId)!=null){
 			System.out.println("이 user는 해당 프로젝트에 이미 가입되어있음.");

@@ -30,9 +30,9 @@ public class WillWorkController {
    System.out.println("첫번째줄 너왔니?");
   
    int pjtCode =(int)session.getAttribute("pjtCode");
-   System.out.println("코드 세션테스트 : " + pjtCode);
-   //int pjtCode=20;
+   		System.out.println("코드 세션테스트 : " + pjtCode);
    int countPeople = willWorkDAO.selectPeople(pjtCode);
+   		System.out.println("이 프로젝트에 참여중인 사람수는 : "+countPeople);
    List<WillWorkVO> results = willWorkDAO.selectAll(pjtCode);
 
    String divDoWork1="";
@@ -40,21 +40,28 @@ public class WillWorkController {
    String divDoWork3="";
    String divDoWork4="";
    String divDoWork5="";
-  
    
    
    if(countPeople==1)
    {
+	   System.out.println("debug1..");
    divDoWork1 = results.get(0).doWork; 
+   		System.out.println("debug2..");
    String [] divWorkList1 = divDoWork1.split(","); 
+   		System.out.println("debug3..");
    model.addAttribute("divWorkList1", divWorkList1);
    }
    else if(countPeople==2)
    {
 	   divDoWork1 = results.get(0).doWork; 
+	   		System.out.println("debug2-1..");
 	   String [] divWorkList1 = divDoWork1.split(","); 
+	   		System.out.println("debug2-2..");
+	   		
 	   divDoWork2 = results.get(1).doWork;
+	   		System.out.println("debug2-3..");
 	   String [] divWorkList2 = divDoWork2.split(","); 
+	   		System.out.println("debug2-4..");
 	   model.addAttribute("divWorkList1", divWorkList1);
 	   model.addAttribute("divWorkList2", divWorkList2);
    }

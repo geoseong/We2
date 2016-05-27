@@ -52,28 +52,8 @@ public class LoginController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(Locale locale, HttpServletRequest request, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
-		String msgs = (String)request.getAttribute("msg");
-		System.out.println("msgs : "+msgs);
 		return "index";
 	}
-
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
-
-	/*
-	 * public String HomeController(Locale locale, Model model) { logger.info(
-	 * "Welcome home! The client locale is {}.", locale);
-	 * 
-	 * Date date = new Date(); DateFormat dateFormat =
-	 * DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-	 * 
-	 * String formattedDate = dateFormat.format(date);
-	 * 
-	 * model.addAttribute("serverTime", formattedDate );
-	 * 
-	 * return "home"; }
-	 */
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginget(HttpServletRequest request,LoginCommand loginCommand, @RequestParam(value="pjtadd", defaultValue="false")String pjtadd, Model model,
@@ -83,10 +63,10 @@ public class LoginController {
 			loginCommand.setRememberUserid(true);
 		}
 		if(pjtadd.equals("pjtadd")){
-			System.out.println("login.get : pjtadd equals pjtadd");
+			System.out.println("/login.get : pjtadd equals pjtadd");
 			model.addAttribute("pjtadd", "add");
 		}else{
-			System.out.println("login.get : pjtadd not equal pjtadd , actual : "+pjtadd);
+			System.out.println("/login.get : pjtadd not equal pjtadd , actual value - "+pjtadd);
 			pjtadd="";
 		}
 		return "registration/Member_Login";

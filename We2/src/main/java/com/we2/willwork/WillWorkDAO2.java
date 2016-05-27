@@ -46,10 +46,10 @@ public class WillWorkDAO2 {
                   rs.getString("doneWork"),
                   rs.getString("stateWork"),
                   rs.getString("name"));
-            return willWorkVO; //WillWorkVO�� DB���� ��ȸ�� ������ ����
+            return willWorkVO; 
             }
          },pjtCode);
-      //results�� ��ȯ
+      System.out.println("WillWorkDAO2] selectAll 결과 아무것도 없음? "+results.isEmpty());
       return results;
    }
    
@@ -149,14 +149,11 @@ public class WillWorkDAO2 {
             @Override
             public PreparedStatement createPreparedStatement(Connection con) 
                     throws SQLException {
-                // �Ķ���ͷ� ���޹��� Connection�� �̿��ؼ� PreparedStatement ����
                 PreparedStatement pstmt = con.prepareStatement(
                 "update willwork set dowork=? where name=?"
                  );
-                // �ε��� �Ķ���� �� ����
                 pstmt.setString(1, doWork);
                 pstmt.setString(2, name);
-                // ������ PreparedStatement ��ü ����
                 return pstmt;
             } //end createPreparedStatement()
         });
@@ -169,8 +166,7 @@ public class WillWorkDAO2 {
 	                    throws SQLException {
 	                // 파라미터로 전달받은 Connection을 이용해서 PreparedStatement 생성
 	                PreparedStatement pstmt = con.prepareStatement(
-                      "insert into willwork(userId,pjtCode,name) "
-	                		+"values(?, ?, ?)");
+                      "insert into willwork values(?, ?, '', '', '', ?)");
 	                // 인덱스 파라미터 값 설정
 	                pstmt.setString(1, userId);
 	                pstmt.setInt(2,  pjtCode);

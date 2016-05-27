@@ -14,3 +14,4 @@
 <br>
 <form action="http://192.168.0.100:9080/We2/project/addmember" method="POST" name="frm">
 <h1>We2 프로젝트에 당신을 초대합니다.</h1>
+<input type="hidden" name="pjtadd" value="pjtadd">

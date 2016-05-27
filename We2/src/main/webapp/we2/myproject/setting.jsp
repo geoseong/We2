@@ -77,20 +77,24 @@
 		       </td>
 	       </tr>
 	       
+		 <form action="" style="border-bottom:0; border-left:0;">
           <tr> 	   
       		<th rowspan="4">팀원 강퇴 </th>
+      		
+      		<%-- <c:forEach var="" items="">
+		        <td style="border:0;">
+		        <img src="/We2/img/${ }" class="ppl_1" style="width:70px;">
+		         <input type="checkbox" class="check" name="team_member" value="${userId }">${userId }
+	        </c:forEach>  --%>     		
+	        
 		        <td style="border:0;">
 			        <img src="../img/people_m1.png" class="ppl_1" style="width:70px;">
-					 <form action="" style="border-bottom:0; border-left:0;">
 					    <input type="checkbox" class="check" name="team_member" value="Bike">박태성
-					 </form>
 		        </td>
         
 		        <td style="border:0;">
 			        <img src="../img/people_m2.png" class="ppl_1" style="width:70px;">
-					 <form action="">
 					     <input type="checkbox" class="check"name="team_member" value="Bike">정준영
-				     </form>
 		        </td>
 		        
 		        <!-- 팀원강퇴하기 버튼 -->
@@ -103,16 +107,12 @@
 		<tr>
             <td style="border:0;">
 		        <img src="../img/people_w3.png" class="ppl_1" style="width:70px;">
-			    <form action="">
 			       	<input type="checkbox" class="check"name="team_member" value="Bike">전주영
-			     </form>
 	        </td>
         
 	        <td style="border:0;">
 		        <img src="../img/people_m3.png" class="ppl_1" style="width:70px;">
-			    <form action="">
 			      <input type="checkbox" class="check" name="team_member" value="Bike">박상혁
-		        </form>
 	        </td>
         
        </tr>
@@ -120,9 +120,7 @@
         <tr>
             <td style="border:0;" >
 		        <img src="../img/people_m5.png" class="ppl_1" style="width:70px;">
-			    <form action="">
 			       	<input type="checkbox" class="check" name="team_member" value="Bike">박규민
-			     </form>
 	        </td>
         
 	        <td style="border:0;">
@@ -132,11 +130,11 @@
 		        </form> -->
 	        </td>   
        </tr>
+			     </form>
         
    </table>
    
    </div> <!-- pjt_team end -->
-  </c:if>
    
    <h2>프로젝트 기간 수정</h2>
  
@@ -156,7 +154,7 @@
 	        </div>
      </div>  
      <!-- pjt_time end -->
-
+  </c:if>
 </body>
 
 <!-- jQuery UI CSS파일  -->
