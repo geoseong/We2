@@ -51,10 +51,17 @@
 </head>
         
 <body>
-<c:if test="${!alert.contains('hi') }">
-	${alert }
-	<c:set scope="session" var="alert" value="hi"/>
-</c:if>
+<c:choose>
+	<c:when test="${empty msg }">
+	</c:when>
+	<c:otherwise>
+		<script type='text/javascript'>
+			alert('${msg}');
+		</script>
+	</c:otherwise>
+</c:choose>
+		<c:set scope="request" var="alert" value="${false }"/>
+		
 <!-- '프로젝트 만들기' 메뉴의 모달창 영역 -->
 <div class="modal_bg" >
 <table cellpadding='3px'></table>
@@ -78,11 +85,11 @@
 	 <c:otherwise>
 	
 	 	<div id = "nav2">
-	 		<a href="Member_Mypage">마이페이지</a>
+	 		<a href="/We2/Member_Mypage">마이페이지</a>
             <!-- #########위에 로그인 header를 넣는다! -->
          </div>
         <div id = "nav3">
-            <a href="logout">로그아웃</a>
+            <a href="/We2/logout">로그아웃</a>
             <!-- #########위에 로그인 header를 넣는다! -->
         </div>
 	   </c:otherwise>

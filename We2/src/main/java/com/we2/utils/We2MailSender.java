@@ -93,7 +93,7 @@ public class We2MailSender{
 				"</td></tr></table>";
 			mailheader = mailheader + mailbody; 
 			
-			// 매일내용 뒷부분
+			// 메일내용 뒷부분
 			br = new BufferedReader(new FileReader(path+"myproject/mailcontent/footer"));
 			String mailfooter="";
 			// body부분이 들어있는 파일을 추가하는 작업.

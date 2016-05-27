@@ -185,6 +185,7 @@ public class PjtMakeDAO {
 				return pstmt;
 			}
 		});
+		System.out.println("addpjtMember Completed");
 	}
 	
 	
@@ -201,5 +202,23 @@ public class PjtMakeDAO {
 					return pstmt;
 				}
 			});
+		System.out.println("insertWillWork Completed");
+	}
+	
+	/** 이미 해당 프로젝트에 가입되어있는 지 확인 */
+	public String checkpjtmember(int pjtCode, String userId){
+		List<String> results = jdbcTemplate.query(
+				"select userId from pjtmanager where pjtcode=? and userid=?"
+				,
+				new RowMapper<String>() {
+					@Override
+					public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+						String leaderid=rs.getString("userid");
+						return leaderid;
+					}
+				}
+				, pjtCode, userId);
+		System.out.println("PjtMakeDAO] results.isempty? - "+results.isEmpty());
+		return results.isEmpty() ? null : results.get(0);
 	}
 }

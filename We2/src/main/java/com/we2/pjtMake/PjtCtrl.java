@@ -1,5 +1,7 @@
 package com.we2.pjtMake;
 
+import java.text.ParseException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.we2.spring.AuthInfo;
 import com.we2.spring.MemberDao;
 import com.we2.utils.We2MailSender;
+import com.we2.willwork.WillWorkDAO2;
 
 @Controller
 @RequestMapping("/project")
@@ -25,8 +28,8 @@ public class PjtCtrl {
 	PjtMakeDAO pDao;
 	@Autowired
 	MemberDao mDao;
-	/*@Autowired
-    private ServletContext servletContext;*/
+	@Autowired
+   	WillWorkDAO2 wDao;
 	@Autowired
     private We2MailSender emailSender;
 
@@ -130,9 +133,8 @@ public class PjtCtrl {
 	}
 	
 	@RequestMapping(value="/addmember", method=RequestMethod.POST)
-	public String mailaddpost(Model model){
+	public String mailaddpost(Model model ){
 		System.out.println("/addmember.POST 시작");
-		 /*int pjtCode = Integer.parseInt(request.getParameter("pjtCode"));*/
 		int pjtCode=Integer.parseInt(request.getParameter("pjtCode"));
 			System.out.println("/project addmember POST pjtCode : " + pjtCode);
 		
@@ -142,9 +144,10 @@ public class PjtCtrl {
 		if(session.getAttribute("authInfo")==null){
 			System.out.println("로그인 팝업 띄움");
 			model.addAttribute("pjtadd", "pjtadd");
+			//request.setAttribute("pjtadd", "pjtadd");
 			return "redirect:/login";
 		}
-		
+		 
 		return "redirect:/project/addpjtmember";
 	}
 
@@ -159,13 +162,24 @@ public class PjtCtrl {
 				System.out.println("/project addpjtmember.POST pjtcode : "+pjtCode);
 		}
 		
+		// 현재 로그인중인 user의 userid를 뽑아냄.
+			AuthInfo authinfo = (AuthInfo)session.getAttribute("authInfo");
+			String userId = authinfo.getUserId();
+			String username = authinfo.getName();
+		// 현재 로그인된 유저가 가입하려는 프로젝트에 가입되어있나 확인.
+		if(pDao.checkpjtmember(pjtCode, userId)!=null){
+			System.out.println("이 user는 해당 프로젝트에 이미 가입되어있음.");
+			model.addAttribute("msg", "이미 해당 프로젝트에 참여 중이십니다.");
+			return "index";
+		}else{
+			System.out.println("pDao.checkpjtmember가 null");
+		}
+		
 		if(session.getAttribute("authInfo")==null){
 			return "redirect:/login";
 		}else{
-			 AuthInfo authinfo = (AuthInfo)session.getAttribute("authInfo");
-			 String userId = authinfo.getUserId();
-			 
 			 pDao.addpjtMember(pjtCode, userId);
+			 wDao.adduserWillwork(userId, pjtCode, username);
 			 System.out.println("/project addpjtmember.POST insert 완료됨");
 		}
 		 /*String message=
@@ -174,7 +188,7 @@ public class PjtCtrl {
 				 + "self.close();"
 				 + "</script>";
 		 model.addAttribute("alert",message);*/
-		 
-		 return "redirect:/";
+		model.addAttribute("msg", "해당 프로젝트 가입이 완료되었습니다 마이페이지에서 확인 해 보세요.");
+		 return "index";
 	}
 }

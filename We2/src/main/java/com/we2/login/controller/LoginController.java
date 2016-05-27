@@ -50,8 +50,10 @@ public class LoginController {
 	private static final int String = 0;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String index(Locale locale) {
+	public String index(Locale locale, HttpServletRequest request, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
+		String msgs = (String)request.getAttribute("msg");
+		System.out.println("msgs : "+msgs);
 		return "index";
 	}
 
@@ -74,13 +76,12 @@ public class LoginController {
 	 */
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String loginget(LoginCommand loginCommand, @RequestParam(value="pjtadd", defaultValue="false")String pjtadd, Model model,
+	public String loginget(HttpServletRequest request,LoginCommand loginCommand, @RequestParam(value="pjtadd", defaultValue="false")String pjtadd, Model model,
 			@CookieValue(value = "REMEMBER", required = false) Cookie rememberCookie) {
 		if (rememberCookie != null) {
 			loginCommand.setUserId(rememberCookie.getValue());
 			loginCommand.setRememberUserid(true);
 		}
-		System.out.println("login.get cookie 지나감");
 		if(pjtadd.equals("pjtadd")){
 			System.out.println("login.get : pjtadd equals pjtadd");
 			model.addAttribute("pjtadd", "add");
