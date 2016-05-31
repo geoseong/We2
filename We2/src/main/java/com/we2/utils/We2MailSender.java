@@ -33,7 +33,7 @@ public class We2MailSender{
 	@Autowired
     private ServletContext servletContext;
 	
-	public void sendEmail(String captain, String[] usermail,PjtMakeVO pjtinfo,List<String> members)
+	public void sendEmail(String captain, String[] usermail, PjtMakeVO pjtinfo, List<String> members)
     {
 		// 첨부파일 및 이미지를 삽입하기 위한 클래스변수 MimeMessage 정의.
 		MimeMessage message = mailSender.createMimeMessage();
@@ -55,9 +55,7 @@ public class We2MailSender{
         	System.out.println("for문 끝.");
         	
 			// 메일내용 앞부분
-			String mailheader = 
-					"<strong>안녕하세요</strong>, 반갑습니다." 
-					+ "<br><img src='cid:abc'>";
+			String mailheader = "<strong>안녕하세요</strong>, 반갑습니다. <br><img src='cid:abc'>";
 			
 			// 메일내용 body부분 내용을 넣을 변수.
 			String mailbody=null;
@@ -72,25 +70,34 @@ public class We2MailSender{
 			
 			// 프로젝트 인원을 담는다.
 			String pjtmember="";
-			for(String memba : members){
-				pjtmember = pjtmember + memba;
+			/*for(String memba : members){
+				pjtmember = pjtmember + memba+", ";
+			}*/
+			System.out.println("member size : " + members.size());
+			for(int i=0; i<members.size(); i++){
+				if((i+1)!=members.size()){
+					pjtmember = pjtmember + members.get(i)+", ";
+				}else{
+					pjtmember = pjtmember + members.get(i);
+				}
 			}
-			System.out.println("pjtmember : " + pjtmember);
+			System.out.println("We2sender] pjtCode : " + pjtinfo.getPjtCode());
 			
 			// 메일내용에 변수를 넣어야 하는 부분은 직접 해준다 ㅜ
 			mailbody = 
-				"<input type='hidden' name='pjtCode' value='"+pjtinfo.getPjtCode()+"'>"+
+				/*"<input type='hidden' name='pjtCode' value='"+pjtinfo.getPjtCode()+"'>"+*/
 				"<strong>"+captain+"</strong> 님께서<br>"+
 				pjtinfo.getPjtClassify()+ " - <strong>"+ pjtinfo.getPjtName() + "</strong>"+
 				" 프로젝트에 당신을 초대하였습니다.<br><br>" +
 				"<span style='font-weight: bold; color: purple; font-size: large;'>프로젝트 정보</span><br>" +
-				"<table><tr><th>프로젝트 이름 </th><td style='padding:10px;'>  "+pjtinfo.getPjtName()+"</td></tr>"+
-				"<tr><th>시작일 </th><td style='padding:10px;'>  "+pjtinfo.getStartDate()+"</td></tr>"+
-				"<tr><th>마감일 </th><td style='padding:10px;'>  "+pjtinfo.getEndDate()+"</td></tr>"+
-				"<tr><th>팀원 </th><td style='padding:10px;'>"+
+				"<table><tr><th style='text-align: left;'>프로젝트 이름 </th><td style='padding:10px;'>  "+pjtinfo.getPjtName()+"</td></tr>"+
+				"<tr><th style='text-align: left;'>시작일 </th><td style='padding:10px;'>  "+pjtinfo.getStartDate()+"</td></tr>"+
+				"<tr><th style='text-align: left;'>마감일 </th><td style='padding:10px;'>  "+pjtinfo.getEndDate()+"</td></tr>"+
+				"<tr><th style='text-align: left;'>팀원 </th><td style='padding:10px;'>"+
 				pjtmember
 				+
-				"</td></tr></table>";
+				"</td></tr></table><p>"+
+				"<a href='http://192.168.0.100:9080/We2/project/addmember?pjtCode="+pjtinfo.getPjtCode()+"&pjtadd=yes' ";
 			mailheader = mailheader + mailbody; 
 			
 			// 메일내용 뒷부분
@@ -98,6 +105,7 @@ public class We2MailSender{
 			String mailfooter="";
 			// body부분이 들어있는 파일을 추가하는 작업.
 			while( (mailfooter=br.readLine()) != null ){
+				System.out.println("mailfooter : " + mailfooter);
 				mailheader = mailheader + mailfooter; 
 			}
 			
@@ -111,7 +119,7 @@ public class We2MailSender{
             // "보내는사람멜주소", "보내는사람이름"
             messageHelper.setFrom("We2", "We2_admin_Team");
             // "받는사람멜주소", "받는사람이름", "인코딩"
-            messageHelper.setTo(toList/*new InternetAddress(toList, "니임","UTF-8")*/);
+            messageHelper.setTo(toList);
             
             // htmlText에 들어갈 이미지 지정
             messageHelper.addInline("abc", new FileDataSource(path+"img/people_m2.png"));

@@ -81,7 +81,8 @@ public class PjtCtrl {
 			isleader="Y";
 			System.out.println("다시 묻습니다. 당신은 리더입니까? "+isleader);
 		}
-		
+			//명수 몇명인가 디버깅
+			System.out.println("해당 프로젝트의 멤버 명수는 : " + pDao.selectAllpjtMem(pjtCode).size());
 		/* request 영역에 보내기*/
 		// SQL : pjtMake의 정보 모두 select
 		model.addAttribute("pjtInfo", pDao.selectAllpjtInfo(pjtCode));
@@ -119,7 +120,7 @@ public class PjtCtrl {
 		String captain=authinfo.getName();
 			System.out.println("/project invitation.POST 현재 로그인된 사용자 : " + captain);
 		
-			// 선택된 유저들, pjtMake의 정보 모두 select , pjtManager의 회원정보 select
+		// 선택된 유저들, pjtMake의 정보 모두 select , pjtManager의 회원정보 select
 		emailSender.sendEmail(captain, usermails, pDao.selectAllpjtInfo(pjtCode), pDao.selectAllpjtMem(pjtCode));
 
 		// alert 메시지.
@@ -133,15 +134,15 @@ public class PjtCtrl {
 		 return "myproject/invitation";
 	}
 	
-	@RequestMapping(value="/addmember", method=RequestMethod.POST)
+	@RequestMapping(value="/addmember", method=RequestMethod.GET)
 	public String mailaddpost(Model model, HttpServletRequest request){
+		// 디버깅 시작	
 			System.out.println("/addmember.POST 시작");
 		int pjtCode=Integer.parseInt(request.getParameter("pjtCode"));
 			System.out.println("/project addmember POST pjtCode : " + pjtCode);
 		String pjtadd=request.getParameter("pjtadd");
 			System.out.println("/project addmember POST pjtadd : " + pjtadd);
 			model.addAttribute("pjtadd", pjtadd);
-			//request.setAttribute("pjtadd", pjtadd);
 			
 		// 세션에 pjtCode 보냄.
 		session.setAttribute("pjtCode", pjtCode);
@@ -149,7 +150,7 @@ public class PjtCtrl {
 		if(session.getAttribute("authInfo")==null){
 			return "redirect:/login";
 		}
-		System.out.println("/project/addpjtmember로 redirect");
+			System.out.println("/project/addpjtmember로 redirect");
 		return "redirect:/project/addpjtmember";
 	}
 
@@ -178,20 +179,15 @@ public class PjtCtrl {
 			System.out.println("pDao.checkpjtmember가 null");
 		}
 		
-		if(session.getAttribute("authInfo")==null){
+		/*if(session.getAttribute("authInfo")==null){
 			return "redirect:/login";
-		}else{
+		}else{*/
 			 pDao.addpjtMember(pjtCode, userId);
 			 wDao.adduserWillwork(userId, pjtCode, username);
-			 System.out.println("/project addpjtmember.POST insert 완료됨");
-		}
-		 /*String message=
-			 "<script type='text/javascript'>"
-				 +"alert('프로젝트에 일원이 되셨습니다. '마이페이지'에서 확인 해 보세요.');"
-				 + "self.close();"
-				 + "</script>";
-		 model.addAttribute("alert",message);*/
+			 System.out.println("/project addpjtmember.GET insert 완료됨");
+		/*}*/
+		 
 		model.addAttribute("msg", "해당 프로젝트 가입이 완료되었습니다 마이페이지에서 확인 해 보세요.");
-		 return "index";
+		return "index";
 	}
 }

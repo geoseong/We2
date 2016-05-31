@@ -62,9 +62,9 @@ public class LoginController {
 			loginCommand.setUserId(rememberCookie.getValue());
 			loginCommand.setRememberUserid(true);
 		}
-		if(pjtadd.equals("pjtadd")){
+		if(pjtadd.equals("yes")){
 			System.out.println("/login.get : pjtadd equals pjtadd");
-			model.addAttribute("pjtadd", "add");
+			model.addAttribute("pjtadd", "yes");
 		}else{
 			System.out.println("/login.get : pjtadd not equal pjtadd , actual value - "+pjtadd);
 			pjtadd="";
@@ -111,7 +111,7 @@ public class LoginController {
 			System.out.println("authInfo" + "authInfo값이 제대로 나오는지 디버깅!! 로그인 컨트롤러");
 			
 			System.out.println("pjtadd : "+pjtadd);
-			if( pjtadd.equals("add")){
+			if( pjtadd.equals("yes")){
 				System.out.println("pjtadd 값이 pjtadd과 일치함. project/addpjtmember로 이동함.");
 				pjtadd=null;
 				return "redirect:/project/addpjtmember";

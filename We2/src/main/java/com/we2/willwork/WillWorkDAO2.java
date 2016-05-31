@@ -159,7 +159,7 @@ public class WillWorkDAO2 {
         });
    }
    
-   public void adduserWillwork(String userId, int pjtCode, String username) {
+   public void adduserWillwork(final String userId, final int pjtCode, final String username) {
 	        jdbcTemplate.update(new PreparedStatementCreator() {
 	            @Override
 	            public PreparedStatement createPreparedStatement(Connection con) 

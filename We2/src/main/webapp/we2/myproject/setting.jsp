@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -62,79 +63,40 @@
    
 <c:if test="${isleader eq 'Y' }">
    <h2 style="float:left;">팀원 관리</h2>
-   
   	 <div class = "pjt_team">
-   
       	<table>
-       
 	       <tr>
 		       <th>팀원 추가 </th>
 		       <td  colspan="3">
-		       <form name="pjtfrm">
-		       		<input type="email" size="45" name="useremail" id="email_bg" style="width:75%; height:25px; float:left;">  		       	
-		       	    <input type="button" class="add_btn" value="회원검색..." size="20" onclick="return winOpen(document.pjtfrm.useremail.value)">
-		       </form>
+			       <form name="pjtfrm">
+			       		<input type="email" size="45" name="useremail" id="email_bg" style="width:75%; height:25px; float:left;">  		       	
+			       	    <input type="button" class="add_btn" value="회원검색..." size="20" onclick="return winOpen(document.pjtfrm.useremail.value)">
+			       </form>
 		       </td>
 	       </tr>
-	       
-		 <form action="" style="border-bottom:0; border-left:0;">
-          <tr> 	   
-      		<th rowspan="4">팀원 강퇴 </th>
-      		
-      		<%-- <c:forEach var="" items="">
-		        <td style="border:0;">
-		        <img src="/We2/img/${ }" class="ppl_1" style="width:70px;">
-		         <input type="checkbox" class="check" name="team_member" value="${userId }">${userId }
-	        </c:forEach>  --%>     		
-	        
-		        <td style="border:0;">
-			        <img src="../img/people_m1.png" class="ppl_1" style="width:70px;">
-					    <input type="checkbox" class="check" name="team_member" value="Bike">박태성
-		        </td>
-        
-		        <td style="border:0;">
-			        <img src="../img/people_m2.png" class="ppl_1" style="width:70px;">
-					     <input type="checkbox" class="check"name="team_member" value="Bike">정준영
-		        </td>
-		        
-		        <!-- 팀원강퇴하기 버튼 -->
-		        <td rowspan="4" style="width:8%; vertical-align:bottom; padding-right:20px; border-left:0;">
-	        	<input type="submit" class="add_btn" value="팀원강퇴" size="20" >
-	            </td>
-		        
+          <tr>
+	       <c:set var="memcnt" value="${pjtmem.size() }"></c:set>
+          	<fmt:parseNumber var="mod_memcnt" integerOnly="true" value="${memcnt/3 + mod_memcnt}" />
+      		<th rowspan="${mod_memcnt+1}">팀원 강퇴 </th>
+			 <form action="" style="border-bottom:0; border-left:0;">
+		   		<c:forEach var="i" begin="1" end="${pjtmem.size() }">
+			        <td style="border:0;">
+			        	<img src="/We2/img/people_m${i }.png" class="ppl_1" style="width:70px;">
+				         <input type="checkbox" class="check" name="team_member" value="${pjtmem.get(i-1) }">${pjtmem.get(i-1) }
+			         </td>
+	      		<c:if test="${(i%3)==0 }">
+	      			</tr><tr>
+	      		</c:if>
+		        </c:forEach>
         </tr>
-        
-		<tr>
-            <td style="border:0;">
-		        <img src="../img/people_w3.png" class="ppl_1" style="width:70px;">
-			       	<input type="checkbox" class="check"name="team_member" value="Bike">전주영
-	        </td>
-        
-	        <td style="border:0;">
-		        <img src="../img/people_m3.png" class="ppl_1" style="width:70px;">
-			      <input type="checkbox" class="check" name="team_member" value="Bike">박상혁
-	        </td>
-        
-       </tr>
-       
-        <tr>
-            <td style="border:0;" >
-		        <img src="../img/people_m5.png" class="ppl_1" style="width:70px;">
-			       	<input type="checkbox" class="check" name="team_member" value="Bike">박규민
-	        </td>
-        
-	        <td style="border:0;">
-		       <!--  <img src="../img/people_m6.png" class="ppl_1" style="width:70px;">
-			    <form action="">
-			      <input type="checkbox"  class="check" name="team_member" value="Bike">김동한
-		        </form> -->
-	        </td>   
-       </tr>
-			     </form>
-        
    </table>
-   
+        	<!-- 팀원강퇴하기 버튼 -->
+	        	<div style="float: right;">
+		        	<input type="submit" class="add_btn" value="팀원강퇴" size="20" >
+	        	</div>
+            </form>
    </div> <!-- pjt_team end -->
+   
    
    <h2>프로젝트 기간 수정</h2>
  

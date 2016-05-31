@@ -173,7 +173,7 @@ public class PjtMakeDAO {
 	
 	
 	/**회원 초대수락할때 멤버추가하기.*/
-	public void addpjtMember(int pjtCode, String userId){
+	public void addpjtMember(final int pjtCode, final String userId){
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			@Override
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {

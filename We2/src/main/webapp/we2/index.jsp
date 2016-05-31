@@ -62,6 +62,7 @@
 </c:choose>
 		<c:set scope="request" var="alert" value="${false }"/>
 		
+		<a style="text-decoration: none;"></a>
 <!-- '프로젝트 만들기' 메뉴의 모달창 영역 -->
 <div class="modal_bg" >
 <table cellpadding='3px'></table>
