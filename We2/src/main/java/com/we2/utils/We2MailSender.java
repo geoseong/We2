@@ -2,7 +2,6 @@ package com.we2.utils;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.activation.FileDataSource;
@@ -17,6 +16,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 
 import com.we2.pjtMake.PjtMakeVO;
+import com.we2.pjtMake.PjtMemDelVO;
 
 public class We2MailSender{
 
@@ -33,7 +33,7 @@ public class We2MailSender{
 	@Autowired
     private ServletContext servletContext;
 	
-	public void sendEmail(String captain, String[] usermail, PjtMakeVO pjtinfo, List<String> members)
+	public void sendEmail(String captain, String[] usermail, PjtMakeVO pjtinfo, List<PjtMemDelVO> members)
     {
 		// 첨부파일 및 이미지를 삽입하기 위한 클래스변수 MimeMessage 정의.
 		MimeMessage message = mailSender.createMimeMessage();
@@ -76,9 +76,9 @@ public class We2MailSender{
 			System.out.println("member size : " + members.size());
 			for(int i=0; i<members.size(); i++){
 				if((i+1)!=members.size()){
-					pjtmember = pjtmember + members.get(i)+", ";
+					pjtmember = pjtmember + members.get(i).getName()+", ";
 				}else{
-					pjtmember = pjtmember + members.get(i);
+					pjtmember = pjtmember + members.get(i).getName();
 				}
 			}
 			System.out.println("We2sender] pjtCode : " + pjtinfo.getPjtCode());

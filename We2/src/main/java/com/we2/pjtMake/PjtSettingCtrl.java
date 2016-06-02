@@ -1,6 +1,8 @@
 package com.we2.pjtMake;
 
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,8 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.we2.login.controller.LoginCommand;
 import com.we2.spring.AuthInfo;
 import com.we2.spring.MemberDao;
 import com.we2.utils.We2MailSender;
@@ -19,7 +21,7 @@ import com.we2.willwork.WillWorkDAO2;
 
 @Controller
 @RequestMapping("/project")
-public class PjtCtrl {
+public class PjtSettingCtrl {
 
 	@Autowired
 	HttpServletRequest request;
@@ -34,7 +36,7 @@ public class PjtCtrl {
 	@Autowired
     private We2MailSender emailSender;
 
-	/** pjtCode 세션 보내기 테스트용. */
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public String projectsession(HttpServletRequest request, Model model, HttpSession session) {
 		
@@ -58,7 +60,9 @@ public class PjtCtrl {
 	}
 	
 	@RequestMapping(value="/setting", method=RequestMethod.GET)
-	public String settingGet(Model model){
+	public String settingGet(Model model, 
+			@RequestParam(value="msg", defaultValue="false")String msg,
+			@RequestParam(value="delusers", defaultValue="false")String delusers){
 		
 		System.out.println("/project setting : welcome to setting method");
 		
@@ -92,6 +96,14 @@ public class PjtCtrl {
 		model.addAttribute("isleader",isleader);
 		// JSP:INCLUDE PAGE
 		model.addAttribute("page", "../myproject/setting");
+		// msg 보내기
+		if(msg.equals("done")){
+			model.addAttribute("msg", delusers+"의 탈퇴처리가 완료되었습니다");
+		}else if(msg.equals("periodfail")){
+			model.addAttribute("msg", "시작날짜와 종료날짜 둘 다 선택 해 주셔야 합니다.");
+		}else if(msg.equals("perioddone")){
+			model.addAttribute("msg", "프로젝트 기간수정이 완료되었습니다.");
+		}
 		return "myproject/myproject";
 	}
 	
@@ -153,7 +165,7 @@ public class PjtCtrl {
 			System.out.println("/project/addpjtmember로 redirect");
 		return "redirect:/project/addpjtmember";
 	}
-
+	
 	@RequestMapping(value="/addpjtmember", method=RequestMethod.GET)
 	public String mailadd(Model model){
 		int pjtCode=0;
@@ -189,5 +201,45 @@ public class PjtCtrl {
 		 
 		model.addAttribute("msg", "해당 프로젝트 가입이 완료되었습니다 마이페이지에서 확인 해 보세요.");
 		return "index";
+	}
+	
+	
+	@RequestMapping(value="/pjtmemDel", method=RequestMethod.GET)
+	public String pjtmemDel(Model model, String[] team_member){
+		int pjtCode = (Integer)session.getAttribute("pjtCode");
+		
+		String delusers = "";
+		
+		for(int i=0; i<team_member.length; i++){
+			System.out.println("/pjtmemDel team_member : " + team_member[i]);
+			if(delusers.length()<=1){
+				delusers = delusers + pDao.checkmembeforedel(pjtCode, team_member[i]);
+			}else{
+				delusers = delusers + " , "+pDao.checkmembeforedel(pjtCode, team_member[i]);
+			}
+			pDao.pjtmgrmemDel(pjtCode, team_member[i]);
+			pDao.pjtwillworkmemDel(pjtCode, team_member[i]);
+		}
+		System.out.println("지워진 유저들 : " + team_member.toString());
+		
+		// Model객체에 보내기
+		model.addAttribute("msg", "done");
+		model.addAttribute("delusers", delusers);
+		
+		return "redirect:/project/setting";
+	}
+	
+	@RequestMapping(value="/pjtPeriodModify", method=RequestMethod.POST)
+	public String pjtPeriodModify(Model model, 
+			@RequestParam(value="startDate", defaultValue="false")String startDate,
+			@RequestParam(value="endDate", defaultValue="false")String endDate) throws ParseException {
+		
+		int pjtCode = (Integer)session.getAttribute("pjtCode");
+		
+			pDao.updatePjtMake(startDate, endDate, pjtCode);
+			// Model객체에 보내기
+			model.addAttribute("msg", "perioddone");
+			
+		return "redirect:/project/setting";
 	}
 }

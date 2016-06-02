@@ -1,6 +1,5 @@
 package com.we2.sharepjtboard;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
 
@@ -18,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.we2.spring.AuthInfo;
-import com.we2.utils.MailSend;
-import com.we2.utils.MailSend.SMTPAuthenticator;
 
 @Controller
 @RequestMapping(value="/pjtBoard")
@@ -371,28 +368,4 @@ public class PjtBoardController {
 		return "test_modal/jqueryModal";
 	}
 	
-	@RequestMapping("/mailsend")
-	public void readfile() throws FileNotFoundException, IOException{
-		
-		/*ServletContext svpath= getServletContext();*/
-		String path=servletContext.getRealPath("we2/mailsend");
-		/*
-		FileReader fr = new FileReader(path);
-		BufferedReader br = new BufferedReader(fr);
-		
-		String context=null;
-		List<String> mailcontext = new ArrayList<String>();
-		
-		while( (context=br.readLine()) != null ){
-			mailcontext.add(context);
-		}
-		
-		for(int j=0; j<mailcontext.size(); j++){
-			System.out.println(mailcontext.get(j));
-		}*/
-		MailSend mailsend = new MailSend();
-		mailsend.main(path, "imf4@naver.com");
-		SMTPAuthenticator smtpauth = new SMTPAuthenticator();
-		smtpauth.getPasswordAuthentication();
-	}
 }

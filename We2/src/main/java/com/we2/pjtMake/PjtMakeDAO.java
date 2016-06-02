@@ -5,18 +5,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.apache.poi.util.SystemOutLogger;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
-
-import com.we2.spring.Member;
 
 public class PjtMakeDAO {
 	
@@ -113,7 +111,7 @@ public class PjtMakeDAO {
 	
 	/** 프로젝트 정보 뿌리기위한 DAO*/
 	public PjtMakeVO selectAllpjtInfo(int pjtCode){
-			System.out.println("PjtMakeDAO ] pjtCode : "+pjtCode);
+			System.out.println("PjtMakeDAO-selectAllpjtInfo ] pjtCode : "+pjtCode);
 		List<PjtMakeVO> results = jdbcTemplate.query(
 				"select * from pjtMake where pjtCode = ?"
 				,
@@ -136,16 +134,22 @@ public class PjtMakeDAO {
 	}
 	
 	/** 해당 프로젝트의 조원들 선택하기*/
-	public List<String> selectAllpjtMem(int pjtCode){
-		System.out.println("PjtMakeDAO ] pjtCode : "+pjtCode);
-		List<String> results = jdbcTemplate.query(
-				"select mem.name pjtmembers from pjtmanager mgr, member mem where mgr.userId=mem.userId and mgr.pjtcode = ?"
+	public List<PjtMemDelVO> selectAllpjtMem(int pjtCode){
+		System.out.println("PjtMakeDAO-selectAllpjtMem ] pjtCode : "+pjtCode);
+		List<PjtMemDelVO> results = jdbcTemplate.query(
+				"select mem.name pjtmembers, mgr.* from pjtmanager mgr, member mem where mgr.userId=mem.userId and mgr.pjtcode = ?"
 				,
-				new RowMapper<String>() {
+				new RowMapper<PjtMemDelVO>() {
 					@Override
-					public String mapRow(ResultSet rs, int rowNum) throws SQLException {
-						String pjtmembers=rs.getString("pjtmembers");
-						return pjtmembers;
+					public PjtMemDelVO mapRow(ResultSet rs, int rowNum) throws SQLException {
+						PjtMemDelVO pjtmemdelvo = 
+								new PjtMemDelVO(
+										rs.getString("pjtmembers"),
+										rs.getInt("pjtCode"),
+										rs.getString("userId"),
+										rs.getString("isLeader")
+										);
+						return pjtmemdelvo;
 					}
 				}
 				, pjtCode);
@@ -220,5 +224,83 @@ public class PjtMakeDAO {
 				, pjtCode, userId);
 		System.out.println("PjtMakeDAO] results.isempty? - "+results.isEmpty());
 		return results.isEmpty() ? null : results.get(0);
+	}
+	/** 프로젝트 제거전 제거멤버이름 확인*/
+	public String checkmembeforedel(int pjtCode, String userId){
+		List<String> results = jdbcTemplate.query(
+				"select mem.name pjtmembers from pjtmanager mgr, member mem "+
+					"where mgr.userId=mem.userId and mgr.pjtcode = ? and mgr.userId=?"
+				,
+				new RowMapper<String>() {
+					@Override
+					public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+						String leaderid=rs.getString("pjtmembers");
+						return leaderid;
+					}
+				}
+				, pjtCode, userId);
+		System.out.println("PjtMakeDAO] results.isempty? - "+results.isEmpty());
+		return results.isEmpty() ? null : results.get(0);
+	} 
+	
+	
+	/**프로젝트 멤버 삭제하기. - pjtManager 테이블*/
+	public void pjtmgrmemDel(final int pjtCode, final String userId){
+		System.out.println("pjtmemDel에서 받은 pjtCode : " + pjtCode);
+		System.out.println("pjtmemDel에서 받은 userId : " + userId);
+
+		jdbcTemplate.update(new PreparedStatementCreator() {
+			@Override
+			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+				PreparedStatement pstmt = con.prepareStatement(
+						"delete from pjtManager where pjtCode=? and userId=?"
+					);
+				pstmt.setInt(1, pjtCode);
+				pstmt.setString(2, userId);
+				return pstmt;
+			}
+		});
+			System.out.println("pjtmemDel pjtManager delete 완료");
+	}
+	/** 프로젝트 멤버 삭제하기. - WillWork 테이블*/
+	public void pjtwillworkmemDel(final int pjtCode, final String userId){
+		System.out.println("pjtmemDel에서 받은 pjtCode : " + pjtCode);
+		System.out.println("pjtmemDel에서 받은 userId : " + userId);
+
+		jdbcTemplate.update(new PreparedStatementCreator() {
+			@Override
+			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+				PreparedStatement pstmt = con.prepareStatement(
+						"delete from willwork where pjtCode=? and userId=?"
+					);
+				pstmt.setInt(1, pjtCode);
+				pstmt.setString(2, userId);
+				return pstmt;
+			}
+		});
+			System.out.println("pjtmemDel willwork delete 완료");
+	}
+	
+	/** 해당 프로젝트 시작&종료기간 수정*/
+	public void updatePjtMake(final String startDate, final String endDate, final int pjtCode) throws ParseException{
+	        jdbcTemplate.update(new PreparedStatementCreator() {
+	            @Override
+	            public PreparedStatement createPreparedStatement(Connection con) 
+	                    throws SQLException {
+	                // 파라미터로 전달받은 Connection을 이용해서 PreparedStatement 생성
+	                PreparedStatement pstmt = con.prepareStatement(
+                       "update pjtmake set "
+                       + "startDate=STR_TO_DATE(?,'%m/%d/%Y'), "
+                       + "endDate=STR_TO_DATE(?,'%m/%d/%Y') "
+                       + "where pjtcode=?");
+	                // 인덱스 파라미터 값 설정
+	                pstmt.setString(1, startDate);
+	                pstmt.setString(2, endDate);
+	                pstmt.setInt(3, pjtCode);
+	                
+	                // 생성한 PreparedStatement 객체 리턴
+	                return pstmt;
+	            } //end createPreparedStatement()
+	        });
 	}
 }

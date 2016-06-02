@@ -26,7 +26,17 @@
 
 </head>
 <body>
-  
+  <c:choose>
+	<c:when test="${empty msg }">
+	</c:when>
+	<c:otherwise>
+		<script type='text/javascript'>
+			alert('${msg}');
+		</script>
+	</c:otherwise>
+</c:choose>
+		<c:set scope="request" var="alert" value="${false }"/>
+		
    <h2 style="float:left;">프로젝트 정보</h2>
    
     <div class = "pjt_info">
@@ -52,7 +62,7 @@
 	      		 <td>
 	      		 &nbsp;&nbsp;&nbsp;
 					<c:forEach var="pjtmem" items="${pjtmem }" varStatus="status">
-						${pjtmem }<c:if test="${not status.last}">, </c:if>
+						${pjtmem.name }<c:if test="${not status.last}">, </c:if>
 					</c:forEach>
 				</td>
 	       </tr>
@@ -78,11 +88,11 @@
 	       <c:set var="memcnt" value="${pjtmem.size() }"></c:set>
           	<fmt:parseNumber var="mod_memcnt" integerOnly="true" value="${memcnt/3 + mod_memcnt}" />
       		<th rowspan="${mod_memcnt+1}">팀원 강퇴 </th>
-			 <form action="" style="border-bottom:0; border-left:0;">
+		<form action="pjtmemDel" style="border-bottom:0; border-left:0;">
 		   		<c:forEach var="i" begin="1" end="${pjtmem.size() }">
 			        <td style="border:0;">
 			        	<img src="/We2/img/people_m${i }.png" class="ppl_1" style="width:70px;">
-				         <input type="checkbox" class="check" name="team_member" value="${pjtmem.get(i-1) }">${pjtmem.get(i-1) }
+				         <input type="checkbox" class="check" name="team_member" value="${pjtmem.get(i-1).getUserId() }">${pjtmem.get(i-1).getName() }
 			         </td>
 	      		<c:if test="${(i%3)==0 }">
 	      			</tr><tr>
@@ -94,12 +104,12 @@
 	        	<div style="float: right;">
 		        	<input type="submit" class="add_btn" value="팀원강퇴" size="20" >
 	        	</div>
-            </form>
+       </form>
    </div> <!-- pjt_team end -->
    
    
    <h2>프로젝트 기간 수정</h2>
- 
+ 	<form method="post" action="pjtPeriodModify">
       <div id = "pjt_time">
       
 	      <div class="imageArea">               
@@ -108,13 +118,14 @@
 		   </div>
        
 	        <div class="time">   
-		   		<input type="text" size="7" name="term1" id="term1" style="height:25px;">               
+		   		<input type="text" size="7" name="startDate" id="term1" style="height:25px;">               
 	           		 <span> ~ </span>            
 	            <input type="text" size="7" name="endDate" id="term2" style="height:25px;"> 
 	            
 	            <input type="submit" class="add_btn" value="수정하기" size="20" style="margin-right:5px;" >                             
 	        </div>
      </div>  
+     </form>
      <!-- pjt_time end -->
   </c:if>
 </body>

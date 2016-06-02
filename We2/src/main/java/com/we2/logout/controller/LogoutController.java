@@ -26,12 +26,12 @@ public class LogoutController {
 		return "index";
 	} // end logout()
 
-	@RequestMapping(value = "Delete_form", method = RequestMethod.GET)
+	@RequestMapping(value = "/Delete_form", method = RequestMethod.GET)
 	public String Delete_form() {
 		return "registration/Member_DeleteAggrement";
 	}
 
-	@RequestMapping(value = "Member_delete", method = RequestMethod.POST)
+	@RequestMapping(value = "/Member_delete", method = RequestMethod.POST)
 	public String Member_delete(Member member, HttpServletRequest request , Model model) {
 
 		HttpSession session = request.getSession(); // �꽭�뀡�쁺�뿭�쓣 媛��졇�샂

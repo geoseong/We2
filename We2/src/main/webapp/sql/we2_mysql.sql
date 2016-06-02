@@ -31,6 +31,11 @@ desc pjtmake;
 SET foreign_key_checks = 1;
 drop table pjtmake;
 
+/* 외래키 추가*/
+ALTER TABLE pjtmanager add constraint mgr_will_pjtcode FOREIGN KEY(pjtCode) 
+references willwork(pjtcode) on delete cascade ;
+
+/* 외래키 삭제 */
 ALTER TABLE pjtmake DROP pjtCode;
 ALTER TABLE pjtmake DROP FOREIGN KEY pjtmanager_ibfk_1;
 drop table pjtmake ON DELETE CASCADE ON UPDATE CASCADE;
