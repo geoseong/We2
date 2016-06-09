@@ -28,7 +28,7 @@ public class NoticeDao {
 				rs.getString("title"),
 				rs.getString("writer"),
 				rs.getString("content"),
-				rs.getTimestamp("writedate"),
+				rs.getString("writedate"),
 				rs.getInt("pjtCode")
 				);
 			return noticedto;

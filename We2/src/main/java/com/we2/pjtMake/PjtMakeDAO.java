@@ -111,7 +111,6 @@ public class PjtMakeDAO {
 	
 	/** 프로젝트 정보 뿌리기위한 DAO*/
 	public PjtMakeVO selectAllpjtInfo(int pjtCode){
-			System.out.println("PjtMakeDAO-selectAllpjtInfo ] pjtCode : "+pjtCode);
 		List<PjtMakeVO> results = jdbcTemplate.query(
 				"select * from pjtMake where pjtCode = ?"
 				,
@@ -135,7 +134,6 @@ public class PjtMakeDAO {
 	
 	/** 해당 프로젝트의 조원들 선택하기*/
 	public List<PjtMemDelVO> selectAllpjtMem(int pjtCode){
-		System.out.println("PjtMakeDAO-selectAllpjtMem ] pjtCode : "+pjtCode);
 		List<PjtMemDelVO> results = jdbcTemplate.query(
 				"select mem.name pjtmembers, mgr.* from pjtmanager mgr, member mem where mgr.userId=mem.userId and mgr.pjtcode = ?"
 				,

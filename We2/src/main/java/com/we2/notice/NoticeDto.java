@@ -8,13 +8,13 @@ public class NoticeDto {
 	private String title;
 	private String writer;
 	private String content;
-	private Timestamp writedate;
+	private String writedate;
 	private int pjtCode ;
 	
 	public NoticeDto() {
 	}
 
-	public NoticeDto(int num, String title, String writer, String content, Timestamp writedate, int pjtCode) {
+	public NoticeDto(int num, String title, String writer, String content, String writedate, int pjtCode) {
 		super();
 		this.num = num;
 		this.title = title;
@@ -56,11 +56,11 @@ public class NoticeDto {
 		this.content = content;
 	}
 
-	public Timestamp getWritedate() {
+	public String getWritedate() {
 		return writedate;
 	}
 
-	public void setWritedate(Timestamp writedate) {
+	public void setWritedate(String writedate) {
 		this.writedate = writedate;
 	}
 

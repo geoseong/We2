@@ -40,7 +40,27 @@
 	       <property name="subject" value="messages..."/>
 	       <property name="text" value="Body...."></property>
 	</bean>
-
 	<bean id="emailSender" class="com.we2.utils.We2MailSender" />
-	<!-- <bean id="email" class="test.send.mail.MailBean" /> -->
+
+
+	<!-- Excel 파일생성 bean객체 삽입 -->
+		
+		<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		    <property name="order" value="0"/>
+		    <property name="defaultErrorView" value="error"/>
+		    <property name="exceptionMappings">
+		        <props>
+		               <prop key="RuntimeException">error</prop>
+		        </props>
+		    </property>
+		</bean>
+		
+		<bean name="dao" class="com.we2.utils.ExcelDAO">
+			<constructor-arg ref="dataSource"/>
+		</bean>
+		
+		<bean name="excelView" class="com.we2.utils.ExcelView"/>
+		<bean name="service" class="com.we2.utils.ExcelService"/>
+	<!-- Excel 파일생성 bean객체 삽입 -->	
+	
 </beans>

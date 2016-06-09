@@ -8,7 +8,7 @@
 <title>We2 error page</title>
 <style type="text/css">
 #atag:hover{
-    text-decoration: underline;
+    text-decoration: none;
     color: rgb(0, 117, 200);
 }
 </style>
@@ -19,7 +19,7 @@
 	<h1>Welcome to We2 Error page ^^</h1><br>
 	
 	<span style="font-size: 12pt; color: rgb(0, 117, 200);">
-		<a href="/We2" style="text-decoration: none;" id="atag">
+		<a href="/We2"  id="atag">
 		<b>이전 페이지로 돌아가기</b>
 		</a>
 	</span>

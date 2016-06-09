@@ -61,7 +61,7 @@
 							<tr>
 								<th>글내용 </th>
 								<td colspan="3">
-								  ${BoardContent.getItemContent()}
+								  ${content}
 								</td>
 							</tr>
 						</table>

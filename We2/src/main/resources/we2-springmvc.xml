@@ -19,28 +19,20 @@
 	<mvc:default-servlet-handler/>
 
 	<!-- Excel 파일생성 bean객체 삽입 -->
-		<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+		<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+			<property name="order" value="1"/>
+		</bean>
+		
 	<!-- View Resolver 설정 -->
-	<mvc:view-resolvers>
+		<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+			<property name="prefix" value="/we2/"/>
+			<property name="suffix" value=".jsp"/>
+			<property name="order" value="2"/>
+		</bean>
+	<!-- <mvc:view-resolvers>
 		<mvc:jsp prefix="/we2/" />
-	</mvc:view-resolvers>
+	</mvc:view-resolvers> -->
 	
-	<!-- Excel 파일생성 bean객체 삽입 -->
-		<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-		    <property name="order" value="0"/>
-		    <property name="defaultErrorView" value="error"/>
-		    <property name="exceptionMappings">
-		        <props>
-		               <prop key="RuntimeException">error</prop>
-		        </props>
-		    </property>
-		</bean>
-		<bean name="excelView" class="com.we2.utils.ExcelView"/>
-		<bean name="dao" class="com.we2.utils.ExcelDAO">
-			<constructor-arg ref="dataSource"/>
-		</bean>
-		<bean name="service" class="com.we2.utils.ExcelService"/>
-	<!-- Excel 파일생성 bean객체 삽입 -->
 	
 	
 <!-- label.properties 설정 -->

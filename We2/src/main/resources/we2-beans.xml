@@ -92,6 +92,7 @@
 		<bean id="noticeDao" class="com.we2.notice.NoticeDao">
 			<constructor-arg ref="dataSource" />
 		</bean>
+		
 <!-- end : 의존주입 -->
 
 

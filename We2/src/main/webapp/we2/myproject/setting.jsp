@@ -18,7 +18,7 @@
 			alert("이메일주소는 입력되어야 합니다.");
 			return false;
 		}
-		javascript:window.open(url , '프로젝트 멤버초대.', 'width=600 height=270 left=150 top=100 menubar=no location=no, resizable=no, toolbar=no');
+		javascript:window.open(url , '프로젝트 멤버초대.', 'location=no, width=600, height=270, left=150, top=100, menubar=no, location=no, resizable=no, toolbar=no');
 		return true;
 	}
 
@@ -70,16 +70,27 @@
    
     </div> <!-- pjt_info end -->
    
+   <div class="summary" >
+   		<h2>프로젝트정보 요약본 다운로드</h2>
+   		<form action="/We2/excel_transform">
+   			<fieldset>
+   				<input type="hidden" name="target" value="pjtexport">
+	   			<input type="hidden" name="pjtname" value="${pjtInfo.pjtName }">
+	   			<input type="submit" class="add_btn" value="다운로드" size="20"  style="margin-left: 30%;"/>
+   			</fieldset>
+   		</form>
+   </div>
    
+    
 <c:if test="${isleader eq 'Y' }">
-   <h2 style="float:left;">팀원 관리</h2>
-  	 <div class = "pjt_team">
+  	 <div class = "pjt_team" >
+	   <h2 style="float:left;">팀원 관리</h2>
       	<table>
 	       <tr>
 		       <th>팀원 추가 </th>
 		       <td  colspan="3">
 			       <form name="pjtfrm">
-			       		<input type="email" size="45" name="useremail" id="email_bg" style="width:75%; height:25px; float:left;">  		       	
+			       		<input type="text" size="45" name="useremail" id="email_bg" style="width:75%; height:25px; float:left;">  		       	
 			       	    <input type="button" class="add_btn" value="회원검색..." size="20" onclick="return winOpen(document.pjtfrm.useremail.value)">
 			       </form>
 		       </td>
@@ -118,9 +129,9 @@
 		   </div>
        
 	        <div class="time">   
-		   		<input type="text" size="7" name="startDate" id="term1" style="height:25px;">               
-	           		 <span> ~ </span>            
-	            <input type="text" size="7" name="endDate" id="term2" style="height:25px;"> 
+		   		<input type="text" size="7" name="startDate" id="term1" style="height:25px; margin-top: 20px;">               
+	           		 <span> ~ </span>    
+	            <input type="text" size="7" name="endDate" id="term2" style="height:25px; margin-top: 20px;"> 
 	            
 	            <input type="submit" class="add_btn" value="수정하기" size="20" style="margin-right:5px;" >                             
 	        </div>

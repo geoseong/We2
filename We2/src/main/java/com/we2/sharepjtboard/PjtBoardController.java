@@ -178,7 +178,13 @@ public class PjtBoardController {
 		// SQL 사용, 결과를 보냄
 		//1. 조회수추가, 2. select_by_num
 			boardService.count_plus(category, itemNum);
+
 			model.addAttribute("BoardContent", boardService.select_by_num(category, itemNum));
+			
+		// <br>내용이 포함된 내용 보내기.
+			String content=boardService.select_by_num(category, itemNum).getItemContent().replace("\r\n", "<br>");
+			model.addAttribute("content", content);
+			
 		// JSP:INCLUDE PAGE
 			model.addAttribute("Boardpage", "content");
 		// category 보냄
