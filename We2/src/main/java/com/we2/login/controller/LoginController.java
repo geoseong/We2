@@ -95,7 +95,7 @@ public class LoginController {
 
 			// 세션영역에 회원정보 추가
 			session.setAttribute("authInfo", authInfo);
-			System.out.println("authInfo" + (AuthInfo) session.getAttribute("authInfo"));
+				System.out.println("authInfo" + (AuthInfo) session.getAttribute("authInfo"));
 			// 폼에 자동완성을 원하면 쿠키에 30일동안 userid를 보이게 함.
 			Cookie rememberCookie = new Cookie("REMEMBER", loginCommand.getUserId());
 			rememberCookie.setPath("/"); // 해당 쿠키의 적용범위
@@ -108,7 +108,6 @@ public class LoginController {
 			response.addCookie(rememberCookie);
 
 			logger.info("회원 " + authInfo.getUserId() + "로그인함.");
-			System.out.println("authInfo" + "authInfo값이 제대로 나오는지 디버깅!! 로그인 컨트롤러");
 			
 			System.out.println("pjtadd : "+pjtadd);
 			if( pjtadd.equals("yes")){

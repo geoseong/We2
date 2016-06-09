@@ -136,10 +136,12 @@ function winOpen2(calendarmemo_num){
 			<c:if test="${month==content.getCalendarmemo_month()}">
 				<c:if test="${j==content.getCalendarmemo_day()}">
 					<a class="name_1" href="#" onclick='javascript:winOpen2("${content.getCalendarmemo_num()}")'>
-						${content.getCalendarmemo_contents() }
+					→ ${content.getCalendarmemo_contents() }
 					</a>
+					<br>
 				</c:if>
 			</c:if>
+			
 		</c:forEach>
 	  </td>  
 	  </div>  <!-- date end -->

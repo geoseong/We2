@@ -59,7 +59,11 @@
 							
 							<tr>
 								<th align="center">이름</th>
-								<td style="text-align:left;"><input name="writer" size="30" maxlength="100"></td>
+								<td style="text-align:left;">
+									<!-- <input name="writer" size="30" maxlength="100"> -->
+									<input type="hidden" name="writer" value="${authInfo.userId }">
+									${authInfo.userId }
+								</td>
 							</tr>
 <!-- 							
 							

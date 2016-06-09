@@ -53,6 +53,10 @@ public class NoticeController {
 		int pjtCode = (Integer)session.getAttribute("pjtCode");
 			System.out.println("/notice view pjtcode : "+pjtCode);
 		
+		// <br>내용이 포함된 내용 보내기.
+		String content=noticeDao.view(num, pjtCode).get(0).getContent().replace("\r\n", "<br>");
+		model.addAttribute("contentbr", content);
+		
 		model.addAttribute("num", num);
 		model.addAttribute("page", "../notice/view");
 		model.addAttribute("content", noticeDao.view(num, pjtCode));

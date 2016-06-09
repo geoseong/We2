@@ -119,10 +119,17 @@ public class PjtBoardController {
 		
 		System.out.println("Write.get] category : " + request.getParameter("category"));
 		
+		String boardname=null;
+		if(category.equals("pGroup")){			boardname="조별과제";
+		}else if(category.equals("pTest")){			boardname="시험공부";
+		}else if(category.equals("pWithWork")){			boardname="회사협업";
+		}
+
 		// JSP:INCLUDE PAGE
 		  model.addAttribute("Boardpage", "write");
 		// category 보냄
 		  model.addAttribute("category", category); 
+		  model.addAttribute("boardname", boardname);
 		return "pjtBoard/boardmain";
 	}
 	
@@ -175,6 +182,12 @@ public class PjtBoardController {
 		System.out.println("Content.GET] itemNum : "+itemNum);
 		System.out.println("Content.GET] category : " + category);
 		
+		String boardname=null;
+		if(category.equals("pGroup")){			boardname="조별과제";
+		}else if(category.equals("pTest")){			boardname="시험공부";
+		}else if(category.equals("pWithWork")){			boardname="회사협업";
+		}
+		
 		// SQL 사용, 결과를 보냄
 		//1. 조회수추가, 2. select_by_num
 			boardService.count_plus(category, itemNum);
@@ -189,6 +202,7 @@ public class PjtBoardController {
 			model.addAttribute("Boardpage", "content");
 		// category 보냄
 		  model.addAttribute("category", category);
+		  model.addAttribute("boardname", boardname);
 		return "pjtBoard/boardmain";
 	}
 	
@@ -197,6 +211,12 @@ public class PjtBoardController {
 		System.out.println("Modify.GET] category : " + category);
 		System.out.println("Modify.GET] itemNum : " + itemNum);
 		
+		String boardname=null;
+		if(category.equals("pGroup")){			boardname="조별과제";
+		}else if(category.equals("pTest")){			boardname="시험공부";
+		}else if(category.equals("pWithWork")){			boardname="회사협업";
+		}
+		
 		model.addAttribute("BoardUpdate", boardService.select_by_num(category, itemNum));
 		
 		// JSP:INCLUDE PAGE
@@ -204,6 +224,7 @@ public class PjtBoardController {
 		// category 보냄
 		  model.addAttribute("category", category);
 		  model.addAttribute("itemNum",itemNum);
+		  model.addAttribute("boardname", boardname);
 		return "pjtBoard/boardmain";
 	}
 	
@@ -296,6 +317,15 @@ public class PjtBoardController {
 		System.out.println("find값 : " + find);				
 		System.out.println("findword값 : " + findword);	
 		
+		// ____ 게시판 표시하기
+		String boardname=null;
+		if(category.equals("pGroup")){			boardname="조별과제";
+		}else if(category.equals("pTest")){			boardname="시험공부";
+		}else if(category.equals("pWithWork")){			boardname="회사협업";
+		}
+		model.addAttribute("boardname", boardname);
+		
+
 		System.out.println("find.GET] page : " + page);
 		// 시작 rownum 받아오기
 			int row_start= paging.getFirstRowInPage(page, rows_per_page);

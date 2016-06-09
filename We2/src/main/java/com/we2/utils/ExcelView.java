@@ -115,6 +115,6 @@ public class ExcelView extends AbstractExcelView{
         }
         //  다운로드를 구현하였기때문에 response 객체에 몇가지 설정을 추가하였다.
         response.setContentType("Application/Msexcel");
-        response.setHeader("Content-Disposition", "ATTachment; Filename="+excelName+"_info.xls");
+        response.setHeader("Content-Disposition", "ATTachment; Filename=We2_"+excelName+"_info.xls");
 	}
 }

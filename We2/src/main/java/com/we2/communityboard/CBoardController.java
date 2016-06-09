@@ -121,6 +121,14 @@ public class CBoardController {
 		
 		System.out.println("Write.get] category : " + category);
 		
+		String boardname=null;
+		if(category.equals("cFindwork")){   // 팀원 구하기 게시판
+					boardname="팀원구하기";
+		}else if(category.equals("cFreework")){   // 자유게시판
+			boardname="자유";
+		}
+		model.addAttribute("boardname", boardname);
+		
 		// JSP:INCLUDE PAGE
 		  model.addAttribute("Boardpage", "write");
 		// category 보냄
@@ -178,6 +186,18 @@ public class CBoardController {
 		System.out.println("Content.GET] itemNum : "+itemNum);
 		System.out.println("Content.GET] category : " + category);
 		
+		String boardname=null;
+		if(category.equals("cFindwork")){   // 팀원 구하기 게시판
+					boardname="팀원구하기";
+		}else if(category.equals("cFreework")){   // 자유게시판
+			boardname="자유";
+		}
+		model.addAttribute("boardname", boardname);
+		
+		// <br>내용이 포함된 내용 보내기.
+		String content=boardService.select_by_num(category, itemNum).getItemContent().replace("\r\n", "<br>");
+		model.addAttribute("content", content);
+		
 		// SQL 사용, 결과를 보냄
 		//1. 조회수추가, 2. select_by_num
 			boardService.count_plus(category, itemNum);
@@ -195,6 +215,14 @@ public class CBoardController {
 		System.out.println("Modify] itemNum : " + itemNum);
 		
 		model.addAttribute("BoardUpdate", boardService.select_by_num(category, itemNum));
+		
+		String boardname=null;
+		if(category.equals("cFindwork")){   // 팀원 구하기 게시판
+					boardname="팀원구하기";
+				}else if(category.equals("cFreework")){   // 자유게시판
+					boardname="자유";
+				}
+		model.addAttribute("boardname", boardname);
 		
 		// JSP:INCLUDE PAGE
 		model.addAttribute("Boardpage", "modify");
@@ -294,6 +322,14 @@ public class CBoardController {
 		}
 		System.out.println("find값 : " + find);				
 		System.out.println("findword값 : " + findword);	
+		
+		String boardname=null;
+		if(category.equals("cFindwork")){   // 팀원 구하기 게시판
+					boardname="팀원구하기";
+		}else if(category.equals("cFreework")){   // 자유게시판
+			boardname="자유";
+		}
+		model.addAttribute("boardname", boardname);
 		
 		System.out.println("find.GET] page : " + page);
 		// 시작 rownum 받아오기

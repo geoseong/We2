@@ -60,7 +60,7 @@
 							</tr>
 							<tr>
 								<th>글내용 </th>
-								<td colspan="3">
+								<td colspan="3" style="text-align: left">
 								  ${content}
 								</td>
 							</tr>
@@ -88,6 +88,10 @@
 							</c:when>
 							
 							<c:when test="${BoardContent.getItemDataType().contains('sheet') }">
+								<img src="/We2/img/board/icon_xls.png" class="board_img" style="width: 70px;">
+							</c:when>
+							
+							<c:when test="${BoardContent.getItemDataType().contains('excel') }">
 								<img src="/We2/img/board/icon_xls.png" class="board_img" style="width: 70px;">
 							</c:when>
 							
@@ -120,11 +124,17 @@
 			
 				<br>
 				<div class="write_btn" style="text-align:center;">
-				<input type="submit" value="수정하기" >
-				<input type="button" value="목록"  onclick="location.href='/We2/pjtBoard/list?page=1&category=${category}'">
-				<input type="button" value="제거하기"  onclick="location.href='delete?itemNum=${BoardContent.getItemNum() }&category=${category}'">
+			<c:choose>
+				<c:when test="${BoardContent.userId eq authInfo.userId }">
+					<input type="submit" value="수정하기" >
+					<input type="button" value="목록"  onclick="location.href='/We2/pjtBoard/list?page=1&category=${category}'">
+					<input type="button" value="제거하기"  onclick="location.href='delete?itemNum=${BoardContent.getItemNum() }&category=${category}'">
+				</c:when>
+				<c:otherwise>
+					<input type="button" value="목록"  onclick="location.href='/We2/pjtBoard/list?page=1&category=${category}'">
+				</c:otherwise>
+			</c:choose>
 		        </div> 
-		
 		</form>
 		<%-- </form:form> --%>
 <!--  게시판 영역 끝 -->

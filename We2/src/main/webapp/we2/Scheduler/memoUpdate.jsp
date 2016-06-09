@@ -41,7 +41,7 @@
   
     <div class = "button">
 	    <input name="add" class="add_btn" type=submit value="수정완료" onclick="return ScheduleCheck()">
-	    <input name="cancel" class="add_btn" type="reset" value="다시작성">
+	   <!--  <input name="cancel" class="add_btn" type="reset" value="다시작성"> -->
 	    <input name="delete" class="add_btn" type="button"  value="삭제"  onclick="location.href='memoDelete.do?calendarmemo_num='+${calendarmemo.calendarmemo_num}">
     </div>
 

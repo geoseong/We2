@@ -78,14 +78,21 @@
 						
 						<tr>
 							<th>내용</th>
-							<td width="399" colspan="2" height="200">${content.content }</td>
+							<td width="399" colspan="2" height="200" style="text-align: left">${contentbr }</td>
 						</tr>
 
                        </table>
 						<div class="c_btn">
-						<input class="add_btn" type="button" value="목록" onclick="location.href='/We2/notice/list';"> 
-						<input class="add_btn" type="button" value="수정" onclick="location.href='/We2/notice/modify_view?num=${content.num }';"> 
-						<input class="add_btn" type="button" value="삭제" onclick="location.href='/We2/notice/delete?num=${content.num }';">
+						<c:choose>
+						<c:when test="${content.writer eq authInfo.userId }">
+							<input class="add_btn" type="button" value="목록" onclick="location.href='/We2/notice/list';"> 
+							<input class="add_btn" type="button" value="수정" onclick="location.href='/We2/notice/modify_view?num=${content.num }';"> 
+							<input class="add_btn" type="button" value="삭제" onclick="location.href='/We2/notice/delete?num=${content.num }';">
+						</c:when>
+						<c:otherwise>
+							<input class="add_btn" type="button" value="목록" onclick="location.href='/We2/notice/list';"> 
+						</c:otherwise>
+						</c:choose>
 						</div>
 						</c:forEach>
 	    </div> <!-- wrap_content end -->
