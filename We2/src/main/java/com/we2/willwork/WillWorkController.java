@@ -29,7 +29,7 @@ public class WillWorkController {
    public String initGet(Model model, HttpSession session) throws ParseException{
    System.out.println("첫번째줄 너왔니?");
   
-   int pjtCode =(int)session.getAttribute("pjtCode");
+   int pjtCode =(Integer)session.getAttribute("pjtCode");
    		System.out.println("코드 세션테스트 : " + pjtCode);
    int countPeople = willWorkDAO.selectPeople(pjtCode);
    		System.out.println("이 프로젝트에 참여중인 사람수는 : "+countPeople);
@@ -146,7 +146,7 @@ public class WillWorkController {
       String name = request.getParameter("userName"); //�ش� ���� ����
       System.out.println("할일 : " +  doWork + " 이름 : " + name);
       
-      int pjtCode =(int)session.getAttribute("pjtCode");
+      int pjtCode =(Integer)session.getAttribute("pjtCode");
       willWorkDAO.insertDoWork(name, doWork, pjtCode);
       return "redirect:/willwork/list";
    }
@@ -155,7 +155,7 @@ public class WillWorkController {
    public String DeletePost(HttpServletRequest request, Model model, HttpSession session) throws ParseException{
       String complete = request.getParameter("complete"); 
       String name = request.getParameter("userName");
-      int pjtCode =(int)session.getAttribute("pjtCode");
+      int pjtCode =(Integer)session.getAttribute("pjtCode");
       
       List<WillWorkVO> One = willWorkDAO.selectOne(name, pjtCode); //������ ���� �� ����� ������ �� �ҷ���
       String doWork = One.get(0).doWork; //�� ����� ������ �� ����

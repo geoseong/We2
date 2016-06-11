@@ -70,10 +70,7 @@ public class We2MailSender{
 			
 			// 프로젝트 인원을 담는다.
 			String pjtmember="";
-			/*for(String memba : members){
-				pjtmember = pjtmember + memba+", ";
-			}*/
-			System.out.println("member size : " + members.size());
+				System.out.println("member size : " + members.size());
 			for(int i=0; i<members.size(); i++){
 				if((i+1)!=members.size()){
 					pjtmember = pjtmember + members.get(i).getName()+", ";

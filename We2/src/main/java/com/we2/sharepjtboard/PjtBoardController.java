@@ -1,6 +1,5 @@
 package com.we2.sharepjtboard;
 
-import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 
@@ -8,7 +7,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.fileupload.FileUploadBase.FileSizeLimitExceededException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

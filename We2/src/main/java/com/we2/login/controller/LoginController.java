@@ -153,7 +153,7 @@ public class LoginController {
 
 	
 	@RequestMapping(value="/Member_Mypage", method = RequestMethod.GET)
-	public String aopMember_MypageView(HttpServletRequest request, AuthInfo authInfo, Model model){
+	public String Member_MypageView(HttpServletRequest request, AuthInfo authInfo, Model model){
 		
 		HttpSession session = request.getSession(); // 세션영역을 가져옴
 
@@ -180,7 +180,6 @@ public class LoginController {
 	public String Member_MypageViewpost(HttpServletRequest request, Member member, Model model) {
 
 		System.out.println("파라미터 pwd : " + request.getParameter("pwd"));
-		// System.out.println("파라미터 pwd : "+request.getParameter("pwd"));
 		System.out.println("파라미터 pwd_conrifm : " + request.getParameter("pwd_confirm"));
 
 		if (request.getParameter("pwd") != null) {
@@ -204,27 +203,5 @@ public class LoginController {
 		}
 		return "index";
 	}
-	
-	/*@RequestMapping(value = "/project", method = RequestMethod.GET)
-	public String member_join(HttpServletRequest request, Model model, HttpSession session) {
-		
-		System.out.println("/project 시작");
-		
-		//MemberMyPage.jsp에서 a태그로 pjtCode를 인자로 받아서 세션에 저장
-		int pjtCode = Integer.parseInt(request.getParameter("pjtCode"));
-			System.out.println("/project pjtCode : " + pjtCode);
-		session.setAttribute("pjtCode", pjtCode);
-		
-		System.out.println("/project DAO 진입 전");
-		
-		//디비상에 날짜를 조회해서 세션에 담는다.
-		int searchDate = memberDao.selectDate(pjtCode);
-			System.out.println("endDate-startDate : "+searchDate);
-			
-		// endDate-startDate를 세션에 날림.
-		session.setAttribute("day", searchDate);
-		
-		return "redirect:/notice/list";
-	}*/
 }
 
