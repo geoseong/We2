@@ -8,6 +8,31 @@
 <script type="text/javascript" src="../js/board.js"></script>
 <meta charset="UTF-8">
 <title>We2_ 프로젝트 게시판 _ 글쓰기</title>
+<script type="text/javascript">
+	$(window).ready(function() {
+		$("#file").change(function() {
+			var maxSize = 20*1024*1024;
+			var size = $("#file")[0].files[0].size;
+			
+			if(size > maxSize) {
+				$("div .msg").html("파일 용량이 20 MB 를 초과하였습니다.");
+			}else{
+				$("div .msg").html("");
+			}
+		});
+	});
+	
+	function filesizechk(){
+		var maxSize = 20*1024*1024;
+		var size = $("#file")[0].files[0].size;
+		
+		if(size > maxSize) {
+			alert("파일 용량이 20 MB 를 초과하였습니다.");
+			return false;
+		}
+		return true;
+	}
+</script>
 </head>
 <body>
 <!--  게시판 영역 - css에서 #contents 블록의 테두리선(border)를 없애주시면 됩니다. -->
@@ -27,8 +52,9 @@
 					</tr>
 					<tr>
 						<th> 자    료 </th>
-						<td><input type="file" name="file" >
+						<td><input type="file" name="file" id="file">
 						(주의사항 : 업로드 용량 제한은 20MB 입니다.)
+						<div class="msg" style="text-align: left; font-size: 8px; font: bold; color: red;"></div>
 						</td>
 					</tr>
 					<tr>
@@ -40,7 +66,7 @@
 				</table>
 				<br>
 			<div class="write_btn" align="right" >
-				<input type="submit" value="등록" style="padding: 5px;"onclick="return charcheck()">
+				<input type="submit" value="등록" style="padding: 5px;"onclick="return filesizechk()">
 				<input type="button" value="목록" style="padding: 5px;" onclick="location.href='/We2/pjtBoard/list?page=1&category=${category}'">
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			</div>

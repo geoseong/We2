@@ -112,7 +112,7 @@ var myVar = setInterval(myTimer, 1000*60*60*24);
       	<!-- <img src="/We2/img/G_talk_3.png"/> -->
       </div>
      
-        <%-- <jsp:include page="broadcast.jsp"></jsp:include>  --%>
+        <jsp:include page="broadcast.jsp"></jsp:include> 
 
       
   </div>

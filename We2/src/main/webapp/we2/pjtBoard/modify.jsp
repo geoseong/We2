@@ -7,6 +7,31 @@
 <meta charset="UTF-8">
 <script type="text/javascript" src="../js/board.js"></script>
 <title>We2_프로젝트 게시판 _ 업데이트 하기</title>
+<script type="text/javascript">
+	$(window).ready(function() {
+		$("#file").change(function() {
+			var maxSize = 20*1024*1024;
+			var size = $("#file")[0].files[0].size;
+			
+			if(size > maxSize) {
+				$("div .msg").html("파일 용량이 20 MB 를 초과하였습니다.");
+			}else{
+				$("div .msg").html("");
+			}
+		});
+	});
+	
+	function filesizechk(){
+		var maxSize = 20*1024*1024;
+		var size = $("#file")[0].files[0].size;
+		
+		if(size > maxSize) {
+			alert("파일 용량이 20 MB 를 초과하였습니다.");
+			return false;
+		}
+		return true;
+	}
+</script>
 </head>
 <body>
 <!--  게시판 영역 - css에서 #contents 블록의 테두리선(border)를 없애주시면 됩니다. -->			
@@ -35,7 +60,8 @@
 							<tr>
 								<th>첨부파일</th>
 								<td colspan="3">
-								<input type="file" name="itemPath">								
+								<input type="file" name="itemPath" id="file">		
+								<div class="msg" style="text-align: left; font-size: 8px; font: bold; color: red;"></div>			
 								</td>
 							</tr>
 							<tr>
@@ -46,25 +72,11 @@
 							</tr>
 						</table>
 					</td>
-					<%-- <td style="width:200px; border:0.5px solid #d3d3d3;">
-						<c:choose>
-							<c:when test="${empty BoardUpdate.getItemPath() }">
-									<!-- 기본설정경로 : 서블릿경로
-										E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps -->
-								<img src="/We2/we2/img/board/icon_NoImg.png" style="width: 50px;">
-							</c:when>
-							<c:otherwise>
-									<!-- 기본설정경로 : 서블릿경로
-										E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps -->
-								<img src="/We2/we2/pjtBoard/data/${BoardUpdate.getItemPath() }" style="width: 200px;">
-							</c:otherwise>
-						</c:choose>
-					</td> --%>
 				</tr>
 				</table>
 				
 				<div class="write_btn" style="text-align:center;">
-				<input type="submit" value="수정" onclick="return charcheck()">
+				<input type="submit" value="수정" onclick="return filesizechk()">
 				<input type="button" value="목록" style="padding: 5px;" onclick="location.href='/We2/pjtBoard/list?page=1&category=${category}'">
 			    </div>
 			</form>

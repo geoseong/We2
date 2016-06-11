@@ -1,5 +1,6 @@
 package com.we2.sharepjtboard;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 
@@ -7,6 +8,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.fileupload.FileUploadBase.FileSizeLimitExceededException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -168,7 +170,6 @@ public class PjtBoardController {
 				System.out.println("파일 contentType : " + pVo.getItemDataType());
 		// 게시글 내용들을 Insert하기
 			boardService.insertBoard(category, pVo.getItemTitle(), pVo.getUserId(), pVo.getItemPath(), pVo.getItemContent(), pVo.getItemDataType());
-		  //boardService.insertBoard(category, cVo.getItemTitle(), cVo.getUserId(), cVo.getItemPath(), cVo.getItemContent(), cVo.getItemDataType());
 		// JSP:INCLUDE PAGE
 		  model.addAttribute("Boardpage", "list");
 		  model.addAttribute("page", 1);

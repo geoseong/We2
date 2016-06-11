@@ -23,7 +23,7 @@ public class AuthService {
 				System.out.println("member pwd!=null" +"AuthService에서 디버깅중...");
 			throw new IdPasswordNotMatchingException();
 		}
-		System.out.println("memberDao.selectByUserid 실행함 & if문 이후의 라인.");
+			System.out.println("memberDao.selectByUserid 실행함 & if문 이후의 라인.");
 		ai.setName("AuthinfoService - " + member.getName());
 		return new AuthInfo(member.getUserId(), member.getName(), member.getEmail(),  member.getPhone(), member.getGender(), member.getRegDate());
 		}
