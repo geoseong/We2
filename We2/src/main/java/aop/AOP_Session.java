@@ -35,13 +35,11 @@ public class AOP_Session {
 	/** sessionCheck에 대한 AOP..*/
 	@Before("sessionCheck()")
 	public void beforesessionCheck(JoinPoint thisJoinPoint) throws Throwable  {
-		System.out.println("----- sessionCheck Aspect 시작 -----");     
-
-    	System.out.println("@Before : authinfo 정의직전");
+			System.out.println("----- sessionCheck Aspect 시작 -----");     
+	    	System.out.println("@Before : authinfo 정의직전");
     	AuthInfo authinfo = (AuthInfo) session.getAttribute("authInfo");
     	  	System.out.println("AOP] member.userid : " + authinfo.getUserId());
-	
-		 System.out.println("----- sessionCheck Aspect 끝 -----");
+    	  	System.out.println("----- sessionCheck Aspect 끝 -----");
      } //end @before
 	
 	@AfterReturning(pointcut = "aop.AOP_Session.sessionCheck()", returning = "retVal")
@@ -49,8 +47,6 @@ public class AOP_Session {
             Object retVal) {
         System.out.println("AOP_Aspect.afterReturningTargetMethod 실행됨." + 
                            " return value is [" + retVal + "]\n------------------");
-       /* AuthInfo authinfo = (AuthInfo)request.getAttribute("authInfo");
-        System.out.println("afterthrowing.authinfo = " + authinfo.getPhone());*/
     } //end @AfterReturning
 	
 	@AfterThrowing(pointcut = "aop.AOP_Session.sessionCheck()", throwing = "ex")
@@ -58,10 +54,8 @@ public class AOP_Session {
         System.out.println("AOP_Aspect.afterThrowingTargetMethod executed.");
        // HttpServletRequest request= ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
         String ex_str=ex.toString();
-        System.out.println("Throwable ex - " + ex_str+"\n------------------");
-
+        	System.out.println("Throwable ex - " + ex_str+"\n------------------");
         request.setAttribute("error", ex_str);
-        
     }
 
 	 @After("sessionCheck()")

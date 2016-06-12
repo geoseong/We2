@@ -96,6 +96,7 @@ public class LoginController {
 			// 세션영역에 회원정보 추가
 			session.setAttribute("authInfo", authInfo);
 				System.out.println("authInfo" + (AuthInfo) session.getAttribute("authInfo"));
+				
 			// 폼에 자동완성을 원하면 쿠키에 30일동안 userid를 보이게 함.
 			Cookie rememberCookie = new Cookie("REMEMBER", loginCommand.getUserId());
 			rememberCookie.setPath("/"); // 해당 쿠키의 적용범위
@@ -118,8 +119,8 @@ public class LoginController {
 			
 			return "/index";
 		} catch (IdPasswordNotMatchingException e) {
-			errors.reject("idPasswordNotMatching");
-			return "/index";
+			errors.rejectValue("userId","idpwdNotMatching");
+			return "registration/Member_Login";
 		} // end try-catch
 	} // end loginpost()
 
@@ -153,7 +154,7 @@ public class LoginController {
 
 	
 	@RequestMapping(value="/Member_Mypage", method = RequestMethod.GET)
-	public String Member_MypageView(HttpServletRequest request, AuthInfo authInfo, Model model){
+	public String aopMember_MypageView(HttpServletRequest request, AuthInfo authInfo, Model model){
 		
 		HttpSession session = request.getSession(); // 세션영역을 가져옴
 
