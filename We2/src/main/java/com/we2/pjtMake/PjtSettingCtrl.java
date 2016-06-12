@@ -46,8 +46,8 @@ public class PjtSettingCtrl {
 		int pjtCode = Integer.parseInt(request.getParameter("pjtCode"));
 			System.out.println("/project pjtCode : " + pjtCode);
 		session.setAttribute("pjtCode", pjtCode);
+		session.setAttribute("project", pDao.selectAllpjtInfo(pjtCode));
 		
-		System.out.println("/project DAO 진입 전");
 		
 		//디비상에 날짜를 조회해서 세션에 담는다.
 		int searchDate = mDao.selectDate(pjtCode);
@@ -56,6 +56,9 @@ public class PjtSettingCtrl {
 		// endDate-startDate를 세션에 날림.
 		session.setAttribute("day", searchDate);
 		
+		/*// JSP:INCLUDE PAGE
+		model.addAttribute("page", "../notice/list");*/
+				
 		return "redirect:/notice/list";
 	}
 	

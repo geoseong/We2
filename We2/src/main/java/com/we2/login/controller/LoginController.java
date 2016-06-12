@@ -168,7 +168,6 @@ public class LoginController {
 			System.out.println("mVo.getGender()성별 오류출력:::::"+ mVo.getGender());
 		
 		List<PjtJoinVO> list = memberDao.selectAll(userId);
-			//System.out.println("list.size()::::::::::" + list.size());
 		model.addAttribute("pjtlist", list);
 		
 		// 세션에서 authInfo값을 가져옴

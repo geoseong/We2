@@ -51,7 +51,7 @@ var myVar = setInterval(myTimer, 1000*60*60*24);
                 </sub>  
             </b>
         </h1>
-        <h3>${project.pjtName} </h3>
+        <h3>${project.pjtClassify } - ${project.pjtName} </h3>
         
 <!-- 2. 상단 로그인 부분-->
         <div id = "nav">
@@ -100,7 +100,6 @@ var myVar = setInterval(myTimer, 1000*60*60*24);
    
    <!-- 2) 가운데 내용 ---------------------------------->
    
-   <%String willwork = request.getParameter("willwork"); %>
    <div class ="contents">
     	<jsp:include page="${page}.jsp" flush="false"></jsp:include>
    </div>
@@ -109,7 +108,7 @@ var myVar = setInterval(myTimer, 1000*60*60*24);
   <!-- 3) 오른쪽 채팅창-->
   <div class = "chat">
       <div class="chat_title">
-      	<!-- <img src="/We2/img/G_talk_3.png"/> -->
+      	<img src="/We2/img/G_talk_3.png"/>
       </div>
      
         <jsp:include page="broadcast.jsp"></jsp:include> 

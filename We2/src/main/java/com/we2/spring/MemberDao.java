@@ -141,9 +141,9 @@ public class MemberDao {
 	public List<PjtJoinVO> selectAll(String userId){
 		// pjtcode | userId | isLeader | pjtCode | pjtName     | pjtClassify | startDate  | endDate
 	      List<PjtJoinVO> results = 
-            jdbcTemplate.query( //mysql DB�뿰�룞�쓣 �쐞�빐 �옉�꽦
+            jdbcTemplate.query( 
         		"select * from pjtmanager mgr, pjtmake make where mgr.pjtcode = make.pjtcode and mgr.userId = ?"
-        		, //�봽濡쒖젥�듃 �뀒�씠釉붿뿉�꽌  pjtmanager mgr, pjtmake make瑜� �꽑�깮�븯怨� 議곌굔臾몄쑝濡� mgr.pjtcode = make.pjtcode mgr.userId�씤寃껊쭔�쓣 異쒕젰�븿!! 
+        		,  
         		new RowMapper<PjtJoinVO>(){
 			      @Override
 			      public PjtJoinVO mapRow(ResultSet rs, int rowNum) throws SQLException {

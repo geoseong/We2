@@ -87,8 +87,7 @@ color:#424444;
                
         <c:if test="${result == -1}">
             *${userId}는 사용가능한 아이디입니다. <br>
-         
-         <input type="button" value="사용하기" id="add_btn_1" class="cancel" onclick="idOk('${userId}')">
+         	<input type="button" value="사용하기" id="add_btn_1" class="cancel" onclick="idOk('${userId}')">
          </c:if>
     </form>
 

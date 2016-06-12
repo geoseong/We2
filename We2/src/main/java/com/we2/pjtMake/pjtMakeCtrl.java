@@ -20,14 +20,9 @@ public class pjtMakeCtrl{
 	public void setPjtMakeDAO(PjtMakeDAO pjtMakeDAO) {
 		this.pjtMakeDAO = pjtMakeDAO;
 	}
-	
-	/*@RequestMapping(value="/pjtMake", method=RequestMethod.GET)
-	public String test(){
-		return "pjtMake/pjtMake";
-	}*/
 
 	@RequestMapping(value="/pjtMake", method=RequestMethod.POST)
-	public String test2(@ModelAttribute PjtMakeVO pjtMakeVO,HttpServletRequest request, HttpSession session, Model model) throws ParseException{
+	public String aoptest2(@ModelAttribute PjtMakeVO pjtMakeVO,HttpServletRequest request, HttpSession session, Model model) throws ParseException{
 		
 		//프로젝트 만들기를 클릭했을 때, 이 정보를 DB에 저장하는 DAO
 		pjtMakeDAO.insertPjtMake(pjtMakeVO);
@@ -62,18 +57,4 @@ public class pjtMakeCtrl{
 		request.setAttribute("test", "success");
 		return "/index";
 		}
-	
-	/*@RequestMapping(value="/invite", method=RequestMethod.GET)
-	public String test2() throws ParseException{
-	return "/pjtMake/invite";
-	}
-	
-	@RequestMapping(value="/invite", method=RequestMethod.POST)
-	public String test2(HttpServletRequest request, Model model) throws ParseException{
-		MailSend.main(null);
-		SMTPAuthenticator sMTPAuthenticator = new SMTPAuthenticator();
-		sMTPAuthenticator.getPasswordAuthentication();
-		return "/pjtMake/success";
-	}*/
-	
 }

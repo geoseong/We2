@@ -35,19 +35,8 @@
 				<div class="btn">
                   <form action="write_view" method="get" name ="random ">
 				     <input class ="add_btn_write" type="submit" value="글쓰기" >
-					<!--  <input class="add_btn" type="hidden" name="write" value="../notice/write_view.jsp"> -->
 			      </form> 
 			   </div> <!-- write_text end-->
-			   
-			     <!-- <form action="Notice.do" method="get" name =" random ">
-				<table  cellpadding="0" cellspacing="0" border="0">
-					<tr align="right">
-						<td><input type="submit" value="글쓰기">
-						<input type="hidden" name="write" value="../notice/write.jsp">
-						</td>
-					</tr>
-				</table>
-			   </form> -->
 			   
 			   <div class="count">
 				</div>
@@ -67,7 +56,6 @@
 					<c:forEach items="${content}" var="content">
 					<tr  align="center" border="1">
 						<td align="center">${content.num }</td>
-						<%-- <td align="center"><a href = "/We2/Notice.do?view=../notice/view.jsp&num=${content.num }">${content.title }</a></td> --%>
 						<td align="center"><a href = "/We2/notice/view?num=${content.num }">${content.title }</a></td>
 						<td align="center">${content.writer }</td>
 						<td align="center">${content.writedate }</td>

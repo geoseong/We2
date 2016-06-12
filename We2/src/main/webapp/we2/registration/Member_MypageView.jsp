@@ -32,8 +32,10 @@
 
 				<!-- 2. 상단 메뉴 부분-->
 				<div id="nav">
-					<a href="#">프로젝트 </a> <a href="#">커뮤니티 </a> <a href="#">프로젝트공유
-					</a> <a href="#">스터디룸공유 &nbsp;</a>
+					<a href="/We2/Member_Mypage">프로젝트 </a>
+		            <a href="/We2/cBoard/list?page=1&category=cFindwork">커뮤니티 </a>
+		            <a href="/We2/pjtBoard/list?page=1&category=pGroup">프로젝트공유 </a>
+		            <a href="/We2/studyroom/list?page=1">스터디룸공유 &nbsp;</a>
 
 					<c:choose>
 						<c:when test="${empty authInfo}">
@@ -136,8 +138,8 @@
 						</table>
 
 				<div class="change_leave">
-					<input type="submit" value="수정하기" class="add_btn" onclick="joinCheck()" /> 
-					<input type="button" value="회원탈퇴" class="add_btn" onclick="Delete_form" />
+					<input type="submit" value="수정하기" class="add_btn" onclick="return joinCheck()" />
+					<input type="button" value="회원탈퇴" class="add_btn" onclick="location.href='/We2/Delete_form'" />  
 				</div>
 			</form>
 
