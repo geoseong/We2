@@ -2,37 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
-<%-- <%
-	Class.forName("oracle.jdbc.driver.OracleDriver");
-	String url = "jdbc:oracle:thin:@localhost:1521:orcl";
-	String id = "We2";
-	String pass = "1234";
-	String number=(String)request.getAttribute("num");
-	int num = Integer.parseInt(number);
-	/* int num = Integer.parseInt(request.getParameter("num")); */
-
-	try {
-		Connection conn = DriverManager.getConnection(url, id, pass);
-		Statement stmt = conn.createStatement();
-
-		String sql = "select num, title, writer, writedate, content from notice where num=" + request.getAttribute("num").toString();
-			System.out.println("num받아오는 값 : " +request.getAttribute("num").toString());
-		ResultSet rs = stmt.executeQuery(sql);
-		if (rs.next()) {
-			String title = rs.getString(2);
-			String writer = rs.getString(3);
-			String writedate = rs.getString(4);
-			String content = rs.getString(5);
-%> --%>
-<%-- 						<%
-							rs.close();
-									stmt.close();
-									conn.close();
-								}
-							} catch (SQLException e) {
-								out.println(e.toString());
-							}
-						%> --%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>

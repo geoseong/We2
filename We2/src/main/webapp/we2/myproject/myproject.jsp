@@ -110,10 +110,7 @@ var myVar = setInterval(myTimer, 1000*60*60*24);
       <div class="chat_title">
       	<img src="/We2/img/G_talk_3.png"/>
       </div>
-     
         <jsp:include page="broadcast.jsp"></jsp:include> 
-
-      
   </div>
      
 </div><!-- section END -->

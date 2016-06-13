@@ -43,7 +43,6 @@ public class NoticeDao {
 	}
 	
 	public String write(final HttpServletRequest request, int pjtCode) {
-			System.out.println(request.getParameter("title")+" / "+request.getParameter("content")+" / "+request.getParameter("writer"));
 		String sql = "insert into notice (title, content, writer, writedate, pjtCode) values (?, ?, ?, now(), ?)";
 		jdbcTemplate.update(sql, 
 				request.getParameter("title"), request.getParameter("content"), request.getParameter("writer"), 
@@ -53,7 +52,6 @@ public class NoticeDao {
 	}
 	
 	public List<NoticeDto> view(String num, int pjtCode){
-		System.out.println("DAO view - num : "+num);
 		String sql = "select * from notice where num="+num+" and pjtCode="+pjtCode;
 		List<NoticeDto> result = jdbcTemplate.query(sql, memRowMapper);
 		

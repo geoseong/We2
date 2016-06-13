@@ -1,7 +1,9 @@
 package com.we2.pjtMake;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,7 +40,7 @@ public class PjtSettingCtrl {
 
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public String projectsession(HttpServletRequest request, Model model, HttpSession session) {
+	public String projectsession(HttpServletRequest request, Model model, HttpSession session) throws ParseException {
 		
 		System.out.println("/project 시작");
 		
@@ -46,8 +48,19 @@ public class PjtSettingCtrl {
 		int pjtCode = Integer.parseInt(request.getParameter("pjtCode"));
 			System.out.println("/project pjtCode : " + pjtCode);
 		session.setAttribute("pjtCode", pjtCode);
-		session.setAttribute("project", pDao.selectAllpjtInfo(pjtCode));
 		
+		PjtMakeVO pjtVo = pDao.selectAllpjtInfo(pjtCode);
+		session.setAttribute("project", pjtVo);
+		
+			System.out.println("pjtEndDate받은 String값 : " + pjtVo.getEndDate());
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date pjtEnd = transFormat.parse(pjtVo.getEndDate());
+			System.out.println("Year : " + pjtEnd.getYear() + " / Month : " + pjtEnd.getMonth() + " / Day : " + pjtEnd.getDay());
+		/*
+		String from = "2013-04-08 10:10:10";
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date to = transFormat.parse(from);
+		 */
 		
 		//디비상에 날짜를 조회해서 세션에 담는다.
 		int searchDate = mDao.selectDate(pjtCode);

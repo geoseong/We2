@@ -13,16 +13,18 @@
  
 </head>
 <!-- toString().contains('글쓰기가') -->
+<%-- 	<c:when test="${msg.toString().contains('글쓰기가') || msg.toString().contains('수정') || msg.toString().contains('삭제') }"> --%>
 <c:choose>
-	<c:when test="${msg.toString().contains('글쓰기가') || msg.toString().contains('수정') || msg.toString().contains('삭제') }">
+	<c:when test="${empty msg}">
+	</c:when>
+	<c:otherwise>
 		<script type='text/javascript'>
 			alert('${msg}');
 		</script>
-	</c:when>
-	<c:otherwise>
 	</c:otherwise>
 </c:choose>
 		<c:set scope="request" var="alert" value="${false }"/>
+		
 <body>
 
 	<div id="container">	

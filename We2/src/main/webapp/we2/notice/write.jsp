@@ -51,32 +51,23 @@
 	    	<h2>공지사항</h2>
 	    	
 			<form name="writeform" method="post" action="write" >
-							<table>
+							<table style="width: 30%">
 							<tr>
 								<th align="center">제목</th>
-								<td style="text-align:left;"><input name="title" size="70" maxlength="100"></td>
+								<td style="text-align:left;"><input name="title"  maxlength="100" size="100%"></td>
 							</tr>
 							
 							<tr>
 								<th align="center">이름</th>
 								<td style="text-align:left;">
-									<!-- <input name="writer" size="30" maxlength="100"> -->
 									<input type="hidden" name="writer" value="${authInfo.userId }">
 									${authInfo.userId }
 								</td>
 							</tr>
-<!-- 							
-							
-							<tr>
-								<th align="center">비밀번호</th>
-								<td><input type="password" name="pass" size="30"
-									maxlength="100"></td>
-							</tr>
-						 -->
 						
 							<tr>
 								<th align="center">내용</th>
-								<td style="text-align:left;"><textarea name="content" cols="110" rows="13"></textarea></td>
+								<td style="text-align:left;"><textarea name="content" cols="100%" rows="13"></textarea></td>
 							</tr>
 							</table>
 							

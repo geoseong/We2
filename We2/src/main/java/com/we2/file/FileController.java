@@ -108,8 +108,9 @@ public class FileController {
 		System.out.println("---글쓰기 페이지 진입");
 		if (session.getAttribute("authInfo") != null) {
 			System.out.println("로그인 되어있음.");
+		}else{
+			System.out.println("로그인 안됨");
 		}
-		System.out.println("로그인 안됨");
 		// JSP:INCLUDE PAGE
 		model.addAttribute("filepage", "fileWrite");
 

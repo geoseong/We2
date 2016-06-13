@@ -22,10 +22,7 @@ public class NoticeController {
 	
 	@RequestMapping("/list")
 	public String list(Model model) {
-		System.out.println("///////list session 받기 전.--------");
 		int pjtCode = (Integer)session.getAttribute("pjtCode");
-			System.out.println("/notice list pjtcode : "+pjtCode);
-		
 		model.addAttribute("page", "../notice/list");
 		model.addAttribute("content",noticeDao.list(pjtCode));
 		

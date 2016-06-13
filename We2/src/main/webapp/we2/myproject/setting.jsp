@@ -35,7 +35,7 @@
 		</script>
 	</c:otherwise>
 </c:choose>
-		<c:set scope="request" var="alert" value="${false }"/>
+		<c:set scope="request" var="msg" value="${false }"/>
 		
    <h2 style="float:left;">프로젝트 정보</h2>
    

@@ -37,41 +37,6 @@
 	}
 </script>
 
-<%-- <%
-	request.setCharacterEncoding("utf-8");
-	Class.forName("oracle.jdbc.driver.OracleDriver");
-
-	String url = "jdbc:oracle:thin:@localhost:1521:orcl";
-	String id = "We2";
-	String password = "1234";
-
-	String writer = "";
-	String title = "";
-	String pass = "";
-	String content = "";
-	int num = Integer.parseInt(request.getParameter("num"));
-
-	try {
-		Connection conn = DriverManager.getConnection(url, id, password);
-		Statement stmt = conn.createStatement();
-
-		String sql = "select writer, pass, title, content from notice where num=" + num;
-		ResultSet rs = stmt.executeQuery(sql);
-
-		if (rs.next()) {
-			writer = rs.getString(1);
-			pass = rs.getString(2);
-			title = rs.getString(3);
-			content = rs.getString(4);
-		}
-		rs.close();
-		stmt.close();
-		conn.close();
-	} catch (SQLException e) {
-		out.println(e.toString());
-	}
-%>
- --%>
 <body>
 <div id="container">
 	<div id="content_wrap">
@@ -95,7 +60,7 @@
 
 						<tr>
 							<th align="center">이름</th>
-							<td style="padding-left: 15px;">&nbsp;&nbsp;${content.writer }
+							<td style="padding-left: 15px; text-align: left">&nbsp;&nbsp;${content.writer }
 								<input type="hidden" name="writer" size="50" maxlength="100" value="${content.writer} ">
 							</td>
 						</tr>
