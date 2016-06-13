@@ -86,14 +86,15 @@
 
 			<tr>
 			  <th><spring:message code="name"/></th>
-			  <td><form:input path="name"/></td>	
+			  <td><form:input path="name" onkeyup="checkLength_1(this, 10)"/></td>	
 			      <form:errors path="name"/>	
 			</tr>
 			
 			<tr>
 			<th><spring:message code="userId"/></th>
-			<td><form:input path="userId"/> 
-			    <input type="button" class="check_btn"  value="중복 체크" onclick="idCheck()" ></td>		
+			<td><form:input path="userId" /> 
+			    <input type="button" class="check_btn"  value="중복 체크" onclick="idCheck()" 
+			    onkeyup="checkLength(this, 12)"></td>		
 			    <form:errors path="userId"/>
 			</tr>
 			
@@ -105,7 +106,7 @@
 			
 		    <tr>
 			<th><spring:message code="pwd.confirm"/></th>
-			<td><form:input path="pwd_confirm"/></td>	
+			<td><form:input path="pwd_confirm" onkeyup="checkLength(this, 12)"/></td>	
 			<form:errors path="pwd_confirm"/>	
 			</tr>  
 			
