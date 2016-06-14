@@ -18,9 +18,6 @@
 </head>
 
 <body>
-${msg }
-<c:set scope="request" var="msg" value="${false }"/>
-
  <!-- wrap : div를 한번더 감싸고 액션의 기준이 될 수 있음-->
 <div id="wrap"> 
 

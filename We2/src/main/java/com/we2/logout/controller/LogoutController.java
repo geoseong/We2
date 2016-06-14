@@ -34,10 +34,10 @@ public class LogoutController {
 	@RequestMapping(value = "/Member_delete", method = RequestMethod.POST)
 	public String Member_delete(Member member, HttpServletRequest request , Model model) {
 
-		HttpSession session = request.getSession(); // �꽭�뀡�쁺�뿭�쓣 媛��졇�샂
+		HttpSession session = request.getSession(); // 세션영역을 가져온다
 
 		member = (Member) session.getAttribute("member");
-			
+			System.out.println("member;;;;;;");
 		try{
 			memberDao.delete(member);
 		}catch(Exception e){
