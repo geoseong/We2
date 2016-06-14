@@ -73,8 +73,8 @@ public interface SchedulerMapper {
 		SchedulerBean getSearchbycalendarmemo_num(@Param("calendarmemo_num") int calendarmemo_num, @Param("pjtCode") int pjtCode);
 	
 		
-		@Insert(insertScheduler)  		
 		//@Options(useGeneratedKeys = true, keyProperty = "id")
+		@Insert(insertScheduler)  		
 		void insertScheduler(
 				@Param("calendarmemo_year") int calendarmemo_year, 
 				@Param("calendarmemo_month") int calendarmemo_month, 

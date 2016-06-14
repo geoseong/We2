@@ -17,7 +17,6 @@ public class SchedulerService {
 	private SchedulerMapper schedulerMapper;
 	
 	public ArrayList<SchedulerBean> getlist(int pjtcode) throws ParseException{
-		System.out.println("schedulerservice getList");
 		return schedulerMapper.getList(pjtcode);
 	}
 	

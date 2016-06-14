@@ -8,28 +8,14 @@
 <title>파일 등록</title>
 <link rel="stylesheet" type="text/css" href="../css/w2_reset.css">
 <link rel="stylesheet" type="text/css" href="../css/studyroom_window.css">
-
+<script type="text/javascript" src="../js/jquery-1.12.1.min.js"></script> 
 <script type="text/javascript">
-$(window).ready(function() {
-	$("#fileurl").change(function() {
-		var maxSize = 20*1024*1024;
-		var size = $("#fileurl")[0].files[0].size;
-		
-		if(size > maxSize) {
-			alert("파일 용량이 20 MB 를 초과하였습니다.");
-		}else{
-			alert("음..");
-		}
-	});
-});
 	function filesizechk(){
 		var maxSize = 20*1024*1024;
 		var size = $("#file")[0].files[0].size;
-		alert("ddd");
 		if(size > maxSize) {
 			alert("파일 용량이 20 MB 를 초과하였습니다.");
-			return false;
-		}
+			return false;		}
 		return true;
 	}
 </script>
@@ -48,7 +34,7 @@ $(window).ready(function() {
    		 </tr>    
    		  <tr>
              <th>파일첨부 </th>
-             <td><input type="file" name="fileurl" style="width:150px;" id="fileurl">
+             <td><input type="file" name="fileurl" style="width:150px;" id="file">
               <span style="font-size:12px; color:red;">
 		             *파일 용량 제한은 20MB 입니다.
 		          </span>
@@ -59,7 +45,7 @@ $(window).ready(function() {
 
 			  
          <div class = "button">
- 		  <input name="add" class="add_btn" type="submit" value="파일 등록" onsubmit="return filesizechk()">    
+ 		  <input name="add" class="add_btn" type="submit" value="파일 등록" onclick="return filesizechk()">    
      	  <input name="cancel" class="add_btn" type="reset" value="다시 작성">
          </div>
    

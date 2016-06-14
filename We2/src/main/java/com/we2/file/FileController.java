@@ -127,7 +127,8 @@ public class FileController {
 		String encType = "UTF-8";
 		int sizeLimit = 20 * 1024 * 1024;
 
-		MultipartRequest multi = new MultipartRequest(request, servletContext.getRealPath(path), sizeLimit, encType,
+		MultipartRequest multi = new MultipartRequest(
+				request, servletContext.getRealPath(path), sizeLimit, encType,
 				new DefaultFileRenamePolicy());
 
 		// PjtBoardBean객체인 fVo에 변수들을 집어넣는다.
@@ -136,13 +137,6 @@ public class FileController {
 		// 2. 제목
 		String fname = multi.getParameter("fname");
 		fVo.setFname(fname);
-		System.out.println("WriteServlet - fname : " + fVo.getFname());
-		/*
-		 * //3. 유저ID는 세션에 떠돌아다니는 (로그인중인) 변수를 getAttribute하면 됨 AuthInfo mVo =
-		 * (AuthInfo)session.getAttribute("authInfo");
-		 * fVo.setUserId(mVo.getUserId()); System.out.println(
-		 * "WriteServlet - userid : " + fVo.getUserId());
-		 */
 
 		// 4. 파일경로
 		String fileurl = multi.getFilesystemName("fileurl");

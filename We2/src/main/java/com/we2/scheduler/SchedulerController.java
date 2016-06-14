@@ -89,33 +89,25 @@ public class SchedulerController {
 		//2. 년도				
 			int calendarmemo_year=Integer.parseInt(request.getParameter("calendarmemo_year"));
 			cVo.setCalendarmemo_year(calendarmemo_year);
-				System.out.println("WriteServlet - title : " + cVo.getCalendarmemo_num());
-				System.out.println("calendarmemo_year 테스트"+calendarmemo_year);
 		//3. 달				
 			int calendarmemo_month=Integer.parseInt(request.getParameter("calendarmemo_month"));
 			cVo.setCalendarmemo_month(calendarmemo_month);
-				System.out.println("schduler - 달 : " + cVo.getCalendarmemo_month());
 		//4. 일				
 			int calendarmemo_day=Integer.parseInt(request.getParameter("calendarmemo_day"));
 			cVo.setCalendarmemo_day(calendarmemo_day);
-				System.out.println("schduler - 일 : " + cVo.getCalendarmemo_day());
 						
 		//5. 메모내용
 			String calendarmemo_contents = request.getParameter("calendarmemo_contents");
-					//cVo.getCalendarmemo_contents();
 			cVo.setCalendarmemo_contents(calendarmemo_contents);
-				System.out.println("schduler - 메모내용 : " + cVo.getCalendarmemo_contents());
-		
 				
     	//6 . 프로젝트 코드				
 			int pjtCode = (Integer)session.getAttribute("pjtCode");
-				System.out.println("/memoAdd.do POST pjtcode : "+pjtCode);
 			cVo.setPjtcode(pjtCode);
-				System.out.println("schduler - pjt코드 : " + cVo.getPjtcode());;
 				
 		// 게시글 내용들을 Insert하기
-			schedulerService.insertScheduler(cVo.getCalendarmemo_year(), cVo.getCalendarmemo_month(), cVo.getCalendarmemo_day(), cVo.getCalendarmemo_contents(), cVo.getPjtcode());
-			/*calendarmemo_num, calendarmemo_year, calendarmemo_month, calendarmemo_day, calendarmemo_contents*/
+			schedulerService.insertScheduler(
+					cVo.getCalendarmemo_year(), cVo.getCalendarmemo_month(), 
+					cVo.getCalendarmemo_day(), cVo.getCalendarmemo_contents(), cVo.getPjtcode());
 
 		// JSP:INCLUDE PAGE
 		  model.addAttribute("schdulerpage", "Calendar");

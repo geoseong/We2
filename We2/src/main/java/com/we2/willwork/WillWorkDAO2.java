@@ -37,7 +37,7 @@ public class WillWorkDAO2 {
 
    public List<WillWorkVO> selectAll(int pjtCode){
       List<WillWorkVO> results = jdbcTemplate.query("select * from willwork where pjtCode=?", 
-            new RowMapper<WillWorkVO>(){ //���� �������� �ڹ� ��ü�� ��ȯ�ϴ� RowMapper �������̽�
+            new RowMapper<WillWorkVO>(){
             @Override
             public WillWorkVO mapRow(ResultSet rs, int rowNum) throws SQLException{
             WillWorkVO willWorkVO = new WillWorkVO(rs.getString("userId"),
@@ -104,27 +104,31 @@ public class WillWorkDAO2 {
       return results;
    }
    
-   public void insertDoWork(final String name, final String doWork, final int pjtcode) throws ParseException{
+   public void insertDoWork(final String name, final String doWork, final int pjtcode){
           // String dowork = dowork + ", " + "doWork" ; 
+	   String query=null;
+	   if(doWork.equals("")){
+		   query = "update willwork set dowork = CONCAT(dowork, '', ?) where name=? and pjtcode=?";
+	   }else{
+		   query = "update willwork set dowork = CONCAT(dowork, ', ', ?) where name=? and pjtcode=?";
+	   }
+	   final String sql = query;
            jdbcTemplate.update(new PreparedStatementCreator() {
                @Override
                public PreparedStatement createPreparedStatement(Connection con) 
                        throws SQLException {
-                   // �Ķ���ͷ� ���޹��� Connection�� �̿��ؼ� PreparedStatement ����
                    PreparedStatement pstmt = con.prepareStatement(
-                   "update willwork set dowork = CONCAT(dowork, ', ', ?) where name=? and pjtcode=?"
+                		   sql
                       );
-                   // �ε��� �Ķ���� �� ����
                    pstmt.setString(1, doWork);
                    pstmt.setString(2, name);
                    pstmt.setInt(3, pjtcode);
-                   // ������ PreparedStatement ��ü ����
                    return pstmt;
                } //end createPreparedStatement()
            });
    }
    
-   public void insertDoneWork(final String name, final String doneWork) throws ParseException{
+   public void updateDoneWork(final String name, final String doneWork) throws ParseException{
        // String dowork = dowork + ", " + "doWork" ; 
         jdbcTemplate.update(new PreparedStatementCreator() {
             @Override
