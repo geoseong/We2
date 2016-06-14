@@ -51,6 +51,8 @@ public class PjtSettingCtrl {
 		
 		PjtMakeVO pjtVo = pDao.selectAllpjtInfo(pjtCode);
 		session.setAttribute("project", pjtVo);
+		// 이 프로젝트의 방장(userid)를 세션에 보냄
+		session.setAttribute("leader", pDao.selectLeader(pjtCode));
 		
 			System.out.println("pjtEndDate받은 String값 : " + pjtVo.getEndDate());
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -69,8 +71,6 @@ public class PjtSettingCtrl {
 		// endDate-startDate를 세션에 날림.
 		session.setAttribute("day", searchDate);
 		
-		/*// JSP:INCLUDE PAGE
-		model.addAttribute("page", "../notice/list");*/
 				
 		return "redirect:/notice/list";
 	}
@@ -88,7 +88,6 @@ public class PjtSettingCtrl {
 				
 		// SQL : 방장의 ID 구하기
 		String pjtleader = pDao.selectLeader(pjtCode);
-			System.out.println("이바닥의 방장은 바로 - " + pjtleader);
 		// 현재 로그인된 사람의 id 구하기
 		AuthInfo member = (AuthInfo)session.getAttribute("authInfo");
 		String loggedinmem=member.getUserId();
@@ -198,20 +197,15 @@ public class PjtSettingCtrl {
 		
 		// 현재 로그인된 유저가 가입하려는 프로젝트에 가입되어있나 확인.
 		if(pDao.checkpjtmember(pjtCode, userId)!=null){
-			System.out.println("이 user는 해당 프로젝트에 이미 가입되어있음.");
 			model.addAttribute("msg", "이미 해당 프로젝트에 참여 중이십니다.");
 			return "index";
 		}else{
 			System.out.println("pDao.checkpjtmember가 null");
 		}
 		
-		/*if(session.getAttribute("authInfo")==null){
-			return "redirect:/login";
-		}else{*/
-			 pDao.addpjtMember(pjtCode, userId);
-			 wDao.adduserWillwork(userId, pjtCode, username);
-			 System.out.println("/project addpjtmember.GET insert 완료됨");
-		/*}*/
+		 pDao.addpjtMember(pjtCode, userId);
+		 wDao.adduserWillwork(userId, pjtCode, username);
+		 System.out.println("/project addpjtmember.GET insert 완료됨");
 		 
 		model.addAttribute("msg", "해당 프로젝트 가입이 완료되었습니다 마이페이지에서 확인 해 보세요.");
 		return "index";

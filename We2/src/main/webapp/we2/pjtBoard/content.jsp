@@ -46,8 +46,6 @@
 								
 								<c:choose>
 									<c:when test="${empty BoardContent.getItemPath() }">
-											<!-- 기본설정경로 : 서블릿경로
-												E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps -->
 										- 첨부파일 없음 -
 									</c:when>
 									<c:otherwise>

@@ -1,7 +1,5 @@
 package com.we2.communityboard;
 
-import org.springframework.web.multipart.MultipartFile;
-
 public class FormattedDate {
 
 	private int itemNum;

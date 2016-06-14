@@ -36,7 +36,6 @@
 
    <div class = "button">
     <input name="delete" class="add_btn" type="submit" value="삭제하기" >
-    <input name="back" class="add_btn" type="button"   value="뒤로가기"  onclick="location.href='memoUpdate.do'+calendarmemo_num">
    </div>
   
   </form>
