@@ -248,12 +248,6 @@ public class FileController {
 		String fname = multi.getParameter("fname");
 		fVo.setFname(fname);
 		System.out.println("filecontroller - fname : " + fVo.getFname());
-		/*
-		 * //3. 유저ID는 세션에 떠돌아다니는 (로그인중인) 변수를 getAttribute하면 됨 AuthInfo mVo =
-		 * (AuthInfo)session.getAttribute("authInfo");
-		 * fVo.setUserId(mVo.getUserId()); System.out.println(
-		 * "WriteServlet - userid : " + fVo.getUserId());
-		 */
 
 		// 4. 코드번호
 		int fcode = Integer.parseInt(multi.getParameter("fcode"));

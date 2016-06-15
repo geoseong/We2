@@ -17,28 +17,33 @@ public class StudyRoomService {
 	@Autowired
 	private StudyRoomMapper studyRoomMapper;
 	
-	public ArrayList<StudyRoomBean> getlist(int row_start, int row_end) throws ParseException{
-		ArrayList<StudyRoomBean> arraymapper=studyRoomMapper.getList(row_start, row_end);
-		
-		for(int i=0; i<arraymapper.size(); i++){
-			System.out.println("roomshare 테이블 데이터 : " + arraymapper.get(i).getRpictureurl());
-		}
+	public ArrayList<StudyRoomBean> getlist(int row_start, int rows_per_page) throws ParseException{
+		ArrayList<StudyRoomBean> arraymapper=studyRoomMapper.getList(row_start, rows_per_page);
 		return arraymapper;
 	}
-	public StudyRoomBean getSearchstudyroom(String rlocatoin , String rlocationdetail){
-		return this.studyRoomMapper.getSearchstudyroom(rlocatoin, rlocationdetail);
+	public ArrayList<StudyRoomBean> getSearchstudyroom(String rlocatoin , String rlocationdetail, int row_start, int rows_per_page){
+		System.out.println("Service - " + rlocatoin + " / "+ rlocationdetail);
+		return studyRoomMapper.getSearchstudyroom(rlocatoin, rlocationdetail, row_start, rows_per_page);
 	}
 	
 	public StudyRoomBean getSearchbyrcode(int rcode){
 		return this.studyRoomMapper.getSearchbyrcode(rcode);
 	}
 	
-	// 총 폐이지 갯수 구하기
+	// 총 행 갯수 구하기
 	public int getTotalCnt(){
 		int nCnt=0;
 		nCnt =this.studyRoomMapper.getTotalCnt();
 		return nCnt;
 	}
+	
+	// 총 행 갯수 구하기
+	public int getsearchTotalCnt(String rlocation , String rlocationdetail){
+		int nCnt=0;
+		nCnt =this.studyRoomMapper.getsearchTotalCnt(rlocation, rlocationdetail);
+		return nCnt;
+	}
+	
 	public void insertStudyRoom (
 			 String rname, 
 			 String rlocation, 
@@ -50,13 +55,8 @@ public class StudyRoomService {
 		studyRoomMapper.insertStudyRoom(rname, rlocation, rlocationdetail, rcontent, rmember, rpictureurl);
 	}
 	
-
-
-	
-	
 	public void deleteRow(int rcode){
 		this.studyRoomMapper.StudyRoomdelete(rcode);
-		
 	}
 	
 	public void updateRow(

@@ -89,7 +89,7 @@
 	<div class="search_controll">
 		<h2 class="study_room_title"><a href="list?page=1">스터디룸 공유</a></h2>
 		
-		<form action="search.do"  method="get" name="frm">
+		<form action="search.do"  method="post" name="frm">
 			<input type="hidden" name="page" value="1">
 		<ul class="study_room_menu">
 			<li>
@@ -163,11 +163,12 @@
 	                 <a href="javascript:winOpen4()" >글쓰기</a>
 	                </div>
 				<td colspan="6">
+				
 				<c:choose>
 					<c:when test="${block-1==0 }">
 					</c:when>
 					<c:otherwise>
-						<a href="list?page=${block_first - page_for_block }">[이전]</a>&nbsp;
+						<a href="search.do?page=${block_first - page_for_block }&rlocation=${Content.get(0).getRlocation()}&rlocationdetail=${Content.get(0).getRlocationdetail()}">[이전]</a>&nbsp;
 					</c:otherwise>
 				</c:choose>
 				
@@ -177,18 +178,19 @@
 							<b> [ ${i} ] </b>
 						</c:when>
 						<c:otherwise>
-							<a href="list?page=${i }">
+							<a href="search.do?page=${i }&rlocation=${Content.get(0).getRlocation()}&rlocationdetail=${Content.get(0).getRlocationdetail()}">
 								[ ${i} ]
 							</a>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
+				
 				<c:choose>
 					<c:when test="${block==block_total }">
 						&nbsp;
 					</c:when>
 					<c:otherwise>
-						&nbsp;<a href="list?page=${block_first + page_for_block}">[다음]</a>
+						&nbsp;<a href="search.do?page=${block_first + page_for_block}&rlocation=${Content.get(0).getRlocation()}&rlocationdetail=${Content.get(0).getRlocationdetail()}">[다음]</a>
 					</c:otherwise>
 				</c:choose>
 				</td>

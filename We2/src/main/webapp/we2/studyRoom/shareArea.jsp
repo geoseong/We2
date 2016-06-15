@@ -29,25 +29,21 @@
 <!-- 2. 상단 메뉴 부분-->
         <div id = "nav">
 
-            <a href="02_project.html">프로젝트 </a>
+            <a href="../Member_Mypage">프로젝트 </a>
             <a href="../cBoard/list?page=1&category=cFindwork">커뮤니티 </a>
             <a href="../pjtBoard/list?page=1&category=pGroup">프로젝트공유 </a>
             <a href="../studyroom/list?page=1">스터디룸공유 &nbsp;</a>
             
+            <!-- 로그인 되어있으면 로그인만 표시, 안되어있으면 로그아웃만 표시. -->
             <c:choose>
-			 	<c:when test="${empty loginUser}">
-		
-			            <a href="com_we2_registration_jsp/01_1_login.jsp">로그인</a>
-			            <!-- #########위에 로그인 header를 넣는다! -->
-			        
+			 	<c:when test="${empty authInfo}">
+			            <a href="/We2/login">로그인</a>
 				 </c:when>
 				 <c:otherwise>
-				
-			            <a href="We2_logout.do">로그아웃</a>
-			            <!-- #########위에 로그인 header를 넣는다! -->
-			       
+			            <a href="/We2/logout">로그아웃</a>
 				 </c:otherwise>
 			 </c:choose>
+			 
         </div>
     </div>
          </div><!-- header END -->
@@ -64,7 +60,7 @@
      </div> 
   
   <div id="contents">
- 	<jsp:include page="${studyroompage }.jsp"></jsp:include> 
+ 	<jsp:include page="${studyroompage }.jsp"/> 
   </div>
      
 </div><!-- section END -->
