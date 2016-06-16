@@ -89,32 +89,31 @@
 	<div class="search_controll">
 		<h2 class="study_room_title"><a href="list?page=1">스터디룸 공유</a></h2>
 		
-		<form action="search.do"  method="post" name="frm">
+		<form action="search.do"  method="get" name="frm">
 			<input type="hidden" name="page" value="1">
-		<ul class="study_room_menu">
-			<li>
-				<select name='rlocation' id="rlocation" onchange="subMenu()" style="width:350px; height:40px;">
-				 <option value="지역구분" >지역구분</option>
-				 <option value="서울" >서울</option>
-                 <option value="경기/인천" >경기/인천</option>
-                 <option value="경남/부산/울산" >경남/부산/울산</option>
-                 <option value="대구/경북" >대구/경북</option>
-                 <option value="광주/전라" >광주/광주/전라</option>
-                 <option value="대전/세종/충청" >대전/세종/충청</option> 
-             	</select>
-			</li>
-			<li>
-				<select name='rlocationdetail'  id="rlocationdetail"  onchange="subMenu()" style="width:350px;height:40px;">
-                	<option value="장소구분" >장소 구분</option>
-                	<option value="커피전문점" >커피전문점</option>
-                	<option value="스터디카페/스터디룸" >스터디카페/스터디룸</option>
-                	<option value="회의실" >회의실</option>               
-               </select>
-			</li>
-			<li>
-				<input type="submit" value="검색" class="add_btn" onclick="return check() " style="width:220px;height:40px;">
-				
-			</li>
+			<ul class="study_room_menu">
+				<li>
+					<select name='rlocation' id="rlocation" onchange="subMenu()" style="width:350px; height:40px;">
+					 <option value="지역구분" >지역구분</option>
+					 <option value="서울" >서울</option>
+	                 <option value="경기/인천" >경기/인천</option>
+	                 <option value="경남/부산/울산" >경남/부산/울산</option>
+	                 <option value="대구/경북" >대구/경북</option>
+	                 <option value="광주/전라" >광주/광주/전라</option>
+	                 <option value="대전/세종/충청" >대전/세종/충청</option> 
+	             	</select>
+				</li>
+				<li>
+					<select name='rlocationdetail'  id="rlocationdetail"  onchange="subMenu()" style="width:350px;height:40px;">
+	                	<option value="장소구분" >장소 구분</option>
+	                	<option value="커피전문점" >커피전문점</option>
+	                	<option value="스터디카페/스터디룸" >스터디카페/스터디룸</option>
+	                	<option value="회의실" >회의실</option>               
+	               </select>
+				</li>
+				<li>
+					<input type="submit" value="검색" class="add_btn" onclick="return check() " style="width:220px;height:40px;">
+				</li>
 		</ul>
 		</form>
 		

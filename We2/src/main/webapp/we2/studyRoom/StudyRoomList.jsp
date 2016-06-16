@@ -25,9 +25,6 @@
 <script type="text/javascript" src="../js/jquery-1.12.1.min.js"></script>
 
 <script type="text/javascript">
-
-
-  
   function check() {
       if (document.frm.rlocation.value == "지역구분") {
           alert("지역을 선택해주세요.");
@@ -65,11 +62,7 @@
 		var url = "studyroomwrite.do";
 	     javascript:window.open(url , '상세내용보기', 'width=570 height=550 left=150 top=100 menubar=no rlocation=no, resizable=no, toolbar=no');
 	}
-	  
-
 </script>
-
-
 
 <script type="text/javascript">
   function subMenu() {
@@ -80,11 +73,19 @@
 }
 </script>
 
-
-
 </head>
 <body>
-
+<c:choose>
+	<c:when test="${empty msg }">
+	</c:when>
+	<c:otherwise>
+		<script type='text/javascript'>
+			alert('${msg}');
+		</script>
+	</c:otherwise>
+</c:choose>
+		<c:set scope="request" var="alert" value="${false }"/>
+		
 <div id="container">
 	<div class="search_controll">
 		<h2 class="study_room_title"><a href="list?page=1">스터디룸 공유</a></h2>

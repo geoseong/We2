@@ -8,7 +8,6 @@ public class FormattedDate {
 	private String itemDate;
 	private int itemClick;
 	private String itemPath;
-	/*private MultipartFile itemPath;*/
 	private String itemContent;
 	
 	

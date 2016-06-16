@@ -54,22 +54,16 @@ public class PjtSettingCtrl {
 		// 이 프로젝트의 방장(userid)를 세션에 보냄
 		session.setAttribute("leader", pDao.selectLeader(pjtCode));
 		
-			System.out.println("pjtEndDate받은 String값 : " + pjtVo.getEndDate());
-		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
-		Date pjtEnd = transFormat.parse(pjtVo.getEndDate());
-			System.out.println("Year : " + pjtEnd.getYear() + " / Month : " + pjtEnd.getMonth() + " / Day : " + pjtEnd.getDay());
-		/*
-		String from = "2013-04-08 10:10:10";
-		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Date to = transFormat.parse(from);
-		 */
-		
 		//디비상에 날짜를 조회해서 세션에 담는다.
-		int searchDate = mDao.selectDate(pjtCode);
-			System.out.println("endDate-startDate : "+searchDate);
+		int totalDate = mDao.selectDate(pjtCode);
+			System.out.println("총 프로젝트 일수 : "+totalDate);
 			
+		int remainDate = mDao.remainDate(pjtCode);
+			System.out.println("현재 잔여 프로젝트 일수 : "+remainDate);
+		
 		// endDate-startDate를 세션에 날림.
-		session.setAttribute("day", searchDate);
+		session.setAttribute("totalDate", totalDate);
+		session.setAttribute("remainDate", remainDate);
 		
 				
 		return "redirect:/notice/list";
@@ -244,7 +238,18 @@ public class PjtSettingCtrl {
 		
 		int pjtCode = (Integer)session.getAttribute("pjtCode");
 		
-			pDao.updatePjtMake(startDate, endDate, pjtCode);
+		pDao.updatePjtMake(startDate, endDate, pjtCode);
+		
+			//디비상에 날짜를 조회해서 세션에 담는다.
+			int totalDate = mDao.selectDate(pjtCode);
+				System.out.println("프로젝트 일수 : "+totalDate);
+			int remainDate = mDao.remainDate(pjtCode);
+				System.out.println("현재 잔여 프로젝트 일수 : "+remainDate);
+				
+			// endDate-startDate를 세션에 날림.
+			session.setAttribute("totalDate", totalDate);
+			session.setAttribute("remainDate", remainDate);
+			
 			// Model객체에 보내기
 			model.addAttribute("msg", "perioddone");
 			

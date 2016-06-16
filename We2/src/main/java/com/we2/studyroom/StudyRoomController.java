@@ -115,8 +115,16 @@ public class StudyRoomController {
 			row_end = paging.getLastRowInPage(page, rows_per_page);
 				System.out.println("row_end : " + row_end);
 				
-			// 단어검색 select & 페이징 기법 을 ArrayList로 받음
-			ArrayList<StudyRoomBean> searchbean = studyroomService.getSearchstudyroom(rlocation, rlocationdetail, row_start, rows_per_page);
+			ArrayList<StudyRoomBean> searchbean = new ArrayList<StudyRoomBean>();
+			try{
+				// 단어검색 select & 페이징 기법 을 ArrayList로 받음
+				searchbean = studyroomService.getSearchstudyroom(rlocation, rlocationdetail, row_start, rows_per_page);
+				// Exception 발생하나 보기
+				searchbean.get(0);
+			}catch(IndexOutOfBoundsException e){
+				model.addAttribute("msg", "검색결과가 없습니다.");
+				return listSpecificPageWork(1, model);
+			}
 			
 			//검색된 row의 totalcnt를 구하기.
 			int t_rows = studyroomService.getsearchTotalCnt(rlocation, rlocationdetail);
