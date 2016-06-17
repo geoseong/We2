@@ -31,10 +31,10 @@
 				<!-- 2. 상단 메뉴 부분-->
 				<div id="nav">
 
-					<a href="/We2/Member_Mypage">프로젝트 </a>
-            <a href="/We2/cBoard/list?page=1&category=cFindwork">커뮤니티 </a>
-            <a href="/We2/pjtBoard/list?page=1&category=pGroup">프로젝트공유 </a>
-            <a href="/We2/studyroom/list?page=1">스터디룸공유 &nbsp;</a>
+					<a href="/We2/Member_Mypage">프로젝트 </a> <a
+						href="/We2/cBoard/list?page=1&category=cFindwork">커뮤니티 </a> <a
+						href="/We2/pjtBoard/list?page=1&category=pGroup">프로젝트공유 </a> <a
+						href="/We2/studyroom/list?page=1">스터디룸공유 &nbsp;</a>
 					<c:choose>
 						<c:when test="${empty loginUser}">
 
@@ -60,7 +60,8 @@
 				<b>아이디찾기/비밀번호찾기</b>
 				<!-- 게시판 타이틀 밑의 선-->
 				<div id="second_line" style="background-color: #166BA3;"></div>
-
+				<div style="display: inline-block; padding: 5px;"><p>당신의 아이디는</p><h1>${lostuser}</h1>
+				</div>
 			</div>
 
 			<div id="contents">
@@ -82,9 +83,7 @@
 						<input type="submit" value="아이디찾기" />
 					</form>
 				</div>
-				<div style="display: inline-block; padding: 5px;">
-				${lostuser}
-				</div>		
+
 			</div>
 
 		</div>

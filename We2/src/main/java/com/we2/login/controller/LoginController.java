@@ -238,8 +238,11 @@ public class LoginController {
 	@RequestMapping(value = "/idsearch", method = RequestMethod.POST)
 	public String lostmember(Model model,@RequestParam(value = "name", required=false) String name,
 			@RequestParam(value = "email", required=false) String email) {
+		
 		System.out.println("controller name : " + name + " / email : " + email);
+		
 		String userid=memberDao.findid(name, email);
+		
 		System.out.println("userid;;;;;;;;;;;"+ userid);
 		model.addAttribute("lostuser", userid);
 		return "/registration/MemberIdandPassSearchForm";
