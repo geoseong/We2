@@ -129,8 +129,14 @@ public class MemberDao {
 		return results.isEmpty() ? null : results;
 	}
 
+	public int remainDate(int pjtCode) {
+		String sql = "select to_days(endDate) - to_days(curDate()) remaindate from pjtmake where pjtcode=?";
+		int searchDate = jdbcTemplate.queryForObject(sql, new Object[] { pjtCode }, Integer.class);
+		return searchDate;
+	}
+	
 	public int selectDate(int pjtCode) {
-		String sql = "select (endDate-startDate) from pjtMake where pjtCode=?";
+		String sql = "select to_days(endDate) - to_days(startDate) from pjtmake where pjtcode=?";
 		int searchDate = jdbcTemplate.queryForObject(sql, new Object[] { pjtCode }, Integer.class);
 		return searchDate;
 	}

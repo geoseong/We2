@@ -52,7 +52,7 @@ public class CBoardService {
 		return formattedDate;
 	}
 	
-	// 총 폐이지 갯수 구하기
+	// 총 레코드 갯수 구하기
 	public int getTotalCnt(String category){
 		return boardMapper.getTotalCnt(category);
 	}

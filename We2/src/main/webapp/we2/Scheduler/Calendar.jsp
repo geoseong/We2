@@ -2,12 +2,7 @@
  	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="java.util.List" %>
-<link rel="stylesheet"  href="/We2/css/Schedule.css" type="text/css">
-<link rel="stylesheet"  href="/We2/css/w2_reset.css" type="text/css">
 
-<script type="text/javascript" src="/We2/js/jquery-1.12.1.min.js"></script>
-
-<fmt:requestEncoding value="UTF-8"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%!
 
@@ -18,7 +13,12 @@ int calendarmemo_num;
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet"  href="/We2/css/Schedule.css" type="text/css">
+<link rel="stylesheet"  href="/We2/css/w2_reset.css" type="text/css">
 
+<script type="text/javascript" src="/We2/js/jquery-1.12.1.min.js"></script>
+
+<fmt:requestEncoding value="UTF-8"/>
 <script>
  
 function winOpen(year, month, day){
@@ -127,9 +127,16 @@ function winOpen2(calendarmemo_num){
 	<c:forEach var="j" begin="1" end="${end }">
 	  <!-- start : 날짜부분 -->
 	  <td class="name" >
-		<a href='#' onclick='javascript:winOpen(${year}, ${month}, ${j })' >
-		${j}
-		</a>
+	  	<c:choose>
+			<c:when test="${leader eq authInfo.userId}">
+				<a href='#' onclick='javascript:winOpen(${year}, ${month}, ${j })' >
+				${j}
+				</a>
+			</c:when>
+			<c:otherwise>
+				${j}
+			</c:otherwise>
+		</c:choose>
 		<br>
  	   <!-- //내용 출력 -->	  
 		<c:forEach var="content" items="${Content }">

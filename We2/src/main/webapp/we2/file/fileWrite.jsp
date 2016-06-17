@@ -11,13 +11,27 @@
 <script type="text/javascript" src="../js/jquery-1.12.1.min.js"></script> 
 <script type="text/javascript">
 	function filesizechk(){
+		// 유효성검사
+		var rname = document.frm.fname;
+		if(rname.value.length==0){
+			alert('파일명을 입력해 주세요.');
+			return false;
+		}
+		var file = document.frm.fileurl;
+		if(file.value.trim() == ""){
+			alert('업로드할 파일을 지정하지 않으셨습니다.');
+			return false;
+		}
+		
 		var maxSize = 20*1024*1024;
 		var size = $("#file")[0].files[0].size;
 		if(size > maxSize) {
 			alert("파일 용량이 20 MB 를 초과하였습니다.");
-			return false;		}
+			return false;		
+		}
 		return true;
 	}
+	
 </script>
 </head>
 <body>

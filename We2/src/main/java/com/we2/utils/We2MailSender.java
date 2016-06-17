@@ -40,7 +40,6 @@ public class We2MailSender{
         try {
         	// 서버 파일경로를 알아내서 저장한다.
         	String path = servletContext.getRealPath("we2/");
-				System.out.println("파일경로 : " + path+"\n");
 			
 			// MimeMessage 를 도와주는 클래스.. -.-a
             MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");

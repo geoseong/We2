@@ -18,7 +18,6 @@ public interface PjtBoardMapper {
 	
 	// 페이징 select문.
 	final String select = 
-			//"select itemNum, itemTitle, userId, itemDate, itemClick, itemPath, itemContent" 
 			"select * from ${category} order by itemNum desc limit #{row_start}, #{rows_per_page}";
 	
 	final String select_by_num =

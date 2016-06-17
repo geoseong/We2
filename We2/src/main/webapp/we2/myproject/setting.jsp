@@ -46,17 +46,14 @@
 	         <th>프로젝트 이름 </th>
 	         	<td>&nbsp;&nbsp;&nbsp;${pjtInfo.pjtName }</td>
 	       </tr>
-	       
 	       <tr>
 	      	 <th>시작일 </th>
 	      	 	<td>&nbsp;&nbsp;&nbsp;${pjtInfo.startDate }</td>
 	       </tr>
-	      
 	       <tr>
 	     	 <th>마감일 </th>
 	      	 	<td>&nbsp;&nbsp;&nbsp;${pjtInfo.endDate }</td>
 	       </tr>
-	       
 	       <tr>
 	      	 <th>팀원 </th>
 	      		 <td>
@@ -112,7 +109,7 @@
         </tr>
    </table>
         	<!-- 팀원강퇴하기 버튼 -->
-	        	<div style="float: right;">
+	        	<div style="float: right; margin-right: 10px;">
 		        	<input type="submit" class="add_btn" value="팀원강퇴" size="20" >
 	        	</div>
        </form>
@@ -133,7 +130,7 @@
 	           		 <span> ~ </span>    
 	            <input type="text" size="7" name="endDate" id="term2" style="height:25px; margin-top: 20px;"> 
 	            
-	            <input type="submit" class="add_btn" value="수정하기" size="20" style="margin-right:5px;" >                             
+	            <input type="submit" class="add_btn" value="수정하기" size="20" style="margin-right:10px;" >                             
 	        </div>
      </div>  
      </form>

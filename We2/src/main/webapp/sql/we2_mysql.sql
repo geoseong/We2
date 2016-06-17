@@ -21,6 +21,9 @@ ALTER TABLE pwithwork CHANGE itemContent itemContent VARCHAR(3000);
 # 컬럼타입을 varcarh에서 text로 바꾸면 문자수 제한이 없다.
 alter table 테이블명 modify 컬럼명 text;
 
+#[테이블 컬럼 삭제하기]
+# alter table [테이블명] drop column [삭제할 컬럼명]
+alter table roomshare drop column pjtcode;
 
 drop table pjtmake cascade constraint;
 drop table pjtmanager cascade constraint;

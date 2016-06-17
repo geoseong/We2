@@ -51,26 +51,20 @@ public class PjtSettingCtrl {
 		
 		PjtMakeVO pjtVo = pDao.selectAllpjtInfo(pjtCode);
 		session.setAttribute("project", pjtVo);
-		
-			System.out.println("pjtEndDate받은 String값 : " + pjtVo.getEndDate());
-		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
-		Date pjtEnd = transFormat.parse(pjtVo.getEndDate());
-			System.out.println("Year : " + pjtEnd.getYear() + " / Month : " + pjtEnd.getMonth() + " / Day : " + pjtEnd.getDay());
-		/*
-		String from = "2013-04-08 10:10:10";
-		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Date to = transFormat.parse(from);
-		 */
+		// 이 프로젝트의 방장(userid)를 세션에 보냄
+		session.setAttribute("leader", pDao.selectLeader(pjtCode));
 		
 		//디비상에 날짜를 조회해서 세션에 담는다.
-		int searchDate = mDao.selectDate(pjtCode);
-			System.out.println("endDate-startDate : "+searchDate);
+		int totalDate = mDao.selectDate(pjtCode);
+			System.out.println("총 프로젝트 일수 : "+totalDate);
 			
-		// endDate-startDate를 세션에 날림.
-		session.setAttribute("day", searchDate);
+		int remainDate = mDao.remainDate(pjtCode);
+			System.out.println("현재 잔여 프로젝트 일수 : "+remainDate);
 		
-		/*// JSP:INCLUDE PAGE
-		model.addAttribute("page", "../notice/list");*/
+		// endDate-startDate를 세션에 날림.
+		session.setAttribute("totalDate", totalDate);
+		session.setAttribute("remainDate", remainDate);
+		
 				
 		return "redirect:/notice/list";
 	}
@@ -88,7 +82,6 @@ public class PjtSettingCtrl {
 				
 		// SQL : 방장의 ID 구하기
 		String pjtleader = pDao.selectLeader(pjtCode);
-			System.out.println("이바닥의 방장은 바로 - " + pjtleader);
 		// 현재 로그인된 사람의 id 구하기
 		AuthInfo member = (AuthInfo)session.getAttribute("authInfo");
 		String loggedinmem=member.getUserId();
@@ -198,20 +191,15 @@ public class PjtSettingCtrl {
 		
 		// 현재 로그인된 유저가 가입하려는 프로젝트에 가입되어있나 확인.
 		if(pDao.checkpjtmember(pjtCode, userId)!=null){
-			System.out.println("이 user는 해당 프로젝트에 이미 가입되어있음.");
 			model.addAttribute("msg", "이미 해당 프로젝트에 참여 중이십니다.");
 			return "index";
 		}else{
 			System.out.println("pDao.checkpjtmember가 null");
 		}
 		
-		/*if(session.getAttribute("authInfo")==null){
-			return "redirect:/login";
-		}else{*/
-			 pDao.addpjtMember(pjtCode, userId);
-			 wDao.adduserWillwork(userId, pjtCode, username);
-			 System.out.println("/project addpjtmember.GET insert 완료됨");
-		/*}*/
+		 pDao.addpjtMember(pjtCode, userId);
+		 wDao.adduserWillwork(userId, pjtCode, username);
+		 System.out.println("/project addpjtmember.GET insert 완료됨");
 		 
 		model.addAttribute("msg", "해당 프로젝트 가입이 완료되었습니다 마이페이지에서 확인 해 보세요.");
 		return "index";
@@ -250,7 +238,18 @@ public class PjtSettingCtrl {
 		
 		int pjtCode = (Integer)session.getAttribute("pjtCode");
 		
-			pDao.updatePjtMake(startDate, endDate, pjtCode);
+		pDao.updatePjtMake(startDate, endDate, pjtCode);
+		
+			//디비상에 날짜를 조회해서 세션에 담는다.
+			int totalDate = mDao.selectDate(pjtCode);
+				System.out.println("프로젝트 일수 : "+totalDate);
+			int remainDate = mDao.remainDate(pjtCode);
+				System.out.println("현재 잔여 프로젝트 일수 : "+remainDate);
+				
+			// endDate-startDate를 세션에 날림.
+			session.setAttribute("totalDate", totalDate);
+			session.setAttribute("remainDate", remainDate);
+			
 			// Model객체에 보내기
 			model.addAttribute("msg", "perioddone");
 			

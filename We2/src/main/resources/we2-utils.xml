@@ -45,16 +45,6 @@
 
 	<!-- Excel 파일생성 bean객체 삽입 -->
 		
-		<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-		    <property name="order" value="0"/>
-		    <property name="defaultErrorView" value="error"/>
-		    <property name="exceptionMappings">
-		        <props>
-		               <prop key="RuntimeException">error</prop>
-		        </props>
-		    </property>
-		</bean>
-		
 		<bean name="dao" class="com.we2.utils.ExcelDAO">
 			<constructor-arg ref="dataSource"/>
 		</bean>

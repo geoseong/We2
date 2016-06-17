@@ -20,20 +20,29 @@
     	해당 기능 jsp에다가 css를 넣어 놓음 
      <link rel="stylesheet" type="text/css" href="../css/File.css"> -->
      
-     <script type="text/javascript" src="/We2/js/jquery-1.12.1.min.js"></script> 
+ <script type="text/javascript" src="/We2/js/jquery-1.12.1.min.js"></script> 
 
  <script>
- 
-var myVar = setInterval(myTimer, 1000*60*60*24);
-
- <% Object day = session.getAttribute("day");
- %>
- 
-	function myTimer(){
-	  if($(".state_line_1").width()<1032){
- 		$(".state_line_1").animate({width:"+="+1032/<%= day %>});
-	 }
-} 
+	 <% 
+	 		Object totalDate = session.getAttribute("totalDate"); 
+	 		Object remainDate = session.getAttribute("remainDate");
+	 %>
+		$(function(){
+			var percentDate = <%=remainDate %> / <%= totalDate %>;
+			var percent = (1 - percentDate)*100+'%';
+				alert("1-percentDate : " + (1-percentDate));
+			$(".state_line_1").css({"width": percent});
+			
+			if((1-percentDate)<0.1){
+				$(".state_line_1>span").css({"width": '50px', 'color': '#000000'});
+			}else if((1-percentDate)>1){
+				var datenum = <%=remainDate%>;
+				var dateabs = datenum.toString();
+				alert(dateabs);
+				$(".state_line_1").css({"width": '100%'});
+				$(".state_line_1>span").html(dateabs.replace("-", "") + '일 지남');
+			}
+		});
 
 </script> 
 </head>
@@ -65,7 +74,7 @@ var myVar = setInterval(myTimer, 1000*60*60*24);
             <img src = "/We2/img/project/deadline.png" style = "width:85px; height:45px;">
             <div class ="state_line_0"></div>
             <div class ="state_line_1">
-                <span> <%=day%>일</span> <!-- 이 부분 session에 담았으니  이리로 넘어오는 컨트롤러에서 빈에 담아줘야 하-->
+                <span> <%=remainDate%>일 남음</span> <!-- 이 부분 session에 담았으니  이리로 넘어오는 컨트롤러에서 빈에 담아줘야 하-->
             </div>
      </div>
          <!--팀원 보기 아이콘-->
@@ -122,11 +131,11 @@ Copyright © geoseong.com
   </div>  
 </body>
 
-<script>
+<!-- <script>
 $(".state_line_1").click(function(){
 	clearInterval(myVar);
 });
-</script>
+</script> -->
 
 
 </html>

@@ -8,6 +8,72 @@
 <link rel="stylesheet" type="text/css" href="../css/studyroom_window.css">
 
 <title>스터디룸 공유_글쓰기</title>
+<script type="text/javascript" src="/We2/js/jquery-1.12.1.min.js"></script> 
+
+<script type="text/javascript">
+$(window).ready(function() {
+	var file = document.frm.rpictureurl;
+	$(file).change(function(){
+		var filetype = file.files[0].type;
+		var typeimage = filetype.indexOf('image');
+		var typemultipart = filetype.indexOf('multipart/related');
+		if(typeimage==0 || typemultipart==0){
+		}else{
+			alert('이미지파일만 올리셔야 합니다.');
+		}
+	});
+});
+	/*
+	 이미지 관련 MIME타입들..
+	 mht : multipart/related
+	jpg : image/jpeg
+	dib : image/bmp
+	bmp : image/bmp
+	gif : image/gif
+	png : image/png
+	 */
+function validation(){
+	
+	// 유효성검사
+	var rname = document.frm.rname;
+	if(document.frm.rname.value.length==0){
+		alert('위치명을 입력해 주세요.');
+		return false;
+	}
+	if(document.frm.rmember.value.length==0){
+		alert('인원제한을 입력해 주세요.');
+		return false;
+	}
+	
+	/* START : 인원 숫자만 입력되게 하기*/
+		var rmember = document.frm.rmember;
+		if(isNaN(rmember.value)){
+			alert('인원제한은 숫자만 입력되어야 합니다');
+			return false;
+		}
+	/* END : 인원 숫자만 입력되게 하기*/
+	
+		
+	/* START : 파일타입 구별*/
+		var file = document.frm.rpictureurl;
+		if(file.value.trim() == ""){
+			alert('스터디룸 사진 업로드 해주세요!! ㅎ.');
+			return false;
+		}else{
+			var filetype = file.files[0].type;
+			var typeimage = filetype.indexOf('image');
+			var typemultipart = filetype.indexOf('multipart/related');
+		}
+		if(typeimage==0 || typemultipart==0){
+		}else{
+			alert('이미지파일만 올리셔야 합니다.');
+			return false;
+		}
+	/* END : 파일타입 구별*/
+	
+	document.frm.submit();
+} //end validation()
+</script>
 </head>
 <body>
     <H2 style="text-align:center; color:#69C5E7;">스터디룸 등록</H2>
@@ -51,7 +117,7 @@
         파일첨부 
         </th>
    		<td colspan=4 >
-   			<input type="file" name="rpictureurl"> <br> 
+   			<input type="file" name="rpictureurl" > <br> 
    			
    			<span style="font-size:12px; color:red;">*파일 용량제한은 20MB 입니다.</span>
    		</td>
@@ -65,7 +131,7 @@
     
     
     <div class = "button">
-       <input name="add"  class="add_btn" type=submit value="위치 등록" onclick="return ScheduleCheck()">    
+       <input name="add"  class="add_btn" type="button" value="위치 등록" onclick="return validation()">    
        <input name="cancel"  class="add_btn"  type="reset" value="다시 작성">
     </div>
    
