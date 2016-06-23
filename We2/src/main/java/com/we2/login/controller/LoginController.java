@@ -1,5 +1,6 @@
 package com.we2.login.controller;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -164,6 +165,7 @@ public class LoginController {
 		System.out.println("authInfo::::::::::" + authInfo);
 
 		AuthInfo mVo = (AuthInfo) session.getAttribute("authInfo");
+		//mVo 세션에서 가져오지 마시고, 세션정보의 userid로 db를 새로 조회해와서 모델
 		System.out.println("mVo.getUserId()::::::::" + mVo.getUserId());
 		System.out.println("mVo.getGender()성별 오류출력:::::" + mVo.getGender());
 
@@ -177,8 +179,9 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/Member_Mypage", method = RequestMethod.POST)
-	public String Member_MypageViewpost(HttpServletRequest request, Member member, Model model) {
-
+	public String Member_MypageViewpost(HttpServletRequest request) {
+		System.out.println("11111");
+		/*
 		System.out.println("파라미터 pwd : " + request.getParameter("pwd"));
 		System.out.println("파라미터 pwd_conrifm : " + request.getParameter("pwd_confirm"));
 
@@ -198,10 +201,34 @@ public class LoginController {
 			member.setGender(request.getParameter("gender"));
 
 			System.out.println("Member_Mypage값이 제대로 오니?" + member.getGender());
+*/
+			System.out.println("22222");
+			
+			String name = request.getParameter("name");
+			String userId =request.getParameter("userId");
+			String pwd =request.getParameter("pwd");
+			String pwd_confirm =request.getParameter("pwd_confirm");
+			String phone =request.getParameter("phone");
+			String email = request.getParameter("email");
+			String gender =request.getParameter("gender");
+			String RegDate= request.getParameter("regDate");
+			
+			System.out.println("33333");
 
-			memberDao.update(member);
-		}
-		return "index";
+			System.out.println("Logincontroller]]"+request.getParameter("name"));
+			System.out.println("Logincontroller]]"+request.getParameter("userId"));
+			System.out.println("Logincontroller]]"+request.getParameter("pwd"));
+			System.out.println("Logincontroller]]"+request.getParameter("pwd_confirm"));
+			System.out.println("Logincontroller]]"+request.getParameter("phone"));
+			System.out.println("Logincontroller]]"+request.getParameter("email"));
+			System.out.println("Logincontroller]]"+request.getParameter("gender"));
+			System.out.println("Logincontroller]]"+request.getParameter("regDate"));
+			
+			System.out.println("44444");
+			memberDao.update(name, userId, pwd, pwd_confirm, phone, email, gender, RegDate);
+			System.out.println("55555");
+		
+		return "redirect:/Member_Mypage";
 	}
 	@RequestMapping(value = "/lost", method = RequestMethod.GET)
 	public String forgotmember(Model model) {
@@ -211,8 +238,11 @@ public class LoginController {
 	@RequestMapping(value = "/idsearch", method = RequestMethod.POST)
 	public String lostmember(Model model,@RequestParam(value = "name", required=false) String name,
 			@RequestParam(value = "email", required=false) String email) {
+		
 		System.out.println("controller name : " + name + " / email : " + email);
+		
 		String userid=memberDao.findid(name, email);
+		
 		System.out.println("userid;;;;;;;;;;;"+ userid);
 		model.addAttribute("lostuser", userid);
 		return "/registration/MemberIdandPassSearchForm";

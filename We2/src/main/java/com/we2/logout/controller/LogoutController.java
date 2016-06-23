@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.we2.spring.AuthInfo;
 import com.we2.spring.Member;
 import com.we2.spring.MemberDao;
 
@@ -32,18 +34,20 @@ public class LogoutController {
 	}
 
 	@RequestMapping(value = "/Member_delete", method = RequestMethod.POST)
-	public String Member_delete(Member member, HttpServletRequest request , Model model) {
+	public String Member_delete(HttpServletRequest request,HttpSession session, Model model) {
+		
+		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
 
-		HttpSession session = request.getSession(); // 세션영역을 가져온다
-
-		member = (Member) session.getAttribute("member");
-			System.out.println("member;;;;;;");
+			System.out.println("logout]]]+"+authInfo);
+			System.out.println("logout[[["+authInfo.getUserId());
+		
 		try{
-			memberDao.delete(member);
+			memberDao.delete(authInfo);
 		}catch(Exception e){
 			e.getStackTrace();
 			request.setAttribute("message", "잘못된 접근입니다. 다시 시도해 주세요");
 		}
+		model.addAttribute("msg", "회원삭제가 완료되었습니다.");
 		session.invalidate();
 		return "/index";
 	}

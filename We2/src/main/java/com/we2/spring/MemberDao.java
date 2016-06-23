@@ -64,11 +64,10 @@ public class MemberDao {
 	}
 
 	// 사용자 정보를 수정하는 메소드
-	public void update(Member member) {
+	public void update(String name,String userId,String pwd,String pwd_confirm,String phone,String email,String gender,String RegDate) {
 		jdbcTemplate.update(
-				"UPDATE member SET name='?',pwd='?',pwd_confirm='?', email='?' ,phone='?', gender='?', regDate='?' WHERE userId='?';",
-				member.getName(), member.getPwd(), member.getPwd_confirm(), member.getEmail(), member.getPhone(),
-				member.getGender(), member.getRegDate(), member.getUserId());
+				"UPDATE member SET name=?, pwd=?, pwd_confirm=?, email=?, phone=?, gender=?, regDate = ? WHERE userId=?",
+				name, pwd, pwd_confirm,email, phone, gender, RegDate, userId);
 	}
 
 	public List<Member> selectAll() {
@@ -142,11 +141,9 @@ public class MemberDao {
 		return searchDate;
 	}
 
-	public void delete(Member member) {
-		System.out.println("member DAO  삭제구문");
-		jdbcTemplate.update("delete from member where userId=?", member.getUserId());
-		System.out.println(jdbcTemplate.update("delete from member where userId=?;", member.getUserId()));
-		;
+	public void delete(AuthInfo authInfo) {
+		System.out.println("Dao_delete]]]+"+authInfo.getUserId());
+		jdbcTemplate.update("delete from member where userId=?", authInfo.getUserId());
 	}
 
 	public String findid(String name, String email){
