@@ -52,42 +52,12 @@ public class WillWorkDAO2 {
       System.out.println("WillWorkDAO2] selectAll 결과 아무것도 없음? "+results.isEmpty());
       return results;
    }
-   
-   /*public void deleteFromHostContacts(int hostId)
-   {
-       String DELETE = " DELETE FROM host_contacts WHERE host_id=?";
-       getSimpleJdbcTemplate().update(DELETE, hostId);
-   }*/
-   
-   /*public void Delete(String complete){
-      String delete = "delete from willwork where doWork=?"; 
-      jdbcTemplate.update(delete, complete);
-   }*/
-   
-   /*public int Pjtcount(int pjtCode){
-      List<WillWorkVO> results = jdbcTemplate.query("select count(userid) from willwork where pjtcode='"+pjtCode+"'", 
-            new RowMapper<WillWorkVO>(){ //���� �������� �ڹ� ��ü�� ��ȯ�ϴ� RowMapper �������̽�
-            @Override
-            public WillWorkVO mapRow(ResultSet rs, int rowNum) throws SQLException{
-            WillWorkVO willWorkVO = new WillWorkVO(rs.getString("userId"),
-                  rs.getInt("pjtCode"),
-                  rs.getString("doWork"),
-                  rs.getString("doneWork"),
-                  rs.getString("stateWork"),
-                  rs.getString("name"));
-            return willWorkVO; //WillWorkVO�� DB���� ��ȸ�� ������ ����
-            }
-         });
-      
-      //results�� ��ȯ
-      return results;
-   }*/
-   
+
    public List<WillWorkVO> selectOne(String name, int pjtcode){
       List<WillWorkVO> results = jdbcTemplate.query(
             "select * from willwork where name=? and pjtcode=?"
             , 
-            new RowMapper<WillWorkVO>(){ //���� �������� �ڹ� ��ü�� ��ȯ�ϴ� RowMapper �������̽�
+            new RowMapper<WillWorkVO>(){ 
             @Override
             public WillWorkVO mapRow(ResultSet rs, int rowNum) throws SQLException{
             WillWorkVO willWorkVO = new WillWorkVO(rs.getString("userId"),
@@ -96,18 +66,16 @@ public class WillWorkDAO2 {
                   rs.getString("doneWork"),
                   rs.getString("stateWork"),
                   rs.getString("name"));
-            return willWorkVO; //WillWorkVO�� DB���� ��ȸ�� ������ ����
+            return willWorkVO; 
             }
          }, name, pjtcode);
       
-      //results�� ��ȯ
       return results;
    }
    
-   public void insertDoWork(final String name, final String doWork, final int pjtcode){
-          // String dowork = dowork + ", " + "doWork" ; 
+   public void insertDoWork(final String name, final String isEmpty, final String doWork, final int pjtcode){
 	   String query=null;
-	   if(doWork.equals("")){
+	   if(isEmpty.trim().equals("")){	// doWork컬럼이 비어있으면 앞에 ' ,'을 붙이지 않는다.
 		   query = "update willwork set dowork = CONCAT(dowork, '', ?) where name=? and pjtcode=?";
 	   }else{
 		   query = "update willwork set dowork = CONCAT(dowork, ', ', ?) where name=? and pjtcode=?";
@@ -134,14 +102,11 @@ public class WillWorkDAO2 {
             @Override
             public PreparedStatement createPreparedStatement(Connection con) 
                     throws SQLException {
-                // �Ķ���ͷ� ���޹��� Connection�� �̿��ؼ� PreparedStatement ����
                 PreparedStatement pstmt = con.prepareStatement(
                 "update willwork set doneWork = CONCAT(donework, ' ', ?) where name=?"
                   );
-                // �ε��� �Ķ���� �� ����
                 pstmt.setString(1, doneWork);
                 pstmt.setString(2, name);
-                // ������ PreparedStatement ��ü ����
                 return pstmt;
             } //end createPreparedStatement()
         });

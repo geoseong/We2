@@ -381,5 +381,4 @@ public class CBoardController {
 		return "cBoard/boardmain";
 	}
 	
-	
 }

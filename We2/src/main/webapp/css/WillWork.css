@@ -37,6 +37,7 @@
 	border:1px solid #ccc;
 	width:60%; 
 	text-align:center;
+	Cursor: pointer;
 }
 
 .people> .state_work{

@@ -49,10 +49,19 @@ public class WillWorkController {
    public String AddPost(HttpServletRequest request, Model model, HttpSession session){
       String doWork = request.getParameter("inputWork"); 
       String name = request.getParameter("userName"); 
-      		System.out.println("할일 : " +  doWork + " 이름 : " + name);
       
       int pjtCode =(Integer)session.getAttribute("pjtCode");
-      willWorkDAO.insertDoWork(name, doWork, pjtCode);
+      
+      // doWork 컬럼이 비어있는 지 확인하기
+      String isDoWorkEmpty = willWorkDAO.selectOne(name, pjtCode).get(0).getDoWork();
+      String isEmpty="";
+      	System.out.println("isDoWorkEmpty의 내용 : " + isDoWorkEmpty);
+      	if(!isDoWorkEmpty.isEmpty()){
+      		isEmpty=isDoWorkEmpty;
+      	}
+      // 할 일 추가하기
+      willWorkDAO.insertDoWork(name, isEmpty, doWork, pjtCode);
+      
       return "redirect:/willwork/list";
    }
    

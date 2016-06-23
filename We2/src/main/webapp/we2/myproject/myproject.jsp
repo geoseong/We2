@@ -30,7 +30,6 @@
 		$(function(){
 			var percentDate = <%=remainDate %> / <%= totalDate %>;
 			var percent = (1 - percentDate)*100+'%';
-				alert("1-percentDate : " + (1-percentDate));
 			$(".state_line_1").css({"width": percent});
 			
 			if((1-percentDate)<0.1){
@@ -38,7 +37,6 @@
 			}else if((1-percentDate)>1){
 				var datenum = <%=remainDate%>;
 				var dateabs = datenum.toString();
-				alert(dateabs);
 				$(".state_line_1").css({"width": '100%'});
 				$(".state_line_1>span").html(dateabs.replace("-", "") + '일 지남');
 			}
