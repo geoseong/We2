@@ -38,10 +38,10 @@
 %>
 <c:choose>
 	<c:when test="${error eq 'sessionAfterthrowing' }">
-		<c:redirect url="/login"></c:redirect>
+		<c:redirect url="/login?logon=n"></c:redirect>
 	</c:when>
 	<c:when test="${error.contains('NullPointer') }">
-		<c:redirect url="/login"></c:redirect>
+		<c:redirect url="/login?logon=n"></c:redirect>
 	</c:when>
 </c:choose>
 </body>

@@ -117,7 +117,7 @@ public class CBoardController {
 	
 	/** 글쓰기 폼 띄우기 */
 	@RequestMapping(value="/write", method=RequestMethod.GET)
-	public String writeget(HttpSession session, /*HttpServletRequest request,*/ Model model,String category){
+	public String aopwriteget(HttpSession session,Model model,String category){
 		
 		System.out.println("Write.get] category : " + category);
 		

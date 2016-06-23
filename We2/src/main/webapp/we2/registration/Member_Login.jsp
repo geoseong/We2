@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -27,7 +28,19 @@ $("#nav>a").click(function(){
 </script>
 </head>    
 <body>
-    <!--1.백그라운드에 깔리는 화면페이지-->
+
+<%
+	if(request.getParameter("logon") !=null){
+		System.out.println("if문 안에 들어옴");		
+		%>
+			<script>
+				alert('로그인이 필요한 메뉴입니다.');
+			</script>
+		<%
+	}
+%>
+
+<!--1.백그라운드에 깔리는 화면페이지-->
 <div id="modal_bg"></div>
 
 
