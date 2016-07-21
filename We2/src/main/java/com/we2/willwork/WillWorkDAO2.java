@@ -1,62 +1,150 @@
 package com.we2.willwork;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
+
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 
 import com.we2.pjtMake.PjtMakeVO;
 
 public class WillWorkDAO2 {
-	
-	private static JdbcTemplate jdbcTemplate;
-	
-	public WillWorkDAO2(DataSource dataSource){
-		this.jdbcTemplate = new JdbcTemplate(dataSource);
-	}
-	
-	public WillWorkDAO2(){
+   
+   private static JdbcTemplate jdbcTemplate;
+   
+   public WillWorkDAO2(DataSource dataSource){
+      this.jdbcTemplate = new JdbcTemplate(dataSource);
+   }
+   
+   public WillWorkDAO2(){
+   }
+   
+   //Ìï† Ïùº Î∂ÄÎ∂Ñ, ÏÇ¨Îûå ÏàòÎ•º Íµ¨ÌïòÎäî ÏøºÎ¶¨Î¨∏
+	public int selectPeople(int pjtCode) {
+		String sql = "select count(*) from willwork where pjtcode=?";
+		int people = jdbcTemplate.queryForObject(sql, new Object[] {pjtCode}, Integer.class);
+		return people;
 	}
 
-	public List<WillWorkVO> selectAll(){
-		List<WillWorkVO> results = jdbcTemplate.query("select * from willwork", 
-				new RowMapper<WillWorkVO>(){ //ƒı∏Æ Ω««‡∞·∞˙∏¶ ¿⁄πŸ ∞¥√º∑Œ ∫Ø»Ø«œ¥¬ RowMapper ¿Œ≈Õ∆‰¿ÃΩ∫
-				@Override
-				public WillWorkVO mapRow(ResultSet rs, int rowNum) throws SQLException{
-				WillWorkVO willWorkVO = new WillWorkVO(rs.getString("userId"),
-						rs.getInt("pjtCode"),
-						rs.getString("doWork"),
-						rs.getString("doneWork"),
-						rs.getString("stateWork"),
-						rs.getString("name"));
-				return willWorkVO; //WillWorkVOø° DBø°º≠ ¡∂»∏«— ≥ªøÎ¿ª ¿˙¿Â
-				}
-			});
-		
-		//results∏¶ π›»Ø
-		return results;
-	}
-	
-	public void insertWillWork(final String name, final String doWork) throws ParseException{
-		 	
+   public List<WillWorkVO> selectAll(int pjtCode){
+      List<WillWorkVO> results = jdbcTemplate.query("select * from willwork where pjtCode=?", 
+            new RowMapper<WillWorkVO>(){
+            @Override
+            public WillWorkVO mapRow(ResultSet rs, int rowNum) throws SQLException{
+            WillWorkVO willWorkVO = new WillWorkVO(rs.getString("userId"),
+                  rs.getInt("pjtCode"),
+                  rs.getString("doWork"),
+                  rs.getString("doneWork"),
+                  rs.getString("stateWork"),
+                  rs.getString("name"));
+            return willWorkVO; 
+            }
+         },pjtCode);
+      System.out.println("WillWorkDAO2] selectAll Í≤∞Í≥º ÏïÑÎ¨¥Í≤ÉÎèÑ ÏóÜÏùå? "+results.isEmpty());
+      return results;
+   }
+
+   public List<WillWorkVO> selectOne(String name, int pjtcode){
+      List<WillWorkVO> results = jdbcTemplate.query(
+            "select * from willwork where name=? and pjtcode=?"
+            , 
+            new RowMapper<WillWorkVO>(){ 
+            @Override
+            public WillWorkVO mapRow(ResultSet rs, int rowNum) throws SQLException{
+            WillWorkVO willWorkVO = new WillWorkVO(rs.getString("userId"),
+                  rs.getInt("pjtCode"),
+                  rs.getString("doWork"),
+                  rs.getString("doneWork"),
+                  rs.getString("stateWork"),
+                  rs.getString("name"));
+            return willWorkVO; 
+            }
+         }, name, pjtcode);
+      
+      return results;
+   }
+   
+   public void insertDoWork(final String name, final String isEmpty, final String doWork, final int pjtcode){
+	   String query=null;
+	   if(isEmpty.trim().equals("")){	// doWorkÏª¨ÎüºÏù¥ ÎπÑÏñ¥ÏûàÏúºÎ©¥ ÏïûÏóê ' ,'ÏùÑ Î∂ôÏù¥ÏßÄ ÏïäÎäîÎã§.
+		   query = "update willwork set dowork = CONCAT(dowork, '', ?) where name=? and pjtcode=?";
+	   }else{
+		   query = "update willwork set dowork = CONCAT(dowork, ', ', ?) where name=? and pjtcode=?";
+	   }
+	   final String sql = query;
+           jdbcTemplate.update(new PreparedStatementCreator() {
+               @Override
+               public PreparedStatement createPreparedStatement(Connection con) 
+                       throws SQLException {
+                   PreparedStatement pstmt = con.prepareStatement(
+                		   sql
+                      );
+                   pstmt.setString(1, doWork);
+                   pstmt.setString(2, name);
+                   pstmt.setInt(3, pjtcode);
+                   return pstmt;
+               } //end createPreparedStatement()
+           });
+   }
+   
+   public void updateDoneWork(final String name, final String doneWork) throws ParseException{
+       // String dowork = dowork + ", " + "doWork" ; 
+        jdbcTemplate.update(new PreparedStatementCreator() {
+            @Override
+            public PreparedStatement createPreparedStatement(Connection con) 
+                    throws SQLException {
+                PreparedStatement pstmt = con.prepareStatement(
+                "update willwork set doneWork = CONCAT(donework, ' ', ?) where name=?"
+                  );
+                pstmt.setString(1, doneWork);
+                pstmt.setString(2, name);
+                return pstmt;
+            } //end createPreparedStatement()
+        });
+}
+   
+   public void updateWillWork(final String name, final String doWork) throws ParseException{
+       // String dowork = dowork + ", " + "doWork" ; 
+        jdbcTemplate.update(new PreparedStatementCreator() {
+            @Override
+            public PreparedStatement createPreparedStatement(Connection con) 
+                    throws SQLException {
+                PreparedStatement pstmt = con.prepareStatement(
+                "update willwork set dowork=? where name=?"
+                 );
+                pstmt.setString(1, doWork);
+                pstmt.setString(2, name);
+                return pstmt;
+            } //end createPreparedStatement()
+        });
+   }
+   
+   public void adduserWillwork(final String userId, final int pjtCode, final String username) {
 	        jdbcTemplate.update(new PreparedStatementCreator() {
 	            @Override
 	            public PreparedStatement createPreparedStatement(Connection con) 
 	                    throws SQLException {
-	                // ∆ƒ∂ÛπÃ≈Õ∑Œ ¿¸¥ﬁπﬁ¿∫ Connection¿ª ¿ÃøÎ«ÿº≠ PreparedStatement ª˝º∫
+	                // ÌååÎùºÎØ∏ÌÑ∞Î°ú Ï†ÑÎã¨Î∞õÏùÄ ConnectionÏùÑ Ïù¥Ïö©Ìï¥ÏÑú PreparedStatement ÏÉùÏÑ±
 	                PreparedStatement pstmt = con.prepareStatement(
-	                	"update willwork set dowork = dowork || ', ' || ? where name=?"
-                      );
-	                // ¿Œµ¶Ω∫ ∆ƒ∂ÛπÃ≈Õ ∞™ º≥¡§
-	                pstmt.setString(1, doWork);
-	                pstmt.setString(2, name);
-	                // ª˝º∫«— PreparedStatement ∞¥√º ∏Æ≈œ
+                      "insert into willwork values(?, ?, '', '', '', ?)");
+	                // Ïù∏Îç±Ïä§ ÌååÎùºÎØ∏ÌÑ∞ Í∞í ÏÑ§Ï†ï
+	                pstmt.setString(1, userId);
+	                pstmt.setInt(2,  pjtCode);
+	                pstmt.setString(3, username);
+	                
+	                // ÏÉùÏÑ±Ìïú PreparedStatement Í∞ùÏ≤¥ Î¶¨ÌÑ¥
 	                return pstmt;
 	            } //end createPreparedStatement()
 	        });
+	        System.out.println("adduserWillwork Completed");
 	}
 }

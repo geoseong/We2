@@ -25,7 +25,7 @@ public class RPagingManager {
 		
 		// 현재페이지 종료레코드
 		public int getLastRowInPage(int page, int rows_per_page){
-			return (page*rows_per_page)-1;
+			return (page*rows_per_page);
 		}
 		public int getTotalPage(int t_rows, int rows_per_page){
 			int total_pages=0;

@@ -4,33 +4,31 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="../css/w2_reset.css">
+<link rel="stylesheet" type="text/css" href="../css/studyroom_window.css">
 <title>Insert title here</title>
 </head>
 <body>
-    <H2>파일 삭제</H2>
-  <HR>
+    <H2 style="text-align:center; color:#69C5E7;">파일 삭제</H2>
   
- <form name="frm" method="post" action="fDelete.do"  >
+ <form name="frm" method="post" action="filedelete.do"  >
      <input type="hidden" name="fcode" value="${fileList.fcode}" >
   
       <table> 
  	   	<tr>  
-   		   <td>파일명 : </td>
-   		   <td><input type="text" name="fname" size=15 value="${fileList.fcode}"></td> 
+   		   <th>파일명</th>
+   		   <td><input type="text" name="fname" size=30 value="${fileList.fname}"></td> 
+   		 <tr>
+   		    <th>첨부파일</th>
+   		   <td> ${fileList.fileurl}</td> 
    		 </tr>    
       </table>
-       
- 
 
-		<br>
-     <table>
-        <tr>	  
-          <td align="left" colspan=5>
- 		  <input name="add" type=submit value="삭제하기" >    
-     	  <input name="cancel"  type="button"  value="취소" onclick="window.close()">
-          </td>
-        </tr>
-     </table>
+      <div class = "button">
+ 		  <input name="add" class="add_btn" type=submit value="삭제하기" >    
+     	  <input name="cancel"  class="add_btn" type="button"  value="취소" onclick="window.close()">
+      </div>    
+</form>
    
 </body>
 </html>

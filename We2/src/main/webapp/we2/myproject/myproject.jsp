@@ -9,65 +9,80 @@
 
   <title>WE2_프로젝트</title>
 
-     <link rel="stylesheet" href="../css/w2_reset.css" type="text/css">
-     <link rel="stylesheet" href="../css/02_project.css" type="text/css">
-     <link rel="stylesheet" type="text/css" href="../css/notice_board_contents.css"> 
-     <link rel="stylesheet" type="text/css" href="../css/File.css">
+     <link rel="stylesheet" href="/We2/css/w2_reset.css" type="text/css">
+     <link rel="stylesheet" href="/We2/css/02_project.css" type="text/css">
+    <!-- 규민c 공지사항 css : 
+    	해당 기능이 이 공통으로 사용되는 jsp페이지에 포함되면 다른 메뉴의 css와 충돌 일어나서 
+    	해당 기능 jsp에다가 css를 넣어 놓음 
+     <link rel="stylesheet" type="text/css" href="../css/notice_board_contents.css">  -->
+    <!-- 동한c 자료실 css : 
+    	해당 기능이 이 공통으로 사용되는 jsp페이지에 포함되면 다른 메뉴의 css와 충돌 일어나서 
+    	해당 기능 jsp에다가 css를 넣어 놓음 
+     <link rel="stylesheet" type="text/css" href="../css/File.css"> -->
      
-     <script type="text/javascript" src="../js/jquery-1.12.1.min.js"></script> 
+ <script type="text/javascript" src="/We2/js/jquery-1.12.1.min.js"></script> 
 
  <script>
-var myVar = setInterval(myTimer, 5000);
-function myTimer(){
-   $(".state_line_1").animate({width:"+=80"});
-}
-</script> 
+	 <% 
+	 		Object totalDate = session.getAttribute("totalDate"); 
+	 		Object remainDate = session.getAttribute("remainDate");
+	 %>
+		$(function(){
+			var percentDate = <%=remainDate %> / <%= totalDate %>;
+			var percent = (1 - percentDate)*100+'%';
+			$(".state_line_1").css({"width": percent});
+			
+			if((1-percentDate)<0.1){
+				$(".state_line_1>span").css({"width": '50px', 'color': '#000000'});
+			}else if((1-percentDate)>1){
+				var datenum = <%=remainDate%>;
+				var dateabs = datenum.toString();
+				$(".state_line_1").css({"width": '100%'});
+				$(".state_line_1>span").html(dateabs.replace("-", "") + '일 지남');
+			}
+		});
 
+</script> 
 </head>
     
-
-
 <body>
  <div id="wrap">  <!-- wrap : div를 한번더 감싸고 액션의 기준이 될 수 있음-->
 
 <!-- 1. 상단 로고 부분-->
  <div id = "header">
-       
     <div id = "headerinner">
-        <h2>
+        <h1>
             <b>
                 <sub>
-                    <a href="Project/02_project.jsp">We2</a>
+                    <a href="/We2">We2</a>
                 </sub>  
             </b>
-        </h2>
-        <h3>${project.pjtName } </h3>
+        </h1>
+        <h3>${project.pjtClassify } - ${project.pjtName} </h3>
         
 <!-- 2. 상단 로그인 부분-->
         <div id = "nav">
-            <a href="#">로그아웃</a>
+            <a href="/We2/logout">로그아웃</a>
         </div>
     </div>
         <!--프로젝트 진행 중 부분-->
       
      <div id = "deadline"> <!--deadline아이콘-->
      
-            <img src = "/We2/img/deadline.png" style = "width:85px; height:45px;">
-      
+            <img src = "/We2/img/project/deadline.png" style = "width:85px; height:45px;">
             <div class ="state_line_0"></div>
-            
             <div class ="state_line_1">
-                <span> D-14</span> 
+                <span> <%=remainDate%>일 남음</span> <!-- 이 부분 session에 담았으니  이리로 넘어오는 컨트롤러에서 빈에 담아줘야 하-->
             </div>
      </div>
          <!--팀원 보기 아이콘-->
-         <div id = "viewfriends"><a href="#">
-             <img src = "/We2/img/viewfriends.png" style="width:31px; height:31px;"></a> 
+         <!-- <div id = "viewfriends"><a href="#">
+             <img src = "/We2/img/project/viewfriends.png" style="width:31px; height:31px;"></a> 
          </div>
-        <!--팀원 추가 아이콘-->
+        팀원 추가 아이콘
          <div id = "plusfriends"><a href="#">
-             <img src = "/We2/img/plusfriends.png" style="width:27px; height:27px;"></a> 
-         </div>
+             <img src = "/We2/img/project/plusfriends.png" style="width:27px; height:27px;"></a> 
+         </div> -->
      
 </div><!-- header END -->
      
@@ -80,38 +95,29 @@ function myTimer(){
        
        <div class="menu_item">
            <ul>
-               <li><a href="/We2/Notice.do?list=/notice/list.jsp&pjtcode=${project.pjtCode }" id="item_1">공지사항</a></li>
-               <li><a href="/We2/fList.do?File=/File/FileList.jsp&pjtcode=${project.pjtCode }" id="item_2">파일공유</a></li>
-               <li><a href="/We2/DateSchedule?&pjtcode=${project.pjtCode }" id="item_3">스케줄</a></li>
-               
+               <li><a href="/We2/notice/list" id="item_1">공지사항</a></li>
+               <li><a href="/We2/file/list?page=1" id="item_2">파일공유</a></li>
+               <li><a href="/We2/scheduler/list" id="item_3">스케줄</a></li>
+               <li><a href="/We2/willwork/list" id="item_4">할 일</a></li>
+               <li><a href="/We2/project/setting" id="item_5">프로젝트 정보</a></li>
            </ul>
        </div>
     
     </div> <!--menu div END-->
    
    <!-- 2) 가운데 내용 ---------------------------------->
+   
    <div class ="contents">
-<%  System.out.println("파라미터로받은 page = " + (String)request.getAttribute("page"));
-	//String page1=(String)request.getAttribute("page");
-	
-%>
-    	 <jsp:include page="boardmain.jsp"/>
-			<!--  contents 영역 끝 ----------------------------------->
-			<!-- 태성씨 코딩안해요???? -->
-			<!-- 언제까지 주무실겁니까??????? -->
-			<!-- 제꺼 대신 코딩좀 해주시죠 -->
-
+    	<jsp:include page="${page}.jsp" flush="false"></jsp:include>
    </div>
-
+			<!--  contents 영역 끝 ----------------------------------->
+   
   <!-- 3) 오른쪽 채팅창-->
   <div class = "chat">
       <div class="chat_title">
-      	<img src="img/G_talk_2.png"/>
+      	<img src="/We2/img/G_talk_3.png"/>
       </div>
-     
-      <%--   <jsp:include page="${page }.jsp"></jsp:include> --%>
-
-      
+        <jsp:include page="broadcast.jsp"></jsp:include> 
   </div>
      
 </div><!-- section END -->
@@ -123,11 +129,11 @@ Copyright © geoseong.com
   </div>  
 </body>
 
-<script>
+<!-- <script>
 $(".state_line_1").click(function(){
 	clearInterval(myVar);
 });
-</script>
+</script> -->
 
 
 </html>

@@ -18,7 +18,6 @@ public interface PjtBoardMapper {
 	
 	// 페이징 select문.
 	final String select = 
-			//"select itemNum, itemTitle, userId, itemDate, itemClick, itemPath, itemContent" 
 			"select * from ${category} order by itemNum desc limit #{row_start}, #{rows_per_page}";
 	
 	final String select_by_num =
@@ -29,8 +28,7 @@ public interface PjtBoardMapper {
 	
 	final String insert =
 			"insert into ${category} (itemTitle,userId,itemDate,itemClick,itemPath,itemContent, itemDataType)"
-			+ " values("
-			+ "#{itemTitle}, "
+			+ " values(#{itemTitle}, "
 			+ "#{userId}, "
 			+ "curdate(), "
 			+ "0, "
@@ -41,7 +39,7 @@ public interface PjtBoardMapper {
 	final String select_all = "select count(1) from ${category}";
 	
 	final String modify = 
-			"update ${category} set itemTitle=#{itemTitle}, itemPath=#{itemPath}, itemContent=#{itemContent}, itemDataType=#{itemDataType}";
+			"update ${category} set itemTitle=#{itemTitle}, itemPath=#{itemPath}, itemContent=#{itemContent}, itemDataType=#{itemDataType} where ItemNum=#{ItemNum}";
 	
 	final String delete="delete from ${category} where itemNum=#{itemNum}";
 	
@@ -97,6 +95,7 @@ public interface PjtBoardMapper {
 	@Update(modify)
 	void updateBoard(
 			@Param("category") String category, 
+			@Param("ItemNum") int ItemNum,
 			@Param("itemTitle") String itemTitle, 
 			@Param("itemPath") String itemPath, 
 			@Param("itemContent") String itemContent, 

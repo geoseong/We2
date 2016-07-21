@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -56,6 +55,7 @@ public class PjtBoardService {
 	
 	// 게시물 등록
 	public void insertBoard (String category, String itemTitle, String userId, String itemPath, String itemContent, String itemDataType){
+		
 		boardMapper.insertBoard(category, itemTitle, userId, itemPath, itemContent, itemDataType);
 	}
 	
@@ -70,8 +70,8 @@ public class PjtBoardService {
 	}
 	
 	// 게시물 업데이트
-	public void updateBoard(String category, String itemTitle, String itemPath, String itemContent, String itemDataType){
-		boardMapper.updateBoard(category, itemTitle, itemPath, itemContent, itemDataType);
+	public void updateBoard(String category, int ItemNum, String itemTitle, String itemPath, String itemContent, String itemDataType){
+		boardMapper.updateBoard(category, ItemNum, itemTitle, itemPath, itemContent, itemDataType);
 	}
 	
 	// 게시물 삭제

@@ -20,7 +20,7 @@ btnRight2.on("click",function(){
     if($(".main_slider").css("left")=="0px"){
         autoLeft2();
     }
-    /*btnStop2.hide();*/
+    btnStop2.hide();
     btnPlay2.show();
     clearInterval(timer3);
     return false;
@@ -36,7 +36,7 @@ btnLeft2.on("click",function(){
     return false;
 });
     
-   
+    
 btnStop2.children().on("click",function(){
     clearInterval(timer3);
     btnStop2.hide();

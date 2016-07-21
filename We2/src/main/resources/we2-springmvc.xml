@@ -18,12 +18,35 @@
 	<!-- css, js 등의 관리를 DispatcherServlet에서 관리하면 경로를 못찾으므로 Default Servlet에서 관리하게 설정. -->
 	<mvc:default-servlet-handler/>
 
+	<!-- Excel 파일생성 ViewResolver -->
+		<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+			<property name="order" value="1"/>
+		</bean>
+		
 	<!-- View Resolver 설정 -->
-	<mvc:view-resolvers>
-		<mvc:jsp prefix="/we2/"/>
-	</mvc:view-resolvers>
+		<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+			<property name="prefix" value="/we2/"/>
+			<property name="suffix" value=".jsp"/>
+			<property name="order" value="2"/>
+		</bean>
+		
+	<!-- <mvc:view-resolvers>
+		<mvc:jsp prefix="/we2/" />
+	</mvc:view-resolvers> -->
 	
-	<!-- label.properties 설정 -->
+	<!-- 기본 에러페이지 설정 -->
+	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+	    <property name="order" value="0"/>
+	    <property name="defaultErrorView" value="error"/>
+	    <property name="exceptionMappings">
+	        <props>
+	               <prop key="RuntimeException">error</prop>
+	        </props>
+	    </property>
+	</bean>
+	
+	
+<!-- label.properties 설정 -->
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basenames">

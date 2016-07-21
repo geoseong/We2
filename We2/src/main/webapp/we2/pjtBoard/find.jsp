@@ -45,6 +45,7 @@
 						<a href="find?page=${block_first - page_for_block }&category=${category}&find=${find}&findword=${findword}">[이전]</a>&nbsp;
 					</c:otherwise>
 				</c:choose>
+				
 				<c:forEach var="i" begin="${block_first }" end="${block_last}" >
 					<c:choose>
 						<c:when test="${i == c_page }">
@@ -57,6 +58,7 @@
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
+				
 				<c:choose>
 					<c:when test="${block==block_total }">
 					</c:when>

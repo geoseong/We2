@@ -14,14 +14,14 @@
 <div class="chat_content">
      
     
-        <textarea id="messageWindow" rows="10" cols="50" readonly="true" /></textarea>
+        <textarea id="messageWindow" rows="10" cols="50" readonly="true" style= "background-color:#fff;" /></textarea>
         <br/>
         <input id="inputMessage" type="text"/>
-        <input id="inputId" type="hidden" value="${loginUser.userid }"/>
+        <input id="inputId" type="hidden" value="${authInfo.userId }"/>
         
      
         <div class = "submit">
-        <input type="submit" value="입력" onclick="send()" style="width:60px; height:44px; background-color:#1591BE;"  />
+        <input type="submit" class="add_btn_input" value="입력" onclick="send()" style= "width:53px; height:44px; background-color:#1591BE;"  />
         
         </div>
         </div>
@@ -30,7 +30,7 @@
 
     <script type="text/javascript">
         var textarea = document.getElementById("messageWindow");
-        var webSocket = new WebSocket('ws://192.168.0.165:8080/We2/broadcasting');
+        var webSocket = new WebSocket('ws://192.168.0.100:9080/We2/broadcasting');
         var inputMessage = document.getElementById('inputMessage');
         var inputId = document.getElementById('inputId');
     webSocket.onerror = function(event) {

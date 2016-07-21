@@ -22,7 +22,7 @@
 				<input type="hidden" name="itemNum" value="${BoardContent.getItemNum() }">
 				<input type="hidden" name="category" value="${category }">
 				
-				<table>
+			<table>
 				<tr>
 				<td style="border:none; padding:0px;">
 						<table>
@@ -46,22 +46,20 @@
 								
 								<c:choose>
 									<c:when test="${empty BoardContent.getItemPath() }">
-											<!-- 기본설정경로 : 서블릿경로
-												E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps -->
 										- 첨부파일 없음 -
 									</c:when>
 									<c:otherwise>
 											<!-- 기본설정경로 : 서블릿경로
 												E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps -->
-										<a href="we2/pjtBoard/data/${BoardContent.getItemPath() }" >${BoardContent.getItemPath() }</a>
+										<a href="/We2/we2/pjtBoard/data/${BoardContent.getItemPath() }" download>${BoardContent.getItemPath() }</a>
 									</c:otherwise>
 								</c:choose>
 								</td>
 							</tr>
 							<tr>
 								<th>글내용 </th>
-								<td colspan="3">
-								  ${BoardContent.getItemContent()}
+								<td colspan="3" style="text-align: left">
+								  ${content}
 								</td>
 							</tr>
 						</table>
@@ -73,12 +71,35 @@
 							<c:when test="${empty BoardContent.getItemPath() }">
 									<!-- 기본설정경로 : 서블릿경로
 										E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps -->
-								<img src="/We2/we2/pjtBoard/data/noimg.png" style="width: 50px;">
+								<img src="/We2/img/board/icon_NoImg.png" style="width: 50px;">
 							</c:when>
 							<c:when test="${BoardContent.getItemDataType().contains('image') }">
 								<img src="/We2/we2/pjtBoard/data/${BoardContent.getItemPath() }" class="board_img" style="width: 300px;">
 							</c:when>
 							
+							<c:when test="${BoardContent.getItemDataType().contains('ppt') }">
+								<img src="/We2/img/board/icon_ppt.png" class="board_img" style="width: 70px;">
+							</c:when>
+							
+							<c:when test="${BoardContent.getItemDataType().contains('xls') }">
+								<img src="/We2/img/board/icon_xls.png" class="board_img" style="width: 70px;">
+							</c:when>
+							
+							<c:when test="${BoardContent.getItemDataType().contains('sheet') }">
+								<img src="/We2/img/board/icon_xls.png" class="board_img" style="width: 70px;">
+							</c:when>
+							
+							<c:when test="${BoardContent.getItemDataType().contains('excel') }">
+								<img src="/We2/img/board/icon_xls.png" class="board_img" style="width: 70px;">
+							</c:when>
+							
+							<c:when test="${BoardContent.getItemDataType().contains('text') }">
+								<img src="/We2/img/board/icon_txt.png" class="board_img" style="width: 70px;">
+							</c:when>
+							
+							<c:when test="${BoardContent.getItemDataType().contains('zip') }">
+								<img src="/We2/img/board/icon_zip.png" class="board_img" style="width: 70px;">
+							</c:when>
 							<%-- <div class="modal">
 							<c:if test="${BoardContent.getItemDataType().contains('image') }"> <!-- 콘텐츠 타입에 이미지라는 단어를 포함하고 있으면  -->
 								<img src="/We2/we2/pjtBoard/data/${BoardContent.getItemPath() }" > <!-- 이미지를 띄운다 -->
@@ -89,25 +110,29 @@
 							<c:otherwise>
 									<!-- 기본설정경로 : 서블릿경로
 										E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps -->
-								<img src="/We2/we2/pjtBoard/data/datafile.png" style="width: 50px;">
+								<img src="/We2/img/board/icon_data.png" style="width: 50px;">
 							</c:otherwise>
 						</c:choose>
-						</div> <!-- modal end -->
+						<!-- </div> modal end -->
 					</td>
-					</table>
-				</td>
+				</table>
+			<!-- 	</td>
 				</tr>
-			</table>
-			
+			</table> -->
 			
 				<br>
-				
 				<div class="write_btn" style="text-align:center;">
-				<input type="submit" value="수정하기" >
-				<input type="button" value="목록"  onclick="location.href='/We2/pjtBoard/list?page=1&category=${category}'">
-				<input type="button" value="제거하기"  onclick="location.href='delete?itemNum=${BoardContent.getItemNum() }&category=${category}'">
+			<c:choose>
+				<c:when test="${BoardContent.userId eq authInfo.userId }">
+					<input type="submit" value="수정하기" >
+					<input type="button" value="목록"  onclick="location.href='/We2/pjtBoard/list?page=1&category=${category}'">
+					<input type="button" value="제거하기"  onclick="location.href='delete?itemNum=${BoardContent.getItemNum() }&category=${category}'">
+				</c:when>
+				<c:otherwise>
+					<input type="button" value="목록"  onclick="location.href='/We2/pjtBoard/list?page=1&category=${category}'">
+				</c:otherwise>
+			</c:choose>
 		        </div> 
-		
 		</form>
 		<%-- </form:form> --%>
 <!--  게시판 영역 끝 -->

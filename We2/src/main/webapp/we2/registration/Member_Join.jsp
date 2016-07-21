@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -27,7 +28,7 @@
 			<div id="headerinner">
 				<!-- div처음 숫자 3 개 -->
 				<h2>
-					<b> <sub> <a href="index.jsp">We2</a>
+					<b> <sub> <a href="/We2">We2</a>
 						<!-- 원래 페이지로 돌아감 -->
 					</sub>
 					</b>
@@ -36,8 +37,20 @@
 				<!-- 2. 상단 메뉴 부분-->
 				<div id="nav">
 					<!-- div처음 숫자 4 개 -->
-					<a href="#">프로젝트 </a> <a href="#">커뮤니티 </a> <a
-						href="#">프로젝트공유 </a> <a href="#">스터디룸공유 &nbsp;</a> <a href="#">로그아웃</a>
+					<a href="/We2/Member_Mypage">프로젝트 </a>
+		            <a href="/We2/cBoard/list?page=1&category=cFindwork">커뮤니티 </a>
+		            <a href="/We2/pjtBoard/list?page=1&category=pGroup">프로젝트공유 </a>
+		            <a href="/We2/studyroom/list?page=1">스터디룸공유 &nbsp;</a>
+					
+					<!-- 로그인 되어있으면 로그인만 표시, 안되어있으면 로그아웃만 표시. -->
+		            <c:choose>
+					 	<c:when test="${empty authInfo}">
+					            <a href="/We2/login">로그인</a>
+						 </c:when>
+						 <c:otherwise>
+					            <a href="/We2/logout">로그아웃</a>
+						 </c:otherwise>
+					 </c:choose>
 				</div>
 				<!-- div처음 숫자 4 개 끝 -->
 			</div>
@@ -73,14 +86,15 @@
 
 			<tr>
 			  <th><spring:message code="name"/></th>
-			  <td><form:input path="name"/></td>	
+			  <td><form:input path="name" onkeyup="checkLength_1(this, 10)"/></td>	
 			      <form:errors path="name"/>	
 			</tr>
 			
 			<tr>
 			<th><spring:message code="userId"/></th>
-			<td><form:input path="userId"/> 
-			    <input type="button" class="check_btn"  value="중복 체크" onclick="idCheck()" ></td>		
+			<td><form:input path="userId" /> 
+			    <input type="button" class="check_btn"  value="중복 체크" onclick="idCheck()" 
+			    onkeyup="checkLength(this, 12)"></td>		
 			    <form:errors path="userId"/>
 			</tr>
 			
@@ -92,7 +106,7 @@
 			
 		    <tr>
 			<th><spring:message code="pwd.confirm"/></th>
-			<td><form:input path="pwd_confirm"/></td>	
+			<td><form:input path="pwd_confirm" onkeyup="checkLength(this, 12)"/></td>	
 			<form:errors path="pwd_confirm"/>	
 			</tr>  
 			

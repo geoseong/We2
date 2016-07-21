@@ -160,16 +160,18 @@ a:hover {
 /* 이미지 크게 띄우기_모달흉내 */
 .modal{
 	position:relative;
-	background-color:#d3d3d3;
+/* 	background-color:#d3d3d3; */
 	/* display:none; */
 }
 
 
 .modal_img {
 	position:absolute;
+	margin:20px;
+	box-shadow: 10px 10px 5px grey;
 	/* width:771px;
-	height:485px;
-	background:; */
+	height:485px;*/
+	background-color:#fff;
 	display:none;
 	top:0;
 	left:-500px;
@@ -177,6 +179,7 @@ a:hover {
 
 .modal:hover + .modal_img{
 	display:block;
+	box-shadow: 10px 10px 5px grey;
 }
 
 

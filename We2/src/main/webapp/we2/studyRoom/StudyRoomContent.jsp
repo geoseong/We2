@@ -6,57 +6,74 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
-<link rel="stylesheet" type="text/css" href="css/studyroom_content.css">
+
+<link rel="stylesheet" type="text/css" href="../css/studyroom_window.css">
 
 
 
 </head>
 <body>
-  <center>
-  <H2>상세 내용</H2>
-  <HR>
-  </center>
+
+  <H2 style="text-align:center; color:#69C5E7;">상세 내용</H2>
+
+
   <div id = "studyroom_content">
- <form name="frm" enctype="multipart/form-data" method="post"  action="Content.do" >
- <input type="hidden" name="rcode" value="${studyroomList.rcode}" >
-       <table width="200" height= "200">
-	     <tr><td>
-	  		<img src="/WE2_StudyRoom/upload/${studyroomList.rpictureurl}">	  
-	     </td></tr>
+  <form name="frm" enctype="multipart/form-data" method="get"  action="StudyRoomContent.do" >
+  <input type="hidden" name="rcode" value="${studyroomList.rcode}" >
+  
+       <table>
+	     <tr>
+	       <td>
+	  			<img src="/We2/we2/studyRoom/data/${studyroomList.rpictureurl}" style="width: 500px;">	  
+	       </td>
+	     </tr>
 	   </table>
  
       
-	    <table>
-		   <tr>		   	
-		     	  <td>이름 :${studyroomList.rname}</td>
+	    <table style= "line-height:25px;">
+		   <tr>		
+		      <th>
+		        이름
+		      </th>   	
+		      <td> ${studyroomList.rname}</td>
 		   </tr>   
 		   
-		   <tr>		     
-		      <td>지역 : ${studyroomList.rlocation}</td>	
+		   <tr>	
+		      <th>
+		        지역
+		      </th> 
+		      <td>${studyroomList.rlocation}</td>	
 		    </tr>
 		    
-		    <tr>		    
-		      <td>종류 : ${studyroomList.rlocationdetail}</td>
+		    <tr>
+		      <th>
+		        종류
+		      </th> 		    
+		      <td>${studyroomList.rlocationdetail}</td>
 		   </tr>
 		   
-		   <tr>	   	 
-		   	  <td>인원제한 : ${studyroomList.rmember} </td>  	 
+		   <tr>
+		      <th>
+		        인원제한
+		      </th>	   	 
+		   	  <td>${studyroomList.rmember} </td>  	 
 		   </tr>
-		  </table>
+		</table>
 		  
-		  <table> 	   
+		<table>   
 		   <tr>  
-		      <td colspan=10>
-		  내용 : ${studyroomList.rcontent} </td>
+		      <th>
+		        내용
+		      </th>
+		     <td colspan=10>${studyroomList.rcontent} </td>
 		  </tr>
-		  <tr>
-		   <td  ><input type="button" onclick="window.close();" value="닫기">
-		   </td>
-		   </tr>
-		 
-    	  </table>
-	  
-	 
+	     </table>
+		  
+		  
+		   <div class = "button">
+		   <input type="button" class="add_btn" onclick="window.close();" value="닫기">
+		   </div>
+
   </form>
   </div>
 </body>

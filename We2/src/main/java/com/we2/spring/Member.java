@@ -2,7 +2,6 @@ package com.we2.spring;
 
 import java.util.Date;
 
-
 public class Member {
 
 	private String name;
@@ -69,8 +68,8 @@ public class Member {
 	public String getGender() {
 		return gender;
 	}
-	public void setGender(String gender) {
-		this.gender = gender;
+	public void setGender(String string) {
+		this.gender = string;
 	}
 	public Date getRegDate() {
 		return regDate;
@@ -81,4 +80,12 @@ public class Member {
 	public boolean matchPassword(String password) {
 		return this.pwd.equals(password);//password하고 matchpassword하고 값이 맞는지 비교를 하고 다시 넘김!!
 	}
+
+	@Override
+	public String toString() {
+		return "Member [name=" + name + ", userId=" + userId + ", pwd=" + pwd + ", pwd_confirm=" + pwd_confirm
+				+ ", phone=" + phone + ", email=" + email + ", gender=" + gender + ", regDate=" + regDate + "]";
+	}
+	
+	
 }

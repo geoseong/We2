@@ -17,20 +17,23 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface StudyRoomMapper {
 	
-	// 페이징 select문.
-	final String select = 
-			 
-			"select * from  limit #{row_start}, #{row_end}";
-	
 	final String select_by_rcode=
-			"select rcode, rname, rlocation, rlocationdetail, rmember, rcontent, rpictureurl from roomshare where rcode=${rcode}";
+			"select * from roomshare where rcode=${rcode}";
+	
+	final String searchstudyroom=
+			"select * from roomshare where rlocation=#{rlocation} and rlocationdetail=#{rlocationdetail} order by rcode desc limit #{row_start}, #{rows_per_page}";
 	
 	final String select_all = "select count(1) from roomshare";
+	
+	final String select_search_all = "select count(1) from roomshare where rlocation=#{rlocation} and rlocationdetail=#{rlocationdetail}";
 	
 	final String count_plus=
 			"update set itemClick=itemClick+1 where itemNum=#{itemNum}";
 	
-	final String select_by_id ="select rcode, rname, rlocation, rlocationdetail, rmember, rcontent, rpictureurl from roomshare order by rcode desc limit #{row_start}, #{row_end}";
+	// 페이징 select문.
+	final String select_by_id =
+			/*"select rcode, rname, rlocation, rlocationdetail, rmember, rcontent, rpictureurl from roomshare order by rcode desc limit #{row_start}, #{row_end}";*/
+			"select * from roomshare order by rcode desc limit #{row_start}, #{rows_per_page}";
 	
 	final String insertStudyRoom = "insert into roomshare(rname, rlocation, rlocationdetail, rmember, rcontent, rpictureurl)"
 			+ " values("
@@ -66,7 +69,7 @@ public interface StudyRoomMapper {
 				@Result(property="rcontent", column="rcontent"),
 				@Result(property="rpictureurl", column="rpictureurl")
 		})
-		ArrayList<StudyRoomBean> getList(@Param("row_start") int row_start, @Param("row_end") int row_end);
+		ArrayList<StudyRoomBean> getList(@Param("row_start") int row_start, @Param("rows_per_page") int rows_per_page);
 		
 		@Select(select_by_rcode)				
 		@Results(value = {   
@@ -81,12 +84,38 @@ public interface StudyRoomMapper {
 		StudyRoomBean getSearchbyrcode(@Param("rcode") int rcode);
 	
 		
+		@Select(searchstudyroom)				
+		@Results(value = {   
+				@Result(property="rcode", column="rcode"),
+				@Result(property="rname", column="rname"),
+				@Result(property="rlocation", column="rlocation"),
+				@Result(property="rlocationdetail", column="rlocationdetail"),
+				@Result(property="rmemeber", column="rmemeber"),
+				@Result(property="rcontent", column="rcontent"),
+				@Result(property="rpictureurl", column="rpictureurl")
+		})
+		ArrayList<StudyRoomBean> getSearchstudyroom(
+				@Param("rlocation") String rlocation,
+				@Param("rlocationdetail") String rlocationdetail,
+				@Param("row_start") int row_start, @Param("rows_per_page") int rows_per_page);
+			
 		@Insert(insertStudyRoom)  		
 		//@Options(useGeneratedKeys = true, keyProperty = "id")
-		void insertStudyRoom(StudyRoomBean studyRoomBean) ;
+		void insertStudyRoom(
+		@Param("rname") String rname, 
+		@Param("rlocation") String rlocation, 
+		@Param("rlocationdetail") String rlocationdetail, 
+		@Param("rcontent") String rcontent, 
+		@Param("rmember") int rmember, 
+		@Param("rpictureurl")String rpictureurl) ;
 		
 		@Select(select_all)
 		int getTotalCnt();
+		
+		@Select(select_search_all)
+		int getsearchTotalCnt(
+				@Param("rlocation") String rlocation,
+				@Param("rlocationdetail") String rlocationdetail);
 		
 		@Delete(delete_by_rcode)  
 		void StudyRoomdelete(@Param("rcode") int rcode);

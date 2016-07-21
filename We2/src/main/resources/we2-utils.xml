@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Root Context: defines shared resources visible to all other web components -->
+
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host">
+			<value type="java.lang.String">smtp.gmail.com</value>
+		</property>
+		<property name="port">
+			<value type="java.lang.Integer">587</value><!-- 465 or 587 -->
+		</property>
+		<property name="defaultEncoding">
+			<value type="java.lang.String">UTF-8</value>
+		</property>
+		<property name="username">
+			<value type="java.lang.String">we2korea@gmail.com</value>
+		</property>
+		<property name="password">
+			<value type="java.lang.String">we2admin!@#$</value>
+		</property>
+		<property name="javaMailProperties">
+              <props>
+                     <prop key="mail.transport.protocol">smtp</prop>
+                     <prop key="mail.smtp.auth">true</prop>
+                     <prop key="mail.smtp.starttls.enable">true</prop>
+                     <prop key="mail.debug">true</prop>
+              </props>
+       </property>
+	</bean>
+	
+	<!-- You can have some pre-configured messagess also which are ready to send
+		: 보낼 사람과 제목과 내용이 정해져있다면 여기서 미리설정.. -->
+	<bean id="preConfiguredMessage" class="org.springframework.mail.SimpleMailMessage">
+	       <property name="to" value="imf4@naver.com"></property>
+	       <property name="from" value="we2korea@gmail.com"></property>
+	       <property name="subject" value="messages..."/>
+	       <property name="text" value="Body...."></property>
+	</bean>
+	<bean id="emailSender" class="com.we2.utils.We2MailSender" />
+
+
+	<!-- Excel 파일생성 bean객체 삽입 -->
+		
+		<bean name="dao" class="com.we2.utils.ExcelDAO">
+			<constructor-arg ref="dataSource"/>
+		</bean>
+		
+		<bean name="excelView" class="com.we2.utils.ExcelView"/>
+		<bean name="service" class="com.we2.utils.ExcelService"/>
+	<!-- Excel 파일생성 bean객체 삽입 -->	
+	
+</beans>

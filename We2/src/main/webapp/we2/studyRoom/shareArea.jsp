@@ -16,39 +16,34 @@
  <div id="wrap">  <!-- wrap : div를 한번더 감싸고 액션의 기준이 될 수 있음-->
 
 <!-- 1. 상단 로고 부분-->
+  <!-- 1. 상단 로고 부분-->
     <div id = "header">
        
     <div id = "headerinner">
-        <h2>
+        <h2 style="top:26px;">
             <b>
-                <sub>
-                    <a href="../">We2</a>
-                </sub>  
+                <a href="/We2">We2</a> 
             </b>
         </h2>
         
 <!-- 2. 상단 메뉴 부분-->
         <div id = "nav">
 
-            <a href="02_project.html">프로젝트 </a>
-            <a href="ItemList">커뮤니티 </a>
-            <a href="list?page=1&category=group">프로젝트공유 </a>
-            <a href="List.do">스터디룸공유 &nbsp;</a>
+            <a href="../Member_Mypage">프로젝트 </a>
+            <a href="../cBoard/list?page=1&category=cFindwork">커뮤니티 </a>
+            <a href="../pjtBoard/list?page=1&category=pGroup">프로젝트공유 </a>
+            <a href="../studyroom/list?page=1">스터디룸공유 &nbsp;</a>
             
+            <!-- 로그인 되어있으면 로그인만 표시, 안되어있으면 로그아웃만 표시. -->
             <c:choose>
-			 	<c:when test="${empty loginUser}">
-		
-			            <a href="com_we2_registration_jsp/01_1_login.jsp">로그인</a>
-			            <!-- #########위에 로그인 header를 넣는다! -->
-			        
+			 	<c:when test="${empty authInfo}">
+			            <a href="/We2/login">로그인</a>
 				 </c:when>
 				 <c:otherwise>
-				
-			            <a href="We2_logout.do">로그아웃</a>
-			            <!-- #########위에 로그인 header를 넣는다! -->
-			       
+			            <a href="/We2/logout">로그아웃</a>
 				 </c:otherwise>
 			 </c:choose>
+			 
         </div>
     </div>
          </div><!-- header END -->
@@ -57,22 +52,23 @@
 <div id = "section">
    <div id="menu">
        <b>스터디룸 공유</b>
-        <div id = "second_line">
-          <!-- 커뮤니티 밑 노란줄-->
+        <!-- 게시판 타이틀 밑의 선-->
+        <div id = "second_line" style="background-color:#166BA3;" >
+       
        </div>
 
      </div> 
   
   <div id="contents">
- 	<jsp:include page="${studyroompage }.jsp"></jsp:include> 
+ 	<jsp:include page="${studyroompage }.jsp"/> 
   </div>
      
 </div><!-- section END -->
      
      
-<div id="footer">
+<!-- <div id="footer">
 Copyright © geoseong.com
-</div>
-  </div>  
+</div> -->
+ </div>  
 </body>
 </html>

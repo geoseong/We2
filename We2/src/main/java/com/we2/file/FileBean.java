@@ -6,8 +6,19 @@ public class FileBean {
 	private int fcode;
 	private String fname;
 	private String fileurl;
+	private int pjtCode; 
 	private Date fdate;
 	
+	
+	
+	public int getPjtCode() {
+		return pjtCode;
+	}
+
+	public void setPjtCode(int pjtCode) {
+		this.pjtCode = pjtCode;
+	}
+
 	public int getFcode() {
 		return fcode;
 	}
@@ -39,9 +50,6 @@ public class FileBean {
 	public void setFdate(Date fdate) {
 		this.fdate = fdate;
 	}
-
-	
-
 
 	public FileBean() {
 		super();

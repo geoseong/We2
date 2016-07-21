@@ -5,11 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.apache.poi.util.SystemOutLogger;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
@@ -20,16 +20,16 @@ public class PjtMakeDAO {
 	
 	private JdbcTemplate jdbcTemplate;
 	 
-   /* // ¹æ¹ı 1. »ı¼ºÀÚ¸¦ ÅëÇÑ DataSource¸¦ > JdbcTemplate¿¡ Àü´ŞÇÏ¿© JdbcTemplate °´Ã¼ »ı¼º.
+   /* // ë°©ë²• 1. ìƒì„±ìë¥¼ í†µí•œ DataSourceë¥¼ > JdbcTemplateì— ì „ë‹¬í•˜ì—¬ JdbcTemplate ê°ì²´ ìƒì„±.
     public PjtMakeDAO(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }*/
     
- // ¹æ¹ı 2. setter¸¦ ÅëÇÑ DataSource¸¦ > JdbcTemplate¿¡ Àü´ŞÇÏ¿© JdbcTemplate °´Ã¼ »ı¼º.
+ // ë°©ë²• 2. setterë¥¼ í†µí•œ DataSourceë¥¼ > JdbcTemplate ì „ë‹¬í•˜ì—¬ JdbcTemplate ê°ì²´ ìƒì„±.
     public void setDataSource(DataSource dataSource){
         this.jdbcTemplate = new JdbcTemplate(dataSource);    
     }
-	
+    
 	public void insertPjtMake(final PjtMakeVO pVo) throws ParseException{
 		 KeyHolder keyHolder = new GeneratedKeyHolder();
 		 	
@@ -37,18 +37,18 @@ public class PjtMakeDAO {
 	            @Override
 	            public PreparedStatement createPreparedStatement(Connection con) 
 	                    throws SQLException {
-	                // ÆÄ¶ó¹ÌÅÍ·Î Àü´Ş¹ŞÀº ConnectionÀ» ÀÌ¿ëÇØ¼­ PreparedStatement »ı¼º
+	                // íŒŒë¼ë¯¸í„°ë¡œ ì „ë‹¬ë°›ì€ Connectionì„ ì´ìš©í•´ì„œ PreparedStatement ìƒì„±
 	                PreparedStatement pstmt = con.prepareStatement(
                         "insert into pjtMake(pjtName,pjtClassify,startDate,endDate) "
 	                		+"values(?, ?, STR_TO_DATE(?,'%m/%d/%Y'), STR_TO_DATE(?,'%m/%d/%Y'))"
                        , new String[] {"pjtCode"});
-	                // ÀÎµ¦½º ÆÄ¶ó¹ÌÅÍ °ª ¼³Á¤
+	                // ì¸ë±ìŠ¤ íŒŒë¼ë¯¸í„° ê°’ ì„¤ì •
 	                pstmt.setString(1, pVo.getPjtName());
 	                pstmt.setString(2,  pVo.getPjtClassify());
 	                pstmt.setString(3, pVo.getStartDate());
 	                pstmt.setString(4, pVo.getEndDate());
 	                
-	                // »ı¼ºÇÑ PreparedStatement °´Ã¼ ¸®ÅÏ
+	                // ìƒì„±í•œ PreparedStatement ê°ì²´ ë¦¬í„´
 	                return pstmt;
 	            } //end createPreparedStatement()
 	        }, keyHolder);
@@ -56,85 +56,249 @@ public class PjtMakeDAO {
 	        pVo.setPjtCode(keyValue.intValue());
 	}
 	
-	//ÃÖ±Ù µî·ÏÇÑ ÇÁ·ÎÁ§Æ® ¸ÕÀú Ãâ·ÂÇÏ±â
+	public void inserPjtManager(final String userId, final int pjtCode) throws ParseException{
+			
+		jdbcTemplate.update(new PreparedStatementCreator() {
+				@Override
+				public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+					PreparedStatement pstmt = con.prepareStatement(
+							"insert into pjtManager(pjtCode,userId,isLeader) values(?, ?, 'Y')"
+						);
+					pstmt.setInt(1, pjtCode);
+					pstmt.setString(2, userId);
+					return pstmt;
+				}
+			});
+	}
+	
+	//í”„ë¡œì íŠ¸ ì½”ë“œë¥¼ êµ¬í•˜ëŠ” ì¿¼ë¦¬ë¬¸
+	public int selectCode() {
+		String sql = "select pjtCode from pjtmake order by pjtcode desc limit 1";
+		int pjtCode = jdbcTemplate.queryForObject(sql, Integer.class);
+		return pjtCode;
+	}
+	
+	//ìµœê·¼ ë“±ë¡í•œ í”„ë¡œì íŠ¸ ë¨¼ì € ì¶œë ¥í•˜ê¸°
 	public List<PjtMakeVO> selectAll(){
 		List<PjtMakeVO> results = 
-				jdbcTemplate.query("select * from pjtMake",
-						new RowMapper<PjtMakeVO>(){
-		@Override
-		public PjtMakeVO mapRow(ResultSet rs, int rowNum) throws SQLException {
-			PjtMakeVO pjtMakeVO = new PjtMakeVO(
-					rs.getString("pjtName"),
-					rs.getString("pjtClassify"),
-					rs.getString("startDate"),
-					rs.getString("pjtClasendDateify"));
-			pjtMakeVO.setPjtCode(rs.getInt("pjtCode"));
-			return pjtMakeVO;
-		}
+				jdbcTemplate.query("select * from pjtMake"
+				,
+				new RowMapper<PjtMakeVO>(){
+					@Override
+					public PjtMakeVO mapRow(ResultSet rs, int rowNum) throws SQLException {
+						PjtMakeVO pjtMakeVO = new PjtMakeVO(
+								rs.getInt("pjtCode"),
+								rs.getString("pjtName"),
+								rs.getString("pjtClassify"),
+								rs.getString("startDate"),
+								rs.getString("pjtClasendDateify"));
+						return pjtMakeVO;
+					}
+				}
+			);
+		return results.isEmpty()?null:results;
+	}
+	
+	//ë‚ ì§œ êµ¬í•˜ê¸° 
+	public int searchDate(){
+		int pjtCode=20;
+	String sql = 
+			"select (endDate - startDate) from pjtmake where pjtcode=?";
+	int count = jdbcTemplate.queryForObject(sql, new Object[] {pjtCode}, Integer.class);
+	return count;
+	}
+	
+	
+	/** í”„ë¡œì íŠ¸ ì •ë³´ ë¿Œë¦¬ê¸°ìœ„í•œ DAO*/
+	public PjtMakeVO selectAllpjtInfo(int pjtCode){
+		List<PjtMakeVO> results = jdbcTemplate.query(
+				"select * from pjtMake where pjtCode = ?"
+				,
+				new RowMapper<PjtMakeVO>() {
+					@Override
+					public PjtMakeVO mapRow(ResultSet rs, int rowNum) throws SQLException {
+						PjtMakeVO pjtmake = new PjtMakeVO(
+								rs.getInt("pjtCode"),
+								rs.getString("pjtName"),
+								rs.getString("pjtClassify"),
+								rs.getString("startDate"),
+								rs.getString("endDate")
+						);
+						return pjtmake;
+					}
+				}
+				, pjtCode);
+		System.out.println("PjtMakeDAO] results.isempty? - "+results.isEmpty());
+		return results.isEmpty() ? null : results.get(0);
+	}
+	
+	/** í•´ë‹¹ í”„ë¡œì íŠ¸ì˜ ì¡°ì›ë“¤ ì„ íƒí•˜ê¸°*/
+	public List<PjtMemDelVO> selectAllpjtMem(int pjtCode){
+		List<PjtMemDelVO> results = jdbcTemplate.query(
+				"select mem.name pjtmembers, mgr.* from pjtmanager mgr, member mem where mgr.userId=mem.userId and mgr.pjtcode = ?"
+				,
+				new RowMapper<PjtMemDelVO>() {
+					@Override
+					public PjtMemDelVO mapRow(ResultSet rs, int rowNum) throws SQLException {
+						PjtMemDelVO pjtmemdelvo = 
+								new PjtMemDelVO(
+										rs.getString("pjtmembers"),
+										rs.getInt("pjtCode"),
+										rs.getString("userId"),
+										rs.getString("isLeader")
+										);
+						return pjtmemdelvo;
+					}
+				}
+				, pjtCode);
+		System.out.println("PjtMakeDAO] results.isempty? - "+results.isEmpty());
+		return results.isEmpty() ? null : results;
+	}
+	
+	/** ë°©ì¥ì´ ëˆ„êµ°ì§€ êµ¬í•˜ê¸° */
+	public String selectLeader(int pjtCode){
+		System.out.println("PjtMakeDAO ] pjtCode : "+pjtCode);
+		List<String> results = jdbcTemplate.query(
+				"select userid from pjtmanager where pjtcode=? and isleader='y'"
+				,
+				new RowMapper<String>() {
+					@Override
+					public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+						String leaderid=rs.getString("userid");
+						return leaderid;
+					}
+				}
+				, pjtCode);
+		System.out.println("PjtMakeDAO] results.isempty? - "+results.isEmpty());
+		return results.isEmpty() ? null : results.get(0);
+	}
+	
+	
+	/**íšŒì› ì´ˆëŒ€ìˆ˜ë½í• ë•Œ ë©¤ë²„ì¶”ê°€í•˜ê¸°.*/
+	public void addpjtMember(final int pjtCode, final String userId){
+		jdbcTemplate.update(new PreparedStatementCreator() {
+			@Override
+			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+				PreparedStatement pstmt = con.prepareStatement(
+						"insert into pjtManager(pjtCode,userId,isLeader) values(?, ?, 'N')"
+					);
+				pstmt.setInt(1, pjtCode);
+				pstmt.setString(2, userId);
+				return pstmt;
+			}
 		});
-		return (List<PjtMakeVO>) (results.isEmpty()?null:results.get(0));
+		System.out.println("addpjtMember Completed");
 	}
 	
-	/*
-	// È¸¿øÀÌ ¼ÓÇØÀÖ´Â ÇÁ·ÎÁ§Æ®ÀÌ¸§ »Ñ¸®±â
-	public List<PjtMakeVO> selectUserpjts(String userid){
-		String sql="select * from pjtmake where userid=?";
-		List<PjtMakeVO> list = new ArrayList<PjtMakeVO>();
-		
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		try{
-			conn = DBManager.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, userid);
-			rs = pstmt.executeQuery();
-			while(rs.next()){
-				PjtMakeVO pVo = new PjtMakeVO();
-				pVo.setPjtCode(rs.getInt("pjtCode"));
-				pVo.setPjtName(rs.getString("pjtName"));
-				pVo.setPjtClassify(rs.getString("pjtClassify"));
-				pVo.setEndDate(rs.getString("endDate"));
-				pVo.setStartDate(rs.getString("startDate"));
-				pVo.setUserId(rs.getString("userId"));
-				list.add(pVo);
-			}// while¹® ³¡
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			DBManager.close(conn, pstmt, rs);
-		}
-		return list;
+	
+	public void insertWillWork(final String userId, final int pjtCode, final String name) throws ParseException{
+		jdbcTemplate.update(new PreparedStatementCreator() {
+				@Override
+				public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+					PreparedStatement pstmt = con.prepareStatement(
+			"insert into willwork(userId, pjtCode, dowork, donework, statework,name) values(?, ?, '','', 'Y', ?);"
+						);
+					pstmt.setString(1, userId);
+					pstmt.setInt(2, pjtCode);
+					pstmt.setString(3, name);
+					return pstmt;
+				}
+			});
+		System.out.println("insertWillWork Completed");
 	}
 	
-	public PjtMakeVO selectuserpjt(String pjtcode){
-		//ÃÖ±Ù µî·ÏÇÑ »óÇ° ¸ÕÀú Ãâ·ÂÇÏ±â
-		String sql = "select * from pjtMake where pjtcode=?";
-		PjtMakeVO pVo = new PjtMakeVO();
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		try{
-			conn = DBManager.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, pjtcode);
-			rs = pstmt.executeQuery();
-			while(rs.next()){	
-				pVo.setPjtCode(rs.getInt("pjtCode"));
-				pVo.setPjtName(rs.getString("pjtName"));
-				pVo.setPjtClassify(rs.getString("pjtClassify"));
-				pVo.setStartDate(rs.getString("startDate"));
-				pVo.setEndDate(rs.getString("endDate"));
-				pVo.setUserId(rs.getString("userId"));
-			}// while¹® ³¡
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			DBManager.close(conn, pstmt, rs);
-		}
-		return pVo;
+	/** ì´ë¯¸ í•´ë‹¹ í”„ë¡œì íŠ¸ì— ê°€ì…ë˜ì–´ìˆëŠ” ì§€ í™•ì¸ */
+	public String checkpjtmember(int pjtCode, String userId){
+		List<String> results = jdbcTemplate.query(
+				"select userId from pjtmanager where pjtcode=? and userid=?"
+				,
+				new RowMapper<String>() {
+					@Override
+					public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+						String leaderid=rs.getString("userid");
+						return leaderid;
+					}
+				}
+				, pjtCode, userId);
+		System.out.println("PjtMakeDAO] results.isempty? - "+results.isEmpty());
+		return results.isEmpty() ? null : results.get(0);
 	}
-	*/
+	/** í”„ë¡œì íŠ¸ ì œê±°ì „ ì œê±°ë©¤ë²„ì´ë¦„ í™•ì¸*/
+	public String checkmembeforedel(int pjtCode, String userId){
+		List<String> results = jdbcTemplate.query(
+				"select mem.name pjtmembers from pjtmanager mgr, member mem "+
+					"where mgr.userId=mem.userId and mgr.pjtcode = ? and mgr.userId=?"
+				,
+				new RowMapper<String>() {
+					@Override
+					public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+						String leaderid=rs.getString("pjtmembers");
+						return leaderid;
+					}
+				}
+				, pjtCode, userId);
+		System.out.println("PjtMakeDAO] results.isempty? - "+results.isEmpty());
+		return results.isEmpty() ? null : results.get(0);
+	} 
+	
+	
+	/**í”„ë¡œì íŠ¸ ë©¤ë²„ ì‚­ì œí•˜ê¸°. - pjtManager í…Œì´ë¸”*/
+	public void pjtmgrmemDel(final int pjtCode, final String userId){
+		System.out.println("pjtmemDelì—ì„œ ë°›ì€ pjtCode : " + pjtCode);
+		System.out.println("pjtmemDelì—ì„œ ë°›ì€ userId : " + userId);
+
+		jdbcTemplate.update(new PreparedStatementCreator() {
+			@Override
+			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+				PreparedStatement pstmt = con.prepareStatement(
+						"delete from pjtManager where pjtCode=? and userId=?"
+					);
+				pstmt.setInt(1, pjtCode);
+				pstmt.setString(2, userId);
+				return pstmt;
+			}
+		});
+			System.out.println("pjtmemDel pjtManager delete ì™„ë£Œ");
+	}
+	/** í”„ë¡œì íŠ¸ ë©¤ë²„ ì‚­ì œí•˜ê¸°. - WillWork í…Œì´ë¸”*/
+	public void pjtwillworkmemDel(final int pjtCode, final String userId){
+		System.out.println("pjtmemDelì—ì„œ ë°›ì€ pjtCode : " + pjtCode);
+		System.out.println("pjtmemDelì—ì„œ ë°›ì€ userId : " + userId);
+
+		jdbcTemplate.update(new PreparedStatementCreator() {
+			@Override
+			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+				PreparedStatement pstmt = con.prepareStatement(
+						"delete from willwork where pjtCode=? and userId=?"
+					);
+				pstmt.setInt(1, pjtCode);
+				pstmt.setString(2, userId);
+				return pstmt;
+			}
+		});
+			System.out.println("pjtmemDel willwork delete ì™„ë£Œ");
+	}
+	
+	/** í•´ë‹¹ í”„ë¡œì íŠ¸ ì‹œì‘&ì¢…ë£Œê¸°ê°„ ìˆ˜ì •*/
+	public void updatePjtMake(final String startDate, final String endDate, final int pjtCode) throws ParseException{
+	        jdbcTemplate.update(new PreparedStatementCreator() {
+	            @Override
+	            public PreparedStatement createPreparedStatement(Connection con) 
+	                    throws SQLException {
+	                // íŒŒë¼ë¯¸í„°ë¡œ ì „ë‹¬ë°›ì€ Connectionì„ ì´ìš©í•´ì„œ PreparedStatement ìƒì„±
+	                PreparedStatement pstmt = con.prepareStatement(
+                       "update pjtmake set "
+                       + "startDate=STR_TO_DATE(?,'%m/%d/%Y'), "
+                       + "endDate=STR_TO_DATE(?,'%m/%d/%Y') "
+                       + "where pjtcode=?");
+	                // ì¸ë±ìŠ¤ íŒŒë¼ë¯¸í„° ê°’ ì„¤ì •
+	                pstmt.setString(1, startDate);
+	                pstmt.setString(2, endDate);
+	                pstmt.setInt(3, pjtCode);
+	                
+	                // ìƒì„±í•œ PreparedStatement ê°ì²´ ë¦¬í„´
+	                return pstmt;
+	            } //end createPreparedStatement()
+	        });
+	}
 }

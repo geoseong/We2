@@ -20,7 +20,8 @@
 				classpath:we2-beans.xml
 				classpath:we2-controller.xml
 				classpath:we2-springmvc.xml
-			</param-value>
+				classpath:we2-utils.xml
+	 </param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
@@ -46,4 +47,23 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>
 <!-- START : 한글 인코딩을 위한 태그 끝 -->
+
+<!-- error page 설정.
+	<error-page>
+	    <error-code>404</error-code>
+	    <location>/we2/errorpage/404_error.jsp</location>
+	</error-page>
+	<error-page>
+	    <error-code>500</error-code>
+	    <location>/we2/errorpage/500_error.jsp</location>
+	</error-page>
+	<error-page>
+     <exception-type>java.lang.Throwable</exception-type>
+     <location>/we2/errorpage/error.jsp</location>
+    </error-page> -->
+    
+    <!-- request -->
+    <listener>
+	    <listener-class> org.springframework.web.context.request.RequestContextListener</listener-class>
+  	</listener>
 </web-app>

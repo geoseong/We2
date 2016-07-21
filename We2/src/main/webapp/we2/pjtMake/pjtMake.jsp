@@ -8,25 +8,19 @@
 <link rel="stylesheet" type="text/css" href="css/w2_reset.css">
 <link rel="stylesheet" type="text/css" href="css/02_1_pjtMake.css">
 
-<script type="text/javascript">
-
-function pjtmessage(){
-	alert("점검중입니다. (~04/08)");
-}
-</script>
 </head>
 <body>
    <div class="pjtMake">   
-   	  <form method="post" action="test" >	
+   	  <form method="post" action="pjtMake" >	
           
    	     <div class="pjtMakeInner">
                 <h1>프로젝트 만들기</h1>
              
                 <div class="frame">
-	   				<div class="nameArea">
+	   				<!-- <div class="nameArea"> -->
 	   					<label for="pjtName">프로젝트 이름</label>
 	   					<input type="text" size="26" name="pjtName" id="pjtName" style="height:25px;"> 
-	   				</div>
+	   				<!-- </div> -->
 	   				
 	   				<div class="classifyArea">
 	   					<label for="pjtClassify">프로젝트 분류</label>
@@ -51,7 +45,7 @@ function pjtmessage(){
 	   				</div>
 	   				
 	   				<div class="btn2">
-	   				 	<input type="submit" value="만들기" size="100">
+	   				 	<input type="submit" value="만들기" size="100" style="margin-top:20px;" >
 	   				</div>
                 
                 </div>

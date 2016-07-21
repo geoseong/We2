@@ -28,6 +28,8 @@ public class PjtBoardController {
     private ServletContext servletContext;
 	@Autowired
 	HttpServletRequest request;
+	@Autowired
+	HttpSession session;
 	
 	String path="we2/pjtBoard/data";
 	int sizeLimit = 20*1024*1024;
@@ -48,13 +50,14 @@ public class PjtBoardController {
 			System.out.println("rows_per_page : " + rows_per_page);
 			System.out.println("page : " + page);
 		System.out.println("-------------------------------변수설정 시작");
-
-		if(category.equals("group")){
-			category="pGroup";
-		}else if(category.equals("exam")){
-			category="pTest";
-		}else if(category.equals("collabo")){
-			category="pWithWork";
+		
+		String boardname=null;
+		if(category.equals("pGroup")){
+			boardname="조별과제";
+		}else if(category.equals("pTest")){
+			boardname="시험공부";
+		}else if(category.equals("pWithWork")){
+			boardname="회사협업";
 		}
 		System.out.println("List.GET] category : " + category);
 		
@@ -104,6 +107,7 @@ public class PjtBoardController {
 		  model.addAttribute("page_for_block", page_for_block);
 		// category 보냄
 		  model.addAttribute("category", category);
+		  model.addAttribute("boardname", boardname);
 		System.out.println("--------------------------listSpecificPage");
 		
 		return "pjtBoard/boardmain";
@@ -111,33 +115,34 @@ public class PjtBoardController {
 	
 	/** 글쓰기 폼 띄우기 */
 	@RequestMapping(value="/write", method=RequestMethod.GET)
-	public String writeget(HttpSession session, /*HttpServletRequest request,*/ Model model,String category){
+	public String aopwriteget(HttpSession session, /*HttpServletRequest request,*/ Model model,String category){
 		
-		System.out.println("Write.get] category : " + category);
+		System.out.println("Write.get] category : " + request.getParameter("category"));
 		
-		if(session.getAttribute("authInfo")==null){
-			return "redirect:/";
+		String boardname=null;
+		if(category.equals("pGroup")){			boardname="조별과제";
+		}else if(category.equals("pTest")){			boardname="시험공부";
+		}else if(category.equals("pWithWork")){			boardname="회사협업";
 		}
-		System.out.println("write.get] category="+category);
-		
+
 		// JSP:INCLUDE PAGE
 		  model.addAttribute("Boardpage", "write");
 		// category 보냄
 		  model.addAttribute("category", category); 
+		  model.addAttribute("boardname", boardname);
 		return "pjtBoard/boardmain";
 	}
 	
 	/** 글 등록하기 
 	 * @throws IOException */
 	@RequestMapping(value="/write", method=RequestMethod.POST)
-	public String writepost(HttpSession session, /*HttpServletRequest request, */Model model, String category) throws IOException {
+	public String aopwritepost(Model model, String category) throws IOException {
 		System.out.println("write.post] category : "+category);
 		
 		// 해당 경로의 폴더가 안만들어져있다면 직접 만들어놔야할 것.
 		// getRealPath : E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps\testweb\
 		MultipartRequest multi = new MultipartRequest(
 					request, 	servletContext.getRealPath(path), sizeLimit, encType, new DefaultFileRenamePolicy());
-		System.out.println("파일 contentType : " + multi.getContentType("file"));
 		
 		//PjtBoardBean객체인 pVo에 변수들을 집어넣는다.
 		PjtBoardBean pVo = new PjtBoardBean();
@@ -159,10 +164,10 @@ public class PjtBoardController {
 			pVo.setItemContent(multi.getParameter("itemContent"));
 				System.out.println("WriteServlet - content : " + pVo.getItemContent());
 		//8. 데이터 타입
-				pVo.setItemDataType(multi.getContentType("file"));
+			pVo.setItemDataType(multi.getContentType("file"));
+				System.out.println("파일 contentType : " + pVo.getItemDataType());
 		// 게시글 내용들을 Insert하기
 			boardService.insertBoard(category, pVo.getItemTitle(), pVo.getUserId(), pVo.getItemPath(), pVo.getItemContent(), pVo.getItemDataType());
-		
 		// JSP:INCLUDE PAGE
 		  model.addAttribute("Boardpage", "list");
 		  model.addAttribute("page", 1);
@@ -176,21 +181,40 @@ public class PjtBoardController {
 		System.out.println("Content.GET] itemNum : "+itemNum);
 		System.out.println("Content.GET] category : " + category);
 		
+		String boardname=null;
+		if(category.equals("pGroup")){			boardname="조별과제";
+		}else if(category.equals("pTest")){			boardname="시험공부";
+		}else if(category.equals("pWithWork")){			boardname="회사협업";
+		}
+		
 		// SQL 사용, 결과를 보냄
 		//1. 조회수추가, 2. select_by_num
 			boardService.count_plus(category, itemNum);
+
 			model.addAttribute("BoardContent", boardService.select_by_num(category, itemNum));
+			
+		// <br>내용이 포함된 내용 보내기.
+			String content=boardService.select_by_num(category, itemNum).getItemContent().replace("\r\n", "<br>");
+			model.addAttribute("content", content);
+			
 		// JSP:INCLUDE PAGE
 			model.addAttribute("Boardpage", "content");
 		// category 보냄
 		  model.addAttribute("category", category);
+		  model.addAttribute("boardname", boardname);
 		return "pjtBoard/boardmain";
 	}
 	
 	@RequestMapping(value="/modify", method=RequestMethod.GET)
-	public String modifyget(Model model, String category, int itemNum) throws IOException {
-		System.out.println("Modify] category : " + category);
-		System.out.println("Modify] itemNum : " + itemNum);
+	public String aopmodifyget(Model model, String category, int itemNum) throws IOException {
+		System.out.println("Modify.GET] category : " + category);
+		System.out.println("Modify.GET] itemNum : " + itemNum);
+		
+		String boardname=null;
+		if(category.equals("pGroup")){			boardname="조별과제";
+		}else if(category.equals("pTest")){			boardname="시험공부";
+		}else if(category.equals("pWithWork")){			boardname="회사협업";
+		}
 		
 		model.addAttribute("BoardUpdate", boardService.select_by_num(category, itemNum));
 		
@@ -198,13 +222,15 @@ public class PjtBoardController {
 		model.addAttribute("Boardpage", "modify");
 		// category 보냄
 		  model.addAttribute("category", category);
+		  model.addAttribute("itemNum",itemNum);
+		  model.addAttribute("boardname", boardname);
 		return "pjtBoard/boardmain";
 	}
 	
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
-	public String modifypost(/*HttpServletRequest request, */Model model, String category, int itemNum) throws IOException {
-		System.out.println("Modify.POST] itemNum : " + itemNum);
-		System.out.println("Modify.POST] ategory : " + category);
+	public String aopmodifypost(Model model, String category/*, int itemNum*/) throws IOException {
+		System.out.println("Modify.POST] itemNum : " + request.getParameter("itemNum"));
+		System.out.println("Modify.POST] category : " + category);
 		
 		MultipartRequest multi = 
 				new MultipartRequest(
@@ -218,7 +244,7 @@ public class PjtBoardController {
 		//1. 글번호를 파라미터로 받아온다.
 			System.out.println("ItemNum 정의 전");
 		int ItemNum = Integer.parseInt(multi.getParameter("itemNum"));
-			System.out.println("ItemNum 정의 후");
+			System.out.println("ItemNum 정의 후 : " + ItemNum);
 		//2. 제목
 			String ItemTitle=multi.getParameter("itemTitle");
 		//3. 유저ID는
@@ -230,14 +256,14 @@ public class PjtBoardController {
 			// 파일수정 아무것도 안하면 null값을 받아오는데, 파일이 날라갈 것을 방지하기위한 if문.
 				if(multi.getFilesystemName("itemPath")!=null){
 					ItemPath = multi.getFilesystemName("itemPath");
-					ItemDataType=multi.getContentType("file");
-					System.out.println("자료 업뎃함.");
+					ItemDataType=multi.getContentType("itemPath");
+					System.out.println("자료 업뎃함." + ItemDataType);
 				}else{
 					// BoardMapper에서 select 결과를 받아옴.
 					pVo = boardService.select_by_num(category, ItemNum);
 					ItemPath = pVo.getItemPath();
 					ItemDataType=pVo.getItemDataType();
-					System.out.println("자료수정된 것 없음");
+					System.out.println("자료수정된 것 없음" + ItemDataType);
 				} //end if
 		//7. 게시물 내용
 			String ItemContent=multi.getParameter("itemContent");
@@ -247,10 +273,10 @@ public class PjtBoardController {
 			System.out.println("doPost itemTitle --"+ItemTitle);
 			System.out.println("doPost itemPath --"+ItemPath);
 			System.out.println("doPost itemContent --"+ItemContent);
-			System.out.println("doPost itemContent --"+ItemDataType);
+			System.out.println("doPost ItemDataType --"+ItemDataType);
 			
 			// 글번호, 제목, 게시물 작성일, 파일경로, 게시물 내용을 Update Set.
-			boardService.updateBoard(category, ItemTitle, ItemPath, ItemContent, ItemDataType);
+			boardService.updateBoard(category, ItemNum, ItemTitle, ItemPath, ItemContent, ItemDataType);
 
 			// JSP:INCLUDE PAGE
 				  model.addAttribute("Boardpage", "list");
@@ -261,7 +287,7 @@ public class PjtBoardController {
 	}
 	
 	@RequestMapping(value="/delete", method=RequestMethod.GET)
-	public String deletepost(Model model, String category, int itemNum) {
+	public String aopdeletepost(Model model, String category, int itemNum) {
 		System.out.println("DELETE.POST] category : " + category);
 		System.out.println("DELETE.POST] itemNum : " + itemNum);
 		// boardMapper 제거 SQL.
@@ -276,12 +302,6 @@ public class PjtBoardController {
 		return "redirect:list";
 	}
 
-	@RequestMapping(value="/pjt", method=RequestMethod.GET)
-	public String pjt(Model model, String category) {
-		model.addAttribute("page","boardmain");
-		return "myproject/myproject";
-	}
-	
 	@RequestMapping(value="/find", method=RequestMethod.GET)
 	public String findget(Model model, String category, String find, String findword, int page){
 		System.out.println("find.GET] category : " + category);
@@ -296,6 +316,15 @@ public class PjtBoardController {
 		System.out.println("find값 : " + find);				
 		System.out.println("findword값 : " + findword);	
 		
+		// ____ 게시판 표시하기
+		String boardname=null;
+		if(category.equals("pGroup")){			boardname="조별과제";
+		}else if(category.equals("pTest")){			boardname="시험공부";
+		}else if(category.equals("pWithWork")){			boardname="회사협업";
+		}
+		model.addAttribute("boardname", boardname);
+		
+
 		System.out.println("find.GET] page : " + page);
 		// 시작 rownum 받아오기
 			int row_start= paging.getFirstRowInPage(page, rows_per_page);
@@ -345,4 +374,33 @@ public class PjtBoardController {
 		System.out.println("--------------------------listSpecificPage");
 		return "pjtBoard/boardmain";
 	}
+	
+	
+	/** 테스트 영역 */
+	@RequestMapping(value="/aoptest", method=RequestMethod.GET)
+	public String sessionpjt(Model model, String category) {
+		System.out.println("/aoptest executed!!");
+		model.addAttribute("page","excelView");
+		return "myproject/myproject";
+	}
+	
+	@RequestMapping(value="/aoptestauth", method=RequestMethod.GET)
+	public String authpjt(Model model, String category) {
+		System.out.println("/aoptestauth executed!!");
+		model.addAttribute("page","excelView");
+		return "myproject/myproject";
+	}
+	
+	@RequestMapping(value="/mailtest", method=RequestMethod.GET)
+	public String pjt(Model model, String category) {
+		model.addAttribute("page","../WillWork/WillWork.jsp");
+		return "myproject/myproject";
+	}
+	
+	@RequestMapping(value="/jqueryModal", method=RequestMethod.GET)
+	public String modal(Model model, String category) {
+		model.addAttribute("page","boardmain");
+		return "test_modal/jqueryModal";
+	}
+	
 }
