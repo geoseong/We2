@@ -69,28 +69,23 @@ table td{
 }
 
 #filenum{
-	width:10%;
-	
+	width:6%;
 }
-
+#userId{
+	width:10%;
+}
 #filename{
 	width:30%;
 }
-
 #filedate{
 	width:20%;
 }
-
 #filedownload{
 	width:20%;
 }
-
 #fileupdate{
 	width:7%;
-	
 }
-
-
 #filedelete{
 	width:7%;
 }

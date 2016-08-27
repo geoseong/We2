@@ -17,10 +17,10 @@
 			<value type="java.lang.String">UTF-8</value>
 		</property>
 		<property name="username">
-			<value type="java.lang.String">we2korea@gmail.com</value>
+			<value type="java.lang.String">we2korea@gmail.com</value><!-- 메일보내는 계정의 메일주소 입력 -->
 		</property>
 		<property name="password">
-			<value type="java.lang.String">we2admin!@#$</value>
+			<value type="java.lang.String">geoseong</value><!-- 메일보내는 메일계정의 비밀번호 입력 -->
 		</property>
 		<property name="javaMailProperties">
               <props>

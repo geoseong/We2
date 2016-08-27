@@ -164,4 +164,39 @@ public class MemberDao {
 		System.out.println("DAO isempty : " + results.isEmpty());
 		return results.isEmpty() ? null : results.get(0).toString();
 	}
+	
+	/** 자기가 개설한(방장인) 프로젝트 목록들 보기 */
+	public List<PjtMakeVO> selectproject(String userId) {
+		List<PjtMakeVO> results = jdbcTemplate.query(
+				"select make.pjtcode, make.pjtname, make.pjtclassify, make.startdate, make.enddate"
+				+ " from pjtmanager mgr, pjtmake make where mgr.isLeader='Y' and userId = ?",
+				new RowMapper<PjtMakeVO>() {
+					@Override
+					public PjtMakeVO mapRow(ResultSet rs, int rowNum) throws SQLException {
+						PjtMakeVO pjtVO = new PjtMakeVO(
+								rs.getInt("pjtCode"), 
+								rs.getString("pjtName"), 
+								rs.getString("pjtClassify"), 
+								rs.getString("startDate"), 
+								rs.getString("endDate"));
+						return pjtVO;
+					}
+				}, userId);
+		System.out.println("selectproject()::results.isEmpty()::::::" + results.isEmpty());
+		return results.isEmpty() ? null : results;
+	}
+	
+	/** 자기가 방장인 프로젝트에 속해있는 사람 보기 */
+	public List<String> selectmembers_mypjt(int pjtCode) {
+		List<String> results = jdbcTemplate.query(
+				"select mgr.userid from pjtmanager mgr, pjtmake make where mgr.pjtcode = make.pjtcode and mgr.pjtcode = ?",
+				new RowMapper<String>() {
+					@Override
+					public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+						return rs.getString("userid");
+					}
+				}, pjtCode);
+		System.out.println("selectmembers_mypjt()::results.isEmpty()::::::" + results.isEmpty());
+		return results.isEmpty() ? null : results;
+	}
 }

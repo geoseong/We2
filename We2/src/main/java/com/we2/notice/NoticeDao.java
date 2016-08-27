@@ -26,7 +26,7 @@ public class NoticeDao {
 			NoticeDto noticedto = new NoticeDto(
 				rs.getInt("num"),
 				rs.getString("title"),
-				rs.getString("writer"),
+				rs.getString("userId"),
 				rs.getString("content"),
 				rs.getString("writedate"),
 				rs.getInt("pjtCode")
@@ -36,14 +36,14 @@ public class NoticeDao {
 	};
 	
 	public List<NoticeDto> list(int pjtCode){
-		String sql = "select * from notice where pjtcode=? order by num desc"; 
-		List<NoticeDto> results = jdbcTemplate.query(sql,memRowMapper, pjtCode);
+		String sql = "select * from notice where pjtCode=? order by num desc"; 
+		List<NoticeDto> results = jdbcTemplate.query(sql, memRowMapper, pjtCode);
 		
 		return results.isEmpty() ? null : results;
 	}
 	
 	public String write(final HttpServletRequest request, int pjtCode) {
-		String sql = "insert into notice (title, content, writer, writedate, pjtCode) values (?, ?, ?, now(), ?)";
+		String sql = "insert into notice (title, content, userId, writedate, pjtCode) values (?, ?, ?, now(), ?)";
 		jdbcTemplate.update(sql, 
 				request.getParameter("title"), request.getParameter("content"), request.getParameter("writer"), 
 				pjtCode

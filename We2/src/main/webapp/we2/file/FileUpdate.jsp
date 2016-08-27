@@ -38,7 +38,7 @@
 		
      	  
        <div class = "button">
- 		  <input name="add" class="add_btn" type=submit value="파일 등록">    
+ 		  <input name="add" class="add_btn" type=submit value="수정 완료">    
      	  <input name="cancel" class="add_btn" type="reset" value="다시 작성">
        </div>
    

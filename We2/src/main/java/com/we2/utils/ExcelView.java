@@ -38,6 +38,7 @@ public class ExcelView extends AbstractExcelView{
            /** 프로젝트 Overview */
            // 엑셀시트 이름 지정 및 만들기
            worksheet = workbook.createSheet(ModelMap.get("pjtname").toString()+ " 프로젝트 정보");
+       try{
            @SuppressWarnings("unchecked")
            List<PjtMakeVO> list = (List<PjtMakeVO>)ModelMap.get("overview");
                row = worksheet.createRow(0);
@@ -55,10 +56,13 @@ public class ExcelView extends AbstractExcelView{
                   row.createCell(3).setCellValue(list.get(i-1).getStartDate());
                   row.createCell(4).setCellValue(list.get(i-1).getEndDate());
            }
-           
+       }catch(Exception e){
+    	   
+       }
 	       /** 공지사항 */
 	       // 엑셀시트 이름 지정 및 만들기
 	       worksheet = workbook.createSheet("공지사항");
+       try{
 	       @SuppressWarnings("unchecked")
 	       List<NoticeDto> notice = (List<NoticeDto>)ModelMap.get("notice");
 	           row = worksheet.createRow(0);
@@ -74,10 +78,13 @@ public class ExcelView extends AbstractExcelView{
 	              row.createCell(2).setCellValue(notice.get(i-1).getWriter());
 	              row.createCell(3).setCellValue(notice.get(i-1).getWritedate());
 	       }
-           
+       }catch(Exception e){
+    	   
+       }
 	        /** 스케쥴러 */
 	        // 엑셀시트 이름 지정 및 만들기
 	           worksheet = workbook.createSheet("스케쥴러");
+       try{
 	           @SuppressWarnings("unchecked")
 	           List<SchedulerBean> scheduler = (List<SchedulerBean>)ModelMap.get("scheduler");
 	               row = worksheet.createRow(0);
@@ -93,10 +100,13 @@ public class ExcelView extends AbstractExcelView{
 	                  row.createCell(2).setCellValue(scheduler.get(i-1).getCalendarmemo_day());
 	                  row.createCell(3).setCellValue(scheduler.get(i-1).getCalendarmemo_contents());
 	           }
-           
+       }catch(Exception e){
+    	   
+       }
            /** 할 일 */
            // 엑셀시트 이름 지정 및 만들기
               worksheet = workbook.createSheet("할 일");
+      try{
               @SuppressWarnings("unchecked")
               List<WillWorkVO> willwork = (List<WillWorkVO>)ModelMap.get("willwork");
                   row = worksheet.createRow(0);
@@ -112,7 +122,10 @@ public class ExcelView extends AbstractExcelView{
                      row.createCell(2).setCellValue(willwork.get(i-1).getDoWork());
                      row.createCell(3).setCellValue(willwork.get(i-1).getDoneWork());
               }
-        }
+      }catch(Exception e){
+   	   
+      }
+        } //end if
         //  다운로드를 구현하였기때문에 response 객체에 몇가지 설정을 추가하였다.
         response.setContentType("Application/Msexcel");
         response.setHeader("Content-Disposition", "ATTachment; Filename=We2_"+excelName+"_info.xls");

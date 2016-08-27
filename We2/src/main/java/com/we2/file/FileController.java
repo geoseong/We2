@@ -2,7 +2,6 @@ package com.we2.file;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.Date;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.we2.spring.AuthInfo;
 
 @Controller
 @RequestMapping(value = "/file")
@@ -117,17 +117,23 @@ public class FileController {
 		return "file/fileWrite";
 	}
 
-	/* 글 등록하기	 */
+	/* 글 등록하기 */
 	@RequestMapping(value = "/filewrite.do", method = RequestMethod.POST)
 	public String writepost(HttpSession session, HttpServletRequest request, Model model) throws IOException {
-		// 해당 경로의 폴더가 안만들어져있다면 직접 만들어놔야할 것.
-
-		// getRealPath :
-		// E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps\We2\
+		System.out.println("/filewrite.do POST");
+		/* getRealPath :
+			E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps\We2\
+			해당 경로의 폴더가 안만들어져있다면 직접 만들어놔야할 것. */
 		String encType = "UTF-8";
 		int sizeLimit = 20 * 1024 * 1024;
-
-		MultipartRequest multi = new MultipartRequest(
+			System.out.println("MultipartRequest 정의 전, encType: "+ encType +" , sizeLimit : " + sizeLimit);
+		
+		/** servletContext : 이 구문이 있어야 servletContext가 살아난다. */
+		servletContext = request.getSession().getServletContext();
+			System.out.println("파일경로 : "+ servletContext.getRealPath(path));
+			
+		// path의 경로(폴더)는 직접 개발자가 만들어놓지 않으면 에러남. 
+			MultipartRequest multi = new MultipartRequest(
 				request, servletContext.getRealPath(path), sizeLimit, encType,
 				new DefaultFileRenamePolicy());
 
@@ -146,9 +152,11 @@ public class FileController {
 		// pjtCode 받아내기
 		int pjtCode = (Integer)session.getAttribute("pjtCode");
 			System.out.println("/file write pjtcode : "+pjtCode);
-		
+
+		// 세션에 돌아다니는 로그인된 회원정보 불러오기
+		AuthInfo mVo = (AuthInfo)session.getAttribute("authInfo");
 		// 게시글 내용들을 Insert하기
-		fileService.insertFile(fVo.getFname(), fVo.getFileurl(), pjtCode);
+		fileService.insertFile(fVo.getFname(), fVo.getFileurl(), pjtCode, mVo.getUserId());
 
 		// alert 메시지.
 		String message = "<script type='text/javascript'>" + "alert('게시물 등록이 완료되었습니다.');" + "opener.location.reload();"

@@ -19,7 +19,7 @@
 	<!-- JDBC dataSource 설정. 톰캣 server.xml 설정하듯이. -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver"/>
-		<property name="jdbcUrl" value="jdbc:mysql://192.168.0.100:3306/we2?characterEncoding=utf8&amp;useSSL=false" />
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/we2?characterEncoding=utf8&amp;useSSL=false&amp;autoReconnection=true" />
 		<property name="user" value="we2admin" />
 		<property name="password" value="1234" />
 	</bean>

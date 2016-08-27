@@ -1,22 +1,27 @@
 package com.we2.file;
-import java.util.Date;
 
 public class FileBean {
 
 	private int fcode;
+	private int pjtCode; 
+	private String userId;
 	private String fname;
 	private String fileurl;
-	private int pjtCode; 
-	private Date fdate;
+	private String fdate;
 	
 	
-	
-	public int getPjtCode() {
-		return pjtCode;
+	public FileBean() {
+		super();
 	}
 
-	public void setPjtCode(int pjtCode) {
+	public FileBean(int fcode, int pjtCode, String userId, String fname, String fileurl, String fdate) {
+		super();
+		this.fcode = fcode;
 		this.pjtCode = pjtCode;
+		this.userId = userId;
+		this.fname = fname;
+		this.fileurl = fileurl;
+		this.fdate = fdate;
 	}
 
 	public int getFcode() {
@@ -25,6 +30,22 @@ public class FileBean {
 
 	public void setFcode(int fcode) {
 		this.fcode = fcode;
+	}
+
+	public int getPjtCode() {
+		return pjtCode;
+	}
+
+	public void setPjtCode(int pjtCode) {
+		this.pjtCode = pjtCode;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public String getFname() {
@@ -43,25 +64,14 @@ public class FileBean {
 		this.fileurl = fileurl;
 	}
 
-	public Date getFdate() {
+	public String getFdate() {
 		return fdate;
 	}
 
-	public void setFdate(Date fdate) {
+	public void setFdate(String fdate) {
 		this.fdate = fdate;
 	}
-
-	public FileBean() {
-		super();
-	}
-
-	public FileBean(int fcode, String fname, String fileurl, Date fdate) {
-		super();
-		this.fcode = fcode;
-		this.fname = fname;
-		this.fileurl = fileurl;
-		this.fdate = fdate;
-	}
-
+	
+	
 
 }

@@ -88,21 +88,31 @@ public class PjtSettingCtrl {
 			System.out.println("현재 로그인된 사용자 - " + loggedinmem);
 		
 		// member와 pjtleader를 비교해서 일치하면 방장, 아니면 방장 아님.
-		String isleader="N";
+		String isleader="";
 			System.out.println("당신은 리더입니까? "+isleader);
-		if(pjtleader.equals(loggedinmem)){
+			System.out.println("pjtleader : " + pjtleader);
+		
+		if(pjtleader == null){
+			isleader="N";
+			System.out.println("is not leader");
+		}else if(pjtleader.equals(loggedinmem)){
 			isleader="Y";
 			System.out.println("다시 묻습니다. 당신은 리더입니까? "+isleader);
 		}
+			
 		/* request 영역에 보내기*/
 		// SQL : pjtMake의 정보 모두 select
 		model.addAttribute("pjtInfo", pDao.selectAllpjtInfo(pjtCode));
+		
 		// SQL : pjtManager의 회원정보 select
 		model.addAttribute("pjtmem", pDao.selectAllpjtMem(pjtCode));
+		
 		// 리더냐 아니냐 (Y/N)
 		model.addAttribute("isleader",isleader);
+		
 		// JSP:INCLUDE PAGE
 		model.addAttribute("page", "../myproject/setting");
+		
 		// msg 보내기
 		if(msg.equals("done")){
 			model.addAttribute("msg", delusers+"의 탈퇴처리가 완료되었습니다");

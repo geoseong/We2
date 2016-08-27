@@ -21,9 +21,9 @@ public class FileService {
 	
 	public ArrayList<FileBean> getlist(int row_start, int row_end, int pjtcode) throws ParseException{
 		ArrayList<FileBean> arraymapper=fileMapper.getList(row_start, row_end, pjtcode);
-		
 		for(int i=0; i<arraymapper.size(); i++){
 			System.out.println("fileshare 테이블 데이터 : " + arraymapper.get(i).getFileurl());
+			System.out.println("fileshare 테이블 userID : " + arraymapper.get(i).getUserId());
 		}
 		return arraymapper;
 	}
@@ -39,8 +39,8 @@ public class FileService {
 		return nCnt;
 	}
 
-	public void insertFile (String fname, String fileurl, int pjtCode){
-		fileMapper.insertFile(fname, fileurl, pjtCode);
+	public void insertFile (String fname, String fileurl, int pjtCode, String userId){
+		fileMapper.insertFile(fname, fileurl, pjtCode, userId);
 	}
 	
 	public void deleteRow(int fcode, int pjtCode){

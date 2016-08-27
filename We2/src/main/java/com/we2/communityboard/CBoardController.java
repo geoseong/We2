@@ -193,11 +193,9 @@ public class CBoardController {
 			boardname="자유";
 		}
 		model.addAttribute("boardname", boardname);
-		
 		// <br>내용이 포함된 내용 보내기.
 		String content=boardService.select_by_num(category, itemNum).getItemContent().replace("\r\n", "<br>");
 		model.addAttribute("content", content);
-		
 		// SQL 사용, 결과를 보냄
 		//1. 조회수추가, 2. select_by_num
 			boardService.count_plus(category, itemNum);

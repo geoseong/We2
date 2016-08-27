@@ -7,16 +7,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<link href="/style/We2_MemberStyle.css" rel="stylesheet"
-	type="text/css" />
+<!-- <link href="/style/We2_MemberStyle.css" rel="stylesheet"
+	type="text/css" /> -->
 <link rel="stylesheet" href="css/w2_reset.css" type="text/css">
 <link rel="stylesheet" href="css/01_1_mypageform.css" type="text/css">
 <!-- 여기 까지 css 적용!! -->
-
-<script type="text/javascript" src="/js/jquery-1.12.1.min.js"></script>
+<!-- 
+<script type="text/javascript" src="/js/jquery-1.12.1.min.js"></script> -->
 		
 <script type="text/javascript">
-	function chk() {
+	function chk(userId) {
 		var req = document.form.req.checked;
 		var num = 0;
 
@@ -25,11 +25,14 @@
 		}
 
 		if (num == 1) {
-			document.form.submit();
+			//alert("userId : " + userId);
+			var url = "inheritance.do?userId=" + userId;
+			javascript:window.open(url , 'pjtinheritance', 'width=530, height=300, left=150, top=100, location=no, resizable=no, toolbar=no');
+			//document.form.submit();
 		} else {
 			alert("탈퇴 정보에 동의하셔야 합니다.");
 		}
-	} //end delete
+	} //end chk() : delete
 
 	function nochk() {
 		alert("동의하지 않으면 탈퇴할 수 없습니다");
@@ -122,8 +125,8 @@ We2 회원이 이용계약을 해지하고자 하는 때 에는 회원 본인이
 <h2>회원탈퇴에 동의 하시면 체크해주세요!!&nbsp;&nbsp;<input type="checkbox" name="req"></h2> 	
  	
  	<div class="select">
-				<input class="add_btn" type="button" value="동의합니다" onclick="return chk()" style ="width:150px;" /> 
-				<input class="add_btn" type="button"value="동의하지 않습니다" onclick="return nochk()" style ="width:150px;" />
+				<input class="add_btn" type="button" value="동의합니다" onclick="return chk('${userId}')" style ="width:150px;" /> 
+				<input class="add_btn" type="button" value="동의하지 않습니다" onclick="return nochk()" style ="width:150px;" />
 			</div>
 	    </div>  <!-- section end -->
 	    </form>

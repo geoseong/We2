@@ -93,7 +93,8 @@ public class We2MailSender{
 				pjtmember
 				+
 				"</td></tr></table><p>"+
-				"<a href='http://192.168.0.100:9080/We2/project/addmember?pjtCode="+pjtinfo.getPjtCode()+"&pjtadd=yes' ";
+				"<a href='http://localhost:8080/We2/project/addmember?pjtCode="+pjtinfo.getPjtCode()+"&pjtadd=yes' ";
+					// a href에다가 localhost 아니면 서버 ip주소를 입력. header 파일에도 마찬가지.
 			mailheader = mailheader + mailbody; 
 			
 			// 메일내용 뒷부분

@@ -41,9 +41,9 @@ function winOpen3(fcode){
 	   			
 	   			<tr class="Listtr">
 		   		 	    <th id="filenum" >번호</th>
+		   		 	    <th id="userId" >글쓴이</th>
 		   			    <th id="filename">파일명</th>	  
 		   			    <th id="filedate">날짜</th>	  
-		   			<!--     <th id="fileurl">파일경로</th>	 -->  		   			    			
 		   				<th id="filedownload">다운로드</th>
 		   				<th id="fileupdate">수정</th>
 		   				<th id="filedelete">삭제</th>
@@ -52,9 +52,9 @@ function winOpen3(fcode){
 				<c:forEach var="file"   items="${fileList}">																
 					<tr class="Listtr">
 						<td> ${file.fcode} </td>
+						<td> ${file.userId} </td>
 						<td> ${file.fname} </td>
 						<td> ${file.fdate} </td>
-						<%-- <td> ${file.fileurl} </td> --%>
 					  	<td align="center">
 							<a href="/We2/we2/file/data/${file.fileurl}"  download>${file.fileurl}</a>
 									<!--OLD: onClick="window.open(this.href, '다운로드', 'width=400, height=430'); return false;"  -->

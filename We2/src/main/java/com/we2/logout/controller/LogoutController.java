@@ -1,5 +1,7 @@
 package com.we2.logout.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -8,9 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.we2.pjtMake.PjtMakeVO;
 import com.we2.spring.AuthInfo;
-import com.we2.spring.Member;
 import com.we2.spring.MemberDao;
 
 /**
@@ -29,10 +32,35 @@ public class LogoutController {
 	} // end logout()
 
 	@RequestMapping(value = "/Delete_form", method = RequestMethod.GET)
-	public String Delete_form() {
+	public String Delete_form(Model model, HttpSession session) {
+		AuthInfo mVo = (AuthInfo)session.getAttribute("authInfo");
+		model.addAttribute("userId", mVo.getUserId());
 		return "registration/Member_DeleteAggrement";
 	}
+	
+	@RequestMapping(value = "/inheritance.do", method = RequestMethod.GET)
+	public String inheritance_get(Model model, HttpSession session, HttpServletRequest request) {
+		String userId = request.getParameter("userId");
+		List<PjtMakeVO> selectpjt = memberDao.selectproject(userId);
+		model.addAttribute("projects", selectpjt);
+		return "registration/inheritance";
+	}
 
+	@RequestMapping(value = "/searchpjt", method = RequestMethod.POST)
+	@ResponseBody
+	public List<String> searchpjt(Model model, HttpSession session, HttpServletRequest request, int pjtCode) {
+		System.out.println("searchpjt pjtCode : " + pjtCode);
+		//model.addAttribute("pjtmember", memberDao.selectmembers_mypjt(pjtCode));
+		return memberDao.selectmembers_mypjt(pjtCode);
+	}
+	@RequestMapping(value = "/inheritance.do", method = RequestMethod.POST)
+	public String inheritance_post(Model model, HttpSession session) {
+		System.out.println("inheritance.do POST");
+		AuthInfo mVo = (AuthInfo)session.getAttribute("authInfo");
+		model.addAttribute("userId", mVo.getUserId());
+		return "registration/inheritance";
+	}
+	
 	@RequestMapping(value = "/Member_delete", method = RequestMethod.POST)
 	public String Member_delete(HttpServletRequest request,HttpSession session, Model model) {
 		

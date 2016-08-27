@@ -80,7 +80,7 @@ public interface SchedulerMapper {
 				@Param("calendarmemo_month") int calendarmemo_month, 
 				@Param("calendarmemo_day") int calendarmemo_day, 
 				@Param("calendarmemo_contents") String calendarmemo_contents,
-				@Param("pjtcode") int pjtcode ) ;
+				@Param("pjtcode") int pjtcode);
 		
 		@Select(select_all)
 		int getTotalCnt();

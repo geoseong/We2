@@ -39,8 +39,6 @@
     <H2 style="text-align:center; color:#69C5E7;">파일 등록</H2>
 
  <form name="frm" method="post" action="filewrite.do"  enctype="multipart/form-data" >
-  
-  
       <table> 
  	   	<tr>  
    		   <th>파일명 </th>
@@ -56,13 +54,10 @@
           </tr>
             
      </table>
-
-			  
          <div class = "button">
  		  <input name="add" class="add_btn" type="submit" value="파일 등록" onclick="return filesizechk()">    
      	  <input name="cancel" class="add_btn" type="reset" value="다시 작성">
          </div>
-   
 </form>
 
 

@@ -46,7 +46,7 @@
 </div> <!-- fistmain -->
 
 
-<!-- 첫 번째 인물에 대한 링크 -->
+<!-- n 번째 인물에 대한 링크 -->
 <c:if test="${countPeople >= 1}">
 	<c:forEach var="user" items="${results}" varStatus="status" begin="0" end="${countPeople-1}">
 		<div class="second_body<%=i%>">

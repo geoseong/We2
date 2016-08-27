@@ -30,7 +30,7 @@
 
     <script type="text/javascript">
         var textarea = document.getElementById("messageWindow");
-        var webSocket = new WebSocket('ws://192.168.0.100:9080/We2/broadcasting');
+        var webSocket = new WebSocket('ws://localhost:8080/We2/broadcasting');	// ws: 뒤에 서버 ip주소를 넣거나 localhost를 넣는다.
         var inputMessage = document.getElementById('inputMessage');
         var inputId = document.getElementById('inputId');
     webSocket.onerror = function(event) {
