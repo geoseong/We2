@@ -99,7 +99,7 @@ public class PjtSettingCtrl {
 			isleader="Y";
 			System.out.println("다시 묻습니다. 당신은 리더입니까? "+isleader);
 		}
-			
+		
 		/* request 영역에 보내기*/
 		// SQL : pjtMake의 정보 모두 select
 		model.addAttribute("pjtInfo", pDao.selectAllpjtInfo(pjtCode));

@@ -178,6 +178,7 @@ public class LoginController {
 		return "registration/Member_MypageView";
 	}
 
+	/** 회원정보 수정완료 */
 	@RequestMapping(value = "/Member_Mypage", method = RequestMethod.POST)
 	public String Member_MypageViewpost(HttpServletRequest request) {
 		System.out.println("11111");

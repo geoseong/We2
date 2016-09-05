@@ -25,10 +25,9 @@
 		}
 
 		if (num == 1) {
-			//alert("userId : " + userId);
 			var url = "inheritance.do?userId=" + userId;
+			window.name="member_del";
 			javascript:window.open(url , 'pjtinheritance', 'width=530, height=300, left=150, top=100, location=no, resizable=no, toolbar=no');
-			//document.form.submit();
 		} else {
 			alert("탈퇴 정보에 동의하셔야 합니다.");
 		}

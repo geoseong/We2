@@ -6,6 +6,10 @@
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
+	<!--  Jackson
+	<bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"/>
+	  -->
+			
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host">
 			<value type="java.lang.String">smtp.gmail.com</value>

@@ -57,7 +57,7 @@
 
 				<div id="headerinner">
 					<h2>
-						<b> <sub> <a href="Main.jsp">We2</a>
+						<b> <sub> <a href="/We2">We2</a>
 						</sub>
 						</b>
 					</h2>

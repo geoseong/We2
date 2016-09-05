@@ -38,45 +38,66 @@ public class LogoutController {
 		return "registration/Member_DeleteAggrement";
 	}
 	
+	/** 회원탈퇴전 자신이 방장인 프로젝트 인수인계화면 띄우기 */
 	@RequestMapping(value = "/inheritance.do", method = RequestMethod.GET)
-	public String inheritance_get(Model model, HttpSession session, HttpServletRequest request) {
+	public String inheritance_get(Model model, /*HttpSession session,*/ HttpServletRequest request) {
 		String userId = request.getParameter("userId");
 		List<PjtMakeVO> selectpjt = memberDao.selectproject(userId);
 		model.addAttribute("projects", selectpjt);
 		return "registration/inheritance";
 	}
 
+	/** 회원탈퇴전 자신이 방장인 프로젝트 멤버들 뿌리기 */
 	@RequestMapping(value = "/searchpjt", method = RequestMethod.POST)
-	@ResponseBody
-	public List<String> searchpjt(Model model, HttpSession session, HttpServletRequest request, int pjtCode) {
+	public @ResponseBody List<String> searchpjt(Model model, int pjtCode) {
 		System.out.println("searchpjt pjtCode : " + pjtCode);
-		//model.addAttribute("pjtmember", memberDao.selectmembers_mypjt(pjtCode));
-		return memberDao.selectmembers_mypjt(pjtCode);
-	}
-	@RequestMapping(value = "/inheritance.do", method = RequestMethod.POST)
-	public String inheritance_post(Model model, HttpSession session) {
-		System.out.println("inheritance.do POST");
-		AuthInfo mVo = (AuthInfo)session.getAttribute("authInfo");
-		model.addAttribute("userId", mVo.getUserId());
-		return "registration/inheritance";
+		List<String> mypjt = memberDao.selectmembers_mypjt(pjtCode);
+		for(int i=0; i<mypjt.size(); i++){
+			if(i != mypjt.size()-1){
+				mypjt.set(i, mypjt.get(i)+",");
+			}
+			System.out.println(mypjt.get(i));
+		}
+		return mypjt;
 	}
 	
+	/** 회원탈퇴전 자신이 방장인 프로젝트 인수인계시키기 */
+	@RequestMapping(value = "/inheritance.do", method = RequestMethod.POST)
+	public String inheritance(Model model, HttpServletRequest request, HttpSession session) {
+		int pjtCode=Integer.parseInt(request.getParameter("pjts"));
+		String members=request.getParameter("members");
+			System.out.println("inheritance.do POST pjtCode : " + pjtCode + ", members : " + members);
+		
+		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
+		
+		memberDao.updateownerpjt(pjtCode, members, authInfo.getUserId());
+		
+		model.addAttribute("completemsg", " ' " + memberDao.selectpjtname(pjtCode) +" ' 프로젝트의 방장이  ' " + members + " ' 로 바뀌었습니다.");
+		return inheritance_get(model, request);
+	}
+	
+	/** 회원삭제 */
 	@RequestMapping(value = "/Member_delete", method = RequestMethod.POST)
 	public String Member_delete(HttpServletRequest request,HttpSession session, Model model) {
 		
 		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
-
-			System.out.println("logout]]]+"+authInfo);
-			System.out.println("logout[[["+authInfo.getUserId());
+		String userId = authInfo.getUserId();
+			System.out.println("logout[[["+userId);
 		
-		try{
-			memberDao.delete(authInfo);
-		}catch(Exception e){
-			e.getStackTrace();
-			request.setAttribute("message", "잘못된 접근입니다. 다시 시도해 주세요");
+		if(memberDao.confirmpjtowner(userId) !=null){
+			model.addAttribute("msg", 
+					"아직 방장권한을 인계하지 않은 프로젝트가 남아있습니다. 다시 한 번 확인 후 탈퇴 진행 해주세요.");
+		}else{
+			try{
+				memberDao.delete(authInfo);
+			}catch(Exception e){
+				e.getStackTrace();
+				request.setAttribute("message", "잘못된 접근입니다. 다시 시도해 주세요");
+			}
+			model.addAttribute("msg", "회원삭제가 완료되었습니다.");
+			session.invalidate();
 		}
-		model.addAttribute("msg", "회원삭제가 완료되었습니다.");
-		session.invalidate();
+		
 		return "/index";
 	}
 }

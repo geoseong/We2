@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -93,7 +94,6 @@ public class MemberDao {
 		return results.isEmpty() ? null : results.get(0);
 	}
 
-	// email濡� �쉶�썝議고쉶
 	public List<Member> selectByEmail(String email) {
 		List<Member> results = jdbcTemplate.query("select * from MEMBER where email like '%" + email + "%'",
 				memRowMapper);
@@ -169,7 +169,8 @@ public class MemberDao {
 	public List<PjtMakeVO> selectproject(String userId) {
 		List<PjtMakeVO> results = jdbcTemplate.query(
 				"select make.pjtcode, make.pjtname, make.pjtclassify, make.startdate, make.enddate"
-				+ " from pjtmanager mgr, pjtmake make where mgr.isLeader='Y' and userId = ?",
+				+ " from pjtmanager mgr, pjtmake make "
+				+ "where mgr.isLeader='Y' and userId = ? and mgr.pjtcode = make.pjtcode",
 				new RowMapper<PjtMakeVO>() {
 					@Override
 					public PjtMakeVO mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -196,7 +197,40 @@ public class MemberDao {
 						return rs.getString("userid");
 					}
 				}, pjtCode);
-		System.out.println("selectmembers_mypjt()::results.isEmpty()::::::" + results.isEmpty());
+		System.out.println("selectmembers_mypjt.isEmpty?" + results.isEmpty());
+		return results.isEmpty() ? null : results;
+	}
+	
+	/** 탈퇴자인 방장이 해당 프로젝트 팀원에게 권한 인계*/
+	public void updateownerpjt(int pjtCode, String members, String originalowner){
+		jdbcTemplate.update("update pjtManager set isLeader='Y' where pjtCode=? and userId=?", pjtCode, members);
+		jdbcTemplate.update("update pjtManager set isLeader='N' where pjtCode=? and userId=?", pjtCode, originalowner);
+	}
+	
+	/** pjtCode제약조건으로 pjtname 출력시키기 */
+	public String selectpjtname(int pjtCode) {
+		String result = jdbcTemplate.queryForObject(
+				"select pjtName from pjtMake where pjtCode=?",
+				String.class,
+				pjtCode);
+		return result.isEmpty() ? null : result;
+	}
+	
+	/** 더이상 탈퇴자가 방장인 프로젝트가 있나 확인 */
+	public List<HashMap<String, String>> confirmpjtowner(String originalowner) {
+		List<HashMap<String, String>> results = jdbcTemplate.query(
+				"select * from pjtManager where userId=? and isLeader='Y'",
+				new RowMapper<HashMap<String, String>>() {
+					@Override
+					public HashMap<String, String> mapRow(ResultSet rs, int rowNum) throws SQLException {
+						HashMap<String, String> columns = new HashMap<String, String>();
+						columns.put("pjtCode", rs.getString("pjtCode"));
+						columns.put("userId", rs.getString("userId"));
+						columns.put("isLeader", rs.getString("isLeader"));
+						return columns;
+					}
+				}, originalowner);
+		System.out.println("selectmembers_mypjt.isEmpty?" + results.isEmpty());
 		return results.isEmpty() ? null : results;
 	}
 }

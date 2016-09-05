@@ -8,61 +8,91 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="js/jquery_latest_160826.js"></script>
 <script type="text/javascript">
-		/* var select = document.getElementById("select_id");
-		var option_value = select.options[select.selectedIndex].value;
-		var option_text   = select.options[select.selectedIndex].text; */
 	$(document).ready(function() {
 		$('#pjts #pjts_op').click(function(){
-		  	var selectbox=$('#pjts');
+		  	/* var selectbox=$('#pjts');
 			var option_value = selectbox[0].value;
-			alert("option_value : " + option_value);
+			alert("option_value : " + option_value); */
+			var option_value= $("#pjts option:selected").val(); // val() : option:value / text() : option태그의 text
+			//디버깅 : alert("pjtCode - " + option_value);
 			$.ajax({
 			      url : "searchpjt",
 			      method : "POST",
 			      data : {pjtCode : option_value}, 
-			      //dataType: "text", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
+			      //dataType: "JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
 			      success : function(data) {
 			            // 통신이 성공적으로 이루어졌을 때 이 함수를 타게 된다.
-			            // data.length = 727
-			            //$(".secondselect").html(data);
-			            alert('통신성공');
-			            var responsebody = new Array();
-			            responsebody = data;
-			            alert("리스트길이는? " + responsebody.length + ", 리스트값은? " + responsebody[0]);
-			    	  	//$("#brdfilepath").html("없음");
+			            //디버깅 : alert('통신성공');
+
+			            $("#pjt").html('');
+			           $("#pjt").append(data);
+			            var pjtmembers = $("#pjt").text();	
+			            //디버깅 : alert("#pjt : " + pjtmembers);
+			            
+			            var andsplit = pjtmembers.split(',');
+			            $("#members").html('');
+			            for ( var i in andsplit ) {
+				            $("#members").append("<option value='"+ andsplit[i] +"'>"+ andsplit[i] +"</option>");
+			            }
 			      },
 			      complete : function(data) {
 			            // 통신이 실패했어도 완료가 되었을 때 이 함수를 타게 된다.
-			    	  	alert('통신완료 data : ' + data.status);
+			    	  	//디버깅 : alert('통신완료 data : ' + data.status);
 			      },
-			      // error : function(xhr, status, error) {
-			       //     alert("에러발생 - 파일이 안지워져요. status : " + status + ", xhr : " + xhr.value + ", error : "+ error);
-			      //} 
 			      error:function(request,status,error){
 			          alert("code:  "+request.status+"\n"+"message:  "+request.responseText+"\n"+"error:  "+error);
 			      }
 			}); //end ajax
 		});
 	});
+	
+	function popupClose(){
+		inherit_form.target = opener.name;
+		inherit_form.submit();
+        
+        if (opener != null) {
+            opener.insert = null;
+            self.close();
+        }
+	}
 </script>
+
 </head>
 <body>
-<h2>내가 방장인 프로젝트의 방장권한을 다른사람에게 인계해야 합니다.</h2>
-<div style="display: inline-block;" class="firstselect">
-	<p>내가 방장인 프로젝트목록</p>
-		<select id="pjts" size="1">
+<form method="post" action="inheritance.do" >
+	<h2>내가 방장인 프로젝트의 방장권한을 다른사람에게 인계해야 합니다.</h2>
+	<div style="display: inline-block;" class="firstselect">
+		<p>내가 방장인 프로젝트목록</p>
+		<select id="pjts" name="pjts" size="1">
+				<option>--프로젝트 선택--</option>
 			<c:forEach var="projects" items="${projects }">
-			<option id="pjts_op" value="${projects.pjtCode }">${projects.pjtName }</option>
+				<option id="pjts_op" value="${projects.pjtCode }">${projects.pjtName }</option>
 			</c:forEach>
 		</select>
-</div>
-<div style="margin-left: 1em; display: inline-block;" class="secondselect">
-	<p>프로젝트 인원목록</p>
-		<select id="members" size="1">
-			<c:forEach var="member" items="${pjtmember }">
-			<option value="${member }">${member }</option>
-			</c:forEach>
+	</div>
+	<div style="margin-left: 1em; display: inline-block;" class="secondselect">
+		<p>프로젝트 인원목록</p>
+		<select id="members" name="members" size="1">
 		</select>
-</div>
+	</div>
+	
+	<div id="pjt" style="display: none;"></div>
+	
+	<div style="margin-top: 1em;">${completemsg }</div>
+	
+	<div style="margin: 1em 0em;">
+		<input type="hidden" name="userId" value="${authInfo.userId }">
+		<p align="right">
+		<input type="submit" value="방장권한 넘겨주기" align="right">
+		</p>
+	</div>
+</form>
+
+
+<form method="post" name="inherit_form" action="Member_delete">
+<p align="right">
+	<input type="submit" value="회원탈퇴" onclick="popupClose()">
+</p>
+</form>
 </body>
 </html>

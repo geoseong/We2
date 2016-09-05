@@ -53,6 +53,11 @@ public class pjtMakeCtrl{
 		pjtMakeDAO.insertWillWork(userId, pjtCode, name);
 		System.out.println("할 일에 대한 작업이 성공했어! 거의 다왔어!!");
 		
+		/*
+		 -- 프로젝트 만들때 추가되는 테이블 :
+		-- pjtMake , pjtManager, willwork 
+		 */
+		
 		//프로젝트 생성이 성공했습니다 메시지를 뿌려주기 위한 설정
 		request.setAttribute("test", "success");
 		return "/index";
