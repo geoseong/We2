@@ -97,7 +97,6 @@ public class LogoutController {
 			model.addAttribute("msg", "회원삭제가 완료되었습니다.");
 			session.invalidate();
 		}
-		
 		return "/index";
 	}
 }

@@ -20,7 +20,7 @@ btnRight2.on("click",function(){
     if($(".main_slider").css("left")=="0px"){
         autoLeft2();
     }
-    btnStop2.hide();
+//    btnStop2.hide();
     btnPlay2.show();
     clearInterval(timer3);
     return false;
@@ -30,23 +30,23 @@ btnLeft2.on("click",function(){
     if($(".main_slider").css("left")=="0px"){
         autoRight2();
     };
-    btnStop2.hide();
+//    btnStop2.hide();
     btnPlay2.show();
     clearInterval(timer3);
     return false;
 });
     
     
-btnStop2.children().on("click",function(){
-    clearInterval(timer3);
-    btnStop2.hide();
-    btnPlay2.show();
-    return false;
-});    
+//btnStop2.children().on("click",function(){
+//    clearInterval(timer3);
+//    btnStop2.hide();
+//    btnPlay2.show();
+//    return false;
+//});    
 
 btnPlay2.children().on("click",function(){
     timer3 = setInterval("autoLeft2()",3000);
-    btnStop2.show();
+//    btnStop2.show();
     btnPlay2.hide();
     return false;
 });     
