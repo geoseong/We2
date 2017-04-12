@@ -45,14 +45,10 @@ public class FileController {
 	/* 리스트 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String listSpecificPageWork(@RequestParam("page") int page, Model model) throws ParseException {
-		System.out.println("-------------------------------받아온 파라미터");
-		System.out.println("rows_per_page : " + rows_per_page);
-		System.out.println("page : " + page);
-		System.out.println("-------------------------------변수설정 시작");
+		
 		// 시작 rownum 받아오기
 		int row_start = 0;
 		row_start = paging.getFirstRowInPage(page, rows_per_page);
-		System.out.println("row_start : " + row_start);
 
 		// 끝 rownum 받아오기
 		int row_end = 0;
@@ -60,15 +56,12 @@ public class FileController {
 
 		// pjtCode 받아내기
 				int pjtCode = (Integer)session.getAttribute("pjtCode");
-					System.out.println("/file list pjtcode : "+pjtCode);
 					
-		System.out.println("row_end : " + row_end);
 		int t_rows = fileService.getTotalCnt(pjtCode);
 		int t_pages = paging.getTotalPage(t_rows, rows_per_page);
 
 		// 블락설정 : 한 화면에 표시될 페이지를 토대로 page세션1(1~10), page세션2(11~20)을 정의
 		int block = paging.getPageBlock(page, page_for_block);
-			System.out.println("/file list.GET \n └ t_pages : "+t_pages+" / " + "page_for_block : "+page_for_block);
 		int block_total = paging.getPageBlock(t_pages, page_for_block);
 			if(block_total==0){
 				block_total=1;
@@ -76,11 +69,9 @@ public class FileController {
 		int block_first = paging.getFirstPageInBlock(block, page_for_block);
 		int block_last = paging.getLastPageBlock(block, page_for_block);
 		if (block_last > t_pages) {
-			System.out.println("--block_last가 t_pages보다 크므로 내용이 존재하는 페이지만큼만 block_last를 조절.");
 			block_last = t_pages;
 		}
 
-		System.out.println("/file list.GET \n └ block : "+block+" / " + "block_total : "+block_total);
 		/* SECTION : REQUEST 영역에 보내기 */
 		// ★★ SELECT 결과물 ★★
 		model.addAttribute("fileList", fileService.getlist(row_start, row_end, pjtCode));
@@ -98,19 +89,12 @@ public class FileController {
 		model.addAttribute("block_total", block_total);
 		model.addAttribute("page_for_block", page_for_block);
 
-		System.out.println("--------------------------listSpecificPage");
-
 		return "myproject/myproject";
 	}
 
 	@RequestMapping(value = "/filewrite.do", method = RequestMethod.GET)
 	public String writeget(HttpSession session, HttpServletRequest request, Model model) {
-		System.out.println("---글쓰기 페이지 진입");
-		if (session.getAttribute("authInfo") != null) {
-			System.out.println("로그인 되어있음.");
-		}else{
-			System.out.println("로그인 안됨");
-		}
+		
 		// JSP:INCLUDE PAGE
 		model.addAttribute("filepage", "fileWrite");
 
@@ -120,17 +104,14 @@ public class FileController {
 	/* 글 등록하기 */
 	@RequestMapping(value = "/filewrite.do", method = RequestMethod.POST)
 	public String writepost(HttpSession session, HttpServletRequest request, Model model) throws IOException {
-		System.out.println("/filewrite.do POST");
 		/* getRealPath :
 			E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps\We2\
 			해당 경로의 폴더가 안만들어져있다면 직접 만들어놔야할 것. */
 		String encType = "UTF-8";
 		int sizeLimit = 20 * 1024 * 1024;
-			System.out.println("MultipartRequest 정의 전, encType: "+ encType +" , sizeLimit : " + sizeLimit);
-		
+			
 		/** servletContext : 이 구문이 있어야 servletContext가 살아난다. */
 		servletContext = request.getSession().getServletContext();
-			System.out.println("파일경로 : "+ servletContext.getRealPath(path));
 			
 		// path의 경로(폴더)는 직접 개발자가 만들어놓지 않으면 에러남. 
 			MultipartRequest multi = new MultipartRequest(
@@ -147,12 +128,10 @@ public class FileController {
 		// 4. 파일경로
 		String fileurl = multi.getFilesystemName("fileurl");
 		fVo.setFileurl(fileurl);
-		System.out.println("WriteServlet - fileurl : " + fVo.getFileurl());
-
+		
 		// pjtCode 받아내기
 		int pjtCode = (Integer)session.getAttribute("pjtCode");
-			System.out.println("/file write pjtcode : "+pjtCode);
-
+			
 		// 세션에 돌아다니는 로그인된 회원정보 불러오기
 		AuthInfo mVo = (AuthInfo)session.getAttribute("authInfo");
 		// 게시글 내용들을 Insert하기
@@ -167,7 +146,6 @@ public class FileController {
 		model.addAttribute("filepage", "fileList");
 		model.addAttribute("page", "../file/FileList");
 
-		System.out.println(message);
 		return "file/close";
 	}
 
@@ -182,7 +160,6 @@ public class FileController {
 		// 시작 rownum 받아오기
 
 		int pjtCode = (Integer)session.getAttribute("pjtCode");
-			System.out.println("/file delete.GET pjtcode : "+pjtCode);
 		// BoardDelete -
 		model.addAttribute("fileList", fileService.getSearchbyfcode(fcode, pjtCode));
 		// JSP:INCLUDE PAGE
@@ -198,7 +175,6 @@ public class FileController {
 		logger.info("fcode=[" + fcode + "] ");
 
 		int pjtCode = (Integer)session.getAttribute("pjtCode");
-		System.out.println("/file delete.POST pjtcode : "+pjtCode);
 
 		// SQL
 		fileService.deleteRow(fcode, pjtCode);
@@ -226,7 +202,6 @@ public class FileController {
 		logger.info("fcode=[" + fcode + "] ");
 
 		int pjtCode = (Integer)session.getAttribute("pjtCode");
-			System.out.println("/file fileupdate.GET pjtcode : "+pjtCode);
 		
 		// Update
 		model.addAttribute("fileList", fileService.getSearchbyfcode(fcode, pjtCode));
@@ -241,10 +216,8 @@ public class FileController {
 
 		// pjtCode를 세션에서 받아오고
 		int pjtCode = (Integer)session.getAttribute("pjtCode");
-			System.out.println("/file fileupdate.POST pjtcode : "+pjtCode);
 
 		String path = servletContext.getRealPath("we2/file/data");
-		System.out.println("path : " + path);
 		// getRealPath :
 		// E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps\testweb\
 		String encType = "UTF-8";
@@ -255,27 +228,22 @@ public class FileController {
 		// 2. 제목
 		String fname = multi.getParameter("fname");
 		fVo.setFname(fname);
-		System.out.println("filecontroller - fname : " + fVo.getFname());
 
 		// 4. 코드번호
 		int fcode = Integer.parseInt(multi.getParameter("fcode"));
 		fVo.setFcode(fcode);
-		System.out.println("filecontroller - fcode : " + fVo.getFcode());
 
 		// 5. 파일경로
 		String fileurl = null;
 		fVo.setFileurl(fileurl);
-		System.out.println("WriteServlet - fileurl : " + fVo.getFileurl());
 
 		// 파일수정 아무것도 안하면 null값을 받아오는데, 파일이 날라갈 것을 방지하기위한 if문.
 		if (multi.getFilesystemName("fileurl") != null) {
 			fileurl = multi.getFilesystemName("fileurl");
-			System.out.println("자료 업뎃함.");
 		} else {
 			// BoardMapper에서 select 결과를 받아옴.
 			fVo = fileService.select_by_num(pjtCode, fcode);
 			fileurl = fVo.getFileurl();
-			System.out.println("자료수정된 것 없음");
 		} // end if
 
 		// 게시글 내용들을 update 하기

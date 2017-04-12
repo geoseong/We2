@@ -92,7 +92,6 @@ public class PjtBoardController {
 		// category 보냄
 		  model.addAttribute("category", category);
 		  model.addAttribute("boardname", boardname);
-		System.out.println("--------------------------listSpecificPage");
 		
 		return "pjtBoard/boardmain";
 	}

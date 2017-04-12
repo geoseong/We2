@@ -29,7 +29,6 @@
     // 파라미터 받는다. - 프로젝트코드
     int pjtcode = (Integer)request.getAttribute("pjtcode");
 
-    System.out.println("pjtcode(memoadd) : " + pjtcode);
     %>
 
    	<input type="hidden" name="pjtcode" value="${pjtcode}" >

@@ -16,9 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
-import com.we2.spring.AuthInfo;
-
 @Controller
 @RequestMapping(value="/scheduler")
 public class SchedulerController {
@@ -43,14 +40,11 @@ public class SchedulerController {
 	/* 리스트 */
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String listSpecificPageWork(Model model) throws ParseException{
-			System.out.println("scheduler list.get] hi");
-		
+			
 		int pjtCode = (Integer)session.getAttribute("pjtCode");
-			System.out.println("scheduler list] pjtCode : "+pjtCode);
 			
 		model.addAttribute("Content", schedulerService.getlist(pjtCode));
 		model.addAttribute("page", "../Scheduler/Calendar");
-		System.out.println("--------------------------schedulerList");
 		
 		return "myproject/myproject";
 	}
@@ -61,10 +55,6 @@ public class SchedulerController {
 	@RequestMapping(value="/memoAdd.do", method=RequestMethod.GET)
 	public String writeget(HttpSession session, HttpServletRequest request, Model model, int year, int month, int day){
 		int pjtCode = (Integer)session.getAttribute("pjtCode");
-			System.out.println("/memoAdd.do pjtcode : "+pjtCode);
-		System.out.println("---글쓰기 페이지 진입");
-		
-		System.out.println("year : "+year + ", month : "+month + ", day : "+day);
 		
 		// JSP:INCLUDE PAGE
 		  model.addAttribute("schedulerpage", "memoAdd");
@@ -84,8 +74,7 @@ public class SchedulerController {
 		//SchedulerBean객체인 cVo에 변수들을 집어넣는다.
 		SchedulerBean cVo = new SchedulerBean();
 		//1. 글번호는 DAO의 SQL sequence로 내부적으로 처리.
-		System.out.println("scheduler 글쓰기");
-	
+		
 		//2. 년도				
 			int calendarmemo_year=Integer.parseInt(request.getParameter("calendarmemo_year"));
 			cVo.setCalendarmemo_year(calendarmemo_year);
@@ -121,7 +110,6 @@ public class SchedulerController {
 	public String StudyRoomdelete(@RequestParam("calendarmemo_num") int calendarmemo_num, Model model) throws ParseException {
 	
 		int pjtCode = (Integer)session.getAttribute("pjtCode");
-			System.out.println("/memoDelete.do GET pjtcode : "+pjtCode);
 		// BoardDelete -
 		  model.addAttribute("calendarmemo", schedulerService.getSearchbycalendarmemo_num(calendarmemo_num, pjtCode));	
 		  // JSP:INCLUDE PAGE
@@ -133,9 +121,7 @@ public class SchedulerController {
 	@RequestMapping(value="/memoDelete.do", method=RequestMethod.POST)
 	public String StudyRoomdeletepos(@RequestParam("calendarmemo_num") int calendarmemo_num, Model model) {
 		
-		System.out.println("/memoDelete.do POST calendarmemo_num : "+calendarmemo_num);
 		int pjtCode = (Integer)session.getAttribute("pjtCode");
-			System.out.println("/memoDelete.do POST pjtcode : "+pjtCode);
 		schedulerService.deleteScheduler(calendarmemo_num, pjtCode);
 		
 		// JSP:INCLUDE PAGE
@@ -150,15 +136,13 @@ public class SchedulerController {
 	 /*수정하기*/ 
 		@RequestMapping(value="/memoUpdate.do", method=RequestMethod.GET)
 		public String StudyRoomupdate(@RequestParam("calendarmemo_num") int calendarmemo_num, Model model) throws ParseException {
-			System.out.println("/memoupdate.get 시작");
 			
 			int pjtCode = (Integer)session.getAttribute("pjtCode");
-				System.out.println("/memoUpdate.do GET pjtcode : "+pjtCode);
 			// Update
 			  model.addAttribute("calendarmemo", schedulerService.getSearchbycalendarmemo_num(calendarmemo_num, pjtCode));
 			  
 			  String contents = schedulerService.getSearchbycalendarmemo_num(calendarmemo_num, pjtCode).getCalendarmemo_contents().replace("\r\n","<br>");
-			  System.out.println("contents : " + contents);
+			  
 			  // JSP:INCLUDE PAGE
 			  model.addAttribute("schedulerpage", "memoUpdate");
 			  model.addAttribute("page", 1);
@@ -169,38 +153,29 @@ public class SchedulerController {
 		@RequestMapping(value="/memoUpdate.do", method=RequestMethod.POST)
 		public String StudyRoomupdatepos(Model model , HttpSession session) throws IOException {
 			
-			System.out.println("/memoupdate.post 시작");
-			
 			//PjtBoardBean객체인 cVo에 변수들을 집어넣는다.
 			SchedulerBean cVo = new SchedulerBean();
 			//1. 글번호는 DAO의 SQL sequence로 내부적으로 처리.
 				int calendarmemo_num=Integer.parseInt(request.getParameter("calendarmemo_num"));
 				cVo.setCalendarmemo_num(calendarmemo_num);
-					System.out.println("modify - calendarmemo_num : " + cVo.getCalendarmemo_num());
 			//2. 년도				
 				int calendarmemo_year=Integer.parseInt(request.getParameter("calendarmemo_year"));
 				cVo.setCalendarmemo_year(calendarmemo_year);
-					System.out.println("modify - calendarmemo_year : " + cVo.getCalendarmemo_year());
 			//3. 달				
 				int calendarmemo_month=Integer.parseInt(request.getParameter("calendarmemo_month"));
 				cVo.setCalendarmemo_month(calendarmemo_month);
-					System.out.println("modify - calendarmemo_month : " + cVo.getCalendarmemo_month());
 			//4. 일				
 				int calendarmemo_day=Integer.parseInt(request.getParameter("calendarmemo_day"));
 				cVo.setCalendarmemo_day(calendarmemo_day);
-					System.out.println("modify - calendarmemo_day : " + cVo.getCalendarmemo_day());
 							
 			//5. 메모내용
 				String calendarmemo_contents = request.getParameter("calendarmemo_contents");
 						//cVo.getCalendarmemo_contents();
 				cVo.setCalendarmemo_contents(calendarmemo_contents);
-					System.out.println("WriteServlet - boardpath : " + cVo.getCalendarmemo_contents());
 					
 			//6. 코드번호				
 				int pjtCode = (Integer)session.getAttribute("pjtCode");
-					System.out.println("/memoUpdate.do GET pjtcode : "+pjtCode);
 				cVo.setPjtcode(pjtCode);
-					System.out.println("WriteServlet - pjtcode : " + cVo.getPjtcode());
 					
 		// 게시글 내용들을 update 하기
 			logger.info("updateRow called!!");			

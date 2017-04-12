@@ -30,8 +30,7 @@ $("#nav>a").click(function(){
 <body>
 
 <%
-	if(request.getParameter("logon") !=null){
-		System.out.println("if문 안에 들어옴");		
+	if(request.getParameter("logon") !=null){	
 		%>
 			<script>
 				alert('로그인이 필요한 메뉴입니다.');

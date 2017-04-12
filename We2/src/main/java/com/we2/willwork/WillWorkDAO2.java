@@ -49,7 +49,6 @@ public class WillWorkDAO2 {
             return willWorkVO; 
             }
          },pjtCode);
-      System.out.println("WillWorkDAO2] selectAll 결과 아무것도 없음? "+results.isEmpty());
       return results;
    }
 
@@ -129,22 +128,21 @@ public class WillWorkDAO2 {
    }
    
    public void adduserWillwork(final String userId, final int pjtCode, final String username) {
-	        jdbcTemplate.update(new PreparedStatementCreator() {
-	            @Override
-	            public PreparedStatement createPreparedStatement(Connection con) 
-	                    throws SQLException {
-	                // 파라미터로 전달받은 Connection을 이용해서 PreparedStatement 생성
-	                PreparedStatement pstmt = con.prepareStatement(
-                      "insert into willwork values(?, ?, '', '', '', ?)");
-	                // 인덱스 파라미터 값 설정
-	                pstmt.setString(1, userId);
-	                pstmt.setInt(2,  pjtCode);
-	                pstmt.setString(3, username);
-	                
-	                // 생성한 PreparedStatement 객체 리턴
-	                return pstmt;
-	            } //end createPreparedStatement()
-	        });
-	        System.out.println("adduserWillwork Completed");
+        jdbcTemplate.update(new PreparedStatementCreator() {
+            @Override
+            public PreparedStatement createPreparedStatement(Connection con) 
+                    throws SQLException {
+                // 파라미터로 전달받은 Connection을 이용해서 PreparedStatement 생성
+                PreparedStatement pstmt = con.prepareStatement(
+                  "insert into willwork values(?, ?, '', '', '', ?)");
+                // 인덱스 파라미터 값 설정
+                pstmt.setString(1, userId);
+                pstmt.setInt(2,  pjtCode);
+                pstmt.setString(3, username);
+                
+                // 생성한 PreparedStatement 객체 리턴
+                return pstmt;
+            } //end createPreparedStatement()
+        });
 	}
 }

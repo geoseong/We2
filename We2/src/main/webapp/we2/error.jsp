@@ -32,9 +32,6 @@
 <%
 	String errormsg = (String)request.getAttribute("error");
 	String pagemsg = (String)request.getAttribute("page");
-	System.out.println("error : " + errormsg);
-	System.out.println("page : " + page.toString());
-	System.out.println("pagemsg : " + pagemsg);
 %>
 <c:choose>
 	<c:when test="${error eq 'sessionAfterthrowing' }">

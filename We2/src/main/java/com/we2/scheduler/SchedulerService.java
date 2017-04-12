@@ -29,8 +29,8 @@ public class SchedulerService {
 			 int calendarmemo_month, 
 			 int calendarmemo_day, 
 			 String calendarmemo_contents,
-			 int pjtcode){
-		System.out.println("게시물 insert 완료.");
+			 int pjtcode)
+	{
 		schedulerMapper.insertScheduler( calendarmemo_year, calendarmemo_month, calendarmemo_day, calendarmemo_contents, pjtcode);
 	}
 	public void deleteScheduler(int calendarmemo_num, int pjtCode){
@@ -45,8 +45,8 @@ public class SchedulerService {
 			 int calendarmemo_month, 
 			 int calendarmemo_day, 
 			 String calendarmemo_contents
-			){
-		System.out.println("studyroomservice updaterow");
+			)
+	{
 		this.schedulerMapper.updateScheduler(pjtcode, calendarmemo_num, calendarmemo_year, calendarmemo_month, calendarmemo_day, calendarmemo_contents);
 	}
 }

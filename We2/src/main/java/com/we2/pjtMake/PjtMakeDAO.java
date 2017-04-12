@@ -127,7 +127,6 @@ public class PjtMakeDAO {
 					}
 				}
 				, pjtCode);
-		System.out.println("PjtMakeDAO] results.isempty? - "+results.isEmpty());
 		return results.isEmpty() ? null : results.get(0);
 	}
 	
@@ -150,13 +149,11 @@ public class PjtMakeDAO {
 					}
 				}
 				, pjtCode);
-		System.out.println("PjtMakeDAO] results.isempty? - "+results.isEmpty());
 		return results.isEmpty() ? null : results;
 	}
 	
 	/** 방장이 누군지 구하기 */
 	public String selectLeader(int pjtCode){
-		System.out.println("PjtMakeDAO ] pjtCode : "+pjtCode);
 		List<String> results = jdbcTemplate.query(
 				"select userid from pjtmanager where pjtcode=? and isleader='y'"
 				,
@@ -168,7 +165,6 @@ public class PjtMakeDAO {
 					}
 				}
 				, pjtCode);
-		System.out.println("PjtMakeDAO] results.isempty? - "+results.isEmpty());
 		return results.isEmpty() ? null : results.get(0);
 	}
 	
@@ -186,7 +182,6 @@ public class PjtMakeDAO {
 				return pstmt;
 			}
 		});
-		System.out.println("addpjtMember Completed");
 	}
 	
 	
@@ -203,7 +198,6 @@ public class PjtMakeDAO {
 					return pstmt;
 				}
 			});
-		System.out.println("insertWillWork Completed");
 	}
 	
 	/** 이미 해당 프로젝트에 가입되어있는 지 확인 */
@@ -219,7 +213,6 @@ public class PjtMakeDAO {
 					}
 				}
 				, pjtCode, userId);
-		System.out.println("PjtMakeDAO] results.isempty? - "+results.isEmpty());
 		return results.isEmpty() ? null : results.get(0);
 	}
 	/** 프로젝트 제거전 제거멤버이름 확인*/
@@ -236,16 +229,13 @@ public class PjtMakeDAO {
 					}
 				}
 				, pjtCode, userId);
-		System.out.println("PjtMakeDAO] results.isempty? - "+results.isEmpty());
 		return results.isEmpty() ? null : results.get(0);
 	} 
 	
 	
 	/**프로젝트 멤버 삭제하기. - pjtManager 테이블*/
 	public void pjtmgrmemDel(final int pjtCode, final String userId){
-		System.out.println("pjtmemDel에서 받은 pjtCode : " + pjtCode);
-		System.out.println("pjtmemDel에서 받은 userId : " + userId);
-
+		
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			@Override
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
@@ -257,13 +247,10 @@ public class PjtMakeDAO {
 				return pstmt;
 			}
 		});
-			System.out.println("pjtmemDel pjtManager delete 완료");
 	}
 	/** 프로젝트 멤버 삭제하기. - WillWork 테이블*/
 	public void pjtwillworkmemDel(final int pjtCode, final String userId){
-		System.out.println("pjtmemDel에서 받은 pjtCode : " + pjtCode);
-		System.out.println("pjtmemDel에서 받은 userId : " + userId);
-
+		
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			@Override
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
@@ -275,7 +262,6 @@ public class PjtMakeDAO {
 				return pstmt;
 			}
 		});
-			System.out.println("pjtmemDel willwork delete 완료");
 	}
 	
 	/** 해당 프로젝트 시작&종료기간 수정*/

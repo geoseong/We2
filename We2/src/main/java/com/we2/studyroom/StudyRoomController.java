@@ -47,20 +47,14 @@ public class StudyRoomController {
 	/* 리스트 */
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String listSpecificPageWork(@RequestParam("page") int page, Model model) throws ParseException{
-		System.out.println("-------------------------------받아온 파라미터");
-			System.out.println("rows_per_page : " + rows_per_page);
-			System.out.println("page : " + page);
-		System.out.println("-------------------------------변수설정 시작");
 			// 시작 rownum 받아오기
 			int row_start=0;
 			row_start = paging.getFirstRowInPage(page, rows_per_page);
-			System.out.println("row_start : " + row_start);
 			
 			// 끝 rownum 받아오기
 			int row_end=0;
 			row_end = paging.getLastRowInPage(page, rows_per_page);
 			
-			System.out.println("row_end : " + row_end);
 			int t_rows = studyroomService.getTotalCnt();
 			int t_pages = paging.getTotalPage(t_rows, rows_per_page);
 			
@@ -70,11 +64,9 @@ public class StudyRoomController {
 			int block_first=paging.getFirstPageInBlock(block, page_for_block);
 			int block_last=paging.getLastPageBlock(block, page_for_block);
 			if(block_last>t_pages){
-				System.out.println("--block_last가 t_pages보다 크므로 내용이 존재하는 페이지만큼만 block_last를 조절.");
 				block_last=t_pages;
 			}
-			System.out.println("t_pages : " + t_pages +" , t_rows : "+t_rows+" , block_total : "+block_total+" , block : "+ block + " , block_first : " + block_first + " , block_last : " + block_last);
-		System.out.println("-------------------------------변수설정 끝");
+			
 		/* SECTION : REQUEST 영역에 보내기 */
 		// ★★ SELECT 결과물 ★★
 				  model.addAttribute("Content", studyroomService.getlist(row_start, rows_per_page));
@@ -90,7 +82,7 @@ public class StudyRoomController {
 				  model.addAttribute("block_last",block_last);
 				  model.addAttribute("block_total",block_total);
 				  model.addAttribute("page_for_block", page_for_block);
-		System.out.println("--------------------------listSpecificPage");
+		
 		return "studyRoom/shareArea";
 	} //end list
 	
@@ -101,19 +93,13 @@ public class StudyRoomController {
 			@RequestParam("rlocation") String rlocation,
 			@RequestParam("rlocationdetail") String rlocationdetail) throws ParseException{
 
-		System.out.println("-------------------------------받아온 파라미터");
-			System.out.println("rows_per_page : " + rows_per_page);
-			System.out.println("page : " + page);
-		System.out.println("-------------------------------변수설정 시작");
 			// 시작 rownum 받아오기
 			int row_start=0;
 			row_start = paging.getFirstRowInPage(page, rows_per_page);
-			System.out.println("row_start : " + row_start);
 			
 			// 끝 rownum 받아오기
 			int row_end=0;
 			row_end = paging.getLastRowInPage(page, rows_per_page);
-				System.out.println("row_end : " + row_end);
 				
 			ArrayList<StudyRoomBean> searchbean = new ArrayList<StudyRoomBean>();
 			try{
@@ -137,12 +123,9 @@ public class StudyRoomController {
 			int block_first=paging.getFirstPageInBlock(block, page_for_block);
 			int block_last=paging.getLastPageBlock(block, page_for_block);
 			if(block_last>t_pages){
-				System.out.println("--block_last가 t_pages보다 크므로 내용이 존재하는 페이지만큼만 block_last를 조절.");
 				block_last=t_pages;
 			}
-			System.out.println("t_pages : " + t_pages +" , t_rows : "+t_rows+" , block_total : "+block_total+" , block : "+ block + " , block_first : " + block_first + " , block_last : " + block_last);
-		System.out.println("-------------------------------변수설정 끝");
-
+			
 		/* SECTION : REQUEST 영역에 보내기 */
 		// ★★ SELECT 결과물 ★★
 			  model.addAttribute("Content", searchbean);
@@ -168,7 +151,7 @@ public class StudyRoomController {
 	/** 글쓰기 폼 띄우기 */
 	@RequestMapping(value="/studyroomwrite.do", method=RequestMethod.GET)
 	public String aopwriteget(Model model, StudyRoomBean studyRoomBean){
-		System.out.println("---글쓰기 페이지 진입");
+		
 		// JSP:INCLUDE PAGE
 		  model.addAttribute("studyroompage", "StudyRoomWrite");
 	 
@@ -182,18 +165,14 @@ public class StudyRoomController {
 	
 	@RequestMapping(value="/studyroomwrite.do", method=RequestMethod.POST)
 	public String writepost(/*HttpServletRequest request, */Model model) throws IOException {
-	    System.out.println("studyroomwrite.POST]");
+	   
 		// 해당 경로의 폴더가 안만들어져있다면 직접 만들어놔야할 것.
 		
 		// getRealPath : E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps\testweb\
 		String encType="UTF-8";
 		int sizeLimit = 20*1024*1024;
 		
-			System.out.println("multipartrequest적용 전");
-		
 		MultipartRequest multi = new MultipartRequest(request, servletContext.getRealPath(path), sizeLimit, encType, new DefaultFileRenamePolicy());
-		
-			System.out.println("multipartrequest적용 후");
 		
 		//PjtBoardBean객체인 sVo에 변수들을 집어넣는다.
 		StudyRoomBean sVo = new StudyRoomBean();
@@ -201,28 +180,22 @@ public class StudyRoomController {
 		//2. 제목
 			String rname=multi.getParameter("rname");
 			sVo.setRname(rname);
-				System.out.println("WriteServlet - title : " + sVo.getRname());
 		//4. 위치
 			String rlocation=multi.getParameter("rlocation");
 			sVo.setRlocation(rlocation);
-			System.out.println("WriteServlet - title : " + sVo.getRlocation());	
 		//5. 상세 위치
 			String rlocationdetail = multi.getParameter("rlocationdetail");
 			sVo.setRlocationdetail(rlocationdetail);
-			System.out.println("WriteServlet - title : " + sVo.getRlocationdetail());
 		//6. 파일경로
 			String rpictureurl = multi.getFilesystemName("rpictureurl");
 			sVo.setRpictureurl(rpictureurl);
-				System.out.println("WriteServlet - boardpath : " + sVo.getRpictureurl());
 		//7. 게시물 내용
 			String rcontent=multi.getParameter("rcontent");
-			sVo.setRcontent(rcontent);;
-				System.out.println("WriteServlet - content : " + sVo.getRcontent());
+			sVo.setRcontent(rcontent);
 		
 		//8. 인원수
 			int rmember=Integer.parseInt(multi.getParameter("rmember"));
 			sVo.setRmember(rmember);
-			System.out.println("WriteServlet - title : " + sVo.getRmember());
 		// 게시글 내용들을 Insert하기
 			studyroomService.insertStudyRoom(sVo.getRname(), sVo.getRlocation(), sVo.getRlocationdetail(), sVo.getRcontent(), sVo.getRmember(),sVo.getRpictureurl());
 		
@@ -286,7 +259,6 @@ public class StudyRoomController {
 		public String StudyRoomupdatepos(StudyRoomBean studyRoomBean, Model model , HttpSession session) throws IOException {
 			
 			String path=servletContext.getRealPath("we2/studyRoom/data");
-			System.out.println("path : "+path);
 			// getRealPath : E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps\testweb\
 			String encType="UTF-8";
 			int sizeLimit = 20*1024*1024;
@@ -294,44 +266,35 @@ public class StudyRoomController {
 			//2. 제목
 			String rname=multi.getParameter("rname");
 			studyRoomBean.setRname(rname);
-				System.out.println("WriteServlet - rname : " + studyRoomBean.getRname());
 		//4. 위치
 			String rlocation=multi.getParameter("rlocation");
 			studyRoomBean.setRlocation(rlocation);
-			System.out.println("WriteServlet - rlocation : " + studyRoomBean.getRlocation());	
 		//5. 상세 위치
 			String rlocationdetail = multi.getParameter("rlocationdetail");
 			studyRoomBean.setRlocationdetail(rlocationdetail);
-			System.out.println("WriteServlet - rlocationdetail : " + studyRoomBean.getRlocationdetail());
 		//6. 파일경로
 				String rpictureurl = null;
 				studyRoomBean.setRpictureurl(rpictureurl);
-				System.out.println("WriteServlet - rpictureurl : " + studyRoomBean.getRpictureurl());
 
 				
 				
 		//7. 게시물 내용
 			String rcontent=multi.getParameter("rcontent");
-			studyRoomBean.setRcontent(rcontent);;
-				System.out.println("WriteServlet - rcontent : " + studyRoomBean.getRcontent());
+			studyRoomBean.setRcontent(rcontent);
 		
 		//8. 인원수
 			int rmember=Integer.parseInt(multi.getParameter("rmember"));
 			studyRoomBean.setRmember(rmember);
-			System.out.println("WriteServlet - rmember : " + studyRoomBean.getRmember());
 		//9. 코드번호	
 			int rcode=Integer.parseInt(multi.getParameter("rcode"));
 			studyRoomBean.setRcode(rcode);
-			System.out.println("WriteServlet - rcode : " + studyRoomBean.getRcode());
 			
 			// 파일수정 아무것도 안하면 null값을 받아오는데, 파일이 날라갈 것을 방지하기위한 if문.
 			if (multi.getFilesystemName("rpictureurl") != null) {
 				rpictureurl = multi.getFilesystemName("rpictureurl");
-				System.out.println("자료 업뎃함.");
 			} else {
 				// BoardMapper에서 select 결과를 받아옴.
 				rpictureurl = studyroomService.getSearchbyrcode(rcode).getRpictureurl();
-				System.out.println("자료수정된 것 없음");
 			} // end if
 			
 		// 게시글 내용들을 update 하기

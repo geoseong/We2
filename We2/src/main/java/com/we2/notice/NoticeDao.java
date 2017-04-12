@@ -59,7 +59,6 @@ public class NoticeDao {
 	}
 	
 	public String modify(String num, HttpServletRequest request, int pjtCode) {
-		System.out.println(request.getParameter("title")+" / "+request.getParameter("content"));
 		String sql = "update notice set title=?, content=? where num="+num+" and pjtCode="+pjtCode;
 		jdbcTemplate.update(sql, 
 				request.getParameter("title"), request.getParameter("content"));

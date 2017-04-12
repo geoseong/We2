@@ -35,29 +35,25 @@ public class AOP_Session {
 	/** sessionCheck에 대한 AOP..*/
 	@Before("sessionCheck()")
 	public void beforesessionCheck(JoinPoint thisJoinPoint) throws Throwable  {
-			System.out.println("@Before 시작 -----");
     	AuthInfo authinfo = (AuthInfo) session.getAttribute("authInfo");
-    	  	System.out.println("		@Before] member.userid : " + authinfo.getUserId());
-    	  	System.out.println("@Before 끝 -----");
      } //end @before
 	
 	@AfterReturning(pointcut = "aop.AOP_Session.sessionCheck()", returning = "retVal")
     public void afterReturningTargetMethod(JoinPoint thisJoinPoint, Object retVal) {
-			System.out.println("@AfterReturning 시작------\n return value is [" + retVal + "]\n@AfterReturning 끝------------------");
+			
     } //end @AfterReturning
 	
 	@AfterThrowing(pointcut = "aop.AOP_Session.sessionCheck()", throwing = "ex")
     public void afterThrowingTargetMethod(JoinPoint thisJoinPoint , Throwable ex) throws IOException,  ServletException{
-        	System.out.println("@AfterThrowing 시작 -----");
+        	
        // HttpServletRequest request= ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
         String ex_str=ex.toString();
-        	System.out.println("@AfterThrowing 시작------\nThrowable ex - " + ex_str+"\n@AfterThrowing 끝------------------");
         request.setAttribute("error", ex_str);
     }
 
 	 @After("sessionCheck()")
 	    public void afterTargetMethod(JoinPoint thisJoinPoint) {
-	        System.out.println("@After 시작------------\n@After 끝------------------");
+	        
 	    }
 	
 } //end Class

@@ -11,8 +11,6 @@ public class NoticeList implements Notice{
 	@Override
 	public void execute(Model model) {
 		
-		System.out.println("22222222222222222");
-		
 /*		NoticeDao dao = new NoticeDao();
 		ArrayList<NoticeDto> dtos = dao.list();
 		

@@ -37,9 +37,7 @@ public class XlsController {
 			Map<String,Object> ModelMap) throws Exception{
 		
 		int pjtCode = (Integer)session.getAttribute("pjtCode");
-			System.out.println("/xlsctrler pjtcode : "+pjtCode);
 
-		
 		// 프로젝트 Overview
 		List<PjtMakeVO> overview = service.getPjtMake(pjtCode);
 		// 할 일

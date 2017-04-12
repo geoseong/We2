@@ -22,7 +22,6 @@ public class CBoardService {
 	public ArrayList<FormattedDate> getformatDate(String category, int row_start, int rows_per_page) throws ParseException{
 		ArrayList<CBoardBean> arraymapper=boardMapper.getList(category, row_start, rows_per_page);
 		
-		System.out.println("---------------Date형을 원하는 포멧(String형)으로 바꾸는작업 시작");
 		Date mapperdate = null;
 		SimpleDateFormat fmt=null;
 		String mappercom =null;
@@ -47,8 +46,6 @@ public class CBoardService {
 			formattedDate.add(i, formatDate);
 		} //end for
 		
-		System.out.println("☆☆☆☆☆☆Date형을 원하는 포멧(String형)으로 바꾸는작업 끝☆☆☆☆☆☆");
-	
 		return formattedDate;
 	}
 	
@@ -86,7 +83,6 @@ public class CBoardService {
 	public ArrayList<FormattedDate> findBoard(String cartegory, String find, String findword, int row_start, int row_end){
 		ArrayList<CBoardBean> arraymapper=boardMapper.findBoard(cartegory, find, findword, row_start, row_end);
 		
-		System.out.println("---------------Date형을 원하는 포멧(String형)으로 바꾸는작업 시작");
 		Date mapperdate = null;
 		SimpleDateFormat fmt=null;
 		String mappercom =null;
@@ -110,7 +106,6 @@ public class CBoardService {
 						);
 			formattedDate.add(i, formatDate);
 		} //end for
-		System.out.println("☆☆☆☆☆☆Date형을 원하는 포멧(String형)으로 바꾸는작업 끝☆☆☆☆☆☆");
 		
 		return formattedDate;
 	}

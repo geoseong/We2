@@ -55,7 +55,6 @@ public class WillWorkController {
       // doWork 컬럼이 비어있는 지 확인하기
       String isDoWorkEmpty = willWorkDAO.selectOne(name, pjtCode).get(0).getDoWork();
       String isEmpty="";
-      	System.out.println("isDoWorkEmpty의 내용 : " + isDoWorkEmpty);
       	if(!isDoWorkEmpty.isEmpty()){
       		isEmpty=isDoWorkEmpty;
       	}
@@ -81,7 +80,6 @@ public class WillWorkController {
       
       for(int i=0; i<list.size(); i++)  {
          if(complete.trim().equals(list.get(i).trim())) {
-            System.out.println("WillWorkDAO list.get("+i+") : " + list.get(i));
             list.remove(i);
          }
       }

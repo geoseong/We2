@@ -5,7 +5,6 @@ public class AuthService {
 	private MemberDao memberDao;
 	
 	public void setMemberDao(MemberDao memberDao) {
-		System.out.println(memberDao.toString()+"memberDao:::주입됨 ");
 		this.memberDao = memberDao;
 	}
 
@@ -14,11 +13,9 @@ public class AuthService {
 		Member member = memberDao.selectByUserid(userId);
 		
 		if (member == null) {
-			System.out.println("member==null");
 			throw new IdPasswordNotMatchingException();
 		}
 		if (!member.matchPassword(password)) {
-			System.out.println("member pwd!=null" +"AuthService에서 디버깅중...");
 			throw new IdPasswordNotMatchingException();
 		}
 		

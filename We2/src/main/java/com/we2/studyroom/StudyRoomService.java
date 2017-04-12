@@ -22,7 +22,6 @@ public class StudyRoomService {
 		return arraymapper;
 	}
 	public ArrayList<StudyRoomBean> getSearchstudyroom(String rlocatoin , String rlocationdetail, int row_start, int rows_per_page){
-		System.out.println("Service - " + rlocatoin + " / "+ rlocationdetail);
 		return studyRoomMapper.getSearchstudyroom(rlocatoin, rlocationdetail, row_start, rows_per_page);
 	}
 	
@@ -50,8 +49,8 @@ public class StudyRoomService {
 			 String rlocationdetail, 
 			 String rcontent, 
 			 int rmember, 
-		     String rpictureurl){
-		System.out.println("게시물 insert 완료.");
+		     String rpictureurl)
+	{
 		studyRoomMapper.insertStudyRoom(rname, rlocation, rlocationdetail, rcontent, rmember, rpictureurl);
 	}
 	
@@ -66,8 +65,8 @@ public class StudyRoomService {
 			 String rlocationdetail, 
 			 String rcontent, 
 			 int rmember, 
-		     String rpictureurl){
-		System.out.println("studyroomservice updaterow");
+		     String rpictureurl)
+	{
 		this.studyRoomMapper.StudyRoomupdate(rcode, rname, rlocation, rlocationdetail, rcontent, rmember, rpictureurl);
 	}
 }

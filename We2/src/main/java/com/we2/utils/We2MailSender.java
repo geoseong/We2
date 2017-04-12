@@ -47,11 +47,8 @@ public class We2MailSender{
             // 여러사람 체크된 메일 받아서 InternetAddress[]에 넣는다.
             InternetAddress[] toList=new InternetAddress[usermail.length];
         		for(int i=0; i<usermail.length ; i++){ 
-        			System.out.println("usermail["+i+"] : "+usermail[i]);
         			toList[i] = new InternetAddress(usermail[i]);
-        			System.out.println("toList["+i+"] : "+toList[i]);
         		}
-        	System.out.println("for문 끝.");
         	
 			// 메일내용 앞부분
 			String mailheader = "<strong>안녕하세요</strong>, 반갑습니다. <br><img src='cid:abc'>";
@@ -69,7 +66,6 @@ public class We2MailSender{
 			
 			// 프로젝트 인원을 담는다.
 			String pjtmember="";
-				System.out.println("member size : " + members.size());
 			for(int i=0; i<members.size(); i++){
 				if((i+1)!=members.size()){
 					pjtmember = pjtmember + members.get(i).getName()+", ";
@@ -77,7 +73,6 @@ public class We2MailSender{
 					pjtmember = pjtmember + members.get(i).getName();
 				}
 			}
-			System.out.println("We2sender] pjtCode : " + pjtinfo.getPjtCode());
 			
 			// 메일내용에 변수를 넣어야 하는 부분은 직접 해준다 ㅜ
 			mailbody = 
@@ -102,12 +97,9 @@ public class We2MailSender{
 			String mailfooter="";
 			// body부분이 들어있는 파일을 추가하는 작업.
 			while( (mailfooter=br.readLine()) != null ){
-				System.out.println("mailfooter : " + mailfooter);
 				mailheader = mailheader + mailfooter; 
 			}
 			
-			//디버깅 : 내용확인
-				System.out.println("내용 : " + mailheader);
 			
 			// 메일제목설정
 			messageHelper.setSubject("We2 프로젝트에 당신을 초대합니다.");

@@ -36,15 +36,9 @@ public class ExcelDAO{
 							rs.getString("pjtClassify"),
 							rs.getString("startDate"),
 							rs.getString("endDate"));
-						System.out.println(pjtvo.getPjtCode());
-						System.out.println(pjtvo.getPjtName());
-						System.out.println(pjtvo.getPjtClassify());
-						System.out.println(pjtvo.getStartDate());
-						System.out.println(pjtvo.getEndDate());
 					return pjtvo;
 				}
 			}, pjtCode);
-			System.out.println("isempty? "+results.isEmpty());
 		return results.isEmpty()? null : results;
 	}
 	
@@ -66,7 +60,6 @@ public class ExcelDAO{
 						return willwork;
 					}
 				}, pjtCode);
-				System.out.println("isempty? "+results.isEmpty());
 			return results.isEmpty()? null : results;
 	}
 	
@@ -89,7 +82,6 @@ public class ExcelDAO{
 						return notice;
 					}
 				}, pjtCode);
-				System.out.println("isempty? "+results.isEmpty());
 			return results.isEmpty()? null : results;
 	}
 	
@@ -111,7 +103,6 @@ public class ExcelDAO{
 						return scheduler;
 					}
 				}, pjtCode);
-				System.out.println("isempty? "+results.isEmpty());
 			return results.isEmpty()? null : results;
 	}
 }//제발좀 되렴!!

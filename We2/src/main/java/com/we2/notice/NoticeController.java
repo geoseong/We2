@@ -39,7 +39,6 @@ public class NoticeController {
 	@RequestMapping("/write")
 	public String write(HttpServletRequest request, Model model) {
 		int pjtCode = (Integer)session.getAttribute("pjtCode");
-			System.out.println("/notice write pjtcode : "+pjtCode);
 		model.addAttribute("content", noticeDao.write(request, pjtCode));
 		model.addAttribute("msg", "글쓰기가 완료되었습니다.");
 		return list(model);
@@ -48,7 +47,6 @@ public class NoticeController {
 	@RequestMapping("/view")
 	public String view(@RequestParam("num") String num, Model model){
 		int pjtCode = (Integer)session.getAttribute("pjtCode");
-			System.out.println("/notice view pjtcode : "+pjtCode);
 		
 		// <br>내용이 포함된 내용 보내기.
 		String content=noticeDao.view(num, pjtCode).get(0).getContent().replace("\r\n", "<br>");
@@ -69,7 +67,6 @@ public class NoticeController {
 		model.addAttribute("num", num);
 
 		int pjtCode = (Integer)session.getAttribute("pjtCode");
-			System.out.println("/notice modify pjtcode : "+pjtCode);
 		
 		//model.addAttribute("page", "../notice/list");
 		
@@ -83,7 +80,6 @@ public class NoticeController {
 	public String modify_view(@RequestParam("num") String num, Model model) {
 		
 		int pjtCode = (Integer)session.getAttribute("pjtCode");
-			System.out.println("/notice modify_view pjtcode : "+pjtCode);
 		
 		model.addAttribute("num", num);
 		model.addAttribute("content", noticeDao.view(num, pjtCode));
@@ -100,7 +96,6 @@ public class NoticeController {
 		//model.addAttribute("content", noticeDao.delete(num, model));
 		
 		int pjtCode = (Integer)session.getAttribute("pjtCode");
-			System.out.println("/notice delete pjtcode : "+pjtCode);
 		
 		noticeDao.delete(num);
 		//--model.addAttribute("content",noticeDao.list(pjtCode));

@@ -35,23 +35,18 @@ public class pjtMakeCtrl{
 		
 		// 방금 생성한 프로젝트 코드를 조회하는 DAO
 		int pjtCode = pjtMakeDAO.selectCode();
-		System.out.println("프로젝트를 만든 이 사람의 프로젝트 코드는 : " + pjtCode + " 입니다." );
 		
 		//필요한 컬럼을 다 받았으니 pjtManager를 추가한다.
 		pjtMakeDAO.inserPjtManager(userId, pjtCode);
 		
-		System.out.println("프로젝트만들기 어디까지왔니? 여기는 매니저추가임!");
 		//날짜 구하는 Dao 
 		
 		//프로젝트 생성후 날짜를 구해서 세션에 저장한다. 
 		int dateSearch = pjtMakeDAO.searchDate(pjtCode);
-		System.out.println("마지막 날짜와 시작날짜의 차 : " + dateSearch);
 		session.setAttribute("day", dateSearch);
 		
-		System.out.println("내 아이디, 코드, 이름은 : " + userId + ", " + pjtCode +", " + name + "(이)야" );
 		//프로젝트 생성 후 willwork에 대한 정보도 디비로 포함시켜야 나중에 할 일 부분에서 볼 수 있음
 		pjtMakeDAO.insertWillWork(userId, pjtCode, name);
-		System.out.println("할 일에 대한 작업이 성공했어! 거의 다왔어!!");
 		
 		/*
 		 -- 프로젝트 만들때 추가되는 테이블 :

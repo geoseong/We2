@@ -48,11 +48,6 @@ public class CBoardController {
 	/* 리스트 */
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String listget(@RequestParam("page") int page, String category, Model model) throws ParseException {
-		System.out.println("-------------------------------받아온 파라미터");
-			System.out.println("rows_per_page : " + rows_per_page);
-			System.out.println("page : " + page);
-		System.out.println("-------------------------------변수설정 시작");
-
 		String boardname=null;
 		if(category.equals("cFindwork")){   // 팀원 구하기 게시판
 			boardname="팀원구하기";
@@ -60,21 +55,16 @@ public class CBoardController {
 			boardname="자유";
 		}
 		
-		System.out.println("List.GET] category : " + category);
-		
 			// 시작 rownum 받아오기
 			int row_start= paging.getFirstRowInPage(page, rows_per_page);
-			System.out.println("row_start : " + row_start);
 			
 			// 끝 rownum 받아오기
 			int row_end=paging.getLastRowInPage(page, rows_per_page);
-			System.out.println("row_end : " + row_end);
 			
 			// 토탈 row, page 구하기
 			int t_rows = boardService.getTotalCnt(category);
 			if(t_rows==0){
 				t_rows=1;
-				System.out.println("t_rows가 0이면 jsp의 c:if에서 block_last조건식에 위배되어 1로 설정. -- " + t_rows);
 			}
 			int t_pages = paging.getTotalPage(t_rows, rows_per_page);
 			
@@ -84,12 +74,9 @@ public class CBoardController {
 			int block_first=paging.getFirstPageInBlock(block, page_for_block);
 			int block_last=paging.getLastPageBlock(block, page_for_block);
 			
-			System.out.println("t_pages : " + t_pages +" , t_rows : "+t_rows+" , block_total : "+block_total+" , block : "+ block + " , block_first : " + block_first + " , block_last : " + block_last);
 			if(block_last>t_pages){
-				System.out.println("--block_last가 t_pages보다 크므로 내용이 존재하는 페이지만큼만 block_last를 조절.");
 				block_last=t_pages;
 			}
-		System.out.println("-------------------------------변수설정 끝");
 		
 		/** SECTION : REQUEST 영역에 보내기 */
 		// ★★ SELECT 결과물 ★★
@@ -109,7 +96,6 @@ public class CBoardController {
 		// category 보냄
 		  model.addAttribute("category", category);
 		  model.addAttribute("boardname", boardname);
-		System.out.println("--------------------------listSpecificPage");
 		
 		return "cBoard/boardmain";
 	}
@@ -118,8 +104,6 @@ public class CBoardController {
 	/** 글쓰기 폼 띄우기 */
 	@RequestMapping(value="/write", method=RequestMethod.GET)
 	public String aopwriteget(HttpSession session,Model model,String category){
-		
-		System.out.println("Write.get] category : " + category);
 		
 		String boardname=null;
 		if(category.equals("cFindwork")){   // 팀원 구하기 게시판
@@ -141,13 +125,10 @@ public class CBoardController {
 	 * @throws IOException */
 	@RequestMapping(value="/write", method=RequestMethod.POST)
 	public String writepost(HttpSession session, /*HttpServletRequest request, */Model model, String category) throws IOException {
-		System.out.println("write.post] category : "+category);
-		
 		// 해당 경로의 폴더가 안만들어져있다면 직접 만들어놔야할 것.
 		// getRealPath : E:\JavaSmartWeb\mywork_web\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps\testweb\
 		MultipartRequest multi = new MultipartRequest(
 					request, 	servletContext.getRealPath(path), sizeLimit, encType, new DefaultFileRenamePolicy());
-		System.out.println("파일 contentType : " + multi.getContentType("file"));
 		
 		//cBoardBean객체인 cVo에 변수들을 집어넣는다.
 		CBoardBean cVo = new CBoardBean();
@@ -155,19 +136,15 @@ public class CBoardController {
 		//1. 글번호는 DAO의 SQL sequence로 내부적으로 처리.
 		//2. 제목
 			cVo.setItemTitle(multi.getParameter("itemTitle"));
-				System.out.println("WriteServlet - title : " + cVo.getItemTitle());
 		//3. 유저ID는 세션에 떠돌아다니는 (로그인중인) 변수를 getAttribute하면 됨
 			AuthInfo mVo = (AuthInfo)session.getAttribute("authInfo");
 			cVo.setUserId(mVo.getUserId());
-				System.out.println("WriteServlet - userid : " + cVo.getUserId());
 		//4. 게시물 작성일은 현재 날짜를 표시하는 sysdate를 DAO에서  내부적으로 처리.
 		//5. 조회수는 방문할때 doGet방식 - count하라는 파라미터를 넘길때만 +1 하면 될듯
 		//6. 파일경로
 			cVo.setItemPath(multi.getFilesystemName("file"));
-				System.out.println("WriteServlet - boardpath : " + cVo.getItemPath());
 		//7. 게시물 내용
 			cVo.setItemContent(multi.getParameter("itemContent"));
-				System.out.println("WriteServlet - content : " + cVo.getItemContent());
 		//8. 데이터 타입
 				cVo.setItemDataType(multi.getContentType("file"));
 		// 게시글 내용들을 Insert하기
@@ -183,8 +160,6 @@ public class CBoardController {
 	
 	@RequestMapping(value="/content", method=RequestMethod.GET)
 	public String contentget(Model model, String category, int itemNum) throws IOException {
-		System.out.println("Content.GET] itemNum : "+itemNum);
-		System.out.println("Content.GET] category : " + category);
 		
 		String boardname=null;
 		if(category.equals("cFindwork")){   // 팀원 구하기 게시판
@@ -209,8 +184,6 @@ public class CBoardController {
 	
 	@RequestMapping(value="/modify", method=RequestMethod.GET)
 	public String modifyget(Model model, String category, int itemNum) throws IOException {
-		System.out.println("Modify] category : " + category);
-		System.out.println("Modify] itemNum : " + itemNum);
 		
 		model.addAttribute("BoardUpdate", boardService.select_by_num(category, itemNum));
 		
@@ -232,22 +205,16 @@ public class CBoardController {
 	
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
 	public String modifypost(/*HttpServletRequest request, */Model model, String category, int itemNum) throws IOException {
-		System.out.println("Modify.POST] itemNum : " + itemNum);
-		System.out.println("Modify.POST] ategory : " + category);
 		
 		MultipartRequest multi = 
 				new MultipartRequest(
 						request, 	servletContext.getRealPath(path), sizeLimit, encType, new DefaultFileRenamePolicy());
-		System.out.println("contenttype : " + multi.getContentType("file"));
 		
-			System.out.println("cVo 정의 전");
 		//cBoardBean객체인 cVo 정의
 		CBoardBean cVo = new CBoardBean();
 		
 		//1. 글번호를 파라미터로 받아온다.
-			System.out.println("ItemNum 정의 전");
 		int ItemNum = Integer.parseInt(multi.getParameter("itemNum"));
-			System.out.println("ItemNum 정의 후");
 		//2. 제목
 			String ItemTitle=multi.getParameter("itemTitle");
 		//3. 유저ID는
@@ -260,23 +227,14 @@ public class CBoardController {
 				if(multi.getFilesystemName("itemPath")!=null){
 					ItemPath = multi.getFilesystemName("itemPath");
 					ItemDataType=multi.getContentType("itemPath");
-					System.out.println("자료 업뎃함." + ItemDataType);
 				}else{
 					// BoardMapper에서 select 결과를 받아옴.
 					cVo = boardService.select_by_num(category, ItemNum);
 					ItemPath = cVo.getItemPath();
 					ItemDataType=cVo.getItemDataType();
-					System.out.println("자료수정된 것 없음" + ItemDataType);
 				} //end if
 		//7. 게시물 내용
 			String ItemContent=multi.getParameter("itemContent");
-			
-			// 디버깅.
-			System.out.println("doPost itemNum --"+ItemNum);
-			System.out.println("doPost itemTitle --"+ItemTitle);
-			System.out.println("doPost itemPath --"+ItemPath);
-			System.out.println("doPost itemContent --"+ItemContent);
-			System.out.println("doPost ItemDataType --"+ItemDataType);
 			
 			// 글번호, 제목, 게시물 작성일, 파일경로, 게시물 내용을 Update Set.
 			boardService.updateBoard(category, ItemNum, ItemTitle, ItemPath, ItemContent, ItemDataType);
@@ -291,8 +249,6 @@ public class CBoardController {
 	
 	@RequestMapping(value="/delete", method=RequestMethod.GET)
 	public String deletepost(Model model, String category, int itemNum) {
-		System.out.println("DELETE.POST] category : " + category);
-		System.out.println("DELETE.POST] itemNum : " + itemNum);
 		// boardMapper 제거 SQL.
 		boardService.deleteBoard(category, itemNum);
 		
@@ -305,12 +261,9 @@ public class CBoardController {
 		return "redirect:list";
 	}
 	
-
 	
 	@RequestMapping(value="/find", method=RequestMethod.GET)
 	public String findget(Model model, String category, String find, String findword, int page){
-		System.out.println("find.GET] category : " + category);
-		
 		if(find.equals("itemTitle")){				
 			find="itemTitle";			
 		}else if(find.equals("userId")){				
@@ -318,9 +271,6 @@ public class CBoardController {
 		}else{				
 			find="itemContent";			
 		}
-		System.out.println("find값 : " + find);				
-		System.out.println("findword값 : " + findword);	
-		
 		String boardname=null;
 		if(category.equals("cFindwork")){   // 팀원 구하기 게시판
 					boardname="팀원구하기";
@@ -329,14 +279,11 @@ public class CBoardController {
 		}
 		model.addAttribute("boardname", boardname);
 		
-		System.out.println("find.GET] page : " + page);
 		// 시작 rownum 받아오기
 			int row_start= paging.getFirstRowInPage(page, rows_per_page);
-			System.out.println("row_start : " + row_start);
 			
 			// 끝 rownum 받아오기
 			int row_end=paging.getLastRowInPage(page, rows_per_page);
-			System.out.println("row_end : " + row_end);
 			
 			// SQL : 토탈 row, page 구하기
 			int t_rows = boardService.getFindCnt(category, find, findword);
@@ -349,12 +296,9 @@ public class CBoardController {
 			int block_last=paging.getLastPageBlock(block, page_for_block);
 			
 			if(block_last>t_pages){
-				System.out.println("--block_last가 t_pages보다 크므로 내용이 존재하는 페이지만큼만 block_last를 조절.");
 				block_last=t_pages;
 			}
-			System.out.println("t_pages : " + t_pages +" , t_rows : "+t_rows+" , block_total : "+block_total+" , block : "+ block + " , block_first : " + block_first + " , block_last : " + block_last);
-		System.out.println("-------------------------------변수설정 끝");
-		
+			
 		/** SECTION : REQUEST 영역에 보내기 */
 		// find, findword 보냄
 			model.addAttribute("find", find);
@@ -375,7 +319,6 @@ public class CBoardController {
 		  model.addAttribute("page_for_block", page_for_block);
 		// category 보냄
 		  model.addAttribute("category", category);
-		System.out.println("--------------------------listSpecificPage");
 		return "cBoard/boardmain";
 	}
 	

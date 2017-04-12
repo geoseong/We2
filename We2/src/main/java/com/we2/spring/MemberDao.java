@@ -34,11 +34,8 @@ public class MemberDao {
 	private RowMapper<Member> memRowMapper=new RowMapper<Member>(){@Override public Member mapRow(ResultSet rs,int rowNum)throws SQLException{Member member=new Member(rs.getString("userId"),rs.getString("NAME"),rs.getString("PWD"),rs.getString("pwd_confirm"),rs.getString("EMAIL"),rs.getString("PHONE"),rs.getString("GENDER"),rs.getDate("REGDATE"));member.setUserId(rs.getString("USERID"));return member;}};
 
 	public Member selectByUserid(String userId) {
-		System.out.println("MemberDAO userId 인자받은 :::::::::::::::::::::::" + userId);
 		List<Member> results = jdbcTemplate.query("select * from MEMBER where USERID = ?", memRowMapper, userId);
-		System.out.println("MemberDAO] results.isempty? - " + results.isEmpty());
-		System.out.println("MemberDAO] userid - " + results.get(0).getUserId());
-		System.out.println("MemberDAO] pwd - " + results.get(0).getPwd());
+		
 		return results.isEmpty() ? null : results.get(0);
 	}
 
@@ -125,7 +122,6 @@ public class MemberDao {
 						return pjtJoinVO;
 					}
 				}, userId);
-		System.out.println("selectAll()::results.isEmpty()::::::" + results.isEmpty());
 		return results.isEmpty() ? null : results;
 	}
 
@@ -142,26 +138,22 @@ public class MemberDao {
 	}
 
 	public void delete(AuthInfo authInfo) {
-		System.out.println("Dao_delete]]]+"+authInfo.getUserId());
 		jdbcTemplate.update("delete from member where userId=?", authInfo.getUserId());
 	}
 
 	public String findid(String name, String email){
-		System.out.println("DAO -name : " + name + " / Email : " + email);
 		
 		List<String> results = jdbcTemplate.query("select userId from member where name=? and email=?", 
 			new RowMapper<String>() {
 			@Override
 			public String mapRow(ResultSet rs, int rowNum) throws SQLException {
 				String userId=rs.getString("userId");
-					System.out.println("DAO userid : " + userId);
 				return userId;
 				}
 			}
 			,
 			name 
 			,email);
-		System.out.println("DAO isempty : " + results.isEmpty());
 		return results.isEmpty() ? null : results.get(0).toString();
 	}
 	
@@ -183,7 +175,6 @@ public class MemberDao {
 						return pjtVO;
 					}
 				}, userId);
-		System.out.println("selectproject()::results.isEmpty()::::::" + results.isEmpty());
 		return results.isEmpty() ? null : results;
 	}
 	
@@ -197,7 +188,6 @@ public class MemberDao {
 						return rs.getString("userid");
 					}
 				}, pjtCode);
-		System.out.println("selectmembers_mypjt.isEmpty?" + results.isEmpty());
 		return results.isEmpty() ? null : results;
 	}
 	
@@ -230,7 +220,6 @@ public class MemberDao {
 						return columns;
 					}
 				}, originalowner);
-		System.out.println("selectmembers_mypjt.isEmpty?" + results.isEmpty());
 		return results.isEmpty() ? null : results;
 	}
 }

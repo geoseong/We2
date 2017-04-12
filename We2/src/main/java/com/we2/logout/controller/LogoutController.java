@@ -50,13 +50,11 @@ public class LogoutController {
 	/** 회원탈퇴전 자신이 방장인 프로젝트 멤버들 뿌리기 */
 	@RequestMapping(value = "/searchpjt", method = RequestMethod.POST)
 	public @ResponseBody List<String> searchpjt(Model model, int pjtCode) {
-		System.out.println("searchpjt pjtCode : " + pjtCode);
 		List<String> mypjt = memberDao.selectmembers_mypjt(pjtCode);
 		for(int i=0; i<mypjt.size(); i++){
 			if(i != mypjt.size()-1){
 				mypjt.set(i, mypjt.get(i)+",");
 			}
-			System.out.println(mypjt.get(i));
 		}
 		return mypjt;
 	}
@@ -66,7 +64,6 @@ public class LogoutController {
 	public String inheritance(Model model, HttpServletRequest request, HttpSession session) {
 		int pjtCode=Integer.parseInt(request.getParameter("pjts"));
 		String members=request.getParameter("members");
-			System.out.println("inheritance.do POST pjtCode : " + pjtCode + ", members : " + members);
 		
 		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
 		
@@ -82,7 +79,6 @@ public class LogoutController {
 		
 		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
 		String userId = authInfo.getUserId();
-			System.out.println("logout[[["+userId);
 		
 		if(memberDao.confirmpjtowner(userId) !=null){
 			model.addAttribute("msg", 

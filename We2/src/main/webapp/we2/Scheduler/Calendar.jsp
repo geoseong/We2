@@ -48,7 +48,6 @@ function winOpen2(calendarmemo_num){
   if(Year == null && Month == null){ //처음 호출했을 때
 	  year=currentYear;
 	  month=currentMonth+1;
-	  System.out.println("currentMonth : "+month);
   }
   else { //나타내고자 하는 날짜를 숫자로 변환
 	   year=Integer.parseInt(Year);
