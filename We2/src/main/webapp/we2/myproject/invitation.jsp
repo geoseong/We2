@@ -6,7 +6,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>프로젝트 팀원 추가.</title>
-<!-- <link rel="stylesheet" type="text/css" href="/We2/css/File.css"> -->
 
 <style type="text/css">
 

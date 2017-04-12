@@ -17,8 +17,8 @@ public class PjtBoardService {
 	// 일반 게시판 리스트 뽑을 때.
 	public ArrayList<FormattedDate> getformatDate(String category, int row_start, int rows_per_page) throws ParseException{
 		ArrayList<PjtBoardBean> arraymapper=boardMapper.getList(category, row_start, rows_per_page);
-		
-		System.out.println("---------------Date형을 원하는 포멧(String형)으로 바꾸는작업 시작");
+
+		// Date형을 원하는 포멧(String형)으로 바꾸는작업 시작
 		Date mapperdate = null;
 		SimpleDateFormat fmt=null;
 		String mappercom =null;
@@ -27,10 +27,8 @@ public class PjtBoardService {
 		ArrayList<FormattedDate> formattedDate = new ArrayList<FormattedDate>();
 		for(int i=0; i < arraymapper.size(); i++){
 			mapperdate = arraymapper.get(i).getItemDate();
-			
 			fmt = new SimpleDateFormat("yyyy-MM-dd");
 			mappercom = fmt.format(mapperdate);
-		
 			formatDate= new FormattedDate(
 						arraymapper.get(i).getItemNum(), 
 						arraymapper.get(i).getItemTitle(),
@@ -42,9 +40,6 @@ public class PjtBoardService {
 						);
 			formattedDate.add(i, formatDate);
 		} //end for
-		
-		System.out.println("☆☆☆☆☆☆Date형을 원하는 포멧(String형)으로 바꾸는작업 끝☆☆☆☆☆☆");
-	
 		return formattedDate;
 	}
 	
@@ -55,7 +50,6 @@ public class PjtBoardService {
 	
 	// 게시물 등록
 	public void insertBoard (String category, String itemTitle, String userId, String itemPath, String itemContent, String itemDataType){
-		
 		boardMapper.insertBoard(category, itemTitle, userId, itemPath, itemContent, itemDataType);
 	}
 	
@@ -83,7 +77,6 @@ public class PjtBoardService {
 	public ArrayList<FormattedDate> findBoard(String cartegory, String find, String findword, int row_start, int row_end){
 		ArrayList<PjtBoardBean> arraymapper=boardMapper.findBoard(cartegory, find, findword, row_start, row_end);
 		
-		System.out.println("---------------Date형을 원하는 포멧(String형)으로 바꾸는작업 시작");
 		Date mapperdate = null;
 		SimpleDateFormat fmt=null;
 		String mappercom =null;
@@ -91,11 +84,9 @@ public class PjtBoardService {
 		FormattedDate formatDate;
 		ArrayList<FormattedDate> formattedDate = new ArrayList<FormattedDate>();
 		for(int i=0; i < arraymapper.size(); i++){
-			mapperdate = arraymapper.get(i).getItemDate();
-			
+			mapperdate = arraymapper.get(i).getItemDate(); 
 			fmt = new SimpleDateFormat("yyyy-MM-dd");
-			mappercom = fmt.format(mapperdate);
-		
+			mappercom = fmt.format(mapperdate); 
 			formatDate= new FormattedDate(
 						arraymapper.get(i).getItemNum(), 
 						arraymapper.get(i).getItemTitle(),
@@ -107,8 +98,6 @@ public class PjtBoardService {
 						);
 			formattedDate.add(i, formatDate);
 		} //end for
-		System.out.println("☆☆☆☆☆☆Date형을 원하는 포멧(String형)으로 바꾸는작업 끝☆☆☆☆☆☆");
-		
 		return formattedDate;
 	}
 	

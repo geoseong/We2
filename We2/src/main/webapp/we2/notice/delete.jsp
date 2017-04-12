@@ -7,7 +7,7 @@
 <title>글 삭제</title>
 <link rel="stylesheet" href="../css/w2_reset.css" type="text/css">
 <link rel="stylesheet" href="../css/02_project.css" type="text/css">
-<script type="text/javascript" src="js/jquery-1.12.1.min.js"></script>
+<script type="text/javascript" src="../js/jquery-1.12.1.min.js"></script>
 </head>
 <body>
 	<script type="text/javascript">

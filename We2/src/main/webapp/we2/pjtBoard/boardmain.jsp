@@ -16,7 +16,16 @@
 	<script type="text/javascript" src="../js/jquery-1.12.1.min.js"></script> 
    
 </head>
-
+<c:choose>
+	<c:when test="${empty msg}">
+	</c:when>
+	<c:otherwise>
+		<script type='text/javascript'>
+			alert('${msg}');
+		</script>
+	</c:otherwise>
+</c:choose>
+		<c:set scope="request" var="alert" value="${false }"/>
 <body>
  <!-- wrap : div를 한번더 감싸고 액션의 기준이 될 수 있음-->
 <div id="wrap"> 
@@ -28,7 +37,7 @@
         <h2>
             <b>
                 <sub>
-                    <a href="/We2">We2</a>
+                    <a href="../">We2</a>
                 </sub>  
             </b>
         </h2>
@@ -36,18 +45,18 @@
 <!-- 2. 상단 메뉴 부분-->
         <div id = "nav">
 
-           <a href="/We2/Member_Mypage">프로젝트 </a>
-            <a href="/We2/cBoard/list?page=1&category=cFindwork">커뮤니티 </a>
-            <a href="/We2/pjtBoard/list?page=1&category=pGroup">프로젝트공유 </a>
-            <a href="/We2/studyroom/list?page=1">스터디룸공유 &nbsp;</a>
+           <a href="../Member_Mypage">프로젝트 </a>
+            <a href="../cBoard/list?page=1&category=cFindwork">커뮤니티 </a>
+            <a href="../pjtBoard/list?page=1&category=pGroup">프로젝트공유 </a>
+            <a href="../studyroom/list?page=1">스터디룸공유 &nbsp;</a>
             
             <!-- 로그인 되어있으면 로그인만 표시, 안되어있으면 로그아웃만 표시. -->
             <c:choose>
 			 	<c:when test="${empty authInfo}">
-			            <a href="/We2/login">로그인</a>
+			            <a href="../login">로그인</a>
 				 </c:when>
 				 <c:otherwise>
-			            <a href="/We2/logout">로그아웃</a>
+			            <a href="../logout">로그아웃</a>
 				 </c:otherwise>
 			 </c:choose>
 			 

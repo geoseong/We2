@@ -37,7 +37,7 @@
 %>
 <script type="text/javascript">
 self.window.alert("해당 글을 삭제하였습니다");
-location.href = "/We2/Notice.do?list=../notice/list.jsp";
+location.href = "../Notice.do?list=../notice/list.jsp";
 </script>
 <%
 	rs.close();

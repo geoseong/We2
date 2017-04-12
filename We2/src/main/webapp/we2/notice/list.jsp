@@ -8,8 +8,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>WE2_프로젝트</title>
-<link rel="stylesheet" type="text/css" href="/We2/css/w2_reset.css">
-<link rel="stylesheet" type="text/css" href="/We2/css/notice.css">
+<link rel="stylesheet" type="text/css" href="../css/w2_reset.css">
+<link rel="stylesheet" type="text/css" href="../css/notice.css">
  
 </head>
 <!-- toString().contains('글쓰기가') -->
@@ -58,7 +58,7 @@
 					<c:forEach items="${content}" var="content">
 					<tr  align="center" border="1">
 						<td align="center">${content.num }</td>
-						<td align="center"><a href = "/We2/notice/view?num=${content.num }">${content.title }</a></td>
+						<td align="center"><a href = "./view?num=${content.num }">${content.title }</a></td>
 						<td align="center">${content.writer }</td>
 						<td align="center">${content.writedate }</td>
 					</tr>
