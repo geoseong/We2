@@ -22,6 +22,12 @@
 		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/we2?characterEncoding=utf8&amp;useSSL=false&amp;autoReconnection=true" />
 		<property name="user" value="we2admin" />
 		<property name="password" value="1234" />
+		
+		<!-- 커넥션 유지 -->
+		<property name="idleConnectionTestPeriod" value="60" />
+		<property name="preferredTestQuery" value="SELECT 1" />
+		<property name="testConnectionOnCheckin" value="true" />
+		<property name="testConnectionOnCheckout" value="false" />
 	</bean>
 	
 <!-- 시작 : MyBatis를 위한 태그들 -->
